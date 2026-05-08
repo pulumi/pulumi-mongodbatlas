@@ -216,32 +216,32 @@ export interface EncryptionAtRestPrivateEndpointState {
     /**
      * Label that identifies the cloud provider for the Encryption At Rest private endpoint.
      */
-    cloudProvider?: pulumi.Input<string>;
+    cloudProvider?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * Error message for failures associated with the Encryption At Rest private endpoint.
      */
-    errorMessage?: pulumi.Input<string>;
+    errorMessage?: pulumi.Input<string | undefined>;
     /**
      * Connection name of the Azure Private Endpoint.
      */
-    privateEndpointConnectionName?: pulumi.Input<string>;
+    privateEndpointConnectionName?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Cloud provider region in which the Encryption At Rest private endpoint is located.
      */
-    regionName?: pulumi.Input<string>;
+    regionName?: pulumi.Input<string | undefined>;
     /**
      * State of the Encryption At Rest private endpoint.
      */
-    status?: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.EncryptionAtRestPrivateEndpointTimeouts>;
+    status?: pulumi.Input<string | undefined>;
+    timeouts?: pulumi.Input<inputs.EncryptionAtRestPrivateEndpointTimeouts | undefined>;
 }
 
 /**
@@ -255,7 +255,7 @@ export interface EncryptionAtRestPrivateEndpointArgs {
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
@@ -264,5 +264,5 @@ export interface EncryptionAtRestPrivateEndpointArgs {
      * Cloud provider region in which the Encryption At Rest private endpoint is located.
      */
     regionName: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.EncryptionAtRestPrivateEndpointTimeouts>;
+    timeouts?: pulumi.Input<inputs.EncryptionAtRestPrivateEndpointTimeouts | undefined>;
 }

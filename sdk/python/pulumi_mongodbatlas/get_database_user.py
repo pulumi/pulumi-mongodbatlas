@@ -263,9 +263,9 @@ def get_database_user(auth_database_name: Optional[_builtins.str] = None,
         scopes=pulumi.get(__ret__, 'scopes'),
         username=pulumi.get(__ret__, 'username'),
         x509_type=pulumi.get(__ret__, 'x509_type'))
-def get_database_user_output(auth_database_name: Optional[pulumi.Input[_builtins.str]] = None,
-                             project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                             username: Optional[pulumi.Input[_builtins.str]] = None,
+def get_database_user_output(auth_database_name: pulumi.Input[Optional[_builtins.str]] = None,
+                             project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                             username: pulumi.Input[Optional[_builtins.str]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatabaseUserResult]:
     """
     `DatabaseUser` describes a Database User. This represents a database user which will be applied to all clusters within the project.

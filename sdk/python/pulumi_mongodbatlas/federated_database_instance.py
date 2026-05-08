@@ -22,11 +22,11 @@ __all__ = ['FederatedDatabaseInstanceArgs', 'FederatedDatabaseInstance']
 class FederatedDatabaseInstanceArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.str],
-                 cloud_provider_config: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigArgs']] = None,
-                 data_process_region: Optional[pulumi.Input['FederatedDatabaseInstanceDataProcessRegionArgs']] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_databases: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]] = None,
-                 storage_stores: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]] = None):
+                 cloud_provider_config: pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigArgs']] = None,
+                 data_process_region: pulumi.Input[Optional['FederatedDatabaseInstanceDataProcessRegionArgs']] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_databases: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]] = None,
+                 storage_stores: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]] = None):
         """
         The set of arguments for constructing a FederatedDatabaseInstance resource.
 
@@ -109,7 +109,7 @@ class FederatedDatabaseInstanceArgs:
 
     @_builtins.property
     @pulumi.getter(name="cloudProviderConfig")
-    def cloud_provider_config(self) -> Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigArgs']]:
+    def cloud_provider_config(self) -> pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigArgs']]:
         """
         Cloud provider linked to this data federated instance.
         * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
@@ -121,12 +121,12 @@ class FederatedDatabaseInstanceArgs:
         return pulumi.get(self, "cloud_provider_config")
 
     @cloud_provider_config.setter
-    def cloud_provider_config(self, value: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigArgs']]):
+    def cloud_provider_config(self, value: pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigArgs']]):
         pulumi.set(self, "cloud_provider_config", value)
 
     @_builtins.property
     @pulumi.getter(name="dataProcessRegion")
-    def data_process_region(self) -> Optional[pulumi.Input['FederatedDatabaseInstanceDataProcessRegionArgs']]:
+    def data_process_region(self) -> pulumi.Input[Optional['FederatedDatabaseInstanceDataProcessRegionArgs']]:
         """
         The cloud provider region to which the Federated Instance routes client connections for data processing.
         * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
@@ -135,24 +135,24 @@ class FederatedDatabaseInstanceArgs:
         return pulumi.get(self, "data_process_region")
 
     @data_process_region.setter
-    def data_process_region(self, value: Optional[pulumi.Input['FederatedDatabaseInstanceDataProcessRegionArgs']]):
+    def data_process_region(self, value: pulumi.Input[Optional['FederatedDatabaseInstanceDataProcessRegionArgs']]):
         pulumi.set(self, "data_process_region", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Atlas Federated Database Instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="storageDatabases")
-    def storage_databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]]:
+    def storage_databases(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]]:
         """
         Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
         * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
@@ -179,12 +179,12 @@ class FederatedDatabaseInstanceArgs:
         return pulumi.get(self, "storage_databases")
 
     @storage_databases.setter
-    def storage_databases(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]]):
+    def storage_databases(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]]):
         pulumi.set(self, "storage_databases", value)
 
     @_builtins.property
     @pulumi.getter(name="storageStores")
-    def storage_stores(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]]:
+    def storage_stores(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]]:
         """
         Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
         * `storage_stores.#.name` - Name of the data store.
@@ -210,22 +210,22 @@ class FederatedDatabaseInstanceArgs:
         return pulumi.get(self, "storage_stores")
 
     @storage_stores.setter
-    def storage_stores(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]]):
+    def storage_stores(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]]):
         pulumi.set(self, "storage_stores", value)
 
 
 @pulumi.input_type
 class _FederatedDatabaseInstanceState:
     def __init__(__self__, *,
-                 cloud_provider_config: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigArgs']] = None,
-                 data_process_region: Optional[pulumi.Input['FederatedDatabaseInstanceDataProcessRegionArgs']] = None,
-                 hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_endpoint_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstancePrivateEndpointHostnameArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_databases: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]] = None,
-                 storage_stores: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]] = None):
+                 cloud_provider_config: pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigArgs']] = None,
+                 data_process_region: pulumi.Input[Optional['FederatedDatabaseInstanceDataProcessRegionArgs']] = None,
+                 hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_endpoint_hostnames: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstancePrivateEndpointHostnameArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_databases: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]] = None,
+                 storage_stores: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]] = None):
         """
         Input properties used for looking up and filtering FederatedDatabaseInstance resources.
 
@@ -308,7 +308,7 @@ class _FederatedDatabaseInstanceState:
 
     @_builtins.property
     @pulumi.getter(name="cloudProviderConfig")
-    def cloud_provider_config(self) -> Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigArgs']]:
+    def cloud_provider_config(self) -> pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigArgs']]:
         """
         Cloud provider linked to this data federated instance.
         * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
@@ -320,12 +320,12 @@ class _FederatedDatabaseInstanceState:
         return pulumi.get(self, "cloud_provider_config")
 
     @cloud_provider_config.setter
-    def cloud_provider_config(self, value: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigArgs']]):
+    def cloud_provider_config(self, value: pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigArgs']]):
         pulumi.set(self, "cloud_provider_config", value)
 
     @_builtins.property
     @pulumi.getter(name="dataProcessRegion")
-    def data_process_region(self) -> Optional[pulumi.Input['FederatedDatabaseInstanceDataProcessRegionArgs']]:
+    def data_process_region(self) -> pulumi.Input[Optional['FederatedDatabaseInstanceDataProcessRegionArgs']]:
         """
         The cloud provider region to which the Federated Instance routes client connections for data processing.
         * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
@@ -334,60 +334,60 @@ class _FederatedDatabaseInstanceState:
         return pulumi.get(self, "data_process_region")
 
     @data_process_region.setter
-    def data_process_region(self, value: Optional[pulumi.Input['FederatedDatabaseInstanceDataProcessRegionArgs']]):
+    def data_process_region(self, value: pulumi.Input[Optional['FederatedDatabaseInstanceDataProcessRegionArgs']]):
         pulumi.set(self, "data_process_region", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostnames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def hostnames(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
         """
         return pulumi.get(self, "hostnames")
 
     @hostnames.setter
-    def hostnames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def hostnames(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "hostnames", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Atlas Federated Database Instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="privateEndpointHostnames")
-    def private_endpoint_hostnames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstancePrivateEndpointHostnameArgs']]]]:
+    def private_endpoint_hostnames(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstancePrivateEndpointHostnameArgs']]]]:
         """
         The list of private endpoint hostnames assigned to the Federated Database Instance.
         """
         return pulumi.get(self, "private_endpoint_hostnames")
 
     @private_endpoint_hostnames.setter
-    def private_endpoint_hostnames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstancePrivateEndpointHostnameArgs']]]]):
+    def private_endpoint_hostnames(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstancePrivateEndpointHostnameArgs']]]]):
         pulumi.set(self, "private_endpoint_hostnames", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Current state of the Federated Database Instance:
         * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
@@ -396,12 +396,12 @@ class _FederatedDatabaseInstanceState:
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
 
     @_builtins.property
     @pulumi.getter(name="storageDatabases")
-    def storage_databases(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]]:
+    def storage_databases(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]]:
         """
         Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
         * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
@@ -428,12 +428,12 @@ class _FederatedDatabaseInstanceState:
         return pulumi.get(self, "storage_databases")
 
     @storage_databases.setter
-    def storage_databases(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]]):
+    def storage_databases(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]]]):
         pulumi.set(self, "storage_databases", value)
 
     @_builtins.property
     @pulumi.getter(name="storageStores")
-    def storage_stores(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]]:
+    def storage_stores(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]]:
         """
         Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
         * `storage_stores.#.name` - Name of the data store.
@@ -459,7 +459,7 @@ class _FederatedDatabaseInstanceState:
         return pulumi.get(self, "storage_stores")
 
     @storage_stores.setter
-    def storage_stores(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]]):
+    def storage_stores(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]]]):
         pulumi.set(self, "storage_stores", value)
 
 
@@ -469,12 +469,12 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_provider_config: Optional[pulumi.Input[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict']]] = None,
-                 data_process_region: Optional[pulumi.Input[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_databases: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict']]]]] = None,
-                 storage_stores: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict']]]]] = None,
+                 cloud_provider_config: pulumi.Input[Optional[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict']]] = None,
+                 data_process_region: pulumi.Input[Optional[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict']]]]] = None,
+                 storage_stores: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict']]]]] = None,
                  __props__=None):
         """
         `FederatedDatabaseInstance` provides a Federated Database Instance resource.
@@ -884,12 +884,12 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_provider_config: Optional[pulumi.Input[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict']]] = None,
-                 data_process_region: Optional[pulumi.Input[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict']]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_databases: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict']]]]] = None,
-                 storage_stores: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict']]]]] = None,
+                 cloud_provider_config: pulumi.Input[Optional[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict']]] = None,
+                 data_process_region: pulumi.Input[Optional[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict']]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict']]]]] = None,
+                 storage_stores: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -920,15 +920,15 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cloud_provider_config: Optional[pulumi.Input[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict']]] = None,
-            data_process_region: Optional[pulumi.Input[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict']]] = None,
-            hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            private_endpoint_hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstancePrivateEndpointHostnameArgs', 'FederatedDatabaseInstancePrivateEndpointHostnameArgsDict']]]]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            state: Optional[pulumi.Input[_builtins.str]] = None,
-            storage_databases: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict']]]]] = None,
-            storage_stores: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict']]]]] = None) -> 'FederatedDatabaseInstance':
+            cloud_provider_config: pulumi.Input[Optional[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict']]] = None,
+            data_process_region: pulumi.Input[Optional[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict']]] = None,
+            hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            private_endpoint_hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstancePrivateEndpointHostnameArgs', 'FederatedDatabaseInstancePrivateEndpointHostnameArgsDict']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            storage_databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict']]]]] = None,
+            storage_stores: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict']]]]] = None) -> 'FederatedDatabaseInstance':
         """
         Get an existing FederatedDatabaseInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

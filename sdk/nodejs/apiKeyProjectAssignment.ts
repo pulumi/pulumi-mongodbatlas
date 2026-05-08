@@ -150,15 +150,15 @@ export interface ApiKeyProjectAssignmentState {
     /**
      * Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
      */
-    apiKeyId?: pulumi.Input<string>;
+    apiKeyId?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
      */
-    roles?: pulumi.Input<pulumi.Input<string>[]>;
+    roles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**

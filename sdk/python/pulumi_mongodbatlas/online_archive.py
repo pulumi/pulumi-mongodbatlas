@@ -26,14 +26,14 @@ class OnlineArchiveArgs:
                  criteria: pulumi.Input['OnlineArchiveCriteriaArgs'],
                  db_name: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
-                 collection_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 data_expiration_rule: Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']] = None,
-                 data_process_region: Optional[pulumi.Input['OnlineArchiveDataProcessRegionArgs']] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]] = None,
-                 paused: Optional[pulumi.Input[_builtins.bool]] = None,
-                 schedule: Optional[pulumi.Input['OnlineArchiveScheduleArgs']] = None,
-                 sync_creation: Optional[pulumi.Input[_builtins.bool]] = None):
+                 collection_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 data_expiration_rule: pulumi.Input[Optional['OnlineArchiveDataExpirationRuleArgs']] = None,
+                 data_process_region: pulumi.Input[Optional['OnlineArchiveDataProcessRegionArgs']] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 partition_fields: pulumi.Input[Optional[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]] = None,
+                 paused: pulumi.Input[Optional[_builtins.bool]] = None,
+                 schedule: pulumi.Input[Optional['OnlineArchiveScheduleArgs']] = None,
+                 sync_creation: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a OnlineArchive resource.
 
@@ -135,119 +135,119 @@ class OnlineArchiveArgs:
 
     @_builtins.property
     @pulumi.getter(name="collectionType")
-    def collection_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def collection_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         """
         return pulumi.get(self, "collection_type")
 
     @collection_type.setter
-    def collection_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def collection_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "collection_type", value)
 
     @_builtins.property
     @pulumi.getter(name="dataExpirationRule")
-    def data_expiration_rule(self) -> Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']]:
+    def data_expiration_rule(self) -> pulumi.Input[Optional['OnlineArchiveDataExpirationRuleArgs']]:
         """
         Rule for specifying when data should be deleted from the archive. See data expiration rule.
         """
         return pulumi.get(self, "data_expiration_rule")
 
     @data_expiration_rule.setter
-    def data_expiration_rule(self, value: Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']]):
+    def data_expiration_rule(self, value: pulumi.Input[Optional['OnlineArchiveDataExpirationRuleArgs']]):
         pulumi.set(self, "data_expiration_rule", value)
 
     @_builtins.property
     @pulumi.getter(name="dataProcessRegion")
-    def data_process_region(self) -> Optional[pulumi.Input['OnlineArchiveDataProcessRegionArgs']]:
+    def data_process_region(self) -> pulumi.Input[Optional['OnlineArchiveDataProcessRegionArgs']]:
         """
         Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
         """
         return pulumi.get(self, "data_process_region")
 
     @data_process_region.setter
-    def data_process_region(self, value: Optional[pulumi.Input['OnlineArchiveDataProcessRegionArgs']]):
+    def data_process_region(self, value: pulumi.Input[Optional['OnlineArchiveDataProcessRegionArgs']]):
         pulumi.set(self, "data_process_region", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
-    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_on_create_timeout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
     @delete_on_create_timeout.setter
-    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="partitionFields")
-    def partition_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]]:
+    def partition_fields(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]]:
         """
         Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         """
         return pulumi.get(self, "partition_fields")
 
     @partition_fields.setter
-    def partition_fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]]):
+    def partition_fields(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]]):
         pulumi.set(self, "partition_fields", value)
 
     @_builtins.property
     @pulumi.getter
-    def paused(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def paused(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         """
         return pulumi.get(self, "paused")
 
     @paused.setter
-    def paused(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def paused(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "paused", value)
 
     @_builtins.property
     @pulumi.getter
-    def schedule(self) -> Optional[pulumi.Input['OnlineArchiveScheduleArgs']]:
+    def schedule(self) -> pulumi.Input[Optional['OnlineArchiveScheduleArgs']]:
         """
         Regular frequency and duration when archiving process occurs. See schedule.
         """
         return pulumi.get(self, "schedule")
 
     @schedule.setter
-    def schedule(self, value: Optional[pulumi.Input['OnlineArchiveScheduleArgs']]):
+    def schedule(self, value: pulumi.Input[Optional['OnlineArchiveScheduleArgs']]):
         pulumi.set(self, "schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="syncCreation")
-    def sync_creation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def sync_creation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
         """
         return pulumi.get(self, "sync_creation")
 
     @sync_creation.setter
-    def sync_creation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def sync_creation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "sync_creation", value)
 
 
 @pulumi.input_type
 class _OnlineArchiveState:
     def __init__(__self__, *,
-                 archive_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 coll_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 collection_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 criteria: Optional[pulumi.Input['OnlineArchiveCriteriaArgs']] = None,
-                 data_expiration_rule: Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']] = None,
-                 data_process_region: Optional[pulumi.Input['OnlineArchiveDataProcessRegionArgs']] = None,
-                 db_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]] = None,
-                 paused: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 schedule: Optional[pulumi.Input['OnlineArchiveScheduleArgs']] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 sync_creation: Optional[pulumi.Input[_builtins.bool]] = None):
+                 archive_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 coll_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 collection_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 criteria: pulumi.Input[Optional['OnlineArchiveCriteriaArgs']] = None,
+                 data_expiration_rule: pulumi.Input[Optional['OnlineArchiveDataExpirationRuleArgs']] = None,
+                 data_process_region: pulumi.Input[Optional['OnlineArchiveDataProcessRegionArgs']] = None,
+                 db_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 partition_fields: pulumi.Input[Optional[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]] = None,
+                 paused: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 schedule: pulumi.Input[Optional['OnlineArchiveScheduleArgs']] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 sync_creation: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering OnlineArchive resources.
 
@@ -300,182 +300,182 @@ class _OnlineArchiveState:
 
     @_builtins.property
     @pulumi.getter(name="archiveId")
-    def archive_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def archive_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the online archive.
         """
         return pulumi.get(self, "archive_id")
 
     @archive_id.setter
-    def archive_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def archive_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "archive_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the cluster that contains the collection.
         """
         return pulumi.get(self, "cluster_name")
 
     @cluster_name.setter
-    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_name", value)
 
     @_builtins.property
     @pulumi.getter(name="collName")
-    def coll_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def coll_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the collection.
         """
         return pulumi.get(self, "coll_name")
 
     @coll_name.setter
-    def coll_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def coll_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "coll_name", value)
 
     @_builtins.property
     @pulumi.getter(name="collectionType")
-    def collection_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def collection_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
         """
         return pulumi.get(self, "collection_type")
 
     @collection_type.setter
-    def collection_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def collection_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "collection_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def criteria(self) -> Optional[pulumi.Input['OnlineArchiveCriteriaArgs']]:
+    def criteria(self) -> pulumi.Input[Optional['OnlineArchiveCriteriaArgs']]:
         """
         Criteria to use for archiving data. See criteria.
         """
         return pulumi.get(self, "criteria")
 
     @criteria.setter
-    def criteria(self, value: Optional[pulumi.Input['OnlineArchiveCriteriaArgs']]):
+    def criteria(self, value: pulumi.Input[Optional['OnlineArchiveCriteriaArgs']]):
         pulumi.set(self, "criteria", value)
 
     @_builtins.property
     @pulumi.getter(name="dataExpirationRule")
-    def data_expiration_rule(self) -> Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']]:
+    def data_expiration_rule(self) -> pulumi.Input[Optional['OnlineArchiveDataExpirationRuleArgs']]:
         """
         Rule for specifying when data should be deleted from the archive. See data expiration rule.
         """
         return pulumi.get(self, "data_expiration_rule")
 
     @data_expiration_rule.setter
-    def data_expiration_rule(self, value: Optional[pulumi.Input['OnlineArchiveDataExpirationRuleArgs']]):
+    def data_expiration_rule(self, value: pulumi.Input[Optional['OnlineArchiveDataExpirationRuleArgs']]):
         pulumi.set(self, "data_expiration_rule", value)
 
     @_builtins.property
     @pulumi.getter(name="dataProcessRegion")
-    def data_process_region(self) -> Optional[pulumi.Input['OnlineArchiveDataProcessRegionArgs']]:
+    def data_process_region(self) -> pulumi.Input[Optional['OnlineArchiveDataProcessRegionArgs']]:
         """
         Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
         """
         return pulumi.get(self, "data_process_region")
 
     @data_process_region.setter
-    def data_process_region(self, value: Optional[pulumi.Input['OnlineArchiveDataProcessRegionArgs']]):
+    def data_process_region(self, value: pulumi.Input[Optional['OnlineArchiveDataProcessRegionArgs']]):
         pulumi.set(self, "data_process_region", value)
 
     @_builtins.property
     @pulumi.getter(name="dbName")
-    def db_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def db_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the database that contains the collection.
         """
         return pulumi.get(self, "db_name")
 
     @db_name.setter
-    def db_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def db_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "db_name", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
-    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_on_create_timeout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
     @delete_on_create_timeout.setter
-    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="partitionFields")
-    def partition_fields(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]]:
+    def partition_fields(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]]:
         """
         Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `date_field`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
         """
         return pulumi.get(self, "partition_fields")
 
     @partition_fields.setter
-    def partition_fields(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]]):
+    def partition_fields(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['OnlineArchivePartitionFieldArgs']]]]):
         pulumi.set(self, "partition_fields", value)
 
     @_builtins.property
     @pulumi.getter
-    def paused(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def paused(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
         """
         return pulumi.get(self, "paused")
 
     @paused.setter
-    def paused(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def paused(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "paused", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID for the project, also known as `groupId` in the official documentation
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def schedule(self) -> Optional[pulumi.Input['OnlineArchiveScheduleArgs']]:
+    def schedule(self) -> pulumi.Input[Optional['OnlineArchiveScheduleArgs']]:
         """
         Regular frequency and duration when archiving process occurs. See schedule.
         """
         return pulumi.get(self, "schedule")
 
     @schedule.setter
-    def schedule(self, value: Optional[pulumi.Input['OnlineArchiveScheduleArgs']]):
+    def schedule(self, value: pulumi.Input[Optional['OnlineArchiveScheduleArgs']]):
         pulumi.set(self, "schedule", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
 
     @_builtins.property
     @pulumi.getter(name="syncCreation")
-    def sync_creation(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def sync_creation(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
         """
         return pulumi.get(self, "sync_creation")
 
     @sync_creation.setter
-    def sync_creation(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def sync_creation(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "sync_creation", value)
 
 
@@ -485,19 +485,19 @@ class OnlineArchive(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 coll_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 collection_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 criteria: Optional[pulumi.Input[Union['OnlineArchiveCriteriaArgs', 'OnlineArchiveCriteriaArgsDict']]] = None,
-                 data_expiration_rule: Optional[pulumi.Input[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']]] = None,
-                 data_process_region: Optional[pulumi.Input[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']]] = None,
-                 db_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]]] = None,
-                 paused: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 schedule: Optional[pulumi.Input[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']]] = None,
-                 sync_creation: Optional[pulumi.Input[_builtins.bool]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 coll_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 collection_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 criteria: pulumi.Input[Optional[Union['OnlineArchiveCriteriaArgs', 'OnlineArchiveCriteriaArgsDict']]] = None,
+                 data_expiration_rule: pulumi.Input[Optional[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']]] = None,
+                 data_process_region: pulumi.Input[Optional[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']]] = None,
+                 db_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 partition_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]]] = None,
+                 paused: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 schedule: pulumi.Input[Optional[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']]] = None,
+                 sync_creation: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         `OnlineArchive` resource provides access to create, edit, pause and resume an online archive for a collection.
@@ -748,19 +748,19 @@ class OnlineArchive(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 coll_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 collection_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 criteria: Optional[pulumi.Input[Union['OnlineArchiveCriteriaArgs', 'OnlineArchiveCriteriaArgsDict']]] = None,
-                 data_expiration_rule: Optional[pulumi.Input[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']]] = None,
-                 data_process_region: Optional[pulumi.Input[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']]] = None,
-                 db_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]]] = None,
-                 paused: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 schedule: Optional[pulumi.Input[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']]] = None,
-                 sync_creation: Optional[pulumi.Input[_builtins.bool]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 coll_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 collection_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 criteria: pulumi.Input[Optional[Union['OnlineArchiveCriteriaArgs', 'OnlineArchiveCriteriaArgsDict']]] = None,
+                 data_expiration_rule: pulumi.Input[Optional[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']]] = None,
+                 data_process_region: pulumi.Input[Optional[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']]] = None,
+                 db_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 partition_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]]] = None,
+                 paused: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 schedule: pulumi.Input[Optional[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']]] = None,
+                 sync_creation: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -805,21 +805,21 @@ class OnlineArchive(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            archive_id: Optional[pulumi.Input[_builtins.str]] = None,
-            cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-            coll_name: Optional[pulumi.Input[_builtins.str]] = None,
-            collection_type: Optional[pulumi.Input[_builtins.str]] = None,
-            criteria: Optional[pulumi.Input[Union['OnlineArchiveCriteriaArgs', 'OnlineArchiveCriteriaArgsDict']]] = None,
-            data_expiration_rule: Optional[pulumi.Input[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']]] = None,
-            data_process_region: Optional[pulumi.Input[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']]] = None,
-            db_name: Optional[pulumi.Input[_builtins.str]] = None,
-            delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-            partition_fields: Optional[pulumi.Input[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]]] = None,
-            paused: Optional[pulumi.Input[_builtins.bool]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            schedule: Optional[pulumi.Input[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']]] = None,
-            state: Optional[pulumi.Input[_builtins.str]] = None,
-            sync_creation: Optional[pulumi.Input[_builtins.bool]] = None) -> 'OnlineArchive':
+            archive_id: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            coll_name: pulumi.Input[Optional[_builtins.str]] = None,
+            collection_type: pulumi.Input[Optional[_builtins.str]] = None,
+            criteria: pulumi.Input[Optional[Union['OnlineArchiveCriteriaArgs', 'OnlineArchiveCriteriaArgsDict']]] = None,
+            data_expiration_rule: pulumi.Input[Optional[Union['OnlineArchiveDataExpirationRuleArgs', 'OnlineArchiveDataExpirationRuleArgsDict']]] = None,
+            data_process_region: pulumi.Input[Optional[Union['OnlineArchiveDataProcessRegionArgs', 'OnlineArchiveDataProcessRegionArgsDict']]] = None,
+            db_name: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            partition_fields: pulumi.Input[Optional[Sequence[pulumi.Input[Union['OnlineArchivePartitionFieldArgs', 'OnlineArchivePartitionFieldArgsDict']]]]] = None,
+            paused: pulumi.Input[Optional[_builtins.bool]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            schedule: pulumi.Input[Optional[Union['OnlineArchiveScheduleArgs', 'OnlineArchiveScheduleArgsDict']]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            sync_creation: pulumi.Input[Optional[_builtins.bool]] = None) -> 'OnlineArchive':
         """
         Get an existing OnlineArchive resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

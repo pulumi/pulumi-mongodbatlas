@@ -135,7 +135,7 @@ def get_federated_settings(org_id: Optional[_builtins.str] = None,
         identity_provider_id=pulumi.get(__ret__, 'identity_provider_id'),
         identity_provider_status=pulumi.get(__ret__, 'identity_provider_status'),
         org_id=pulumi.get(__ret__, 'org_id'))
-def get_federated_settings_output(org_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_federated_settings_output(org_id: pulumi.Input[Optional[_builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedSettingsResult]:
     """
     `get_federated_settings` provides a federated settings data source. Atlas Cloud federated settings provides federated settings outputs.

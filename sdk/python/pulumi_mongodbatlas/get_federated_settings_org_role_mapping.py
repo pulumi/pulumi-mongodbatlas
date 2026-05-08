@@ -171,9 +171,9 @@ def get_federated_settings_org_role_mapping(federation_settings_id: Optional[_bu
         org_id=pulumi.get(__ret__, 'org_id'),
         role_assignments=pulumi.get(__ret__, 'role_assignments'),
         role_mapping_id=pulumi.get(__ret__, 'role_mapping_id'))
-def get_federated_settings_org_role_mapping_output(federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                   org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                   role_mapping_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_federated_settings_org_role_mapping_output(federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                   org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                   role_mapping_id: pulumi.Input[Optional[_builtins.str]] = None,
                                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedSettingsOrgRoleMappingResult]:
     """
     `FederatedSettingsOrgRoleMapping` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.

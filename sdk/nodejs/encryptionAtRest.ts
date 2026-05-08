@@ -249,23 +249,23 @@ export interface EncryptionAtRestState {
     /**
      * Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
      */
-    awsKmsConfig?: pulumi.Input<inputs.EncryptionAtRestAwsKmsConfig>;
+    awsKmsConfig?: pulumi.Input<inputs.EncryptionAtRestAwsKmsConfig | undefined>;
     /**
      * Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
      */
-    azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig>;
+    azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig | undefined>;
     /**
      * Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
      */
-    enabledForSearchNodes?: pulumi.Input<boolean>;
+    enabledForSearchNodes?: pulumi.Input<boolean | undefined>;
     /**
      * Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
      */
-    googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig>;
+    googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -275,19 +275,19 @@ export interface EncryptionAtRestArgs {
     /**
      * Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
      */
-    awsKmsConfig?: pulumi.Input<inputs.EncryptionAtRestAwsKmsConfig>;
+    awsKmsConfig?: pulumi.Input<inputs.EncryptionAtRestAwsKmsConfig | undefined>;
     /**
      * Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
      */
-    azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig>;
+    azureKeyVaultConfig?: pulumi.Input<inputs.EncryptionAtRestAzureKeyVaultConfig | undefined>;
     /**
      * Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
      */
-    enabledForSearchNodes?: pulumi.Input<boolean>;
+    enabledForSearchNodes?: pulumi.Input<boolean | undefined>;
     /**
      * Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
      */
-    googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig>;
+    googleCloudKmsConfig?: pulumi.Input<inputs.EncryptionAtRestGoogleCloudKmsConfig | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */

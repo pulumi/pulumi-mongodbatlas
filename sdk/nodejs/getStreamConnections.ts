@@ -128,15 +128,15 @@ export interface GetStreamConnectionsOutputArgs {
      *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    instanceName?: pulumi.Input<string>;
+    instanceName?: pulumi.Input<string | undefined>;
     /**
      * Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
      */
-    itemsPerPage?: pulumi.Input<number>;
+    itemsPerPage?: pulumi.Input<number | undefined>;
     /**
      * Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
      */
-    pageNum?: pulumi.Input<number>;
+    pageNum?: pulumi.Input<number | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
@@ -146,5 +146,5 @@ export interface GetStreamConnectionsOutputArgs {
      *
      * > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
      */
-    workspaceName?: pulumi.Input<string>;
+    workspaceName?: pulumi.Input<string | undefined>;
 }

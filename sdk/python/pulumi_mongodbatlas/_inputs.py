@@ -326,59 +326,59 @@ __all__ = [
 ]
 
 class AdvancedClusterAdvancedConfigurationArgsDict(TypedDict):
-    change_stream_options_pre_and_post_images_expire_after_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    change_stream_options_pre_and_post_images_expire_after_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The minimum pre- and post-image retention time in seconds.
     """
-    custom_openssl_cipher_config_tls12s: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    custom_openssl_cipher_config_tls12s: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
     """
-    custom_openssl_cipher_config_tls13s: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    custom_openssl_cipher_config_tls13s: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
     """
-    default_max_time_ms: NotRequired[pulumi.Input[_builtins.int]]
+    default_max_time_ms: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Default time limit in milliseconds for individual read operations to complete. This parameter is supported only for MongoDB version 8.0 and above.
     """
-    default_write_concern: NotRequired[pulumi.Input[_builtins.str]]
+    default_write_concern: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Default level of acknowledgment requested from MongoDB for write operations when none is specified by the driver.
     """
-    javascript_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    javascript_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
     """
-    minimum_enabled_tls_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    minimum_enabled_tls_protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
     """
-    no_table_scan: NotRequired[pulumi.Input[_builtins.bool]]
+    no_table_scan: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
     """
-    oplog_min_retention_hours: NotRequired[pulumi.Input[_builtins.float]]
+    oplog_min_retention_hours: NotRequired[pulumi.Input[Optional[_builtins.float]]]
     """
     Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
     """
-    oplog_size_mb: NotRequired[pulumi.Input[_builtins.int]]
+    oplog_size_mb: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
     """
-    sample_refresh_interval_bi_connector: NotRequired[pulumi.Input[_builtins.int]]
+    sample_refresh_interval_bi_connector: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
     """
-    sample_size_bi_connector: NotRequired[pulumi.Input[_builtins.int]]
+    sample_size_bi_connector: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of documents per database to sample when gathering schema information.
     """
-    tls_cipher_config_mode: NotRequired[pulumi.Input[_builtins.str]]
+    tls_cipher_config_mode: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
     """
-    transaction_lifetime_limit_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    transaction_lifetime_limit_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
     """
@@ -386,20 +386,20 @@ class AdvancedClusterAdvancedConfigurationArgsDict(TypedDict):
 @pulumi.input_type
 class AdvancedClusterAdvancedConfigurationArgs:
     def __init__(__self__, *,
-                 change_stream_options_pre_and_post_images_expire_after_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 custom_openssl_cipher_config_tls12s: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 custom_openssl_cipher_config_tls13s: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_max_time_ms: Optional[pulumi.Input[_builtins.int]] = None,
-                 default_write_concern: Optional[pulumi.Input[_builtins.str]] = None,
-                 javascript_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 minimum_enabled_tls_protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 no_table_scan: Optional[pulumi.Input[_builtins.bool]] = None,
-                 oplog_min_retention_hours: Optional[pulumi.Input[_builtins.float]] = None,
-                 oplog_size_mb: Optional[pulumi.Input[_builtins.int]] = None,
-                 sample_refresh_interval_bi_connector: Optional[pulumi.Input[_builtins.int]] = None,
-                 sample_size_bi_connector: Optional[pulumi.Input[_builtins.int]] = None,
-                 tls_cipher_config_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 transaction_lifetime_limit_seconds: Optional[pulumi.Input[_builtins.int]] = None):
+                 change_stream_options_pre_and_post_images_expire_after_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 custom_openssl_cipher_config_tls12s: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 custom_openssl_cipher_config_tls13s: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_max_time_ms: pulumi.Input[Optional[_builtins.int]] = None,
+                 default_write_concern: pulumi.Input[Optional[_builtins.str]] = None,
+                 javascript_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 minimum_enabled_tls_protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 no_table_scan: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oplog_min_retention_hours: pulumi.Input[Optional[_builtins.float]] = None,
+                 oplog_size_mb: pulumi.Input[Optional[_builtins.int]] = None,
+                 sample_refresh_interval_bi_connector: pulumi.Input[Optional[_builtins.int]] = None,
+                 sample_size_bi_connector: pulumi.Input[Optional[_builtins.int]] = None,
+                 tls_cipher_config_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 transaction_lifetime_limit_seconds: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
@@ -447,182 +447,182 @@ class AdvancedClusterAdvancedConfigurationArgs:
 
     @_builtins.property
     @pulumi.getter(name="changeStreamOptionsPreAndPostImagesExpireAfterSeconds")
-    def change_stream_options_pre_and_post_images_expire_after_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def change_stream_options_pre_and_post_images_expire_after_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The minimum pre- and post-image retention time in seconds.
         """
         return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
 
     @change_stream_options_pre_and_post_images_expire_after_seconds.setter
-    def change_stream_options_pre_and_post_images_expire_after_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def change_stream_options_pre_and_post_images_expire_after_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "change_stream_options_pre_and_post_images_expire_after_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="customOpensslCipherConfigTls12s")
-    def custom_openssl_cipher_config_tls12s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def custom_openssl_cipher_config_tls12s(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         """
         return pulumi.get(self, "custom_openssl_cipher_config_tls12s")
 
     @custom_openssl_cipher_config_tls12s.setter
-    def custom_openssl_cipher_config_tls12s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def custom_openssl_cipher_config_tls12s(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "custom_openssl_cipher_config_tls12s", value)
 
     @_builtins.property
     @pulumi.getter(name="customOpensslCipherConfigTls13s")
-    def custom_openssl_cipher_config_tls13s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def custom_openssl_cipher_config_tls13s(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         """
         return pulumi.get(self, "custom_openssl_cipher_config_tls13s")
 
     @custom_openssl_cipher_config_tls13s.setter
-    def custom_openssl_cipher_config_tls13s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def custom_openssl_cipher_config_tls13s(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "custom_openssl_cipher_config_tls13s", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultMaxTimeMs")
-    def default_max_time_ms(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_max_time_ms(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Default time limit in milliseconds for individual read operations to complete. This parameter is supported only for MongoDB version 8.0 and above.
         """
         return pulumi.get(self, "default_max_time_ms")
 
     @default_max_time_ms.setter
-    def default_max_time_ms(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_max_time_ms(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_max_time_ms", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultWriteConcern")
-    def default_write_concern(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_write_concern(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Default level of acknowledgment requested from MongoDB for write operations when none is specified by the driver.
         """
         return pulumi.get(self, "default_write_concern")
 
     @default_write_concern.setter
-    def default_write_concern(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_write_concern(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_write_concern", value)
 
     @_builtins.property
     @pulumi.getter(name="javascriptEnabled")
-    def javascript_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def javascript_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
         """
         return pulumi.get(self, "javascript_enabled")
 
     @javascript_enabled.setter
-    def javascript_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def javascript_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "javascript_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="minimumEnabledTlsProtocol")
-    def minimum_enabled_tls_protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def minimum_enabled_tls_protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
         """
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
     @minimum_enabled_tls_protocol.setter
-    def minimum_enabled_tls_protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def minimum_enabled_tls_protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "minimum_enabled_tls_protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="noTableScan")
-    def no_table_scan(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def no_table_scan(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
         """
         return pulumi.get(self, "no_table_scan")
 
     @no_table_scan.setter
-    def no_table_scan(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def no_table_scan(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "no_table_scan", value)
 
     @_builtins.property
     @pulumi.getter(name="oplogMinRetentionHours")
-    def oplog_min_retention_hours(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def oplog_min_retention_hours(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
         Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
         """
         return pulumi.get(self, "oplog_min_retention_hours")
 
     @oplog_min_retention_hours.setter
-    def oplog_min_retention_hours(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def oplog_min_retention_hours(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "oplog_min_retention_hours", value)
 
     @_builtins.property
     @pulumi.getter(name="oplogSizeMb")
-    def oplog_size_mb(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def oplog_size_mb(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
         """
         return pulumi.get(self, "oplog_size_mb")
 
     @oplog_size_mb.setter
-    def oplog_size_mb(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def oplog_size_mb(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "oplog_size_mb", value)
 
     @_builtins.property
     @pulumi.getter(name="sampleRefreshIntervalBiConnector")
-    def sample_refresh_interval_bi_connector(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sample_refresh_interval_bi_connector(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
         """
         return pulumi.get(self, "sample_refresh_interval_bi_connector")
 
     @sample_refresh_interval_bi_connector.setter
-    def sample_refresh_interval_bi_connector(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sample_refresh_interval_bi_connector(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sample_refresh_interval_bi_connector", value)
 
     @_builtins.property
     @pulumi.getter(name="sampleSizeBiConnector")
-    def sample_size_bi_connector(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sample_size_bi_connector(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of documents per database to sample when gathering schema information.
         """
         return pulumi.get(self, "sample_size_bi_connector")
 
     @sample_size_bi_connector.setter
-    def sample_size_bi_connector(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sample_size_bi_connector(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sample_size_bi_connector", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCipherConfigMode")
-    def tls_cipher_config_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_cipher_config_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
         """
         return pulumi.get(self, "tls_cipher_config_mode")
 
     @tls_cipher_config_mode.setter
-    def tls_cipher_config_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_cipher_config_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_cipher_config_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="transactionLifetimeLimitSeconds")
-    def transaction_lifetime_limit_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def transaction_lifetime_limit_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
         """
         return pulumi.get(self, "transaction_lifetime_limit_seconds")
 
     @transaction_lifetime_limit_seconds.setter
-    def transaction_lifetime_limit_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def transaction_lifetime_limit_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "transaction_lifetime_limit_seconds", value)
 
 
 class AdvancedClusterBiConnectorConfigArgsDict(TypedDict):
-    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies whether or not BI Connector for Atlas is enabled on the cluster.
     *
     - Set to `true` to enable BI Connector for Atlas.
     - Set to `false` to disable BI Connector for Atlas.
     """
-    read_preference: NotRequired[pulumi.Input[_builtins.str]]
+    read_preference: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
 
@@ -636,8 +636,8 @@ class AdvancedClusterBiConnectorConfigArgsDict(TypedDict):
 @pulumi.input_type
 class AdvancedClusterBiConnectorConfigArgs:
     def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 read_preference: Optional[pulumi.Input[_builtins.str]] = None):
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 read_preference: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.
                *
@@ -658,7 +658,7 @@ class AdvancedClusterBiConnectorConfigArgs:
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether or not BI Connector for Atlas is enabled on the cluster.
         *
@@ -668,12 +668,12 @@ class AdvancedClusterBiConnectorConfigArgs:
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="readPreference")
-    def read_preference(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def read_preference(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
 
@@ -686,16 +686,16 @@ class AdvancedClusterBiConnectorConfigArgs:
         return pulumi.get(self, "read_preference")
 
     @read_preference.setter
-    def read_preference(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def read_preference(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "read_preference", value)
 
 
 class AdvancedClusterConnectionStringsArgsDict(TypedDict):
-    private: NotRequired[pulumi.Input[_builtins.str]]
+    private: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
     """
-    private_endpoints: NotRequired[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgsDict']]]]
+    private_endpoints: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgs']]]]]
     """
     Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
     - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -707,15 +707,15 @@ class AdvancedClusterConnectionStringsArgsDict(TypedDict):
     - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
     - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
     """
-    private_srv: NotRequired[pulumi.Input[_builtins.str]]
+    private_srv: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
     """
-    standard: NotRequired[pulumi.Input[_builtins.str]]
+    standard: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Public mongodb:// connection string for this cluster.
     """
-    standard_srv: NotRequired[pulumi.Input[_builtins.str]]
+    standard_srv: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
     """
@@ -723,11 +723,11 @@ class AdvancedClusterConnectionStringsArgsDict(TypedDict):
 @pulumi.input_type
 class AdvancedClusterConnectionStringsArgs:
     def __init__(__self__, *,
-                 private: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgs']]]] = None,
-                 private_srv: Optional[pulumi.Input[_builtins.str]] = None,
-                 standard: Optional[pulumi.Input[_builtins.str]] = None,
-                 standard_srv: Optional[pulumi.Input[_builtins.str]] = None):
+                 private: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgs']]]] = None,
+                 private_srv: pulumi.Input[Optional[_builtins.str]] = None,
+                 standard: pulumi.Input[Optional[_builtins.str]] = None,
+                 standard_srv: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] private: [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgs']]] private_endpoints: Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
@@ -756,19 +756,19 @@ class AdvancedClusterConnectionStringsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def private(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         """
         return pulumi.get(self, "private")
 
     @private.setter
-    def private(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private", value)
 
     @_builtins.property
     @pulumi.getter(name="privateEndpoints")
-    def private_endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgs']]]]:
+    def private_endpoints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgs']]]]:
         """
         Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
         - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -783,64 +783,64 @@ class AdvancedClusterConnectionStringsArgs:
         return pulumi.get(self, "private_endpoints")
 
     @private_endpoints.setter
-    def private_endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgs']]]]):
+    def private_endpoints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgs']]]]):
         pulumi.set(self, "private_endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="privateSrv")
-    def private_srv(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_srv(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         """
         return pulumi.get(self, "private_srv")
 
     @private_srv.setter
-    def private_srv(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_srv(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_srv", value)
 
     @_builtins.property
     @pulumi.getter
-    def standard(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def standard(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Public mongodb:// connection string for this cluster.
         """
         return pulumi.get(self, "standard")
 
     @standard.setter
-    def standard(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def standard(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "standard", value)
 
     @_builtins.property
     @pulumi.getter(name="standardSrv")
-    def standard_srv(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def standard_srv(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
         """
         return pulumi.get(self, "standard_srv")
 
     @standard_srv.setter
-    def standard_srv(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def standard_srv(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "standard_srv", value)
 
 
 class AdvancedClusterConnectionStringsPrivateEndpointArgsDict(TypedDict):
-    connection_string: NotRequired[pulumi.Input[_builtins.str]]
+    connection_string: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
     """
-    endpoints: NotRequired[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgsDict']]]]
+    endpoints: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs']]]]]
     """
     List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
     """
-    srv_connection_string: NotRequired[pulumi.Input[_builtins.str]]
+    srv_connection_string: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
     """
-    srv_shard_optimized_connection_string: NotRequired[pulumi.Input[_builtins.str]]
+    srv_shard_optimized_connection_string: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
     """
-    type: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
     """
@@ -848,11 +848,11 @@ class AdvancedClusterConnectionStringsPrivateEndpointArgsDict(TypedDict):
 @pulumi.input_type
 class AdvancedClusterConnectionStringsPrivateEndpointArgs:
     def __init__(__self__, *,
-                 connection_string: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs']]]] = None,
-                 srv_connection_string: Optional[pulumi.Input[_builtins.str]] = None,
-                 srv_shard_optimized_connection_string: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 connection_string: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoints: pulumi.Input[Optional[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs']]]] = None,
+                 srv_connection_string: pulumi.Input[Optional[_builtins.str]] = None,
+                 srv_shard_optimized_connection_string: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] connection_string: Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs']]] endpoints: List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
@@ -873,75 +873,75 @@ class AdvancedClusterConnectionStringsPrivateEndpointArgs:
 
     @_builtins.property
     @pulumi.getter(name="connectionString")
-    def connection_string(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_string(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
         """
         return pulumi.get(self, "connection_string")
 
     @connection_string.setter
-    def connection_string(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_string(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_string", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs']]]]:
+    def endpoints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs']]]]:
         """
         List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
         """
         return pulumi.get(self, "endpoints")
 
     @endpoints.setter
-    def endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs']]]]):
+    def endpoints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs']]]]):
         pulumi.set(self, "endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="srvConnectionString")
-    def srv_connection_string(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def srv_connection_string(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
         """
         return pulumi.get(self, "srv_connection_string")
 
     @srv_connection_string.setter
-    def srv_connection_string(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def srv_connection_string(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "srv_connection_string", value)
 
     @_builtins.property
     @pulumi.getter(name="srvShardOptimizedConnectionString")
-    def srv_shard_optimized_connection_string(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def srv_shard_optimized_connection_string(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
         """
         return pulumi.get(self, "srv_shard_optimized_connection_string")
 
     @srv_shard_optimized_connection_string.setter
-    def srv_shard_optimized_connection_string(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def srv_shard_optimized_connection_string(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "srv_shard_optimized_connection_string", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 class AdvancedClusterConnectionStringsPrivateEndpointEndpointArgsDict(TypedDict):
-    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
+    endpoint_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique string that the cloud provider uses to identify the private endpoint.
     """
-    provider_name: NotRequired[pulumi.Input[_builtins.str]]
+    provider_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cloud provider in which MongoDB Cloud deploys the private endpoint.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region where the private endpoint is deployed.
     """
@@ -949,9 +949,9 @@ class AdvancedClusterConnectionStringsPrivateEndpointEndpointArgsDict(TypedDict)
 @pulumi.input_type
 class AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs:
     def __init__(__self__, *,
-                 endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] endpoint_id: Unique string that the cloud provider uses to identify the private endpoint.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider in which MongoDB Cloud deploys the private endpoint.
@@ -966,38 +966,38 @@ class AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs:
 
     @_builtins.property
     @pulumi.getter(name="endpointId")
-    def endpoint_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique string that the cloud provider uses to identify the private endpoint.
         """
         return pulumi.get(self, "endpoint_id")
 
     @endpoint_id.setter
-    def endpoint_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint_id", value)
 
     @_builtins.property
     @pulumi.getter(name="providerName")
-    def provider_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cloud provider in which MongoDB Cloud deploys the private endpoint.
         """
         return pulumi.get(self, "provider_name")
 
     @provider_name.setter
-    def provider_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region where the private endpoint is deployed.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
@@ -1006,7 +1006,7 @@ class AdvancedClusterPinnedFcvArgsDict(TypedDict):
     """
     Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
     """
-    version: NotRequired[pulumi.Input[_builtins.str]]
+    version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Feature compatibility version of the cluster.
     """
@@ -1015,7 +1015,7 @@ class AdvancedClusterPinnedFcvArgsDict(TypedDict):
 class AdvancedClusterPinnedFcvArgs:
     def __init__(__self__, *,
                  expiration_date: pulumi.Input[_builtins.str],
-                 version: Optional[pulumi.Input[_builtins.str]] = None):
+                 version: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] expiration_date: Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
         :param pulumi.Input[_builtins.str] version: Feature compatibility version of the cluster.
@@ -1038,14 +1038,14 @@ class AdvancedClusterPinnedFcvArgs:
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Feature compatibility version of the cluster.
         """
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version", value)
 
 
@@ -1054,19 +1054,19 @@ class AdvancedClusterReplicationSpecArgsDict(TypedDict):
     """
     Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
     """
-    container_id: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
+    container_id: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
     """
     A key-value map of the Network Peering Container ID(s) for the configuration specified in region_configs. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
     """
-    external_id: NotRequired[pulumi.Input[_builtins.str]]
+    external_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
     """
-    zone_id: NotRequired[pulumi.Input[_builtins.str]]
+    zone_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
     """
-    zone_name: NotRequired[pulumi.Input[_builtins.str]]
+    zone_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name for the zone in a Global Cluster.
     """
@@ -1075,10 +1075,10 @@ class AdvancedClusterReplicationSpecArgsDict(TypedDict):
 class AdvancedClusterReplicationSpecArgs:
     def __init__(__self__, *,
                  region_configs: pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigArgs']]],
-                 container_id: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 container_id: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigArgs']]] region_configs: Configuration for the hardware specifications for nodes set for a given region. Each `region_configs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `region_configs` object must have either an `analytics_specs` object, `electable_specs` object, or `read_only_specs` object. See below.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] container_id: A key-value map of the Network Peering Container ID(s) for the configuration specified in region_configs. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
@@ -1110,50 +1110,50 @@ class AdvancedClusterReplicationSpecArgs:
 
     @_builtins.property
     @pulumi.getter(name="containerId")
-    def container_id(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def container_id(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A key-value map of the Network Peering Container ID(s) for the configuration specified in region_configs. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
         """
         return pulumi.get(self, "container_id")
 
     @container_id.setter
-    def container_id(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def container_id(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "container_id", value)
 
     @_builtins.property
     @pulumi.getter(name="externalId")
-    def external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
         """
         return pulumi.get(self, "external_id")
 
     @external_id.setter
-    def external_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "external_id", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneId")
-    def zone_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
         """
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
-    def zone_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone_id", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneName")
-    def zone_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name for the zone in a Global Cluster.
         """
         return pulumi.get(self, "zone_name")
 
     @zone_name.setter
-    def zone_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone_name", value)
 
 
@@ -1178,27 +1178,27 @@ class AdvancedClusterReplicationSpecRegionConfigArgsDict(TypedDict):
     """
     Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
     """
-    analytics_auto_scaling: NotRequired[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgsDict']]
+    analytics_auto_scaling: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs']]]
     """
     Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
     """
-    analytics_specs: NotRequired[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgsDict']]
+    analytics_specs: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs']]]
     """
     Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
     """
-    auto_scaling: NotRequired[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgsDict']]
+    auto_scaling: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs']]]
     """
     Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
     """
-    backing_provider_name: NotRequired[pulumi.Input[_builtins.str]]
+    backing_provider_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `provider_name` is `TENANT` and `instance_size` is `M0`, or when the `provider_name` is `FLEX`.
     """
-    electable_specs: NotRequired[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgsDict']]
+    electable_specs: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs']]]
     """
     Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
     """
-    read_only_specs: NotRequired[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgsDict']]
+    read_only_specs: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs']]]
     """
     Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
     """
@@ -1209,12 +1209,12 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
                  priority: pulumi.Input[_builtins.int],
                  provider_name: pulumi.Input[_builtins.str],
                  region_name: pulumi.Input[_builtins.str],
-                 analytics_auto_scaling: Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs']] = None,
-                 analytics_specs: Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs']] = None,
-                 auto_scaling: Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs']] = None,
-                 backing_provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 electable_specs: Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs']] = None,
-                 read_only_specs: Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs']] = None):
+                 analytics_auto_scaling: pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs']] = None,
+                 analytics_specs: pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs']] = None,
+                 auto_scaling: pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs']] = None,
+                 backing_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 electable_specs: pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs']] = None,
+                 read_only_specs: pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs']] = None):
         """
         :param pulumi.Input[_builtins.int] priority: Election priority of the region. For regions with only read-only nodes, set this value to 0.
                * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
@@ -1296,97 +1296,97 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="analyticsAutoScaling")
-    def analytics_auto_scaling(self) -> Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs']]:
+    def analytics_auto_scaling(self) -> pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs']]:
         """
         Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
         """
         return pulumi.get(self, "analytics_auto_scaling")
 
     @analytics_auto_scaling.setter
-    def analytics_auto_scaling(self, value: Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs']]):
+    def analytics_auto_scaling(self, value: pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs']]):
         pulumi.set(self, "analytics_auto_scaling", value)
 
     @_builtins.property
     @pulumi.getter(name="analyticsSpecs")
-    def analytics_specs(self) -> Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs']]:
+    def analytics_specs(self) -> pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs']]:
         """
         Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
         """
         return pulumi.get(self, "analytics_specs")
 
     @analytics_specs.setter
-    def analytics_specs(self, value: Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs']]):
+    def analytics_specs(self, value: pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs']]):
         pulumi.set(self, "analytics_specs", value)
 
     @_builtins.property
     @pulumi.getter(name="autoScaling")
-    def auto_scaling(self) -> Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs']]:
+    def auto_scaling(self) -> pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs']]:
         """
         Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
         """
         return pulumi.get(self, "auto_scaling")
 
     @auto_scaling.setter
-    def auto_scaling(self, value: Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs']]):
+    def auto_scaling(self, value: pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs']]):
         pulumi.set(self, "auto_scaling", value)
 
     @_builtins.property
     @pulumi.getter(name="backingProviderName")
-    def backing_provider_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backing_provider_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `provider_name` is `TENANT` and `instance_size` is `M0`, or when the `provider_name` is `FLEX`.
         """
         return pulumi.get(self, "backing_provider_name")
 
     @backing_provider_name.setter
-    def backing_provider_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backing_provider_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backing_provider_name", value)
 
     @_builtins.property
     @pulumi.getter(name="electableSpecs")
-    def electable_specs(self) -> Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs']]:
+    def electable_specs(self) -> pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs']]:
         """
         Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
         """
         return pulumi.get(self, "electable_specs")
 
     @electable_specs.setter
-    def electable_specs(self, value: Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs']]):
+    def electable_specs(self, value: pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs']]):
         pulumi.set(self, "electable_specs", value)
 
     @_builtins.property
     @pulumi.getter(name="readOnlySpecs")
-    def read_only_specs(self) -> Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs']]:
+    def read_only_specs(self) -> pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs']]:
         """
         Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
         """
         return pulumi.get(self, "read_only_specs")
 
     @read_only_specs.setter
-    def read_only_specs(self, value: Optional[pulumi.Input['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs']]):
+    def read_only_specs(self, value: pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs']]):
         pulumi.set(self, "read_only_specs", value)
 
 
 class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgsDict(TypedDict):
-    compute_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    compute_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
     """
-    compute_max_instance_size: NotRequired[pulumi.Input[_builtins.str]]
+    compute_max_instance_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` is true.
 
     **Note:** The configuration options and considerations for analytics auto-scaling are similar to those described in auto_scaling. When using `use_effective_fields = true`, you can read scaled values using `effective_analytics_specs` in the data source. When not using `use_effective_fields`, you may need lifecycle ignore customizations for `analytics_specs` fields similar to the example shown in the auto_scaling section.
     """
-    compute_min_instance_size: NotRequired[pulumi.Input[_builtins.str]]
+    compute_min_instance_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_scale_down_enabled` is true.
     """
-    compute_scale_down_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    compute_scale_down_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
     """
-    disk_gb_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    disk_gb_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
     - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
@@ -1397,11 +1397,11 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgsDict(Typ
 @pulumi.input_type
 class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs:
     def __init__(__self__, *,
-                 compute_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 compute_max_instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 compute_min_instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 compute_scale_down_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disk_gb_enabled: Optional[pulumi.Input[_builtins.bool]] = None):
+                 compute_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 compute_max_instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 compute_min_instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 compute_scale_down_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disk_gb_enabled: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] compute_enabled: Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
         :param pulumi.Input[_builtins.str] compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` is true.
@@ -1427,19 +1427,19 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs:
 
     @_builtins.property
     @pulumi.getter(name="computeEnabled")
-    def compute_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def compute_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
         """
         return pulumi.get(self, "compute_enabled")
 
     @compute_enabled.setter
-    def compute_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def compute_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "compute_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="computeMaxInstanceSize")
-    def compute_max_instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compute_max_instance_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` is true.
 
@@ -1448,36 +1448,36 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs:
         return pulumi.get(self, "compute_max_instance_size")
 
     @compute_max_instance_size.setter
-    def compute_max_instance_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compute_max_instance_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compute_max_instance_size", value)
 
     @_builtins.property
     @pulumi.getter(name="computeMinInstanceSize")
-    def compute_min_instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compute_min_instance_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_scale_down_enabled` is true.
         """
         return pulumi.get(self, "compute_min_instance_size")
 
     @compute_min_instance_size.setter
-    def compute_min_instance_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compute_min_instance_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compute_min_instance_size", value)
 
     @_builtins.property
     @pulumi.getter(name="computeScaleDownEnabled")
-    def compute_scale_down_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def compute_scale_down_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
         """
         return pulumi.get(self, "compute_scale_down_enabled")
 
     @compute_scale_down_enabled.setter
-    def compute_scale_down_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def compute_scale_down_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "compute_scale_down_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="diskGbEnabled")
-    def disk_gb_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disk_gb_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
         - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
@@ -1487,32 +1487,32 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs:
         return pulumi.get(self, "disk_gb_enabled")
 
     @disk_gb_enabled.setter
-    def disk_gb_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disk_gb_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disk_gb_enabled", value)
 
 
 class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgsDict(TypedDict):
-    disk_iops: NotRequired[pulumi.Input[_builtins.int]]
+    disk_iops: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
     """
-    disk_size_gb: NotRequired[pulumi.Input[_builtins.float]]
+    disk_size_gb: NotRequired[pulumi.Input[Optional[_builtins.float]]]
     """
     Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
     """
-    ebs_volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    ebs_volume_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
     * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
     * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
     """
-    instance_size: NotRequired[pulumi.Input[_builtins.str]]
+    instance_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 
     > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
     """
-    node_count: NotRequired[pulumi.Input[_builtins.int]]
+    node_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of nodes of the given type for MongoDB Atlas to deploy to the region.
     """
@@ -1520,11 +1520,11 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgsDict(TypedDict
 @pulumi.input_type
 class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
     def __init__(__self__, *,
-                 disk_iops: Optional[pulumi.Input[_builtins.int]] = None,
-                 disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
-                 ebs_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_count: Optional[pulumi.Input[_builtins.int]] = None):
+                 disk_iops: pulumi.Input[Optional[_builtins.int]] = None,
+                 disk_size_gb: pulumi.Input[Optional[_builtins.float]] = None,
+                 ebs_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
         :param pulumi.Input[_builtins.float] disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
@@ -1549,31 +1549,31 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
 
     @_builtins.property
     @pulumi.getter(name="diskIops")
-    def disk_iops(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def disk_iops(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
         """
         return pulumi.get(self, "disk_iops")
 
     @disk_iops.setter
-    def disk_iops(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def disk_iops(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "disk_iops", value)
 
     @_builtins.property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def disk_size_gb(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
         Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
         """
         return pulumi.get(self, "disk_size_gb")
 
     @disk_size_gb.setter
-    def disk_size_gb(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def disk_size_gb(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "disk_size_gb", value)
 
     @_builtins.property
     @pulumi.getter(name="ebsVolumeType")
-    def ebs_volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ebs_volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
         * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
@@ -1582,12 +1582,12 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
         return pulumi.get(self, "ebs_volume_type")
 
     @ebs_volume_type.setter
-    def ebs_volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ebs_volume_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ebs_volume_type", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceSize")
-    def instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 
@@ -1596,28 +1596,28 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
         return pulumi.get(self, "instance_size")
 
     @instance_size.setter
-    def instance_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_size", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def node_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         return pulumi.get(self, "node_count")
 
     @node_count.setter
-    def node_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def node_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "node_count", value)
 
 
 class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgsDict(TypedDict):
-    compute_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    compute_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
     """
-    compute_max_instance_size: NotRequired[pulumi.Input[_builtins.str]]
+    compute_max_instance_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
 
@@ -1633,15 +1633,15 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgsDict(TypedDict):
 
     **Option 2:** If not using `use_effective_fields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instance_size`, `disk_size_gb`, and `disk_iops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
     """
-    compute_min_instance_size: NotRequired[pulumi.Input[_builtins.str]]
+    compute_min_instance_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
     """
-    compute_scale_down_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    compute_scale_down_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
     """
-    disk_gb_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    disk_gb_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
     - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
@@ -1652,11 +1652,11 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgsDict(TypedDict):
 @pulumi.input_type
 class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
     def __init__(__self__, *,
-                 compute_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 compute_max_instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 compute_min_instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 compute_scale_down_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 disk_gb_enabled: Optional[pulumi.Input[_builtins.bool]] = None):
+                 compute_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 compute_max_instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 compute_min_instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 compute_scale_down_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disk_gb_enabled: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] compute_enabled: Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
         :param pulumi.Input[_builtins.str] compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
@@ -1692,19 +1692,19 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
 
     @_builtins.property
     @pulumi.getter(name="computeEnabled")
-    def compute_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def compute_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
         """
         return pulumi.get(self, "compute_enabled")
 
     @compute_enabled.setter
-    def compute_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def compute_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "compute_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="computeMaxInstanceSize")
-    def compute_max_instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compute_max_instance_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
 
@@ -1723,36 +1723,36 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
         return pulumi.get(self, "compute_max_instance_size")
 
     @compute_max_instance_size.setter
-    def compute_max_instance_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compute_max_instance_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compute_max_instance_size", value)
 
     @_builtins.property
     @pulumi.getter(name="computeMinInstanceSize")
-    def compute_min_instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def compute_min_instance_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
         """
         return pulumi.get(self, "compute_min_instance_size")
 
     @compute_min_instance_size.setter
-    def compute_min_instance_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def compute_min_instance_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "compute_min_instance_size", value)
 
     @_builtins.property
     @pulumi.getter(name="computeScaleDownEnabled")
-    def compute_scale_down_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def compute_scale_down_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
         """
         return pulumi.get(self, "compute_scale_down_enabled")
 
     @compute_scale_down_enabled.setter
-    def compute_scale_down_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def compute_scale_down_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "compute_scale_down_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="diskGbEnabled")
-    def disk_gb_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disk_gb_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
         - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
@@ -1762,32 +1762,32 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
         return pulumi.get(self, "disk_gb_enabled")
 
     @disk_gb_enabled.setter
-    def disk_gb_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disk_gb_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disk_gb_enabled", value)
 
 
 class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgsDict(TypedDict):
-    disk_iops: NotRequired[pulumi.Input[_builtins.int]]
+    disk_iops: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
     """
-    disk_size_gb: NotRequired[pulumi.Input[_builtins.float]]
+    disk_size_gb: NotRequired[pulumi.Input[Optional[_builtins.float]]]
     """
     Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
     """
-    ebs_volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    ebs_volume_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
     * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
     * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
     """
-    instance_size: NotRequired[pulumi.Input[_builtins.str]]
+    instance_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 
     > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
     """
-    node_count: NotRequired[pulumi.Input[_builtins.int]]
+    node_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of nodes of the given type for MongoDB Atlas to deploy to the region.
     """
@@ -1795,11 +1795,11 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgsDict(TypedDict
 @pulumi.input_type
 class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
     def __init__(__self__, *,
-                 disk_iops: Optional[pulumi.Input[_builtins.int]] = None,
-                 disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
-                 ebs_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_count: Optional[pulumi.Input[_builtins.int]] = None):
+                 disk_iops: pulumi.Input[Optional[_builtins.int]] = None,
+                 disk_size_gb: pulumi.Input[Optional[_builtins.float]] = None,
+                 ebs_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
         :param pulumi.Input[_builtins.float] disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
@@ -1824,31 +1824,31 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
 
     @_builtins.property
     @pulumi.getter(name="diskIops")
-    def disk_iops(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def disk_iops(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
         """
         return pulumi.get(self, "disk_iops")
 
     @disk_iops.setter
-    def disk_iops(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def disk_iops(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "disk_iops", value)
 
     @_builtins.property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def disk_size_gb(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
         Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
         """
         return pulumi.get(self, "disk_size_gb")
 
     @disk_size_gb.setter
-    def disk_size_gb(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def disk_size_gb(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "disk_size_gb", value)
 
     @_builtins.property
     @pulumi.getter(name="ebsVolumeType")
-    def ebs_volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ebs_volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
         * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
@@ -1857,12 +1857,12 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
         return pulumi.get(self, "ebs_volume_type")
 
     @ebs_volume_type.setter
-    def ebs_volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ebs_volume_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ebs_volume_type", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceSize")
-    def instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 
@@ -1871,44 +1871,44 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
         return pulumi.get(self, "instance_size")
 
     @instance_size.setter
-    def instance_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_size", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def node_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         return pulumi.get(self, "node_count")
 
     @node_count.setter
-    def node_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def node_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "node_count", value)
 
 
 class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgsDict(TypedDict):
-    disk_iops: NotRequired[pulumi.Input[_builtins.int]]
+    disk_iops: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
     """
-    disk_size_gb: NotRequired[pulumi.Input[_builtins.float]]
+    disk_size_gb: NotRequired[pulumi.Input[Optional[_builtins.float]]]
     """
     Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
     """
-    ebs_volume_type: NotRequired[pulumi.Input[_builtins.str]]
+    ebs_volume_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
     * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
     * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
     """
-    instance_size: NotRequired[pulumi.Input[_builtins.str]]
+    instance_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 
     > **NOTE:** Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
     """
-    node_count: NotRequired[pulumi.Input[_builtins.int]]
+    node_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of nodes of the given type for MongoDB Atlas to deploy to the region.
     """
@@ -1916,11 +1916,11 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgsDict(TypedDict)
 @pulumi.input_type
 class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
     def __init__(__self__, *,
-                 disk_iops: Optional[pulumi.Input[_builtins.int]] = None,
-                 disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
-                 ebs_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 node_count: Optional[pulumi.Input[_builtins.int]] = None):
+                 disk_iops: pulumi.Input[Optional[_builtins.int]] = None,
+                 disk_size_gb: pulumi.Input[Optional[_builtins.float]] = None,
+                 ebs_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 node_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
         :param pulumi.Input[_builtins.float] disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
@@ -1945,31 +1945,31 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
 
     @_builtins.property
     @pulumi.getter(name="diskIops")
-    def disk_iops(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def disk_iops(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instance_size` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebs_volume_type` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
         """
         return pulumi.get(self, "disk_iops")
 
     @disk_iops.setter
-    def disk_iops(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def disk_iops(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "disk_iops", value)
 
     @_builtins.property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def disk_size_gb(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
         Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
         """
         return pulumi.get(self, "disk_size_gb")
 
     @disk_size_gb.setter
-    def disk_size_gb(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def disk_size_gb(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "disk_size_gb", value)
 
     @_builtins.property
     @pulumi.getter(name="ebsVolumeType")
-    def ebs_volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ebs_volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
         * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
@@ -1978,12 +1978,12 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
         return pulumi.get(self, "ebs_volume_type")
 
     @ebs_volume_type.setter
-    def ebs_volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ebs_volume_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ebs_volume_type", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceSize")
-    def instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 
@@ -1992,32 +1992,32 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
         return pulumi.get(self, "instance_size")
 
     @instance_size.setter
-    def instance_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_size", value)
 
     @_builtins.property
     @pulumi.getter(name="nodeCount")
-    def node_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def node_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         return pulumi.get(self, "node_count")
 
     @node_count.setter
-    def node_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def node_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "node_count", value)
 
 
 class AdvancedClusterTimeoutsArgsDict(TypedDict):
-    create: NotRequired[pulumi.Input[_builtins.str]]
+    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
     """
-    delete: NotRequired[pulumi.Input[_builtins.str]]
+    delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
     """
-    update: NotRequired[pulumi.Input[_builtins.str]]
+    update: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
     """
@@ -2025,9 +2025,9 @@ class AdvancedClusterTimeoutsArgsDict(TypedDict):
 @pulumi.input_type
 class AdvancedClusterTimeoutsArgs:
     def __init__(__self__, *,
-                 create: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete: Optional[pulumi.Input[_builtins.str]] = None,
-                 update: Optional[pulumi.Input[_builtins.str]] = None):
+                 create: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete: pulumi.Input[Optional[_builtins.str]] = None,
+                 update: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] create: (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
         :param pulumi.Input[_builtins.str] delete: (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
@@ -2042,38 +2042,38 @@ class AdvancedClusterTimeoutsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
         """
         return pulumi.get(self, "create")
 
     @create.setter
-    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "create", value)
 
     @_builtins.property
     @pulumi.getter
-    def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
         """
         return pulumi.get(self, "delete")
 
     @delete.setter
-    def delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def delete(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "delete", value)
 
     @_builtins.property
     @pulumi.getter
-    def update(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def update(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
         """
         return pulumi.get(self, "update")
 
     @update.setter
-    def update(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def update(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "update", value)
 
 
@@ -2192,22 +2192,22 @@ class AlertConfigurationMetricThresholdConfigArgsDict(TypedDict):
     """
     Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
     """
-    mode: NotRequired[pulumi.Input[_builtins.str]]
+    mode: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     This must be set to AVERAGE. Atlas computes the current metric value as an average.
     """
-    operator: NotRequired[pulumi.Input[_builtins.str]]
-    threshold: NotRequired[pulumi.Input[_builtins.float]]
-    units: NotRequired[pulumi.Input[_builtins.str]]
+    operator: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    threshold: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    units: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class AlertConfigurationMetricThresholdConfigArgs:
     def __init__(__self__, *,
                  metric_name: pulumi.Input[_builtins.str],
-                 mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 operator: Optional[pulumi.Input[_builtins.str]] = None,
-                 threshold: Optional[pulumi.Input[_builtins.float]] = None,
-                 units: Optional[pulumi.Input[_builtins.str]] = None):
+                 mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 operator: pulumi.Input[Optional[_builtins.str]] = None,
+                 threshold: pulumi.Input[Optional[_builtins.float]] = None,
+                 units: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] metric_name: Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
         :param pulumi.Input[_builtins.str] mode: This must be set to AVERAGE. Atlas computes the current metric value as an average.
@@ -2236,41 +2236,41 @@ class AlertConfigurationMetricThresholdConfigArgs:
 
     @_builtins.property
     @pulumi.getter
-    def mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         This must be set to AVERAGE. Atlas computes the current metric value as an average.
         """
         return pulumi.get(self, "mode")
 
     @mode.setter
-    def mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mode", value)
 
     @_builtins.property
     @pulumi.getter
-    def operator(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def operator(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "operator")
 
     @operator.setter
-    def operator(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def operator(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "operator", value)
 
     @_builtins.property
     @pulumi.getter
-    def threshold(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def threshold(self) -> pulumi.Input[Optional[_builtins.float]]:
         return pulumi.get(self, "threshold")
 
     @threshold.setter
-    def threshold(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def threshold(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "threshold", value)
 
     @_builtins.property
     @pulumi.getter
-    def units(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def units(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "units")
 
     @units.setter
-    def units(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def units(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "units", value)
 
 
@@ -2293,63 +2293,63 @@ class AlertConfigurationNotificationArgsDict(TypedDict):
     - `WEBHOOK`
     - `MICROSOFT_TEAMS`
     """
-    api_token: NotRequired[pulumi.Input[_builtins.str]]
+    api_token: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
     """
-    channel_name: NotRequired[pulumi.Input[_builtins.str]]
+    channel_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Slack channel name. Required for the SLACK notifications type.
     """
-    datadog_api_key: NotRequired[pulumi.Input[_builtins.str]]
+    datadog_api_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
     """
-    datadog_region: NotRequired[pulumi.Input[_builtins.str]]
+    datadog_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
     """
-    delay_min: NotRequired[pulumi.Input[_builtins.int]]
+    delay_min: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of minutes to wait after an alert condition is detected before sending out the first notification.
     """
-    email_address: NotRequired[pulumi.Input[_builtins.str]]
+    email_address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Email address to which alert notifications are sent. Required for the EMAIL notifications type.
     """
-    email_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    email_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
     """
-    integration_id: NotRequired[pulumi.Input[_builtins.str]]
+    integration_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ID of the associated integration, the credentials of which to use for requests.
     """
-    interval_min: NotRequired[pulumi.Input[_builtins.int]]
+    interval_min: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
     """
-    microsoft_teams_webhook_url: NotRequired[pulumi.Input[_builtins.str]]
+    microsoft_teams_webhook_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
     """
-    mobile_number: NotRequired[pulumi.Input[_builtins.str]]
+    mobile_number: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Mobile number to which alert notifications are sent. Required for the SMS notifications type.
     """
-    notifier_id: NotRequired[pulumi.Input[_builtins.str]]
+    notifier_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
     """
-    ops_genie_api_key: NotRequired[pulumi.Input[_builtins.str]]
+    ops_genie_api_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
     """
-    ops_genie_region: NotRequired[pulumi.Input[_builtins.str]]
+    ops_genie_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
     """
-    roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
     Accepted values are:
@@ -2363,39 +2363,39 @@ class AlertConfigurationNotificationArgsDict(TypedDict):
     | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
     | `GROUP_READ_ONLY`               |                     |
     """
-    service_key: NotRequired[pulumi.Input[_builtins.str]]
+    service_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
     """
-    sms_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    sms_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
     """
-    team_id: NotRequired[pulumi.Input[_builtins.str]]
+    team_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of a team.
     """
-    team_name: NotRequired[pulumi.Input[_builtins.str]]
+    team_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Label for the team that receives this notification.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
     """
-    victor_ops_api_key: NotRequired[pulumi.Input[_builtins.str]]
+    victor_ops_api_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
     """
-    victor_ops_routing_key: NotRequired[pulumi.Input[_builtins.str]]
+    victor_ops_routing_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
     """
-    webhook_secret: NotRequired[pulumi.Input[_builtins.str]]
+    webhook_secret: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Optional authentication secret for the `WEBHOOK` notifications type.
     """
-    webhook_url: NotRequired[pulumi.Input[_builtins.str]]
+    webhook_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Target URL  for the `WEBHOOK` notifications type.
     """
@@ -2404,30 +2404,30 @@ class AlertConfigurationNotificationArgsDict(TypedDict):
 class AlertConfigurationNotificationArgs:
     def __init__(__self__, *,
                  type_name: pulumi.Input[_builtins.str],
-                 api_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 channel_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 datadog_api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 datadog_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 delay_min: Optional[pulumi.Input[_builtins.int]] = None,
-                 email_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 email_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 integration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 interval_min: Optional[pulumi.Input[_builtins.int]] = None,
-                 microsoft_teams_webhook_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 mobile_number: Optional[pulumi.Input[_builtins.str]] = None,
-                 notifier_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ops_genie_api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 ops_genie_region: Optional[pulumi.Input[_builtins.str]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 service_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 sms_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 team_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 victor_ops_api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 victor_ops_routing_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 webhook_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 webhook_url: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 channel_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 datadog_api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 datadog_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 delay_min: pulumi.Input[Optional[_builtins.int]] = None,
+                 email_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 email_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 integration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 interval_min: pulumi.Input[Optional[_builtins.int]] = None,
+                 microsoft_teams_webhook_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 mobile_number: pulumi.Input[Optional[_builtins.str]] = None,
+                 notifier_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ops_genie_api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 ops_genie_region: pulumi.Input[Optional[_builtins.str]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 service_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 sms_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 team_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 victor_ops_api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 victor_ops_routing_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 webhook_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 webhook_url: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] type_name: Type of alert notification.
                Accepted values are:
@@ -2557,175 +2557,175 @@ class AlertConfigurationNotificationArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiToken")
-    def api_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         """
         return pulumi.get(self, "api_token")
 
     @api_token.setter
-    def api_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_token", value)
 
     @_builtins.property
     @pulumi.getter(name="channelName")
-    def channel_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def channel_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Slack channel name. Required for the SLACK notifications type.
         """
         return pulumi.get(self, "channel_name")
 
     @channel_name.setter
-    def channel_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def channel_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "channel_name", value)
 
     @_builtins.property
     @pulumi.getter(name="datadogApiKey")
-    def datadog_api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datadog_api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
         """
         return pulumi.get(self, "datadog_api_key")
 
     @datadog_api_key.setter
-    def datadog_api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datadog_api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datadog_api_key", value)
 
     @_builtins.property
     @pulumi.getter(name="datadogRegion")
-    def datadog_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def datadog_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
         """
         return pulumi.get(self, "datadog_region")
 
     @datadog_region.setter
-    def datadog_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def datadog_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "datadog_region", value)
 
     @_builtins.property
     @pulumi.getter(name="delayMin")
-    def delay_min(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def delay_min(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of minutes to wait after an alert condition is detected before sending out the first notification.
         """
         return pulumi.get(self, "delay_min")
 
     @delay_min.setter
-    def delay_min(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def delay_min(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "delay_min", value)
 
     @_builtins.property
     @pulumi.getter(name="emailAddress")
-    def email_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def email_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Email address to which alert notifications are sent. Required for the EMAIL notifications type.
         """
         return pulumi.get(self, "email_address")
 
     @email_address.setter
-    def email_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def email_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "email_address", value)
 
     @_builtins.property
     @pulumi.getter(name="emailEnabled")
-    def email_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def email_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag indicating email notifications should be sent. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         """
         return pulumi.get(self, "email_enabled")
 
     @email_enabled.setter
-    def email_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def email_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "email_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="integrationId")
-    def integration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def integration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the associated integration, the credentials of which to use for requests.
         """
         return pulumi.get(self, "integration_id")
 
     @integration_id.setter
-    def integration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def integration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "integration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="intervalMin")
-    def interval_min(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def interval_min(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
         """
         return pulumi.get(self, "interval_min")
 
     @interval_min.setter
-    def interval_min(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def interval_min(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "interval_min", value)
 
     @_builtins.property
     @pulumi.getter(name="microsoftTeamsWebhookUrl")
-    def microsoft_teams_webhook_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def microsoft_teams_webhook_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `type_name` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
         """
         return pulumi.get(self, "microsoft_teams_webhook_url")
 
     @microsoft_teams_webhook_url.setter
-    def microsoft_teams_webhook_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def microsoft_teams_webhook_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "microsoft_teams_webhook_url", value)
 
     @_builtins.property
     @pulumi.getter(name="mobileNumber")
-    def mobile_number(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mobile_number(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Mobile number to which alert notifications are sent. Required for the SMS notifications type.
         """
         return pulumi.get(self, "mobile_number")
 
     @mobile_number.setter
-    def mobile_number(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mobile_number(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mobile_number", value)
 
     @_builtins.property
     @pulumi.getter(name="notifierId")
-    def notifier_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def notifier_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
         """
         return pulumi.get(self, "notifier_id")
 
     @notifier_id.setter
-    def notifier_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def notifier_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "notifier_id", value)
 
     @_builtins.property
     @pulumi.getter(name="opsGenieApiKey")
-    def ops_genie_api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ops_genie_api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
         """
         return pulumi.get(self, "ops_genie_api_key")
 
     @ops_genie_api_key.setter
-    def ops_genie_api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ops_genie_api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ops_genie_api_key", value)
 
     @_builtins.property
     @pulumi.getter(name="opsGenieRegion")
-    def ops_genie_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ops_genie_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
         """
         return pulumi.get(self, "ops_genie_region")
 
     @ops_genie_region.setter
-    def ops_genie_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ops_genie_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ops_genie_region", value)
 
     @_builtins.property
     @pulumi.getter
-    def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         Accepted values are:
@@ -2742,129 +2742,129 @@ class AlertConfigurationNotificationArgs:
         return pulumi.get(self, "roles")
 
     @roles.setter
-    def roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "roles", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceKey")
-    def service_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         """
         return pulumi.get(self, "service_key")
 
     @service_key.setter
-    def service_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_key", value)
 
     @_builtins.property
     @pulumi.getter(name="smsEnabled")
-    def sms_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def sms_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `type_name` is set to `ORG`, `GROUP`, or `USER`.
         """
         return pulumi.get(self, "sms_enabled")
 
     @sms_enabled.setter
-    def sms_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def sms_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "sms_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def team_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of a team.
         """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
-    def team_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def team_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "team_id", value)
 
     @_builtins.property
     @pulumi.getter(name="teamName")
-    def team_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def team_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label for the team that receives this notification.
         """
         return pulumi.get(self, "team_name")
 
     @team_name.setter
-    def team_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def team_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "team_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="victorOpsApiKey")
-    def victor_ops_api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def victor_ops_api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         """
         return pulumi.get(self, "victor_ops_api_key")
 
     @victor_ops_api_key.setter
-    def victor_ops_api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def victor_ops_api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "victor_ops_api_key", value)
 
     @_builtins.property
     @pulumi.getter(name="victorOpsRoutingKey")
-    def victor_ops_routing_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def victor_ops_routing_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         """
         return pulumi.get(self, "victor_ops_routing_key")
 
     @victor_ops_routing_key.setter
-    def victor_ops_routing_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def victor_ops_routing_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "victor_ops_routing_key", value)
 
     @_builtins.property
     @pulumi.getter(name="webhookSecret")
-    def webhook_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def webhook_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional authentication secret for the `WEBHOOK` notifications type.
         """
         return pulumi.get(self, "webhook_secret")
 
     @webhook_secret.setter
-    def webhook_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def webhook_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "webhook_secret", value)
 
     @_builtins.property
     @pulumi.getter(name="webhookUrl")
-    def webhook_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def webhook_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Target URL  for the `WEBHOOK` notifications type.
         """
         return pulumi.get(self, "webhook_url")
 
     @webhook_url.setter
-    def webhook_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def webhook_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "webhook_url", value)
 
 
 class AlertConfigurationThresholdConfigArgsDict(TypedDict):
-    operator: NotRequired[pulumi.Input[_builtins.str]]
-    threshold: NotRequired[pulumi.Input[_builtins.float]]
-    units: NotRequired[pulumi.Input[_builtins.str]]
+    operator: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    threshold: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    units: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class AlertConfigurationThresholdConfigArgs:
     def __init__(__self__, *,
-                 operator: Optional[pulumi.Input[_builtins.str]] = None,
-                 threshold: Optional[pulumi.Input[_builtins.float]] = None,
-                 units: Optional[pulumi.Input[_builtins.str]] = None):
+                 operator: pulumi.Input[Optional[_builtins.str]] = None,
+                 threshold: pulumi.Input[Optional[_builtins.float]] = None,
+                 units: pulumi.Input[Optional[_builtins.str]] = None):
         if operator is not None:
             pulumi.set(__self__, "operator", operator)
         if threshold is not None:
@@ -2874,29 +2874,29 @@ class AlertConfigurationThresholdConfigArgs:
 
     @_builtins.property
     @pulumi.getter
-    def operator(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def operator(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "operator")
 
     @operator.setter
-    def operator(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def operator(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "operator", value)
 
     @_builtins.property
     @pulumi.getter
-    def threshold(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def threshold(self) -> pulumi.Input[Optional[_builtins.float]]:
         return pulumi.get(self, "threshold")
 
     @threshold.setter
-    def threshold(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def threshold(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "threshold", value)
 
     @_builtins.property
     @pulumi.getter
-    def units(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def units(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "units")
 
     @units.setter
-    def units(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def units(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "units", value)
 
 
@@ -2913,11 +2913,11 @@ class BackupCompliancePolicyOnDemandPolicyItemArgsDict(TypedDict):
     """
     Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
     """
-    frequency_type: NotRequired[pulumi.Input[_builtins.str]]
+    frequency_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of the backup policy item.
     """
@@ -2928,8 +2928,8 @@ class BackupCompliancePolicyOnDemandPolicyItemArgs:
                  frequency_interval: pulumi.Input[_builtins.int],
                  retention_unit: pulumi.Input[_builtins.str],
                  retention_value: pulumi.Input[_builtins.int],
-                 frequency_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 frequency_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         :param pulumi.Input[_builtins.str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
@@ -2983,26 +2983,26 @@ class BackupCompliancePolicyOnDemandPolicyItemArgs:
 
     @_builtins.property
     @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frequency_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
-    def frequency_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frequency_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frequency_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the backup policy item.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -3019,11 +3019,11 @@ class BackupCompliancePolicyPolicyItemDailyArgsDict(TypedDict):
     """
     Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
     """
-    frequency_type: NotRequired[pulumi.Input[_builtins.str]]
+    frequency_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of the backup policy item.
     """
@@ -3034,8 +3034,8 @@ class BackupCompliancePolicyPolicyItemDailyArgs:
                  frequency_interval: pulumi.Input[_builtins.int],
                  retention_unit: pulumi.Input[_builtins.str],
                  retention_value: pulumi.Input[_builtins.int],
-                 frequency_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 frequency_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         :param pulumi.Input[_builtins.str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
@@ -3089,26 +3089,26 @@ class BackupCompliancePolicyPolicyItemDailyArgs:
 
     @_builtins.property
     @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frequency_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
-    def frequency_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frequency_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frequency_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the backup policy item.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -3125,11 +3125,11 @@ class BackupCompliancePolicyPolicyItemHourlyArgsDict(TypedDict):
     """
     Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
     """
-    frequency_type: NotRequired[pulumi.Input[_builtins.str]]
+    frequency_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of the backup policy item.
     """
@@ -3140,8 +3140,8 @@ class BackupCompliancePolicyPolicyItemHourlyArgs:
                  frequency_interval: pulumi.Input[_builtins.int],
                  retention_unit: pulumi.Input[_builtins.str],
                  retention_value: pulumi.Input[_builtins.int],
-                 frequency_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 frequency_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         :param pulumi.Input[_builtins.str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
@@ -3195,26 +3195,26 @@ class BackupCompliancePolicyPolicyItemHourlyArgs:
 
     @_builtins.property
     @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frequency_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
-    def frequency_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frequency_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frequency_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the backup policy item.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -3231,11 +3231,11 @@ class BackupCompliancePolicyPolicyItemMonthlyArgsDict(TypedDict):
     """
     Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
     """
-    frequency_type: NotRequired[pulumi.Input[_builtins.str]]
+    frequency_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of the backup policy item.
     """
@@ -3246,8 +3246,8 @@ class BackupCompliancePolicyPolicyItemMonthlyArgs:
                  frequency_interval: pulumi.Input[_builtins.int],
                  retention_unit: pulumi.Input[_builtins.str],
                  retention_value: pulumi.Input[_builtins.int],
-                 frequency_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 frequency_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         :param pulumi.Input[_builtins.str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
@@ -3301,26 +3301,26 @@ class BackupCompliancePolicyPolicyItemMonthlyArgs:
 
     @_builtins.property
     @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frequency_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
-    def frequency_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frequency_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frequency_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the backup policy item.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -3337,11 +3337,11 @@ class BackupCompliancePolicyPolicyItemWeeklyArgsDict(TypedDict):
     """
     Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
     """
-    frequency_type: NotRequired[pulumi.Input[_builtins.str]]
+    frequency_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of the backup policy item.
     """
@@ -3352,8 +3352,8 @@ class BackupCompliancePolicyPolicyItemWeeklyArgs:
                  frequency_interval: pulumi.Input[_builtins.int],
                  retention_unit: pulumi.Input[_builtins.str],
                  retention_value: pulumi.Input[_builtins.int],
-                 frequency_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 frequency_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         :param pulumi.Input[_builtins.str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
@@ -3407,26 +3407,26 @@ class BackupCompliancePolicyPolicyItemWeeklyArgs:
 
     @_builtins.property
     @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frequency_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
-    def frequency_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frequency_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frequency_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the backup policy item.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -3443,11 +3443,11 @@ class BackupCompliancePolicyPolicyItemYearlyArgsDict(TypedDict):
     """
     Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
     """
-    frequency_type: NotRequired[pulumi.Input[_builtins.str]]
+    frequency_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of the backup policy item.
     """
@@ -3458,8 +3458,8 @@ class BackupCompliancePolicyPolicyItemYearlyArgs:
                  frequency_interval: pulumi.Input[_builtins.int],
                  retention_unit: pulumi.Input[_builtins.str],
                  retention_value: pulumi.Input[_builtins.int],
-                 frequency_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 frequency_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         :param pulumi.Input[_builtins.str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
@@ -3513,47 +3513,47 @@ class BackupCompliancePolicyPolicyItemYearlyArgs:
 
     @_builtins.property
     @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frequency_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
-    def frequency_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frequency_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frequency_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the backup policy item.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
 class CloudBackupScheduleCopySettingArgsDict(TypedDict):
-    cloud_provider: NotRequired[pulumi.Input[_builtins.str]]
+    cloud_provider: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
     """
-    frequencies: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    frequencies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
     """
-    region_name: NotRequired[pulumi.Input[_builtins.str]]
+    region_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
     """
-    should_copy_oplogs: NotRequired[pulumi.Input[_builtins.bool]]
+    should_copy_oplogs: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
     """
-    zone_id: NotRequired[pulumi.Input[_builtins.str]]
+    zone_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zone_id`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
     """
@@ -3561,11 +3561,11 @@ class CloudBackupScheduleCopySettingArgsDict(TypedDict):
 @pulumi.input_type
 class CloudBackupScheduleCopySettingArgs:
     def __init__(__self__, *,
-                 cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 frequencies: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 region_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 should_copy_oplogs: Optional[pulumi.Input[_builtins.bool]] = None,
-                 zone_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 frequencies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 region_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 should_copy_oplogs: pulumi.Input[Optional[_builtins.bool]] = None,
+                 zone_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
@@ -3586,71 +3586,71 @@ class CloudBackupScheduleCopySettingArgs:
 
     @_builtins.property
     @pulumi.getter(name="cloudProvider")
-    def cloud_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
         """
         return pulumi.get(self, "cloud_provider")
 
     @cloud_provider.setter
-    def cloud_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_provider", value)
 
     @_builtins.property
     @pulumi.getter
-    def frequencies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def frequencies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
         """
         return pulumi.get(self, "frequencies")
 
     @frequencies.setter
-    def frequencies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def frequencies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "frequencies", value)
 
     @_builtins.property
     @pulumi.getter(name="regionName")
-    def region_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
         """
         return pulumi.get(self, "region_name")
 
     @region_name.setter
-    def region_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region_name", value)
 
     @_builtins.property
     @pulumi.getter(name="shouldCopyOplogs")
-    def should_copy_oplogs(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def should_copy_oplogs(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         """
         return pulumi.get(self, "should_copy_oplogs")
 
     @should_copy_oplogs.setter
-    def should_copy_oplogs(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def should_copy_oplogs(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "should_copy_oplogs", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneId")
-    def zone_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zone_id`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
         """
         return pulumi.get(self, "zone_id")
 
     @zone_id.setter
-    def zone_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone_id", value)
 
 
 class CloudBackupScheduleExportArgsDict(TypedDict):
-    export_bucket_id: NotRequired[pulumi.Input[_builtins.str]]
+    export_bucket_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
     """
-    frequency_type: NotRequired[pulumi.Input[_builtins.str]]
+    frequency_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
     """
@@ -3658,8 +3658,8 @@ class CloudBackupScheduleExportArgsDict(TypedDict):
 @pulumi.input_type
 class CloudBackupScheduleExportArgs:
     def __init__(__self__, *,
-                 export_bucket_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 frequency_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 export_bucket_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 frequency_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] export_bucket_id: Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
         :param pulumi.Input[_builtins.str] frequency_type: Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
@@ -3671,26 +3671,26 @@ class CloudBackupScheduleExportArgs:
 
     @_builtins.property
     @pulumi.getter(name="exportBucketId")
-    def export_bucket_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def export_bucket_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
         """
         return pulumi.get(self, "export_bucket_id")
 
     @export_bucket_id.setter
-    def export_bucket_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def export_bucket_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "export_bucket_id", value)
 
     @_builtins.property
     @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frequency_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
         """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
-    def frequency_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frequency_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frequency_type", value)
 
 
@@ -3707,11 +3707,11 @@ class CloudBackupSchedulePolicyItemDailyArgsDict(TypedDict):
     """
     Value to associate with `retention_unit`.  Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the hourly policy item specifies a retention of two days, the daily retention policy must specify two days or greater.
     """
-    frequency_type: NotRequired[pulumi.Input[_builtins.str]]
+    frequency_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Frequency associated with the backup policy item. For daily policies, the frequency type is defined as `daily`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of the backup policy item.
     """
@@ -3722,8 +3722,8 @@ class CloudBackupSchedulePolicyItemDailyArgs:
                  frequency_interval: pulumi.Input[_builtins.int],
                  retention_unit: pulumi.Input[_builtins.str],
                  retention_value: pulumi.Input[_builtins.int],
-                 frequency_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 frequency_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (daily in this case). The only supported value for daily policies is `1` day.
         :param pulumi.Input[_builtins.str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
@@ -3777,26 +3777,26 @@ class CloudBackupSchedulePolicyItemDailyArgs:
 
     @_builtins.property
     @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frequency_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Frequency associated with the backup policy item. For daily policies, the frequency type is defined as `daily`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
-    def frequency_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frequency_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frequency_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the backup policy item.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -3813,11 +3813,11 @@ class CloudBackupSchedulePolicyItemHourlyArgsDict(TypedDict):
     """
     Value to associate with `retention_unit`.
     """
-    frequency_type: NotRequired[pulumi.Input[_builtins.str]]
+    frequency_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of the backup policy item.
     """
@@ -3828,8 +3828,8 @@ class CloudBackupSchedulePolicyItemHourlyArgs:
                  frequency_interval: pulumi.Input[_builtins.int],
                  retention_unit: pulumi.Input[_builtins.str],
                  retention_value: pulumi.Input[_builtins.int],
-                 frequency_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 frequency_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (hourly in this case). The supported values for hourly policies are `1`, `2`, `4`, `6`, `8` or `12` hours. Note that `12` hours is the only accepted value for NVMe clusters.
         :param pulumi.Input[_builtins.str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
@@ -3883,26 +3883,26 @@ class CloudBackupSchedulePolicyItemHourlyArgs:
 
     @_builtins.property
     @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frequency_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
-    def frequency_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frequency_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frequency_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the backup policy item.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -3919,11 +3919,11 @@ class CloudBackupSchedulePolicyItemMonthlyArgsDict(TypedDict):
     """
     Value to associate with `retention_unit`. Monthly policy must have retention days of at least 31 days or 5 weeks or 1 month. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the weekly policy item specifies a retention of two weeks, the montly retention policy must specify two weeks or greater.
     """
-    frequency_type: NotRequired[pulumi.Input[_builtins.str]]
+    frequency_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of the backup policy item.
     """
@@ -3934,8 +3934,8 @@ class CloudBackupSchedulePolicyItemMonthlyArgs:
                  frequency_interval: pulumi.Input[_builtins.int],
                  retention_unit: pulumi.Input[_builtins.str],
                  retention_value: pulumi.Input[_builtins.int],
-                 frequency_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 frequency_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (monthly in this case). The supported values for weekly policies are
         :param pulumi.Input[_builtins.str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
@@ -3989,26 +3989,26 @@ class CloudBackupSchedulePolicyItemMonthlyArgs:
 
     @_builtins.property
     @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frequency_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
-    def frequency_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frequency_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frequency_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the backup policy item.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -4025,11 +4025,11 @@ class CloudBackupSchedulePolicyItemWeeklyArgsDict(TypedDict):
     """
     Value to associate with `retention_unit`. Weekly policy must have retention of at least 7 days or 1 week. Note that for less frequent policy items, Atlas requires that you specify a retention period greater than or equal to the retention period specified for more frequent policy items. For example: If the daily policy item specifies a retention of two weeks, the weekly retention policy must specify two weeks or greater.
     """
-    frequency_type: NotRequired[pulumi.Input[_builtins.str]]
+    frequency_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Frequency associated with the backup policy item. For weekly policies, the frequency type is defined as `weekly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of the backup policy item.
     """
@@ -4040,8 +4040,8 @@ class CloudBackupSchedulePolicyItemWeeklyArgs:
                  frequency_interval: pulumi.Input[_builtins.int],
                  retention_unit: pulumi.Input[_builtins.str],
                  retention_value: pulumi.Input[_builtins.int],
-                 frequency_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 frequency_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (weekly in this case). The supported values for weekly policies are `1` through `7`, where `1` represents Monday and `7` represents Sunday.
         :param pulumi.Input[_builtins.str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
@@ -4095,26 +4095,26 @@ class CloudBackupSchedulePolicyItemWeeklyArgs:
 
     @_builtins.property
     @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frequency_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Frequency associated with the backup policy item. For weekly policies, the frequency type is defined as `weekly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
-    def frequency_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frequency_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frequency_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the backup policy item.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -4131,11 +4131,11 @@ class CloudBackupSchedulePolicyItemYearlyArgsDict(TypedDict):
     """
     Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
     """
-    frequency_type: NotRequired[pulumi.Input[_builtins.str]]
+    frequency_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of the backup policy item.
     """
@@ -4146,8 +4146,8 @@ class CloudBackupSchedulePolicyItemYearlyArgs:
                  frequency_interval: pulumi.Input[_builtins.int],
                  retention_unit: pulumi.Input[_builtins.str],
                  retention_value: pulumi.Input[_builtins.int],
-                 frequency_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 frequency_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
         :param pulumi.Input[_builtins.str] retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
@@ -4201,35 +4201,35 @@ class CloudBackupSchedulePolicyItemYearlyArgs:
 
     @_builtins.property
     @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frequency_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
         """
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
-    def frequency_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frequency_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frequency_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the backup policy item.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
 class CloudBackupSnapshotExportJobComponentArgsDict(TypedDict):
-    export_id: NotRequired[pulumi.Input[_builtins.str]]
+    export_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
     """
-    replica_set_name: NotRequired[pulumi.Input[_builtins.str]]
+    replica_set_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
     """
@@ -4237,8 +4237,8 @@ class CloudBackupSnapshotExportJobComponentArgsDict(TypedDict):
 @pulumi.input_type
 class CloudBackupSnapshotExportJobComponentArgs:
     def __init__(__self__, *,
-                 export_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 replica_set_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 export_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 replica_set_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] export_id: _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         :param pulumi.Input[_builtins.str] replica_set_name: _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
@@ -4250,26 +4250,26 @@ class CloudBackupSnapshotExportJobComponentArgs:
 
     @_builtins.property
     @pulumi.getter(name="exportId")
-    def export_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def export_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         """
         return pulumi.get(self, "export_id")
 
     @export_id.setter
-    def export_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def export_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "export_id", value)
 
     @_builtins.property
     @pulumi.getter(name="replicaSetName")
-    def replica_set_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def replica_set_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
         """
         return pulumi.get(self, "replica_set_name")
 
     @replica_set_name.setter
-    def replica_set_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def replica_set_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "replica_set_name", value)
 
 
@@ -4321,15 +4321,15 @@ class CloudBackupSnapshotExportJobCustomDataArgs:
 
 
 class CloudBackupSnapshotMemberArgsDict(TypedDict):
-    cloud_provider: NotRequired[pulumi.Input[_builtins.str]]
+    cloud_provider: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cloud provider that stores this snapshot.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier for the sharded cluster snapshot.
     """
-    replica_set_name: NotRequired[pulumi.Input[_builtins.str]]
+    replica_set_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Label given to a shard or config server from which Atlas took this snapshot.
     """
@@ -4337,9 +4337,9 @@ class CloudBackupSnapshotMemberArgsDict(TypedDict):
 @pulumi.input_type
 class CloudBackupSnapshotMemberArgs:
     def __init__(__self__, *,
-                 cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 replica_set_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 replica_set_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] cloud_provider: Cloud provider that stores this snapshot.
         :param pulumi.Input[_builtins.str] id: Unique identifier for the sharded cluster snapshot.
@@ -4354,53 +4354,53 @@ class CloudBackupSnapshotMemberArgs:
 
     @_builtins.property
     @pulumi.getter(name="cloudProvider")
-    def cloud_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cloud provider that stores this snapshot.
         """
         return pulumi.get(self, "cloud_provider")
 
     @cloud_provider.setter
-    def cloud_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_provider", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier for the sharded cluster snapshot.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="replicaSetName")
-    def replica_set_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def replica_set_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label given to a shard or config server from which Atlas took this snapshot.
         """
         return pulumi.get(self, "replica_set_name")
 
     @replica_set_name.setter
-    def replica_set_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def replica_set_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "replica_set_name", value)
 
 
 class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict(TypedDict):
-    automated: NotRequired[pulumi.Input[_builtins.bool]]
-    download: NotRequired[pulumi.Input[_builtins.bool]]
-    oplog_inc: NotRequired[pulumi.Input[_builtins.int]]
-    oplog_ts: NotRequired[pulumi.Input[_builtins.int]]
-    point_in_time: NotRequired[pulumi.Input[_builtins.bool]]
-    point_in_time_utc_seconds: NotRequired[pulumi.Input[_builtins.int]]
-    target_cluster_name: NotRequired[pulumi.Input[_builtins.str]]
+    automated: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    download: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    oplog_inc: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    oplog_ts: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    point_in_time: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    point_in_time_utc_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    target_cluster_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
     """
-    target_project_id: NotRequired[pulumi.Input[_builtins.str]]
+    target_project_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
     """
@@ -4408,14 +4408,14 @@ class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict(TypedDict):
 @pulumi.input_type
 class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs:
     def __init__(__self__, *,
-                 automated: Optional[pulumi.Input[_builtins.bool]] = None,
-                 download: Optional[pulumi.Input[_builtins.bool]] = None,
-                 oplog_inc: Optional[pulumi.Input[_builtins.int]] = None,
-                 oplog_ts: Optional[pulumi.Input[_builtins.int]] = None,
-                 point_in_time: Optional[pulumi.Input[_builtins.bool]] = None,
-                 point_in_time_utc_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 target_cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 target_project_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 automated: pulumi.Input[Optional[_builtins.bool]] = None,
+                 download: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oplog_inc: pulumi.Input[Optional[_builtins.int]] = None,
+                 oplog_ts: pulumi.Input[Optional[_builtins.int]] = None,
+                 point_in_time: pulumi.Input[Optional[_builtins.bool]] = None,
+                 point_in_time_utc_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 target_cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 target_project_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] target_cluster_name: Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
         :param pulumi.Input[_builtins.str] target_project_id: Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
@@ -4439,80 +4439,80 @@ class CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs:
 
     @_builtins.property
     @pulumi.getter
-    def automated(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def automated(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "automated")
 
     @automated.setter
-    def automated(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def automated(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "automated", value)
 
     @_builtins.property
     @pulumi.getter
-    def download(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def download(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "download")
 
     @download.setter
-    def download(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def download(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "download", value)
 
     @_builtins.property
     @pulumi.getter(name="oplogInc")
-    def oplog_inc(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def oplog_inc(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "oplog_inc")
 
     @oplog_inc.setter
-    def oplog_inc(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def oplog_inc(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "oplog_inc", value)
 
     @_builtins.property
     @pulumi.getter(name="oplogTs")
-    def oplog_ts(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def oplog_ts(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "oplog_ts")
 
     @oplog_ts.setter
-    def oplog_ts(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def oplog_ts(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "oplog_ts", value)
 
     @_builtins.property
     @pulumi.getter(name="pointInTime")
-    def point_in_time(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def point_in_time(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "point_in_time")
 
     @point_in_time.setter
-    def point_in_time(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def point_in_time(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "point_in_time", value)
 
     @_builtins.property
     @pulumi.getter(name="pointInTimeUtcSeconds")
-    def point_in_time_utc_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def point_in_time_utc_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "point_in_time_utc_seconds")
 
     @point_in_time_utc_seconds.setter
-    def point_in_time_utc_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def point_in_time_utc_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "point_in_time_utc_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="targetClusterName")
-    def target_cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target_cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
         """
         return pulumi.get(self, "target_cluster_name")
 
     @target_cluster_name.setter
-    def target_cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target_cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target_cluster_name", value)
 
     @_builtins.property
     @pulumi.getter(name="targetProjectId")
-    def target_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def target_project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
         """
         return pulumi.get(self, "target_project_id")
 
     @target_project_id.setter
-    def target_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def target_project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "target_project_id", value)
 
 
@@ -4611,14 +4611,14 @@ class CloudProviderAccessAuthorizationAzureArgs:
 
 
 class CloudProviderAccessAuthorizationFeatureUsageArgsDict(TypedDict):
-    feature_id: NotRequired[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]
-    feature_type: NotRequired[pulumi.Input[_builtins.str]]
+    feature_id: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    feature_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class CloudProviderAccessAuthorizationFeatureUsageArgs:
     def __init__(__self__, *,
-                 feature_id: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 feature_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 feature_id: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 feature_type: pulumi.Input[Optional[_builtins.str]] = None):
         if feature_id is not None:
             pulumi.set(__self__, "feature_id", feature_id)
         if feature_type is not None:
@@ -4626,25 +4626,25 @@ class CloudProviderAccessAuthorizationFeatureUsageArgs:
 
     @_builtins.property
     @pulumi.getter(name="featureId")
-    def feature_id(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def feature_id(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "feature_id")
 
     @feature_id.setter
-    def feature_id(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def feature_id(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "feature_id", value)
 
     @_builtins.property
     @pulumi.getter(name="featureType")
-    def feature_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def feature_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "feature_type")
 
     @feature_type.setter
-    def feature_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def feature_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "feature_type", value)
 
 
 class CloudProviderAccessAuthorizationGcpArgsDict(TypedDict):
-    service_account_for_atlas: NotRequired[pulumi.Input[_builtins.str]]
+    service_account_for_atlas: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Email address for the Google Service Account created by Atlas.
     """
@@ -4652,7 +4652,7 @@ class CloudProviderAccessAuthorizationGcpArgsDict(TypedDict):
 @pulumi.input_type
 class CloudProviderAccessAuthorizationGcpArgs:
     def __init__(__self__, *,
-                 service_account_for_atlas: Optional[pulumi.Input[_builtins.str]] = None):
+                 service_account_for_atlas: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] service_account_for_atlas: Email address for the Google Service Account created by Atlas.
         """
@@ -4661,23 +4661,23 @@ class CloudProviderAccessAuthorizationGcpArgs:
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountForAtlas")
-    def service_account_for_atlas(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_for_atlas(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Email address for the Google Service Account created by Atlas.
         """
         return pulumi.get(self, "service_account_for_atlas")
 
     @service_account_for_atlas.setter
-    def service_account_for_atlas(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_for_atlas(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_for_atlas", value)
 
 
 class CloudProviderAccessSetupAwsConfigArgsDict(TypedDict):
-    atlas_assumed_role_external_id: NotRequired[pulumi.Input[_builtins.str]]
+    atlas_assumed_role_external_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique external ID Atlas uses when assuming the IAM role in your AWS account.
     """
-    atlas_aws_account_arn: NotRequired[pulumi.Input[_builtins.str]]
+    atlas_aws_account_arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
     """
@@ -4685,8 +4685,8 @@ class CloudProviderAccessSetupAwsConfigArgsDict(TypedDict):
 @pulumi.input_type
 class CloudProviderAccessSetupAwsConfigArgs:
     def __init__(__self__, *,
-                 atlas_assumed_role_external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 atlas_aws_account_arn: Optional[pulumi.Input[_builtins.str]] = None):
+                 atlas_assumed_role_external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 atlas_aws_account_arn: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] atlas_assumed_role_external_id: Unique external ID Atlas uses when assuming the IAM role in your AWS account.
         :param pulumi.Input[_builtins.str] atlas_aws_account_arn: ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
@@ -4698,26 +4698,26 @@ class CloudProviderAccessSetupAwsConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="atlasAssumedRoleExternalId")
-    def atlas_assumed_role_external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def atlas_assumed_role_external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique external ID Atlas uses when assuming the IAM role in your AWS account.
         """
         return pulumi.get(self, "atlas_assumed_role_external_id")
 
     @atlas_assumed_role_external_id.setter
-    def atlas_assumed_role_external_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def atlas_assumed_role_external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "atlas_assumed_role_external_id", value)
 
     @_builtins.property
     @pulumi.getter(name="atlasAwsAccountArn")
-    def atlas_aws_account_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def atlas_aws_account_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
         """
         return pulumi.get(self, "atlas_aws_account_arn")
 
     @atlas_aws_account_arn.setter
-    def atlas_aws_account_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def atlas_aws_account_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "atlas_aws_account_arn", value)
 
 
@@ -4788,11 +4788,11 @@ class CloudProviderAccessSetupAzureConfigArgs:
 
 
 class CloudProviderAccessSetupGcpConfigArgsDict(TypedDict):
-    service_account_for_atlas: NotRequired[pulumi.Input[_builtins.str]]
+    service_account_for_atlas: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The GCP service account email that Atlas uses.
     """
-    status: NotRequired[pulumi.Input[_builtins.str]]
+    status: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
     """
@@ -4800,8 +4800,8 @@ class CloudProviderAccessSetupGcpConfigArgsDict(TypedDict):
 @pulumi.input_type
 class CloudProviderAccessSetupGcpConfigArgs:
     def __init__(__self__, *,
-                 service_account_for_atlas: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None):
+                 service_account_for_atlas: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] service_account_for_atlas: The GCP service account email that Atlas uses.
         :param pulumi.Input[_builtins.str] status: The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
@@ -4813,35 +4813,35 @@ class CloudProviderAccessSetupGcpConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountForAtlas")
-    def service_account_for_atlas(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_for_atlas(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The GCP service account email that Atlas uses.
         """
         return pulumi.get(self, "service_account_for_atlas")
 
     @service_account_for_atlas.setter
-    def service_account_for_atlas(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_for_atlas(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_for_atlas", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
 
 class CloudUserOrgAssignmentRolesArgsDict(TypedDict):
-    org_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    org_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     One or more organization level roles to assign the MongoDB Cloud user.
     """
-    project_role_assignments: NotRequired[pulumi.Input[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgsDict']]]]
+    project_role_assignments: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs']]]]]
     """
     List of project level role assignments to assign the MongoDB Cloud user.
     """
@@ -4849,8 +4849,8 @@ class CloudUserOrgAssignmentRolesArgsDict(TypedDict):
 @pulumi.input_type
 class CloudUserOrgAssignmentRolesArgs:
     def __init__(__self__, *,
-                 org_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs']]]] = None):
+                 org_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_role_assignments: pulumi.Input[Optional[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs']]]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] org_roles: One or more organization level roles to assign the MongoDB Cloud user.
         :param pulumi.Input[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs']]] project_role_assignments: List of project level role assignments to assign the MongoDB Cloud user.
@@ -4862,35 +4862,35 @@ class CloudUserOrgAssignmentRolesArgs:
 
     @_builtins.property
     @pulumi.getter(name="orgRoles")
-    def org_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def org_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         One or more organization level roles to assign the MongoDB Cloud user.
         """
         return pulumi.get(self, "org_roles")
 
     @org_roles.setter
-    def org_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def org_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "org_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="projectRoleAssignments")
-    def project_role_assignments(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs']]]]:
+    def project_role_assignments(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs']]]]:
         """
         List of project level role assignments to assign the MongoDB Cloud user.
         """
         return pulumi.get(self, "project_role_assignments")
 
     @project_role_assignments.setter
-    def project_role_assignments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs']]]]):
+    def project_role_assignments(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs']]]]):
         pulumi.set(self, "project_role_assignments", value)
 
 
 class CloudUserOrgAssignmentRolesProjectRoleAssignmentArgsDict(TypedDict):
-    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
     """
-    project_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    project_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     One or more project-level roles assigned to the MongoDB Cloud user.
     """
@@ -4898,8 +4898,8 @@ class CloudUserOrgAssignmentRolesProjectRoleAssignmentArgsDict(TypedDict):
 @pulumi.input_type
 class CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs:
     def __init__(__self__, *,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] project_roles: One or more project-level roles assigned to the MongoDB Cloud user.
@@ -4911,35 +4911,35 @@ class CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs:
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectRoles")
-    def project_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def project_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         One or more project-level roles assigned to the MongoDB Cloud user.
         """
         return pulumi.get(self, "project_roles")
 
     @project_roles.setter
-    def project_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def project_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "project_roles", value)
 
 
 class CloudUserTeamAssignmentRolesArgsDict(TypedDict):
-    org_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    org_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     One or more organization level roles to assign the MongoDB Cloud user.
     """
-    project_role_assignments: NotRequired[pulumi.Input[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgsDict']]]]
+    project_role_assignments: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs']]]]]
     """
     List of project level role assignments to assign the MongoDB Cloud user.
     """
@@ -4947,8 +4947,8 @@ class CloudUserTeamAssignmentRolesArgsDict(TypedDict):
 @pulumi.input_type
 class CloudUserTeamAssignmentRolesArgs:
     def __init__(__self__, *,
-                 org_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs']]]] = None):
+                 org_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_role_assignments: pulumi.Input[Optional[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs']]]] = None):
         """
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] org_roles: One or more organization level roles to assign the MongoDB Cloud user.
         :param pulumi.Input[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs']]] project_role_assignments: List of project level role assignments to assign the MongoDB Cloud user.
@@ -4960,35 +4960,35 @@ class CloudUserTeamAssignmentRolesArgs:
 
     @_builtins.property
     @pulumi.getter(name="orgRoles")
-    def org_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def org_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         One or more organization level roles to assign the MongoDB Cloud user.
         """
         return pulumi.get(self, "org_roles")
 
     @org_roles.setter
-    def org_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def org_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "org_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="projectRoleAssignments")
-    def project_role_assignments(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs']]]]:
+    def project_role_assignments(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs']]]]:
         """
         List of project level role assignments to assign the MongoDB Cloud user.
         """
         return pulumi.get(self, "project_role_assignments")
 
     @project_role_assignments.setter
-    def project_role_assignments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs']]]]):
+    def project_role_assignments(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs']]]]):
         pulumi.set(self, "project_role_assignments", value)
 
 
 class CloudUserTeamAssignmentRolesProjectRoleAssignmentArgsDict(TypedDict):
-    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
     """
-    project_roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    project_roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     One or more project-level roles assigned to the MongoDB Cloud user.
     """
@@ -4996,8 +4996,8 @@ class CloudUserTeamAssignmentRolesProjectRoleAssignmentArgsDict(TypedDict):
 @pulumi.input_type
 class CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs:
     def __init__(__self__, *,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] project_roles: One or more project-level roles assigned to the MongoDB Cloud user.
@@ -5009,87 +5009,87 @@ class CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs:
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectRoles")
-    def project_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def project_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         One or more project-level roles assigned to the MongoDB Cloud user.
         """
         return pulumi.get(self, "project_roles")
 
     @project_roles.setter
-    def project_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def project_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "project_roles", value)
 
 
 class ClusterAdvancedConfigurationArgsDict(TypedDict):
-    change_stream_options_pre_and_post_images_expire_after_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    change_stream_options_pre_and_post_images_expire_after_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
     """
-    custom_openssl_cipher_config_tls12s: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    custom_openssl_cipher_config_tls12s: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
     """
-    default_max_time_ms: NotRequired[pulumi.Input[_builtins.int]]
-    default_read_concern: NotRequired[pulumi.Input[_builtins.str]]
+    default_max_time_ms: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    default_read_concern: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
     """
-    default_write_concern: NotRequired[pulumi.Input[_builtins.str]]
+    default_write_concern: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
     """
-    fail_index_key_too_long: NotRequired[pulumi.Input[_builtins.bool]]
+    fail_index_key_too_long: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
     """
-    javascript_enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    javascript_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
     """
-    minimum_enabled_tls_protocol: NotRequired[pulumi.Input[_builtins.str]]
+    minimum_enabled_tls_protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
     - TLS1_2
     - TLS1_3
     """
-    no_table_scan: NotRequired[pulumi.Input[_builtins.bool]]
+    no_table_scan: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
     """
-    oplog_min_retention_hours: NotRequired[pulumi.Input[_builtins.float]]
+    oplog_min_retention_hours: NotRequired[pulumi.Input[Optional[_builtins.float]]]
     """
     Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
     * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
     """
-    oplog_size_mb: NotRequired[pulumi.Input[_builtins.int]]
+    oplog_size_mb: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
     """
-    sample_refresh_interval_bi_connector: NotRequired[pulumi.Input[_builtins.int]]
+    sample_refresh_interval_bi_connector: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
     """
-    sample_size_bi_connector: NotRequired[pulumi.Input[_builtins.int]]
+    sample_size_bi_connector: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
     """
-    tls_cipher_config_mode: NotRequired[pulumi.Input[_builtins.str]]
+    tls_cipher_config_mode: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
     """
-    transaction_lifetime_limit_seconds: NotRequired[pulumi.Input[_builtins.int]]
+    transaction_lifetime_limit_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
     """
@@ -5097,21 +5097,21 @@ class ClusterAdvancedConfigurationArgsDict(TypedDict):
 @pulumi.input_type
 class ClusterAdvancedConfigurationArgs:
     def __init__(__self__, *,
-                 change_stream_options_pre_and_post_images_expire_after_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 custom_openssl_cipher_config_tls12s: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 default_max_time_ms: Optional[pulumi.Input[_builtins.int]] = None,
-                 default_read_concern: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_write_concern: Optional[pulumi.Input[_builtins.str]] = None,
-                 fail_index_key_too_long: Optional[pulumi.Input[_builtins.bool]] = None,
-                 javascript_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 minimum_enabled_tls_protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 no_table_scan: Optional[pulumi.Input[_builtins.bool]] = None,
-                 oplog_min_retention_hours: Optional[pulumi.Input[_builtins.float]] = None,
-                 oplog_size_mb: Optional[pulumi.Input[_builtins.int]] = None,
-                 sample_refresh_interval_bi_connector: Optional[pulumi.Input[_builtins.int]] = None,
-                 sample_size_bi_connector: Optional[pulumi.Input[_builtins.int]] = None,
-                 tls_cipher_config_mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 transaction_lifetime_limit_seconds: Optional[pulumi.Input[_builtins.int]] = None):
+                 change_stream_options_pre_and_post_images_expire_after_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 custom_openssl_cipher_config_tls12s: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 default_max_time_ms: pulumi.Input[Optional[_builtins.int]] = None,
+                 default_read_concern: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_write_concern: pulumi.Input[Optional[_builtins.str]] = None,
+                 fail_index_key_too_long: pulumi.Input[Optional[_builtins.bool]] = None,
+                 javascript_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 minimum_enabled_tls_protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 no_table_scan: pulumi.Input[Optional[_builtins.bool]] = None,
+                 oplog_min_retention_hours: pulumi.Input[Optional[_builtins.float]] = None,
+                 oplog_size_mb: pulumi.Input[Optional[_builtins.int]] = None,
+                 sample_refresh_interval_bi_connector: pulumi.Input[Optional[_builtins.int]] = None,
+                 sample_size_bi_connector: pulumi.Input[Optional[_builtins.int]] = None,
+                 tls_cipher_config_mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 transaction_lifetime_limit_seconds: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.int] change_stream_options_pre_and_post_images_expire_after_seconds: The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] custom_openssl_cipher_config_tls12s: The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
@@ -5170,90 +5170,90 @@ class ClusterAdvancedConfigurationArgs:
 
     @_builtins.property
     @pulumi.getter(name="changeStreamOptionsPreAndPostImagesExpireAfterSeconds")
-    def change_stream_options_pre_and_post_images_expire_after_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def change_stream_options_pre_and_post_images_expire_after_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
         """
         return pulumi.get(self, "change_stream_options_pre_and_post_images_expire_after_seconds")
 
     @change_stream_options_pre_and_post_images_expire_after_seconds.setter
-    def change_stream_options_pre_and_post_images_expire_after_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def change_stream_options_pre_and_post_images_expire_after_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "change_stream_options_pre_and_post_images_expire_after_seconds", value)
 
     @_builtins.property
     @pulumi.getter(name="customOpensslCipherConfigTls12s")
-    def custom_openssl_cipher_config_tls12s(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def custom_openssl_cipher_config_tls12s(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tls_cipher_config_mode` is set to `CUSTOM`.
         """
         return pulumi.get(self, "custom_openssl_cipher_config_tls12s")
 
     @custom_openssl_cipher_config_tls12s.setter
-    def custom_openssl_cipher_config_tls12s(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def custom_openssl_cipher_config_tls12s(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "custom_openssl_cipher_config_tls12s", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultMaxTimeMs")
-    def default_max_time_ms(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_max_time_ms(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "default_max_time_ms")
 
     @default_max_time_ms.setter
-    def default_max_time_ms(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_max_time_ms(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_max_time_ms", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultReadConcern")
     @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def default_read_concern(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_read_concern(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
         """
         return pulumi.get(self, "default_read_concern")
 
     @default_read_concern.setter
-    def default_read_concern(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_read_concern(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_read_concern", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultWriteConcern")
-    def default_write_concern(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_write_concern(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
         """
         return pulumi.get(self, "default_write_concern")
 
     @default_write_concern.setter
-    def default_write_concern(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_write_concern(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_write_concern", value)
 
     @_builtins.property
     @pulumi.getter(name="failIndexKeyTooLong")
     @_utilities.deprecated("""This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide""")
-    def fail_index_key_too_long(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def fail_index_key_too_long(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
         """
         return pulumi.get(self, "fail_index_key_too_long")
 
     @fail_index_key_too_long.setter
-    def fail_index_key_too_long(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def fail_index_key_too_long(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "fail_index_key_too_long", value)
 
     @_builtins.property
     @pulumi.getter(name="javascriptEnabled")
-    def javascript_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def javascript_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
         """
         return pulumi.get(self, "javascript_enabled")
 
     @javascript_enabled.setter
-    def javascript_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def javascript_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "javascript_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="minimumEnabledTlsProtocol")
-    def minimum_enabled_tls_protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def minimum_enabled_tls_protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
         - TLS1_2
@@ -5262,24 +5262,24 @@ class ClusterAdvancedConfigurationArgs:
         return pulumi.get(self, "minimum_enabled_tls_protocol")
 
     @minimum_enabled_tls_protocol.setter
-    def minimum_enabled_tls_protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def minimum_enabled_tls_protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "minimum_enabled_tls_protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="noTableScan")
-    def no_table_scan(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def no_table_scan(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
         """
         return pulumi.get(self, "no_table_scan")
 
     @no_table_scan.setter
-    def no_table_scan(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def no_table_scan(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "no_table_scan", value)
 
     @_builtins.property
     @pulumi.getter(name="oplogMinRetentionHours")
-    def oplog_min_retention_hours(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def oplog_min_retention_hours(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
         Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
         * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
@@ -5287,79 +5287,79 @@ class ClusterAdvancedConfigurationArgs:
         return pulumi.get(self, "oplog_min_retention_hours")
 
     @oplog_min_retention_hours.setter
-    def oplog_min_retention_hours(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def oplog_min_retention_hours(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "oplog_min_retention_hours", value)
 
     @_builtins.property
     @pulumi.getter(name="oplogSizeMb")
-    def oplog_size_mb(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def oplog_size_mb(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
         """
         return pulumi.get(self, "oplog_size_mb")
 
     @oplog_size_mb.setter
-    def oplog_size_mb(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def oplog_size_mb(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "oplog_size_mb", value)
 
     @_builtins.property
     @pulumi.getter(name="sampleRefreshIntervalBiConnector")
-    def sample_refresh_interval_bi_connector(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sample_refresh_interval_bi_connector(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
         return pulumi.get(self, "sample_refresh_interval_bi_connector")
 
     @sample_refresh_interval_bi_connector.setter
-    def sample_refresh_interval_bi_connector(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sample_refresh_interval_bi_connector(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sample_refresh_interval_bi_connector", value)
 
     @_builtins.property
     @pulumi.getter(name="sampleSizeBiConnector")
-    def sample_size_bi_connector(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def sample_size_bi_connector(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
         """
         return pulumi.get(self, "sample_size_bi_connector")
 
     @sample_size_bi_connector.setter
-    def sample_size_bi_connector(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def sample_size_bi_connector(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "sample_size_bi_connector", value)
 
     @_builtins.property
     @pulumi.getter(name="tlsCipherConfigMode")
-    def tls_cipher_config_mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tls_cipher_config_mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
         """
         return pulumi.get(self, "tls_cipher_config_mode")
 
     @tls_cipher_config_mode.setter
-    def tls_cipher_config_mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tls_cipher_config_mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tls_cipher_config_mode", value)
 
     @_builtins.property
     @pulumi.getter(name="transactionLifetimeLimitSeconds")
-    def transaction_lifetime_limit_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def transaction_lifetime_limit_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
         """
         return pulumi.get(self, "transaction_lifetime_limit_seconds")
 
     @transaction_lifetime_limit_seconds.setter
-    def transaction_lifetime_limit_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def transaction_lifetime_limit_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "transaction_lifetime_limit_seconds", value)
 
 
 class ClusterBiConnectorConfigArgsDict(TypedDict):
-    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies whether or not BI Connector for Atlas is enabled on the cluster.
     *
     - Set to `true` to enable BI Connector for Atlas.
     - Set to `false` to disable BI Connector for Atlas.
     """
-    read_preference: NotRequired[pulumi.Input[_builtins.str]]
+    read_preference: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
 
@@ -5373,8 +5373,8 @@ class ClusterBiConnectorConfigArgsDict(TypedDict):
 @pulumi.input_type
 class ClusterBiConnectorConfigArgs:
     def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 read_preference: Optional[pulumi.Input[_builtins.str]] = None):
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 read_preference: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.bool] enabled: Specifies whether or not BI Connector for Atlas is enabled on the cluster.
                *
@@ -5395,7 +5395,7 @@ class ClusterBiConnectorConfigArgs:
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether or not BI Connector for Atlas is enabled on the cluster.
         *
@@ -5405,12 +5405,12 @@ class ClusterBiConnectorConfigArgs:
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="readPreference")
-    def read_preference(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def read_preference(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
 
@@ -5423,25 +5423,25 @@ class ClusterBiConnectorConfigArgs:
         return pulumi.get(self, "read_preference")
 
     @read_preference.setter
-    def read_preference(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def read_preference(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "read_preference", value)
 
 
 class ClusterConnectionStringArgsDict(TypedDict):
-    private: NotRequired[pulumi.Input[_builtins.str]]
-    private_endpoints: NotRequired[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgsDict']]]]
-    private_srv: NotRequired[pulumi.Input[_builtins.str]]
-    standard: NotRequired[pulumi.Input[_builtins.str]]
-    standard_srv: NotRequired[pulumi.Input[_builtins.str]]
+    private: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    private_endpoints: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]]]]
+    private_srv: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    standard: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    standard_srv: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class ClusterConnectionStringArgs:
     def __init__(__self__, *,
-                 private: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]]] = None,
-                 private_srv: Optional[pulumi.Input[_builtins.str]] = None,
-                 standard: Optional[pulumi.Input[_builtins.str]] = None,
-                 standard_srv: Optional[pulumi.Input[_builtins.str]] = None):
+                 private: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_endpoints: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]]] = None,
+                 private_srv: pulumi.Input[Optional[_builtins.str]] = None,
+                 standard: pulumi.Input[Optional[_builtins.str]] = None,
+                 standard_srv: pulumi.Input[Optional[_builtins.str]] = None):
         if private is not None:
             pulumi.set(__self__, "private", private)
         if private_endpoints is not None:
@@ -5455,65 +5455,65 @@ class ClusterConnectionStringArgs:
 
     @_builtins.property
     @pulumi.getter
-    def private(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "private")
 
     @private.setter
-    def private(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private", value)
 
     @_builtins.property
     @pulumi.getter(name="privateEndpoints")
-    def private_endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]]]:
+    def private_endpoints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]]]:
         return pulumi.get(self, "private_endpoints")
 
     @private_endpoints.setter
-    def private_endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]]]):
+    def private_endpoints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]]]):
         pulumi.set(self, "private_endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="privateSrv")
-    def private_srv(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_srv(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "private_srv")
 
     @private_srv.setter
-    def private_srv(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_srv(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_srv", value)
 
     @_builtins.property
     @pulumi.getter
-    def standard(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def standard(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "standard")
 
     @standard.setter
-    def standard(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def standard(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "standard", value)
 
     @_builtins.property
     @pulumi.getter(name="standardSrv")
-    def standard_srv(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def standard_srv(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "standard_srv")
 
     @standard_srv.setter
-    def standard_srv(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def standard_srv(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "standard_srv", value)
 
 
 class ClusterConnectionStringPrivateEndpointArgsDict(TypedDict):
-    connection_string: NotRequired[pulumi.Input[_builtins.str]]
-    endpoints: NotRequired[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointEndpointArgsDict']]]]
-    srv_connection_string: NotRequired[pulumi.Input[_builtins.str]]
-    srv_shard_optimized_connection_string: NotRequired[pulumi.Input[_builtins.str]]
-    type: NotRequired[pulumi.Input[_builtins.str]]
+    connection_string: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    endpoints: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointEndpointArgs']]]]]
+    srv_connection_string: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    srv_shard_optimized_connection_string: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class ClusterConnectionStringPrivateEndpointArgs:
     def __init__(__self__, *,
-                 connection_string: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointEndpointArgs']]]] = None,
-                 srv_connection_string: Optional[pulumi.Input[_builtins.str]] = None,
-                 srv_shard_optimized_connection_string: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 connection_string: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoints: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointEndpointArgs']]]] = None,
+                 srv_connection_string: pulumi.Input[Optional[_builtins.str]] = None,
+                 srv_shard_optimized_connection_string: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         if connection_string is not None:
             pulumi.set(__self__, "connection_string", connection_string)
         if endpoints is not None:
@@ -5527,53 +5527,53 @@ class ClusterConnectionStringPrivateEndpointArgs:
 
     @_builtins.property
     @pulumi.getter(name="connectionString")
-    def connection_string(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_string(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "connection_string")
 
     @connection_string.setter
-    def connection_string(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_string(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_string", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointEndpointArgs']]]]:
+    def endpoints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointEndpointArgs']]]]:
         return pulumi.get(self, "endpoints")
 
     @endpoints.setter
-    def endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointEndpointArgs']]]]):
+    def endpoints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointEndpointArgs']]]]):
         pulumi.set(self, "endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="srvConnectionString")
-    def srv_connection_string(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def srv_connection_string(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "srv_connection_string")
 
     @srv_connection_string.setter
-    def srv_connection_string(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def srv_connection_string(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "srv_connection_string", value)
 
     @_builtins.property
     @pulumi.getter(name="srvShardOptimizedConnectionString")
-    def srv_shard_optimized_connection_string(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def srv_shard_optimized_connection_string(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "srv_shard_optimized_connection_string")
 
     @srv_shard_optimized_connection_string.setter
-    def srv_shard_optimized_connection_string(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def srv_shard_optimized_connection_string(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "srv_shard_optimized_connection_string", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 class ClusterConnectionStringPrivateEndpointEndpointArgsDict(TypedDict):
-    endpoint_id: NotRequired[pulumi.Input[_builtins.str]]
-    provider_name: NotRequired[pulumi.Input[_builtins.str]]
+    endpoint_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    provider_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Cloud service provider on which the servers are provisioned.
 
@@ -5584,14 +5584,14 @@ class ClusterConnectionStringPrivateEndpointEndpointArgsDict(TypedDict):
     - `AZURE` - Microsoft Azure
     - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class ClusterConnectionStringPrivateEndpointEndpointArgs:
     def __init__(__self__, *,
-                 endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] provider_name: Cloud service provider on which the servers are provisioned.
                
@@ -5611,16 +5611,16 @@ class ClusterConnectionStringPrivateEndpointEndpointArgs:
 
     @_builtins.property
     @pulumi.getter(name="endpointId")
-    def endpoint_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "endpoint_id")
 
     @endpoint_id.setter
-    def endpoint_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint_id", value)
 
     @_builtins.property
     @pulumi.getter(name="providerName")
-    def provider_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cloud service provider on which the servers are provisioned.
 
@@ -5634,25 +5634,25 @@ class ClusterConnectionStringPrivateEndpointEndpointArgs:
         return pulumi.get(self, "provider_name")
 
     @provider_name.setter
-    def provider_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
 class ClusterLabelArgsDict(TypedDict):
-    key: NotRequired[pulumi.Input[_builtins.str]]
+    key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The key that you want to write.
     """
-    value: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The value that you want to write.
 
@@ -5662,8 +5662,8 @@ class ClusterLabelArgsDict(TypedDict):
 @pulumi.input_type
 class ClusterLabelArgs:
     def __init__(__self__, *,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None):
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] key: The key that you want to write.
         :param pulumi.Input[_builtins.str] value: The value that you want to write.
@@ -5677,19 +5677,19 @@ class ClusterLabelArgs:
 
     @_builtins.property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The key that you want to write.
         """
         return pulumi.get(self, "key")
 
     @key.setter
-    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key", value)
 
     @_builtins.property
     @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The value that you want to write.
 
@@ -5698,7 +5698,7 @@ class ClusterLabelArgs:
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value", value)
 
 
@@ -5714,7 +5714,7 @@ class ClusterOutageSimulationOutageFilterArgsDict(TypedDict):
     """
     The Atlas name of the region to undergo an outage simulation.
     """
-    type: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The type of cluster outage simulation. Following values are supported:
     * `REGION` - Simulates a cluster outage for a region
@@ -5725,7 +5725,7 @@ class ClusterOutageSimulationOutageFilterArgs:
     def __init__(__self__, *,
                  cloud_provider: pulumi.Input[_builtins.str],
                  region_name: pulumi.Input[_builtins.str],
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] cloud_provider: The cloud provider of the region that undergoes the outage simulation. Following values are supported:
                * `AWS`
@@ -5769,7 +5769,7 @@ class ClusterOutageSimulationOutageFilterArgs:
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of cluster outage simulation. Following values are supported:
         * `REGION` - Simulates a cluster outage for a region
@@ -5777,7 +5777,7 @@ class ClusterOutageSimulationOutageFilterArgs:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -5786,7 +5786,7 @@ class ClusterPinnedFcvArgsDict(TypedDict):
     """
     Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
     """
-    version: NotRequired[pulumi.Input[_builtins.str]]
+    version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Feature compatibility version of the cluster.
     """
@@ -5795,7 +5795,7 @@ class ClusterPinnedFcvArgsDict(TypedDict):
 class ClusterPinnedFcvArgs:
     def __init__(__self__, *,
                  expiration_date: pulumi.Input[_builtins.str],
-                 version: Optional[pulumi.Input[_builtins.str]] = None):
+                 version: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] expiration_date: Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
         :param pulumi.Input[_builtins.str] version: Feature compatibility version of the cluster.
@@ -5818,14 +5818,14 @@ class ClusterPinnedFcvArgs:
 
     @_builtins.property
     @pulumi.getter
-    def version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Feature compatibility version of the cluster.
         """
         return pulumi.get(self, "version")
 
     @version.setter
-    def version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version", value)
 
 
@@ -5834,15 +5834,15 @@ class ClusterReplicationSpecArgsDict(TypedDict):
     """
     Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Terraform's unique identifier used internally for state management.
     """
-    regions_configs: NotRequired[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgsDict']]]]
+    regions_configs: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgs']]]]]
     """
     Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
     """
-    zone_name: NotRequired[pulumi.Input[_builtins.str]]
+    zone_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name for the zone in a Global Cluster.
 
@@ -5854,9 +5854,9 @@ class ClusterReplicationSpecArgsDict(TypedDict):
 class ClusterReplicationSpecArgs:
     def __init__(__self__, *,
                  num_shards: pulumi.Input[_builtins.int],
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 regions_configs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgs']]]] = None,
-                 zone_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 regions_configs: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgs']]]] = None,
+                 zone_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.int] num_shards: Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
         :param pulumi.Input[_builtins.str] id: The Terraform's unique identifier used internally for state management.
@@ -5888,31 +5888,31 @@ class ClusterReplicationSpecArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Terraform's unique identifier used internally for state management.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="regionsConfigs")
-    def regions_configs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgs']]]]:
+    def regions_configs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgs']]]]:
         """
         Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
         """
         return pulumi.get(self, "regions_configs")
 
     @regions_configs.setter
-    def regions_configs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgs']]]]):
+    def regions_configs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgs']]]]):
         pulumi.set(self, "regions_configs", value)
 
     @_builtins.property
     @pulumi.getter(name="zoneName")
-    def zone_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name for the zone in a Global Cluster.
 
@@ -5922,7 +5922,7 @@ class ClusterReplicationSpecArgs:
         return pulumi.get(self, "zone_name")
 
     @zone_name.setter
-    def zone_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone_name", value)
 
 
@@ -5931,25 +5931,25 @@ class ClusterReplicationSpecRegionsConfigArgsDict(TypedDict):
     """
     Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
     """
-    analytics_nodes: NotRequired[pulumi.Input[_builtins.int]]
+    analytics_nodes: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
     """
-    electable_nodes: NotRequired[pulumi.Input[_builtins.int]]
+    electable_nodes: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
     * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
     * Specify 0 if you do not want any electable nodes in the region.
     * You cannot create electable nodes in a region if `priority` is 0.
     """
-    priority: NotRequired[pulumi.Input[_builtins.int]]
+    priority: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Election priority of the region. For regions with only read-only nodes, set this value to 0.
     * For regions where `electable_nodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
     * The priority 7 region identifies the Preferred Region of the cluster. Atlas places the primary node in the Preferred Region. Priorities 1 through 7 are exclusive - no more than one region per cluster can be assigned a given priority.
     * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
     """
-    read_only_nodes: NotRequired[pulumi.Input[_builtins.int]]
+    read_only_nodes: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
     """
@@ -5958,10 +5958,10 @@ class ClusterReplicationSpecRegionsConfigArgsDict(TypedDict):
 class ClusterReplicationSpecRegionsConfigArgs:
     def __init__(__self__, *,
                  region_name: pulumi.Input[_builtins.str],
-                 analytics_nodes: Optional[pulumi.Input[_builtins.int]] = None,
-                 electable_nodes: Optional[pulumi.Input[_builtins.int]] = None,
-                 priority: Optional[pulumi.Input[_builtins.int]] = None,
-                 read_only_nodes: Optional[pulumi.Input[_builtins.int]] = None):
+                 analytics_nodes: pulumi.Input[Optional[_builtins.int]] = None,
+                 electable_nodes: pulumi.Input[Optional[_builtins.int]] = None,
+                 priority: pulumi.Input[Optional[_builtins.int]] = None,
+                 read_only_nodes: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         :param pulumi.Input[_builtins.int] analytics_nodes: The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
@@ -5999,19 +5999,19 @@ class ClusterReplicationSpecRegionsConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="analyticsNodes")
-    def analytics_nodes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def analytics_nodes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
         """
         return pulumi.get(self, "analytics_nodes")
 
     @analytics_nodes.setter
-    def analytics_nodes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def analytics_nodes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "analytics_nodes", value)
 
     @_builtins.property
     @pulumi.getter(name="electableNodes")
-    def electable_nodes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def electable_nodes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
         * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
@@ -6021,12 +6021,12 @@ class ClusterReplicationSpecRegionsConfigArgs:
         return pulumi.get(self, "electable_nodes")
 
     @electable_nodes.setter
-    def electable_nodes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def electable_nodes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "electable_nodes", value)
 
     @_builtins.property
     @pulumi.getter
-    def priority(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def priority(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Election priority of the region. For regions with only read-only nodes, set this value to 0.
         * For regions where `electable_nodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
@@ -6036,46 +6036,46 @@ class ClusterReplicationSpecRegionsConfigArgs:
         return pulumi.get(self, "priority")
 
     @priority.setter
-    def priority(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def priority(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "priority", value)
 
     @_builtins.property
     @pulumi.getter(name="readOnlyNodes")
-    def read_only_nodes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def read_only_nodes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
         """
         return pulumi.get(self, "read_only_nodes")
 
     @read_only_nodes.setter
-    def read_only_nodes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def read_only_nodes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "read_only_nodes", value)
 
 
 class ClusterSnapshotBackupPolicyArgsDict(TypedDict):
-    cluster_id: NotRequired[pulumi.Input[_builtins.str]]
+    cluster_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The cluster ID.
     """
-    cluster_name: NotRequired[pulumi.Input[_builtins.str]]
-    next_snapshot: NotRequired[pulumi.Input[_builtins.str]]
-    policies: NotRequired[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyArgsDict']]]]
-    reference_hour_of_day: NotRequired[pulumi.Input[_builtins.int]]
-    reference_minute_of_hour: NotRequired[pulumi.Input[_builtins.int]]
-    restore_window_days: NotRequired[pulumi.Input[_builtins.int]]
-    update_snapshots: NotRequired[pulumi.Input[_builtins.bool]]
+    cluster_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    next_snapshot: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyArgs']]]]]
+    reference_hour_of_day: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    reference_minute_of_hour: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    restore_window_days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    update_snapshots: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
 
 @pulumi.input_type
 class ClusterSnapshotBackupPolicyArgs:
     def __init__(__self__, *,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 next_snapshot: Optional[pulumi.Input[_builtins.str]] = None,
-                 policies: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyArgs']]]] = None,
-                 reference_hour_of_day: Optional[pulumi.Input[_builtins.int]] = None,
-                 reference_minute_of_hour: Optional[pulumi.Input[_builtins.int]] = None,
-                 restore_window_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 update_snapshots: Optional[pulumi.Input[_builtins.bool]] = None):
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 next_snapshot: pulumi.Input[Optional[_builtins.str]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyArgs']]]] = None,
+                 reference_hour_of_day: pulumi.Input[Optional[_builtins.int]] = None,
+                 reference_minute_of_hour: pulumi.Input[Optional[_builtins.int]] = None,
+                 restore_window_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 update_snapshots: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] cluster_id: The cluster ID.
         """
@@ -6098,92 +6098,92 @@ class ClusterSnapshotBackupPolicyArgs:
 
     @_builtins.property
     @pulumi.getter(name="clusterId")
-    def cluster_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The cluster ID.
         """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
-    def cluster_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "cluster_name")
 
     @cluster_name.setter
-    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_name", value)
 
     @_builtins.property
     @pulumi.getter(name="nextSnapshot")
-    def next_snapshot(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def next_snapshot(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "next_snapshot")
 
     @next_snapshot.setter
-    def next_snapshot(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def next_snapshot(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "next_snapshot", value)
 
     @_builtins.property
     @pulumi.getter
-    def policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyArgs']]]]:
+    def policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyArgs']]]]:
         return pulumi.get(self, "policies")
 
     @policies.setter
-    def policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyArgs']]]]):
+    def policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyArgs']]]]):
         pulumi.set(self, "policies", value)
 
     @_builtins.property
     @pulumi.getter(name="referenceHourOfDay")
-    def reference_hour_of_day(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def reference_hour_of_day(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "reference_hour_of_day")
 
     @reference_hour_of_day.setter
-    def reference_hour_of_day(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def reference_hour_of_day(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "reference_hour_of_day", value)
 
     @_builtins.property
     @pulumi.getter(name="referenceMinuteOfHour")
-    def reference_minute_of_hour(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def reference_minute_of_hour(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "reference_minute_of_hour")
 
     @reference_minute_of_hour.setter
-    def reference_minute_of_hour(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def reference_minute_of_hour(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "reference_minute_of_hour", value)
 
     @_builtins.property
     @pulumi.getter(name="restoreWindowDays")
-    def restore_window_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def restore_window_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "restore_window_days")
 
     @restore_window_days.setter
-    def restore_window_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def restore_window_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "restore_window_days", value)
 
     @_builtins.property
     @pulumi.getter(name="updateSnapshots")
-    def update_snapshots(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def update_snapshots(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "update_snapshots")
 
     @update_snapshots.setter
-    def update_snapshots(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def update_snapshots(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "update_snapshots", value)
 
 
 class ClusterSnapshotBackupPolicyPolicyArgsDict(TypedDict):
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Terraform's unique identifier used internally for state management.
     """
-    policy_items: NotRequired[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyPolicyItemArgsDict']]]]
+    policy_items: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyPolicyItemArgs']]]]]
 
 @pulumi.input_type
 class ClusterSnapshotBackupPolicyPolicyArgs:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 policy_items: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyPolicyItemArgs']]]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 policy_items: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyPolicyItemArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.str] id: The Terraform's unique identifier used internally for state management.
         """
@@ -6194,44 +6194,44 @@ class ClusterSnapshotBackupPolicyPolicyArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Terraform's unique identifier used internally for state management.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="policyItems")
-    def policy_items(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyPolicyItemArgs']]]]:
+    def policy_items(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyPolicyItemArgs']]]]:
         return pulumi.get(self, "policy_items")
 
     @policy_items.setter
-    def policy_items(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyPolicyItemArgs']]]]):
+    def policy_items(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyPolicyItemArgs']]]]):
         pulumi.set(self, "policy_items", value)
 
 
 class ClusterSnapshotBackupPolicyPolicyPolicyItemArgsDict(TypedDict):
-    frequency_interval: NotRequired[pulumi.Input[_builtins.int]]
-    frequency_type: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    frequency_interval: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    frequency_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Terraform's unique identifier used internally for state management.
     """
-    retention_unit: NotRequired[pulumi.Input[_builtins.str]]
-    retention_value: NotRequired[pulumi.Input[_builtins.int]]
+    retention_unit: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    retention_value: NotRequired[pulumi.Input[Optional[_builtins.int]]]
 
 @pulumi.input_type
 class ClusterSnapshotBackupPolicyPolicyPolicyItemArgs:
     def __init__(__self__, *,
-                 frequency_interval: Optional[pulumi.Input[_builtins.int]] = None,
-                 frequency_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 retention_unit: Optional[pulumi.Input[_builtins.str]] = None,
-                 retention_value: Optional[pulumi.Input[_builtins.int]] = None):
+                 frequency_interval: pulumi.Input[Optional[_builtins.int]] = None,
+                 frequency_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 retention_unit: pulumi.Input[Optional[_builtins.str]] = None,
+                 retention_value: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] id: The Terraform's unique identifier used internally for state management.
         """
@@ -6248,50 +6248,50 @@ class ClusterSnapshotBackupPolicyPolicyPolicyItemArgs:
 
     @_builtins.property
     @pulumi.getter(name="frequencyInterval")
-    def frequency_interval(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def frequency_interval(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "frequency_interval")
 
     @frequency_interval.setter
-    def frequency_interval(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def frequency_interval(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "frequency_interval", value)
 
     @_builtins.property
     @pulumi.getter(name="frequencyType")
-    def frequency_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def frequency_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "frequency_type")
 
     @frequency_type.setter
-    def frequency_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def frequency_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "frequency_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Terraform's unique identifier used internally for state management.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="retentionUnit")
-    def retention_unit(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def retention_unit(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "retention_unit")
 
     @retention_unit.setter
-    def retention_unit(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def retention_unit(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "retention_unit", value)
 
     @_builtins.property
     @pulumi.getter(name="retentionValue")
-    def retention_value(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retention_value(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "retention_value")
 
     @retention_value.setter
-    def retention_value(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retention_value(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retention_value", value)
 
 
@@ -6435,9 +6435,9 @@ class CustomDbRoleActionArgs:
 
 
 class CustomDbRoleActionResourceArgsDict(TypedDict):
-    cluster: NotRequired[pulumi.Input[_builtins.bool]]
-    collection_name: NotRequired[pulumi.Input[_builtins.str]]
-    database_name: NotRequired[pulumi.Input[_builtins.str]]
+    cluster: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    collection_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    database_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Database on which the inherited role is granted.
 
@@ -6447,9 +6447,9 @@ class CustomDbRoleActionResourceArgsDict(TypedDict):
 @pulumi.input_type
 class CustomDbRoleActionResourceArgs:
     def __init__(__self__, *,
-                 cluster: Optional[pulumi.Input[_builtins.bool]] = None,
-                 collection_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 database_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 cluster: pulumi.Input[Optional[_builtins.bool]] = None,
+                 collection_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 database_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] database_name: Database on which the inherited role is granted.
                
@@ -6464,25 +6464,25 @@ class CustomDbRoleActionResourceArgs:
 
     @_builtins.property
     @pulumi.getter
-    def cluster(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cluster(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "cluster")
 
     @cluster.setter
-    def cluster(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cluster(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cluster", value)
 
     @_builtins.property
     @pulumi.getter(name="collectionName")
-    def collection_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def collection_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "collection_name")
 
     @collection_name.setter
-    def collection_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def collection_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "collection_name", value)
 
     @_builtins.property
     @pulumi.getter(name="databaseName")
-    def database_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def database_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Database on which the inherited role is granted.
 
@@ -6491,7 +6491,7 @@ class CustomDbRoleActionResourceArgs:
         return pulumi.get(self, "database_name")
 
     @database_name.setter
-    def database_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def database_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "database_name", value)
 
 
@@ -6555,11 +6555,11 @@ class CustomDbRoleInheritedRoleArgs:
 
 
 class DatabaseUserLabelArgsDict(TypedDict):
-    key: NotRequired[pulumi.Input[_builtins.str]]
+    key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The key that you want to write.
     """
-    value: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The value that you want to write.
     """
@@ -6567,8 +6567,8 @@ class DatabaseUserLabelArgsDict(TypedDict):
 @pulumi.input_type
 class DatabaseUserLabelArgs:
     def __init__(__self__, *,
-                 key: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None):
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] key: The key that you want to write.
         :param pulumi.Input[_builtins.str] value: The value that you want to write.
@@ -6580,26 +6580,26 @@ class DatabaseUserLabelArgs:
 
     @_builtins.property
     @pulumi.getter
-    def key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The key that you want to write.
         """
         return pulumi.get(self, "key")
 
     @key.setter
-    def key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key", value)
 
     @_builtins.property
     @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The value that you want to write.
         """
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value", value)
 
 
@@ -6612,7 +6612,7 @@ class DatabaseUserRoleArgsDict(TypedDict):
     """
     Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
     """
-    collection_name: NotRequired[pulumi.Input[_builtins.str]]
+    collection_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
     """
@@ -6622,7 +6622,7 @@ class DatabaseUserRoleArgs:
     def __init__(__self__, *,
                  database_name: pulumi.Input[_builtins.str],
                  role_name: pulumi.Input[_builtins.str],
-                 collection_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 collection_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] database_name: Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
         :param pulumi.Input[_builtins.str] role_name: Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
@@ -6659,23 +6659,23 @@ class DatabaseUserRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="collectionName")
-    def collection_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def collection_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
         """
         return pulumi.get(self, "collection_name")
 
     @collection_name.setter
-    def collection_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def collection_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "collection_name", value)
 
 
 class DatabaseUserScopeArgsDict(TypedDict):
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the cluster or Atlas Data Federation that the user has access to.
     """
-    type: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
     """
@@ -6683,8 +6683,8 @@ class DatabaseUserScopeArgsDict(TypedDict):
 @pulumi.input_type
 class DatabaseUserScopeArgs:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the cluster or Atlas Data Federation that the user has access to.
         :param pulumi.Input[_builtins.str] type: Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
@@ -6696,59 +6696,59 @@ class DatabaseUserScopeArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the cluster or Atlas Data Federation that the user has access to.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
 class EncryptionAtRestAwsKmsConfigArgsDict(TypedDict):
-    access_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    access_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
     """
-    customer_master_key_id: NotRequired[pulumi.Input[_builtins.str]]
+    customer_master_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
     """
-    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
     """
-    require_private_networking: NotRequired[pulumi.Input[_builtins.bool]]
+    require_private_networking: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
     """
-    role_id: NotRequired[pulumi.Input[_builtins.str]]
+    role_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
     """
-    secret_access_key: NotRequired[pulumi.Input[_builtins.str]]
+    secret_access_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
     """
-    valid: NotRequired[pulumi.Input[_builtins.bool]]
+    valid: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
     """
@@ -6756,14 +6756,14 @@ class EncryptionAtRestAwsKmsConfigArgsDict(TypedDict):
 @pulumi.input_type
 class EncryptionAtRestAwsKmsConfigArgs:
     def __init__(__self__, *,
-                 access_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 customer_master_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 require_private_networking: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_access_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 valid: Optional[pulumi.Input[_builtins.bool]] = None):
+                 access_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 customer_master_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 require_private_networking: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_access_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 valid: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] access_key_id: Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
         :param pulumi.Input[_builtins.str] customer_master_key_id: Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
@@ -6793,147 +6793,147 @@ class EncryptionAtRestAwsKmsConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="accessKeyId")
-    def access_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def access_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
         """
         return pulumi.get(self, "access_key_id")
 
     @access_key_id.setter
-    def access_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def access_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "access_key_id", value)
 
     @_builtins.property
     @pulumi.getter(name="customerMasterKeyId")
-    def customer_master_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def customer_master_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
         """
         return pulumi.get(self, "customer_master_key_id")
 
     @customer_master_key_id.setter
-    def customer_master_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def customer_master_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "customer_master_key_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="requirePrivateNetworking")
-    def require_private_networking(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def require_private_networking(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
         """
         return pulumi.get(self, "require_private_networking")
 
     @require_private_networking.setter
-    def require_private_networking(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def require_private_networking(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "require_private_networking", value)
 
     @_builtins.property
     @pulumi.getter(name="roleId")
-    def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
         """
         return pulumi.get(self, "role_id")
 
     @role_id.setter
-    def role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_id", value)
 
     @_builtins.property
     @pulumi.getter(name="secretAccessKey")
-    def secret_access_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_access_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
         """
         return pulumi.get(self, "secret_access_key")
 
     @secret_access_key.setter
-    def secret_access_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_access_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_access_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def valid(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def valid(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
         """
         return pulumi.get(self, "valid")
 
     @valid.setter
-    def valid(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def valid(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "valid", value)
 
 
 class EncryptionAtRestAzureKeyVaultConfigArgsDict(TypedDict):
-    azure_environment: NotRequired[pulumi.Input[_builtins.str]]
+    azure_environment: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Azure environment in which your account credentials reside.
     """
-    client_id: NotRequired[pulumi.Input[_builtins.str]]
+    client_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
     """
-    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
     """
-    key_identifier: NotRequired[pulumi.Input[_builtins.str]]
+    key_identifier: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Web address with a unique key that identifies for your Azure Key Vault.
     """
-    key_vault_name: NotRequired[pulumi.Input[_builtins.str]]
+    key_vault_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique string that identifies the Azure Key Vault that contains your key.
     """
-    require_private_networking: NotRequired[pulumi.Input[_builtins.bool]]
+    require_private_networking: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Enable connection to your Azure Key Vault over private networking.
     """
-    resource_group_name: NotRequired[pulumi.Input[_builtins.str]]
+    resource_group_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the Azure resource group that contains your Azure Key Vault.
     """
-    role_id: NotRequired[pulumi.Input[_builtins.str]]
+    role_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
     """
-    secret: NotRequired[pulumi.Input[_builtins.str]]
+    secret: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
     """
-    subscription_id: NotRequired[pulumi.Input[_builtins.str]]
+    subscription_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 36-hexadecimal character string that identifies your Azure subscription.
     """
-    tenant_id: NotRequired[pulumi.Input[_builtins.str]]
+    tenant_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
     """
-    valid: NotRequired[pulumi.Input[_builtins.bool]]
+    valid: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
     """
@@ -6941,18 +6941,18 @@ class EncryptionAtRestAzureKeyVaultConfigArgsDict(TypedDict):
 @pulumi.input_type
 class EncryptionAtRestAzureKeyVaultConfigArgs:
     def __init__(__self__, *,
-                 azure_environment: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 key_identifier: Optional[pulumi.Input[_builtins.str]] = None,
-                 key_vault_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 require_private_networking: Optional[pulumi.Input[_builtins.bool]] = None,
-                 resource_group_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 subscription_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 valid: Optional[pulumi.Input[_builtins.bool]] = None):
+                 azure_environment: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 key_identifier: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_vault_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 require_private_networking: pulumi.Input[Optional[_builtins.bool]] = None,
+                 resource_group_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 subscription_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 valid: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] azure_environment: Azure environment in which your account credentials reside.
         :param pulumi.Input[_builtins.str] client_id: Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
@@ -6994,167 +6994,167 @@ class EncryptionAtRestAzureKeyVaultConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="azureEnvironment")
-    def azure_environment(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_environment(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure environment in which your account credentials reside.
         """
         return pulumi.get(self, "azure_environment")
 
     @azure_environment.setter
-    def azure_environment(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_environment(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_environment", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="keyIdentifier")
-    def key_identifier(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_identifier(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Web address with a unique key that identifies for your Azure Key Vault.
         """
         return pulumi.get(self, "key_identifier")
 
     @key_identifier.setter
-    def key_identifier(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_identifier(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_identifier", value)
 
     @_builtins.property
     @pulumi.getter(name="keyVaultName")
-    def key_vault_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_vault_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique string that identifies the Azure Key Vault that contains your key.
         """
         return pulumi.get(self, "key_vault_name")
 
     @key_vault_name.setter
-    def key_vault_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_vault_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_vault_name", value)
 
     @_builtins.property
     @pulumi.getter(name="requirePrivateNetworking")
-    def require_private_networking(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def require_private_networking(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Enable connection to your Azure Key Vault over private networking.
         """
         return pulumi.get(self, "require_private_networking")
 
     @require_private_networking.setter
-    def require_private_networking(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def require_private_networking(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "require_private_networking", value)
 
     @_builtins.property
     @pulumi.getter(name="resourceGroupName")
-    def resource_group_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def resource_group_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Azure resource group that contains your Azure Key Vault.
         """
         return pulumi.get(self, "resource_group_name")
 
     @resource_group_name.setter
-    def resource_group_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def resource_group_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "resource_group_name", value)
 
     @_builtins.property
     @pulumi.getter(name="roleId")
-    def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
         """
         return pulumi.get(self, "role_id")
 
     @role_id.setter
-    def role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
         """
         return pulumi.get(self, "secret")
 
     @secret.setter
-    def secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret", value)
 
     @_builtins.property
     @pulumi.getter(name="subscriptionId")
-    def subscription_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subscription_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 36-hexadecimal character string that identifies your Azure subscription.
         """
         return pulumi.get(self, "subscription_id")
 
     @subscription_id.setter
-    def subscription_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subscription_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subscription_id", value)
 
     @_builtins.property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tenant_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
         """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
-    def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tenant_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tenant_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def valid(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def valid(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
         """
         return pulumi.get(self, "valid")
 
     @valid.setter
-    def valid(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def valid(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "valid", value)
 
 
 class EncryptionAtRestGoogleCloudKmsConfigArgsDict(TypedDict):
-    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
     """
-    key_version_resource_id: NotRequired[pulumi.Input[_builtins.str]]
+    key_version_resource_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Resource path that displays the key version resource ID for your Google Cloud KMS.
     """
-    role_id: NotRequired[pulumi.Input[_builtins.str]]
+    role_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
     """
-    service_account_key: NotRequired[pulumi.Input[_builtins.str]]
+    service_account_key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
     """
-    valid: NotRequired[pulumi.Input[_builtins.bool]]
+    valid: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
     """
@@ -7162,11 +7162,11 @@ class EncryptionAtRestGoogleCloudKmsConfigArgsDict(TypedDict):
 @pulumi.input_type
 class EncryptionAtRestGoogleCloudKmsConfigArgs:
     def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 key_version_resource_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 valid: Optional[pulumi.Input[_builtins.bool]] = None):
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 key_version_resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 valid: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] enabled: Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         :param pulumi.Input[_builtins.str] key_version_resource_id: Resource path that displays the key version resource ID for your Google Cloud KMS.
@@ -7187,71 +7187,71 @@ class EncryptionAtRestGoogleCloudKmsConfigArgs:
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `EncryptionAtRest` resource and reapply your configuration.
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="keyVersionResourceId")
-    def key_version_resource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def key_version_resource_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Resource path that displays the key version resource ID for your Google Cloud KMS.
         """
         return pulumi.get(self, "key_version_resource_id")
 
     @key_version_resource_id.setter
-    def key_version_resource_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def key_version_resource_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "key_version_resource_id", value)
 
     @_builtins.property
     @pulumi.getter(name="roleId")
-    def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
         """
         return pulumi.get(self, "role_id")
 
     @role_id.setter
-    def role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_id", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccountKey")
-    def service_account_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_account_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
         """
         return pulumi.get(self, "service_account_key")
 
     @service_account_key.setter
-    def service_account_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_account_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_account_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def valid(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def valid(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
         """
         return pulumi.get(self, "valid")
 
     @valid.setter
-    def valid(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def valid(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "valid", value)
 
 
 class EncryptionAtRestPrivateEndpointTimeoutsArgsDict(TypedDict):
-    create: NotRequired[pulumi.Input[_builtins.str]]
+    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
     """
-    delete: NotRequired[pulumi.Input[_builtins.str]]
+    delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
     """
@@ -7259,8 +7259,8 @@ class EncryptionAtRestPrivateEndpointTimeoutsArgsDict(TypedDict):
 @pulumi.input_type
 class EncryptionAtRestPrivateEndpointTimeoutsArgs:
     def __init__(__self__, *,
-                 create: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete: Optional[pulumi.Input[_builtins.str]] = None):
+                 create: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
         :param pulumi.Input[_builtins.str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
@@ -7272,58 +7272,58 @@ class EncryptionAtRestPrivateEndpointTimeoutsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
         """
         return pulumi.get(self, "create")
 
     @create.setter
-    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "create", value)
 
     @_builtins.property
     @pulumi.getter
-    def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
         """
         return pulumi.get(self, "delete")
 
     @delete.setter
-    def delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def delete(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "delete", value)
 
 
 class EventTriggerEventProcessorsArgsDict(TypedDict):
-    aws_eventbridge: NotRequired[pulumi.Input['EventTriggerEventProcessorsAwsEventbridgeArgsDict']]
+    aws_eventbridge: NotRequired[pulumi.Input[Optional['EventTriggerEventProcessorsAwsEventbridgeArgs']]]
 
 @pulumi.input_type
 class EventTriggerEventProcessorsArgs:
     def __init__(__self__, *,
-                 aws_eventbridge: Optional[pulumi.Input['EventTriggerEventProcessorsAwsEventbridgeArgs']] = None):
+                 aws_eventbridge: pulumi.Input[Optional['EventTriggerEventProcessorsAwsEventbridgeArgs']] = None):
         if aws_eventbridge is not None:
             pulumi.set(__self__, "aws_eventbridge", aws_eventbridge)
 
     @_builtins.property
     @pulumi.getter(name="awsEventbridge")
-    def aws_eventbridge(self) -> Optional[pulumi.Input['EventTriggerEventProcessorsAwsEventbridgeArgs']]:
+    def aws_eventbridge(self) -> pulumi.Input[Optional['EventTriggerEventProcessorsAwsEventbridgeArgs']]:
         return pulumi.get(self, "aws_eventbridge")
 
     @aws_eventbridge.setter
-    def aws_eventbridge(self, value: Optional[pulumi.Input['EventTriggerEventProcessorsAwsEventbridgeArgs']]):
+    def aws_eventbridge(self, value: pulumi.Input[Optional['EventTriggerEventProcessorsAwsEventbridgeArgs']]):
         pulumi.set(self, "aws_eventbridge", value)
 
 
 class EventTriggerEventProcessorsAwsEventbridgeArgsDict(TypedDict):
-    config_account_id: NotRequired[pulumi.Input[_builtins.str]]
-    config_region: NotRequired[pulumi.Input[_builtins.str]]
+    config_account_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    config_region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class EventTriggerEventProcessorsAwsEventbridgeArgs:
     def __init__(__self__, *,
-                 config_account_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_region: Optional[pulumi.Input[_builtins.str]] = None):
+                 config_account_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_region: pulumi.Input[Optional[_builtins.str]] = None):
         if config_account_id is not None:
             pulumi.set(__self__, "config_account_id", config_account_id)
         if config_region is not None:
@@ -7331,29 +7331,29 @@ class EventTriggerEventProcessorsAwsEventbridgeArgs:
 
     @_builtins.property
     @pulumi.getter(name="configAccountId")
-    def config_account_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_account_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "config_account_id")
 
     @config_account_id.setter
-    def config_account_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_account_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_account_id", value)
 
     @_builtins.property
     @pulumi.getter(name="configRegion")
-    def config_region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_region(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "config_region")
 
     @config_region.setter
-    def config_region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_region", value)
 
 
 class FederatedDatabaseInstanceCloudProviderConfigArgsDict(TypedDict):
-    aws: NotRequired[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgsDict']]
+    aws: NotRequired[pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']]]
     """
     Name of the cloud service that hosts the Atlas Data Federation data stores.
     """
-    azure: NotRequired[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAzureArgsDict']]
+    azure: NotRequired[pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAzureArgs']]]
     """
     Microsoft Azure cloud service configuration.
     """
@@ -7361,8 +7361,8 @@ class FederatedDatabaseInstanceCloudProviderConfigArgsDict(TypedDict):
 @pulumi.input_type
 class FederatedDatabaseInstanceCloudProviderConfigArgs:
     def __init__(__self__, *,
-                 aws: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']] = None,
-                 azure: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAzureArgs']] = None):
+                 aws: pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']] = None,
+                 azure: pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAzureArgs']] = None):
         """
         :param pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs'] aws: Name of the cloud service that hosts the Atlas Data Federation data stores.
         :param pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAzureArgs'] azure: Microsoft Azure cloud service configuration.
@@ -7374,44 +7374,44 @@ class FederatedDatabaseInstanceCloudProviderConfigArgs:
 
     @_builtins.property
     @pulumi.getter
-    def aws(self) -> Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']]:
+    def aws(self) -> pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']]:
         """
         Name of the cloud service that hosts the Atlas Data Federation data stores.
         """
         return pulumi.get(self, "aws")
 
     @aws.setter
-    def aws(self, value: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']]):
+    def aws(self, value: pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']]):
         pulumi.set(self, "aws", value)
 
     @_builtins.property
     @pulumi.getter
-    def azure(self) -> Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAzureArgs']]:
+    def azure(self) -> pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAzureArgs']]:
         """
         Microsoft Azure cloud service configuration.
         """
         return pulumi.get(self, "azure")
 
     @azure.setter
-    def azure(self, value: Optional[pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAzureArgs']]):
+    def azure(self, value: pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAzureArgs']]):
         pulumi.set(self, "azure", value)
 
 
 class FederatedDatabaseInstanceCloudProviderConfigAwsArgsDict(TypedDict):
     role_id: pulumi.Input[_builtins.str]
     test_s3_bucket: pulumi.Input[_builtins.str]
-    external_id: NotRequired[pulumi.Input[_builtins.str]]
+    external_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
     """
-    iam_assumed_role_arn: NotRequired[pulumi.Input[_builtins.str]]
+    iam_assumed_role_arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
     * `s3:GetObject`
     * `s3:ListBucket`
     * `s3:GetObjectVersion`
     """
-    iam_user_arn: NotRequired[pulumi.Input[_builtins.str]]
+    iam_user_arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
     """
@@ -7421,9 +7421,9 @@ class FederatedDatabaseInstanceCloudProviderConfigAwsArgs:
     def __init__(__self__, *,
                  role_id: pulumi.Input[_builtins.str],
                  test_s3_bucket: pulumi.Input[_builtins.str],
-                 external_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_assumed_role_arn: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_user_arn: Optional[pulumi.Input[_builtins.str]] = None):
+                 external_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_assumed_role_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_user_arn: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] external_id: Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
         :param pulumi.Input[_builtins.str] iam_assumed_role_arn: Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
@@ -7461,19 +7461,19 @@ class FederatedDatabaseInstanceCloudProviderConfigAwsArgs:
 
     @_builtins.property
     @pulumi.getter(name="externalId")
-    def external_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def external_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
         """
         return pulumi.get(self, "external_id")
 
     @external_id.setter
-    def external_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def external_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "external_id", value)
 
     @_builtins.property
     @pulumi.getter(name="iamAssumedRoleArn")
-    def iam_assumed_role_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_assumed_role_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
         * `s3:GetObject`
@@ -7483,30 +7483,30 @@ class FederatedDatabaseInstanceCloudProviderConfigAwsArgs:
         return pulumi.get(self, "iam_assumed_role_arn")
 
     @iam_assumed_role_arn.setter
-    def iam_assumed_role_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_assumed_role_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_assumed_role_arn", value)
 
     @_builtins.property
     @pulumi.getter(name="iamUserArn")
-    def iam_user_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_user_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
         """
         return pulumi.get(self, "iam_user_arn")
 
     @iam_user_arn.setter
-    def iam_user_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_user_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_user_arn", value)
 
 
 class FederatedDatabaseInstanceCloudProviderConfigAzureArgsDict(TypedDict):
     role_id: pulumi.Input[_builtins.str]
-    atlas_app_id: NotRequired[pulumi.Input[_builtins.str]]
-    service_principal_id: NotRequired[pulumi.Input[_builtins.str]]
+    atlas_app_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    service_principal_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
     """
-    tenant_id: NotRequired[pulumi.Input[_builtins.str]]
+    tenant_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of the Azure Active Directory tenant where the service principal resides.
     """
@@ -7515,9 +7515,9 @@ class FederatedDatabaseInstanceCloudProviderConfigAzureArgsDict(TypedDict):
 class FederatedDatabaseInstanceCloudProviderConfigAzureArgs:
     def __init__(__self__, *,
                  role_id: pulumi.Input[_builtins.str],
-                 atlas_app_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_principal_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 atlas_app_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_principal_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] service_principal_id: Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
         :param pulumi.Input[_builtins.str] tenant_id: Unique identifier of the Azure Active Directory tenant where the service principal resides.
@@ -7541,35 +7541,35 @@ class FederatedDatabaseInstanceCloudProviderConfigAzureArgs:
 
     @_builtins.property
     @pulumi.getter(name="atlasAppId")
-    def atlas_app_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def atlas_app_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "atlas_app_id")
 
     @atlas_app_id.setter
-    def atlas_app_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def atlas_app_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "atlas_app_id", value)
 
     @_builtins.property
     @pulumi.getter(name="servicePrincipalId")
-    def service_principal_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_principal_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
         """
         return pulumi.get(self, "service_principal_id")
 
     @service_principal_id.setter
-    def service_principal_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_principal_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_principal_id", value)
 
     @_builtins.property
     @pulumi.getter(name="tenantId")
-    def tenant_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tenant_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the Azure Active Directory tenant where the service principal resides.
         """
         return pulumi.get(self, "tenant_id")
 
     @tenant_id.setter
-    def tenant_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tenant_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tenant_id", value)
 
 
@@ -7605,14 +7605,14 @@ class FederatedDatabaseInstanceDataProcessRegionArgs:
 
 
 class FederatedDatabaseInstancePrivateEndpointHostnameArgsDict(TypedDict):
-    hostname: NotRequired[pulumi.Input[_builtins.str]]
-    private_endpoint: NotRequired[pulumi.Input[_builtins.str]]
+    hostname: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    private_endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class FederatedDatabaseInstancePrivateEndpointHostnameArgs:
     def __init__(__self__, *,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_endpoint: Optional[pulumi.Input[_builtins.str]] = None):
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_endpoint: pulumi.Input[Optional[_builtins.str]] = None):
         if hostname is not None:
             pulumi.set(__self__, "hostname", hostname)
         if private_endpoint is not None:
@@ -7620,39 +7620,39 @@ class FederatedDatabaseInstancePrivateEndpointHostnameArgs:
 
     @_builtins.property
     @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "hostname")
 
     @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hostname", value)
 
     @_builtins.property
     @pulumi.getter(name="privateEndpoint")
-    def private_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "private_endpoint")
 
     @private_endpoint.setter
-    def private_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_endpoint", value)
 
 
 class FederatedDatabaseInstanceStorageDatabaseArgsDict(TypedDict):
-    collections: NotRequired[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionArgsDict']]]]
-    max_wildcard_collections: NotRequired[pulumi.Input[_builtins.int]]
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    collections: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionArgs']]]]]
+    max_wildcard_collections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the Atlas Federated Database Instance.
     """
-    views: NotRequired[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgsDict']]]]
+    views: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgs']]]]]
 
 @pulumi.input_type
 class FederatedDatabaseInstanceStorageDatabaseArgs:
     def __init__(__self__, *,
-                 collections: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionArgs']]]] = None,
-                 max_wildcard_collections: Optional[pulumi.Input[_builtins.int]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 views: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgs']]]] = None):
+                 collections: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionArgs']]]] = None,
+                 max_wildcard_collections: pulumi.Input[Optional[_builtins.int]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 views: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
         """
@@ -7667,47 +7667,47 @@ class FederatedDatabaseInstanceStorageDatabaseArgs:
 
     @_builtins.property
     @pulumi.getter
-    def collections(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionArgs']]]]:
+    def collections(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionArgs']]]]:
         return pulumi.get(self, "collections")
 
     @collections.setter
-    def collections(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionArgs']]]]):
+    def collections(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionArgs']]]]):
         pulumi.set(self, "collections", value)
 
     @_builtins.property
     @pulumi.getter(name="maxWildcardCollections")
-    def max_wildcard_collections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_wildcard_collections(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "max_wildcard_collections")
 
     @max_wildcard_collections.setter
-    def max_wildcard_collections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_wildcard_collections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_wildcard_collections", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Atlas Federated Database Instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def views(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgs']]]]:
+    def views(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgs']]]]:
         return pulumi.get(self, "views")
 
     @views.setter
-    def views(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgs']]]]):
+    def views(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgs']]]]):
         pulumi.set(self, "views", value)
 
 
 class FederatedDatabaseInstanceStorageDatabaseCollectionArgsDict(TypedDict):
-    data_sources: NotRequired[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgsDict']]]]
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    data_sources: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs']]]]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the Atlas Federated Database Instance.
     """
@@ -7715,8 +7715,8 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionArgsDict(TypedDict):
 @pulumi.input_type
 class FederatedDatabaseInstanceStorageDatabaseCollectionArgs:
     def __init__(__self__, *,
-                 data_sources: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 data_sources: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
         """
@@ -7727,53 +7727,53 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionArgs:
 
     @_builtins.property
     @pulumi.getter(name="dataSources")
-    def data_sources(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs']]]]:
+    def data_sources(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs']]]]:
         return pulumi.get(self, "data_sources")
 
     @data_sources.setter
-    def data_sources(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs']]]]):
+    def data_sources(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs']]]]):
         pulumi.set(self, "data_sources", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Atlas Federated Database Instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 class FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgsDict(TypedDict):
-    allow_insecure: NotRequired[pulumi.Input[_builtins.bool]]
-    collection: NotRequired[pulumi.Input[_builtins.str]]
-    collection_regex: NotRequired[pulumi.Input[_builtins.str]]
-    database: NotRequired[pulumi.Input[_builtins.str]]
-    database_regex: NotRequired[pulumi.Input[_builtins.str]]
-    dataset_name: NotRequired[pulumi.Input[_builtins.str]]
-    default_format: NotRequired[pulumi.Input[_builtins.str]]
-    path: NotRequired[pulumi.Input[_builtins.str]]
-    provenance_field_name: NotRequired[pulumi.Input[_builtins.str]]
-    store_name: NotRequired[pulumi.Input[_builtins.str]]
-    urls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    allow_insecure: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    collection: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    collection_regex: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    database: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    database_regex: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    dataset_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    default_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    provenance_field_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    store_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    urls: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs:
     def __init__(__self__, *,
-                 allow_insecure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 collection: Optional[pulumi.Input[_builtins.str]] = None,
-                 collection_regex: Optional[pulumi.Input[_builtins.str]] = None,
-                 database: Optional[pulumi.Input[_builtins.str]] = None,
-                 database_regex: Optional[pulumi.Input[_builtins.str]] = None,
-                 dataset_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 path: Optional[pulumi.Input[_builtins.str]] = None,
-                 provenance_field_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 store_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 allow_insecure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 collection: pulumi.Input[Optional[_builtins.str]] = None,
+                 collection_regex: pulumi.Input[Optional[_builtins.str]] = None,
+                 database: pulumi.Input[Optional[_builtins.str]] = None,
+                 database_regex: pulumi.Input[Optional[_builtins.str]] = None,
+                 dataset_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 provenance_field_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 store_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if allow_insecure is not None:
             pulumi.set(__self__, "allow_insecure", allow_insecure)
         if collection is not None:
@@ -7799,118 +7799,118 @@ class FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs:
 
     @_builtins.property
     @pulumi.getter(name="allowInsecure")
-    def allow_insecure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_insecure(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "allow_insecure")
 
     @allow_insecure.setter
-    def allow_insecure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_insecure(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_insecure", value)
 
     @_builtins.property
     @pulumi.getter
-    def collection(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def collection(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "collection")
 
     @collection.setter
-    def collection(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def collection(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "collection", value)
 
     @_builtins.property
     @pulumi.getter(name="collectionRegex")
-    def collection_regex(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def collection_regex(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "collection_regex")
 
     @collection_regex.setter
-    def collection_regex(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def collection_regex(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "collection_regex", value)
 
     @_builtins.property
     @pulumi.getter
-    def database(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def database(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "database")
 
     @database.setter
-    def database(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def database(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "database", value)
 
     @_builtins.property
     @pulumi.getter(name="databaseRegex")
-    def database_regex(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def database_regex(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "database_regex")
 
     @database_regex.setter
-    def database_regex(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def database_regex(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "database_regex", value)
 
     @_builtins.property
     @pulumi.getter(name="datasetName")
-    def dataset_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def dataset_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "dataset_name")
 
     @dataset_name.setter
-    def dataset_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def dataset_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "dataset_name", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultFormat")
-    def default_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "default_format")
 
     @default_format.setter
-    def default_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_format", value)
 
     @_builtins.property
     @pulumi.getter
-    def path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "path")
 
     @path.setter
-    def path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "path", value)
 
     @_builtins.property
     @pulumi.getter(name="provenanceFieldName")
-    def provenance_field_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provenance_field_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "provenance_field_name")
 
     @provenance_field_name.setter
-    def provenance_field_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provenance_field_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provenance_field_name", value)
 
     @_builtins.property
     @pulumi.getter(name="storeName")
-    def store_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def store_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "store_name")
 
     @store_name.setter
-    def store_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def store_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "store_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def urls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "urls")
 
     @urls.setter
-    def urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def urls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "urls", value)
 
 
 class FederatedDatabaseInstanceStorageDatabaseViewArgsDict(TypedDict):
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the Atlas Federated Database Instance.
     """
-    pipeline: NotRequired[pulumi.Input[_builtins.str]]
-    source: NotRequired[pulumi.Input[_builtins.str]]
+    pipeline: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    source: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class FederatedDatabaseInstanceStorageDatabaseViewArgs:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 pipeline: Optional[pulumi.Input[_builtins.str]] = None,
-                 source: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 pipeline: pulumi.Input[Optional[_builtins.str]] = None,
+                 source: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
         """
@@ -7923,76 +7923,76 @@ class FederatedDatabaseInstanceStorageDatabaseViewArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Atlas Federated Database Instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def pipeline(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pipeline(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "pipeline")
 
     @pipeline.setter
-    def pipeline(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pipeline(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pipeline", value)
 
     @_builtins.property
     @pulumi.getter
-    def source(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def source(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "source")
 
     @source.setter
-    def source(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def source(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "source", value)
 
 
 class FederatedDatabaseInstanceStorageStoreArgsDict(TypedDict):
-    additional_storage_classes: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-    allow_insecure: NotRequired[pulumi.Input[_builtins.bool]]
-    bucket: NotRequired[pulumi.Input[_builtins.str]]
-    cluster_name: NotRequired[pulumi.Input[_builtins.str]]
-    default_format: NotRequired[pulumi.Input[_builtins.str]]
-    delimiter: NotRequired[pulumi.Input[_builtins.str]]
-    include_tags: NotRequired[pulumi.Input[_builtins.bool]]
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    additional_storage_classes: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    allow_insecure: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    bucket: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    cluster_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    default_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    delimiter: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    include_tags: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the Atlas Federated Database Instance.
     """
-    prefix: NotRequired[pulumi.Input[_builtins.str]]
-    project_id: NotRequired[pulumi.Input[_builtins.str]]
+    prefix: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    project_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
     """
-    provider: NotRequired[pulumi.Input[_builtins.str]]
-    public: NotRequired[pulumi.Input[_builtins.str]]
-    read_preference: NotRequired[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceArgsDict']]
-    region: NotRequired[pulumi.Input[_builtins.str]]
-    urls: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    provider: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    public: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    read_preference: NotRequired[pulumi.Input[Optional['FederatedDatabaseInstanceStorageStoreReadPreferenceArgs']]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    urls: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class FederatedDatabaseInstanceStorageStoreArgs:
     def __init__(__self__, *,
-                 additional_storage_classes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 allow_insecure: Optional[pulumi.Input[_builtins.bool]] = None,
-                 bucket: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 default_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 delimiter: Optional[pulumi.Input[_builtins.str]] = None,
-                 include_tags: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 public: Optional[pulumi.Input[_builtins.str]] = None,
-                 read_preference: Optional[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceArgs']] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 additional_storage_classes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 allow_insecure: pulumi.Input[Optional[_builtins.bool]] = None,
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 default_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 delimiter: pulumi.Input[Optional[_builtins.str]] = None,
+                 include_tags: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 public: pulumi.Input[Optional[_builtins.str]] = None,
+                 read_preference: pulumi.Input[Optional['FederatedDatabaseInstanceStorageStoreReadPreferenceArgs']] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
@@ -8030,157 +8030,157 @@ class FederatedDatabaseInstanceStorageStoreArgs:
 
     @_builtins.property
     @pulumi.getter(name="additionalStorageClasses")
-    def additional_storage_classes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def additional_storage_classes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "additional_storage_classes")
 
     @additional_storage_classes.setter
-    def additional_storage_classes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def additional_storage_classes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "additional_storage_classes", value)
 
     @_builtins.property
     @pulumi.getter(name="allowInsecure")
-    def allow_insecure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def allow_insecure(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "allow_insecure")
 
     @allow_insecure.setter
-    def allow_insecure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def allow_insecure(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "allow_insecure", value)
 
     @_builtins.property
     @pulumi.getter
-    def bucket(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "bucket")
 
     @bucket.setter
-    def bucket(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "cluster_name")
 
     @cluster_name.setter
-    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_name", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultFormat")
-    def default_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def default_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "default_format")
 
     @default_format.setter
-    def default_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def default_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "default_format", value)
 
     @_builtins.property
     @pulumi.getter
-    def delimiter(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def delimiter(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "delimiter")
 
     @delimiter.setter
-    def delimiter(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def delimiter(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "delimiter", value)
 
     @_builtins.property
     @pulumi.getter(name="includeTags")
-    def include_tags(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def include_tags(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "include_tags")
 
     @include_tags.setter
-    def include_tags(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def include_tags(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "include_tags", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Atlas Federated Database Instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "prefix")
 
     @prefix.setter
-    def prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "provider")
 
     @provider.setter
-    def provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider", value)
 
     @_builtins.property
     @pulumi.getter
-    def public(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "public")
 
     @public.setter
-    def public(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public", value)
 
     @_builtins.property
     @pulumi.getter(name="readPreference")
-    def read_preference(self) -> Optional[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceArgs']]:
+    def read_preference(self) -> pulumi.Input[Optional['FederatedDatabaseInstanceStorageStoreReadPreferenceArgs']]:
         return pulumi.get(self, "read_preference")
 
     @read_preference.setter
-    def read_preference(self, value: Optional[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceArgs']]):
+    def read_preference(self, value: pulumi.Input[Optional['FederatedDatabaseInstanceStorageStoreReadPreferenceArgs']]):
         pulumi.set(self, "read_preference", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter
-    def urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def urls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "urls")
 
     @urls.setter
-    def urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def urls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "urls", value)
 
 
 class FederatedDatabaseInstanceStorageStoreReadPreferenceArgsDict(TypedDict):
-    max_staleness_seconds: NotRequired[pulumi.Input[_builtins.int]]
-    mode: NotRequired[pulumi.Input[_builtins.str]]
-    tag_sets: NotRequired[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgsDict']]]]
+    max_staleness_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    mode: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    tag_sets: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs']]]]]
 
 @pulumi.input_type
 class FederatedDatabaseInstanceStorageStoreReadPreferenceArgs:
     def __init__(__self__, *,
-                 max_staleness_seconds: Optional[pulumi.Input[_builtins.int]] = None,
-                 mode: Optional[pulumi.Input[_builtins.str]] = None,
-                 tag_sets: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs']]]] = None):
+                 max_staleness_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 tag_sets: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs']]]] = None):
         if max_staleness_seconds is not None:
             pulumi.set(__self__, "max_staleness_seconds", max_staleness_seconds)
         if mode is not None:
@@ -8190,29 +8190,29 @@ class FederatedDatabaseInstanceStorageStoreReadPreferenceArgs:
 
     @_builtins.property
     @pulumi.getter(name="maxStalenessSeconds")
-    def max_staleness_seconds(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def max_staleness_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "max_staleness_seconds")
 
     @max_staleness_seconds.setter
-    def max_staleness_seconds(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def max_staleness_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "max_staleness_seconds", value)
 
     @_builtins.property
     @pulumi.getter
-    def mode(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mode(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "mode")
 
     @mode.setter
-    def mode(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mode(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mode", value)
 
     @_builtins.property
     @pulumi.getter(name="tagSets")
-    def tag_sets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs']]]]:
+    def tag_sets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs']]]]:
         return pulumi.get(self, "tag_sets")
 
     @tag_sets.setter
-    def tag_sets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs']]]]):
+    def tag_sets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs']]]]):
         pulumi.set(self, "tag_sets", value)
 
 
@@ -8236,17 +8236,17 @@ class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs:
 
 
 class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgsDict(TypedDict):
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the Atlas Federated Database Instance.
     """
-    value: NotRequired[pulumi.Input[_builtins.str]]
+    value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
         """
@@ -8257,44 +8257,44 @@ class FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTagArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Atlas Federated Database Instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value", value)
 
 
 class FederatedSettingsOrgConfigUserConflictArgsDict(TypedDict):
-    email_address: NotRequired[pulumi.Input[_builtins.str]]
+    email_address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Email address of the the user that conflicts with selected domains.
     """
-    federation_settings_id: NotRequired[pulumi.Input[_builtins.str]]
+    federation_settings_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
     """
-    first_name: NotRequired[pulumi.Input[_builtins.str]]
+    first_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     First name of the the user that conflicts with selected domains.
     """
-    last_name: NotRequired[pulumi.Input[_builtins.str]]
+    last_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Last name of the the user that conflicts with selected domains.
     """
-    user_id: NotRequired[pulumi.Input[_builtins.str]]
+    user_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the Atlas user that conflicts with selected domains.
     """
@@ -8302,11 +8302,11 @@ class FederatedSettingsOrgConfigUserConflictArgsDict(TypedDict):
 @pulumi.input_type
 class FederatedSettingsOrgConfigUserConflictArgs:
     def __init__(__self__, *,
-                 email_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 first_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 last_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 email_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 first_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] email_address: Email address of the the user that conflicts with selected domains.
         :param pulumi.Input[_builtins.str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -8327,75 +8327,75 @@ class FederatedSettingsOrgConfigUserConflictArgs:
 
     @_builtins.property
     @pulumi.getter(name="emailAddress")
-    def email_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def email_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Email address of the the user that conflicts with selected domains.
         """
         return pulumi.get(self, "email_address")
 
     @email_address.setter
-    def email_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def email_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "email_address", value)
 
     @_builtins.property
     @pulumi.getter(name="federationSettingsId")
-    def federation_settings_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def federation_settings_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         """
         return pulumi.get(self, "federation_settings_id")
 
     @federation_settings_id.setter
-    def federation_settings_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def federation_settings_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "federation_settings_id", value)
 
     @_builtins.property
     @pulumi.getter(name="firstName")
-    def first_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def first_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         First name of the the user that conflicts with selected domains.
         """
         return pulumi.get(self, "first_name")
 
     @first_name.setter
-    def first_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def first_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "first_name", value)
 
     @_builtins.property
     @pulumi.getter(name="lastName")
-    def last_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Last name of the the user that conflicts with selected domains.
         """
         return pulumi.get(self, "last_name")
 
     @last_name.setter
-    def last_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_name", value)
 
     @_builtins.property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Atlas user that conflicts with selected domains.
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_id", value)
 
 
 class FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict(TypedDict):
-    group_id: NotRequired[pulumi.Input[_builtins.str]]
+    group_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique identifier of the project to which you want the role mapping to apply.
     """
-    org_id: NotRequired[pulumi.Input[_builtins.str]]
+    org_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
     """
-    roles: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    roles: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
     Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
     Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
@@ -8404,9 +8404,9 @@ class FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict(TypedDict):
 @pulumi.input_type
 class FederatedSettingsOrgRoleMappingRoleAssignmentArgs:
     def __init__(__self__, *,
-                 group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         :param pulumi.Input[_builtins.str] group_id: Unique identifier of the project to which you want the role mapping to apply.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
@@ -8422,31 +8422,31 @@ class FederatedSettingsOrgRoleMappingRoleAssignmentArgs:
 
     @_builtins.property
     @pulumi.getter(name="groupId")
-    def group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the project to which you want the role mapping to apply.
         """
         return pulumi.get(self, "group_id")
 
     @group_id.setter
-    def group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "group_id", value)
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
-    def org_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
         Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
@@ -8454,12 +8454,12 @@ class FederatedSettingsOrgRoleMappingRoleAssignmentArgs:
         return pulumi.get(self, "roles")
 
     @roles.setter
-    def roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "roles", value)
 
 
 class FlexClusterBackupSettingsArgsDict(TypedDict):
-    enabled: NotRequired[pulumi.Input[_builtins.bool]]
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
     """
@@ -8467,7 +8467,7 @@ class FlexClusterBackupSettingsArgsDict(TypedDict):
 @pulumi.input_type
 class FlexClusterBackupSettingsArgs:
     def __init__(__self__, *,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None):
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.bool] enabled: Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
         """
@@ -8476,23 +8476,23 @@ class FlexClusterBackupSettingsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
         """
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
 
 class FlexClusterConnectionStringsArgsDict(TypedDict):
-    standard: NotRequired[pulumi.Input[_builtins.str]]
+    standard: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
     """
-    standard_srv: NotRequired[pulumi.Input[_builtins.str]]
+    standard_srv: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
     """
@@ -8500,8 +8500,8 @@ class FlexClusterConnectionStringsArgsDict(TypedDict):
 @pulumi.input_type
 class FlexClusterConnectionStringsArgs:
     def __init__(__self__, *,
-                 standard: Optional[pulumi.Input[_builtins.str]] = None,
-                 standard_srv: Optional[pulumi.Input[_builtins.str]] = None):
+                 standard: pulumi.Input[Optional[_builtins.str]] = None,
+                 standard_srv: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] standard: Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
         :param pulumi.Input[_builtins.str] standard_srv: Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
@@ -8513,26 +8513,26 @@ class FlexClusterConnectionStringsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def standard(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def standard(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
         """
         return pulumi.get(self, "standard")
 
     @standard.setter
-    def standard(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def standard(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "standard", value)
 
     @_builtins.property
     @pulumi.getter(name="standardSrv")
-    def standard_srv(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def standard_srv(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
         """
         return pulumi.get(self, "standard_srv")
 
     @standard_srv.setter
-    def standard_srv(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def standard_srv(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "standard_srv", value)
 
 
@@ -8545,11 +8545,11 @@ class FlexClusterProviderSettingsArgsDict(TypedDict):
     """
     Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
     """
-    disk_size_gb: NotRequired[pulumi.Input[_builtins.float]]
+    disk_size_gb: NotRequired[pulumi.Input[Optional[_builtins.float]]]
     """
     Storage capacity available to the flex cluster expressed in gigabytes.
     """
-    provider_name: NotRequired[pulumi.Input[_builtins.str]]
+    provider_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Human-readable label that identifies the cloud service provider.
     """
@@ -8559,8 +8559,8 @@ class FlexClusterProviderSettingsArgs:
     def __init__(__self__, *,
                  backing_provider_name: pulumi.Input[_builtins.str],
                  region_name: pulumi.Input[_builtins.str],
-                 disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
-                 provider_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 disk_size_gb: pulumi.Input[Optional[_builtins.float]] = None,
+                 provider_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] backing_provider_name: Cloud service provider on which MongoDB Cloud provisioned the flex cluster.
         :param pulumi.Input[_builtins.str] region_name: Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
@@ -8600,39 +8600,39 @@ class FlexClusterProviderSettingsArgs:
 
     @_builtins.property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def disk_size_gb(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
         Storage capacity available to the flex cluster expressed in gigabytes.
         """
         return pulumi.get(self, "disk_size_gb")
 
     @disk_size_gb.setter
-    def disk_size_gb(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def disk_size_gb(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "disk_size_gb", value)
 
     @_builtins.property
     @pulumi.getter(name="providerName")
-    def provider_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that identifies the cloud service provider.
         """
         return pulumi.get(self, "provider_name")
 
     @provider_name.setter
-    def provider_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_name", value)
 
 
 class FlexClusterTimeoutsArgsDict(TypedDict):
-    create: NotRequired[pulumi.Input[_builtins.str]]
+    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
     """
-    delete: NotRequired[pulumi.Input[_builtins.str]]
+    delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
     """
-    update: NotRequired[pulumi.Input[_builtins.str]]
+    update: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
     """
@@ -8640,9 +8640,9 @@ class FlexClusterTimeoutsArgsDict(TypedDict):
 @pulumi.input_type
 class FlexClusterTimeoutsArgs:
     def __init__(__self__, *,
-                 create: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete: Optional[pulumi.Input[_builtins.str]] = None,
-                 update: Optional[pulumi.Input[_builtins.str]] = None):
+                 create: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete: pulumi.Input[Optional[_builtins.str]] = None,
+                 update: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
         :param pulumi.Input[_builtins.str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
@@ -8657,47 +8657,47 @@ class FlexClusterTimeoutsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
         """
         return pulumi.get(self, "create")
 
     @create.setter
-    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "create", value)
 
     @_builtins.property
     @pulumi.getter
-    def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
         """
         return pulumi.get(self, "delete")
 
     @delete.setter
-    def delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def delete(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "delete", value)
 
     @_builtins.property
     @pulumi.getter
-    def update(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def update(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
         """
         return pulumi.get(self, "update")
 
     @update.setter
-    def update(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def update(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "update", value)
 
 
 class GlobalClusterConfigCustomZoneMappingArgsDict(TypedDict):
-    location: NotRequired[pulumi.Input[_builtins.str]]
+    location: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
     """
-    zone: NotRequired[pulumi.Input[_builtins.str]]
+    zone: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The name of the zone in your Global Cluster that you want to map to location.
     """
@@ -8705,8 +8705,8 @@ class GlobalClusterConfigCustomZoneMappingArgsDict(TypedDict):
 @pulumi.input_type
 class GlobalClusterConfigCustomZoneMappingArgs:
     def __init__(__self__, *,
-                 location: Optional[pulumi.Input[_builtins.str]] = None,
-                 zone: Optional[pulumi.Input[_builtins.str]] = None):
+                 location: pulumi.Input[Optional[_builtins.str]] = None,
+                 zone: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] location: The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
         :param pulumi.Input[_builtins.str] zone: The name of the zone in your Global Cluster that you want to map to location.
@@ -8718,26 +8718,26 @@ class GlobalClusterConfigCustomZoneMappingArgs:
 
     @_builtins.property
     @pulumi.getter
-    def location(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def location(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
         """
         return pulumi.get(self, "location")
 
     @location.setter
-    def location(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def location(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "location", value)
 
     @_builtins.property
     @pulumi.getter
-    def zone(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def zone(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the zone in your Global Cluster that you want to map to location.
         """
         return pulumi.get(self, "zone")
 
     @zone.setter
-    def zone(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def zone(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone", value)
 
 
@@ -8754,11 +8754,11 @@ class GlobalClusterConfigManagedNamespaceArgsDict(TypedDict):
     """
     The name of the database containing the collection.
     """
-    is_custom_shard_key_hashed: NotRequired[pulumi.Input[_builtins.bool]]
+    is_custom_shard_key_hashed: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
     """
-    is_shard_key_unique: NotRequired[pulumi.Input[_builtins.bool]]
+    is_shard_key_unique: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
     Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
     """
@@ -8769,8 +8769,8 @@ class GlobalClusterConfigManagedNamespaceArgs:
                  collection: pulumi.Input[_builtins.str],
                  custom_shard_key: pulumi.Input[_builtins.str],
                  db: pulumi.Input[_builtins.str],
-                 is_custom_shard_key_hashed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_shard_key_unique: Optional[pulumi.Input[_builtins.bool]] = None):
+                 is_custom_shard_key_hashed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_shard_key_unique: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input[_builtins.str] collection: The name of the collection associated with the managed namespace.
         :param pulumi.Input[_builtins.str] custom_shard_key: The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
@@ -8824,40 +8824,40 @@ class GlobalClusterConfigManagedNamespaceArgs:
 
     @_builtins.property
     @pulumi.getter(name="isCustomShardKeyHashed")
-    def is_custom_shard_key_hashed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_custom_shard_key_hashed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
         """
         return pulumi.get(self, "is_custom_shard_key_hashed")
 
     @is_custom_shard_key_hashed.setter
-    def is_custom_shard_key_hashed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_custom_shard_key_hashed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_custom_shard_key_hashed", value)
 
     @_builtins.property
     @pulumi.getter(name="isShardKeyUnique")
-    def is_shard_key_unique(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_shard_key_unique(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
         """
         return pulumi.get(self, "is_shard_key_unique")
 
     @is_shard_key_unique.setter
-    def is_shard_key_unique(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_shard_key_unique(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_shard_key_unique", value)
 
 
 class LdapConfigurationUserToDnMappingArgsDict(TypedDict):
-    ldap_query: NotRequired[pulumi.Input[_builtins.str]]
-    match: NotRequired[pulumi.Input[_builtins.str]]
-    substitution: NotRequired[pulumi.Input[_builtins.str]]
+    ldap_query: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    match: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    substitution: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class LdapConfigurationUserToDnMappingArgs:
     def __init__(__self__, *,
-                 ldap_query: Optional[pulumi.Input[_builtins.str]] = None,
-                 match: Optional[pulumi.Input[_builtins.str]] = None,
-                 substitution: Optional[pulumi.Input[_builtins.str]] = None):
+                 ldap_query: pulumi.Input[Optional[_builtins.str]] = None,
+                 match: pulumi.Input[Optional[_builtins.str]] = None,
+                 substitution: pulumi.Input[Optional[_builtins.str]] = None):
         if ldap_query is not None:
             pulumi.set(__self__, "ldap_query", ldap_query)
         if match is not None:
@@ -8867,41 +8867,41 @@ class LdapConfigurationUserToDnMappingArgs:
 
     @_builtins.property
     @pulumi.getter(name="ldapQuery")
-    def ldap_query(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ldap_query(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "ldap_query")
 
     @ldap_query.setter
-    def ldap_query(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ldap_query(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ldap_query", value)
 
     @_builtins.property
     @pulumi.getter
-    def match(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def match(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "match")
 
     @match.setter
-    def match(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def match(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "match", value)
 
     @_builtins.property
     @pulumi.getter
-    def substitution(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def substitution(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "substitution")
 
     @substitution.setter
-    def substitution(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def substitution(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "substitution", value)
 
 
 class LdapVerifyLinkArgsDict(TypedDict):
-    href: NotRequired[pulumi.Input[_builtins.str]]
-    rel: NotRequired[pulumi.Input[_builtins.str]]
+    href: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    rel: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class LdapVerifyLinkArgs:
     def __init__(__self__, *,
-                 href: Optional[pulumi.Input[_builtins.str]] = None,
-                 rel: Optional[pulumi.Input[_builtins.str]] = None):
+                 href: pulumi.Input[Optional[_builtins.str]] = None,
+                 rel: pulumi.Input[Optional[_builtins.str]] = None):
         if href is not None:
             pulumi.set(__self__, "href", href)
         if rel is not None:
@@ -8909,35 +8909,35 @@ class LdapVerifyLinkArgs:
 
     @_builtins.property
     @pulumi.getter
-    def href(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def href(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "href")
 
     @href.setter
-    def href(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def href(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "href", value)
 
     @_builtins.property
     @pulumi.getter
-    def rel(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rel(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "rel")
 
     @rel.setter
-    def rel(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rel(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rel", value)
 
 
 class LdapVerifyValidationArgsDict(TypedDict):
-    status: NotRequired[pulumi.Input[_builtins.str]]
+    status: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
     """
-    validation_type: NotRequired[pulumi.Input[_builtins.str]]
+    validation_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class LdapVerifyValidationArgs:
     def __init__(__self__, *,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 validation_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 validation_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] status: The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
         """
@@ -8948,23 +8948,23 @@ class LdapVerifyValidationArgs:
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter(name="validationType")
-    def validation_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def validation_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "validation_type")
 
     @validation_type.setter
-    def validation_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def validation_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "validation_type", value)
 
 
@@ -9069,15 +9069,15 @@ class OnlineArchiveCriteriaArgsDict(TypedDict):
 
     The following fields are required for criteria type `DATE`
     """
-    date_field: NotRequired[pulumi.Input[_builtins.str]]
+    date_field: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
     """
-    date_format: NotRequired[pulumi.Input[_builtins.str]]
+    date_format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
     """
-    expire_after_days: NotRequired[pulumi.Input[_builtins.int]]
+    expire_after_days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
 
@@ -9085,7 +9085,7 @@ class OnlineArchiveCriteriaArgsDict(TypedDict):
 
     The only field required for criteria type `CUSTOM`
     """
-    query: NotRequired[pulumi.Input[_builtins.str]]
+    query: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
     """
@@ -9094,10 +9094,10 @@ class OnlineArchiveCriteriaArgsDict(TypedDict):
 class OnlineArchiveCriteriaArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 date_field: Optional[pulumi.Input[_builtins.str]] = None,
-                 date_format: Optional[pulumi.Input[_builtins.str]] = None,
-                 expire_after_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 query: Optional[pulumi.Input[_builtins.str]] = None):
+                 date_field: pulumi.Input[Optional[_builtins.str]] = None,
+                 date_format: pulumi.Input[Optional[_builtins.str]] = None,
+                 expire_after_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 query: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] type: Type of criteria (DATE, CUSTOM)
                
@@ -9137,31 +9137,31 @@ class OnlineArchiveCriteriaArgs:
 
     @_builtins.property
     @pulumi.getter(name="dateField")
-    def date_field(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def date_field(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
         """
         return pulumi.get(self, "date_field")
 
     @date_field.setter
-    def date_field(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def date_field(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "date_field", value)
 
     @_builtins.property
     @pulumi.getter(name="dateFormat")
-    def date_format(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def date_format(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
         """
         return pulumi.get(self, "date_format")
 
     @date_format.setter
-    def date_format(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def date_format(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "date_format", value)
 
     @_builtins.property
     @pulumi.getter(name="expireAfterDays")
-    def expire_after_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def expire_after_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
 
@@ -9172,19 +9172,19 @@ class OnlineArchiveCriteriaArgs:
         return pulumi.get(self, "expire_after_days")
 
     @expire_after_days.setter
-    def expire_after_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def expire_after_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "expire_after_days", value)
 
     @_builtins.property
     @pulumi.getter
-    def query(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def query(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
         """
         return pulumi.get(self, "query")
 
     @query.setter
-    def query(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def query(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "query", value)
 
 
@@ -9217,11 +9217,11 @@ class OnlineArchiveDataExpirationRuleArgs:
 
 
 class OnlineArchiveDataProcessRegionArgsDict(TypedDict):
-    cloud_provider: NotRequired[pulumi.Input[_builtins.str]]
+    cloud_provider: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
     """
@@ -9229,8 +9229,8 @@ class OnlineArchiveDataProcessRegionArgsDict(TypedDict):
 @pulumi.input_type
 class OnlineArchiveDataProcessRegionArgs:
     def __init__(__self__, *,
-                 cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] cloud_provider: Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
         :param pulumi.Input[_builtins.str] region: Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
@@ -9242,26 +9242,26 @@ class OnlineArchiveDataProcessRegionArgs:
 
     @_builtins.property
     @pulumi.getter(name="cloudProvider")
-    def cloud_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
         """
         return pulumi.get(self, "cloud_provider")
 
     @cloud_provider.setter
-    def cloud_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_provider", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
@@ -9274,7 +9274,7 @@ class OnlineArchivePartitionFieldArgsDict(TypedDict):
     """
     Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
     """
-    field_type: NotRequired[pulumi.Input[_builtins.str]]
+    field_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
     """
@@ -9284,7 +9284,7 @@ class OnlineArchivePartitionFieldArgs:
     def __init__(__self__, *,
                  field_name: pulumi.Input[_builtins.str],
                  order: pulumi.Input[_builtins.int],
-                 field_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 field_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] field_name: Human-readable label that identifies the parameter that MongoDB Cloud uses to partition data. To specify a nested parameter, use the dot notation.
         :param pulumi.Input[_builtins.int] order: Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
@@ -9321,14 +9321,14 @@ class OnlineArchivePartitionFieldArgs:
 
     @_builtins.property
     @pulumi.getter(name="fieldType")
-    def field_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def field_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
         """
         return pulumi.get(self, "field_type")
 
     @field_type.setter
-    def field_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def field_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "field_type", value)
 
 
@@ -9337,27 +9337,27 @@ class OnlineArchiveScheduleArgsDict(TypedDict):
     """
     Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
     """
-    day_of_month: NotRequired[pulumi.Input[_builtins.int]]
+    day_of_month: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
     """
-    day_of_week: NotRequired[pulumi.Input[_builtins.int]]
+    day_of_week: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `type` is `WEEKLY`.
     """
-    end_hour: NotRequired[pulumi.Input[_builtins.int]]
+    end_hour: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Hour of the day when the scheduled window to run one online archive ends.
     """
-    end_minute: NotRequired[pulumi.Input[_builtins.int]]
+    end_minute: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Minute of the hour when the scheduled window to run one online archive ends.
     """
-    start_hour: NotRequired[pulumi.Input[_builtins.int]]
+    start_hour: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Hour of the day when the when the scheduled window to run one online archive starts.
     """
-    start_minute: NotRequired[pulumi.Input[_builtins.int]]
+    start_minute: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
     Minute of the hour when the scheduled window to run one online archive starts.
     """
@@ -9366,12 +9366,12 @@ class OnlineArchiveScheduleArgsDict(TypedDict):
 class OnlineArchiveScheduleArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 day_of_month: Optional[pulumi.Input[_builtins.int]] = None,
-                 day_of_week: Optional[pulumi.Input[_builtins.int]] = None,
-                 end_hour: Optional[pulumi.Input[_builtins.int]] = None,
-                 end_minute: Optional[pulumi.Input[_builtins.int]] = None,
-                 start_hour: Optional[pulumi.Input[_builtins.int]] = None,
-                 start_minute: Optional[pulumi.Input[_builtins.int]] = None):
+                 day_of_month: pulumi.Input[Optional[_builtins.int]] = None,
+                 day_of_week: pulumi.Input[Optional[_builtins.int]] = None,
+                 end_hour: pulumi.Input[Optional[_builtins.int]] = None,
+                 end_minute: pulumi.Input[Optional[_builtins.int]] = None,
+                 start_hour: pulumi.Input[Optional[_builtins.int]] = None,
+                 start_minute: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] type: Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
         :param pulumi.Input[_builtins.int] day_of_month: Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
@@ -9409,74 +9409,74 @@ class OnlineArchiveScheduleArgs:
 
     @_builtins.property
     @pulumi.getter(name="dayOfMonth")
-    def day_of_month(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def day_of_month(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
         """
         return pulumi.get(self, "day_of_month")
 
     @day_of_month.setter
-    def day_of_month(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def day_of_month(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "day_of_month", value)
 
     @_builtins.property
     @pulumi.getter(name="dayOfWeek")
-    def day_of_week(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def day_of_week(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `type` is `WEEKLY`.
         """
         return pulumi.get(self, "day_of_week")
 
     @day_of_week.setter
-    def day_of_week(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def day_of_week(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "day_of_week", value)
 
     @_builtins.property
     @pulumi.getter(name="endHour")
-    def end_hour(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def end_hour(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Hour of the day when the scheduled window to run one online archive ends.
         """
         return pulumi.get(self, "end_hour")
 
     @end_hour.setter
-    def end_hour(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def end_hour(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "end_hour", value)
 
     @_builtins.property
     @pulumi.getter(name="endMinute")
-    def end_minute(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def end_minute(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minute of the hour when the scheduled window to run one online archive ends.
         """
         return pulumi.get(self, "end_minute")
 
     @end_minute.setter
-    def end_minute(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def end_minute(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "end_minute", value)
 
     @_builtins.property
     @pulumi.getter(name="startHour")
-    def start_hour(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def start_hour(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Hour of the day when the when the scheduled window to run one online archive starts.
         """
         return pulumi.get(self, "start_hour")
 
     @start_hour.setter
-    def start_hour(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def start_hour(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "start_hour", value)
 
     @_builtins.property
     @pulumi.getter(name="startMinute")
-    def start_minute(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def start_minute(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Minute of the hour when the scheduled window to run one online archive starts.
         """
         return pulumi.get(self, "start_minute")
 
     @start_minute.setter
-    def start_minute(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def start_minute(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "start_minute", value)
 
 
@@ -9499,15 +9499,15 @@ class OrganizationServiceAccountArgsDict(TypedDict):
 
     > **WARNING:** Service Account secrets expire after the configured `secret_expires_after_hours` period. To avoid losing access to the Atlas Administration API, update your application with the new client secret before the current one expires. If all secrets expire without being replaced, you will lose access to the organization. For more information, see [Rotate Service Account Secrets](https://www.mongodb.com/docs/atlas/tutorial/rotate-service-account-secrets/).
     """
-    client_id: NotRequired[pulumi.Input[_builtins.str]]
+    client_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The Client ID of the Service Account.
     """
-    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     """
-    secrets: NotRequired[pulumi.Input[Sequence[pulumi.Input['OrganizationServiceAccountSecretArgsDict']]]]
+    secrets: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationServiceAccountSecretArgs']]]]]
     """
     A list of secrets associated with the specified Service Account. See Secrets.
     """
@@ -9519,9 +9519,9 @@ class OrganizationServiceAccountArgs:
                  name: pulumi.Input[_builtins.str],
                  roles: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  secret_expires_after_hours: pulumi.Input[_builtins.int],
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 secrets: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationServiceAccountSecretArgs']]]] = None):
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 secrets: pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationServiceAccountSecretArgs']]]] = None):
         """
         :param pulumi.Input[_builtins.str] description: Human readable description for the Service Account.
         :param pulumi.Input[_builtins.str] name: Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
@@ -9596,55 +9596,55 @@ class OrganizationServiceAccountArgs:
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Client ID of the Service Account.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def secrets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationServiceAccountSecretArgs']]]]:
+    def secrets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationServiceAccountSecretArgs']]]]:
         """
         A list of secrets associated with the specified Service Account. See Secrets.
         """
         return pulumi.get(self, "secrets")
 
     @secrets.setter
-    def secrets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['OrganizationServiceAccountSecretArgs']]]]):
+    def secrets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationServiceAccountSecretArgs']]]]):
         pulumi.set(self, "secrets", value)
 
 
 class OrganizationServiceAccountSecretArgsDict(TypedDict):
-    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     """
-    expires_at: NotRequired[pulumi.Input[_builtins.str]]
+    expires_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     """
-    secret: NotRequired[pulumi.Input[_builtins.str]]
+    secret: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The secret for the Service Account. It will be returned only the first time after creation.
     """
-    secret_id: NotRequired[pulumi.Input[_builtins.str]]
+    secret_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal digit string that identifies the secret.
     """
@@ -9652,10 +9652,10 @@ class OrganizationServiceAccountSecretArgsDict(TypedDict):
 @pulumi.input_type
 class OrganizationServiceAccountSecretArgs:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param pulumi.Input[_builtins.str] expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
@@ -9673,63 +9673,63 @@ class OrganizationServiceAccountSecretArgs:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="expiresAt")
-    def expires_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expires_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "expires_at")
 
     @expires_at.setter
-    def expires_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expires_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expires_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret for the Service Account. It will be returned only the first time after creation.
         """
         return pulumi.get(self, "secret")
 
     @secret.setter
-    def secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret", value)
 
     @_builtins.property
     @pulumi.getter(name="secretId")
-    def secret_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the secret.
         """
         return pulumi.get(self, "secret_id")
 
     @secret_id.setter
-    def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
 
 
 class PrivateLinkEndpointServiceEndpointArgsDict(TypedDict):
-    endpoint_name: NotRequired[pulumi.Input[_builtins.str]]
+    endpoint_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Forwarding rule that corresponds to the endpoint you created.
     """
-    ip_address: NotRequired[pulumi.Input[_builtins.str]]
+    ip_address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Private IP address of the endpoint you created.
     """
-    status: NotRequired[pulumi.Input[_builtins.str]]
+    status: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
     """
@@ -9737,9 +9737,9 @@ class PrivateLinkEndpointServiceEndpointArgsDict(TypedDict):
 @pulumi.input_type
 class PrivateLinkEndpointServiceEndpointArgs:
     def __init__(__self__, *,
-                 endpoint_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None):
+                 endpoint_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] endpoint_name: Forwarding rule that corresponds to the endpoint you created.
         :param pulumi.Input[_builtins.str] ip_address: Private IP address of the endpoint you created.
@@ -9754,51 +9754,51 @@ class PrivateLinkEndpointServiceEndpointArgs:
 
     @_builtins.property
     @pulumi.getter(name="endpointName")
-    def endpoint_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Forwarding rule that corresponds to the endpoint you created.
         """
         return pulumi.get(self, "endpoint_name")
 
     @endpoint_name.setter
-    def endpoint_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint_name", value)
 
     @_builtins.property
     @pulumi.getter(name="ipAddress")
-    def ip_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private IP address of the endpoint you created.
         """
         return pulumi.get(self, "ip_address")
 
     @ip_address.setter
-    def ip_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_address", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
 
 class PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict(TypedDict):
-    create: NotRequired[pulumi.Input[_builtins.str]]
+    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
     """
-    delete: NotRequired[pulumi.Input[_builtins.str]]
+    delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
     """
-    update: NotRequired[pulumi.Input[_builtins.str]]
+    update: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
     """
@@ -9806,9 +9806,9 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict(Type
 @pulumi.input_type
 class PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs:
     def __init__(__self__, *,
-                 create: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete: Optional[pulumi.Input[_builtins.str]] = None,
-                 update: Optional[pulumi.Input[_builtins.str]] = None):
+                 create: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete: pulumi.Input[Optional[_builtins.str]] = None,
+                 update: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         :param pulumi.Input[_builtins.str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
@@ -9823,38 +9823,38 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
         return pulumi.get(self, "create")
 
     @create.setter
-    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "create", value)
 
     @_builtins.property
     @pulumi.getter
-    def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
         """
         return pulumi.get(self, "delete")
 
     @delete.setter
-    def delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def delete(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "delete", value)
 
     @_builtins.property
     @pulumi.getter
-    def update(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def update(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
         """
         return pulumi.get(self, "update")
 
     @update.setter
-    def update(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def update(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "update", value)
 
 
@@ -9906,11 +9906,11 @@ class ProjectApiKeyProjectAssignmentArgs:
 
 
 class ProjectIpAccessListTimeoutsArgsDict(TypedDict):
-    delete: NotRequired[pulumi.Input[_builtins.str]]
+    delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
     """
-    read: NotRequired[pulumi.Input[_builtins.str]]
+    read: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
     """
@@ -9918,8 +9918,8 @@ class ProjectIpAccessListTimeoutsArgsDict(TypedDict):
 @pulumi.input_type
 class ProjectIpAccessListTimeoutsArgs:
     def __init__(__self__, *,
-                 delete: Optional[pulumi.Input[_builtins.str]] = None,
-                 read: Optional[pulumi.Input[_builtins.str]] = None):
+                 delete: pulumi.Input[Optional[_builtins.str]] = None,
+                 read: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
         :param pulumi.Input[_builtins.str] read: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
@@ -9931,80 +9931,80 @@ class ProjectIpAccessListTimeoutsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
         """
         return pulumi.get(self, "delete")
 
     @delete.setter
-    def delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def delete(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "delete", value)
 
     @_builtins.property
     @pulumi.getter
-    def read(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def read(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
         """
         return pulumi.get(self, "read")
 
     @read.setter
-    def read(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def read(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "read", value)
 
 
 class ProjectIpAddressesArgsDict(TypedDict):
-    services: NotRequired[pulumi.Input['ProjectIpAddressesServicesArgsDict']]
+    services: NotRequired[pulumi.Input[Optional['ProjectIpAddressesServicesArgs']]]
 
 @pulumi.input_type
 class ProjectIpAddressesArgs:
     def __init__(__self__, *,
-                 services: Optional[pulumi.Input['ProjectIpAddressesServicesArgs']] = None):
+                 services: pulumi.Input[Optional['ProjectIpAddressesServicesArgs']] = None):
         if services is not None:
             pulumi.set(__self__, "services", services)
 
     @_builtins.property
     @pulumi.getter
-    def services(self) -> Optional[pulumi.Input['ProjectIpAddressesServicesArgs']]:
+    def services(self) -> pulumi.Input[Optional['ProjectIpAddressesServicesArgs']]:
         return pulumi.get(self, "services")
 
     @services.setter
-    def services(self, value: Optional[pulumi.Input['ProjectIpAddressesServicesArgs']]):
+    def services(self, value: pulumi.Input[Optional['ProjectIpAddressesServicesArgs']]):
         pulumi.set(self, "services", value)
 
 
 class ProjectIpAddressesServicesArgsDict(TypedDict):
-    clusters: NotRequired[pulumi.Input[Sequence[pulumi.Input['ProjectIpAddressesServicesClusterArgsDict']]]]
+    clusters: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ProjectIpAddressesServicesClusterArgs']]]]]
 
 @pulumi.input_type
 class ProjectIpAddressesServicesArgs:
     def __init__(__self__, *,
-                 clusters: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectIpAddressesServicesClusterArgs']]]] = None):
+                 clusters: pulumi.Input[Optional[Sequence[pulumi.Input['ProjectIpAddressesServicesClusterArgs']]]] = None):
         if clusters is not None:
             pulumi.set(__self__, "clusters", clusters)
 
     @_builtins.property
     @pulumi.getter
-    def clusters(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectIpAddressesServicesClusterArgs']]]]:
+    def clusters(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ProjectIpAddressesServicesClusterArgs']]]]:
         return pulumi.get(self, "clusters")
 
     @clusters.setter
-    def clusters(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectIpAddressesServicesClusterArgs']]]]):
+    def clusters(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ProjectIpAddressesServicesClusterArgs']]]]):
         pulumi.set(self, "clusters", value)
 
 
 class ProjectIpAddressesServicesClusterArgsDict(TypedDict):
-    cluster_name: NotRequired[pulumi.Input[_builtins.str]]
-    inbounds: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
-    outbounds: NotRequired[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]
+    cluster_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    inbounds: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    outbounds: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class ProjectIpAddressesServicesClusterArgs:
     def __init__(__self__, *,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 inbounds: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 outbounds: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 inbounds: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 outbounds: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         if cluster_name is not None:
             pulumi.set(__self__, "cluster_name", cluster_name)
         if inbounds is not None:
@@ -10014,29 +10014,29 @@ class ProjectIpAddressesServicesClusterArgs:
 
     @_builtins.property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "cluster_name")
 
     @cluster_name.setter
-    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def inbounds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def inbounds(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "inbounds")
 
     @inbounds.setter
-    def inbounds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def inbounds(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "inbounds", value)
 
     @_builtins.property
     @pulumi.getter
-    def outbounds(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def outbounds(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "outbounds")
 
     @outbounds.setter
-    def outbounds(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def outbounds(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "outbounds", value)
 
 
@@ -10049,18 +10049,18 @@ class ProjectLimitArgsDict(TypedDict):
     """
     Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
     """
-    current_usage: NotRequired[pulumi.Input[_builtins.int]]
-    default_limit: NotRequired[pulumi.Input[_builtins.int]]
-    maximum_limit: NotRequired[pulumi.Input[_builtins.int]]
+    current_usage: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    default_limit: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    maximum_limit: NotRequired[pulumi.Input[Optional[_builtins.int]]]
 
 @pulumi.input_type
 class ProjectLimitArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
                  value: pulumi.Input[_builtins.int],
-                 current_usage: Optional[pulumi.Input[_builtins.int]] = None,
-                 default_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 maximum_limit: Optional[pulumi.Input[_builtins.int]] = None):
+                 current_usage: pulumi.Input[Optional[_builtins.int]] = None,
+                 default_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 maximum_limit: pulumi.Input[Optional[_builtins.int]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
         :param pulumi.Input[_builtins.int] value: Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
@@ -10100,54 +10100,54 @@ class ProjectLimitArgs:
 
     @_builtins.property
     @pulumi.getter(name="currentUsage")
-    def current_usage(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def current_usage(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "current_usage")
 
     @current_usage.setter
-    def current_usage(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def current_usage(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "current_usage", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultLimit")
-    def default_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "default_limit")
 
     @default_limit.setter
-    def default_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_limit", value)
 
     @_builtins.property
     @pulumi.getter(name="maximumLimit")
-    def maximum_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def maximum_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "maximum_limit")
 
     @maximum_limit.setter
-    def maximum_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def maximum_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "maximum_limit", value)
 
 
 class ProjectServiceAccountSecretArgsDict(TypedDict):
-    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     """
-    expires_at: NotRequired[pulumi.Input[_builtins.str]]
+    expires_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     """
-    last_used_at: NotRequired[pulumi.Input[_builtins.str]]
+    last_used_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     """
-    masked_secret_value: NotRequired[pulumi.Input[_builtins.str]]
+    masked_secret_value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The masked Service Account secret.
     """
-    secret: NotRequired[pulumi.Input[_builtins.str]]
+    secret: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The secret for the Service Account. It will be returned only the first time after creation.
     """
-    secret_id: NotRequired[pulumi.Input[_builtins.str]]
+    secret_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal digit string that identifies the secret.
     """
@@ -10155,12 +10155,12 @@ class ProjectServiceAccountSecretArgsDict(TypedDict):
 @pulumi.input_type
 class ProjectServiceAccountSecretArgs:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 last_used_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 masked_secret_value: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 masked_secret_value: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param pulumi.Input[_builtins.str] expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
@@ -10184,74 +10184,74 @@ class ProjectServiceAccountSecretArgs:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="expiresAt")
-    def expires_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expires_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "expires_at")
 
     @expires_at.setter
-    def expires_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expires_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expires_at", value)
 
     @_builtins.property
     @pulumi.getter(name="lastUsedAt")
-    def last_used_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_used_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "last_used_at")
 
     @last_used_at.setter
-    def last_used_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_used_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_used_at", value)
 
     @_builtins.property
     @pulumi.getter(name="maskedSecretValue")
-    def masked_secret_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def masked_secret_value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The masked Service Account secret.
         """
         return pulumi.get(self, "masked_secret_value")
 
     @masked_secret_value.setter
-    def masked_secret_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def masked_secret_value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "masked_secret_value", value)
 
     @_builtins.property
     @pulumi.getter
-    def secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret for the Service Account. It will be returned only the first time after creation.
         """
         return pulumi.get(self, "secret")
 
     @secret.setter
-    def secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret", value)
 
     @_builtins.property
     @pulumi.getter(name="secretId")
-    def secret_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the secret.
         """
         return pulumi.get(self, "secret_id")
 
     @secret_id.setter
-    def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
 
 
@@ -10309,7 +10309,7 @@ class ProjectTeamArgs:
 
 
 class ProviderAssumeRoleArgsDict(TypedDict):
-    role_arn: NotRequired[pulumi.Input[_builtins.str]]
+    role_arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
     """
@@ -10317,7 +10317,7 @@ class ProviderAssumeRoleArgsDict(TypedDict):
 @pulumi.input_type
 class ProviderAssumeRoleArgs:
     def __init__(__self__, *,
-                 role_arn: Optional[pulumi.Input[_builtins.str]] = None):
+                 role_arn: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] role_arn: Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
         """
@@ -10326,27 +10326,27 @@ class ProviderAssumeRoleArgs:
 
     @_builtins.property
     @pulumi.getter(name="roleArn")
-    def role_arn(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
         """
         return pulumi.get(self, "role_arn")
 
     @role_arn.setter
-    def role_arn(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_arn", value)
 
 
 class PushBasedLogExportTimeoutsArgsDict(TypedDict):
-    create: NotRequired[pulumi.Input[_builtins.str]]
+    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `15m`.
     """
-    delete: NotRequired[pulumi.Input[_builtins.str]]
+    delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `15m`.
     """
-    update: NotRequired[pulumi.Input[_builtins.str]]
+    update: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `15m`.
     """
@@ -10354,9 +10354,9 @@ class PushBasedLogExportTimeoutsArgsDict(TypedDict):
 @pulumi.input_type
 class PushBasedLogExportTimeoutsArgs:
     def __init__(__self__, *,
-                 create: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete: Optional[pulumi.Input[_builtins.str]] = None,
-                 update: Optional[pulumi.Input[_builtins.str]] = None):
+                 create: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete: pulumi.Input[Optional[_builtins.str]] = None,
+                 update: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `15m`.
         :param pulumi.Input[_builtins.str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `15m`.
@@ -10371,47 +10371,47 @@ class PushBasedLogExportTimeoutsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `15m`.
         """
         return pulumi.get(self, "create")
 
     @create.setter
-    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "create", value)
 
     @_builtins.property
     @pulumi.getter
-    def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `15m`.
         """
         return pulumi.get(self, "delete")
 
     @delete.setter
-    def delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def delete(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "delete", value)
 
     @_builtins.property
     @pulumi.getter
-    def update(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def update(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `15m`.
         """
         return pulumi.get(self, "update")
 
     @update.setter
-    def update(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def update(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "update", value)
 
 
 class ResourcePolicyCreatedByUserArgsDict(TypedDict):
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal character string that identifies a user.
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Human-readable label that describes a user.
     """
@@ -10419,8 +10419,8 @@ class ResourcePolicyCreatedByUserArgsDict(TypedDict):
 @pulumi.input_type
 class ResourcePolicyCreatedByUserArgs:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] id: Unique 24-hexadecimal character string that identifies a user.
         :param pulumi.Input[_builtins.str] name: Human-readable label that describes a user.
@@ -10432,35 +10432,35 @@ class ResourcePolicyCreatedByUserArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal character string that identifies a user.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that describes a user.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
 class ResourcePolicyLastUpdatedByUserArgsDict(TypedDict):
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal character string that identifies a user.
     """
-    name: NotRequired[pulumi.Input[_builtins.str]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Human-readable label that describes a user.
     """
@@ -10468,8 +10468,8 @@ class ResourcePolicyLastUpdatedByUserArgsDict(TypedDict):
 @pulumi.input_type
 class ResourcePolicyLastUpdatedByUserArgs:
     def __init__(__self__, *,
-                 id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] id: Unique 24-hexadecimal character string that identifies a user.
         :param pulumi.Input[_builtins.str] name: Human-readable label that describes a user.
@@ -10481,26 +10481,26 @@ class ResourcePolicyLastUpdatedByUserArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal character string that identifies a user.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that describes a user.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
 
@@ -10509,7 +10509,7 @@ class ResourcePolicyPolicyArgsDict(TypedDict):
     """
     A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
     """
-    id: NotRequired[pulumi.Input[_builtins.str]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal character string that identifies the policy.
     """
@@ -10518,7 +10518,7 @@ class ResourcePolicyPolicyArgsDict(TypedDict):
 class ResourcePolicyPolicyArgs:
     def __init__(__self__, *,
                  body: pulumi.Input[_builtins.str],
-                 id: Optional[pulumi.Input[_builtins.str]] = None):
+                 id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] body: A string that defines the permissions for the policy. The syntax used is the Cedar Policy language.
         :param pulumi.Input[_builtins.str] id: Unique 24-hexadecimal character string that identifies the policy.
@@ -10541,14 +10541,14 @@ class ResourcePolicyPolicyArgs:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal character string that identifies the policy.
         """
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
 
 
@@ -10600,15 +10600,15 @@ class SearchDeploymentSpecArgs:
 
 
 class SearchDeploymentTimeoutsArgsDict(TypedDict):
-    create: NotRequired[pulumi.Input[_builtins.str]]
+    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
     """
-    delete: NotRequired[pulumi.Input[_builtins.str]]
+    delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
     """
-    update: NotRequired[pulumi.Input[_builtins.str]]
+    update: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
     """
@@ -10616,9 +10616,9 @@ class SearchDeploymentTimeoutsArgsDict(TypedDict):
 @pulumi.input_type
 class SearchDeploymentTimeoutsArgs:
     def __init__(__self__, *,
-                 create: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete: Optional[pulumi.Input[_builtins.str]] = None,
-                 update: Optional[pulumi.Input[_builtins.str]] = None):
+                 create: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete: pulumi.Input[Optional[_builtins.str]] = None,
+                 update: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
         :param pulumi.Input[_builtins.str] delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
@@ -10633,38 +10633,38 @@ class SearchDeploymentTimeoutsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
         """
         return pulumi.get(self, "create")
 
     @create.setter
-    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "create", value)
 
     @_builtins.property
     @pulumi.getter
-    def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
         """
         return pulumi.get(self, "delete")
 
     @delete.setter
-    def delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def delete(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "delete", value)
 
     @_builtins.property
     @pulumi.getter
-    def update(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def update(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
         """
         return pulumi.get(self, "update")
 
     @update.setter
-    def update(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def update(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "update", value)
 
 
@@ -10739,7 +10739,7 @@ class SearchIndexTypeSetArgsDict(TypedDict):
     """
     Name of the type set.
     """
-    types: NotRequired[pulumi.Input[_builtins.str]]
+    types: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     JSON array describing the types.
     """
@@ -10748,7 +10748,7 @@ class SearchIndexTypeSetArgsDict(TypedDict):
 class SearchIndexTypeSetArgs:
     def __init__(__self__, *,
                  name: pulumi.Input[_builtins.str],
-                 types: Optional[pulumi.Input[_builtins.str]] = None):
+                 types: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] name: Name of the type set.
         :param pulumi.Input[_builtins.str] types: JSON array describing the types.
@@ -10771,26 +10771,26 @@ class SearchIndexTypeSetArgs:
 
     @_builtins.property
     @pulumi.getter
-    def types(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def types(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JSON array describing the types.
         """
         return pulumi.get(self, "types")
 
     @types.setter
-    def types(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def types(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "types", value)
 
 
 class ServerlessInstanceLinkArgsDict(TypedDict):
-    href: NotRequired[pulumi.Input[_builtins.str]]
-    rel: NotRequired[pulumi.Input[_builtins.str]]
+    href: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    rel: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class ServerlessInstanceLinkArgs:
     def __init__(__self__, *,
-                 href: Optional[pulumi.Input[_builtins.str]] = None,
-                 rel: Optional[pulumi.Input[_builtins.str]] = None):
+                 href: pulumi.Input[Optional[_builtins.str]] = None,
+                 rel: pulumi.Input[Optional[_builtins.str]] = None):
         if href is not None:
             pulumi.set(__self__, "href", href)
         if rel is not None:
@@ -10798,20 +10798,20 @@ class ServerlessInstanceLinkArgs:
 
     @_builtins.property
     @pulumi.getter
-    def href(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def href(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "href")
 
     @href.setter
-    def href(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def href(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "href", value)
 
     @_builtins.property
     @pulumi.getter
-    def rel(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def rel(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "rel")
 
     @rel.setter
-    def rel(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def rel(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "rel", value)
 
 
@@ -10869,27 +10869,27 @@ class ServerlessInstanceTagArgs:
 
 
 class ServiceAccountSecretArgsDict(TypedDict):
-    created_at: NotRequired[pulumi.Input[_builtins.str]]
+    created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     """
-    expires_at: NotRequired[pulumi.Input[_builtins.str]]
+    expires_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     """
-    last_used_at: NotRequired[pulumi.Input[_builtins.str]]
+    last_used_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     """
-    masked_secret_value: NotRequired[pulumi.Input[_builtins.str]]
+    masked_secret_value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The masked Service Account secret.
     """
-    secret: NotRequired[pulumi.Input[_builtins.str]]
+    secret: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The secret for the Service Account. It will be returned only the first time after creation.
     """
-    secret_id: NotRequired[pulumi.Input[_builtins.str]]
+    secret_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Unique 24-hexadecimal digit string that identifies the secret.
     """
@@ -10897,12 +10897,12 @@ class ServiceAccountSecretArgsDict(TypedDict):
 @pulumi.input_type
 class ServiceAccountSecretArgs:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 last_used_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 masked_secret_value: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 masked_secret_value: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param pulumi.Input[_builtins.str] expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
@@ -10926,111 +10926,111 @@ class ServiceAccountSecretArgs:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="expiresAt")
-    def expires_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expires_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "expires_at")
 
     @expires_at.setter
-    def expires_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expires_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expires_at", value)
 
     @_builtins.property
     @pulumi.getter(name="lastUsedAt")
-    def last_used_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_used_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "last_used_at")
 
     @last_used_at.setter
-    def last_used_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_used_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_used_at", value)
 
     @_builtins.property
     @pulumi.getter(name="maskedSecretValue")
-    def masked_secret_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def masked_secret_value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The masked Service Account secret.
         """
         return pulumi.get(self, "masked_secret_value")
 
     @masked_secret_value.setter
-    def masked_secret_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def masked_secret_value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "masked_secret_value", value)
 
     @_builtins.property
     @pulumi.getter
-    def secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret for the Service Account. It will be returned only the first time after creation.
         """
         return pulumi.get(self, "secret")
 
     @secret.setter
-    def secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret", value)
 
     @_builtins.property
     @pulumi.getter(name="secretId")
-    def secret_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the secret.
         """
         return pulumi.get(self, "secret_id")
 
     @secret_id.setter
-    def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
 
 
 class StreamConnectionAuthenticationArgsDict(TypedDict):
-    client_id: NotRequired[pulumi.Input[_builtins.str]]
+    client_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Public identifier for the Kafka client.
     """
-    client_secret: NotRequired[pulumi.Input[_builtins.str]]
+    client_secret: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Secret known only to the Kafka client and the authorization server.
     """
-    mechanism: NotRequired[pulumi.Input[_builtins.str]]
+    mechanism: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
     """
-    method: NotRequired[pulumi.Input[_builtins.str]]
+    method: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     SASL OAUTHBEARER authentication method. Value must be OIDC.
     """
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Password of the account to connect to the Kafka cluster.
     """
-    sasl_oauthbearer_extensions: NotRequired[pulumi.Input[_builtins.str]]
+    sasl_oauthbearer_extensions: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Additional information to provide to the Kafka broker.
     """
-    scope: NotRequired[pulumi.Input[_builtins.str]]
+    scope: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Scope of the access request to the broker specified by the Kafka clients.
     """
-    token_endpoint_url: NotRequired[pulumi.Input[_builtins.str]]
+    token_endpoint_url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username of the account to connect to the Kafka cluster.
     """
@@ -11038,15 +11038,15 @@ class StreamConnectionAuthenticationArgsDict(TypedDict):
 @pulumi.input_type
 class StreamConnectionAuthenticationArgs:
     def __init__(__self__, *,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 mechanism: Optional[pulumi.Input[_builtins.str]] = None,
-                 method: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 sasl_oauthbearer_extensions: Optional[pulumi.Input[_builtins.str]] = None,
-                 scope: Optional[pulumi.Input[_builtins.str]] = None,
-                 token_endpoint_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 mechanism: pulumi.Input[Optional[_builtins.str]] = None,
+                 method: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 sasl_oauthbearer_extensions: pulumi.Input[Optional[_builtins.str]] = None,
+                 scope: pulumi.Input[Optional[_builtins.str]] = None,
+                 token_endpoint_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] client_id: Public identifier for the Kafka client.
         :param pulumi.Input[_builtins.str] client_secret: Secret known only to the Kafka client and the authorization server.
@@ -11079,110 +11079,110 @@ class StreamConnectionAuthenticationArgs:
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Public identifier for the Kafka client.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clientSecret")
-    def client_secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Secret known only to the Kafka client and the authorization server.
         """
         return pulumi.get(self, "client_secret")
 
     @client_secret.setter
-    def client_secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_secret", value)
 
     @_builtins.property
     @pulumi.getter
-    def mechanism(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mechanism(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
         """
         return pulumi.get(self, "mechanism")
 
     @mechanism.setter
-    def mechanism(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mechanism(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mechanism", value)
 
     @_builtins.property
     @pulumi.getter
-    def method(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SASL OAUTHBEARER authentication method. Value must be OIDC.
         """
         return pulumi.get(self, "method")
 
     @method.setter
-    def method(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def method(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "method", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password of the account to connect to the Kafka cluster.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="saslOauthbearerExtensions")
-    def sasl_oauthbearer_extensions(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sasl_oauthbearer_extensions(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Additional information to provide to the Kafka broker.
         """
         return pulumi.get(self, "sasl_oauthbearer_extensions")
 
     @sasl_oauthbearer_extensions.setter
-    def sasl_oauthbearer_extensions(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sasl_oauthbearer_extensions(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sasl_oauthbearer_extensions", value)
 
     @_builtins.property
     @pulumi.getter
-    def scope(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def scope(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Scope of the access request to the broker specified by the Kafka clients.
         """
         return pulumi.get(self, "scope")
 
     @scope.setter
-    def scope(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def scope(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "scope", value)
 
     @_builtins.property
     @pulumi.getter(name="tokenEndpointUrl")
-    def token_endpoint_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def token_endpoint_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
         """
         return pulumi.get(self, "token_endpoint_url")
 
     @token_endpoint_url.setter
-    def token_endpoint_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def token_endpoint_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "token_endpoint_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username of the account to connect to the Kafka cluster.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -11223,7 +11223,7 @@ class StreamConnectionAzureArgsDict(TypedDict):
     """
     Name of the Azure Storage account to use. Must be lowercase, 3-24 characters, and contain only letters and numbers.
     """
-    region: NotRequired[pulumi.Input[_builtins.str]]
+    region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
     """
@@ -11233,7 +11233,7 @@ class StreamConnectionAzureArgs:
     def __init__(__self__, *,
                  service_principal_id: pulumi.Input[_builtins.str],
                  storage_account_name: pulumi.Input[_builtins.str],
-                 region: Optional[pulumi.Input[_builtins.str]] = None):
+                 region: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] service_principal_id: UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
         :param pulumi.Input[_builtins.str] storage_account_name: Name of the Azure Storage account to use. Must be lowercase, 3-24 characters, and contain only letters and numbers.
@@ -11270,14 +11270,14 @@ class StreamConnectionAzureArgs:
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
 
@@ -11389,7 +11389,7 @@ class StreamConnectionNetworkingAccessArgsDict(TypedDict):
     """
     Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
     """
-    connection_id: NotRequired[pulumi.Input[_builtins.str]]
+    connection_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Id of the Private Link connection when type is `PRIVATE_LINK`.
     """
@@ -11398,7 +11398,7 @@ class StreamConnectionNetworkingAccessArgsDict(TypedDict):
 class StreamConnectionNetworkingAccessArgs:
     def __init__(__self__, *,
                  type: pulumi.Input[_builtins.str],
-                 connection_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 connection_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] type: Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
         :param pulumi.Input[_builtins.str] connection_id: Id of the Private Link connection when type is `PRIVATE_LINK`.
@@ -11421,29 +11421,29 @@ class StreamConnectionNetworkingAccessArgs:
 
     @_builtins.property
     @pulumi.getter(name="connectionId")
-    def connection_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Id of the Private Link connection when type is `PRIVATE_LINK`.
         """
         return pulumi.get(self, "connection_id")
 
     @connection_id.setter
-    def connection_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_id", value)
 
 
 class StreamConnectionSchemaRegistryAuthenticationArgsDict(TypedDict):
-    password: NotRequired[pulumi.Input[_builtins.str]]
+    password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Password for the Schema Registry. Required when `type` is `USER_INFO`.
     """
-    type: NotRequired[pulumi.Input[_builtins.str]]
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
     * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
     * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
     """
-    username: NotRequired[pulumi.Input[_builtins.str]]
+    username: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Username for the Schema Registry. Required when `type` is `USER_INFO`.
     """
@@ -11451,9 +11451,9 @@ class StreamConnectionSchemaRegistryAuthenticationArgsDict(TypedDict):
 @pulumi.input_type
 class StreamConnectionSchemaRegistryAuthenticationArgs:
     def __init__(__self__, *,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] password: Password for the Schema Registry. Required when `type` is `USER_INFO`.
         :param pulumi.Input[_builtins.str] type: Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
@@ -11470,19 +11470,19 @@ class StreamConnectionSchemaRegistryAuthenticationArgs:
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Password for the Schema Registry. Required when `type` is `USER_INFO`.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
         * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
@@ -11491,28 +11491,28 @@ class StreamConnectionSchemaRegistryAuthenticationArgs:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username for the Schema Registry. Required when `type` is `USER_INFO`.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 class StreamConnectionSecurityArgsDict(TypedDict):
-    broker_public_certificate: NotRequired[pulumi.Input[_builtins.str]]
+    broker_public_certificate: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
     """
-    protocol: NotRequired[pulumi.Input[_builtins.str]]
+    protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
     """
@@ -11520,8 +11520,8 @@ class StreamConnectionSecurityArgsDict(TypedDict):
 @pulumi.input_type
 class StreamConnectionSecurityArgs:
     def __init__(__self__, *,
-                 broker_public_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None):
+                 broker_public_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] broker_public_certificate: A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
         :param pulumi.Input[_builtins.str] protocol: Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
@@ -11533,39 +11533,39 @@ class StreamConnectionSecurityArgs:
 
     @_builtins.property
     @pulumi.getter(name="brokerPublicCertificate")
-    def broker_public_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def broker_public_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
         """
         return pulumi.get(self, "broker_public_certificate")
 
     @broker_public_certificate.setter
-    def broker_public_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def broker_public_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "broker_public_certificate", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
 
 class StreamConnectionTimeoutsArgsDict(TypedDict):
-    create: NotRequired[pulumi.Input[_builtins.str]]
+    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
     """
-    delete: NotRequired[pulumi.Input[_builtins.str]]
+    delete: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
     """
-    update: NotRequired[pulumi.Input[_builtins.str]]
+    update: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
     """
@@ -11573,9 +11573,9 @@ class StreamConnectionTimeoutsArgsDict(TypedDict):
 @pulumi.input_type
 class StreamConnectionTimeoutsArgs:
     def __init__(__self__, *,
-                 create: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete: Optional[pulumi.Input[_builtins.str]] = None,
-                 update: Optional[pulumi.Input[_builtins.str]] = None):
+                 create: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete: pulumi.Input[Optional[_builtins.str]] = None,
+                 update: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] create: The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
         :param pulumi.Input[_builtins.str] delete: The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
@@ -11590,38 +11590,38 @@ class StreamConnectionTimeoutsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
         """
         return pulumi.get(self, "create")
 
     @create.setter
-    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "create", value)
 
     @_builtins.property
     @pulumi.getter
-    def delete(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def delete(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
         """
         return pulumi.get(self, "delete")
 
     @delete.setter
-    def delete(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def delete(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "delete", value)
 
     @_builtins.property
     @pulumi.getter
-    def update(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def update(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
         """
         return pulumi.get(self, "update")
 
     @update.setter
-    def update(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def update(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "update", value)
 
 
@@ -11673,8 +11673,8 @@ class StreamInstanceDataProcessRegionArgs:
 
 
 class StreamInstanceStreamConfigArgsDict(TypedDict):
-    max_tier_size: NotRequired[pulumi.Input[_builtins.str]]
-    tier: NotRequired[pulumi.Input[_builtins.str]]
+    max_tier_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    tier: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
     """
@@ -11682,8 +11682,8 @@ class StreamInstanceStreamConfigArgsDict(TypedDict):
 @pulumi.input_type
 class StreamInstanceStreamConfigArgs:
     def __init__(__self__, *,
-                 max_tier_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 tier: Optional[pulumi.Input[_builtins.str]] = None):
+                 max_tier_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 tier: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] tier: Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
         """
@@ -11694,23 +11694,23 @@ class StreamInstanceStreamConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="maxTierSize")
-    def max_tier_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_tier_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "max_tier_size")
 
     @max_tier_size.setter
-    def max_tier_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_tier_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_tier_size", value)
 
     @_builtins.property
     @pulumi.getter
-    def tier(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tier(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
         """
         return pulumi.get(self, "tier")
 
     @tier.setter
-    def tier(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tier(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tier", value)
 
 
@@ -11809,7 +11809,7 @@ class StreamProcessorOptionsDlqArgs:
 
 
 class StreamProcessorTimeoutsArgsDict(TypedDict):
-    create: NotRequired[pulumi.Input[_builtins.str]]
+    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
     """
@@ -11817,7 +11817,7 @@ class StreamProcessorTimeoutsArgsDict(TypedDict):
 @pulumi.input_type
 class StreamProcessorTimeoutsArgs:
     def __init__(__self__, *,
-                 create: Optional[pulumi.Input[_builtins.str]] = None):
+                 create: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
         """
@@ -11826,14 +11826,14 @@ class StreamProcessorTimeoutsArgs:
 
     @_builtins.property
     @pulumi.getter
-    def create(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
         """
         return pulumi.get(self, "create")
 
     @create.setter
-    def create(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "create", value)
 
 
@@ -11885,11 +11885,11 @@ class StreamWorkspaceDataProcessRegionArgs:
 
 
 class StreamWorkspaceStreamConfigArgsDict(TypedDict):
-    max_tier_size: NotRequired[pulumi.Input[_builtins.str]]
+    max_tier_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Max tier size for the Stream Workspace. Configures Memory / VCPU allowances.
     """
-    tier: NotRequired[pulumi.Input[_builtins.str]]
+    tier: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
     """
@@ -11897,8 +11897,8 @@ class StreamWorkspaceStreamConfigArgsDict(TypedDict):
 @pulumi.input_type
 class StreamWorkspaceStreamConfigArgs:
     def __init__(__self__, *,
-                 max_tier_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 tier: Optional[pulumi.Input[_builtins.str]] = None):
+                 max_tier_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 tier: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] max_tier_size: Max tier size for the Stream Workspace. Configures Memory / VCPU allowances.
         :param pulumi.Input[_builtins.str] tier: Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
@@ -11910,44 +11910,44 @@ class StreamWorkspaceStreamConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="maxTierSize")
-    def max_tier_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def max_tier_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Max tier size for the Stream Workspace. Configures Memory / VCPU allowances.
         """
         return pulumi.get(self, "max_tier_size")
 
     @max_tier_size.setter
-    def max_tier_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def max_tier_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "max_tier_size", value)
 
     @_builtins.property
     @pulumi.getter
-    def tier(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tier(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
         """
         return pulumi.get(self, "tier")
 
     @tier.setter
-    def tier(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tier(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tier", value)
 
 
 class X509AuthenticationDatabaseUserCertificateArgsDict(TypedDict):
-    created_at: NotRequired[pulumi.Input[_builtins.str]]
-    group_id: NotRequired[pulumi.Input[_builtins.str]]
-    id: NotRequired[pulumi.Input[_builtins.int]]
-    not_after: NotRequired[pulumi.Input[_builtins.str]]
-    subject: NotRequired[pulumi.Input[_builtins.str]]
+    created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    group_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    not_after: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    subject: NotRequired[pulumi.Input[Optional[_builtins.str]]]
 
 @pulumi.input_type
 class X509AuthenticationDatabaseUserCertificateArgs:
     def __init__(__self__, *,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 group_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 id: Optional[pulumi.Input[_builtins.int]] = None,
-                 not_after: Optional[pulumi.Input[_builtins.str]] = None,
-                 subject: Optional[pulumi.Input[_builtins.str]] = None):
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 id: pulumi.Input[Optional[_builtins.int]] = None,
+                 not_after: pulumi.Input[Optional[_builtins.str]] = None,
+                 subject: pulumi.Input[Optional[_builtins.str]] = None):
         if created_at is not None:
             pulumi.set(__self__, "created_at", created_at)
         if group_id is not None:
@@ -11961,47 +11961,47 @@ class X509AuthenticationDatabaseUserCertificateArgs:
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="groupId")
-    def group_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "group_id")
 
     @group_id.setter
-    def group_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "group_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def id(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "id")
 
     @id.setter
-    def id(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def id(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "id", value)
 
     @_builtins.property
     @pulumi.getter(name="notAfter")
-    def not_after(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def not_after(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "not_after")
 
     @not_after.setter
-    def not_after(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def not_after(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "not_after", value)
 
     @_builtins.property
     @pulumi.getter
-    def subject(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def subject(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "subject")
 
     @subject.setter
-    def subject(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def subject(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "subject", value)
 
 

@@ -23,8 +23,8 @@ class GlobalClusterConfigArgs:
     def __init__(__self__, *,
                  cluster_name: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
-                 custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]] = None,
-                 managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]] = None):
+                 custom_zone_mappings: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]] = None,
+                 managed_namespaces: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]] = None):
         """
         The set of arguments for constructing a GlobalClusterConfig resource.
 
@@ -66,37 +66,37 @@ class GlobalClusterConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="customZoneMappings")
-    def custom_zone_mappings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]]:
+    def custom_zone_mappings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]]:
         """
         Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
         """
         return pulumi.get(self, "custom_zone_mappings")
 
     @custom_zone_mappings.setter
-    def custom_zone_mappings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]]):
+    def custom_zone_mappings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]]):
         pulumi.set(self, "custom_zone_mappings", value)
 
     @_builtins.property
     @pulumi.getter(name="managedNamespaces")
-    def managed_namespaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]]:
+    def managed_namespaces(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]]:
         """
         Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
         """
         return pulumi.get(self, "managed_namespaces")
 
     @managed_namespaces.setter
-    def managed_namespaces(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]]):
+    def managed_namespaces(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]]):
         pulumi.set(self, "managed_namespaces", value)
 
 
 @pulumi.input_type
 class _GlobalClusterConfigState:
     def __init__(__self__, *,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_zone_mapping_zone_id: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]] = None,
-                 managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_zone_mapping_zone_id: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 custom_zone_mappings: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]] = None,
+                 managed_namespaces: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering GlobalClusterConfig resources.
 
@@ -119,62 +119,62 @@ class _GlobalClusterConfigState:
 
     @_builtins.property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Global Cluster.
         """
         return pulumi.get(self, "cluster_name")
 
     @cluster_name.setter
-    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_name", value)
 
     @_builtins.property
     @pulumi.getter(name="customZoneMappingZoneId")
-    def custom_zone_mapping_zone_id(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def custom_zone_mapping_zone_id(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
         """
         return pulumi.get(self, "custom_zone_mapping_zone_id")
 
     @custom_zone_mapping_zone_id.setter
-    def custom_zone_mapping_zone_id(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def custom_zone_mapping_zone_id(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "custom_zone_mapping_zone_id", value)
 
     @_builtins.property
     @pulumi.getter(name="customZoneMappings")
-    def custom_zone_mappings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]]:
+    def custom_zone_mappings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]]:
         """
         Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
         """
         return pulumi.get(self, "custom_zone_mappings")
 
     @custom_zone_mappings.setter
-    def custom_zone_mappings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]]):
+    def custom_zone_mappings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalClusterConfigCustomZoneMappingArgs']]]]):
         pulumi.set(self, "custom_zone_mappings", value)
 
     @_builtins.property
     @pulumi.getter(name="managedNamespaces")
-    def managed_namespaces(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]]:
+    def managed_namespaces(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]]:
         """
         Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
         """
         return pulumi.get(self, "managed_namespaces")
 
     @managed_namespaces.setter
-    def managed_namespaces(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]]):
+    def managed_namespaces(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalClusterConfigManagedNamespaceArgs']]]]):
         pulumi.set(self, "managed_namespaces", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
 
@@ -184,10 +184,10 @@ class GlobalClusterConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict']]]]] = None,
-                 managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_zone_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict']]]]] = None,
+                 managed_namespaces: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `GlobalClusterConfig` provides a Global Cluster Configuration resource.
@@ -363,10 +363,10 @@ class GlobalClusterConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict']]]]] = None,
-                 managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_zone_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict']]]]] = None,
+                 managed_namespaces: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -395,11 +395,11 @@ class GlobalClusterConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-            custom_zone_mapping_zone_id: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            custom_zone_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict']]]]] = None,
-            managed_namespaces: Optional[pulumi.Input[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'GlobalClusterConfig':
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_zone_mapping_zone_id: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            custom_zone_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GlobalClusterConfigCustomZoneMappingArgs', 'GlobalClusterConfigCustomZoneMappingArgsDict']]]]] = None,
+            managed_namespaces: pulumi.Input[Optional[Sequence[pulumi.Input[Union['GlobalClusterConfigManagedNamespaceArgs', 'GlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'GlobalClusterConfig':
         """
         Get an existing GlobalClusterConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -190,35 +190,35 @@ export interface OrgInvitationState {
     /**
      * Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the invitation expires. Users have 30 days to accept an invitation.
      */
-    expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
      */
-    invitationId?: pulumi.Input<string>;
+    invitationId?: pulumi.Input<string | undefined>;
     /**
      * Atlas user who invited `username` to the organization.
      */
-    inviterUsername?: pulumi.Input<string>;
+    inviterUsername?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization to which you want to invite a user.
      */
-    orgId?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string | undefined>;
     /**
      * Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles a user can have.
      */
-    roles?: pulumi.Input<pulumi.Input<string>[]>;
+    roles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * An array of unique 24-hexadecimal digit strings that identify the teams that the user was invited to join.
      */
-    teamsIds?: pulumi.Input<pulumi.Input<string>[]>;
+    teamsIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -236,7 +236,7 @@ export interface OrgInvitationArgs {
     /**
      * An array of unique 24-hexadecimal digit strings that identify the teams that the user was invited to join.
      */
-    teamsIds?: pulumi.Input<pulumi.Input<string>[]>;
+    teamsIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Email address of the invited user. This is the address to which Atlas sends the invite. If the user accepts the invitation, they log in to Atlas with this username.
      */

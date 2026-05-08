@@ -195,9 +195,9 @@ def get_global_cluster_config(cluster_name: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         managed_namespaces=pulumi.get(__ret__, 'managed_namespaces'),
         project_id=pulumi.get(__ret__, 'project_id'))
-def get_global_cluster_config_output(cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                     managed_namespaces: Optional[pulumi.Input[Optional[Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
-                                     project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_global_cluster_config_output(cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                     managed_namespaces: pulumi.Input[Optional[Optional[Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']]]]] = None,
+                                     project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetGlobalClusterConfigResult]:
     """
     `GlobalClusterConfig` describes all managed namespaces and custom zone mappings associated with the specified Global Cluster.

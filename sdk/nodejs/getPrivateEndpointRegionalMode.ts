@@ -82,7 +82,7 @@ export interface GetPrivateEndpointRegionalModeOutputArgs {
     /**
      * Flag that indicates whether the regionalized private endpoitn setting is enabled for the project.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Unique identifier for the project, also known as `groupId` in the official documentation.
      */

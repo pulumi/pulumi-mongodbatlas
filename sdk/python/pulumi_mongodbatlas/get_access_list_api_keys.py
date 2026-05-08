@@ -146,10 +146,10 @@ def get_access_list_api_keys(api_key_id: Optional[_builtins.str] = None,
         org_id=pulumi.get(__ret__, 'org_id'),
         page_num=pulumi.get(__ret__, 'page_num'),
         results=pulumi.get(__ret__, 'results'))
-def get_access_list_api_keys_output(api_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                    items_per_page: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                                    org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                    page_num: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
+def get_access_list_api_keys_output(api_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                    items_per_page: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                                    org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                    page_num: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccessListApiKeysResult]:
     """
     `get_access_list_api_keys` describes all Access List API Key entries. The access list grants access from IPs or CIDRs to clusters within the Project.

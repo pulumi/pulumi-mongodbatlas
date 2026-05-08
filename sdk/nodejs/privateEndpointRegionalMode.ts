@@ -99,11 +99,11 @@ export interface PrivateEndpointRegionalModeState {
      * * More than one private endpoint in one region and one private endpoint in one or more regions.
      * You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -116,7 +116,7 @@ export interface PrivateEndpointRegionalModeArgs {
      * * More than one private endpoint in one region and one private endpoint in one or more regions.
      * You can create only sharded clusters when you enable the regionalized private endpoint setting. You can't create replica sets.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Unique identifier for the project, also known as `groupId` in the official documentation.
      */

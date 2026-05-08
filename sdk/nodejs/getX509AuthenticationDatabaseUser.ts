@@ -197,5 +197,5 @@ export interface GetX509AuthenticationDatabaseUserOutputArgs {
     /**
      * Username of the database user to create a certificate for.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }

@@ -175,32 +175,32 @@ export interface PushBasedLogExportState {
     /**
      * The name of the bucket to which the agent sends the logs to.
      */
-    bucketName?: pulumi.Input<string>;
+    bucketName?: pulumi.Input<string | undefined>;
     /**
      * Date and time that this feature was enabled on.
      */
-    createDate?: pulumi.Input<string>;
+    createDate?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * ID of the AWS IAM role that is used to write to the S3 bucket.
      */
-    iamRoleId?: pulumi.Input<string>;
+    iamRoleId?: pulumi.Input<string | undefined>;
     /**
      * S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
      */
-    prefixPath?: pulumi.Input<string>;
+    prefixPath?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Describes whether or not the feature is enabled and what status it is in.
      */
-    state?: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.PushBasedLogExportTimeouts>;
+    state?: pulumi.Input<string | undefined>;
+    timeouts?: pulumi.Input<inputs.PushBasedLogExportTimeouts | undefined>;
 }
 
 /**
@@ -214,7 +214,7 @@ export interface PushBasedLogExportArgs {
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * ID of the AWS IAM role that is used to write to the S3 bucket.
      */
@@ -222,10 +222,10 @@ export interface PushBasedLogExportArgs {
     /**
      * S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
      */
-    prefixPath?: pulumi.Input<string>;
+    prefixPath?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.PushBasedLogExportTimeouts>;
+    timeouts?: pulumi.Input<inputs.PushBasedLogExportTimeouts | undefined>;
 }

@@ -680,8 +680,8 @@ export interface ClusterState {
     /**
      * If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
      */
-    acceptDataRisksAndForceReplicaSetReconfig?: pulumi.Input<string>;
-    advancedConfiguration?: pulumi.Input<inputs.ClusterAdvancedConfiguration>;
+    acceptDataRisksAndForceReplicaSetReconfig?: pulumi.Input<string | undefined>;
+    advancedConfiguration?: pulumi.Input<inputs.ClusterAdvancedConfiguration | undefined>;
     /**
      * Specifies whether cluster tier auto-scaling is enabled. The default is false.
      * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
@@ -695,12 +695,12 @@ export interface ClusterState {
      * }`
      * But in order to explicitly change `providerInstanceSizeName` comment the `lifecycle` block and run `pulumi up`. Please ensure to uncomment it to prevent any accidental changes.
      */
-    autoScalingComputeEnabled?: pulumi.Input<boolean>;
+    autoScalingComputeEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
      * - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
      */
-    autoScalingComputeScaleDownEnabled?: pulumi.Input<boolean>;
+    autoScalingComputeScaleDownEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies whether disk auto-scaling is enabled. The default is false.
      * - Set to `true` to enable disk auto-scaling.
@@ -716,7 +716,7 @@ export interface ClusterState {
      *
      * > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
      */
-    autoScalingDiskGbEnabled?: pulumi.Input<boolean>;
+    autoScalingDiskGbEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      *
@@ -728,7 +728,7 @@ export interface ClusterState {
      * - GCP - Google Cloud Platform
      * - AZURE - Microsoft Azure
      */
-    backingProviderName?: pulumi.Input<string>;
+    backingProviderName?: pulumi.Input<string | undefined>;
     /**
      * Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
      * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
@@ -740,11 +740,11 @@ export interface ClusterState {
      * ```
      * * The default value is false. M10 and above only.
      */
-    backupEnabled?: pulumi.Input<boolean>;
+    backupEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
-    biConnectorConfig?: pulumi.Input<inputs.ClusterBiConnectorConfig>;
+    biConnectorConfig?: pulumi.Input<inputs.ClusterBiConnectorConfig | undefined>;
     /**
      * Flag indicating if the cluster uses Cloud Backup for backups.
      *
@@ -754,11 +754,11 @@ export interface ClusterState {
      *
      * > **IMPORTANT:** If setting to true for an existing cluster or imported cluster be sure to run terraform refresh after applying to enable modification of the Cloud Backup Snapshot Policy going forward.
      */
-    cloudBackup?: pulumi.Input<boolean>;
+    cloudBackup?: pulumi.Input<boolean | undefined>;
     /**
      * The cluster ID.
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
     /**
      * Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
      *
@@ -770,15 +770,15 @@ export interface ClusterState {
      * - `SHARDED` Sharded cluster
      * - `GEOSHARDED` Global Cluster
      */
-    clusterType?: pulumi.Input<string>;
+    clusterType?: pulumi.Input<string | undefined>;
     /**
      * Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
-    connectionStrings?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionString>[]>;
+    connectionStrings?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionString>[] | undefined>;
     /**
      * The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
      */
-    containerId?: pulumi.Input<string>;
+    containerId?: pulumi.Input<string | undefined>;
     /**
      * Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
      * * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
@@ -786,43 +786,43 @@ export interface ClusterState {
      * * Cannot be used with clusters with local NVMe SSDs
      * * Cannot be used with Azure clusters
      */
-    diskSizeGb?: pulumi.Input<number>;
+    diskSizeGb?: pulumi.Input<number | undefined>;
     /**
      * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
      */
-    encryptionAtRestProvider?: pulumi.Input<string>;
+    encryptionAtRestProvider?: pulumi.Input<string | undefined>;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      */
-    labels?: pulumi.Input<pulumi.Input<inputs.ClusterLabel>[]>;
+    labels?: pulumi.Input<pulumi.Input<inputs.ClusterLabel>[] | undefined>;
     /**
      * Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
      */
-    mongoDbMajorVersion?: pulumi.Input<string>;
+    mongoDbMajorVersion?: pulumi.Input<string | undefined>;
     /**
      * Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
      */
-    mongoDbVersion?: pulumi.Input<string>;
+    mongoDbVersion?: pulumi.Input<string | undefined>;
     /**
      * Base connection string for the cluster. Atlas only displays this field after the cluster is operational, not while it builds the cluster.
      */
-    mongoUri?: pulumi.Input<string>;
+    mongoUri?: pulumi.Input<string | undefined>;
     /**
      * Lists when the connection string was last updated. The connection string changes, for example, if you change a replica set to a sharded cluster.
      */
-    mongoUriUpdated?: pulumi.Input<string>;
+    mongoUriUpdated?: pulumi.Input<string | undefined>;
     /**
      * connection string for connecting to the Atlas cluster. Includes the replicaSet, ssl, and authSource query parameters in the connection string with values appropriate for the cluster.
      */
-    mongoUriWithOptions?: pulumi.Input<string>;
+    mongoUriWithOptions?: pulumi.Input<string | undefined>;
     /**
      * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      */
-    numShards?: pulumi.Input<number>;
+    numShards?: pulumi.Input<number | undefined>;
     /**
      * Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters)  
      * **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
@@ -830,47 +830,47 @@ export interface ClusterState {
      * ignoreChanges = [paused]
      * }`
      */
-    paused?: pulumi.Input<boolean>;
+    paused?: pulumi.Input<boolean | undefined>;
     /**
      * Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongoDbMajorVersion`. It is advised that updates to `pinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
      */
-    pinnedFcv?: pulumi.Input<inputs.ClusterPinnedFcv>;
+    pinnedFcv?: pulumi.Input<inputs.ClusterPinnedFcv | undefined>;
     /**
      * Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
      */
-    pitEnabled?: pulumi.Input<boolean>;
+    pitEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
      */
-    providerAutoScalingComputeMaxInstanceSize?: pulumi.Input<string>;
+    providerAutoScalingComputeMaxInstanceSize?: pulumi.Input<string | undefined>;
     /**
      * Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
      */
-    providerAutoScalingComputeMinInstanceSize?: pulumi.Input<string>;
+    providerAutoScalingComputeMinInstanceSize?: pulumi.Input<string | undefined>;
     /**
      * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
      * * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
      */
-    providerDiskIops?: pulumi.Input<number>;
+    providerDiskIops?: pulumi.Input<number | undefined>;
     /**
      * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
      */
-    providerDiskTypeName?: pulumi.Input<string>;
+    providerDiskTypeName?: pulumi.Input<string | undefined>;
     /**
      * **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
      *
      * @deprecated All EBS volumes are encrypted by default, the option to disable encryption has been removed
      */
-    providerEncryptEbsVolume?: pulumi.Input<boolean>;
-    providerEncryptEbsVolumeFlag?: pulumi.Input<boolean>;
+    providerEncryptEbsVolume?: pulumi.Input<boolean | undefined>;
+    providerEncryptEbsVolumeFlag?: pulumi.Input<boolean | undefined>;
     /**
      * Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
      */
-    providerInstanceSizeName?: pulumi.Input<string>;
+    providerInstanceSizeName?: pulumi.Input<string | undefined>;
     /**
      * Cloud service provider on which the servers are provisioned.
      *
@@ -881,41 +881,41 @@ export interface ClusterState {
      * - `AZURE` - Microsoft Azure
      * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
      */
-    providerName?: pulumi.Input<string>;
+    providerName?: pulumi.Input<string | undefined>;
     /**
      * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      * Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
      */
-    providerRegionName?: pulumi.Input<string>;
+    providerRegionName?: pulumi.Input<string | undefined>;
     /**
      * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
      * > **NOTE:** `STANDARD` is not available for NVME clusters.
      */
-    providerVolumeType?: pulumi.Input<string>;
+    providerVolumeType?: pulumi.Input<string | undefined>;
     /**
      * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
      */
-    redactClientLogData?: pulumi.Input<boolean>;
+    redactClientLogData?: pulumi.Input<boolean | undefined>;
     /**
      * Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      */
-    replicationFactor?: pulumi.Input<number>;
+    replicationFactor?: pulumi.Input<number | undefined>;
     /**
      * Configuration for cluster regions.  See Replication Spec below for more details.
      */
-    replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[]>;
+    replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[] | undefined>;
     /**
      * - (Optional) Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
      */
-    retainBackupsEnabled?: pulumi.Input<boolean>;
+    retainBackupsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * current snapshot schedule and retention settings for the cluster.
      */
-    snapshotBackupPolicies?: pulumi.Input<pulumi.Input<inputs.ClusterSnapshotBackupPolicy>[]>;
+    snapshotBackupPolicies?: pulumi.Input<pulumi.Input<inputs.ClusterSnapshotBackupPolicy>[] | undefined>;
     /**
      * Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
      */
-    srvAddress?: pulumi.Input<string>;
+    srvAddress?: pulumi.Input<string | undefined>;
     /**
      * Current state of the cluster. The possible states are:
      * - IDLE
@@ -925,21 +925,21 @@ export interface ClusterState {
      * - DELETED
      * - REPAIRING
      */
-    stateName?: pulumi.Input<string>;
+    stateName?: pulumi.Input<string | undefined>;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      */
-    tags?: pulumi.Input<pulumi.Input<inputs.ClusterTag>[]>;
+    tags?: pulumi.Input<pulumi.Input<inputs.ClusterTag>[] | undefined>;
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
-    terminationProtectionEnabled?: pulumi.Input<boolean>;
+    terminationProtectionEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
      * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
      * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
      */
-    versionReleaseSystem?: pulumi.Input<string>;
+    versionReleaseSystem?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -949,8 +949,8 @@ export interface ClusterArgs {
     /**
      * If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
      */
-    acceptDataRisksAndForceReplicaSetReconfig?: pulumi.Input<string>;
-    advancedConfiguration?: pulumi.Input<inputs.ClusterAdvancedConfiguration>;
+    acceptDataRisksAndForceReplicaSetReconfig?: pulumi.Input<string | undefined>;
+    advancedConfiguration?: pulumi.Input<inputs.ClusterAdvancedConfiguration | undefined>;
     /**
      * Specifies whether cluster tier auto-scaling is enabled. The default is false.
      * - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
@@ -964,12 +964,12 @@ export interface ClusterArgs {
      * }`
      * But in order to explicitly change `providerInstanceSizeName` comment the `lifecycle` block and run `pulumi up`. Please ensure to uncomment it to prevent any accidental changes.
      */
-    autoScalingComputeEnabled?: pulumi.Input<boolean>;
+    autoScalingComputeEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
      * - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
      */
-    autoScalingComputeScaleDownEnabled?: pulumi.Input<boolean>;
+    autoScalingComputeScaleDownEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies whether disk auto-scaling is enabled. The default is false.
      * - Set to `true` to enable disk auto-scaling.
@@ -985,7 +985,7 @@ export interface ClusterArgs {
      *
      * > **NOTE:** If `providerName` is set to `TENANT`, the parameter `autoScalingDiskGbEnabled` will be ignored.
      */
-    autoScalingDiskGbEnabled?: pulumi.Input<boolean>;
+    autoScalingDiskGbEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Cloud service provider on which the server for a multi-tenant cluster is provisioned.
      *
@@ -997,7 +997,7 @@ export interface ClusterArgs {
      * - GCP - Google Cloud Platform
      * - AZURE - Microsoft Azure
      */
-    backingProviderName?: pulumi.Input<string>;
+    backingProviderName?: pulumi.Input<string | undefined>;
     /**
      * Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
      * **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
@@ -1009,11 +1009,11 @@ export interface ClusterArgs {
      * ```
      * * The default value is false. M10 and above only.
      */
-    backupEnabled?: pulumi.Input<boolean>;
+    backupEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
      */
-    biConnectorConfig?: pulumi.Input<inputs.ClusterBiConnectorConfig>;
+    biConnectorConfig?: pulumi.Input<inputs.ClusterBiConnectorConfig | undefined>;
     /**
      * Flag indicating if the cluster uses Cloud Backup for backups.
      *
@@ -1023,7 +1023,7 @@ export interface ClusterArgs {
      *
      * > **IMPORTANT:** If setting to true for an existing cluster or imported cluster be sure to run terraform refresh after applying to enable modification of the Cloud Backup Snapshot Policy going forward.
      */
-    cloudBackup?: pulumi.Input<boolean>;
+    cloudBackup?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
      *
@@ -1035,7 +1035,7 @@ export interface ClusterArgs {
      * - `SHARDED` Sharded cluster
      * - `GEOSHARDED` Global Cluster
      */
-    clusterType?: pulumi.Input<string>;
+    clusterType?: pulumi.Input<string | undefined>;
     /**
      * Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
      * * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
@@ -1043,27 +1043,27 @@ export interface ClusterArgs {
      * * Cannot be used with clusters with local NVMe SSDs
      * * Cannot be used with Azure clusters
      */
-    diskSizeGb?: pulumi.Input<number>;
+    diskSizeGb?: pulumi.Input<number | undefined>;
     /**
      * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
      */
-    encryptionAtRestProvider?: pulumi.Input<string>;
+    encryptionAtRestProvider?: pulumi.Input<string | undefined>;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
      */
-    labels?: pulumi.Input<pulumi.Input<inputs.ClusterLabel>[]>;
+    labels?: pulumi.Input<pulumi.Input<inputs.ClusterLabel>[] | undefined>;
     /**
      * Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
      */
-    mongoDbMajorVersion?: pulumi.Input<string>;
+    mongoDbMajorVersion?: pulumi.Input<string | undefined>;
     /**
      * Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      */
-    numShards?: pulumi.Input<number>;
+    numShards?: pulumi.Input<number | undefined>;
     /**
      * Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters)  
      * **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
@@ -1071,15 +1071,15 @@ export interface ClusterArgs {
      * ignoreChanges = [paused]
      * }`
      */
-    paused?: pulumi.Input<boolean>;
+    paused?: pulumi.Input<boolean | undefined>;
     /**
      * Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinnedFcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongoDbMajorVersion`. It is advised that updates to `pinnedFcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinnedFcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
      */
-    pinnedFcv?: pulumi.Input<inputs.ClusterPinnedFcv>;
+    pinnedFcv?: pulumi.Input<inputs.ClusterPinnedFcv | undefined>;
     /**
      * Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloudBackup must also be set to true.
      */
-    pitEnabled?: pulumi.Input<boolean>;
+    pitEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
      */
@@ -1087,26 +1087,26 @@ export interface ClusterArgs {
     /**
      * Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
      */
-    providerAutoScalingComputeMaxInstanceSize?: pulumi.Input<string>;
+    providerAutoScalingComputeMaxInstanceSize?: pulumi.Input<string | undefined>;
     /**
      * Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
      */
-    providerAutoScalingComputeMinInstanceSize?: pulumi.Input<string>;
+    providerAutoScalingComputeMinInstanceSize?: pulumi.Input<string | undefined>;
     /**
      * The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `providerInstanceSizeName` and `diskSizeGb`.  This setting requires that `providerInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `providerDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
      * * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
      */
-    providerDiskIops?: pulumi.Input<number>;
+    providerDiskIops?: pulumi.Input<number | undefined>;
     /**
      * Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
      */
-    providerDiskTypeName?: pulumi.Input<string>;
+    providerDiskTypeName?: pulumi.Input<string | undefined>;
     /**
      * **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
      *
      * @deprecated All EBS volumes are encrypted by default, the option to disable encryption has been removed
      */
-    providerEncryptEbsVolume?: pulumi.Input<boolean>;
+    providerEncryptEbsVolume?: pulumi.Input<boolean | undefined>;
     /**
      * Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
      */
@@ -1126,40 +1126,40 @@ export interface ClusterArgs {
      * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      * Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
      */
-    providerRegionName?: pulumi.Input<string>;
+    providerRegionName?: pulumi.Input<string | undefined>;
     /**
      * The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
      * > **NOTE:** `STANDARD` is not available for NVME clusters.
      */
-    providerVolumeType?: pulumi.Input<string>;
+    providerVolumeType?: pulumi.Input<string | undefined>;
     /**
      * Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `mongodbatlas.AdvancedCluster`.
      */
-    redactClientLogData?: pulumi.Input<boolean>;
+    redactClientLogData?: pulumi.Input<boolean | undefined>;
     /**
      * Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
      */
-    replicationFactor?: pulumi.Input<number>;
+    replicationFactor?: pulumi.Input<number | undefined>;
     /**
      * Configuration for cluster regions.  See Replication Spec below for more details.
      */
-    replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[]>;
+    replicationSpecs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpec>[] | undefined>;
     /**
      * - (Optional) Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
      */
-    retainBackupsEnabled?: pulumi.Input<boolean>;
+    retainBackupsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      */
-    tags?: pulumi.Input<pulumi.Input<inputs.ClusterTag>[]>;
+    tags?: pulumi.Input<pulumi.Input<inputs.ClusterTag>[] | undefined>;
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
-    terminationProtectionEnabled?: pulumi.Input<boolean>;
+    terminationProtectionEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongoDbMajorVersion` field. Atlas accepts:
      * - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
      * - `LTS`: Atlas creates your cluster using the latest patch release of the MongoDB version that you specify in the mongoDBMajorVersion field. Atlas automatically updates your cluster to subsequent patch releases of this MongoDB version. Atlas doesn't update your cluster to newer rapid or major MongoDB releases as they become available.
      */
-    versionReleaseSystem?: pulumi.Input<string>;
+    versionReleaseSystem?: pulumi.Input<string | undefined>;
 }

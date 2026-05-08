@@ -192,7 +192,7 @@ def get_maintenance_window(project_id: Optional[_builtins.str] = None,
         protected_hours=pulumi.get(__ret__, 'protected_hours'),
         start_asap=pulumi.get(__ret__, 'start_asap'),
         time_zone_id=pulumi.get(__ret__, 'time_zone_id'))
-def get_maintenance_window_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_maintenance_window_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMaintenanceWindowResult]:
     """
     `MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.

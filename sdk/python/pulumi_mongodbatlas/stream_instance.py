@@ -24,7 +24,7 @@ class StreamInstanceArgs:
                  data_process_region: pulumi.Input['StreamInstanceDataProcessRegionArgs'],
                  instance_name: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
-                 stream_config: Optional[pulumi.Input['StreamInstanceStreamConfigArgs']] = None):
+                 stream_config: pulumi.Input[Optional['StreamInstanceStreamConfigArgs']] = None):
         """
         The set of arguments for constructing a StreamInstance resource.
 
@@ -77,25 +77,25 @@ class StreamInstanceArgs:
 
     @_builtins.property
     @pulumi.getter(name="streamConfig")
-    def stream_config(self) -> Optional[pulumi.Input['StreamInstanceStreamConfigArgs']]:
+    def stream_config(self) -> pulumi.Input[Optional['StreamInstanceStreamConfigArgs']]:
         """
         Configuration options for an Atlas Stream Processing Instance. See stream config
         """
         return pulumi.get(self, "stream_config")
 
     @stream_config.setter
-    def stream_config(self, value: Optional[pulumi.Input['StreamInstanceStreamConfigArgs']]):
+    def stream_config(self, value: pulumi.Input[Optional['StreamInstanceStreamConfigArgs']]):
         pulumi.set(self, "stream_config", value)
 
 
 @pulumi.input_type
 class _StreamInstanceState:
     def __init__(__self__, *,
-                 data_process_region: Optional[pulumi.Input['StreamInstanceDataProcessRegionArgs']] = None,
-                 hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 instance_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 stream_config: Optional[pulumi.Input['StreamInstanceStreamConfigArgs']] = None):
+                 data_process_region: pulumi.Input[Optional['StreamInstanceDataProcessRegionArgs']] = None,
+                 hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 stream_config: pulumi.Input[Optional['StreamInstanceStreamConfigArgs']] = None):
         """
         Input properties used for looking up and filtering StreamInstance resources.
 
@@ -118,62 +118,62 @@ class _StreamInstanceState:
 
     @_builtins.property
     @pulumi.getter(name="dataProcessRegion")
-    def data_process_region(self) -> Optional[pulumi.Input['StreamInstanceDataProcessRegionArgs']]:
+    def data_process_region(self) -> pulumi.Input[Optional['StreamInstanceDataProcessRegionArgs']]:
         """
         Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
         """
         return pulumi.get(self, "data_process_region")
 
     @data_process_region.setter
-    def data_process_region(self, value: Optional[pulumi.Input['StreamInstanceDataProcessRegionArgs']]):
+    def data_process_region(self, value: pulumi.Input[Optional['StreamInstanceDataProcessRegionArgs']]):
         pulumi.set(self, "data_process_region", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostnames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def hostnames(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List that contains the hostnames assigned to the stream instance.
         """
         return pulumi.get(self, "hostnames")
 
     @hostnames.setter
-    def hostnames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def hostnames(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "hostnames", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceName")
-    def instance_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that identifies the stream instance.
         """
         return pulumi.get(self, "instance_name")
 
     @instance_name.setter
-    def instance_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="streamConfig")
-    def stream_config(self) -> Optional[pulumi.Input['StreamInstanceStreamConfigArgs']]:
+    def stream_config(self) -> pulumi.Input[Optional['StreamInstanceStreamConfigArgs']]:
         """
         Configuration options for an Atlas Stream Processing Instance. See stream config
         """
         return pulumi.get(self, "stream_config")
 
     @stream_config.setter
-    def stream_config(self, value: Optional[pulumi.Input['StreamInstanceStreamConfigArgs']]):
+    def stream_config(self, value: pulumi.Input[Optional['StreamInstanceStreamConfigArgs']]):
         pulumi.set(self, "stream_config", value)
 
 
@@ -183,10 +183,10 @@ class StreamInstance(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 data_process_region: Optional[pulumi.Input[Union['StreamInstanceDataProcessRegionArgs', 'StreamInstanceDataProcessRegionArgsDict']]] = None,
-                 instance_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 stream_config: Optional[pulumi.Input[Union['StreamInstanceStreamConfigArgs', 'StreamInstanceStreamConfigArgsDict']]] = None,
+                 data_process_region: pulumi.Input[Optional[Union['StreamInstanceDataProcessRegionArgs', 'StreamInstanceDataProcessRegionArgsDict']]] = None,
+                 instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 stream_config: pulumi.Input[Optional[Union['StreamInstanceStreamConfigArgs', 'StreamInstanceStreamConfigArgsDict']]] = None,
                  __props__=None):
         """
         > **DEPRECATED:** This resource is deprecated. Please use `StreamWorkspace` instead.
@@ -300,10 +300,10 @@ class StreamInstance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 data_process_region: Optional[pulumi.Input[Union['StreamInstanceDataProcessRegionArgs', 'StreamInstanceDataProcessRegionArgsDict']]] = None,
-                 instance_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 stream_config: Optional[pulumi.Input[Union['StreamInstanceStreamConfigArgs', 'StreamInstanceStreamConfigArgsDict']]] = None,
+                 data_process_region: pulumi.Input[Optional[Union['StreamInstanceDataProcessRegionArgs', 'StreamInstanceDataProcessRegionArgsDict']]] = None,
+                 instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 stream_config: pulumi.Input[Optional[Union['StreamInstanceStreamConfigArgs', 'StreamInstanceStreamConfigArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -334,11 +334,11 @@ class StreamInstance(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            data_process_region: Optional[pulumi.Input[Union['StreamInstanceDataProcessRegionArgs', 'StreamInstanceDataProcessRegionArgsDict']]] = None,
-            hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            instance_name: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            stream_config: Optional[pulumi.Input[Union['StreamInstanceStreamConfigArgs', 'StreamInstanceStreamConfigArgsDict']]] = None) -> 'StreamInstance':
+            data_process_region: pulumi.Input[Optional[Union['StreamInstanceDataProcessRegionArgs', 'StreamInstanceDataProcessRegionArgsDict']]] = None,
+            hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            stream_config: pulumi.Input[Optional[Union['StreamInstanceStreamConfigArgs', 'StreamInstanceStreamConfigArgsDict']]] = None) -> 'StreamInstance':
         """
         Get an existing StreamInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

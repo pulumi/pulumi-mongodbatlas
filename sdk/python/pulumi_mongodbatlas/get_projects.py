@@ -124,8 +124,8 @@ def get_projects(items_per_page: Optional[_builtins.int] = None,
         page_num=pulumi.get(__ret__, 'page_num'),
         results=pulumi.get(__ret__, 'results'),
         total_count=pulumi.get(__ret__, 'total_count'))
-def get_projects_output(items_per_page: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                        page_num: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
+def get_projects_output(items_per_page: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                        page_num: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectsResult]:
     """
     `get_projects` describes all Projects. This represents projects that have been created.

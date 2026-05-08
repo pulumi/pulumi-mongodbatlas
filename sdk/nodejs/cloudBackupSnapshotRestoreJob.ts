@@ -139,7 +139,7 @@ import * as utilities from "./utilities";
  *             pointInTime: true,
  *             targetClusterName: clusterTest.name,
  *             targetProjectId: clusterTest.projectId,
- *             pointInTimeUtcSeconds: pointInTimeUtcSeconds,
+ *             pointInTimeUtcSeconds: Number(pointInTimeUtcSeconds),
  *         },
  *     }));
  * }
@@ -316,11 +316,11 @@ export interface CloudBackupSnapshotRestoreJobState {
     /**
      * Indicates whether the restore job was canceled.
      */
-    cancelled?: pulumi.Input<boolean>;
+    cancelled?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the Atlas cluster whose snapshot you want to restore.
      */
-    clusterName?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string | undefined>;
     /**
      * Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
      * * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -332,39 +332,39 @@ export interface CloudBackupSnapshotRestoreJobState {
      * * `delivery_type_config.oplog_inc` - Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplogTs`.
      * * `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
      */
-    deliveryTypeConfig?: pulumi.Input<inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig>;
+    deliveryTypeConfig?: pulumi.Input<inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig | undefined>;
     /**
      * One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
      */
-    deliveryUrls?: pulumi.Input<pulumi.Input<string>[]>;
+    deliveryUrls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Indicates whether the restore job expired.
      */
-    expired?: pulumi.Input<boolean>;
+    expired?: pulumi.Input<boolean | undefined>;
     /**
      * UTC ISO 8601 formatted point in time when the restore job expires.
      */
-    expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether the restore job failed.
      */
-    failed?: pulumi.Input<boolean>;
+    failed?: pulumi.Input<boolean | undefined>;
     /**
      * UTC ISO 8601 formatted point in time when the restore job completed.
      */
-    finishedAt?: pulumi.Input<string>;
+    finishedAt?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
      */
-    snapshotId?: pulumi.Input<string>;
+    snapshotId?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the restore job.
      */
-    snapshotRestoreJobId?: pulumi.Input<string>;
+    snapshotRestoreJobId?: pulumi.Input<string | undefined>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
      * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
@@ -382,7 +382,7 @@ export interface CloudBackupSnapshotRestoreJobState {
      * * Enable Continuous Cloud Backup on your cluster.
      * * Specify either pointInTimeUTCSeconds or oplogTs and oplogInc, but not both.
      */
-    timestamp?: pulumi.Input<string>;
+    timestamp?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -404,7 +404,7 @@ export interface CloudBackupSnapshotRestoreJobArgs {
      * * `delivery_type_config.oplog_inc` - Optional setting for **pointInTime** configuration. Oplog operation number from which to you want to restore this snapshot. This is the second part of an Oplog timestamp. Used in conjunction with `oplogTs`.
      * * `delivery_type_config.point_in_time_utc_seconds` - Optional setting for **pointInTime** configuration. Timestamp in the number of seconds that have elapsed since the UNIX epoch from which you want to restore this snapshot. Used instead of oplog settings.
      */
-    deliveryTypeConfig?: pulumi.Input<inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig>;
+    deliveryTypeConfig?: pulumi.Input<inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig | undefined>;
     /**
      * The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
      */
@@ -412,5 +412,5 @@ export interface CloudBackupSnapshotRestoreJobArgs {
     /**
      * Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
      */
-    snapshotId?: pulumi.Input<string>;
+    snapshotId?: pulumi.Input<string | undefined>;
 }

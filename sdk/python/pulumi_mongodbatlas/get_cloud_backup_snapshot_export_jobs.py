@@ -165,10 +165,10 @@ def get_cloud_backup_snapshot_export_jobs(cluster_name: Optional[_builtins.str] 
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
         total_count=pulumi.get(__ret__, 'total_count'))
-def get_cloud_backup_snapshot_export_jobs_output(cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                                 items_per_page: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                                                 page_num: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                                                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_cloud_backup_snapshot_export_jobs_output(cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                                 items_per_page: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                                                 page_num: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                                                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupSnapshotExportJobsResult]:
     """
     `get_cloud_backup_snapshot_export_jobs` datasource allows you to retrieve all the buckets for the specified project.

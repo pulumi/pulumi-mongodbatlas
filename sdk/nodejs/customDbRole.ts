@@ -200,12 +200,12 @@ export class CustomDbRole extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CustomDbRole resources.
  */
 export interface CustomDbRoleState {
-    actions?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleAction>[]>;
-    inheritedRoles?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleInheritedRole>[]>;
+    actions?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleAction>[] | undefined>;
+    inheritedRoles?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleInheritedRole>[] | undefined>;
     /**
      * The unique ID for the project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Name of the custom role.
      *
@@ -216,15 +216,15 @@ export interface CustomDbRoleState {
      * * Is `atlasAdmin`
      * * Starts with `xgen-`
      */
-    roleName?: pulumi.Input<string>;
+    roleName?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a CustomDbRole resource.
  */
 export interface CustomDbRoleArgs {
-    actions?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleAction>[]>;
-    inheritedRoles?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleInheritedRole>[]>;
+    actions?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleAction>[] | undefined>;
+    inheritedRoles?: pulumi.Input<pulumi.Input<inputs.CustomDbRoleInheritedRole>[] | undefined>;
     /**
      * The unique ID for the project, also known as `groupId` in the official documentation.
      */

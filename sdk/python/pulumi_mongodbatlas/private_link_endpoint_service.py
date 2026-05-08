@@ -25,10 +25,10 @@ class PrivateLinkEndpointServiceArgs:
                  private_link_id: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
                  provider_name: pulumi.Input[_builtins.str],
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]] = None,
-                 gcp_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_endpoint_ip_address: Optional[pulumi.Input[_builtins.str]] = None):
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 endpoints: pulumi.Input[Optional[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]] = None,
+                 gcp_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_endpoint_ip_address: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a PrivateLinkEndpointService resource.
 
@@ -104,75 +104,75 @@ class PrivateLinkEndpointServiceArgs:
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
-    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_on_create_timeout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
     @delete_on_create_timeout.setter
-    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]]:
+    def endpoints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]]:
         """
         Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpoint_service_id` and `private_endpoint_ip_address` instead.
         """
         return pulumi.get(self, "endpoints")
 
     @endpoints.setter
-    def endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]]):
+    def endpoints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]]):
         pulumi.set(self, "endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="gcpProjectId")
-    def gcp_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gcp_project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
         """
         return pulumi.get(self, "gcp_project_id")
 
     @gcp_project_id.setter
-    def gcp_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gcp_project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gcp_project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="privateEndpointIpAddress")
-    def private_endpoint_ip_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_endpoint_ip_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
         """
         return pulumi.get(self, "private_endpoint_ip_address")
 
     @private_endpoint_ip_address.setter
-    def private_endpoint_ip_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_endpoint_ip_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_endpoint_ip_address", value)
 
 
 @pulumi.input_type
 class _PrivateLinkEndpointServiceState:
     def __init__(__self__, *,
-                 aws_connection_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 azure_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 delete_requested: Optional[pulumi.Input[_builtins.bool]] = None,
-                 endpoint_group_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoint_service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]] = None,
-                 error_message: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcp_endpoint_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcp_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 gcp_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 interface_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 port_mapping_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 private_endpoint_connection_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_endpoint_ip_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_endpoint_resource_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_link_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 aws_connection_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 azure_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 delete_requested: pulumi.Input[Optional[_builtins.bool]] = None,
+                 endpoint_group_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoint_service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoints: pulumi.Input[Optional[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]] = None,
+                 error_message: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcp_endpoint_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcp_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 gcp_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 interface_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 port_mapping_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 private_endpoint_connection_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_endpoint_ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_endpoint_resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_link_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering PrivateLinkEndpointService resources.
 
@@ -253,7 +253,7 @@ class _PrivateLinkEndpointServiceState:
 
     @_builtins.property
     @pulumi.getter(name="awsConnectionStatus")
-    def aws_connection_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_connection_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Status of the interface endpoint for AWS.
         Returns one of the following values:
@@ -267,12 +267,12 @@ class _PrivateLinkEndpointServiceState:
         return pulumi.get(self, "aws_connection_status")
 
     @aws_connection_status.setter
-    def aws_connection_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_connection_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_connection_status", value)
 
     @_builtins.property
     @pulumi.getter(name="azureStatus")
-    def azure_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def azure_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Status of the interface endpoint for AZURE.
         Returns one of the following values:
@@ -284,105 +284,105 @@ class _PrivateLinkEndpointServiceState:
         return pulumi.get(self, "azure_status")
 
     @azure_status.setter
-    def azure_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def azure_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "azure_status", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
-    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_on_create_timeout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
     @delete_on_create_timeout.setter
-    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteRequested")
-    def delete_requested(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_requested(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
         """
         return pulumi.get(self, "delete_requested")
 
     @delete_requested.setter
-    def delete_requested(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_requested(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_requested", value)
 
     @_builtins.property
     @pulumi.getter(name="endpointGroupName")
-    def endpoint_group_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint_group_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "endpoint_group_name")
 
     @endpoint_group_name.setter
-    def endpoint_group_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint_group_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint_group_name", value)
 
     @_builtins.property
     @pulumi.getter(name="endpointServiceId")
-    def endpoint_service_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def endpoint_service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
         """
         return pulumi.get(self, "endpoint_service_id")
 
     @endpoint_service_id.setter
-    def endpoint_service_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def endpoint_service_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "endpoint_service_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def endpoints(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]]:
+    def endpoints(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]]:
         """
         Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpoint_service_id` and `private_endpoint_ip_address` instead.
         """
         return pulumi.get(self, "endpoints")
 
     @endpoints.setter
-    def endpoints(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]]):
+    def endpoints(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['PrivateLinkEndpointServiceEndpointArgs']]]]):
         pulumi.set(self, "endpoints", value)
 
     @_builtins.property
     @pulumi.getter(name="errorMessage")
-    def error_message(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def error_message(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Error message pertaining to the interface endpoint. Returns null if there are no errors.
         """
         return pulumi.get(self, "error_message")
 
     @error_message.setter
-    def error_message(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def error_message(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "error_message", value)
 
     @_builtins.property
     @pulumi.getter(name="gcpEndpointStatus")
-    def gcp_endpoint_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gcp_endpoint_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Status of the individual endpoint. Only populated for port-mapped architecture. Returns one of the following values: `INITIATING`, `AVAILABLE`, `FAILED`, `DELETING`.
         """
         return pulumi.get(self, "gcp_endpoint_status")
 
     @gcp_endpoint_status.setter
-    def gcp_endpoint_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gcp_endpoint_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gcp_endpoint_status", value)
 
     @_builtins.property
     @pulumi.getter(name="gcpProjectId")
-    def gcp_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gcp_project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
         """
         return pulumi.get(self, "gcp_project_id")
 
     @gcp_project_id.setter
-    def gcp_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gcp_project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gcp_project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="gcpStatus")
-    def gcp_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def gcp_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Status of the interface endpoint.
         Returns one of the following values:
@@ -394,103 +394,103 @@ class _PrivateLinkEndpointServiceState:
         return pulumi.get(self, "gcp_status")
 
     @gcp_status.setter
-    def gcp_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def gcp_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "gcp_status", value)
 
     @_builtins.property
     @pulumi.getter(name="interfaceEndpointId")
-    def interface_endpoint_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def interface_endpoint_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the interface endpoint.
         """
         return pulumi.get(self, "interface_endpoint_id")
 
     @interface_endpoint_id.setter
-    def interface_endpoint_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def interface_endpoint_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "interface_endpoint_id", value)
 
     @_builtins.property
     @pulumi.getter(name="portMappingEnabled")
-    def port_mapping_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def port_mapping_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the underlying `privatelink_endpoint` resource uses GCP port-mapping. This is a read-only attribute that reflects the architecture type. When `true`, the endpoint service uses the port-mapped architecture. When `false`, it uses the GCP legacy private endpoint architecture. Only applicable for GCP provider.
         """
         return pulumi.get(self, "port_mapping_enabled")
 
     @port_mapping_enabled.setter
-    def port_mapping_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def port_mapping_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "port_mapping_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="privateEndpointConnectionName")
-    def private_endpoint_connection_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_endpoint_connection_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the connection for this private endpoint that Atlas generates.
         """
         return pulumi.get(self, "private_endpoint_connection_name")
 
     @private_endpoint_connection_name.setter
-    def private_endpoint_connection_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_endpoint_connection_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_endpoint_connection_name", value)
 
     @_builtins.property
     @pulumi.getter(name="privateEndpointIpAddress")
-    def private_endpoint_ip_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_endpoint_ip_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
         """
         return pulumi.get(self, "private_endpoint_ip_address")
 
     @private_endpoint_ip_address.setter
-    def private_endpoint_ip_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_endpoint_ip_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_endpoint_ip_address", value)
 
     @_builtins.property
     @pulumi.getter(name="privateEndpointResourceId")
-    def private_endpoint_resource_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_endpoint_resource_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the private endpoint.
         """
         return pulumi.get(self, "private_endpoint_resource_id")
 
     @private_endpoint_resource_id.setter
-    def private_endpoint_resource_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_endpoint_resource_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_endpoint_resource_id", value)
 
     @_builtins.property
     @pulumi.getter(name="privateLinkId")
-    def private_link_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_link_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
         """
         return pulumi.get(self, "private_link_id")
 
     @private_link_id.setter
-    def private_link_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_link_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_link_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="providerName")
-    def provider_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cloud provider for which you want to create a private endpoint. Atlas accepts `AWS`, `AZURE` or `GCP`.
         """
         return pulumi.get(self, "provider_name")
 
     @provider_name.setter
-    def provider_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_name", value)
 
 
@@ -500,14 +500,14 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 endpoint_service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]]] = None,
-                 gcp_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_endpoint_ip_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_link_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 endpoint_service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]]] = None,
+                 gcp_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_endpoint_ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_link_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `PrivateLinkEndpointService` provides a Private Endpoint Interface Link resource. This represents a Private Endpoint Interface Link, which adds one [Interface Endpoint](https://www.mongodb.com/docs/atlas/security-private-endpoint/#private-endpoint-concepts) to a private endpoint connection in an Atlas project.
@@ -605,6 +605,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_google as google
         import pulumi_mongodbatlas as mongodbatlas
 
@@ -625,7 +626,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             region=gcp_region,
             network=default.id)
         # Create Google 50 Addresses (required for GCP legacy private endpoint architecture)
-        default_compute_address = []
+        default_compute_address: list[Any] = []
         for range in [{"value": i} for i in range(0, 50)]:
             default_compute_address.append(google.ComputeAddress(f"default-{range['value']}",
                 project=default_compute_subnetwork.project,
@@ -636,7 +637,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                 region=gcp_region,
                 opts = pulumi.ResourceOptions(depends_on=[this])))
         # Create 50 Forwarding rules (required for GCP legacy private endpoint architecture)
-        default_compute_forwarding_rule = []
+        default_compute_forwarding_rule: list[Any] = []
         for range in [{"value": i} for i in range(0, 50)]:
             default_compute_forwarding_rule.append(google.ComputeForwardingRule(f"default-{range['value']}",
                 target=this.service_attachment_names[range.value],
@@ -650,7 +651,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             endpoints=[{
                 "ip_address": entry["value"]["address"],
                 "endpoint_name": default_compute_forwarding_rule[entry["key"]]["name"],
-            } for entry in [{"key": k, "value": v} for k, v in default_compute_address.items()]],
+            } for entry in [{"key": k, "value": v} for k, v in sorted(default_compute_address.items())]],
             project_id=this.project_id,
             private_link_id=this.private_link_id,
             provider_name="GCP",
@@ -846,6 +847,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
 
         ```python
         import pulumi
+        from typing import Any
         import pulumi_google as google
         import pulumi_mongodbatlas as mongodbatlas
 
@@ -866,7 +868,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             region=gcp_region,
             network=default.id)
         # Create Google 50 Addresses (required for GCP legacy private endpoint architecture)
-        default_compute_address = []
+        default_compute_address: list[Any] = []
         for range in [{"value": i} for i in range(0, 50)]:
             default_compute_address.append(google.ComputeAddress(f"default-{range['value']}",
                 project=default_compute_subnetwork.project,
@@ -877,7 +879,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                 region=gcp_region,
                 opts = pulumi.ResourceOptions(depends_on=[this])))
         # Create 50 Forwarding rules (required for GCP legacy private endpoint architecture)
-        default_compute_forwarding_rule = []
+        default_compute_forwarding_rule: list[Any] = []
         for range in [{"value": i} for i in range(0, 50)]:
             default_compute_forwarding_rule.append(google.ComputeForwardingRule(f"default-{range['value']}",
                 target=this.service_attachment_names[range.value],
@@ -891,7 +893,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             endpoints=[{
                 "ip_address": entry["value"]["address"],
                 "endpoint_name": default_compute_forwarding_rule[entry["key"]]["name"],
-            } for entry in [{"key": k, "value": v} for k, v in default_compute_address.items()]],
+            } for entry in [{"key": k, "value": v} for k, v in sorted(default_compute_address.items())]],
             project_id=this.project_id,
             private_link_id=this.private_link_id,
             provider_name="GCP",
@@ -989,14 +991,14 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 endpoint_service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]]] = None,
-                 gcp_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_endpoint_ip_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_link_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 endpoint_service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]]] = None,
+                 gcp_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_endpoint_ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_link_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1043,25 +1045,25 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            aws_connection_status: Optional[pulumi.Input[_builtins.str]] = None,
-            azure_status: Optional[pulumi.Input[_builtins.str]] = None,
-            delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-            delete_requested: Optional[pulumi.Input[_builtins.bool]] = None,
-            endpoint_group_name: Optional[pulumi.Input[_builtins.str]] = None,
-            endpoint_service_id: Optional[pulumi.Input[_builtins.str]] = None,
-            endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]]] = None,
-            error_message: Optional[pulumi.Input[_builtins.str]] = None,
-            gcp_endpoint_status: Optional[pulumi.Input[_builtins.str]] = None,
-            gcp_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            gcp_status: Optional[pulumi.Input[_builtins.str]] = None,
-            interface_endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-            port_mapping_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            private_endpoint_connection_name: Optional[pulumi.Input[_builtins.str]] = None,
-            private_endpoint_ip_address: Optional[pulumi.Input[_builtins.str]] = None,
-            private_endpoint_resource_id: Optional[pulumi.Input[_builtins.str]] = None,
-            private_link_id: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            provider_name: Optional[pulumi.Input[_builtins.str]] = None) -> 'PrivateLinkEndpointService':
+            aws_connection_status: pulumi.Input[Optional[_builtins.str]] = None,
+            azure_status: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            delete_requested: pulumi.Input[Optional[_builtins.bool]] = None,
+            endpoint_group_name: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoint_service_id: pulumi.Input[Optional[_builtins.str]] = None,
+            endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]]] = None,
+            error_message: pulumi.Input[Optional[_builtins.str]] = None,
+            gcp_endpoint_status: pulumi.Input[Optional[_builtins.str]] = None,
+            gcp_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            gcp_status: pulumi.Input[Optional[_builtins.str]] = None,
+            interface_endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+            port_mapping_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            private_endpoint_connection_name: pulumi.Input[Optional[_builtins.str]] = None,
+            private_endpoint_ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+            private_endpoint_resource_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_link_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_name: pulumi.Input[Optional[_builtins.str]] = None) -> 'PrivateLinkEndpointService':
         """
         Get an existing PrivateLinkEndpointService resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

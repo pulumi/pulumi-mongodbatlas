@@ -276,63 +276,63 @@ export interface OnlineArchiveState {
     /**
      * ID of the online archive.
      */
-    archiveId?: pulumi.Input<string>;
+    archiveId?: pulumi.Input<string | undefined>;
     /**
      * Name of the cluster that contains the collection.
      */
-    clusterName?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string | undefined>;
     /**
      * Name of the collection.
      */
-    collName?: pulumi.Input<string>;
+    collName?: pulumi.Input<string | undefined>;
     /**
      * Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
      */
-    collectionType?: pulumi.Input<string>;
+    collectionType?: pulumi.Input<string | undefined>;
     /**
      * Criteria to use for archiving data. See criteria.
      */
-    criteria?: pulumi.Input<inputs.OnlineArchiveCriteria>;
+    criteria?: pulumi.Input<inputs.OnlineArchiveCriteria | undefined>;
     /**
      * Rule for specifying when data should be deleted from the archive. See data expiration rule.
      */
-    dataExpirationRule?: pulumi.Input<inputs.OnlineArchiveDataExpirationRule>;
+    dataExpirationRule?: pulumi.Input<inputs.OnlineArchiveDataExpirationRule | undefined>;
     /**
      * Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
      */
-    dataProcessRegion?: pulumi.Input<inputs.OnlineArchiveDataProcessRegion>;
+    dataProcessRegion?: pulumi.Input<inputs.OnlineArchiveDataProcessRegion | undefined>;
     /**
      * Name of the database that contains the collection.
      */
-    dbName?: pulumi.Input<string>;
+    dbName?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `dateField`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      */
-    partitionFields?: pulumi.Input<pulumi.Input<inputs.OnlineArchivePartitionField>[]>;
+    partitionFields?: pulumi.Input<pulumi.Input<inputs.OnlineArchivePartitionField>[] | undefined>;
     /**
      * State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      */
-    paused?: pulumi.Input<boolean>;
+    paused?: pulumi.Input<boolean | undefined>;
     /**
      * The unique ID for the project, also known as `groupId` in the official documentation
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Regular frequency and duration when archiving process occurs. See schedule.
      */
-    schedule?: pulumi.Input<inputs.OnlineArchiveSchedule>;
+    schedule?: pulumi.Input<inputs.OnlineArchiveSchedule | undefined>;
     /**
      * Status of the online archive. Valid values are: Pending, Archiving, Idle, Pausing, Paused, Orphaned and Deleted
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
      */
-    syncCreation?: pulumi.Input<boolean>;
+    syncCreation?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -350,7 +350,7 @@ export interface OnlineArchiveArgs {
     /**
      * Type of MongoDB collection that you want to return. This value can be "TIMESERIES" or "STANDARD". Default is "STANDARD".
      */
-    collectionType?: pulumi.Input<string>;
+    collectionType?: pulumi.Input<string | undefined>;
     /**
      * Criteria to use for archiving data. See criteria.
      */
@@ -358,11 +358,11 @@ export interface OnlineArchiveArgs {
     /**
      * Rule for specifying when data should be deleted from the archive. See data expiration rule.
      */
-    dataExpirationRule?: pulumi.Input<inputs.OnlineArchiveDataExpirationRule>;
+    dataExpirationRule?: pulumi.Input<inputs.OnlineArchiveDataExpirationRule | undefined>;
     /**
      * Settings to configure the region where you wish to store your archived data. See data process region. This field is immutable hence cannot be updated.
      */
-    dataProcessRegion?: pulumi.Input<inputs.OnlineArchiveDataProcessRegion>;
+    dataProcessRegion?: pulumi.Input<inputs.OnlineArchiveDataProcessRegion | undefined>;
     /**
      * Name of the database that contains the collection.
      */
@@ -370,15 +370,15 @@ export interface OnlineArchiveArgs {
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * Fields to use to partition data. You can specify up to two frequently queried fields (or up to three fields when one of them is `dateField`) to use for partitioning data. Queries that don’t contain the specified fields require a full collection scan of all archived documents, which takes longer and increases your costs. To learn more about how partition improves query performance, see [Data Structure in S3](https://www.mongodb.com/docs/atlas/data-federation/admin/optimize-query-performance/#data-structure-in-s3). The value of a partition field can be up to a maximum of 700 characters. Documents with values exceeding 700 characters are not archived. See partition fields.
      */
-    partitionFields?: pulumi.Input<pulumi.Input<inputs.OnlineArchivePartitionField>[]>;
+    partitionFields?: pulumi.Input<pulumi.Input<inputs.OnlineArchivePartitionField>[] | undefined>;
     /**
      * State of the online archive. This is required for pausing an active online archive or resuming a paused online archive. If the collection has another active online archive, the resume request fails.
      */
-    paused?: pulumi.Input<boolean>;
+    paused?: pulumi.Input<boolean | undefined>;
     /**
      * The unique ID for the project, also known as `groupId` in the official documentation
      */
@@ -386,9 +386,9 @@ export interface OnlineArchiveArgs {
     /**
      * Regular frequency and duration when archiving process occurs. See schedule.
      */
-    schedule?: pulumi.Input<inputs.OnlineArchiveSchedule>;
+    schedule?: pulumi.Input<inputs.OnlineArchiveSchedule | undefined>;
     /**
      * Flag that indicates whether the provider will wait for the state of the online archive to reach `IDLE` or `ACTIVE` when creating an online archive. Defaults to `false`.
      */
-    syncCreation?: pulumi.Input<boolean>;
+    syncCreation?: pulumi.Input<boolean | undefined>;
 }

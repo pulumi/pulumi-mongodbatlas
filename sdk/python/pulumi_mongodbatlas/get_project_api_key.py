@@ -163,8 +163,8 @@ def get_project_api_key(api_key_id: Optional[_builtins.str] = None,
         project_assignments=pulumi.get(__ret__, 'project_assignments'),
         project_id=pulumi.get(__ret__, 'project_id'),
         public_key=pulumi.get(__ret__, 'public_key'))
-def get_project_api_key_output(api_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                               project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_project_api_key_output(api_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                               project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectApiKeyResult]:
     """
     `ProjectApiKey` describes a MongoDB Atlas Project API Key. This represents a Project API Key that has been created.

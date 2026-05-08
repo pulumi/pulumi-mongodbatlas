@@ -122,8 +122,8 @@ def get_privatelink_endpoints(project_id: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         provider_name=pulumi.get(__ret__, 'provider_name'),
         results=pulumi.get(__ret__, 'results'))
-def get_privatelink_endpoints_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                     provider_name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_privatelink_endpoints_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                     provider_name: pulumi.Input[Optional[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivatelinkEndpointsResult]:
     """
     `get_privatelink_endpoints` describes all Private Endpoints for a given cloud provider in an Atlas project.

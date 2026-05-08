@@ -242,75 +242,75 @@ export interface CloudBackupSnapshotState {
     /**
      * Cloud provider that stores this snapshot.
      */
-    cloudProvider?: pulumi.Input<string>;
+    cloudProvider?: pulumi.Input<string | undefined>;
     /**
      * The name of the Atlas cluster that contains the snapshots you want to retrieve.
      */
-    clusterName?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string | undefined>;
     /**
      * UTC ISO 8601 formatted point in time when Atlas took the snapshot.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * Description of the on-demand snapshot.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
      */
-    expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string | undefined>;
     /**
      * Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
      */
-    masterKeyUuid?: pulumi.Input<string>;
+    masterKeyUuid?: pulumi.Input<string | undefined>;
     /**
      * Block of List of snapshots and the cloud provider where the snapshots are stored. Atlas returns this parameter when `type` is `shardedCluster`. See below
      */
-    members?: pulumi.Input<pulumi.Input<inputs.CloudBackupSnapshotMember>[]>;
+    members?: pulumi.Input<pulumi.Input<inputs.CloudBackupSnapshotMember>[] | undefined>;
     /**
      * Version of the MongoDB server.
      */
-    mongodVersion?: pulumi.Input<string>;
+    mongodVersion?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Label given to a shard or config server from which Atlas took this snapshot.
      */
-    replicaSetName?: pulumi.Input<string>;
+    replicaSetName?: pulumi.Input<string | undefined>;
     /**
      * The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
      */
-    retentionInDays?: pulumi.Input<number>;
+    retentionInDays?: pulumi.Input<number | undefined>;
     /**
      * Unique identifier of the snapshot.
      */
-    snapshotId?: pulumi.Input<string>;
+    snapshotId?: pulumi.Input<string | undefined>;
     /**
      * Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
      */
-    snapshotIds?: pulumi.Input<pulumi.Input<string>[]>;
+    snapshotIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Specified the type of snapshot. Valid values are onDemand and scheduled.
      */
-    snapshotType?: pulumi.Input<string>;
+    snapshotType?: pulumi.Input<string | undefined>;
     /**
      * Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Specifies the size of the snapshot in bytes.
      */
-    storageSizeBytes?: pulumi.Input<number>;
+    storageSizeBytes?: pulumi.Input<number | undefined>;
     /**
      * Specifies the type of cluster: replicaSet or shardedCluster.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -324,7 +324,7 @@ export interface CloudBackupSnapshotArgs {
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * Description of the on-demand snapshot.
      */

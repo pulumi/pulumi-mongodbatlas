@@ -178,9 +178,9 @@ def get_encryption_at_rest_private_endpoint(cloud_provider: Optional[_builtins.s
         project_id=pulumi.get(__ret__, 'project_id'),
         region_name=pulumi.get(__ret__, 'region_name'),
         status=pulumi.get(__ret__, 'status'))
-def get_encryption_at_rest_private_endpoint_output(cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                                                   id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                   project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_encryption_at_rest_private_endpoint_output(cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                                                   id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                   project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEncryptionAtRestPrivateEndpointResult]:
     """
     `EncryptionAtRestPrivateEndpoint` describes a private endpoint used for encryption at rest using customer-managed keys.

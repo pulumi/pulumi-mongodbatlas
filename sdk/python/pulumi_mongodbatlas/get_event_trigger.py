@@ -343,9 +343,9 @@ def get_event_trigger(app_id: Optional[_builtins.str] = None,
         trigger_id=pulumi.get(__ret__, 'trigger_id'),
         type=pulumi.get(__ret__, 'type'),
         unordered=pulumi.get(__ret__, 'unordered'))
-def get_event_trigger_output(app_id: Optional[pulumi.Input[_builtins.str]] = None,
-                             project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                             trigger_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_event_trigger_output(app_id: pulumi.Input[Optional[_builtins.str]] = None,
+                             project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                             trigger_id: pulumi.Input[Optional[_builtins.str]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEventTriggerResult]:
     """
     `EventTrigger` describes an Event Trigger.

@@ -24,10 +24,10 @@ class MaintenanceWindowArgs:
                  day_of_week: pulumi.Input[_builtins.int],
                  hour_of_day: pulumi.Input[_builtins.int],
                  project_id: pulumi.Input[_builtins.str],
-                 auto_defer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_defer_once_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 defer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 protected_hours: Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']] = None):
+                 auto_defer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_defer_once_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 defer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 protected_hours: pulumi.Input[Optional['MaintenanceWindowProtectedHoursArgs']] = None):
         """
         The set of arguments for constructing a MaintenanceWindow resource.
 
@@ -89,66 +89,66 @@ class MaintenanceWindowArgs:
 
     @_builtins.property
     @pulumi.getter(name="autoDefer")
-    def auto_defer(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_defer(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `auto_defer_once_enabled` instead.** <!-- see CLOUDP-375465 for details -->
         """
         return pulumi.get(self, "auto_defer")
 
     @auto_defer.setter
-    def auto_defer(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_defer(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_defer", value)
 
     @_builtins.property
     @pulumi.getter(name="autoDeferOnceEnabled")
-    def auto_defer_once_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_defer_once_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `auto_defer` is used to toggle the underlying flag, it will also affect the value of this attribute.
         """
         return pulumi.get(self, "auto_defer_once_enabled")
 
     @auto_defer_once_enabled.setter
-    def auto_defer_once_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_defer_once_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_defer_once_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def defer(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def defer(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         """
         return pulumi.get(self, "defer")
 
     @defer.setter
-    def defer(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def defer(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "defer", value)
 
     @_builtins.property
     @pulumi.getter(name="protectedHours")
-    def protected_hours(self) -> Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']]:
+    def protected_hours(self) -> pulumi.Input[Optional['MaintenanceWindowProtectedHoursArgs']]:
         """
         Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
         """
         return pulumi.get(self, "protected_hours")
 
     @protected_hours.setter
-    def protected_hours(self, value: Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']]):
+    def protected_hours(self, value: pulumi.Input[Optional['MaintenanceWindowProtectedHoursArgs']]):
         pulumi.set(self, "protected_hours", value)
 
 
 @pulumi.input_type
 class _MaintenanceWindowState:
     def __init__(__self__, *,
-                 auto_defer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_defer_once_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 day_of_week: Optional[pulumi.Input[_builtins.int]] = None,
-                 defer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 hour_of_day: Optional[pulumi.Input[_builtins.int]] = None,
-                 number_of_deferrals: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protected_hours: Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']] = None,
-                 start_asap: Optional[pulumi.Input[_builtins.bool]] = None,
-                 time_zone_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 auto_defer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_defer_once_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 day_of_week: pulumi.Input[Optional[_builtins.int]] = None,
+                 defer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 hour_of_day: pulumi.Input[Optional[_builtins.int]] = None,
+                 number_of_deferrals: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protected_hours: pulumi.Input[Optional['MaintenanceWindowProtectedHoursArgs']] = None,
+                 start_asap: pulumi.Input[Optional[_builtins.bool]] = None,
+                 time_zone_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MaintenanceWindow resources.
 
@@ -186,122 +186,122 @@ class _MaintenanceWindowState:
 
     @_builtins.property
     @pulumi.getter(name="autoDefer")
-    def auto_defer(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_defer(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `auto_defer_once_enabled` instead.** <!-- see CLOUDP-375465 for details -->
         """
         return pulumi.get(self, "auto_defer")
 
     @auto_defer.setter
-    def auto_defer(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_defer(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_defer", value)
 
     @_builtins.property
     @pulumi.getter(name="autoDeferOnceEnabled")
-    def auto_defer_once_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_defer_once_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `auto_defer` is used to toggle the underlying flag, it will also affect the value of this attribute.
         """
         return pulumi.get(self, "auto_defer_once_enabled")
 
     @auto_defer_once_enabled.setter
-    def auto_defer_once_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_defer_once_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_defer_once_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="dayOfWeek")
-    def day_of_week(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def day_of_week(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         """
         return pulumi.get(self, "day_of_week")
 
     @day_of_week.setter
-    def day_of_week(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def day_of_week(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "day_of_week", value)
 
     @_builtins.property
     @pulumi.getter
-    def defer(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def defer(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         """
         return pulumi.get(self, "defer")
 
     @defer.setter
-    def defer(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def defer(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "defer", value)
 
     @_builtins.property
     @pulumi.getter(name="hourOfDay")
-    def hour_of_day(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def hour_of_day(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         """
         return pulumi.get(self, "hour_of_day")
 
     @hour_of_day.setter
-    def hour_of_day(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def hour_of_day(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "hour_of_day", value)
 
     @_builtins.property
     @pulumi.getter(name="numberOfDeferrals")
-    def number_of_deferrals(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def number_of_deferrals(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
         """
         return pulumi.get(self, "number_of_deferrals")
 
     @number_of_deferrals.setter
-    def number_of_deferrals(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def number_of_deferrals(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "number_of_deferrals", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="protectedHours")
-    def protected_hours(self) -> Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']]:
+    def protected_hours(self) -> pulumi.Input[Optional['MaintenanceWindowProtectedHoursArgs']]:
         """
         Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
         """
         return pulumi.get(self, "protected_hours")
 
     @protected_hours.setter
-    def protected_hours(self, value: Optional[pulumi.Input['MaintenanceWindowProtectedHoursArgs']]):
+    def protected_hours(self, value: pulumi.Input[Optional['MaintenanceWindowProtectedHoursArgs']]):
         pulumi.set(self, "protected_hours", value)
 
     @_builtins.property
     @pulumi.getter(name="startAsap")
-    def start_asap(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def start_asap(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
         """
         return pulumi.get(self, "start_asap")
 
     @start_asap.setter
-    def start_asap(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def start_asap(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "start_asap", value)
 
     @_builtins.property
     @pulumi.getter(name="timeZoneId")
-    def time_zone_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def time_zone_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
         """
         return pulumi.get(self, "time_zone_id")
 
     @time_zone_id.setter
-    def time_zone_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def time_zone_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "time_zone_id", value)
 
 
@@ -311,13 +311,13 @@ class MaintenanceWindow(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_defer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_defer_once_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 day_of_week: Optional[pulumi.Input[_builtins.int]] = None,
-                 defer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 hour_of_day: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protected_hours: Optional[pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
+                 auto_defer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_defer_once_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 day_of_week: pulumi.Input[Optional[_builtins.int]] = None,
+                 defer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 hour_of_day: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protected_hours: pulumi.Input[Optional[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
                  __props__=None):
         """
         `MaintenanceWindow` provides a resource to schedule the maintenance window for your MongoDB Atlas Project and/or set to defer a scheduled maintenance up to two times. Please refer to [Maintenance Windows](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/#configure-maintenance-window) documentation for more details.
@@ -500,13 +500,13 @@ class MaintenanceWindow(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_defer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_defer_once_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 day_of_week: Optional[pulumi.Input[_builtins.int]] = None,
-                 defer: Optional[pulumi.Input[_builtins.bool]] = None,
-                 hour_of_day: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protected_hours: Optional[pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
+                 auto_defer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_defer_once_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 day_of_week: pulumi.Input[Optional[_builtins.int]] = None,
+                 defer: pulumi.Input[Optional[_builtins.bool]] = None,
+                 hour_of_day: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protected_hours: pulumi.Input[Optional[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -542,16 +542,16 @@ class MaintenanceWindow(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            auto_defer: Optional[pulumi.Input[_builtins.bool]] = None,
-            auto_defer_once_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            day_of_week: Optional[pulumi.Input[_builtins.int]] = None,
-            defer: Optional[pulumi.Input[_builtins.bool]] = None,
-            hour_of_day: Optional[pulumi.Input[_builtins.int]] = None,
-            number_of_deferrals: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            protected_hours: Optional[pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
-            start_asap: Optional[pulumi.Input[_builtins.bool]] = None,
-            time_zone_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'MaintenanceWindow':
+            auto_defer: pulumi.Input[Optional[_builtins.bool]] = None,
+            auto_defer_once_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            day_of_week: pulumi.Input[Optional[_builtins.int]] = None,
+            defer: pulumi.Input[Optional[_builtins.bool]] = None,
+            hour_of_day: pulumi.Input[Optional[_builtins.int]] = None,
+            number_of_deferrals: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            protected_hours: pulumi.Input[Optional[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
+            start_asap: pulumi.Input[Optional[_builtins.bool]] = None,
+            time_zone_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'MaintenanceWindow':
         """
         Get an existing MaintenanceWindow resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

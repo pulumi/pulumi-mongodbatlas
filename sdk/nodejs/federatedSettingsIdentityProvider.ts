@@ -244,83 +244,83 @@ export interface FederatedSettingsIdentityProviderState {
     /**
      * List that contains the domains associated with the identity provider.
      */
-    associatedDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    associatedDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Identifier of the intended recipient of the token used in OIDC IdP.
      */
-    audience?: pulumi.Input<string>;
+    audience?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
      */
-    authorizationType?: pulumi.Input<string>;
+    authorizationType?: pulumi.Input<string | undefined>;
     /**
      * Client identifier that is assigned to an application by the OIDC Identity Provider.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The description of the identity provider.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
-    federationSettingsId?: pulumi.Input<string>;
+    federationSettingsId?: pulumi.Input<string | undefined>;
     /**
      * Identifier of the claim which contains OIDC IdP Group IDs in the token.
      */
-    groupsClaim?: pulumi.Input<string>;
+    groupsClaim?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the IdP.
      */
-    idpId?: pulumi.Input<string>;
-    idpType?: pulumi.Input<string>;
+    idpId?: pulumi.Input<string | undefined>;
+    idpType?: pulumi.Input<string | undefined>;
     /**
      * Unique string that identifies the issuer of the IdP.
      */
-    issuerUri?: pulumi.Input<string>;
+    issuerUri?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label that identifies the identity provider.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Unique 20-hexadecimal digit string that identifies the IdP.
      */
-    oktaIdpId?: pulumi.Input<string>;
+    oktaIdpId?: pulumi.Input<string | undefined>;
     /**
      * The protocol of the identity provider. Either `SAML` or `OIDC`.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
      * - HTTP POST
      * - HTTP REDIRECT
      */
-    requestBinding?: pulumi.Input<string>;
+    requestBinding?: pulumi.Input<string | undefined>;
     /**
      * Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
      */
-    requestedScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    requestedScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
      */
-    responseSignatureAlgorithm?: pulumi.Input<string>;
+    responseSignatureAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether the identity provider has SSO debug enabled.
      */
-    ssoDebugEnabled?: pulumi.Input<boolean>;
+    ssoDebugEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Unique string that identifies the intended audience of the SAML assertion.
      */
-    ssoUrl?: pulumi.Input<string>;
+    ssoUrl?: pulumi.Input<string | undefined>;
     /**
      * String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
      * userClaim is required for OIDC IdP with authorizationType GROUP and USER.
      */
-    userClaim?: pulumi.Input<string>;
+    userClaim?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -330,23 +330,23 @@ export interface FederatedSettingsIdentityProviderArgs {
     /**
      * List that contains the domains associated with the identity provider.
      */
-    associatedDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    associatedDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Identifier of the intended recipient of the token used in OIDC IdP.
      */
-    audience?: pulumi.Input<string>;
+    audience?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
      */
-    authorizationType?: pulumi.Input<string>;
+    authorizationType?: pulumi.Input<string | undefined>;
     /**
      * Client identifier that is assigned to an application by the OIDC Identity Provider.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The description of the identity provider.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
@@ -354,8 +354,8 @@ export interface FederatedSettingsIdentityProviderArgs {
     /**
      * Identifier of the claim which contains OIDC IdP Group IDs in the token.
      */
-    groupsClaim?: pulumi.Input<string>;
-    idpType?: pulumi.Input<string>;
+    groupsClaim?: pulumi.Input<string | undefined>;
+    idpType?: pulumi.Input<string | undefined>;
     /**
      * Unique string that identifies the issuer of the IdP.
      */
@@ -363,40 +363,40 @@ export interface FederatedSettingsIdentityProviderArgs {
     /**
      * Human-readable label that identifies the identity provider.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The protocol of the identity provider. Either `SAML` or `OIDC`.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
     /**
      * SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
      * - HTTP POST
      * - HTTP REDIRECT
      */
-    requestBinding?: pulumi.Input<string>;
+    requestBinding?: pulumi.Input<string | undefined>;
     /**
      * Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
      */
-    requestedScopes?: pulumi.Input<pulumi.Input<string>[]>;
+    requestedScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
      */
-    responseSignatureAlgorithm?: pulumi.Input<string>;
+    responseSignatureAlgorithm?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether the identity provider has SSO debug enabled.
      */
-    ssoDebugEnabled?: pulumi.Input<boolean>;
+    ssoDebugEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Unique string that identifies the intended audience of the SAML assertion.
      */
-    ssoUrl?: pulumi.Input<string>;
+    ssoUrl?: pulumi.Input<string | undefined>;
     /**
      * String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
      * userClaim is required for OIDC IdP with authorizationType GROUP and USER.
      */
-    userClaim?: pulumi.Input<string>;
+    userClaim?: pulumi.Input<string | undefined>;
 }

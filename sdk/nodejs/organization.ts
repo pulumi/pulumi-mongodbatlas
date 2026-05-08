@@ -200,7 +200,7 @@ export interface OrganizationState {
     /**
      * Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
      */
-    apiAccessListRequired?: pulumi.Input<boolean>;
+    apiAccessListRequired?: pulumi.Input<boolean | undefined>;
     /**
      * Programmatic API Key description. This attribute is required in creation and can't be updated later.
      *
@@ -210,61 +210,61 @@ export interface OrganizationState {
      * - In case of importing the resource, no organization-specific credentials are stored and provider credentials are used instead.
      * - Terraform state contains sensitive credential data. Follow Terraform's best practices for sensitive data in state.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can't be updated after creation.
      */
-    federationSettingsId?: pulumi.Input<string>;
+    federationSettingsId?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
      */
-    genAiFeaturesEnabled?: pulumi.Input<boolean>;
+    genAiFeaturesEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
      */
-    multiFactorAuthRequired?: pulumi.Input<boolean>;
+    multiFactorAuthRequired?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the organization.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The organization id.
      */
-    orgId?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
      */
-    orgOwnerId?: pulumi.Input<string>;
+    orgOwnerId?: pulumi.Input<string | undefined>;
     /**
      * Private key returned for this organization API key. This key displays unredacted when first created and is stored in the Terraform state file. Used for subsequent resource operations. Only populated when no `serviceAccount` block is defined.
      */
-    privateKey?: pulumi.Input<string>;
+    privateKey?: pulumi.Input<string | undefined>;
     /**
      * Public API key value set for the specified organization API key. Stored in the Terraform state and used for subsequent resource operations. Only populated when no `serviceAccount` block is defined.
      */
-    publicKey?: pulumi.Input<string>;
+    publicKey?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
      */
-    restrictEmployeeAccess?: pulumi.Input<boolean>;
+    restrictEmployeeAccess?: pulumi.Input<boolean | undefined>;
     /**
      * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
      */
-    roleNames?: pulumi.Input<pulumi.Input<string>[]>;
+    roleNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
      */
-    securityContact?: pulumi.Input<string>;
+    securityContact?: pulumi.Input<string | undefined>;
     /**
      * Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can't be updated after creation. See Service Account.
      */
-    serviceAccount?: pulumi.Input<inputs.OrganizationServiceAccount>;
+    serviceAccount?: pulumi.Input<inputs.OrganizationServiceAccount | undefined>;
     /**
      * Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`. 
      *
      * > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true`.
      */
-    skipDefaultAlertsSettings?: pulumi.Input<boolean>;
+    skipDefaultAlertsSettings?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -274,7 +274,7 @@ export interface OrganizationArgs {
     /**
      * Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
      */
-    apiAccessListRequired?: pulumi.Input<boolean>;
+    apiAccessListRequired?: pulumi.Input<boolean | undefined>;
     /**
      * Programmatic API Key description. This attribute is required in creation and can't be updated later.
      *
@@ -284,47 +284,47 @@ export interface OrganizationArgs {
      * - In case of importing the resource, no organization-specific credentials are stored and provider credentials are used instead.
      * - Terraform state contains sensitive credential data. Follow Terraform's best practices for sensitive data in state.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can't be updated after creation.
      */
-    federationSettingsId?: pulumi.Input<string>;
+    federationSettingsId?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
      */
-    genAiFeaturesEnabled?: pulumi.Input<boolean>;
+    genAiFeaturesEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
      */
-    multiFactorAuthRequired?: pulumi.Input<boolean>;
+    multiFactorAuthRequired?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the organization.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
      */
-    orgOwnerId?: pulumi.Input<string>;
+    orgOwnerId?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
      */
-    restrictEmployeeAccess?: pulumi.Input<boolean>;
+    restrictEmployeeAccess?: pulumi.Input<boolean | undefined>;
     /**
      * List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
      */
-    roleNames?: pulumi.Input<pulumi.Input<string>[]>;
+    roleNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
      */
-    securityContact?: pulumi.Input<string>;
+    securityContact?: pulumi.Input<string | undefined>;
     /**
      * Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `roleNames`. This block can't be updated after creation. See Service Account.
      */
-    serviceAccount?: pulumi.Input<inputs.OrganizationServiceAccount>;
+    serviceAccount?: pulumi.Input<inputs.OrganizationServiceAccount | undefined>;
     /**
      * Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`. 
      *
      * > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true`.
      */
-    skipDefaultAlertsSettings?: pulumi.Input<boolean>;
+    skipDefaultAlertsSettings?: pulumi.Input<boolean | undefined>;
 }

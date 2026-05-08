@@ -140,8 +140,8 @@ def get_stream_workspace(project_id: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         stream_config=pulumi.get(__ret__, 'stream_config'),
         workspace_name=pulumi.get(__ret__, 'workspace_name'))
-def get_stream_workspace_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                workspace_name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_stream_workspace_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                workspace_name: pulumi.Input[Optional[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamWorkspaceResult]:
     """
     `StreamWorkspace` describes a stream workspace that contains configurations for stream processing.

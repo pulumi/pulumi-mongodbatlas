@@ -21,23 +21,23 @@ class ThirdPartyIntegrationArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 channel_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 microsoft_teams_webhook_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 send_collection_latency_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 send_database_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 send_query_stats_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 send_user_provided_resource_tags: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_discovery: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 channel_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 microsoft_teams_webhook_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 send_collection_latency_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_database_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_query_stats_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_user_provided_resource_tags: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_discovery: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ThirdPartyIntegration resource.
 
@@ -127,180 +127,180 @@ class ThirdPartyIntegrationArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_key")
 
     @api_key.setter
-    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_key", value)
 
     @_builtins.property
     @pulumi.getter(name="channelName")
-    def channel_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def channel_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "channel_name")
 
     @channel_name.setter
-    def channel_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def channel_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "channel_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="microsoftTeamsWebhookUrl")
-    def microsoft_teams_webhook_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def microsoft_teams_webhook_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "microsoft_teams_webhook_url")
 
     @microsoft_teams_webhook_url.setter
-    def microsoft_teams_webhook_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def microsoft_teams_webhook_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "microsoft_teams_webhook_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="routingKey")
-    def routing_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def routing_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "routing_key")
 
     @routing_key.setter
-    def routing_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def routing_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "routing_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "secret")
 
     @secret.setter
-    def secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret", value)
 
     @_builtins.property
     @pulumi.getter(name="sendCollectionLatencyMetrics")
-    def send_collection_latency_metrics(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def send_collection_latency_metrics(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "send_collection_latency_metrics")
 
     @send_collection_latency_metrics.setter
-    def send_collection_latency_metrics(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def send_collection_latency_metrics(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "send_collection_latency_metrics", value)
 
     @_builtins.property
     @pulumi.getter(name="sendDatabaseMetrics")
-    def send_database_metrics(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def send_database_metrics(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "send_database_metrics")
 
     @send_database_metrics.setter
-    def send_database_metrics(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def send_database_metrics(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "send_database_metrics", value)
 
     @_builtins.property
     @pulumi.getter(name="sendQueryStatsMetrics")
-    def send_query_stats_metrics(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def send_query_stats_metrics(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "send_query_stats_metrics")
 
     @send_query_stats_metrics.setter
-    def send_query_stats_metrics(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def send_query_stats_metrics(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "send_query_stats_metrics", value)
 
     @_builtins.property
     @pulumi.getter(name="sendUserProvidedResourceTags")
-    def send_user_provided_resource_tags(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def send_user_provided_resource_tags(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "send_user_provided_resource_tags")
 
     @send_user_provided_resource_tags.setter
-    def send_user_provided_resource_tags(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def send_user_provided_resource_tags(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "send_user_provided_resource_tags", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceDiscovery")
-    def service_discovery(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_discovery(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "service_discovery")
 
     @service_discovery.setter
-    def service_discovery(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_discovery(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_discovery", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceKey")
-    def service_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "service_key")
 
     @service_key.setter
-    def service_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_key", value)
 
     @_builtins.property
     @pulumi.getter(name="teamName")
-    def team_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def team_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "team_name")
 
     @team_name.setter
-    def team_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def team_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "team_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
     @_builtins.property
     @pulumi.getter(name="userName")
-    def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "user_name")
 
     @user_name.setter
-    def user_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_name", value)
 
 
 @pulumi.input_type
 class _ThirdPartyIntegrationState:
     def __init__(__self__, *,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 channel_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 microsoft_teams_webhook_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 send_collection_latency_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 send_database_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 send_query_stats_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 send_user_provided_resource_tags: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_discovery: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 channel_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 microsoft_teams_webhook_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 send_collection_latency_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_database_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_query_stats_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_user_provided_resource_tags: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_discovery: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ThirdPartyIntegration resources.
 
@@ -358,154 +358,154 @@ class _ThirdPartyIntegrationState:
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_key")
 
     @api_key.setter
-    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_key", value)
 
     @_builtins.property
     @pulumi.getter(name="channelName")
-    def channel_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def channel_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "channel_name")
 
     @channel_name.setter
-    def channel_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def channel_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "channel_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="microsoftTeamsWebhookUrl")
-    def microsoft_teams_webhook_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def microsoft_teams_webhook_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "microsoft_teams_webhook_url")
 
     @microsoft_teams_webhook_url.setter
-    def microsoft_teams_webhook_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def microsoft_teams_webhook_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "microsoft_teams_webhook_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="routingKey")
-    def routing_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def routing_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "routing_key")
 
     @routing_key.setter
-    def routing_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def routing_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "routing_key", value)
 
     @_builtins.property
     @pulumi.getter
-    def secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "secret")
 
     @secret.setter
-    def secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret", value)
 
     @_builtins.property
     @pulumi.getter(name="sendCollectionLatencyMetrics")
-    def send_collection_latency_metrics(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def send_collection_latency_metrics(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "send_collection_latency_metrics")
 
     @send_collection_latency_metrics.setter
-    def send_collection_latency_metrics(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def send_collection_latency_metrics(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "send_collection_latency_metrics", value)
 
     @_builtins.property
     @pulumi.getter(name="sendDatabaseMetrics")
-    def send_database_metrics(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def send_database_metrics(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "send_database_metrics")
 
     @send_database_metrics.setter
-    def send_database_metrics(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def send_database_metrics(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "send_database_metrics", value)
 
     @_builtins.property
     @pulumi.getter(name="sendQueryStatsMetrics")
-    def send_query_stats_metrics(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def send_query_stats_metrics(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "send_query_stats_metrics")
 
     @send_query_stats_metrics.setter
-    def send_query_stats_metrics(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def send_query_stats_metrics(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "send_query_stats_metrics", value)
 
     @_builtins.property
     @pulumi.getter(name="sendUserProvidedResourceTags")
-    def send_user_provided_resource_tags(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def send_user_provided_resource_tags(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "send_user_provided_resource_tags")
 
     @send_user_provided_resource_tags.setter
-    def send_user_provided_resource_tags(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def send_user_provided_resource_tags(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "send_user_provided_resource_tags", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceDiscovery")
-    def service_discovery(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_discovery(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "service_discovery")
 
     @service_discovery.setter
-    def service_discovery(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_discovery(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_discovery", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceKey")
-    def service_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def service_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "service_key")
 
     @service_key.setter
-    def service_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def service_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "service_key", value)
 
     @_builtins.property
     @pulumi.getter(name="teamName")
-    def team_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def team_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "team_name")
 
     @team_name.setter
-    def team_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def team_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "team_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Third-Party Integration Settings type 
         * PAGER_DUTY
@@ -522,25 +522,25 @@ class _ThirdPartyIntegrationState:
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
     @_builtins.property
     @pulumi.getter(name="userName")
-    def user_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "user_name")
 
     @user_name.setter
-    def user_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_name", value)
 
 
@@ -550,25 +550,25 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 channel_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 microsoft_teams_webhook_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 send_collection_latency_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 send_database_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 send_query_stats_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 send_user_provided_resource_tags: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_discovery: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 channel_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 microsoft_teams_webhook_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 send_collection_latency_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_database_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_query_stats_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_user_provided_resource_tags: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_discovery: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `ThirdPartyIntegration` Provides a Third-Party Integration Settings for the given type.
@@ -678,25 +678,25 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 channel_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 microsoft_teams_webhook_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 routing_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 send_collection_latency_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 send_database_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 send_query_stats_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-                 send_user_provided_resource_tags: Optional[pulumi.Input[_builtins.bool]] = None,
-                 service_discovery: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 channel_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 microsoft_teams_webhook_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 routing_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 send_collection_latency_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_database_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_query_stats_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_user_provided_resource_tags: pulumi.Input[Optional[_builtins.bool]] = None,
+                 service_discovery: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -741,25 +741,25 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            api_key: Optional[pulumi.Input[_builtins.str]] = None,
-            channel_name: Optional[pulumi.Input[_builtins.str]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            microsoft_teams_webhook_url: Optional[pulumi.Input[_builtins.str]] = None,
-            password: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            routing_key: Optional[pulumi.Input[_builtins.str]] = None,
-            secret: Optional[pulumi.Input[_builtins.str]] = None,
-            send_collection_latency_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-            send_database_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-            send_query_stats_metrics: Optional[pulumi.Input[_builtins.bool]] = None,
-            send_user_provided_resource_tags: Optional[pulumi.Input[_builtins.bool]] = None,
-            service_discovery: Optional[pulumi.Input[_builtins.str]] = None,
-            service_key: Optional[pulumi.Input[_builtins.str]] = None,
-            team_name: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            url: Optional[pulumi.Input[_builtins.str]] = None,
-            user_name: Optional[pulumi.Input[_builtins.str]] = None) -> 'ThirdPartyIntegration':
+            api_key: pulumi.Input[Optional[_builtins.str]] = None,
+            channel_name: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            microsoft_teams_webhook_url: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            routing_key: pulumi.Input[Optional[_builtins.str]] = None,
+            secret: pulumi.Input[Optional[_builtins.str]] = None,
+            send_collection_latency_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+            send_database_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+            send_query_stats_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+            send_user_provided_resource_tags: pulumi.Input[Optional[_builtins.bool]] = None,
+            service_discovery: pulumi.Input[Optional[_builtins.str]] = None,
+            service_key: pulumi.Input[Optional[_builtins.str]] = None,
+            team_name: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None,
+            user_name: pulumi.Input[Optional[_builtins.str]] = None) -> 'ThirdPartyIntegration':
         """
         Get an existing ThirdPartyIntegration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

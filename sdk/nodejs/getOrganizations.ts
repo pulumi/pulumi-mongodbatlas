@@ -92,10 +92,10 @@ export interface GetOrganizationsOutputArgs {
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
-    itemsPerPage?: pulumi.Input<number>;
-    name?: pulumi.Input<string>;
+    itemsPerPage?: pulumi.Input<number | undefined>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The page to return. Defaults to `1`.
      */
-    pageNum?: pulumi.Input<number>;
+    pageNum?: pulumi.Input<number | undefined>;
 }

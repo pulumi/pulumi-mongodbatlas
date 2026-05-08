@@ -183,9 +183,9 @@ def get_federated_query_limit(limit_name: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         tenant_name=pulumi.get(__ret__, 'tenant_name'),
         value=pulumi.get(__ret__, 'value'))
-def get_federated_query_limit_output(limit_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                     project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                     tenant_name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_federated_query_limit_output(limit_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                     project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                     tenant_name: pulumi.Input[Optional[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedQueryLimitResult]:
     """
     `FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.

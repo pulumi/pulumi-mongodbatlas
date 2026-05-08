@@ -28,7 +28,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Index.ServerlessInstance("test", new()
+    ///     var test = new Mongodbatlas.ServerlessInstance("test", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT_ID&gt;",
     ///         Name = "&lt;SERVERLESS_INSTANCE_NAME&gt;",

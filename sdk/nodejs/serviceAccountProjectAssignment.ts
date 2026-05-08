@@ -134,15 +134,15 @@ export interface ServiceAccountProjectAssignmentState {
     /**
      * The Client ID of the Service Account.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The Project permissions for the Service Account in the specified Project.
      */
-    roles?: pulumi.Input<pulumi.Input<string>[]>;
+    roles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**

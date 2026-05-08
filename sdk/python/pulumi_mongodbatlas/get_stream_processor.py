@@ -317,10 +317,10 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
         stats=pulumi.get(__ret__, 'stats'),
         tier=pulumi.get(__ret__, 'tier'),
         workspace_name=pulumi.get(__ret__, 'workspace_name'))
-def get_stream_processor_output(instance_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                processor_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                workspace_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_stream_processor_output(instance_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                processor_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                workspace_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamProcessorResult]:
     """
     `StreamProcessor` describes a stream processor.

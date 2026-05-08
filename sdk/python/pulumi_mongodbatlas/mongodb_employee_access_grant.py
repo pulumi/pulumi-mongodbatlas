@@ -88,10 +88,10 @@ class MongodbEmployeeAccessGrantArgs:
 @pulumi.input_type
 class _MongodbEmployeeAccessGrantState:
     def __init__(__self__, *,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 expiration_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 grant_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 expiration_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 grant_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MongodbEmployeeAccessGrant resources.
 
@@ -111,50 +111,50 @@ class _MongodbEmployeeAccessGrantState:
 
     @_builtins.property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that identifies this cluster.
         """
         return pulumi.get(self, "cluster_name")
 
     @cluster_name.setter
-    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_name", value)
 
     @_builtins.property
     @pulumi.getter(name="expirationTime")
-    def expiration_time(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expiration_time(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Expiration date for the employee access grant.
         """
         return pulumi.get(self, "expiration_time")
 
     @expiration_time.setter
-    def expiration_time(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expiration_time(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expiration_time", value)
 
     @_builtins.property
     @pulumi.getter(name="grantType")
-    def grant_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def grant_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
         """
         return pulumi.get(self, "grant_type")
 
     @grant_type.setter
-    def grant_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def grant_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "grant_type", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
 
@@ -164,10 +164,10 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 expiration_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 grant_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 expiration_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 grant_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `MongodbEmployeeAccessGrant` provides a MongoDB Employee Access Grant resource. The resource lets you create, delete, update and import a MongoDB employee access grant.
@@ -261,10 +261,10 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 expiration_time: Optional[pulumi.Input[_builtins.str]] = None,
-                 grant_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 expiration_time: pulumi.Input[Optional[_builtins.str]] = None,
+                 grant_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -296,10 +296,10 @@ class MongodbEmployeeAccessGrant(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-            expiration_time: Optional[pulumi.Input[_builtins.str]] = None,
-            grant_type: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'MongodbEmployeeAccessGrant':
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            expiration_time: pulumi.Input[Optional[_builtins.str]] = None,
+            grant_type: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'MongodbEmployeeAccessGrant':
         """
         Get an existing MongodbEmployeeAccessGrant resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

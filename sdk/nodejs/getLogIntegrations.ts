@@ -104,7 +104,7 @@ export interface GetLogIntegrationsOutputArgs {
     /**
      * Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
      */
-    integrationType?: pulumi.Input<string>;
+    integrationType?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */

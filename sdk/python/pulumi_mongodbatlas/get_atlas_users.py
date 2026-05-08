@@ -185,11 +185,11 @@ def get_atlas_users(items_per_page: Optional[_builtins.int] = None,
         results=pulumi.get(__ret__, 'results'),
         team_id=pulumi.get(__ret__, 'team_id'),
         total_count=pulumi.get(__ret__, 'total_count'))
-def get_atlas_users_output(items_per_page: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                           org_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           page_num: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                           project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                           team_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_atlas_users_output(items_per_page: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                           org_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           page_num: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                           project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                           team_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAtlasUsersResult]:
     """
     `atlas_users` provides Atlas Users associated with a specified Organization, Project, or Team.

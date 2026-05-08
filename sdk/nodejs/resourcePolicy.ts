@@ -134,39 +134,39 @@ export interface ResourcePolicyState {
     /**
      * The user that last updated the Atlas resource policy.
      */
-    createdByUser?: pulumi.Input<inputs.ResourcePolicyCreatedByUser>;
+    createdByUser?: pulumi.Input<inputs.ResourcePolicyCreatedByUser | undefined>;
     /**
      * Date and time in UTC when the Atlas resource policy was created.
      */
-    createdDate?: pulumi.Input<string>;
+    createdDate?: pulumi.Input<string | undefined>;
     /**
      * Description of the Atlas resource policy.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * The user that last updated the Atlas resource policy.
      */
-    lastUpdatedByUser?: pulumi.Input<inputs.ResourcePolicyLastUpdatedByUser>;
+    lastUpdatedByUser?: pulumi.Input<inputs.ResourcePolicyLastUpdatedByUser | undefined>;
     /**
      * Date and time in UTC when the Atlas resource policy was last updated.
      */
-    lastUpdatedDate?: pulumi.Input<string>;
+    lastUpdatedDate?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label that describes the Atlas resource policy.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
      */
-    orgId?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string | undefined>;
     /**
      * List of policies that make up the Atlas resource policy.
      */
-    policies?: pulumi.Input<pulumi.Input<inputs.ResourcePolicyPolicy>[]>;
+    policies?: pulumi.Input<pulumi.Input<inputs.ResourcePolicyPolicy>[] | undefined>;
     /**
      * A string that identifies the version of the Atlas resource policy.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -176,11 +176,11 @@ export interface ResourcePolicyArgs {
     /**
      * Description of the Atlas resource policy.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label that describes the Atlas resource policy.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
      */

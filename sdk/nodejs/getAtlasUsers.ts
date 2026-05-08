@@ -171,21 +171,21 @@ export interface GetAtlasUsersOutputArgs {
      *
      * > **IMPORTANT:** Either `orgId`, `projectId`, or `teamId` with `orgId` must be configurated.
      */
-    itemsPerPage?: pulumi.Input<number>;
+    itemsPerPage?: pulumi.Input<number | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization whose users you want to return. Also needed when `teamId` attributes is defined.
      */
-    orgId?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string | undefined>;
     /**
      * Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
      */
-    pageNum?: pulumi.Input<number>;
+    pageNum?: pulumi.Input<number | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project whose users you want to return, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the team whose users you want to return.
      */
-    teamId?: pulumi.Input<string>;
+    teamId?: pulumi.Input<string | undefined>;
 }

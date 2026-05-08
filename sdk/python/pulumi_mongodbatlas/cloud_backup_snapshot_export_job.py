@@ -25,7 +25,7 @@ class CloudBackupSnapshotExportJobArgs:
                  export_bucket_id: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
                  snapshot_id: pulumi.Input[_builtins.str],
-                 custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]] = None):
+                 custom_datas: pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]] = None):
         """
         The set of arguments for constructing a CloudBackupSnapshotExportJob resource.
 
@@ -92,33 +92,33 @@ class CloudBackupSnapshotExportJobArgs:
 
     @_builtins.property
     @pulumi.getter(name="customDatas")
-    def custom_datas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]]:
+    def custom_datas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]]:
         """
         Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         """
         return pulumi.get(self, "custom_datas")
 
     @custom_datas.setter
-    def custom_datas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]]):
+    def custom_datas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]]):
         pulumi.set(self, "custom_datas", value)
 
 
 @pulumi.input_type
 class _CloudBackupSnapshotExportJobState:
     def __init__(__self__, *,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 components: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobComponentArgs']]]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]] = None,
-                 export_bucket_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 export_job_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 export_status_exported_collections: Optional[pulumi.Input[_builtins.int]] = None,
-                 export_status_total_collections: Optional[pulumi.Input[_builtins.int]] = None,
-                 finished_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 prefix: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None):
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 components: pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupSnapshotExportJobComponentArgs']]]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_datas: pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]] = None,
+                 export_bucket_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 export_job_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 export_status_exported_collections: pulumi.Input[Optional[_builtins.int]] = None,
+                 export_status_total_collections: pulumi.Input[Optional[_builtins.int]] = None,
+                 finished_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CloudBackupSnapshotExportJob resources.
 
@@ -168,67 +168,67 @@ class _CloudBackupSnapshotExportJobState:
 
     @_builtins.property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Atlas cluster whose snapshot you want to export.
         """
         return pulumi.get(self, "cluster_name")
 
     @cluster_name.setter
-    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def components(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobComponentArgs']]]]:
+    def components(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupSnapshotExportJobComponentArgs']]]]:
         """
         _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
         """
         return pulumi.get(self, "components")
 
     @components.setter
-    def components(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobComponentArgs']]]]):
+    def components(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupSnapshotExportJobComponentArgs']]]]):
         pulumi.set(self, "components", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp in ISO 8601 date and time format in UTC when the export job was created.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="customDatas")
-    def custom_datas(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]]:
+    def custom_datas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]]:
         """
         Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         """
         return pulumi.get(self, "custom_datas")
 
     @custom_datas.setter
-    def custom_datas(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]]):
+    def custom_datas(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]]]):
         pulumi.set(self, "custom_datas", value)
 
     @_builtins.property
     @pulumi.getter(name="exportBucketId")
-    def export_bucket_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def export_bucket_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
         """
         return pulumi.get(self, "export_bucket_id")
 
     @export_bucket_id.setter
-    def export_bucket_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def export_bucket_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "export_bucket_id", value)
 
     @_builtins.property
     @pulumi.getter(name="exportJobId")
-    def export_job_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def export_job_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the export job.
         * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
@@ -236,75 +236,75 @@ class _CloudBackupSnapshotExportJobState:
         return pulumi.get(self, "export_job_id")
 
     @export_job_id.setter
-    def export_job_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def export_job_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "export_job_id", value)
 
     @_builtins.property
     @pulumi.getter(name="exportStatusExportedCollections")
-    def export_status_exported_collections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def export_status_exported_collections(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "export_status_exported_collections")
 
     @export_status_exported_collections.setter
-    def export_status_exported_collections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def export_status_exported_collections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "export_status_exported_collections", value)
 
     @_builtins.property
     @pulumi.getter(name="exportStatusTotalCollections")
-    def export_status_total_collections(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def export_status_total_collections(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "export_status_total_collections")
 
     @export_status_total_collections.setter
-    def export_status_total_collections(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def export_status_total_collections(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "export_status_total_collections", value)
 
     @_builtins.property
     @pulumi.getter(name="finishedAt")
-    def finished_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def finished_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp in ISO 8601 date and time format in UTC when the export job completes.
         """
         return pulumi.get(self, "finished_at")
 
     @finished_at.setter
-    def finished_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def finished_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "finished_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def prefix(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "prefix")
 
     @prefix.setter
-    def prefix(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "prefix", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotId")
-    def snapshot_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def snapshot_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
         """
         return pulumi.get(self, "snapshot_id")
 
     @snapshot_id.setter
-    def snapshot_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def snapshot_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "snapshot_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Status of the export job. Value can be one of the following:
         * `Queued` - indicates that the export job is queued
@@ -316,7 +316,7 @@ class _CloudBackupSnapshotExportJobState:
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
 
 
@@ -326,11 +326,11 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict']]]]] = None,
-                 export_bucket_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_datas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict']]]]] = None,
+                 export_bucket_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `CloudBackupSnapshotExportJob` allows you to create a cloud backup snapshot export job for the specified project.
@@ -533,11 +533,11 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict']]]]] = None,
-                 export_bucket_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 custom_datas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict']]]]] = None,
+                 export_bucket_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -578,19 +578,19 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-            components: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobComponentArgs', 'CloudBackupSnapshotExportJobComponentArgsDict']]]]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            custom_datas: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict']]]]] = None,
-            export_bucket_id: Optional[pulumi.Input[_builtins.str]] = None,
-            export_job_id: Optional[pulumi.Input[_builtins.str]] = None,
-            export_status_exported_collections: Optional[pulumi.Input[_builtins.int]] = None,
-            export_status_total_collections: Optional[pulumi.Input[_builtins.int]] = None,
-            finished_at: Optional[pulumi.Input[_builtins.str]] = None,
-            prefix: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-            state: Optional[pulumi.Input[_builtins.str]] = None) -> 'CloudBackupSnapshotExportJob':
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            components: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobComponentArgs', 'CloudBackupSnapshotExportJobComponentArgsDict']]]]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            custom_datas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict']]]]] = None,
+            export_bucket_id: pulumi.Input[Optional[_builtins.str]] = None,
+            export_job_id: pulumi.Input[Optional[_builtins.str]] = None,
+            export_status_exported_collections: pulumi.Input[Optional[_builtins.int]] = None,
+            export_status_total_collections: pulumi.Input[Optional[_builtins.int]] = None,
+            finished_at: pulumi.Input[Optional[_builtins.str]] = None,
+            prefix: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None) -> 'CloudBackupSnapshotExportJob':
         """
         Get an existing CloudBackupSnapshotExportJob resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

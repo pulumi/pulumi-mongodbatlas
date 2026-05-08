@@ -157,11 +157,11 @@ export interface GetAtlasUserOutputArgs {
     /**
      * Unique 24-hexadecimal digit string that identifies this user.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
     /**
      * Email address that belongs to the MongoDB Atlas user account. You can't modify this address after creating the user.
      *
      * > **IMPORTANT:** Either `userId` or `username` must be configured.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }

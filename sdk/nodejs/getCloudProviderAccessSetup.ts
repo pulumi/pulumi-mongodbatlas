@@ -206,7 +206,7 @@ export interface GetCloudProviderAccessSetupOutputArgs {
     /**
      * azure related configurations
      */
-    azureConfigs?: pulumi.Input<pulumi.Input<inputs.GetCloudProviderAccessSetupAzureConfigArgs>[]>;
+    azureConfigs?: pulumi.Input<pulumi.Input<inputs.GetCloudProviderAccessSetupAzureConfigArgs>[] | undefined>;
     /**
      * The unique ID for the project to get all Cloud Provider Access, also known as `groupId` in the official documentation
      */

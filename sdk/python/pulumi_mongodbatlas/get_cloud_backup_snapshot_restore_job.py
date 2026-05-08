@@ -303,9 +303,9 @@ def get_cloud_backup_snapshot_restore_job(cluster_name: Optional[_builtins.str] 
         target_cluster_name=pulumi.get(__ret__, 'target_cluster_name'),
         target_project_id=pulumi.get(__ret__, 'target_project_id'),
         timestamp=pulumi.get(__ret__, 'timestamp'))
-def get_cloud_backup_snapshot_restore_job_output(cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                 snapshot_restore_job_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_cloud_backup_snapshot_restore_job_output(cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                 snapshot_restore_job_id: pulumi.Input[Optional[_builtins.str]] = None,
                                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupSnapshotRestoreJobResult]:
     """
     `CloudBackupSnapshotRestoreJob` provides a Cloud Backup Snapshot Restore Job datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.

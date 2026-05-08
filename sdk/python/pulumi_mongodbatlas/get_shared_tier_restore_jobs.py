@@ -104,8 +104,8 @@ def get_shared_tier_restore_jobs(cluster_name: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
         total_count=pulumi.get(__ret__, 'total_count'))
-def get_shared_tier_restore_jobs_output(cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                        project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_shared_tier_restore_jobs_output(cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                        project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSharedTierRestoreJobsResult]:
     """
     Use this data source to access information about an existing resource.

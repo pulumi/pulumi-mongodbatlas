@@ -134,10 +134,10 @@ def get_federated_settings_org_role_mappings(federation_settings_id: Optional[_b
             "GROUP_DATA_ACCESS_READ_ONLY",
             "GROUP_READ_ONLY",
         ])
-    role_mappings = org_group_role_mapping_import.id.apply(lambda id: mongodbatlas.get_federated_settings_org_role_mappings_output(federation_settings_id=id,
+    role_mappings = mongodbatlas.get_federated_settings_org_role_mappings_output(federation_settings_id=org_group_role_mapping_import.id,
         org_id="627a9683e7f7f7ff7fe306f14",
         page_num=1,
-        items_per_page=5))
+        items_per_page=5)
     ```
 
 
@@ -161,10 +161,10 @@ def get_federated_settings_org_role_mappings(federation_settings_id: Optional[_b
         org_id=pulumi.get(__ret__, 'org_id'),
         page_num=pulumi.get(__ret__, 'page_num'),
         results=pulumi.get(__ret__, 'results'))
-def get_federated_settings_org_role_mappings_output(federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                    items_per_page: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                                                    org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                    page_num: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
+def get_federated_settings_org_role_mappings_output(federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                    items_per_page: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                                                    org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                    page_num: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedSettingsOrgRoleMappingsResult]:
     """
     `get_federated_settings_org_role_mappings` provides an Federated Settings Org Role Mapping datasource. Atlas Cloud Federated Settings Org Role Mapping provides federated settings outputs for the configured Org Role Mapping.
@@ -196,10 +196,10 @@ def get_federated_settings_org_role_mappings_output(federation_settings_id: Opti
             "GROUP_DATA_ACCESS_READ_ONLY",
             "GROUP_READ_ONLY",
         ])
-    role_mappings = org_group_role_mapping_import.id.apply(lambda id: mongodbatlas.get_federated_settings_org_role_mappings_output(federation_settings_id=id,
+    role_mappings = mongodbatlas.get_federated_settings_org_role_mappings_output(federation_settings_id=org_group_role_mapping_import.id,
         org_id="627a9683e7f7f7ff7fe306f14",
         page_num=1,
-        items_per_page=5))
+        items_per_page=5)
     ```
 
 

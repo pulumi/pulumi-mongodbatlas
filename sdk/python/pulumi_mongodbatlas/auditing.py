@@ -20,9 +20,9 @@ __all__ = ['AuditingArgs', 'Auditing']
 class AuditingArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.str],
-                 audit_authorization_success: Optional[pulumi.Input[_builtins.bool]] = None,
-                 audit_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None):
+                 audit_authorization_success: pulumi.Input[Optional[_builtins.bool]] = None,
+                 audit_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Auditing resource.
 
@@ -55,31 +55,31 @@ class AuditingArgs:
 
     @_builtins.property
     @pulumi.getter(name="auditAuthorizationSuccess")
-    def audit_authorization_success(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def audit_authorization_success(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         """
         return pulumi.get(self, "audit_authorization_success")
 
     @audit_authorization_success.setter
-    def audit_authorization_success(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def audit_authorization_success(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "audit_authorization_success", value)
 
     @_builtins.property
     @pulumi.getter(name="auditFilter")
-    def audit_filter(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def audit_filter(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
         """
         return pulumi.get(self, "audit_filter")
 
     @audit_filter.setter
-    def audit_filter(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def audit_filter(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "audit_filter", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
 
@@ -88,18 +88,18 @@ class AuditingArgs:
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
 
 @pulumi.input_type
 class _AuditingState:
     def __init__(__self__, *,
-                 audit_authorization_success: Optional[pulumi.Input[_builtins.bool]] = None,
-                 audit_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 configuration_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 audit_authorization_success: pulumi.Input[Optional[_builtins.bool]] = None,
+                 audit_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 configuration_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Auditing resources.
 
@@ -127,31 +127,31 @@ class _AuditingState:
 
     @_builtins.property
     @pulumi.getter(name="auditAuthorizationSuccess")
-    def audit_authorization_success(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def audit_authorization_success(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         """
         return pulumi.get(self, "audit_authorization_success")
 
     @audit_authorization_success.setter
-    def audit_authorization_success(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def audit_authorization_success(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "audit_authorization_success", value)
 
     @_builtins.property
     @pulumi.getter(name="auditFilter")
-    def audit_filter(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def audit_filter(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
         """
         return pulumi.get(self, "audit_filter")
 
     @audit_filter.setter
-    def audit_filter(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def audit_filter(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "audit_filter", value)
 
     @_builtins.property
     @pulumi.getter(name="configurationType")
-    def configuration_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def configuration_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Denotes the configuration method for the audit filter. Possible values are: 
         * NONE - auditing not configured for the project.
@@ -161,12 +161,12 @@ class _AuditingState:
         return pulumi.get(self, "configuration_type")
 
     @configuration_type.setter
-    def configuration_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def configuration_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "configuration_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
 
@@ -175,19 +175,19 @@ class _AuditingState:
         return pulumi.get(self, "enabled")
 
     @enabled.setter
-    def enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID for the project to configure auditing, also known as `groupId` in the official documentation. **Note: When changing this value to a different project_id it will delete the current audit settings for the original project that was assigned to.**
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
 
@@ -197,10 +197,10 @@ class Auditing(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 audit_authorization_success: Optional[pulumi.Input[_builtins.bool]] = None,
-                 audit_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 audit_authorization_success: pulumi.Input[Optional[_builtins.bool]] = None,
+                 audit_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `Auditing` provides an Auditing resource. This allows auditing to be created.
@@ -286,10 +286,10 @@ class Auditing(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 audit_authorization_success: Optional[pulumi.Input[_builtins.bool]] = None,
-                 audit_filter: Optional[pulumi.Input[_builtins.str]] = None,
-                 enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 audit_authorization_success: pulumi.Input[Optional[_builtins.bool]] = None,
+                 audit_filter: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -316,11 +316,11 @@ class Auditing(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            audit_authorization_success: Optional[pulumi.Input[_builtins.bool]] = None,
-            audit_filter: Optional[pulumi.Input[_builtins.str]] = None,
-            configuration_type: Optional[pulumi.Input[_builtins.str]] = None,
-            enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'Auditing':
+            audit_authorization_success: pulumi.Input[Optional[_builtins.bool]] = None,
+            audit_filter: pulumi.Input[Optional[_builtins.str]] = None,
+            configuration_type: pulumi.Input[Optional[_builtins.str]] = None,
+            enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'Auditing':
         """
         Get an existing Auditing resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

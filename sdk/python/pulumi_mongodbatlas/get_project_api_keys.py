@@ -132,9 +132,9 @@ def get_project_api_keys(items_per_page: Optional[_builtins.int] = None,
         page_num=pulumi.get(__ret__, 'page_num'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
-def get_project_api_keys_output(items_per_page: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                                page_num: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                                project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_project_api_keys_output(items_per_page: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                                page_num: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                                project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectApiKeysResult]:
     """
     `get_project_api_keys` describes all API Keys. This represents API Keys that have been created.

@@ -292,46 +292,46 @@ export interface StreamProcessorState {
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * Label that identifies the stream processing workspace.
      *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    instanceName?: pulumi.Input<string>;
+    instanceName?: pulumi.Input<string | undefined>;
     /**
      * Optional configuration for the stream processor.
      */
-    options?: pulumi.Input<inputs.StreamProcessorOptions>;
+    options?: pulumi.Input<inputs.StreamProcessorOptions | undefined>;
     /**
      * Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
      */
-    pipeline?: pulumi.Input<string>;
+    pipeline?: pulumi.Input<string | undefined>;
     /**
      * Label that identifies the stream processor.
      */
-    processorName?: pulumi.Input<string>;
+    processorName?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
      */
-    stats?: pulumi.Input<string>;
+    stats?: pulumi.Input<string | undefined>;
     /**
      * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
      */
-    tier?: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.StreamProcessorTimeouts>;
+    tier?: pulumi.Input<string | undefined>;
+    timeouts?: pulumi.Input<inputs.StreamProcessorTimeouts | undefined>;
     /**
      * Label that identifies the stream processing workspace.
      */
-    workspaceName?: pulumi.Input<string>;
+    workspaceName?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -341,17 +341,17 @@ export interface StreamProcessorArgs {
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * Label that identifies the stream processing workspace.
      *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    instanceName?: pulumi.Input<string>;
+    instanceName?: pulumi.Input<string | undefined>;
     /**
      * Optional configuration for the stream processor.
      */
-    options?: pulumi.Input<inputs.StreamProcessorOptions>;
+    options?: pulumi.Input<inputs.StreamProcessorOptions | undefined>;
     /**
      * Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
      */
@@ -367,14 +367,14 @@ export interface StreamProcessorArgs {
     /**
      * The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
      */
-    tier?: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.StreamProcessorTimeouts>;
+    tier?: pulumi.Input<string | undefined>;
+    timeouts?: pulumi.Input<inputs.StreamProcessorTimeouts | undefined>;
     /**
      * Label that identifies the stream processing workspace.
      */
-    workspaceName?: pulumi.Input<string>;
+    workspaceName?: pulumi.Input<string | undefined>;
 }

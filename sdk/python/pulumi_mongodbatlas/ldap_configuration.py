@@ -26,11 +26,11 @@ class LdapConfigurationArgs:
                  bind_username: pulumi.Input[_builtins.str],
                  hostname: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
-                 authorization_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 authz_query_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 user_to_dn_mappings: Optional[pulumi.Input[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]] = None):
+                 authorization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authz_query_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 user_to_dn_mappings: pulumi.Input[Optional[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]] = None):
         """
         The set of arguments for constructing a LdapConfiguration resource.
 
@@ -126,55 +126,55 @@ class LdapConfigurationArgs:
 
     @_builtins.property
     @pulumi.getter(name="authorizationEnabled")
-    def authorization_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def authorization_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether user authorization with LDAP is enabled. You cannot enable user authorization with LDAP without first enabling user authentication with LDAP.
         """
         return pulumi.get(self, "authorization_enabled")
 
     @authorization_enabled.setter
-    def authorization_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def authorization_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "authorization_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="authzQueryTemplate")
-    def authz_query_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authz_query_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
         """
         return pulumi.get(self, "authz_query_template")
 
     @authz_query_template.setter
-    def authz_query_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authz_query_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authz_query_template", value)
 
     @_builtins.property
     @pulumi.getter(name="caCertificate")
-    def ca_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ca_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
         """
         return pulumi.get(self, "ca_certificate")
 
     @ca_certificate.setter
-    def ca_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ca_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ca_certificate", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port to which the LDAP server listens for client connections. Default: `636`
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="userToDnMappings")
-    def user_to_dn_mappings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]]:
+    def user_to_dn_mappings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]]:
         """
         Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldap_query` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).
         * `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.
@@ -184,23 +184,23 @@ class LdapConfigurationArgs:
         return pulumi.get(self, "user_to_dn_mappings")
 
     @user_to_dn_mappings.setter
-    def user_to_dn_mappings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]]):
+    def user_to_dn_mappings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]]):
         pulumi.set(self, "user_to_dn_mappings", value)
 
 
 @pulumi.input_type
 class _LdapConfigurationState:
     def __init__(__self__, *,
-                 authentication_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 authorization_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 authz_query_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 bind_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 bind_username: Optional[pulumi.Input[_builtins.str]] = None,
-                 ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_to_dn_mappings: Optional[pulumi.Input[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]] = None):
+                 authentication_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authorization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authz_query_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_username: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_to_dn_mappings: pulumi.Input[Optional[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]] = None):
         """
         Input properties used for looking up and filtering LdapConfiguration resources.
 
@@ -241,115 +241,115 @@ class _LdapConfigurationState:
 
     @_builtins.property
     @pulumi.getter(name="authenticationEnabled")
-    def authentication_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def authentication_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether user authentication with LDAP is enabled.
         """
         return pulumi.get(self, "authentication_enabled")
 
     @authentication_enabled.setter
-    def authentication_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def authentication_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "authentication_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="authorizationEnabled")
-    def authorization_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def authorization_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether user authorization with LDAP is enabled. You cannot enable user authorization with LDAP without first enabling user authentication with LDAP.
         """
         return pulumi.get(self, "authorization_enabled")
 
     @authorization_enabled.setter
-    def authorization_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def authorization_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "authorization_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="authzQueryTemplate")
-    def authz_query_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authz_query_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
         """
         return pulumi.get(self, "authz_query_template")
 
     @authz_query_template.setter
-    def authz_query_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authz_query_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authz_query_template", value)
 
     @_builtins.property
     @pulumi.getter(name="bindPassword")
-    def bind_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bind_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The password used to authenticate the `bind_username`.
         """
         return pulumi.get(self, "bind_password")
 
     @bind_password.setter
-    def bind_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bind_password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bind_password", value)
 
     @_builtins.property
     @pulumi.getter(name="bindUsername")
-    def bind_username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bind_username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
         """
         return pulumi.get(self, "bind_username")
 
     @bind_username.setter
-    def bind_username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bind_username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bind_username", value)
 
     @_builtins.property
     @pulumi.getter(name="caCertificate")
-    def ca_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ca_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
         """
         return pulumi.get(self, "ca_certificate")
 
     @ca_certificate.setter
-    def ca_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ca_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ca_certificate", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
         """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hostname", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port to which the LDAP server listens for client connections. Default: `636`
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="userToDnMappings")
-    def user_to_dn_mappings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]]:
+    def user_to_dn_mappings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]]:
         """
         Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldap_query` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).
         * `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldap_query` template.
@@ -359,7 +359,7 @@ class _LdapConfigurationState:
         return pulumi.get(self, "user_to_dn_mappings")
 
     @user_to_dn_mappings.setter
-    def user_to_dn_mappings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]]):
+    def user_to_dn_mappings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LdapConfigurationUserToDnMappingArgs']]]]):
         pulumi.set(self, "user_to_dn_mappings", value)
 
 
@@ -369,16 +369,16 @@ class LdapConfiguration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authentication_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 authorization_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 authz_query_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 bind_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 bind_username: Optional[pulumi.Input[_builtins.str]] = None,
-                 ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_to_dn_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LdapConfigurationUserToDnMappingArgs', 'LdapConfigurationUserToDnMappingArgsDict']]]]] = None,
+                 authentication_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authorization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authz_query_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_username: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_to_dn_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LdapConfigurationUserToDnMappingArgs', 'LdapConfigurationUserToDnMappingArgsDict']]]]] = None,
                  __props__=None):
         """
         `LdapConfiguration` provides an LDAP Configuration resource. This allows an LDAP configuration for an Atlas project to be created and managed. This endpoint doesn’t verify connectivity using the provided LDAP over TLS configuration details. To verify a configuration before saving it, use the resource to verify the LDAP configuration.
@@ -529,16 +529,16 @@ class LdapConfiguration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authentication_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 authorization_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 authz_query_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 bind_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 bind_username: Optional[pulumi.Input[_builtins.str]] = None,
-                 ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_to_dn_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LdapConfigurationUserToDnMappingArgs', 'LdapConfigurationUserToDnMappingArgsDict']]]]] = None,
+                 authentication_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authorization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 authz_query_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_username: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_to_dn_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LdapConfigurationUserToDnMappingArgs', 'LdapConfigurationUserToDnMappingArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -580,16 +580,16 @@ class LdapConfiguration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            authentication_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            authorization_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            authz_query_template: Optional[pulumi.Input[_builtins.str]] = None,
-            bind_password: Optional[pulumi.Input[_builtins.str]] = None,
-            bind_username: Optional[pulumi.Input[_builtins.str]] = None,
-            ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-            hostname: Optional[pulumi.Input[_builtins.str]] = None,
-            port: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            user_to_dn_mappings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LdapConfigurationUserToDnMappingArgs', 'LdapConfigurationUserToDnMappingArgsDict']]]]] = None) -> 'LdapConfiguration':
+            authentication_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            authorization_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            authz_query_template: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_password: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_username: pulumi.Input[Optional[_builtins.str]] = None,
+            ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            port: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            user_to_dn_mappings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LdapConfigurationUserToDnMappingArgs', 'LdapConfigurationUserToDnMappingArgsDict']]]]] = None) -> 'LdapConfiguration':
         """
         Get an existing LdapConfiguration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

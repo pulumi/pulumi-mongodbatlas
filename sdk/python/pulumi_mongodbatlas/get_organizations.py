@@ -130,9 +130,9 @@ def get_organizations(items_per_page: Optional[_builtins.int] = None,
         page_num=pulumi.get(__ret__, 'page_num'),
         results=pulumi.get(__ret__, 'results'),
         total_count=pulumi.get(__ret__, 'total_count'))
-def get_organizations_output(items_per_page: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                             name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                             page_num: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
+def get_organizations_output(items_per_page: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                             name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                             page_num: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrganizationsResult]:
     """
     `get_organizations` describes all MongoDB Atlas Organizations. This represents organizations that have been created.

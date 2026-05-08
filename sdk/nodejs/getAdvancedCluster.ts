@@ -445,5 +445,5 @@ export interface GetAdvancedClusterOutputArgs {
     /**
      * Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This attribute applies to dedicated clusters, not to tenant or flex clusters. **Note:** Effective specs (`effectiveElectableSpecs`, `effectiveReadOnlySpecs`, `effectiveAnalyticsSpecs`) are always returned for dedicated clusters regardless of the flag value and always report the **current** hardware specifications. See the resource documentation for Auto-Scaling with Effective Fields for more details.
      */
-    useEffectiveFields?: pulumi.Input<boolean>;
+    useEffectiveFields?: pulumi.Input<boolean | undefined>;
 }

@@ -123,8 +123,8 @@ def get_flex_restore_jobs(name: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
-def get_flex_restore_jobs_output(name: Optional[pulumi.Input[_builtins.str]] = None,
-                                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_flex_restore_jobs_output(name: pulumi.Input[Optional[_builtins.str]] = None,
+                                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFlexRestoreJobsResult]:
     """
     `get_flex_restore_jobs` returns all flex restore job of a flex cluster.

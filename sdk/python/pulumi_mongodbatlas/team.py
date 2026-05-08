@@ -20,8 +20,8 @@ __all__ = ['TeamArgs', 'Team']
 class TeamArgs:
     def __init__(__self__, *,
                  org_id: pulumi.Input[_builtins.str],
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 usernames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 usernames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a Team resource.
 
@@ -52,37 +52,37 @@ class TeamArgs:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the team you want to create.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""This parameter is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
-    def usernames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def usernames(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         """
         return pulumi.get(self, "usernames")
 
     @usernames.setter
-    def usernames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def usernames(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "usernames", value)
 
 
 @pulumi.input_type
 class _TeamState:
     def __init__(__self__, *,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 usernames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 usernames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering Team resources.
 
@@ -105,51 +105,51 @@ class _TeamState:
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the team you want to create.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique identifier for the organization you want to associate the team with.
         """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
-    def org_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_id", value)
 
     @_builtins.property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def team_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique identifier for the team.
         """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
-    def team_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def team_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "team_id", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""This parameter is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
-    def usernames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def usernames(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
         """
         return pulumi.get(self, "usernames")
 
     @usernames.setter
-    def usernames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def usernames(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "usernames", value)
 
 
@@ -159,9 +159,9 @@ class Team(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 usernames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 usernames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         `Team` provides a Team resource. The resource lets you create, edit and delete Teams. Also, Teams can be assigned to multiple projects, and team members’ access to the project is determined by the team’s project role.
@@ -262,9 +262,9 @@ class Team(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 usernames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 usernames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -290,10 +290,10 @@ class Team(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            org_id: Optional[pulumi.Input[_builtins.str]] = None,
-            team_id: Optional[pulumi.Input[_builtins.str]] = None,
-            usernames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Team':
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            team_id: pulumi.Input[Optional[_builtins.str]] = None,
+            usernames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'Team':
         """
         Get an existing Team resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

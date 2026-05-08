@@ -37,12 +37,12 @@ import * as utilities from "./utilities";
  *         "GROUP_READ_ONLY",
  *     ],
  * });
- * const roleMappings = orgGroupRoleMappingImport.id.apply(id => mongodbatlas.getFederatedSettingsOrgRoleMappingsOutput({
- *     federationSettingsId: id,
+ * const roleMappings = mongodbatlas.getFederatedSettingsOrgRoleMappingsOutput({
+ *     federationSettingsId: orgGroupRoleMappingImport.id,
  *     orgId: "627a9683e7f7f7ff7fe306f14",
  *     pageNum: 1,
  *     itemsPerPage: 5,
- * }));
+ * });
  * ```
  */
 export function getFederatedSettingsOrgRoleMappings(args: GetFederatedSettingsOrgRoleMappingsArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsOrgRoleMappingsResult> {
@@ -126,12 +126,12 @@ export interface GetFederatedSettingsOrgRoleMappingsResult {
  *         "GROUP_READ_ONLY",
  *     ],
  * });
- * const roleMappings = orgGroupRoleMappingImport.id.apply(id => mongodbatlas.getFederatedSettingsOrgRoleMappingsOutput({
- *     federationSettingsId: id,
+ * const roleMappings = mongodbatlas.getFederatedSettingsOrgRoleMappingsOutput({
+ *     federationSettingsId: orgGroupRoleMappingImport.id,
  *     orgId: "627a9683e7f7f7ff7fe306f14",
  *     pageNum: 1,
  *     itemsPerPage: 5,
- * }));
+ * });
  * ```
  */
 export function getFederatedSettingsOrgRoleMappingsOutput(args: GetFederatedSettingsOrgRoleMappingsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedSettingsOrgRoleMappingsResult> {
@@ -155,7 +155,7 @@ export interface GetFederatedSettingsOrgRoleMappingsOutputArgs {
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
-    itemsPerPage?: pulumi.Input<number>;
+    itemsPerPage?: pulumi.Input<number | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
@@ -163,5 +163,5 @@ export interface GetFederatedSettingsOrgRoleMappingsOutputArgs {
     /**
      * The page to return. Defaults to `1`.
      */
-    pageNum?: pulumi.Input<number>;
+    pageNum?: pulumi.Input<number | undefined>;
 }

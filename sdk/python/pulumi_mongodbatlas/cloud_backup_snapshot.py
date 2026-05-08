@@ -25,7 +25,7 @@ class CloudBackupSnapshotArgs:
                  description: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
                  retention_in_days: pulumi.Input[_builtins.int],
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None):
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a CloudBackupSnapshot resource.
 
@@ -92,38 +92,38 @@ class CloudBackupSnapshotArgs:
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
-    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_on_create_timeout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
     @delete_on_create_timeout.setter
-    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
 
 
 @pulumi.input_type
 class _CloudBackupSnapshotState:
     def __init__(__self__, *,
-                 cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 master_key_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-                 members: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotMemberArgs']]]] = None,
-                 mongod_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 replica_set_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 retention_in_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snapshot_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 snapshot_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_size_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None):
+                 cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 master_key_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+                 members: pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupSnapshotMemberArgs']]]] = None,
+                 mongod_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 replica_set_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 retention_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snapshot_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 snapshot_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_size_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CloudBackupSnapshot resources.
 
@@ -185,218 +185,218 @@ class _CloudBackupSnapshotState:
 
     @_builtins.property
     @pulumi.getter(name="cloudProvider")
-    def cloud_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cloud provider that stores this snapshot.
         """
         return pulumi.get(self, "cloud_provider")
 
     @cloud_provider.setter
-    def cloud_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_provider", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Atlas cluster that contains the snapshots you want to retrieve.
         """
         return pulumi.get(self, "cluster_name")
 
     @cluster_name.setter
-    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_name", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         UTC ISO 8601 formatted point in time when Atlas took the snapshot.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
-    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_on_create_timeout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
     @delete_on_create_timeout.setter
-    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description of the on-demand snapshot.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="expiresAt")
-    def expires_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expires_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
         """
         return pulumi.get(self, "expires_at")
 
     @expires_at.setter
-    def expires_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expires_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expires_at", value)
 
     @_builtins.property
     @pulumi.getter(name="masterKeyUuid")
-    def master_key_uuid(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def master_key_uuid(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
         """
         return pulumi.get(self, "master_key_uuid")
 
     @master_key_uuid.setter
-    def master_key_uuid(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def master_key_uuid(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "master_key_uuid", value)
 
     @_builtins.property
     @pulumi.getter
-    def members(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotMemberArgs']]]]:
+    def members(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupSnapshotMemberArgs']]]]:
         """
         Block of List of snapshots and the cloud provider where the snapshots are stored. Atlas returns this parameter when `type` is `shardedCluster`. See below
         """
         return pulumi.get(self, "members")
 
     @members.setter
-    def members(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotMemberArgs']]]]):
+    def members(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupSnapshotMemberArgs']]]]):
         pulumi.set(self, "members", value)
 
     @_builtins.property
     @pulumi.getter(name="mongodVersion")
-    def mongod_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mongod_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Version of the MongoDB server.
         """
         return pulumi.get(self, "mongod_version")
 
     @mongod_version.setter
-    def mongod_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mongod_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mongod_version", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="replicaSetName")
-    def replica_set_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def replica_set_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label given to a shard or config server from which Atlas took this snapshot.
         """
         return pulumi.get(self, "replica_set_name")
 
     @replica_set_name.setter
-    def replica_set_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def replica_set_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "replica_set_name", value)
 
     @_builtins.property
     @pulumi.getter(name="retentionInDays")
-    def retention_in_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def retention_in_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of days that Atlas should retain the on-demand snapshot. Must be at least 1.
         """
         return pulumi.get(self, "retention_in_days")
 
     @retention_in_days.setter
-    def retention_in_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def retention_in_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "retention_in_days", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotId")
-    def snapshot_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def snapshot_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the snapshot.
         """
         return pulumi.get(self, "snapshot_id")
 
     @snapshot_id.setter
-    def snapshot_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def snapshot_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "snapshot_id", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotIds")
-    def snapshot_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def snapshot_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Unique identifiers of the snapshots created for the shards and config server for a sharded cluster. Atlas returns this parameter when `type` is `shardedCluster`. These identifiers should match those given in the `members[#].id` parameters. This allows you to map a snapshot to its shard or config server name.
         """
         return pulumi.get(self, "snapshot_ids")
 
     @snapshot_ids.setter
-    def snapshot_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def snapshot_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "snapshot_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotType")
-    def snapshot_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def snapshot_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specified the type of snapshot. Valid values are onDemand and scheduled.
         """
         return pulumi.get(self, "snapshot_type")
 
     @snapshot_type.setter
-    def snapshot_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def snapshot_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "snapshot_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Current status of the snapshot. One of the following values will be returned: queued, inProgress, completed, failed.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter(name="storageSizeBytes")
-    def storage_size_bytes(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def storage_size_bytes(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Specifies the size of the snapshot in bytes.
         """
         return pulumi.get(self, "storage_size_bytes")
 
     @storage_size_bytes.setter
-    def storage_size_bytes(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def storage_size_bytes(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "storage_size_bytes", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the type of cluster: replicaSet or shardedCluster.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
 
@@ -406,11 +406,11 @@ class CloudBackupSnapshot(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 retention_in_days: Optional[pulumi.Input[_builtins.int]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 retention_in_days: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         `CloudBackupSnapshot` provides a resource to take a cloud backup snapshot on demand.
@@ -555,11 +555,11 @@ class CloudBackupSnapshot(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 retention_in_days: Optional[pulumi.Input[_builtins.int]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 retention_in_days: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -605,24 +605,24 @@ class CloudBackupSnapshot(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-            cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-            master_key_uuid: Optional[pulumi.Input[_builtins.str]] = None,
-            members: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotMemberArgs', 'CloudBackupSnapshotMemberArgsDict']]]]] = None,
-            mongod_version: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            replica_set_name: Optional[pulumi.Input[_builtins.str]] = None,
-            retention_in_days: Optional[pulumi.Input[_builtins.int]] = None,
-            snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-            snapshot_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            snapshot_type: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            storage_size_bytes: Optional[pulumi.Input[_builtins.int]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None) -> 'CloudBackupSnapshot':
+            cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            master_key_uuid: pulumi.Input[Optional[_builtins.str]] = None,
+            members: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupSnapshotMemberArgs', 'CloudBackupSnapshotMemberArgsDict']]]]] = None,
+            mongod_version: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            replica_set_name: pulumi.Input[Optional[_builtins.str]] = None,
+            retention_in_days: pulumi.Input[Optional[_builtins.int]] = None,
+            snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+            snapshot_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            snapshot_type: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            storage_size_bytes: pulumi.Input[Optional[_builtins.int]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None) -> 'CloudBackupSnapshot':
         """
         Get an existing CloudBackupSnapshot resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

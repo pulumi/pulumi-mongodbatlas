@@ -23,8 +23,8 @@ class CustomDbRoleArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.str],
                  role_name: pulumi.Input[_builtins.str],
-                 actions: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleActionArgs']]]] = None,
-                 inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]] = None):
+                 actions: pulumi.Input[Optional[Sequence[pulumi.Input['CustomDbRoleActionArgs']]]] = None,
+                 inherited_roles: pulumi.Input[Optional[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]] = None):
         """
         The set of arguments for constructing a CustomDbRole resource.
 
@@ -78,30 +78,30 @@ class CustomDbRoleArgs:
 
     @_builtins.property
     @pulumi.getter
-    def actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleActionArgs']]]]:
+    def actions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomDbRoleActionArgs']]]]:
         return pulumi.get(self, "actions")
 
     @actions.setter
-    def actions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleActionArgs']]]]):
+    def actions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomDbRoleActionArgs']]]]):
         pulumi.set(self, "actions", value)
 
     @_builtins.property
     @pulumi.getter(name="inheritedRoles")
-    def inherited_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]]:
+    def inherited_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]]:
         return pulumi.get(self, "inherited_roles")
 
     @inherited_roles.setter
-    def inherited_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]]):
+    def inherited_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]]):
         pulumi.set(self, "inherited_roles", value)
 
 
 @pulumi.input_type
 class _CustomDbRoleState:
     def __init__(__self__, *,
-                 actions: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleActionArgs']]]] = None,
-                 inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 actions: pulumi.Input[Optional[Sequence[pulumi.Input['CustomDbRoleActionArgs']]]] = None,
+                 inherited_roles: pulumi.Input[Optional[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CustomDbRole resources.
 
@@ -126,37 +126,37 @@ class _CustomDbRoleState:
 
     @_builtins.property
     @pulumi.getter
-    def actions(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleActionArgs']]]]:
+    def actions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomDbRoleActionArgs']]]]:
         return pulumi.get(self, "actions")
 
     @actions.setter
-    def actions(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleActionArgs']]]]):
+    def actions(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomDbRoleActionArgs']]]]):
         pulumi.set(self, "actions", value)
 
     @_builtins.property
     @pulumi.getter(name="inheritedRoles")
-    def inherited_roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]]:
+    def inherited_roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]]:
         return pulumi.get(self, "inherited_roles")
 
     @inherited_roles.setter
-    def inherited_roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]]):
+    def inherited_roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CustomDbRoleInheritedRoleArgs']]]]):
         pulumi.set(self, "inherited_roles", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID for the project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="roleName")
-    def role_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the custom role.
 
@@ -170,7 +170,7 @@ class _CustomDbRoleState:
         return pulumi.get(self, "role_name")
 
     @role_name.setter
-    def role_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_name", value)
 
 
@@ -180,10 +180,10 @@ class CustomDbRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 actions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict']]]]] = None,
-                 inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict']]]]] = None,
+                 inherited_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `CustomDbRole` provides a Custom DB Role resource. The customDBRoles resource lets you retrieve, create and modify the custom MongoDB roles in your cluster. Use custom MongoDB roles to specify custom sets of actions which cannot be described by the built-in Atlas database user privileges.
@@ -430,10 +430,10 @@ class CustomDbRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 actions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict']]]]] = None,
-                 inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict']]]]] = None,
+                 inherited_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -461,10 +461,10 @@ class CustomDbRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            actions: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict']]]]] = None,
-            inherited_roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict']]]]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            role_name: Optional[pulumi.Input[_builtins.str]] = None) -> 'CustomDbRole':
+            actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict']]]]] = None,
+            inherited_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role_name: pulumi.Input[Optional[_builtins.str]] = None) -> 'CustomDbRole':
         """
         Get an existing CustomDbRole resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

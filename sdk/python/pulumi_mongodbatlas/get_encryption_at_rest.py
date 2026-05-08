@@ -226,7 +226,7 @@ def get_encryption_at_rest(project_id: Optional[_builtins.str] = None,
         google_cloud_kms_config=pulumi.get(__ret__, 'google_cloud_kms_config'),
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
-def get_encryption_at_rest_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_encryption_at_rest_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEncryptionAtRestResult]:
     """
     `EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:

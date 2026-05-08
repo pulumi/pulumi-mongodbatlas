@@ -240,8 +240,8 @@ def get_atlas_user(user_id: Optional[_builtins.str] = None,
         team_ids=pulumi.get(__ret__, 'team_ids'),
         user_id=pulumi.get(__ret__, 'user_id'),
         username=pulumi.get(__ret__, 'username'))
-def get_atlas_user_output(user_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                          username: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_atlas_user_output(user_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                          username: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAtlasUserResult]:
     """
     `get_atlas_user` Provides a MongoDB Atlas User.

@@ -104,7 +104,7 @@ def get_resource_policies(org_id: Optional[_builtins.str] = None,
         org_id=pulumi.get(__ret__, 'org_id'),
         resource_policies=pulumi.get(__ret__, 'resource_policies'),
         results=pulumi.get(__ret__, 'results'))
-def get_resource_policies_output(org_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_resource_policies_output(org_id: pulumi.Input[Optional[_builtins.str]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetResourcePoliciesResult]:
     """
     `get_resource_policies` returns all resource policies in an organization.

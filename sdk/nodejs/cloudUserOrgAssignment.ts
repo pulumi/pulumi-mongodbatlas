@@ -209,63 +209,63 @@ export interface CloudUserOrgAssignmentState {
     /**
      * Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
      */
-    country?: pulumi.Input<string>;
+    country?: pulumi.Input<string | undefined>;
     /**
      * Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * First or given name that belongs to the MongoDB Cloud user.
      */
-    firstName?: pulumi.Input<string>;
+    firstName?: pulumi.Input<string | undefined>;
     /**
      * Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
      */
-    invitationCreatedAt?: pulumi.Input<string>;
+    invitationCreatedAt?: pulumi.Input<string | undefined>;
     /**
      * Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
      */
-    invitationExpiresAt?: pulumi.Input<string>;
+    invitationExpiresAt?: pulumi.Input<string | undefined>;
     /**
      * Username of the MongoDB Cloud user who sent the invitation to join the organization.
      */
-    inviterUsername?: pulumi.Input<string>;
+    inviterUsername?: pulumi.Input<string | undefined>;
     /**
      * Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
      */
-    lastAuth?: pulumi.Input<string>;
+    lastAuth?: pulumi.Input<string | undefined>;
     /**
      * Last name, family name, or surname that belongs to the MongoDB Cloud user.
      */
-    lastName?: pulumi.Input<string>;
+    lastName?: pulumi.Input<string | undefined>;
     /**
      * Mobile phone number that belongs to the MongoDB Cloud user.
      */
-    mobileNumber?: pulumi.Input<string>;
+    mobileNumber?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-organizations) endpoint to retrieve all organizations to which the authenticated user has access.
      */
-    orgId?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string | undefined>;
     /**
      * String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
      */
-    orgMembershipStatus?: pulumi.Input<string>;
+    orgMembershipStatus?: pulumi.Input<string | undefined>;
     /**
      * Organization and project level roles to assign the MongoDB Cloud user within one organization.
      */
-    roles?: pulumi.Input<inputs.CloudUserOrgAssignmentRoles>;
+    roles?: pulumi.Input<inputs.CloudUserOrgAssignmentRoles | undefined>;
     /**
      * List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
      */
-    teamIds?: pulumi.Input<pulumi.Input<string>[]>;
+    teamIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
     /**
      * Email address that represents the username of the MongoDB Cloud user.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**

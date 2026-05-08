@@ -174,7 +174,7 @@ def get_push_based_log_export(project_id: Optional[_builtins.str] = None,
         prefix_path=pulumi.get(__ret__, 'prefix_path'),
         project_id=pulumi.get(__ret__, 'project_id'),
         state=pulumi.get(__ret__, 'state'))
-def get_push_based_log_export_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_push_based_log_export_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPushBasedLogExportResult]:
     """
     > **DEPRECATED:** This data source is deprecated and will be removed in the next major version. Please use `LogIntegration` instead. For migration instructions, see the Push-Based Log Export to Log Integration Migration Guide.

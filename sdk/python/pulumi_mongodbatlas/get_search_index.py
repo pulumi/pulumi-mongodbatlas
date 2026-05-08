@@ -317,9 +317,9 @@ def get_search_index(cluster_name: Optional[_builtins.str] = None,
         synonyms=pulumi.get(__ret__, 'synonyms'),
         type=pulumi.get(__ret__, 'type'),
         type_sets=pulumi.get(__ret__, 'type_sets'))
-def get_search_index_output(cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                            index_id: Optional[pulumi.Input[_builtins.str]] = None,
-                            project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_search_index_output(cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                            index_id: pulumi.Input[Optional[_builtins.str]] = None,
+                            project_id: pulumi.Input[Optional[_builtins.str]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSearchIndexResult]:
     """
     `SearchIndex` describes a single search indexes. This represents a single search index that have been created.

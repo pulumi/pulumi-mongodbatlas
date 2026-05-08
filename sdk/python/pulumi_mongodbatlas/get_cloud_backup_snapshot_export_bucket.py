@@ -178,8 +178,8 @@ def get_cloud_backup_snapshot_export_bucket(export_bucket_id: Optional[_builtins
         role_id=pulumi.get(__ret__, 'role_id'),
         service_url=pulumi.get(__ret__, 'service_url'),
         tenant_id=pulumi.get(__ret__, 'tenant_id'))
-def get_cloud_backup_snapshot_export_bucket_output(export_bucket_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                   project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_cloud_backup_snapshot_export_bucket_output(export_bucket_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                   project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupSnapshotExportBucketResult]:
     """
     `CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.

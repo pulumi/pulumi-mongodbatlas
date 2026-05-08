@@ -24,10 +24,10 @@ class FederatedSettingsOrgConfigArgs:
                  domain_restriction_enabled: pulumi.Input[_builtins.bool],
                  federation_settings_id: pulumi.Input[_builtins.str],
                  org_id: pulumi.Input[_builtins.str],
-                 data_access_identity_provider_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 domain_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 identity_provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 post_auth_role_grants: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 data_access_identity_provider_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 domain_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 identity_provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 post_auth_role_grants: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a FederatedSettingsOrgConfig resource.
 
@@ -91,31 +91,31 @@ class FederatedSettingsOrgConfigArgs:
 
     @_builtins.property
     @pulumi.getter(name="dataAccessIdentityProviderIds")
-    def data_access_identity_provider_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def data_access_identity_provider_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The collection of unique ids representing the identity providers that can be used for data access in this organization.
         """
         return pulumi.get(self, "data_access_identity_provider_ids")
 
     @data_access_identity_provider_ids.setter
-    def data_access_identity_provider_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def data_access_identity_provider_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data_access_identity_provider_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="domainAllowLists")
-    def domain_allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def domain_allow_lists(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List that contains the approved domains from which organization users can log in.
         """
         return pulumi.get(self, "domain_allow_lists")
 
     @domain_allow_lists.setter
-    def domain_allow_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def domain_allow_lists(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "domain_allow_lists", value)
 
     @_builtins.property
     @pulumi.getter(name="identityProviderId")
-    def identity_provider_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity_provider_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `""` will detach/remove the SAML identity provider. This id can be found in two ways:
         1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
@@ -124,33 +124,33 @@ class FederatedSettingsOrgConfigArgs:
         return pulumi.get(self, "identity_provider_id")
 
     @identity_provider_id.setter
-    def identity_provider_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity_provider_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity_provider_id", value)
 
     @_builtins.property
     @pulumi.getter(name="postAuthRoleGrants")
-    def post_auth_role_grants(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def post_auth_role_grants(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
         """
         return pulumi.get(self, "post_auth_role_grants")
 
     @post_auth_role_grants.setter
-    def post_auth_role_grants(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def post_auth_role_grants(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "post_auth_role_grants", value)
 
 
 @pulumi.input_type
 class _FederatedSettingsOrgConfigState:
     def __init__(__self__, *,
-                 data_access_identity_provider_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 domain_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 domain_restriction_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 post_auth_role_grants: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_conflicts: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgConfigUserConflictArgs']]]] = None):
+                 data_access_identity_provider_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 domain_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 domain_restriction_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 post_auth_role_grants: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_conflicts: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedSettingsOrgConfigUserConflictArgs']]]] = None):
         """
         Input properties used for looking up and filtering FederatedSettingsOrgConfig resources.
 
@@ -184,55 +184,55 @@ class _FederatedSettingsOrgConfigState:
 
     @_builtins.property
     @pulumi.getter(name="dataAccessIdentityProviderIds")
-    def data_access_identity_provider_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def data_access_identity_provider_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         The collection of unique ids representing the identity providers that can be used for data access in this organization.
         """
         return pulumi.get(self, "data_access_identity_provider_ids")
 
     @data_access_identity_provider_ids.setter
-    def data_access_identity_provider_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def data_access_identity_provider_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "data_access_identity_provider_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="domainAllowLists")
-    def domain_allow_lists(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def domain_allow_lists(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List that contains the approved domains from which organization users can log in.
         """
         return pulumi.get(self, "domain_allow_lists")
 
     @domain_allow_lists.setter
-    def domain_allow_lists(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def domain_allow_lists(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "domain_allow_lists", value)
 
     @_builtins.property
     @pulumi.getter(name="domainRestrictionEnabled")
-    def domain_restriction_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def domain_restriction_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether domain restriction is enabled for the connected organization.
         """
         return pulumi.get(self, "domain_restriction_enabled")
 
     @domain_restriction_enabled.setter
-    def domain_restriction_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def domain_restriction_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "domain_restriction_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="federationSettingsId")
-    def federation_settings_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def federation_settings_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         """
         return pulumi.get(self, "federation_settings_id")
 
     @federation_settings_id.setter
-    def federation_settings_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def federation_settings_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "federation_settings_id", value)
 
     @_builtins.property
     @pulumi.getter(name="identityProviderId")
-    def identity_provider_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def identity_provider_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `""` will detach/remove the SAML identity provider. This id can be found in two ways:
         1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
@@ -241,43 +241,43 @@ class _FederatedSettingsOrgConfigState:
         return pulumi.get(self, "identity_provider_id")
 
     @identity_provider_id.setter
-    def identity_provider_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def identity_provider_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "identity_provider_id", value)
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
-    def org_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_id", value)
 
     @_builtins.property
     @pulumi.getter(name="postAuthRoleGrants")
-    def post_auth_role_grants(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def post_auth_role_grants(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
         """
         return pulumi.get(self, "post_auth_role_grants")
 
     @post_auth_role_grants.setter
-    def post_auth_role_grants(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def post_auth_role_grants(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "post_auth_role_grants", value)
 
     @_builtins.property
     @pulumi.getter(name="userConflicts")
-    def user_conflicts(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgConfigUserConflictArgs']]]]:
+    def user_conflicts(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FederatedSettingsOrgConfigUserConflictArgs']]]]:
         """
         List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
         """
         return pulumi.get(self, "user_conflicts")
 
     @user_conflicts.setter
-    def user_conflicts(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgConfigUserConflictArgs']]]]):
+    def user_conflicts(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedSettingsOrgConfigUserConflictArgs']]]]):
         pulumi.set(self, "user_conflicts", value)
 
 
@@ -287,13 +287,13 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 data_access_identity_provider_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 domain_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 domain_restriction_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 post_auth_role_grants: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 data_access_identity_provider_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 domain_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 domain_restriction_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 post_auth_role_grants: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         `FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.
@@ -402,13 +402,13 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 data_access_identity_provider_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 domain_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 domain_restriction_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 identity_provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 post_auth_role_grants: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 data_access_identity_provider_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 domain_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 domain_restriction_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 identity_provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 post_auth_role_grants: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -442,14 +442,14 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            data_access_identity_provider_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            domain_allow_lists: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            domain_restriction_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-            identity_provider_id: Optional[pulumi.Input[_builtins.str]] = None,
-            org_id: Optional[pulumi.Input[_builtins.str]] = None,
-            post_auth_role_grants: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            user_conflicts: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FederatedSettingsOrgConfigUserConflictArgs', 'FederatedSettingsOrgConfigUserConflictArgsDict']]]]] = None) -> 'FederatedSettingsOrgConfig':
+            data_access_identity_provider_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            domain_allow_lists: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            domain_restriction_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+            identity_provider_id: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            post_auth_role_grants: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            user_conflicts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedSettingsOrgConfigUserConflictArgs', 'FederatedSettingsOrgConfigUserConflictArgsDict']]]]] = None) -> 'FederatedSettingsOrgConfig':
         """
         Get an existing FederatedSettingsOrgConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

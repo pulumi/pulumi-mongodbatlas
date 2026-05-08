@@ -141,11 +141,11 @@ export interface GetAlertConfigurationsOutputArgs {
      * * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
      * * `list_options.include_count` - Whether to include total count of results in the response (default false)
      */
-    listOptions?: pulumi.Input<pulumi.Input<inputs.GetAlertConfigurationsListOptionArgs>[]>;
+    listOptions?: pulumi.Input<pulumi.Input<inputs.GetAlertConfigurationsListOptionArgs>[] | undefined>;
     /**
      * List of requested string formatted output to be included on each individual result. Options are `resourceHcl` and `resourceImport`. Available to make it easy to gather resource statements for existing alert configurations, and corresponding import statements to import said resource state into the statefile.
      */
-    outputTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    outputTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
      */

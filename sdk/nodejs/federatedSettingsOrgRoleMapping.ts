@@ -163,23 +163,23 @@ export interface FederatedSettingsOrgRoleMappingState {
     /**
      * Unique label that identifies the identity provider group to which this role mapping applies.
      */
-    externalGroupName?: pulumi.Input<string>;
+    externalGroupName?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
-    federationSettingsId?: pulumi.Input<string>;
+    federationSettingsId?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
-    orgId?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string | undefined>;
     /**
      * Atlas roles and the unique identifiers of the groups and organizations associated with each role.
      */
-    roleAssignments?: pulumi.Input<pulumi.Input<inputs.FederatedSettingsOrgRoleMappingRoleAssignment>[]>;
+    roleAssignments?: pulumi.Input<pulumi.Input<inputs.FederatedSettingsOrgRoleMappingRoleAssignment>[] | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies this role mapping.
      */
-    roleMappingId?: pulumi.Input<string>;
+    roleMappingId?: pulumi.Input<string | undefined>;
 }
 
 /**

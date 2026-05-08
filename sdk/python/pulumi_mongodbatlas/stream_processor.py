@@ -24,13 +24,13 @@ class StreamProcessorArgs:
                  pipeline: pulumi.Input[_builtins.str],
                  processor_name: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input['StreamProcessorOptionsArgs']] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 tier: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input['StreamProcessorTimeoutsArgs']] = None,
-                 workspace_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional['StreamProcessorOptionsArgs']] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 tier: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional['StreamProcessorTimeoutsArgs']] = None,
+                 workspace_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a StreamProcessor resource.
 
@@ -103,101 +103,101 @@ class StreamProcessorArgs:
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
-    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_on_create_timeout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
     @delete_on_create_timeout.setter
-    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceName")
     @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
-    def instance_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label that identifies the stream processing workspace.
         """
         return pulumi.get(self, "instance_name")
 
     @instance_name.setter
-    def instance_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input['StreamProcessorOptionsArgs']]:
+    def options(self) -> pulumi.Input[Optional['StreamProcessorOptionsArgs']]:
         """
         Optional configuration for the stream processor.
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input['StreamProcessorOptionsArgs']]):
+    def options(self, value: pulumi.Input[Optional['StreamProcessorOptionsArgs']]):
         pulumi.set(self, "options", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
 
     @_builtins.property
     @pulumi.getter
-    def tier(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tier(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
         """
         return pulumi.get(self, "tier")
 
     @tier.setter
-    def tier(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tier(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tier", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['StreamProcessorTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['StreamProcessorTimeoutsArgs']]:
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['StreamProcessorTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['StreamProcessorTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
     @_builtins.property
     @pulumi.getter(name="workspaceName")
-    def workspace_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def workspace_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label that identifies the stream processing workspace.
         """
         return pulumi.get(self, "workspace_name")
 
     @workspace_name.setter
-    def workspace_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def workspace_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "workspace_name", value)
 
 
 @pulumi.input_type
 class _StreamProcessorState:
     def __init__(__self__, *,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input['StreamProcessorOptionsArgs']] = None,
-                 pipeline: Optional[pulumi.Input[_builtins.str]] = None,
-                 processor_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 stats: Optional[pulumi.Input[_builtins.str]] = None,
-                 tier: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input['StreamProcessorTimeoutsArgs']] = None,
-                 workspace_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional['StreamProcessorOptionsArgs']] = None,
+                 pipeline: pulumi.Input[Optional[_builtins.str]] = None,
+                 processor_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 stats: pulumi.Input[Optional[_builtins.str]] = None,
+                 tier: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional['StreamProcessorTimeoutsArgs']] = None,
+                 workspace_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StreamProcessor resources.
 
@@ -240,132 +240,132 @@ class _StreamProcessorState:
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
-    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_on_create_timeout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
     @delete_on_create_timeout.setter
-    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceName")
     @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
-    def instance_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label that identifies the stream processing workspace.
         """
         return pulumi.get(self, "instance_name")
 
     @instance_name.setter
-    def instance_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def options(self) -> Optional[pulumi.Input['StreamProcessorOptionsArgs']]:
+    def options(self) -> pulumi.Input[Optional['StreamProcessorOptionsArgs']]:
         """
         Optional configuration for the stream processor.
         """
         return pulumi.get(self, "options")
 
     @options.setter
-    def options(self, value: Optional[pulumi.Input['StreamProcessorOptionsArgs']]):
+    def options(self, value: pulumi.Input[Optional['StreamProcessorOptionsArgs']]):
         pulumi.set(self, "options", value)
 
     @_builtins.property
     @pulumi.getter
-    def pipeline(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def pipeline(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
         """
         return pulumi.get(self, "pipeline")
 
     @pipeline.setter
-    def pipeline(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def pipeline(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "pipeline", value)
 
     @_builtins.property
     @pulumi.getter(name="processorName")
-    def processor_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def processor_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label that identifies the stream processor.
         """
         return pulumi.get(self, "processor_name")
 
     @processor_name.setter
-    def processor_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def processor_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "processor_name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
 
     @_builtins.property
     @pulumi.getter
-    def stats(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def stats(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
         """
         return pulumi.get(self, "stats")
 
     @stats.setter
-    def stats(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def stats(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "stats", value)
 
     @_builtins.property
     @pulumi.getter
-    def tier(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tier(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
         """
         return pulumi.get(self, "tier")
 
     @tier.setter
-    def tier(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tier(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tier", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['StreamProcessorTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['StreamProcessorTimeoutsArgs']]:
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['StreamProcessorTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['StreamProcessorTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
     @_builtins.property
     @pulumi.getter(name="workspaceName")
-    def workspace_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def workspace_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label that identifies the stream processing workspace.
         """
         return pulumi.get(self, "workspace_name")
 
     @workspace_name.setter
-    def workspace_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def workspace_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "workspace_name", value)
 
 
@@ -375,16 +375,16 @@ class StreamProcessor(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']]] = None,
-                 pipeline: Optional[pulumi.Input[_builtins.str]] = None,
-                 processor_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 tier: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict']]] = None,
-                 workspace_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']]] = None,
+                 pipeline: pulumi.Input[Optional[_builtins.str]] = None,
+                 processor_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 tier: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict']]] = None,
+                 workspace_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `StreamProcessor` provides a Stream Processor resource. The resource lets you create, delete, import, start and stop a stream processor in a stream instance.
@@ -719,16 +719,16 @@ class StreamProcessor(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 instance_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 options: Optional[pulumi.Input[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']]] = None,
-                 pipeline: Optional[pulumi.Input[_builtins.str]] = None,
-                 processor_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 tier: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict']]] = None,
-                 workspace_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 options: pulumi.Input[Optional[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']]] = None,
+                 pipeline: pulumi.Input[Optional[_builtins.str]] = None,
+                 processor_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 tier: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict']]] = None,
+                 workspace_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -765,17 +765,17 @@ class StreamProcessor(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-            instance_name: Optional[pulumi.Input[_builtins.str]] = None,
-            options: Optional[pulumi.Input[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']]] = None,
-            pipeline: Optional[pulumi.Input[_builtins.str]] = None,
-            processor_name: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            state: Optional[pulumi.Input[_builtins.str]] = None,
-            stats: Optional[pulumi.Input[_builtins.str]] = None,
-            tier: Optional[pulumi.Input[_builtins.str]] = None,
-            timeouts: Optional[pulumi.Input[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict']]] = None,
-            workspace_name: Optional[pulumi.Input[_builtins.str]] = None) -> 'StreamProcessor':
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+            options: pulumi.Input[Optional[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']]] = None,
+            pipeline: pulumi.Input[Optional[_builtins.str]] = None,
+            processor_name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            stats: pulumi.Input[Optional[_builtins.str]] = None,
+            tier: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict']]] = None,
+            workspace_name: pulumi.Input[Optional[_builtins.str]] = None) -> 'StreamProcessor':
         """
         Get an existing StreamProcessor resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

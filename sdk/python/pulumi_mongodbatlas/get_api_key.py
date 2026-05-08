@@ -138,8 +138,8 @@ def get_api_key(api_key_id: Optional[_builtins.str] = None,
         org_id=pulumi.get(__ret__, 'org_id'),
         public_key=pulumi.get(__ret__, 'public_key'),
         role_names=pulumi.get(__ret__, 'role_names'))
-def get_api_key_output(api_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                       org_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_api_key_output(api_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                       org_id: pulumi.Input[Optional[_builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApiKeyResult]:
     """
     `ApiKey` describes a MongoDB Atlas API Key. This represents a API Key that has been created.

@@ -145,7 +145,7 @@ def get_database_users(project_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
-def get_database_users_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_database_users_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetDatabaseUsersResult]:
     """
     `get_database_users` describes all Database Users. This represents a database user which will be applied to all clusters within the project.

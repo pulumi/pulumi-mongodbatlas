@@ -135,35 +135,35 @@ export interface ServiceAccountState {
     /**
      * The Client ID of the Service Account.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Human readable description for the Service Account.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
-    orgId?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string | undefined>;
     /**
      * A list of organization-level roles for the Service Account.
      */
-    roles?: pulumi.Input<pulumi.Input<string>[]>;
+    roles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
      */
-    secretExpiresAfterHours?: pulumi.Input<number>;
+    secretExpiresAfterHours?: pulumi.Input<number | undefined>;
     /**
      * A list of secrets associated with the specified Service Account.
      */
-    secrets?: pulumi.Input<pulumi.Input<inputs.ServiceAccountSecret>[]>;
+    secrets?: pulumi.Input<pulumi.Input<inputs.ServiceAccountSecret>[] | undefined>;
 }
 
 /**
@@ -177,7 +177,7 @@ export interface ServiceAccountArgs {
     /**
      * Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
@@ -189,5 +189,5 @@ export interface ServiceAccountArgs {
     /**
      * The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
      */
-    secretExpiresAfterHours?: pulumi.Input<number>;
+    secretExpiresAfterHours?: pulumi.Input<number | undefined>;
 }

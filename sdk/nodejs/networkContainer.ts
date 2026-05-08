@@ -228,55 +228,55 @@ export interface NetworkContainerState {
      *
      * **Important**: Atlas limits the number of MongoDB nodes per Network Peering connection based on the CIDR block and the region selected for the project. Contact [MongoDB Support](https://www.mongodb.com/contact?tck=docs_atlas) for any questions on Atlas limits of MongoDB nodes per Network Peering connection.
      */
-    atlasCidrBlock?: pulumi.Input<string>;
+    atlasCidrBlock?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the Azure subscription in which the VNet resides.
      */
-    azureSubscriptionId?: pulumi.Input<string>;
+    azureSubscriptionId?: pulumi.Input<string | undefined>;
     /**
      * The Network Peering Container ID.
      */
-    containerId?: pulumi.Input<string>;
+    containerId?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the GCP project in which the network peer resides. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      */
-    gcpProjectId?: pulumi.Input<string>;
+    gcpProjectId?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the Network Peering connection in the Atlas project. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      */
-    networkName?: pulumi.Input<string>;
+    networkName?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
      */
-    providerName?: pulumi.Input<string>;
+    providerName?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether the project has Network Peering connections deployed in the container.
      */
-    provisioned?: pulumi.Input<boolean>;
+    provisioned?: pulumi.Input<boolean | undefined>;
     /**
      * Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      */
-    regionName?: pulumi.Input<string>;
+    regionName?: pulumi.Input<string | undefined>;
     /**
      * Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
      */
-    regions?: pulumi.Input<pulumi.Input<string>[]>;
+    regions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
      */
-    vnetName?: pulumi.Input<string>;
+    vnetName?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of Atlas' AWS VPC.
      */
-    vpcId?: pulumi.Input<string>;
+    vpcId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -301,17 +301,17 @@ export interface NetworkContainerArgs {
     /**
      * Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
      */
-    providerName?: pulumi.Input<string>;
+    providerName?: pulumi.Input<string | undefined>;
     /**
      * Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
      */
-    regionName?: pulumi.Input<string>;
+    regionName?: pulumi.Input<string | undefined>;
     /**
      * Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
      */
-    regions?: pulumi.Input<pulumi.Input<string>[]>;
+    regions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

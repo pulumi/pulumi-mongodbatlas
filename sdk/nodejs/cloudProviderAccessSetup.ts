@@ -195,39 +195,39 @@ export interface CloudProviderAccessSetupState {
     /**
      * aws related arn roles
      */
-    awsConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAwsConfig>[]>;
+    awsConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAwsConfig>[] | undefined>;
     /**
      * azure related configurations
      */
-    azureConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAzureConfig>[]>;
+    azureConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAzureConfig>[] | undefined>;
     /**
      * Date on which this role was created.
      */
-    createdDate?: pulumi.Input<string>;
+    createdDate?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * gcp related configuration
      */
-    gcpConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupGcpConfig>[]>;
+    gcpConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupGcpConfig>[] | undefined>;
     /**
      * Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      */
-    lastUpdatedDate?: pulumi.Input<string>;
+    lastUpdatedDate?: pulumi.Input<string | undefined>;
     /**
      * The unique ID for the project, also known as `groupId` in the official documentation
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `providerName` will result in destruction of the existing resource and the creation of a new resource.
      */
-    providerName?: pulumi.Input<string>;
+    providerName?: pulumi.Input<string | undefined>;
     /**
      * Unique ID of this role.
      */
-    roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -237,11 +237,11 @@ export interface CloudProviderAccessSetupArgs {
     /**
      * azure related configurations
      */
-    azureConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAzureConfig>[]>;
+    azureConfigs?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessSetupAzureConfig>[] | undefined>;
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * The unique ID for the project, also known as `groupId` in the official documentation
      */

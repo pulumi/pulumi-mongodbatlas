@@ -21,8 +21,8 @@ class ServiceAccountAccessListEntryArgs:
     def __init__(__self__, *,
                  client_id: pulumi.Input[_builtins.str],
                  org_id: pulumi.Input[_builtins.str],
-                 cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_address: Optional[pulumi.Input[_builtins.str]] = None):
+                 cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_address: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a ServiceAccountAccessListEntry resource.
 
@@ -64,40 +64,40 @@ class ServiceAccountAccessListEntryArgs:
 
     @_builtins.property
     @pulumi.getter(name="cidrBlock")
-    def cidr_block(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cidr_block(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
         """
         return pulumi.get(self, "cidr_block")
 
     @cidr_block.setter
-    def cidr_block(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cidr_block(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cidr_block", value)
 
     @_builtins.property
     @pulumi.getter(name="ipAddress")
-    def ip_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
         """
         return pulumi.get(self, "ip_address")
 
     @ip_address.setter
-    def ip_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_address", value)
 
 
 @pulumi.input_type
 class _ServiceAccountAccessListEntryState:
     def __init__(__self__, *,
-                 cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 last_used_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 last_used_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_count: Optional[pulumi.Input[_builtins.int]] = None):
+                 cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_used_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering ServiceAccountAccessListEntry resources.
 
@@ -129,98 +129,98 @@ class _ServiceAccountAccessListEntryState:
 
     @_builtins.property
     @pulumi.getter(name="cidrBlock")
-    def cidr_block(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cidr_block(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
         """
         return pulumi.get(self, "cidr_block")
 
     @cidr_block.setter
-    def cidr_block(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cidr_block(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cidr_block", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Client ID of the Service Account.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="ipAddress")
-    def ip_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ip_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
         """
         return pulumi.get(self, "ip_address")
 
     @ip_address.setter
-    def ip_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ip_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ip_address", value)
 
     @_builtins.property
     @pulumi.getter(name="lastUsedAddress")
-    def last_used_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_used_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Network address that issued the most recent request to the API.
         """
         return pulumi.get(self, "last_used_address")
 
     @last_used_address.setter
-    def last_used_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_used_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_used_address", value)
 
     @_builtins.property
     @pulumi.getter(name="lastUsedAt")
-    def last_used_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_used_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date when the API received the most recent request that originated from this network address.
         """
         return pulumi.get(self, "last_used_at")
 
     @last_used_at.setter
-    def last_used_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_used_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_used_at", value)
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
-    def org_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_id", value)
 
     @_builtins.property
     @pulumi.getter(name="requestCount")
-    def request_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def request_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of requests that has originated from this network address.
         """
         return pulumi.get(self, "request_count")
 
     @request_count.setter
-    def request_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def request_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "request_count", value)
 
 
@@ -230,10 +230,10 @@ class ServiceAccountAccessListEntry(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `ServiceAccountAccessListEntry` provides an Access List entry resource for Service Accounts. The resource lets you create, delete, and import an Access List entry for the specified Service Account.
@@ -367,10 +367,10 @@ class ServiceAccountAccessListEntry(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -402,14 +402,14 @@ class ServiceAccountAccessListEntry(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cidr_block: Optional[pulumi.Input[_builtins.str]] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            ip_address: Optional[pulumi.Input[_builtins.str]] = None,
-            last_used_address: Optional[pulumi.Input[_builtins.str]] = None,
-            last_used_at: Optional[pulumi.Input[_builtins.str]] = None,
-            org_id: Optional[pulumi.Input[_builtins.str]] = None,
-            request_count: Optional[pulumi.Input[_builtins.int]] = None) -> 'ServiceAccountAccessListEntry':
+            cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+            last_used_address: pulumi.Input[Optional[_builtins.str]] = None,
+            last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            request_count: pulumi.Input[Optional[_builtins.int]] = None) -> 'ServiceAccountAccessListEntry':
         """
         Get an existing ServiceAccountAccessListEntry resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

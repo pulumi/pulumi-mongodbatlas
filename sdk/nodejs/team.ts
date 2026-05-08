@@ -126,21 +126,21 @@ export interface TeamState {
     /**
      * The name of the team you want to create.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier for the organization you want to associate the team with.
      */
-    orgId?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier for the team.
      */
-    teamId?: pulumi.Input<string>;
+    teamId?: pulumi.Input<string | undefined>;
     /**
      * **(DEPRECATED)** (Optional) The Atlas usernames (email address). You can only add Atlas users who are part of the organization. Users who have not accepted an invitation to join the organization cannot be added as team members. There is a maximum of 250 Atlas users per team. This attribute is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see Migration Guide: Team Usernames Attribute to Cloud User Team Assignment.
      *
      * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      */
-    usernames?: pulumi.Input<pulumi.Input<string>[]>;
+    usernames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -150,7 +150,7 @@ export interface TeamArgs {
     /**
      * The name of the team you want to create.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier for the organization you want to associate the team with.
      */
@@ -160,5 +160,5 @@ export interface TeamArgs {
      *
      * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.CloudUserTeamAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      */
-    usernames?: pulumi.Input<pulumi.Input<string>[]>;
+    usernames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

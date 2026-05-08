@@ -216,10 +216,10 @@ def get_service_account_access_list_entry(cidr_block: Optional[_builtins.str] = 
         last_used_at=pulumi.get(__ret__, 'last_used_at'),
         org_id=pulumi.get(__ret__, 'org_id'),
         request_count=pulumi.get(__ret__, 'request_count'))
-def get_service_account_access_list_entry_output(cidr_block: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                 ip_address: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_service_account_access_list_entry_output(cidr_block: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                 ip_address: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
                                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceAccountAccessListEntryResult]:
     """
     `ServiceAccountAccessListEntry` returns an Access List entry for the specified Service Account.

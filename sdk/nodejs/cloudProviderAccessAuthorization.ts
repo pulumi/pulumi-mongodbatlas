@@ -193,32 +193,32 @@ export interface CloudProviderAccessAuthorizationState {
     /**
      * Date on which this role was authorized.
      */
-    authorizedDate?: pulumi.Input<string>;
-    aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws>;
-    azure?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAzure>;
+    authorizedDate?: pulumi.Input<string | undefined>;
+    aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws | undefined>;
+    azure?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAzure | undefined>;
     /**
      * Atlas features this AWS IAM role is linked to.
      */
-    featureUsages?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessAuthorizationFeatureUsage>[]>;
-    gcps?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessAuthorizationGcp>[]>;
+    featureUsages?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessAuthorizationFeatureUsage>[] | undefined>;
+    gcps?: pulumi.Input<pulumi.Input<inputs.CloudProviderAccessAuthorizationGcp>[] | undefined>;
     /**
      * The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `roleId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
      *
      * Conditional
      */
-    roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a CloudProviderAccessAuthorization resource.
  */
 export interface CloudProviderAccessAuthorizationArgs {
-    aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws>;
-    azure?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAzure>;
+    aws?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAws | undefined>;
+    azure?: pulumi.Input<inputs.CloudProviderAccessAuthorizationAzure | undefined>;
     /**
      * The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `projectId` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
      */

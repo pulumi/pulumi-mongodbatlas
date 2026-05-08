@@ -97,8 +97,8 @@ def get_private_endpoint_regional_mode(enabled: Optional[_builtins.bool] = None,
         enabled=pulumi.get(__ret__, 'enabled'),
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
-def get_private_endpoint_regional_mode_output(enabled: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                                              project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_private_endpoint_regional_mode_output(enabled: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                                              project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivateEndpointRegionalModeResult]:
     """
     `private_endpoint_regional_mode` describes a Private Endpoint Regional Mode. This represents a Private Endpoint Regional Mode Connection that wants to retrieve settings of an Atlas project.

@@ -170,9 +170,9 @@ def get_project_invitation(invitation_id: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         roles=pulumi.get(__ret__, 'roles'),
         username=pulumi.get(__ret__, 'username'))
-def get_project_invitation_output(invitation_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                  username: Optional[pulumi.Input[_builtins.str]] = None,
+def get_project_invitation_output(invitation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                  username: pulumi.Input[Optional[_builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectInvitationResult]:
     """
     `ProjectInvitation` describes an invitation to a user to join an Atlas project.

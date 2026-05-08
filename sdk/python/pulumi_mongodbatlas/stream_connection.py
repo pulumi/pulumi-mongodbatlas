@@ -24,25 +24,25 @@ class StreamConnectionArgs:
                  connection_name: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 authentication: Optional[pulumi.Input['StreamConnectionAuthenticationArgs']] = None,
-                 aws: Optional[pulumi.Input['StreamConnectionAwsArgs']] = None,
-                 azure: Optional[pulumi.Input['StreamConnectionAzureArgs']] = None,
-                 bootstrap_servers: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 db_role_to_execute: Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']] = None,
-                 gcp: Optional[pulumi.Input['StreamConnectionGcpArgs']] = None,
-                 headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 instance_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 networking: Optional[pulumi.Input['StreamConnectionNetworkingArgs']] = None,
-                 schema_registry_authentication: Optional[pulumi.Input['StreamConnectionSchemaRegistryAuthenticationArgs']] = None,
-                 schema_registry_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 schema_registry_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 security: Optional[pulumi.Input['StreamConnectionSecurityArgs']] = None,
-                 timeouts: Optional[pulumi.Input['StreamConnectionTimeoutsArgs']] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 workspace_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 authentication: pulumi.Input[Optional['StreamConnectionAuthenticationArgs']] = None,
+                 aws: pulumi.Input[Optional['StreamConnectionAwsArgs']] = None,
+                 azure: pulumi.Input[Optional['StreamConnectionAzureArgs']] = None,
+                 bootstrap_servers: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 db_role_to_execute: pulumi.Input[Optional['StreamConnectionDbRoleToExecuteArgs']] = None,
+                 gcp: pulumi.Input[Optional['StreamConnectionGcpArgs']] = None,
+                 headers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 networking: pulumi.Input[Optional['StreamConnectionNetworkingArgs']] = None,
+                 schema_registry_authentication: pulumi.Input[Optional['StreamConnectionSchemaRegistryAuthenticationArgs']] = None,
+                 schema_registry_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 schema_registry_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 security: pulumi.Input[Optional['StreamConnectionSecurityArgs']] = None,
+                 timeouts: pulumi.Input[Optional['StreamConnectionTimeoutsArgs']] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 workspace_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a StreamConnection resource.
 
@@ -135,208 +135,208 @@ class StreamConnectionArgs:
 
     @_builtins.property
     @pulumi.getter
-    def authentication(self) -> Optional[pulumi.Input['StreamConnectionAuthenticationArgs']]:
+    def authentication(self) -> pulumi.Input[Optional['StreamConnectionAuthenticationArgs']]:
         return pulumi.get(self, "authentication")
 
     @authentication.setter
-    def authentication(self, value: Optional[pulumi.Input['StreamConnectionAuthenticationArgs']]):
+    def authentication(self, value: pulumi.Input[Optional['StreamConnectionAuthenticationArgs']]):
         pulumi.set(self, "authentication", value)
 
     @_builtins.property
     @pulumi.getter
-    def aws(self) -> Optional[pulumi.Input['StreamConnectionAwsArgs']]:
+    def aws(self) -> pulumi.Input[Optional['StreamConnectionAwsArgs']]:
         return pulumi.get(self, "aws")
 
     @aws.setter
-    def aws(self, value: Optional[pulumi.Input['StreamConnectionAwsArgs']]):
+    def aws(self, value: pulumi.Input[Optional['StreamConnectionAwsArgs']]):
         pulumi.set(self, "aws", value)
 
     @_builtins.property
     @pulumi.getter
-    def azure(self) -> Optional[pulumi.Input['StreamConnectionAzureArgs']]:
+    def azure(self) -> pulumi.Input[Optional['StreamConnectionAzureArgs']]:
         return pulumi.get(self, "azure")
 
     @azure.setter
-    def azure(self, value: Optional[pulumi.Input['StreamConnectionAzureArgs']]):
+    def azure(self, value: pulumi.Input[Optional['StreamConnectionAzureArgs']]):
         pulumi.set(self, "azure", value)
 
     @_builtins.property
     @pulumi.getter(name="bootstrapServers")
-    def bootstrap_servers(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bootstrap_servers(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "bootstrap_servers")
 
     @bootstrap_servers.setter
-    def bootstrap_servers(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bootstrap_servers(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bootstrap_servers", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "cluster_name")
 
     @cluster_name.setter
-    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_name", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterProjectId")
-    def cluster_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "cluster_project_id")
 
     @cluster_project_id.setter
-    def cluster_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "config", value)
 
     @_builtins.property
     @pulumi.getter(name="dbRoleToExecute")
-    def db_role_to_execute(self) -> Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']]:
+    def db_role_to_execute(self) -> pulumi.Input[Optional['StreamConnectionDbRoleToExecuteArgs']]:
         return pulumi.get(self, "db_role_to_execute")
 
     @db_role_to_execute.setter
-    def db_role_to_execute(self, value: Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']]):
+    def db_role_to_execute(self, value: pulumi.Input[Optional['StreamConnectionDbRoleToExecuteArgs']]):
         pulumi.set(self, "db_role_to_execute", value)
 
     @_builtins.property
     @pulumi.getter
-    def gcp(self) -> Optional[pulumi.Input['StreamConnectionGcpArgs']]:
+    def gcp(self) -> pulumi.Input[Optional['StreamConnectionGcpArgs']]:
         return pulumi.get(self, "gcp")
 
     @gcp.setter
-    def gcp(self, value: Optional[pulumi.Input['StreamConnectionGcpArgs']]):
+    def gcp(self, value: pulumi.Input[Optional['StreamConnectionGcpArgs']]):
         pulumi.set(self, "gcp", value)
 
     @_builtins.property
     @pulumi.getter
-    def headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def headers(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "headers")
 
     @headers.setter
-    def headers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def headers(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "headers", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceName")
     @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
-    def instance_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
         """
         return pulumi.get(self, "instance_name")
 
     @instance_name.setter
-    def instance_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def networking(self) -> Optional[pulumi.Input['StreamConnectionNetworkingArgs']]:
+    def networking(self) -> pulumi.Input[Optional['StreamConnectionNetworkingArgs']]:
         return pulumi.get(self, "networking")
 
     @networking.setter
-    def networking(self, value: Optional[pulumi.Input['StreamConnectionNetworkingArgs']]):
+    def networking(self, value: pulumi.Input[Optional['StreamConnectionNetworkingArgs']]):
         pulumi.set(self, "networking", value)
 
     @_builtins.property
     @pulumi.getter(name="schemaRegistryAuthentication")
-    def schema_registry_authentication(self) -> Optional[pulumi.Input['StreamConnectionSchemaRegistryAuthenticationArgs']]:
+    def schema_registry_authentication(self) -> pulumi.Input[Optional['StreamConnectionSchemaRegistryAuthenticationArgs']]:
         return pulumi.get(self, "schema_registry_authentication")
 
     @schema_registry_authentication.setter
-    def schema_registry_authentication(self, value: Optional[pulumi.Input['StreamConnectionSchemaRegistryAuthenticationArgs']]):
+    def schema_registry_authentication(self, value: pulumi.Input[Optional['StreamConnectionSchemaRegistryAuthenticationArgs']]):
         pulumi.set(self, "schema_registry_authentication", value)
 
     @_builtins.property
     @pulumi.getter(name="schemaRegistryProvider")
-    def schema_registry_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def schema_registry_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "schema_registry_provider")
 
     @schema_registry_provider.setter
-    def schema_registry_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def schema_registry_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "schema_registry_provider", value)
 
     @_builtins.property
     @pulumi.getter(name="schemaRegistryUrls")
-    def schema_registry_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def schema_registry_urls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "schema_registry_urls")
 
     @schema_registry_urls.setter
-    def schema_registry_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def schema_registry_urls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "schema_registry_urls", value)
 
     @_builtins.property
     @pulumi.getter
-    def security(self) -> Optional[pulumi.Input['StreamConnectionSecurityArgs']]:
+    def security(self) -> pulumi.Input[Optional['StreamConnectionSecurityArgs']]:
         return pulumi.get(self, "security")
 
     @security.setter
-    def security(self, value: Optional[pulumi.Input['StreamConnectionSecurityArgs']]):
+    def security(self, value: pulumi.Input[Optional['StreamConnectionSecurityArgs']]):
         pulumi.set(self, "security", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['StreamConnectionTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['StreamConnectionTimeoutsArgs']]:
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['StreamConnectionTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['StreamConnectionTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
     @_builtins.property
     @pulumi.getter(name="workspaceName")
-    def workspace_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def workspace_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label that identifies the stream processing workspace.
         """
         return pulumi.get(self, "workspace_name")
 
     @workspace_name.setter
-    def workspace_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def workspace_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "workspace_name", value)
 
 
 @pulumi.input_type
 class _StreamConnectionState:
     def __init__(__self__, *,
-                 authentication: Optional[pulumi.Input['StreamConnectionAuthenticationArgs']] = None,
-                 aws: Optional[pulumi.Input['StreamConnectionAwsArgs']] = None,
-                 azure: Optional[pulumi.Input['StreamConnectionAzureArgs']] = None,
-                 bootstrap_servers: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 connection_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 db_role_to_execute: Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']] = None,
-                 gcp: Optional[pulumi.Input['StreamConnectionGcpArgs']] = None,
-                 headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 instance_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 networking: Optional[pulumi.Input['StreamConnectionNetworkingArgs']] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 schema_registry_authentication: Optional[pulumi.Input['StreamConnectionSchemaRegistryAuthenticationArgs']] = None,
-                 schema_registry_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 schema_registry_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 security: Optional[pulumi.Input['StreamConnectionSecurityArgs']] = None,
-                 timeouts: Optional[pulumi.Input['StreamConnectionTimeoutsArgs']] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 workspace_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 authentication: pulumi.Input[Optional['StreamConnectionAuthenticationArgs']] = None,
+                 aws: pulumi.Input[Optional['StreamConnectionAwsArgs']] = None,
+                 azure: pulumi.Input[Optional['StreamConnectionAzureArgs']] = None,
+                 bootstrap_servers: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 connection_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 db_role_to_execute: pulumi.Input[Optional['StreamConnectionDbRoleToExecuteArgs']] = None,
+                 gcp: pulumi.Input[Optional['StreamConnectionGcpArgs']] = None,
+                 headers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 networking: pulumi.Input[Optional['StreamConnectionNetworkingArgs']] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 schema_registry_authentication: pulumi.Input[Optional['StreamConnectionSchemaRegistryAuthenticationArgs']] = None,
+                 schema_registry_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 schema_registry_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 security: pulumi.Input[Optional['StreamConnectionSecurityArgs']] = None,
+                 timeouts: pulumi.Input[Optional['StreamConnectionTimeoutsArgs']] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 workspace_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StreamConnection resources.
 
@@ -396,216 +396,216 @@ class _StreamConnectionState:
 
     @_builtins.property
     @pulumi.getter
-    def authentication(self) -> Optional[pulumi.Input['StreamConnectionAuthenticationArgs']]:
+    def authentication(self) -> pulumi.Input[Optional['StreamConnectionAuthenticationArgs']]:
         return pulumi.get(self, "authentication")
 
     @authentication.setter
-    def authentication(self, value: Optional[pulumi.Input['StreamConnectionAuthenticationArgs']]):
+    def authentication(self, value: pulumi.Input[Optional['StreamConnectionAuthenticationArgs']]):
         pulumi.set(self, "authentication", value)
 
     @_builtins.property
     @pulumi.getter
-    def aws(self) -> Optional[pulumi.Input['StreamConnectionAwsArgs']]:
+    def aws(self) -> pulumi.Input[Optional['StreamConnectionAwsArgs']]:
         return pulumi.get(self, "aws")
 
     @aws.setter
-    def aws(self, value: Optional[pulumi.Input['StreamConnectionAwsArgs']]):
+    def aws(self, value: pulumi.Input[Optional['StreamConnectionAwsArgs']]):
         pulumi.set(self, "aws", value)
 
     @_builtins.property
     @pulumi.getter
-    def azure(self) -> Optional[pulumi.Input['StreamConnectionAzureArgs']]:
+    def azure(self) -> pulumi.Input[Optional['StreamConnectionAzureArgs']]:
         return pulumi.get(self, "azure")
 
     @azure.setter
-    def azure(self, value: Optional[pulumi.Input['StreamConnectionAzureArgs']]):
+    def azure(self, value: pulumi.Input[Optional['StreamConnectionAzureArgs']]):
         pulumi.set(self, "azure", value)
 
     @_builtins.property
     @pulumi.getter(name="bootstrapServers")
-    def bootstrap_servers(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bootstrap_servers(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "bootstrap_servers")
 
     @bootstrap_servers.setter
-    def bootstrap_servers(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bootstrap_servers(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bootstrap_servers", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "cluster_name")
 
     @cluster_name.setter
-    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_name", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterProjectId")
-    def cluster_project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "cluster_project_id")
 
     @cluster_project_id.setter
-    def cluster_project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def config(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "config")
 
     @config.setter
-    def config(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def config(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "config", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionName")
-    def connection_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         """
         return pulumi.get(self, "connection_name")
 
     @connection_name.setter
-    def connection_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_name", value)
 
     @_builtins.property
     @pulumi.getter(name="dbRoleToExecute")
-    def db_role_to_execute(self) -> Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']]:
+    def db_role_to_execute(self) -> pulumi.Input[Optional['StreamConnectionDbRoleToExecuteArgs']]:
         return pulumi.get(self, "db_role_to_execute")
 
     @db_role_to_execute.setter
-    def db_role_to_execute(self, value: Optional[pulumi.Input['StreamConnectionDbRoleToExecuteArgs']]):
+    def db_role_to_execute(self, value: pulumi.Input[Optional['StreamConnectionDbRoleToExecuteArgs']]):
         pulumi.set(self, "db_role_to_execute", value)
 
     @_builtins.property
     @pulumi.getter
-    def gcp(self) -> Optional[pulumi.Input['StreamConnectionGcpArgs']]:
+    def gcp(self) -> pulumi.Input[Optional['StreamConnectionGcpArgs']]:
         return pulumi.get(self, "gcp")
 
     @gcp.setter
-    def gcp(self, value: Optional[pulumi.Input['StreamConnectionGcpArgs']]):
+    def gcp(self, value: pulumi.Input[Optional['StreamConnectionGcpArgs']]):
         pulumi.set(self, "gcp", value)
 
     @_builtins.property
     @pulumi.getter
-    def headers(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def headers(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "headers")
 
     @headers.setter
-    def headers(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def headers(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "headers", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceName")
     @_utilities.deprecated("""This parameter is deprecated. Please transition to workspace_name.""")
-    def instance_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def instance_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
         """
         return pulumi.get(self, "instance_name")
 
     @instance_name.setter
-    def instance_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def instance_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "instance_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def networking(self) -> Optional[pulumi.Input['StreamConnectionNetworkingArgs']]:
+    def networking(self) -> pulumi.Input[Optional['StreamConnectionNetworkingArgs']]:
         return pulumi.get(self, "networking")
 
     @networking.setter
-    def networking(self, value: Optional[pulumi.Input['StreamConnectionNetworkingArgs']]):
+    def networking(self, value: pulumi.Input[Optional['StreamConnectionNetworkingArgs']]):
         pulumi.set(self, "networking", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="schemaRegistryAuthentication")
-    def schema_registry_authentication(self) -> Optional[pulumi.Input['StreamConnectionSchemaRegistryAuthenticationArgs']]:
+    def schema_registry_authentication(self) -> pulumi.Input[Optional['StreamConnectionSchemaRegistryAuthenticationArgs']]:
         return pulumi.get(self, "schema_registry_authentication")
 
     @schema_registry_authentication.setter
-    def schema_registry_authentication(self, value: Optional[pulumi.Input['StreamConnectionSchemaRegistryAuthenticationArgs']]):
+    def schema_registry_authentication(self, value: pulumi.Input[Optional['StreamConnectionSchemaRegistryAuthenticationArgs']]):
         pulumi.set(self, "schema_registry_authentication", value)
 
     @_builtins.property
     @pulumi.getter(name="schemaRegistryProvider")
-    def schema_registry_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def schema_registry_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "schema_registry_provider")
 
     @schema_registry_provider.setter
-    def schema_registry_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def schema_registry_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "schema_registry_provider", value)
 
     @_builtins.property
     @pulumi.getter(name="schemaRegistryUrls")
-    def schema_registry_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def schema_registry_urls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         return pulumi.get(self, "schema_registry_urls")
 
     @schema_registry_urls.setter
-    def schema_registry_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def schema_registry_urls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "schema_registry_urls", value)
 
     @_builtins.property
     @pulumi.getter
-    def security(self) -> Optional[pulumi.Input['StreamConnectionSecurityArgs']]:
+    def security(self) -> pulumi.Input[Optional['StreamConnectionSecurityArgs']]:
         return pulumi.get(self, "security")
 
     @security.setter
-    def security(self, value: Optional[pulumi.Input['StreamConnectionSecurityArgs']]):
+    def security(self, value: pulumi.Input[Optional['StreamConnectionSecurityArgs']]):
         pulumi.set(self, "security", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['StreamConnectionTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['StreamConnectionTimeoutsArgs']]:
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['StreamConnectionTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['StreamConnectionTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter
-    def url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "url")
 
     @url.setter
-    def url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "url", value)
 
     @_builtins.property
     @pulumi.getter(name="workspaceName")
-    def workspace_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def workspace_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label that identifies the stream processing workspace.
         """
         return pulumi.get(self, "workspace_name")
 
     @workspace_name.setter
-    def workspace_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def workspace_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "workspace_name", value)
 
 
@@ -615,28 +615,28 @@ class StreamConnection(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authentication: Optional[pulumi.Input[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict']]] = None,
-                 aws: Optional[pulumi.Input[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict']]] = None,
-                 azure: Optional[pulumi.Input[Union['StreamConnectionAzureArgs', 'StreamConnectionAzureArgsDict']]] = None,
-                 bootstrap_servers: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 connection_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
-                 gcp: Optional[pulumi.Input[Union['StreamConnectionGcpArgs', 'StreamConnectionGcpArgsDict']]] = None,
-                 headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 instance_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 networking: Optional[pulumi.Input[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 schema_registry_authentication: Optional[pulumi.Input[Union['StreamConnectionSchemaRegistryAuthenticationArgs', 'StreamConnectionSchemaRegistryAuthenticationArgsDict']]] = None,
-                 schema_registry_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 schema_registry_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
-                 timeouts: Optional[pulumi.Input[Union['StreamConnectionTimeoutsArgs', 'StreamConnectionTimeoutsArgsDict']]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 workspace_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 authentication: pulumi.Input[Optional[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict']]] = None,
+                 aws: pulumi.Input[Optional[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict']]] = None,
+                 azure: pulumi.Input[Optional[Union['StreamConnectionAzureArgs', 'StreamConnectionAzureArgsDict']]] = None,
+                 bootstrap_servers: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 connection_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 db_role_to_execute: pulumi.Input[Optional[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
+                 gcp: pulumi.Input[Optional[Union['StreamConnectionGcpArgs', 'StreamConnectionGcpArgsDict']]] = None,
+                 headers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 networking: pulumi.Input[Optional[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 schema_registry_authentication: pulumi.Input[Optional[Union['StreamConnectionSchemaRegistryAuthenticationArgs', 'StreamConnectionSchemaRegistryAuthenticationArgsDict']]] = None,
+                 schema_registry_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 schema_registry_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 security: pulumi.Input[Optional[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['StreamConnectionTimeoutsArgs', 'StreamConnectionTimeoutsArgsDict']]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 workspace_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `StreamConnection` provides a Stream Connection resource. The resource lets you create, edit, and delete stream instance connections.
@@ -1395,28 +1395,28 @@ class StreamConnection(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authentication: Optional[pulumi.Input[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict']]] = None,
-                 aws: Optional[pulumi.Input[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict']]] = None,
-                 azure: Optional[pulumi.Input[Union['StreamConnectionAzureArgs', 'StreamConnectionAzureArgsDict']]] = None,
-                 bootstrap_servers: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 connection_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
-                 gcp: Optional[pulumi.Input[Union['StreamConnectionGcpArgs', 'StreamConnectionGcpArgsDict']]] = None,
-                 headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 instance_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 networking: Optional[pulumi.Input[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 schema_registry_authentication: Optional[pulumi.Input[Union['StreamConnectionSchemaRegistryAuthenticationArgs', 'StreamConnectionSchemaRegistryAuthenticationArgsDict']]] = None,
-                 schema_registry_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 schema_registry_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
-                 timeouts: Optional[pulumi.Input[Union['StreamConnectionTimeoutsArgs', 'StreamConnectionTimeoutsArgsDict']]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 url: Optional[pulumi.Input[_builtins.str]] = None,
-                 workspace_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 authentication: pulumi.Input[Optional[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict']]] = None,
+                 aws: pulumi.Input[Optional[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict']]] = None,
+                 azure: pulumi.Input[Optional[Union['StreamConnectionAzureArgs', 'StreamConnectionAzureArgsDict']]] = None,
+                 bootstrap_servers: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 connection_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 db_role_to_execute: pulumi.Input[Optional[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
+                 gcp: pulumi.Input[Optional[Union['StreamConnectionGcpArgs', 'StreamConnectionGcpArgsDict']]] = None,
+                 headers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 networking: pulumi.Input[Optional[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 schema_registry_authentication: pulumi.Input[Optional[Union['StreamConnectionSchemaRegistryAuthenticationArgs', 'StreamConnectionSchemaRegistryAuthenticationArgsDict']]] = None,
+                 schema_registry_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 schema_registry_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 security: pulumi.Input[Optional[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['StreamConnectionTimeoutsArgs', 'StreamConnectionTimeoutsArgsDict']]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None,
+                 workspace_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1464,28 +1464,28 @@ class StreamConnection(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            authentication: Optional[pulumi.Input[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict']]] = None,
-            aws: Optional[pulumi.Input[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict']]] = None,
-            azure: Optional[pulumi.Input[Union['StreamConnectionAzureArgs', 'StreamConnectionAzureArgsDict']]] = None,
-            bootstrap_servers: Optional[pulumi.Input[_builtins.str]] = None,
-            cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-            cluster_project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            config: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            connection_name: Optional[pulumi.Input[_builtins.str]] = None,
-            db_role_to_execute: Optional[pulumi.Input[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
-            gcp: Optional[pulumi.Input[Union['StreamConnectionGcpArgs', 'StreamConnectionGcpArgsDict']]] = None,
-            headers: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            instance_name: Optional[pulumi.Input[_builtins.str]] = None,
-            networking: Optional[pulumi.Input[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            schema_registry_authentication: Optional[pulumi.Input[Union['StreamConnectionSchemaRegistryAuthenticationArgs', 'StreamConnectionSchemaRegistryAuthenticationArgsDict']]] = None,
-            schema_registry_provider: Optional[pulumi.Input[_builtins.str]] = None,
-            schema_registry_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            security: Optional[pulumi.Input[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
-            timeouts: Optional[pulumi.Input[Union['StreamConnectionTimeoutsArgs', 'StreamConnectionTimeoutsArgsDict']]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            url: Optional[pulumi.Input[_builtins.str]] = None,
-            workspace_name: Optional[pulumi.Input[_builtins.str]] = None) -> 'StreamConnection':
+            authentication: pulumi.Input[Optional[Union['StreamConnectionAuthenticationArgs', 'StreamConnectionAuthenticationArgsDict']]] = None,
+            aws: pulumi.Input[Optional[Union['StreamConnectionAwsArgs', 'StreamConnectionAwsArgsDict']]] = None,
+            azure: pulumi.Input[Optional[Union['StreamConnectionAzureArgs', 'StreamConnectionAzureArgsDict']]] = None,
+            bootstrap_servers: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            connection_name: pulumi.Input[Optional[_builtins.str]] = None,
+            db_role_to_execute: pulumi.Input[Optional[Union['StreamConnectionDbRoleToExecuteArgs', 'StreamConnectionDbRoleToExecuteArgsDict']]] = None,
+            gcp: pulumi.Input[Optional[Union['StreamConnectionGcpArgs', 'StreamConnectionGcpArgsDict']]] = None,
+            headers: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+            networking: pulumi.Input[Optional[Union['StreamConnectionNetworkingArgs', 'StreamConnectionNetworkingArgsDict']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            schema_registry_authentication: pulumi.Input[Optional[Union['StreamConnectionSchemaRegistryAuthenticationArgs', 'StreamConnectionSchemaRegistryAuthenticationArgsDict']]] = None,
+            schema_registry_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            schema_registry_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            security: pulumi.Input[Optional[Union['StreamConnectionSecurityArgs', 'StreamConnectionSecurityArgsDict']]] = None,
+            timeouts: pulumi.Input[Optional[Union['StreamConnectionTimeoutsArgs', 'StreamConnectionTimeoutsArgsDict']]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            url: pulumi.Input[Optional[_builtins.str]] = None,
+            workspace_name: pulumi.Input[Optional[_builtins.str]] = None) -> 'StreamConnection':
         """
         Get an existing StreamConnection resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

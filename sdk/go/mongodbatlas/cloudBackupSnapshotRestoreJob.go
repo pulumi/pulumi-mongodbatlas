@@ -204,7 +204,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			var tmp0 float64
+//			var tmp0 int
 //			if pointInTimeUtcSeconds == 0 {
 //				tmp0 = 0
 //			} else {

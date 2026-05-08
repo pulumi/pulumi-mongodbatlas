@@ -225,7 +225,7 @@ export function getFederatedDatabaseInstanceOutput(args: GetFederatedDatabaseIns
  * A collection of arguments for invoking getFederatedDatabaseInstance.
  */
 export interface GetFederatedDatabaseInstanceOutputArgs {
-    cloudProviderConfigs?: pulumi.Input<pulumi.Input<inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs>[]>;
+    cloudProviderConfigs?: pulumi.Input<pulumi.Input<inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs>[] | undefined>;
     /**
      * Name of the Atlas Federated Database Instance.
      */

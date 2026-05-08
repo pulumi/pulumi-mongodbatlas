@@ -22,9 +22,9 @@ __all__ = ['X509AuthenticationDatabaseUserArgs', 'X509AuthenticationDatabaseUser
 class X509AuthenticationDatabaseUserArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.str],
-                 customer_x509_cas: Optional[pulumi.Input[_builtins.str]] = None,
-                 months_until_expiration: Optional[pulumi.Input[_builtins.int]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 customer_x509_cas: pulumi.Input[Optional[_builtins.str]] = None,
+                 months_until_expiration: pulumi.Input[Optional[_builtins.int]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a X509AuthenticationDatabaseUser resource.
 
@@ -55,50 +55,50 @@ class X509AuthenticationDatabaseUserArgs:
 
     @_builtins.property
     @pulumi.getter(name="customerX509Cas")
-    def customer_x509_cas(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def customer_x509_cas(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         PEM string containing one or more customer CAs for database user authentication.
         """
         return pulumi.get(self, "customer_x509_cas")
 
     @customer_x509_cas.setter
-    def customer_x509_cas(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def customer_x509_cas(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "customer_x509_cas", value)
 
     @_builtins.property
     @pulumi.getter(name="monthsUntilExpiration")
-    def months_until_expiration(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def months_until_expiration(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
         """
         return pulumi.get(self, "months_until_expiration")
 
     @months_until_expiration.setter
-    def months_until_expiration(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def months_until_expiration(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "months_until_expiration", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username of the database user to create a certificate for.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
 @pulumi.input_type
 class _X509AuthenticationDatabaseUserState:
     def __init__(__self__, *,
-                 certificates: Optional[pulumi.Input[Sequence[pulumi.Input['X509AuthenticationDatabaseUserCertificateArgs']]]] = None,
-                 current_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 customer_x509_cas: Optional[pulumi.Input[_builtins.str]] = None,
-                 months_until_expiration: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 certificates: pulumi.Input[Optional[Sequence[pulumi.Input['X509AuthenticationDatabaseUserCertificateArgs']]]] = None,
+                 current_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 customer_x509_cas: pulumi.Input[Optional[_builtins.str]] = None,
+                 months_until_expiration: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering X509AuthenticationDatabaseUser resources.
 
@@ -124,74 +124,74 @@ class _X509AuthenticationDatabaseUserState:
 
     @_builtins.property
     @pulumi.getter
-    def certificates(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['X509AuthenticationDatabaseUserCertificateArgs']]]]:
+    def certificates(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['X509AuthenticationDatabaseUserCertificateArgs']]]]:
         """
         Array of objects where each details one unexpired database user certificate.
         """
         return pulumi.get(self, "certificates")
 
     @certificates.setter
-    def certificates(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['X509AuthenticationDatabaseUserCertificateArgs']]]]):
+    def certificates(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['X509AuthenticationDatabaseUserCertificateArgs']]]]):
         pulumi.set(self, "certificates", value)
 
     @_builtins.property
     @pulumi.getter(name="currentCertificate")
-    def current_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def current_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Contains the last X.509 certificate and private key created for a database user.
         """
         return pulumi.get(self, "current_certificate")
 
     @current_certificate.setter
-    def current_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def current_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "current_certificate", value)
 
     @_builtins.property
     @pulumi.getter(name="customerX509Cas")
-    def customer_x509_cas(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def customer_x509_cas(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         PEM string containing one or more customer CAs for database user authentication.
         """
         return pulumi.get(self, "customer_x509_cas")
 
     @customer_x509_cas.setter
-    def customer_x509_cas(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def customer_x509_cas(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "customer_x509_cas", value)
 
     @_builtins.property
     @pulumi.getter(name="monthsUntilExpiration")
-    def months_until_expiration(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def months_until_expiration(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
         """
         return pulumi.get(self, "months_until_expiration")
 
     @months_until_expiration.setter
-    def months_until_expiration(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def months_until_expiration(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "months_until_expiration", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username of the database user to create a certificate for.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -201,10 +201,10 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 customer_x509_cas: Optional[pulumi.Input[_builtins.str]] = None,
-                 months_until_expiration: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 customer_x509_cas: pulumi.Input[Optional[_builtins.str]] = None,
+                 months_until_expiration: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `X509AuthenticationDatabaseUser` provides a X509 Authentication Database User resource. The X509AuthenticationDatabaseUser resource lets you manage MongoDB users who authenticate using X.509 certificates. You can manage these X.509 certificates or let Atlas do it for you.
@@ -426,10 +426,10 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 customer_x509_cas: Optional[pulumi.Input[_builtins.str]] = None,
-                 months_until_expiration: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
+                 customer_x509_cas: pulumi.Input[Optional[_builtins.str]] = None,
+                 months_until_expiration: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -459,12 +459,12 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            certificates: Optional[pulumi.Input[Sequence[pulumi.Input[Union['X509AuthenticationDatabaseUserCertificateArgs', 'X509AuthenticationDatabaseUserCertificateArgsDict']]]]] = None,
-            current_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-            customer_x509_cas: Optional[pulumi.Input[_builtins.str]] = None,
-            months_until_expiration: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            username: Optional[pulumi.Input[_builtins.str]] = None) -> 'X509AuthenticationDatabaseUser':
+            certificates: pulumi.Input[Optional[Sequence[pulumi.Input[Union['X509AuthenticationDatabaseUserCertificateArgs', 'X509AuthenticationDatabaseUserCertificateArgsDict']]]]] = None,
+            current_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            customer_x509_cas: pulumi.Input[Optional[_builtins.str]] = None,
+            months_until_expiration: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> 'X509AuthenticationDatabaseUser':
         """
         Get an existing X509AuthenticationDatabaseUser resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

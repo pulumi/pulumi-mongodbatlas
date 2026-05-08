@@ -173,35 +173,35 @@ export interface ProjectServiceAccountAccessListEntryState {
     /**
      * Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
      */
-    cidrBlock?: pulumi.Input<string>;
+    cidrBlock?: pulumi.Input<string | undefined>;
     /**
      * The Client ID of the Service Account.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
      */
-    ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string | undefined>;
     /**
      * Network address that issued the most recent request to the API.
      */
-    lastUsedAddress?: pulumi.Input<string>;
+    lastUsedAddress?: pulumi.Input<string | undefined>;
     /**
      * Date when the API received the most recent request that originated from this network address.
      */
-    lastUsedAt?: pulumi.Input<string>;
+    lastUsedAt?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The number of requests that has originated from this network address.
      */
-    requestCount?: pulumi.Input<number>;
+    requestCount?: pulumi.Input<number | undefined>;
 }
 
 /**
@@ -211,7 +211,7 @@ export interface ProjectServiceAccountAccessListEntryArgs {
     /**
      * Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
      */
-    cidrBlock?: pulumi.Input<string>;
+    cidrBlock?: pulumi.Input<string | undefined>;
     /**
      * The Client ID of the Service Account.
      */
@@ -219,7 +219,7 @@ export interface ProjectServiceAccountAccessListEntryArgs {
     /**
      * IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
      */
-    ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project.
      */

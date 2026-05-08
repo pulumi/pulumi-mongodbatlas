@@ -284,9 +284,9 @@ def get_private_link_endpoint(private_link_id: Optional[_builtins.str] = None,
         service_attachment_names=pulumi.get(__ret__, 'service_attachment_names'),
         status=pulumi.get(__ret__, 'status'),
         supported_remote_regions=pulumi.get(__ret__, 'supported_remote_regions'))
-def get_private_link_endpoint_output(private_link_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                     project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                     provider_name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_private_link_endpoint_output(private_link_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                     project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                     provider_name: pulumi.Input[Optional[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivateLinkEndpointResult]:
     """
     `PrivateLinkEndpoint` describes a Private Endpoint. This represents a Private Endpoint Connection to retrieve details regarding a private endpoint by id in an Atlas project

@@ -171,14 +171,14 @@ export interface GetServerlessInstanceOutputArgs {
      *
      * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      */
-    autoIndexing?: pulumi.Input<boolean>;
+    autoIndexing?: pulumi.Input<boolean | undefined>;
     /**
      * (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
      *
      * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      */
-    continuousBackupEnabled?: pulumi.Input<boolean>;
-    links?: pulumi.Input<pulumi.Input<inputs.GetServerlessInstanceLinkArgs>[]>;
+    continuousBackupEnabled?: pulumi.Input<boolean | undefined>;
+    links?: pulumi.Input<pulumi.Input<inputs.GetServerlessInstanceLinkArgs>[] | undefined>;
     /**
      * Human-readable label that identifies your serverless instance.
      */
@@ -190,5 +190,5 @@ export interface GetServerlessInstanceOutputArgs {
     /**
      * Stage of deployment of this serverless instance when the resource made its request.
      */
-    stateName?: pulumi.Input<string>;
+    stateName?: pulumi.Input<string | undefined>;
 }

@@ -411,8 +411,8 @@ def get_federated_settings_identity_provider(federation_settings_id: Optional[_b
         sso_url=pulumi.get(__ret__, 'sso_url'),
         status=pulumi.get(__ret__, 'status'),
         user_claim=pulumi.get(__ret__, 'user_claim'))
-def get_federated_settings_identity_provider_output(federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                    identity_provider_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_federated_settings_identity_provider_output(federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                    identity_provider_id: pulumi.Input[Optional[_builtins.str]] = None,
                                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedSettingsIdentityProviderResult]:
     """
     `FederatedSettingsIdentityProvider` provides a federated settings identity provider data source. Atlas federated settings identity provider provides federated settings outputs for the configured identity provider.

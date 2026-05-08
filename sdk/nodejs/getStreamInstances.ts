@@ -140,11 +140,11 @@ export interface GetStreamInstancesOutputArgs {
     /**
      * Number of items that the response returns per page, up to a maximum of `500`. Defaults to `100`.
      */
-    itemsPerPage?: pulumi.Input<number>;
+    itemsPerPage?: pulumi.Input<number | undefined>;
     /**
      * Number of the page that displays the current set of the total objects that the response returns. Defaults to `1`.
      */
-    pageNum?: pulumi.Input<number>;
+    pageNum?: pulumi.Input<number | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */

@@ -85,12 +85,12 @@ class ApiKeyArgs:
 @pulumi.input_type
 class _ApiKeyState:
     def __init__(__self__, *,
-                 api_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None):
+                 api_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         Input properties used for looking up and filtering ApiKey resources.
 
@@ -119,58 +119,58 @@ class _ApiKeyState:
 
     @_builtins.property
     @pulumi.getter(name="apiKeyId")
-    def api_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "api_key_id")
 
     @api_key_id.setter
-    def api_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_key_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description of this Organization API key.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
         """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
-    def org_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_id", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter(name="roleNames")
-    def role_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def role_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Name of the role. This resource returns all the roles the user has in Atlas.
         The following are valid roles:
@@ -183,7 +183,7 @@ class _ApiKeyState:
         return pulumi.get(self, "role_names")
 
     @role_names.setter
-    def role_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def role_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "role_names", value)
 
 
@@ -193,9 +193,9 @@ class ApiKey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
         `ApiKey` provides a Organization API key resource. This allows an Organizational API key to be created.
@@ -302,9 +302,9 @@ class ApiKey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -338,12 +338,12 @@ class ApiKey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            api_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            org_id: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key: Optional[pulumi.Input[_builtins.str]] = None,
-            public_key: Optional[pulumi.Input[_builtins.str]] = None,
-            role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'ApiKey':
+            api_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            public_key: pulumi.Input[Optional[_builtins.str]] = None,
+            role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None) -> 'ApiKey':
         """
         Get an existing ApiKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

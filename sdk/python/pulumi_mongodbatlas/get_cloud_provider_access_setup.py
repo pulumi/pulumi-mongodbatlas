@@ -227,10 +227,10 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[Union['GetC
         project_id=pulumi.get(__ret__, 'project_id'),
         provider_name=pulumi.get(__ret__, 'provider_name'),
         role_id=pulumi.get(__ret__, 'role_id'))
-def get_cloud_provider_access_setup_output(azure_configs: Optional[pulumi.Input[Optional[Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict']]]]] = None,
-                                           project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                           provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                           role_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_cloud_provider_access_setup_output(azure_configs: pulumi.Input[Optional[Optional[Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict']]]]] = None,
+                                           project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                           provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                           role_id: pulumi.Input[Optional[_builtins.str]] = None,
                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudProviderAccessSetupResult]:
     """
     `CloudProviderAccessSetup` allows you to get a single role for a provider access role setup. Supported providers: AWS, AZURE and GCP.

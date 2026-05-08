@@ -203,9 +203,9 @@ def get_flex_snapshot(name: Optional[_builtins.str] = None,
         snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
         start_time=pulumi.get(__ret__, 'start_time'),
         status=pulumi.get(__ret__, 'status'))
-def get_flex_snapshot_output(name: Optional[pulumi.Input[_builtins.str]] = None,
-                             project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                             snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_flex_snapshot_output(name: pulumi.Input[Optional[_builtins.str]] = None,
+                             project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                             snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFlexSnapshotResult]:
     """
     `get_flex_snapshot` describes a flex snapshot.

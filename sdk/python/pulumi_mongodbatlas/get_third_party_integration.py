@@ -327,8 +327,8 @@ def get_third_party_integration(project_id: Optional[_builtins.str] = None,
         type=pulumi.get(__ret__, 'type'),
         url=pulumi.get(__ret__, 'url'),
         user_name=pulumi.get(__ret__, 'user_name'))
-def get_third_party_integration_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                       type: Optional[pulumi.Input[_builtins.str]] = None,
+def get_third_party_integration_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                       type: pulumi.Input[Optional[_builtins.str]] = None,
                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetThirdPartyIntegrationResult]:
     """
     `ThirdPartyIntegration` describes a Third-Party Integration Settings for the given type.

@@ -305,71 +305,71 @@ export interface BackupCompliancePolicyState {
     /**
      * Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
      */
-    authorizedEmail?: pulumi.Input<string>;
+    authorizedEmail?: pulumi.Input<string | undefined>;
     /**
      * First name of the user who authorized to update the Backup Compliance Policy settings.
      */
-    authorizedUserFirstName?: pulumi.Input<string>;
+    authorizedUserFirstName?: pulumi.Input<string | undefined>;
     /**
      * Last name of the user who authorized to update the Backup Compliance Policy settings.
      */
-    authorizedUserLastName?: pulumi.Input<string>;
+    authorizedUserLastName?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      */
-    copyProtectionEnabled?: pulumi.Input<boolean>;
+    copyProtectionEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
-    encryptionAtRestEnabled?: pulumi.Input<boolean>;
+    encryptionAtRestEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Specifications for on-demand policy.
      */
-    onDemandPolicyItem?: pulumi.Input<inputs.BackupCompliancePolicyOnDemandPolicyItem>;
+    onDemandPolicyItem?: pulumi.Input<inputs.BackupCompliancePolicyOnDemandPolicyItem | undefined>;
     /**
      * Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
-    pitEnabled?: pulumi.Input<boolean>;
+    pitEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Scheduled policy using a daily frequency type, see block fields.
      */
-    policyItemDaily?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemDaily>;
+    policyItemDaily?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemDaily | undefined>;
     /**
      * Scheduled policy using an hourly frequency type, see block fields.
      */
-    policyItemHourly?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemHourly>;
+    policyItemHourly?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemHourly | undefined>;
     /**
      * Scheduled policy using a monthly frequency type, see block fields.
      */
-    policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemMonthly>[]>;
+    policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemMonthly>[] | undefined>;
     /**
      * Scheduled policy using a weekly frequency type, see block fields.
      */
-    policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemWeekly>[]>;
+    policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemWeekly>[] | undefined>;
     /**
      * Scheduled policy using a yearly frequency type, see block fields.
      */
-    policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemYearly>[]>;
+    policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemYearly>[] | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
      */
-    restoreWindowDays?: pulumi.Input<number>;
+    restoreWindowDays?: pulumi.Input<number | undefined>;
     /**
      * Label that indicates the state of the Backup Compliance Policy settings. MongoDB Cloud ignores this setting when you enable or update the Backup Compliance Policy settings.
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * ISO 8601 timestamp format in UTC that indicates when the user updated the Data Protection Policy settings. MongoDB Cloud ignores this setting when you enable or update the Backup Compliance Policy settings.
      */
-    updatedDate?: pulumi.Input<string>;
+    updatedDate?: pulumi.Input<string | undefined>;
     /**
      * Email address that identifies the user who updated the Backup Compliance Policy settings. MongoDB Cloud ignores this email setting when you enable or update the Backup Compliance Policy settings.
      */
-    updatedUser?: pulumi.Input<string>;
+    updatedUser?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -391,39 +391,39 @@ export interface BackupCompliancePolicyArgs {
     /**
      * Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
      */
-    copyProtectionEnabled?: pulumi.Input<boolean>;
+    copyProtectionEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
-    encryptionAtRestEnabled?: pulumi.Input<boolean>;
+    encryptionAtRestEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Specifications for on-demand policy.
      */
-    onDemandPolicyItem?: pulumi.Input<inputs.BackupCompliancePolicyOnDemandPolicyItem>;
+    onDemandPolicyItem?: pulumi.Input<inputs.BackupCompliancePolicyOnDemandPolicyItem | undefined>;
     /**
      * Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
      */
-    pitEnabled?: pulumi.Input<boolean>;
+    pitEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Scheduled policy using a daily frequency type, see block fields.
      */
-    policyItemDaily?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemDaily>;
+    policyItemDaily?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemDaily | undefined>;
     /**
      * Scheduled policy using an hourly frequency type, see block fields.
      */
-    policyItemHourly?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemHourly>;
+    policyItemHourly?: pulumi.Input<inputs.BackupCompliancePolicyPolicyItemHourly | undefined>;
     /**
      * Scheduled policy using a monthly frequency type, see block fields.
      */
-    policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemMonthly>[]>;
+    policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemMonthly>[] | undefined>;
     /**
      * Scheduled policy using a weekly frequency type, see block fields.
      */
-    policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemWeekly>[]>;
+    policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemWeekly>[] | undefined>;
     /**
      * Scheduled policy using a yearly frequency type, see block fields.
      */
-    policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemYearly>[]>;
+    policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.BackupCompliancePolicyPolicyItemYearly>[] | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
@@ -431,5 +431,5 @@ export interface BackupCompliancePolicyArgs {
     /**
      * Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
      */
-    restoreWindowDays?: pulumi.Input<number>;
+    restoreWindowDays?: pulumi.Input<number | undefined>;
 }

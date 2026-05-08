@@ -235,64 +235,64 @@ export interface PrivateLinkEndpointState {
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * List of private endpoint names associated with the private endpoint service for port-mapped architectures. For GCP legacy private endpoint architectures, this is a list of endpoint group names associated with the private endpoint service.
      */
-    endpointGroupNames?: pulumi.Input<pulumi.Input<string>[]>;
+    endpointGroupNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Name of the PrivateLink endpoint service in AWS. Returns `null` while Atlas creates the endpoint service.
      */
-    endpointServiceName?: pulumi.Input<string>;
+    endpointServiceName?: pulumi.Input<string | undefined>;
     /**
      * Error message for the private endpoint connection. Returns `null` if there are no errors.
      */
-    errorMessage?: pulumi.Input<string>;
+    errorMessage?: pulumi.Input<string | undefined>;
     /**
      * Unique identifiers of the interface endpoints in your VPC that you added to the AWS PrivateLink connection.
      */
-    interfaceEndpoints?: pulumi.Input<pulumi.Input<string>[]>;
+    interfaceEndpoints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
      */
-    portMappingEnabled?: pulumi.Input<boolean>;
+    portMappingEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * All private endpoints that you have added to this Azure Private Link Service.
      */
-    privateEndpoints?: pulumi.Input<pulumi.Input<string>[]>;
+    privateEndpoints?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Unique identifier of the private endpoint connection.
      */
-    privateLinkId?: pulumi.Input<string>;
+    privateLinkId?: pulumi.Input<string | undefined>;
     /**
      * Name of the Azure Private Link Service that Atlas manages.
      */
-    privateLinkServiceName?: pulumi.Input<string>;
+    privateLinkServiceName?: pulumi.Input<string | undefined>;
     /**
      * Resource ID of the Azure Private Link Service.
      */
-    privateLinkServiceResourceId?: pulumi.Input<string>;
+    privateLinkServiceResourceId?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
      */
-    providerName?: pulumi.Input<string>;
+    providerName?: pulumi.Input<string | undefined>;
     /**
      * Cloud provider region in which you want to create the private endpoint connection.
      * Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Region for the Private Service Connect endpoint service.
      */
-    regionName?: pulumi.Input<string>;
+    regionName?: pulumi.Input<string | undefined>;
     /**
      * List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
      */
-    serviceAttachmentNames?: pulumi.Input<pulumi.Input<string>[]>;
+    serviceAttachmentNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * values:
      * * `AVAILABLE` - Atlas created the load balancer and the GCP Private Service Connect service.
@@ -300,11 +300,11 @@ export interface PrivateLinkEndpointState {
      * * `FAILED` - Atlas failed to create the load balancer and the GCP Private Service Connect service.
      * * `DELETING` - Atlas is deleting the GCP Private Service Connect service.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
      */
-    supportedRemoteRegions?: pulumi.Input<pulumi.Input<string>[]>;
+    supportedRemoteRegions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**
@@ -314,11 +314,11 @@ export interface PrivateLinkEndpointArgs {
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
      */
-    portMappingEnabled?: pulumi.Input<boolean>;
+    portMappingEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Unique identifier for the project, also known as `groupId` in the official documentation.
      */
@@ -335,5 +335,5 @@ export interface PrivateLinkEndpointArgs {
     /**
      * List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
      */
-    supportedRemoteRegions?: pulumi.Input<pulumi.Input<string>[]>;
+    supportedRemoteRegions?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

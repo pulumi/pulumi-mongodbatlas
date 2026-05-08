@@ -197,47 +197,47 @@ export interface LdapVerifyState {
     /**
      * An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
      */
-    authzQueryTemplate?: pulumi.Input<string>;
+    authzQueryTemplate?: pulumi.Input<string | undefined>;
     /**
      * The password used to authenticate the `bindUsername`.
      */
-    bindPassword?: pulumi.Input<string>;
+    bindPassword?: pulumi.Input<string | undefined>;
     /**
      * The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
      */
-    bindUsername?: pulumi.Input<string>;
+    bindUsername?: pulumi.Input<string | undefined>;
     /**
      * CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
      */
-    caCertificate?: pulumi.Input<string>;
+    caCertificate?: pulumi.Input<string | undefined>;
     /**
      * The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
      */
-    hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * One or more links to sub-resources. The relations in the URLs are explained in the Web Linking Specification.
      */
-    links?: pulumi.Input<pulumi.Input<inputs.LdapVerifyLink>[]>;
+    links?: pulumi.Input<pulumi.Input<inputs.LdapVerifyLink>[] | undefined>;
     /**
      * The port to which the LDAP server listens for client connections. Default: `636`
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
      */
-    requestId?: pulumi.Input<string>;
+    requestId?: pulumi.Input<string | undefined>;
     /**
      * The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
      */
-    validations?: pulumi.Input<pulumi.Input<inputs.LdapVerifyValidation>[]>;
+    validations?: pulumi.Input<pulumi.Input<inputs.LdapVerifyValidation>[] | undefined>;
 }
 
 /**
@@ -247,7 +247,7 @@ export interface LdapVerifyArgs {
     /**
      * An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
      */
-    authzQueryTemplate?: pulumi.Input<string>;
+    authzQueryTemplate?: pulumi.Input<string | undefined>;
     /**
      * The password used to authenticate the `bindUsername`.
      */
@@ -259,7 +259,7 @@ export interface LdapVerifyArgs {
     /**
      * CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
      */
-    caCertificate?: pulumi.Input<string>;
+    caCertificate?: pulumi.Input<string | undefined>;
     /**
      * The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
      */

@@ -21,22 +21,22 @@ class FederatedSettingsIdentityProviderArgs:
     def __init__(__self__, *,
                  federation_settings_id: pulumi.Input[_builtins.str],
                  issuer_uri: pulumi.Input[_builtins.str],
-                 associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorization_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 groups_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_binding: Optional[pulumi.Input[_builtins.str]] = None,
-                 requested_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 response_signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_debug_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sso_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_claim: Optional[pulumi.Input[_builtins.str]] = None):
+                 associated_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorization_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_binding: pulumi.Input[Optional[_builtins.str]] = None,
+                 requested_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 response_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_debug_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_claim: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a FederatedSettingsIdentityProvider resource.
 
@@ -122,112 +122,112 @@ class FederatedSettingsIdentityProviderArgs:
 
     @_builtins.property
     @pulumi.getter(name="associatedDomains")
-    def associated_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def associated_domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List that contains the domains associated with the identity provider.
         """
         return pulumi.get(self, "associated_domains")
 
     @associated_domains.setter
-    def associated_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def associated_domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "associated_domains", value)
 
     @_builtins.property
     @pulumi.getter
-    def audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier of the intended recipient of the token used in OIDC IdP.
         """
         return pulumi.get(self, "audience")
 
     @audience.setter
-    def audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "audience", value)
 
     @_builtins.property
     @pulumi.getter(name="authorizationType")
-    def authorization_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authorization_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
         """
         return pulumi.get(self, "authorization_type")
 
     @authorization_type.setter
-    def authorization_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authorization_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authorization_type", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Client identifier that is assigned to an application by the OIDC Identity Provider.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the identity provider.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="groupsClaim")
-    def groups_claim(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def groups_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier of the claim which contains OIDC IdP Group IDs in the token.
         """
         return pulumi.get(self, "groups_claim")
 
     @groups_claim.setter
-    def groups_claim(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def groups_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "groups_claim", value)
 
     @_builtins.property
     @pulumi.getter(name="idpType")
-    def idp_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "idp_type")
 
     @idp_type.setter
-    def idp_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that identifies the identity provider.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The protocol of the identity provider. Either `SAML` or `OIDC`.
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="requestBinding")
-    def request_binding(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def request_binding(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
         - HTTP POST
@@ -236,72 +236,72 @@ class FederatedSettingsIdentityProviderArgs:
         return pulumi.get(self, "request_binding")
 
     @request_binding.setter
-    def request_binding(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def request_binding(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "request_binding", value)
 
     @_builtins.property
     @pulumi.getter(name="requestedScopes")
-    def requested_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def requested_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
         """
         return pulumi.get(self, "requested_scopes")
 
     @requested_scopes.setter
-    def requested_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def requested_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "requested_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="responseSignatureAlgorithm")
-    def response_signature_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_signature_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
         """
         return pulumi.get(self, "response_signature_algorithm")
 
     @response_signature_algorithm.setter
-    def response_signature_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_signature_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_signature_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="ssoDebugEnabled")
-    def sso_debug_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def sso_debug_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the identity provider has SSO debug enabled.
         """
         return pulumi.get(self, "sso_debug_enabled")
 
     @sso_debug_enabled.setter
-    def sso_debug_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def sso_debug_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "sso_debug_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="ssoUrl")
-    def sso_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sso_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique string that identifies the intended audience of the SAML assertion.
         """
         return pulumi.get(self, "sso_url")
 
     @sso_url.setter
-    def sso_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sso_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sso_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter(name="userClaim")
-    def user_claim(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
         userClaim is required for OIDC IdP with authorizationType GROUP and USER.
@@ -309,33 +309,33 @@ class FederatedSettingsIdentityProviderArgs:
         return pulumi.get(self, "user_claim")
 
     @user_claim.setter
-    def user_claim(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_claim", value)
 
 
 @pulumi.input_type
 class _FederatedSettingsIdentityProviderState:
     def __init__(__self__, *,
-                 associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorization_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 groups_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer_uri: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 okta_idp_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_binding: Optional[pulumi.Input[_builtins.str]] = None,
-                 requested_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 response_signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_debug_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sso_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_claim: Optional[pulumi.Input[_builtins.str]] = None):
+                 associated_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorization_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 okta_idp_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_binding: pulumi.Input[Optional[_builtins.str]] = None,
+                 requested_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 response_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_debug_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_claim: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FederatedSettingsIdentityProvider resources.
 
@@ -405,160 +405,160 @@ class _FederatedSettingsIdentityProviderState:
 
     @_builtins.property
     @pulumi.getter(name="associatedDomains")
-    def associated_domains(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def associated_domains(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List that contains the domains associated with the identity provider.
         """
         return pulumi.get(self, "associated_domains")
 
     @associated_domains.setter
-    def associated_domains(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def associated_domains(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "associated_domains", value)
 
     @_builtins.property
     @pulumi.getter
-    def audience(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def audience(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier of the intended recipient of the token used in OIDC IdP.
         """
         return pulumi.get(self, "audience")
 
     @audience.setter
-    def audience(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def audience(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "audience", value)
 
     @_builtins.property
     @pulumi.getter(name="authorizationType")
-    def authorization_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authorization_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Indicates whether authorization is granted based on group membership or user ID. Valid values are `GROUP` or `USER`.
         """
         return pulumi.get(self, "authorization_type")
 
     @authorization_type.setter
-    def authorization_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authorization_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authorization_type", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Client identifier that is assigned to an application by the OIDC Identity Provider.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The description of the identity provider.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="federationSettingsId")
-    def federation_settings_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def federation_settings_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         """
         return pulumi.get(self, "federation_settings_id")
 
     @federation_settings_id.setter
-    def federation_settings_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def federation_settings_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "federation_settings_id", value)
 
     @_builtins.property
     @pulumi.getter(name="groupsClaim")
-    def groups_claim(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def groups_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier of the claim which contains OIDC IdP Group IDs in the token.
         """
         return pulumi.get(self, "groups_claim")
 
     @groups_claim.setter
-    def groups_claim(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def groups_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "groups_claim", value)
 
     @_builtins.property
     @pulumi.getter(name="idpId")
-    def idp_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the IdP.
         """
         return pulumi.get(self, "idp_id")
 
     @idp_id.setter
-    def idp_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_id", value)
 
     @_builtins.property
     @pulumi.getter(name="idpType")
-    def idp_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def idp_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "idp_type")
 
     @idp_type.setter
-    def idp_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def idp_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "idp_type", value)
 
     @_builtins.property
     @pulumi.getter(name="issuerUri")
-    def issuer_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def issuer_uri(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique string that identifies the issuer of the IdP.
         """
         return pulumi.get(self, "issuer_uri")
 
     @issuer_uri.setter
-    def issuer_uri(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def issuer_uri(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "issuer_uri", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that identifies the identity provider.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="oktaIdpId")
-    def okta_idp_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def okta_idp_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 20-hexadecimal digit string that identifies the IdP.
         """
         return pulumi.get(self, "okta_idp_id")
 
     @okta_idp_id.setter
-    def okta_idp_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def okta_idp_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "okta_idp_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def protocol(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The protocol of the identity provider. Either `SAML` or `OIDC`.
         """
         return pulumi.get(self, "protocol")
 
     @protocol.setter
-    def protocol(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "protocol", value)
 
     @_builtins.property
     @pulumi.getter(name="requestBinding")
-    def request_binding(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def request_binding(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         SAML Authentication Request Protocol HTTP method binding (`POST` or `REDIRECT`) that Federated Authentication uses to send the authentication request. Atlas supports the following binding values:
         - HTTP POST
@@ -567,72 +567,72 @@ class _FederatedSettingsIdentityProviderState:
         return pulumi.get(self, "request_binding")
 
     @request_binding.setter
-    def request_binding(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def request_binding(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "request_binding", value)
 
     @_builtins.property
     @pulumi.getter(name="requestedScopes")
-    def requested_scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def requested_scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
         """
         return pulumi.get(self, "requested_scopes")
 
     @requested_scopes.setter
-    def requested_scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def requested_scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "requested_scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="responseSignatureAlgorithm")
-    def response_signature_algorithm(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def response_signature_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
         """
         return pulumi.get(self, "response_signature_algorithm")
 
     @response_signature_algorithm.setter
-    def response_signature_algorithm(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def response_signature_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "response_signature_algorithm", value)
 
     @_builtins.property
     @pulumi.getter(name="ssoDebugEnabled")
-    def sso_debug_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def sso_debug_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the identity provider has SSO debug enabled.
         """
         return pulumi.get(self, "sso_debug_enabled")
 
     @sso_debug_enabled.setter
-    def sso_debug_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def sso_debug_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "sso_debug_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="ssoUrl")
-    def sso_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def sso_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique string that identifies the intended audience of the SAML assertion.
         """
         return pulumi.get(self, "sso_url")
 
     @sso_url.setter
-    def sso_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def sso_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "sso_url", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter(name="userClaim")
-    def user_claim(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_claim(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Identifier of the claim which contains the user ID in the token used for OIDC IdPs.
         userClaim is required for OIDC IdP with authorizationType GROUP and USER.
@@ -640,7 +640,7 @@ class _FederatedSettingsIdentityProviderState:
         return pulumi.get(self, "user_claim")
 
     @user_claim.setter
-    def user_claim(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_claim(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_claim", value)
 
 
@@ -650,24 +650,24 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorization_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 groups_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer_uri: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_binding: Optional[pulumi.Input[_builtins.str]] = None,
-                 requested_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 response_signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_debug_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sso_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_claim: Optional[pulumi.Input[_builtins.str]] = None,
+                 associated_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorization_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_binding: pulumi.Input[Optional[_builtins.str]] = None,
+                 requested_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 response_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_debug_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `FederatedSettingsIdentityProvider` provides an Atlas federated settings identity provider resource provides a subset of settings to be maintained post import of the existing resource.
@@ -825,24 +825,24 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 audience: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorization_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 groups_claim: Optional[pulumi.Input[_builtins.str]] = None,
-                 idp_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 issuer_uri: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 protocol: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_binding: Optional[pulumi.Input[_builtins.str]] = None,
-                 requested_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 response_signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-                 sso_debug_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 sso_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_claim: Optional[pulumi.Input[_builtins.str]] = None,
+                 associated_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 audience: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorization_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+                 idp_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 issuer_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_binding: pulumi.Input[Optional[_builtins.str]] = None,
+                 requested_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 response_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 sso_debug_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_claim: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -886,26 +886,26 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            associated_domains: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            audience: Optional[pulumi.Input[_builtins.str]] = None,
-            authorization_type: Optional[pulumi.Input[_builtins.str]] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-            groups_claim: Optional[pulumi.Input[_builtins.str]] = None,
-            idp_id: Optional[pulumi.Input[_builtins.str]] = None,
-            idp_type: Optional[pulumi.Input[_builtins.str]] = None,
-            issuer_uri: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            okta_idp_id: Optional[pulumi.Input[_builtins.str]] = None,
-            protocol: Optional[pulumi.Input[_builtins.str]] = None,
-            request_binding: Optional[pulumi.Input[_builtins.str]] = None,
-            requested_scopes: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            response_signature_algorithm: Optional[pulumi.Input[_builtins.str]] = None,
-            sso_debug_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            sso_url: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            user_claim: Optional[pulumi.Input[_builtins.str]] = None) -> 'FederatedSettingsIdentityProvider':
+            associated_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            audience: pulumi.Input[Optional[_builtins.str]] = None,
+            authorization_type: pulumi.Input[Optional[_builtins.str]] = None,
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+            groups_claim: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_id: pulumi.Input[Optional[_builtins.str]] = None,
+            idp_type: pulumi.Input[Optional[_builtins.str]] = None,
+            issuer_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            okta_idp_id: pulumi.Input[Optional[_builtins.str]] = None,
+            protocol: pulumi.Input[Optional[_builtins.str]] = None,
+            request_binding: pulumi.Input[Optional[_builtins.str]] = None,
+            requested_scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            response_signature_algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+            sso_debug_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            sso_url: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            user_claim: pulumi.Input[Optional[_builtins.str]] = None) -> 'FederatedSettingsIdentityProvider':
         """
         Get an existing FederatedSettingsIdentityProvider resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

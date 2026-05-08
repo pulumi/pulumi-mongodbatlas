@@ -21,18 +21,18 @@ __all__ = ['OrganizationArgs', 'Organization']
 @pulumi.input_type
 class OrganizationArgs:
     def __init__(__self__, *,
-                 api_access_list_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 gen_ai_features_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 multi_factor_auth_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 restrict_employee_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 security_contact: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account: Optional[pulumi.Input['OrganizationServiceAccountArgs']] = None,
-                 skip_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None):
+                 api_access_list_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 multi_factor_auth_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 restrict_employee_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 security_contact: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account: pulumi.Input[Optional['OrganizationServiceAccountArgs']] = None,
+                 skip_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Organization resource.
 
@@ -84,19 +84,19 @@ class OrganizationArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiAccessListRequired")
-    def api_access_list_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def api_access_list_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
         """
         return pulumi.get(self, "api_access_list_required")
 
     @api_access_list_required.setter
-    def api_access_list_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def api_access_list_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "api_access_list_required", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Programmatic API Key description. This attribute is required in creation and can't be updated later.
 
@@ -109,120 +109,120 @@ class OrganizationArgs:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="federationSettingsId")
-    def federation_settings_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def federation_settings_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can't be updated after creation.
         """
         return pulumi.get(self, "federation_settings_id")
 
     @federation_settings_id.setter
-    def federation_settings_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def federation_settings_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "federation_settings_id", value)
 
     @_builtins.property
     @pulumi.getter(name="genAiFeaturesEnabled")
-    def gen_ai_features_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def gen_ai_features_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
         """
         return pulumi.get(self, "gen_ai_features_enabled")
 
     @gen_ai_features_enabled.setter
-    def gen_ai_features_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def gen_ai_features_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "gen_ai_features_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="multiFactorAuthRequired")
-    def multi_factor_auth_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def multi_factor_auth_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
         """
         return pulumi.get(self, "multi_factor_auth_required")
 
     @multi_factor_auth_required.setter
-    def multi_factor_auth_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def multi_factor_auth_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "multi_factor_auth_required", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the organization.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="orgOwnerId")
-    def org_owner_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_owner_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
         """
         return pulumi.get(self, "org_owner_id")
 
     @org_owner_id.setter
-    def org_owner_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_owner_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_owner_id", value)
 
     @_builtins.property
     @pulumi.getter(name="restrictEmployeeAccess")
-    def restrict_employee_access(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def restrict_employee_access(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         """
         return pulumi.get(self, "restrict_employee_access")
 
     @restrict_employee_access.setter
-    def restrict_employee_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def restrict_employee_access(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "restrict_employee_access", value)
 
     @_builtins.property
     @pulumi.getter(name="roleNames")
-    def role_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def role_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
         """
         return pulumi.get(self, "role_names")
 
     @role_names.setter
-    def role_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def role_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "role_names", value)
 
     @_builtins.property
     @pulumi.getter(name="securityContact")
-    def security_contact(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def security_contact(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
         """
         return pulumi.get(self, "security_contact")
 
     @security_contact.setter
-    def security_contact(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def security_contact(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "security_contact", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccount")
-    def service_account(self) -> Optional[pulumi.Input['OrganizationServiceAccountArgs']]:
+    def service_account(self) -> pulumi.Input[Optional['OrganizationServiceAccountArgs']]:
         """
         Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `role_names`. This block can't be updated after creation. See Service Account.
         """
         return pulumi.get(self, "service_account")
 
     @service_account.setter
-    def service_account(self, value: Optional[pulumi.Input['OrganizationServiceAccountArgs']]):
+    def service_account(self, value: pulumi.Input[Optional['OrganizationServiceAccountArgs']]):
         pulumi.set(self, "service_account", value)
 
     @_builtins.property
     @pulumi.getter(name="skipDefaultAlertsSettings")
-    def skip_default_alerts_settings(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_default_alerts_settings(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`. 
 
@@ -231,28 +231,28 @@ class OrganizationArgs:
         return pulumi.get(self, "skip_default_alerts_settings")
 
     @skip_default_alerts_settings.setter
-    def skip_default_alerts_settings(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_default_alerts_settings(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_default_alerts_settings", value)
 
 
 @pulumi.input_type
 class _OrganizationState:
     def __init__(__self__, *,
-                 api_access_list_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 gen_ai_features_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 multi_factor_auth_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 restrict_employee_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 security_contact: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account: Optional[pulumi.Input['OrganizationServiceAccountArgs']] = None,
-                 skip_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None):
+                 api_access_list_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 multi_factor_auth_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 restrict_employee_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 security_contact: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account: pulumi.Input[Optional['OrganizationServiceAccountArgs']] = None,
+                 skip_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Organization resources.
 
@@ -313,19 +313,19 @@ class _OrganizationState:
 
     @_builtins.property
     @pulumi.getter(name="apiAccessListRequired")
-    def api_access_list_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def api_access_list_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
         """
         return pulumi.get(self, "api_access_list_required")
 
     @api_access_list_required.setter
-    def api_access_list_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def api_access_list_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "api_access_list_required", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Programmatic API Key description. This attribute is required in creation and can't be updated later.
 
@@ -338,156 +338,156 @@ class _OrganizationState:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="federationSettingsId")
-    def federation_settings_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def federation_settings_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the federation to link the newly created organization to. If specified, the proposed Organization Owner of the new organization must have the Organization Owner role in an organization associated with the federation. This attribute can't be updated after creation.
         """
         return pulumi.get(self, "federation_settings_id")
 
     @federation_settings_id.setter
-    def federation_settings_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def federation_settings_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "federation_settings_id", value)
 
     @_builtins.property
     @pulumi.getter(name="genAiFeaturesEnabled")
-    def gen_ai_features_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def gen_ai_features_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
         """
         return pulumi.get(self, "gen_ai_features_enabled")
 
     @gen_ai_features_enabled.setter
-    def gen_ai_features_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def gen_ai_features_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "gen_ai_features_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="multiFactorAuthRequired")
-    def multi_factor_auth_required(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def multi_factor_auth_required(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
         """
         return pulumi.get(self, "multi_factor_auth_required")
 
     @multi_factor_auth_required.setter
-    def multi_factor_auth_required(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def multi_factor_auth_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "multi_factor_auth_required", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the organization.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The organization id.
         """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
-    def org_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_id", value)
 
     @_builtins.property
     @pulumi.getter(name="orgOwnerId")
-    def org_owner_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_owner_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
         """
         return pulumi.get(self, "org_owner_id")
 
     @org_owner_id.setter
-    def org_owner_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_owner_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_owner_id", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Private key returned for this organization API key. This key displays unredacted when first created and is stored in the Terraform state file. Used for subsequent resource operations. Only populated when no `service_account` block is defined.
         """
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Public API key value set for the specified organization API key. Stored in the Terraform state and used for subsequent resource operations. Only populated when no `service_account` block is defined.
         """
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
     @_builtins.property
     @pulumi.getter(name="restrictEmployeeAccess")
-    def restrict_employee_access(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def restrict_employee_access(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         """
         return pulumi.get(self, "restrict_employee_access")
 
     @restrict_employee_access.setter
-    def restrict_employee_access(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def restrict_employee_access(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "restrict_employee_access", value)
 
     @_builtins.property
     @pulumi.getter(name="roleNames")
-    def role_names(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def role_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
         """
         return pulumi.get(self, "role_names")
 
     @role_names.setter
-    def role_names(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def role_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "role_names", value)
 
     @_builtins.property
     @pulumi.getter(name="securityContact")
-    def security_contact(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def security_contact(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
         """
         return pulumi.get(self, "security_contact")
 
     @security_contact.setter
-    def security_contact(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def security_contact(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "security_contact", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceAccount")
-    def service_account(self) -> Optional[pulumi.Input['OrganizationServiceAccountArgs']]:
+    def service_account(self) -> pulumi.Input[Optional['OrganizationServiceAccountArgs']]:
         """
         Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `role_names`. This block can't be updated after creation. See Service Account.
         """
         return pulumi.get(self, "service_account")
 
     @service_account.setter
-    def service_account(self, value: Optional[pulumi.Input['OrganizationServiceAccountArgs']]):
+    def service_account(self, value: pulumi.Input[Optional['OrganizationServiceAccountArgs']]):
         pulumi.set(self, "service_account", value)
 
     @_builtins.property
     @pulumi.getter(name="skipDefaultAlertsSettings")
-    def skip_default_alerts_settings(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_default_alerts_settings(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`. 
 
@@ -496,7 +496,7 @@ class _OrganizationState:
         return pulumi.get(self, "skip_default_alerts_settings")
 
     @skip_default_alerts_settings.setter
-    def skip_default_alerts_settings(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_default_alerts_settings(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_default_alerts_settings", value)
 
 
@@ -506,18 +506,18 @@ class Organization(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_access_list_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 gen_ai_features_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 multi_factor_auth_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 restrict_employee_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 security_contact: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account: Optional[pulumi.Input[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']]] = None,
-                 skip_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None,
+                 api_access_list_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 multi_factor_auth_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 restrict_employee_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 security_contact: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account: pulumi.Input[Optional[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']]] = None,
+                 skip_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         `Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
@@ -637,18 +637,18 @@ class Organization(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_access_list_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 gen_ai_features_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 multi_factor_auth_required: Optional[pulumi.Input[_builtins.bool]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 restrict_employee_access: Optional[pulumi.Input[_builtins.bool]] = None,
-                 role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 security_contact: Optional[pulumi.Input[_builtins.str]] = None,
-                 service_account: Optional[pulumi.Input[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']]] = None,
-                 skip_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None,
+                 api_access_list_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 multi_factor_auth_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 restrict_employee_access: pulumi.Input[Optional[_builtins.bool]] = None,
+                 role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 security_contact: pulumi.Input[Optional[_builtins.str]] = None,
+                 service_account: pulumi.Input[Optional[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']]] = None,
+                 skip_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -685,21 +685,21 @@ class Organization(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            api_access_list_required: Optional[pulumi.Input[_builtins.bool]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-            gen_ai_features_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            multi_factor_auth_required: Optional[pulumi.Input[_builtins.bool]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            org_id: Optional[pulumi.Input[_builtins.str]] = None,
-            org_owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key: Optional[pulumi.Input[_builtins.str]] = None,
-            public_key: Optional[pulumi.Input[_builtins.str]] = None,
-            restrict_employee_access: Optional[pulumi.Input[_builtins.bool]] = None,
-            role_names: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            security_contact: Optional[pulumi.Input[_builtins.str]] = None,
-            service_account: Optional[pulumi.Input[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']]] = None,
-            skip_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None) -> 'Organization':
+            api_access_list_required: pulumi.Input[Optional[_builtins.bool]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+            gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            multi_factor_auth_required: pulumi.Input[Optional[_builtins.bool]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            org_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            public_key: pulumi.Input[Optional[_builtins.str]] = None,
+            restrict_employee_access: pulumi.Input[Optional[_builtins.bool]] = None,
+            role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            security_contact: pulumi.Input[Optional[_builtins.str]] = None,
+            service_account: pulumi.Input[Optional[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']]] = None,
+            skip_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None) -> 'Organization':
         """
         Get an existing Organization resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

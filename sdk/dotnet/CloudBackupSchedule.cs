@@ -32,7 +32,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myCluster = new Mongodbatlas.Index.AdvancedCluster("my_cluster", new()
+    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         Name = "clusterTest",
@@ -60,7 +60,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var test = new Mongodbatlas.Index.CloudBackupSchedule("test", new()
+    ///     var test = new Mongodbatlas.CloudBackupSchedule("test", new()
     ///     {
     ///         ProjectId = myCluster.ProjectId,
     ///         ClusterName = myCluster.Name,
@@ -96,7 +96,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myCluster = new Mongodbatlas.Index.AdvancedCluster("my_cluster", new()
+    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         Name = "clusterTest",
@@ -124,7 +124,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var test = new Mongodbatlas.Index.CloudBackupSchedule("test", new()
+    ///     var test = new Mongodbatlas.CloudBackupSchedule("test", new()
     ///     {
     ///         ProjectId = myCluster.ProjectId,
     ///         ClusterName = myCluster.Name,
@@ -149,7 +149,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myCluster = new Mongodbatlas.Index.AdvancedCluster("my_cluster", new()
+    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         Name = "clusterTest",
@@ -177,7 +177,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var test = new Mongodbatlas.Index.CloudBackupSchedule("test", new()
+    ///     var test = new Mongodbatlas.CloudBackupSchedule("test", new()
     ///     {
     ///         ProjectId = myCluster.ProjectId,
     ///         ClusterName = myCluster.Name,
@@ -240,7 +240,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var myCluster = new Mongodbatlas.Index.AdvancedCluster("my_cluster", new()
+    ///     var myCluster = new Mongodbatlas.AdvancedCluster("my_cluster", new()
     ///     {
     ///         ProjectId = "&lt;PROJECT-ID&gt;",
     ///         Name = "clusterTest",
@@ -268,7 +268,7 @@ namespace Pulumi.Mongodbatlas
     ///         },
     ///     });
     /// 
-    ///     var test = new Mongodbatlas.Index.CloudBackupSchedule("test", new()
+    ///     var test = new Mongodbatlas.CloudBackupSchedule("test", new()
     ///     {
     ///         ProjectId = myCluster.ProjectId,
     ///         ClusterName = myCluster.Name,

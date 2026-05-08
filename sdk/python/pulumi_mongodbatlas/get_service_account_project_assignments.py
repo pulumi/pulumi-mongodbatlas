@@ -135,8 +135,8 @@ def get_service_account_project_assignments(client_id: Optional[_builtins.str] =
         id=pulumi.get(__ret__, 'id'),
         org_id=pulumi.get(__ret__, 'org_id'),
         results=pulumi.get(__ret__, 'results'))
-def get_service_account_project_assignments_output(client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                   org_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_service_account_project_assignments_output(client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                   org_id: pulumi.Input[Optional[_builtins.str]] = None,
                                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServiceAccountProjectAssignmentsResult]:
     """
     `get_service_account_project_assignments` returns all Projects that the specified Service Account is assigned to.

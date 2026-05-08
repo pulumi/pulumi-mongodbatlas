@@ -169,8 +169,8 @@ def get_privatelink_endpoint_service_data_federation_online_archive(endpoint_id:
         provider_name=pulumi.get(__ret__, 'provider_name'),
         region=pulumi.get(__ret__, 'region'),
         type=pulumi.get(__ret__, 'type'))
-def get_privatelink_endpoint_service_data_federation_online_archive_output(endpoint_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                                           project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_privatelink_endpoint_service_data_federation_online_archive_output(endpoint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                                           project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPrivatelinkEndpointServiceDataFederationOnlineArchiveResult]:
     """
     `PrivatelinkEndpointServiceDataFederationOnlineArchive` describes a Private Endpoint Service resource for Data Federation and Online Archive.

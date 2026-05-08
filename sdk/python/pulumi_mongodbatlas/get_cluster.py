@@ -674,8 +674,8 @@ def get_cluster(name: Optional[_builtins.str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         termination_protection_enabled=pulumi.get(__ret__, 'termination_protection_enabled'),
         version_release_system=pulumi.get(__ret__, 'version_release_system'))
-def get_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = None,
-                       project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_cluster_output(name: pulumi.Input[Optional[_builtins.str]] = None,
+                       project_id: pulumi.Input[Optional[_builtins.str]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterResult]:
     """
     `Cluster` describes a Cluster. The data source requires your Project ID.

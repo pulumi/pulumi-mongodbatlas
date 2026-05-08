@@ -200,9 +200,9 @@ export interface GetCloudUserTeamAssignmentOutputArgs {
     /**
      * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
     /**
      * Email address that represents the username of the MongoDB Cloud user.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }

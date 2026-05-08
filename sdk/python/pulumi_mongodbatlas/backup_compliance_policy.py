@@ -25,16 +25,16 @@ class BackupCompliancePolicyArgs:
                  authorized_user_first_name: pulumi.Input[_builtins.str],
                  authorized_user_last_name: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
-                 copy_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encryption_at_rest_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_demand_policy_item: Optional[pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']] = None,
-                 pit_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 policy_item_daily: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemDailyArgs']] = None,
-                 policy_item_hourly: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemHourlyArgs']] = None,
-                 policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]] = None,
-                 policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]] = None,
-                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]] = None,
-                 restore_window_days: Optional[pulumi.Input[_builtins.int]] = None):
+                 copy_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encryption_at_rest_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_demand_policy_item: pulumi.Input[Optional['BackupCompliancePolicyOnDemandPolicyItemArgs']] = None,
+                 pit_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 policy_item_daily: pulumi.Input[Optional['BackupCompliancePolicyPolicyItemDailyArgs']] = None,
+                 policy_item_hourly: pulumi.Input[Optional['BackupCompliancePolicyPolicyItemHourlyArgs']] = None,
+                 policy_item_monthlies: pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]] = None,
+                 policy_item_weeklies: pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]] = None,
+                 policy_item_yearlies: pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]] = None,
+                 restore_window_days: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a BackupCompliancePolicy resource.
 
@@ -128,145 +128,145 @@ class BackupCompliancePolicyArgs:
 
     @_builtins.property
     @pulumi.getter(name="copyProtectionEnabled")
-    def copy_protection_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def copy_protection_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         """
         return pulumi.get(self, "copy_protection_enabled")
 
     @copy_protection_enabled.setter
-    def copy_protection_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def copy_protection_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "copy_protection_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionAtRestEnabled")
-    def encryption_at_rest_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def encryption_at_rest_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
         """
         return pulumi.get(self, "encryption_at_rest_enabled")
 
     @encryption_at_rest_enabled.setter
-    def encryption_at_rest_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def encryption_at_rest_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "encryption_at_rest_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="onDemandPolicyItem")
-    def on_demand_policy_item(self) -> Optional[pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']]:
+    def on_demand_policy_item(self) -> pulumi.Input[Optional['BackupCompliancePolicyOnDemandPolicyItemArgs']]:
         """
         Specifications for on-demand policy.
         """
         return pulumi.get(self, "on_demand_policy_item")
 
     @on_demand_policy_item.setter
-    def on_demand_policy_item(self, value: Optional[pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']]):
+    def on_demand_policy_item(self, value: pulumi.Input[Optional['BackupCompliancePolicyOnDemandPolicyItemArgs']]):
         pulumi.set(self, "on_demand_policy_item", value)
 
     @_builtins.property
     @pulumi.getter(name="pitEnabled")
-    def pit_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def pit_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
         """
         return pulumi.get(self, "pit_enabled")
 
     @pit_enabled.setter
-    def pit_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def pit_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "pit_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="policyItemDaily")
-    def policy_item_daily(self) -> Optional[pulumi.Input['BackupCompliancePolicyPolicyItemDailyArgs']]:
+    def policy_item_daily(self) -> pulumi.Input[Optional['BackupCompliancePolicyPolicyItemDailyArgs']]:
         """
         Scheduled policy using a daily frequency type, see block fields.
         """
         return pulumi.get(self, "policy_item_daily")
 
     @policy_item_daily.setter
-    def policy_item_daily(self, value: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemDailyArgs']]):
+    def policy_item_daily(self, value: pulumi.Input[Optional['BackupCompliancePolicyPolicyItemDailyArgs']]):
         pulumi.set(self, "policy_item_daily", value)
 
     @_builtins.property
     @pulumi.getter(name="policyItemHourly")
-    def policy_item_hourly(self) -> Optional[pulumi.Input['BackupCompliancePolicyPolicyItemHourlyArgs']]:
+    def policy_item_hourly(self) -> pulumi.Input[Optional['BackupCompliancePolicyPolicyItemHourlyArgs']]:
         """
         Scheduled policy using an hourly frequency type, see block fields.
         """
         return pulumi.get(self, "policy_item_hourly")
 
     @policy_item_hourly.setter
-    def policy_item_hourly(self, value: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemHourlyArgs']]):
+    def policy_item_hourly(self, value: pulumi.Input[Optional['BackupCompliancePolicyPolicyItemHourlyArgs']]):
         pulumi.set(self, "policy_item_hourly", value)
 
     @_builtins.property
     @pulumi.getter(name="policyItemMonthlies")
-    def policy_item_monthlies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]]:
+    def policy_item_monthlies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]]:
         """
         Scheduled policy using a monthly frequency type, see block fields.
         """
         return pulumi.get(self, "policy_item_monthlies")
 
     @policy_item_monthlies.setter
-    def policy_item_monthlies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]]):
+    def policy_item_monthlies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]]):
         pulumi.set(self, "policy_item_monthlies", value)
 
     @_builtins.property
     @pulumi.getter(name="policyItemWeeklies")
-    def policy_item_weeklies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]]:
+    def policy_item_weeklies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]]:
         """
         Scheduled policy using a weekly frequency type, see block fields.
         """
         return pulumi.get(self, "policy_item_weeklies")
 
     @policy_item_weeklies.setter
-    def policy_item_weeklies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]]):
+    def policy_item_weeklies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]]):
         pulumi.set(self, "policy_item_weeklies", value)
 
     @_builtins.property
     @pulumi.getter(name="policyItemYearlies")
-    def policy_item_yearlies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]]:
+    def policy_item_yearlies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]]:
         """
         Scheduled policy using a yearly frequency type, see block fields.
         """
         return pulumi.get(self, "policy_item_yearlies")
 
     @policy_item_yearlies.setter
-    def policy_item_yearlies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]]):
+    def policy_item_yearlies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]]):
         pulumi.set(self, "policy_item_yearlies", value)
 
     @_builtins.property
     @pulumi.getter(name="restoreWindowDays")
-    def restore_window_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def restore_window_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
         """
         return pulumi.get(self, "restore_window_days")
 
     @restore_window_days.setter
-    def restore_window_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def restore_window_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "restore_window_days", value)
 
 
 @pulumi.input_type
 class _BackupCompliancePolicyState:
     def __init__(__self__, *,
-                 authorized_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorized_user_first_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorized_user_last_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 copy_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encryption_at_rest_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_demand_policy_item: Optional[pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']] = None,
-                 pit_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 policy_item_daily: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemDailyArgs']] = None,
-                 policy_item_hourly: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemHourlyArgs']] = None,
-                 policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]] = None,
-                 policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]] = None,
-                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 restore_window_days: Optional[pulumi.Input[_builtins.int]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_date: Optional[pulumi.Input[_builtins.str]] = None,
-                 updated_user: Optional[pulumi.Input[_builtins.str]] = None):
+                 authorized_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorized_user_first_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorized_user_last_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 copy_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encryption_at_rest_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_demand_policy_item: pulumi.Input[Optional['BackupCompliancePolicyOnDemandPolicyItemArgs']] = None,
+                 pit_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 policy_item_daily: pulumi.Input[Optional['BackupCompliancePolicyPolicyItemDailyArgs']] = None,
+                 policy_item_hourly: pulumi.Input[Optional['BackupCompliancePolicyPolicyItemHourlyArgs']] = None,
+                 policy_item_monthlies: pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]] = None,
+                 policy_item_weeklies: pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]] = None,
+                 policy_item_yearlies: pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 restore_window_days: pulumi.Input[Optional[_builtins.int]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_date: pulumi.Input[Optional[_builtins.str]] = None,
+                 updated_user: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering BackupCompliancePolicy resources.
 
@@ -325,206 +325,206 @@ class _BackupCompliancePolicyState:
 
     @_builtins.property
     @pulumi.getter(name="authorizedEmail")
-    def authorized_email(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authorized_email(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Email address of a security or legal representative for the Backup Compliance Policy who is authorized to update the Backup Compliance Policy settings.
         """
         return pulumi.get(self, "authorized_email")
 
     @authorized_email.setter
-    def authorized_email(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authorized_email(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authorized_email", value)
 
     @_builtins.property
     @pulumi.getter(name="authorizedUserFirstName")
-    def authorized_user_first_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authorized_user_first_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         First name of the user who authorized to update the Backup Compliance Policy settings.
         """
         return pulumi.get(self, "authorized_user_first_name")
 
     @authorized_user_first_name.setter
-    def authorized_user_first_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authorized_user_first_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authorized_user_first_name", value)
 
     @_builtins.property
     @pulumi.getter(name="authorizedUserLastName")
-    def authorized_user_last_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authorized_user_last_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Last name of the user who authorized to update the Backup Compliance Policy settings.
         """
         return pulumi.get(self, "authorized_user_last_name")
 
     @authorized_user_last_name.setter
-    def authorized_user_last_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authorized_user_last_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authorized_user_last_name", value)
 
     @_builtins.property
     @pulumi.getter(name="copyProtectionEnabled")
-    def copy_protection_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def copy_protection_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to enable additional backup copies for the cluster. If unspecified, this value defaults to false.
         """
         return pulumi.get(self, "copy_protection_enabled")
 
     @copy_protection_enabled.setter
-    def copy_protection_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def copy_protection_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "copy_protection_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionAtRestEnabled")
-    def encryption_at_rest_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def encryption_at_rest_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether Encryption at Rest using Customer Key Management is required for all clusters with a Backup Compliance Policy. If unspecified, this value defaults to false.
         """
         return pulumi.get(self, "encryption_at_rest_enabled")
 
     @encryption_at_rest_enabled.setter
-    def encryption_at_rest_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def encryption_at_rest_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "encryption_at_rest_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="onDemandPolicyItem")
-    def on_demand_policy_item(self) -> Optional[pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']]:
+    def on_demand_policy_item(self) -> pulumi.Input[Optional['BackupCompliancePolicyOnDemandPolicyItemArgs']]:
         """
         Specifications for on-demand policy.
         """
         return pulumi.get(self, "on_demand_policy_item")
 
     @on_demand_policy_item.setter
-    def on_demand_policy_item(self, value: Optional[pulumi.Input['BackupCompliancePolicyOnDemandPolicyItemArgs']]):
+    def on_demand_policy_item(self, value: pulumi.Input[Optional['BackupCompliancePolicyOnDemandPolicyItemArgs']]):
         pulumi.set(self, "on_demand_policy_item", value)
 
     @_builtins.property
     @pulumi.getter(name="pitEnabled")
-    def pit_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def pit_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the cluster uses Continuous Cloud Backups with a Backup Compliance Policy. If unspecified, this value defaults to false.
         """
         return pulumi.get(self, "pit_enabled")
 
     @pit_enabled.setter
-    def pit_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def pit_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "pit_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="policyItemDaily")
-    def policy_item_daily(self) -> Optional[pulumi.Input['BackupCompliancePolicyPolicyItemDailyArgs']]:
+    def policy_item_daily(self) -> pulumi.Input[Optional['BackupCompliancePolicyPolicyItemDailyArgs']]:
         """
         Scheduled policy using a daily frequency type, see block fields.
         """
         return pulumi.get(self, "policy_item_daily")
 
     @policy_item_daily.setter
-    def policy_item_daily(self, value: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemDailyArgs']]):
+    def policy_item_daily(self, value: pulumi.Input[Optional['BackupCompliancePolicyPolicyItemDailyArgs']]):
         pulumi.set(self, "policy_item_daily", value)
 
     @_builtins.property
     @pulumi.getter(name="policyItemHourly")
-    def policy_item_hourly(self) -> Optional[pulumi.Input['BackupCompliancePolicyPolicyItemHourlyArgs']]:
+    def policy_item_hourly(self) -> pulumi.Input[Optional['BackupCompliancePolicyPolicyItemHourlyArgs']]:
         """
         Scheduled policy using an hourly frequency type, see block fields.
         """
         return pulumi.get(self, "policy_item_hourly")
 
     @policy_item_hourly.setter
-    def policy_item_hourly(self, value: Optional[pulumi.Input['BackupCompliancePolicyPolicyItemHourlyArgs']]):
+    def policy_item_hourly(self, value: pulumi.Input[Optional['BackupCompliancePolicyPolicyItemHourlyArgs']]):
         pulumi.set(self, "policy_item_hourly", value)
 
     @_builtins.property
     @pulumi.getter(name="policyItemMonthlies")
-    def policy_item_monthlies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]]:
+    def policy_item_monthlies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]]:
         """
         Scheduled policy using a monthly frequency type, see block fields.
         """
         return pulumi.get(self, "policy_item_monthlies")
 
     @policy_item_monthlies.setter
-    def policy_item_monthlies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]]):
+    def policy_item_monthlies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemMonthlyArgs']]]]):
         pulumi.set(self, "policy_item_monthlies", value)
 
     @_builtins.property
     @pulumi.getter(name="policyItemWeeklies")
-    def policy_item_weeklies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]]:
+    def policy_item_weeklies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]]:
         """
         Scheduled policy using a weekly frequency type, see block fields.
         """
         return pulumi.get(self, "policy_item_weeklies")
 
     @policy_item_weeklies.setter
-    def policy_item_weeklies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]]):
+    def policy_item_weeklies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemWeeklyArgs']]]]):
         pulumi.set(self, "policy_item_weeklies", value)
 
     @_builtins.property
     @pulumi.getter(name="policyItemYearlies")
-    def policy_item_yearlies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]]:
+    def policy_item_yearlies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]]:
         """
         Scheduled policy using a yearly frequency type, see block fields.
         """
         return pulumi.get(self, "policy_item_yearlies")
 
     @policy_item_yearlies.setter
-    def policy_item_yearlies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]]):
+    def policy_item_yearlies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['BackupCompliancePolicyPolicyItemYearlyArgs']]]]):
         pulumi.set(self, "policy_item_yearlies", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="restoreWindowDays")
-    def restore_window_days(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def restore_window_days(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of previous days that you can restore back to with Continuous Cloud Backup with a Backup Compliance Policy. You must specify a positive, non-zero integer, and the maximum retention window can't exceed the hourly retention time. This parameter applies only to Continuous Cloud Backups with a Backup Compliance Policy.
         """
         return pulumi.get(self, "restore_window_days")
 
     @restore_window_days.setter
-    def restore_window_days(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def restore_window_days(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "restore_window_days", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label that indicates the state of the Backup Compliance Policy settings. MongoDB Cloud ignores this setting when you enable or update the Backup Compliance Policy settings.
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedDate")
-    def updated_date(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_date(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ISO 8601 timestamp format in UTC that indicates when the user updated the Data Protection Policy settings. MongoDB Cloud ignores this setting when you enable or update the Backup Compliance Policy settings.
         """
         return pulumi.get(self, "updated_date")
 
     @updated_date.setter
-    def updated_date(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_date(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_date", value)
 
     @_builtins.property
     @pulumi.getter(name="updatedUser")
-    def updated_user(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def updated_user(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Email address that identifies the user who updated the Backup Compliance Policy settings. MongoDB Cloud ignores this email setting when you enable or update the Backup Compliance Policy settings.
         """
         return pulumi.get(self, "updated_user")
 
     @updated_user.setter
-    def updated_user(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def updated_user(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "updated_user", value)
 
 
@@ -534,20 +534,20 @@ class BackupCompliancePolicy(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authorized_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorized_user_first_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorized_user_last_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 copy_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encryption_at_rest_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_demand_policy_item: Optional[pulumi.Input[Union['BackupCompliancePolicyOnDemandPolicyItemArgs', 'BackupCompliancePolicyOnDemandPolicyItemArgsDict']]] = None,
-                 pit_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 policy_item_daily: Optional[pulumi.Input[Union['BackupCompliancePolicyPolicyItemDailyArgs', 'BackupCompliancePolicyPolicyItemDailyArgsDict']]] = None,
-                 policy_item_hourly: Optional[pulumi.Input[Union['BackupCompliancePolicyPolicyItemHourlyArgs', 'BackupCompliancePolicyPolicyItemHourlyArgsDict']]] = None,
-                 policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemMonthlyArgs', 'BackupCompliancePolicyPolicyItemMonthlyArgsDict']]]]] = None,
-                 policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemWeeklyArgs', 'BackupCompliancePolicyPolicyItemWeeklyArgsDict']]]]] = None,
-                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemYearlyArgs', 'BackupCompliancePolicyPolicyItemYearlyArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 restore_window_days: Optional[pulumi.Input[_builtins.int]] = None,
+                 authorized_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorized_user_first_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorized_user_last_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 copy_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encryption_at_rest_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_demand_policy_item: pulumi.Input[Optional[Union['BackupCompliancePolicyOnDemandPolicyItemArgs', 'BackupCompliancePolicyOnDemandPolicyItemArgsDict']]] = None,
+                 pit_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 policy_item_daily: pulumi.Input[Optional[Union['BackupCompliancePolicyPolicyItemDailyArgs', 'BackupCompliancePolicyPolicyItemDailyArgsDict']]] = None,
+                 policy_item_hourly: pulumi.Input[Optional[Union['BackupCompliancePolicyPolicyItemHourlyArgs', 'BackupCompliancePolicyPolicyItemHourlyArgsDict']]] = None,
+                 policy_item_monthlies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemMonthlyArgs', 'BackupCompliancePolicyPolicyItemMonthlyArgsDict']]]]] = None,
+                 policy_item_weeklies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemWeeklyArgs', 'BackupCompliancePolicyPolicyItemWeeklyArgsDict']]]]] = None,
+                 policy_item_yearlies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemYearlyArgs', 'BackupCompliancePolicyPolicyItemYearlyArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 restore_window_days: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         `BackupCompliancePolicy` provides a resource that enables you to set up a Backup Compliance Policy resource. [Backup Compliance Policy ](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy) prevents any user, regardless of role, from modifying or deleting specific cluster settings, backups, and backup configurations. When enabled, the Backup Compliance Policy will be applied as the minimum policy for all clusters and backups in the project. It can only be disabled by contacting MongoDB support. This feature is only supported for cluster tiers M10+.
@@ -831,20 +831,20 @@ class BackupCompliancePolicy(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authorized_email: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorized_user_first_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 authorized_user_last_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 copy_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encryption_at_rest_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 on_demand_policy_item: Optional[pulumi.Input[Union['BackupCompliancePolicyOnDemandPolicyItemArgs', 'BackupCompliancePolicyOnDemandPolicyItemArgsDict']]] = None,
-                 pit_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 policy_item_daily: Optional[pulumi.Input[Union['BackupCompliancePolicyPolicyItemDailyArgs', 'BackupCompliancePolicyPolicyItemDailyArgsDict']]] = None,
-                 policy_item_hourly: Optional[pulumi.Input[Union['BackupCompliancePolicyPolicyItemHourlyArgs', 'BackupCompliancePolicyPolicyItemHourlyArgsDict']]] = None,
-                 policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemMonthlyArgs', 'BackupCompliancePolicyPolicyItemMonthlyArgsDict']]]]] = None,
-                 policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemWeeklyArgs', 'BackupCompliancePolicyPolicyItemWeeklyArgsDict']]]]] = None,
-                 policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemYearlyArgs', 'BackupCompliancePolicyPolicyItemYearlyArgsDict']]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 restore_window_days: Optional[pulumi.Input[_builtins.int]] = None,
+                 authorized_email: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorized_user_first_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 authorized_user_last_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 copy_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encryption_at_rest_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 on_demand_policy_item: pulumi.Input[Optional[Union['BackupCompliancePolicyOnDemandPolicyItemArgs', 'BackupCompliancePolicyOnDemandPolicyItemArgsDict']]] = None,
+                 pit_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 policy_item_daily: pulumi.Input[Optional[Union['BackupCompliancePolicyPolicyItemDailyArgs', 'BackupCompliancePolicyPolicyItemDailyArgsDict']]] = None,
+                 policy_item_hourly: pulumi.Input[Optional[Union['BackupCompliancePolicyPolicyItemHourlyArgs', 'BackupCompliancePolicyPolicyItemHourlyArgsDict']]] = None,
+                 policy_item_monthlies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemMonthlyArgs', 'BackupCompliancePolicyPolicyItemMonthlyArgsDict']]]]] = None,
+                 policy_item_weeklies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemWeeklyArgs', 'BackupCompliancePolicyPolicyItemWeeklyArgsDict']]]]] = None,
+                 policy_item_yearlies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemYearlyArgs', 'BackupCompliancePolicyPolicyItemYearlyArgsDict']]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 restore_window_days: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -889,23 +889,23 @@ class BackupCompliancePolicy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            authorized_email: Optional[pulumi.Input[_builtins.str]] = None,
-            authorized_user_first_name: Optional[pulumi.Input[_builtins.str]] = None,
-            authorized_user_last_name: Optional[pulumi.Input[_builtins.str]] = None,
-            copy_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            encryption_at_rest_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            on_demand_policy_item: Optional[pulumi.Input[Union['BackupCompliancePolicyOnDemandPolicyItemArgs', 'BackupCompliancePolicyOnDemandPolicyItemArgsDict']]] = None,
-            pit_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            policy_item_daily: Optional[pulumi.Input[Union['BackupCompliancePolicyPolicyItemDailyArgs', 'BackupCompliancePolicyPolicyItemDailyArgsDict']]] = None,
-            policy_item_hourly: Optional[pulumi.Input[Union['BackupCompliancePolicyPolicyItemHourlyArgs', 'BackupCompliancePolicyPolicyItemHourlyArgsDict']]] = None,
-            policy_item_monthlies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemMonthlyArgs', 'BackupCompliancePolicyPolicyItemMonthlyArgsDict']]]]] = None,
-            policy_item_weeklies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemWeeklyArgs', 'BackupCompliancePolicyPolicyItemWeeklyArgsDict']]]]] = None,
-            policy_item_yearlies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemYearlyArgs', 'BackupCompliancePolicyPolicyItemYearlyArgsDict']]]]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            restore_window_days: Optional[pulumi.Input[_builtins.int]] = None,
-            state: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_date: Optional[pulumi.Input[_builtins.str]] = None,
-            updated_user: Optional[pulumi.Input[_builtins.str]] = None) -> 'BackupCompliancePolicy':
+            authorized_email: pulumi.Input[Optional[_builtins.str]] = None,
+            authorized_user_first_name: pulumi.Input[Optional[_builtins.str]] = None,
+            authorized_user_last_name: pulumi.Input[Optional[_builtins.str]] = None,
+            copy_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            encryption_at_rest_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            on_demand_policy_item: pulumi.Input[Optional[Union['BackupCompliancePolicyOnDemandPolicyItemArgs', 'BackupCompliancePolicyOnDemandPolicyItemArgsDict']]] = None,
+            pit_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            policy_item_daily: pulumi.Input[Optional[Union['BackupCompliancePolicyPolicyItemDailyArgs', 'BackupCompliancePolicyPolicyItemDailyArgsDict']]] = None,
+            policy_item_hourly: pulumi.Input[Optional[Union['BackupCompliancePolicyPolicyItemHourlyArgs', 'BackupCompliancePolicyPolicyItemHourlyArgsDict']]] = None,
+            policy_item_monthlies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemMonthlyArgs', 'BackupCompliancePolicyPolicyItemMonthlyArgsDict']]]]] = None,
+            policy_item_weeklies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemWeeklyArgs', 'BackupCompliancePolicyPolicyItemWeeklyArgsDict']]]]] = None,
+            policy_item_yearlies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['BackupCompliancePolicyPolicyItemYearlyArgs', 'BackupCompliancePolicyPolicyItemYearlyArgsDict']]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            restore_window_days: pulumi.Input[Optional[_builtins.int]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_date: pulumi.Input[Optional[_builtins.str]] = None,
+            updated_user: pulumi.Input[Optional[_builtins.str]] = None) -> 'BackupCompliancePolicy':
         """
         Get an existing BackupCompliancePolicy resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -338,8 +338,8 @@ def get_cloud_backup_schedule(cluster_name: Optional[_builtins.str] = None,
         reference_minute_of_hour=pulumi.get(__ret__, 'reference_minute_of_hour'),
         restore_window_days=pulumi.get(__ret__, 'restore_window_days'),
         use_org_and_group_names_in_export_prefix=pulumi.get(__ret__, 'use_org_and_group_names_in_export_prefix'))
-def get_cloud_backup_schedule_output(cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                     project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_cloud_backup_schedule_output(cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                     project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupScheduleResult]:
     """
     `CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.

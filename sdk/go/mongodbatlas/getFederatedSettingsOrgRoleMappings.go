@@ -52,14 +52,12 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = orgGroupRoleMappingImport.ID().ApplyT(func(id string) (mongodbatlas.GetFederatedSettingsOrgRoleMappingsResult, error) {
-//				return mongodbatlas.GetFederatedSettingsOrgRoleMappingsResult(interface{}(mongodbatlas.GetFederatedSettingsOrgRoleMappings(ctx, &mongodbatlas.LookupFederatedSettingsOrgRoleMappingsArgs{
-//					FederationSettingsId: id,
-//					OrgId:                "627a9683e7f7f7ff7fe306f14",
-//					PageNum:              pulumi.IntRef(pulumi.IntRef(int(1))),
-//					ItemsPerPage:         pulumi.IntRef(pulumi.IntRef(int(5))),
-//				}, nil))), nil
-//			}).(mongodbatlas.GetFederatedSettingsOrgRoleMappingsResultOutput)
+//			_ = mongodbatlas.GetFederatedSettingsOrgRoleMappingsOutput(ctx, mongodbatlas.GetFederatedSettingsOrgRoleMappingsOutputArgs{
+//				FederationSettingsId: orgGroupRoleMappingImport.ID(),
+//				OrgId:                pulumi.String("627a9683e7f7f7ff7fe306f14"),
+//				PageNum:              pulumi.Int(1),
+//				ItemsPerPage:         pulumi.Int(5),
+//			}, nil)
 //			return nil
 //		})
 //	}

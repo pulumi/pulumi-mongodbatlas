@@ -212,7 +212,7 @@ def get_alert_configuration(alert_configuration_id: Optional[_builtins.str] = No
         metric_threshold_config={
             "metric_name": "ASSERT_REGULAR",
             "operator": "LESS_THAN",
-            "threshold": 99,
+            "threshold": float(99),
             "units": "RAW",
             "mode": "AVERAGE",
         })
@@ -245,7 +245,7 @@ def get_alert_configuration(alert_configuration_id: Optional[_builtins.str] = No
         }],
         threshold_config={
             "operator": "LESS_THAN",
-            "threshold": 1,
+            "threshold": float(1),
             "units": "HOURS",
         })
     test = mongodbatlas.get_alert_configuration_output(project_id=test_alert_configuration.project_id,
@@ -281,9 +281,9 @@ def get_alert_configuration(alert_configuration_id: Optional[_builtins.str] = No
         severity_override=pulumi.get(__ret__, 'severity_override'),
         threshold_configs=pulumi.get(__ret__, 'threshold_configs'),
         updated=pulumi.get(__ret__, 'updated'))
-def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                   outputs: Optional[pulumi.Input[Optional[Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict']]]]] = None,
-                                   project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_alert_configuration_output(alert_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                   outputs: pulumi.Input[Optional[Optional[Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict']]]]] = None,
+                                   project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAlertConfigurationResult]:
     """
     `AlertConfiguration` describes an Alert Configuration.
@@ -313,7 +313,7 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
         metric_threshold_config={
             "metric_name": "ASSERT_REGULAR",
             "operator": "LESS_THAN",
-            "threshold": 99,
+            "threshold": float(99),
             "units": "RAW",
             "mode": "AVERAGE",
         })
@@ -346,7 +346,7 @@ def get_alert_configuration_output(alert_configuration_id: Optional[pulumi.Input
         }],
         threshold_config={
             "operator": "LESS_THAN",
-            "threshold": 1,
+            "threshold": float(1),
             "units": "HOURS",
         })
     test = mongodbatlas.get_alert_configuration_output(project_id=test_alert_configuration.project_id,

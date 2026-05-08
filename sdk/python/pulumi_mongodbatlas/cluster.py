@@ -24,39 +24,39 @@ class ClusterArgs:
                  project_id: pulumi.Input[_builtins.str],
                  provider_instance_size_name: pulumi.Input[_builtins.str],
                  provider_name: pulumi.Input[_builtins.str],
-                 accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[_builtins.str]] = None,
-                 advanced_configuration: Optional[pulumi.Input['ClusterAdvancedConfigurationArgs']] = None,
-                 auto_scaling_compute_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_scaling_compute_scale_down_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_scaling_disk_gb_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backing_provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 backup_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 bi_connector_config: Optional[pulumi.Input['ClusterBiConnectorConfigArgs']] = None,
-                 cloud_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cluster_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
-                 encryption_at_rest_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]] = None,
-                 mongo_db_major_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_shards: Optional[pulumi.Input[_builtins.int]] = None,
-                 paused: Optional[pulumi.Input[_builtins.bool]] = None,
-                 pinned_fcv: Optional[pulumi.Input['ClusterPinnedFcvArgs']] = None,
-                 pit_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 provider_auto_scaling_compute_max_instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_auto_scaling_compute_min_instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_disk_iops: Optional[pulumi.Input[_builtins.int]] = None,
-                 provider_disk_type_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_encrypt_ebs_volume: Optional[pulumi.Input[_builtins.bool]] = None,
-                 provider_region_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 redact_client_log_data: Optional[pulumi.Input[_builtins.bool]] = None,
-                 replication_factor: Optional[pulumi.Input[_builtins.int]] = None,
-                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]] = None,
-                 retain_backups_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]] = None,
-                 termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 version_release_system: Optional[pulumi.Input[_builtins.str]] = None):
+                 accept_data_risks_and_force_replica_set_reconfig: pulumi.Input[Optional[_builtins.str]] = None,
+                 advanced_configuration: pulumi.Input[Optional['ClusterAdvancedConfigurationArgs']] = None,
+                 auto_scaling_compute_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_scaling_compute_scale_down_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_scaling_disk_gb_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backing_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 backup_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 bi_connector_config: pulumi.Input[Optional['ClusterBiConnectorConfigArgs']] = None,
+                 cloud_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cluster_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 disk_size_gb: pulumi.Input[Optional[_builtins.float]] = None,
+                 encryption_at_rest_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterLabelArgs']]]] = None,
+                 mongo_db_major_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_shards: pulumi.Input[Optional[_builtins.int]] = None,
+                 paused: pulumi.Input[Optional[_builtins.bool]] = None,
+                 pinned_fcv: pulumi.Input[Optional['ClusterPinnedFcvArgs']] = None,
+                 pit_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 provider_auto_scaling_compute_max_instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_auto_scaling_compute_min_instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_disk_iops: pulumi.Input[Optional[_builtins.int]] = None,
+                 provider_disk_type_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_encrypt_ebs_volume: pulumi.Input[Optional[_builtins.bool]] = None,
+                 provider_region_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 redact_client_log_data: pulumi.Input[Optional[_builtins.bool]] = None,
+                 replication_factor: pulumi.Input[Optional[_builtins.int]] = None,
+                 replication_specs: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]] = None,
+                 retain_backups_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterTagArgs']]]] = None,
+                 termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 version_release_system: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Cluster resource.
 
@@ -287,28 +287,28 @@ class ClusterArgs:
 
     @_builtins.property
     @pulumi.getter(name="acceptDataRisksAndForceReplicaSetReconfig")
-    def accept_data_risks_and_force_replica_set_reconfig(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def accept_data_risks_and_force_replica_set_reconfig(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         """
         return pulumi.get(self, "accept_data_risks_and_force_replica_set_reconfig")
 
     @accept_data_risks_and_force_replica_set_reconfig.setter
-    def accept_data_risks_and_force_replica_set_reconfig(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def accept_data_risks_and_force_replica_set_reconfig(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "accept_data_risks_and_force_replica_set_reconfig", value)
 
     @_builtins.property
     @pulumi.getter(name="advancedConfiguration")
-    def advanced_configuration(self) -> Optional[pulumi.Input['ClusterAdvancedConfigurationArgs']]:
+    def advanced_configuration(self) -> pulumi.Input[Optional['ClusterAdvancedConfigurationArgs']]:
         return pulumi.get(self, "advanced_configuration")
 
     @advanced_configuration.setter
-    def advanced_configuration(self, value: Optional[pulumi.Input['ClusterAdvancedConfigurationArgs']]):
+    def advanced_configuration(self, value: pulumi.Input[Optional['ClusterAdvancedConfigurationArgs']]):
         pulumi.set(self, "advanced_configuration", value)
 
     @_builtins.property
     @pulumi.getter(name="autoScalingComputeEnabled")
-    def auto_scaling_compute_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_scaling_compute_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether cluster tier auto-scaling is enabled. The default is false.
         - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
@@ -325,12 +325,12 @@ class ClusterArgs:
         return pulumi.get(self, "auto_scaling_compute_enabled")
 
     @auto_scaling_compute_enabled.setter
-    def auto_scaling_compute_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_scaling_compute_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_scaling_compute_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="autoScalingComputeScaleDownEnabled")
-    def auto_scaling_compute_scale_down_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_scaling_compute_scale_down_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
         - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
@@ -338,12 +338,12 @@ class ClusterArgs:
         return pulumi.get(self, "auto_scaling_compute_scale_down_enabled")
 
     @auto_scaling_compute_scale_down_enabled.setter
-    def auto_scaling_compute_scale_down_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_scaling_compute_scale_down_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_scaling_compute_scale_down_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="autoScalingDiskGbEnabled")
-    def auto_scaling_disk_gb_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_scaling_disk_gb_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether disk auto-scaling is enabled. The default is false.
         - Set to `true` to enable disk auto-scaling.
@@ -362,12 +362,12 @@ class ClusterArgs:
         return pulumi.get(self, "auto_scaling_disk_gb_enabled")
 
     @auto_scaling_disk_gb_enabled.setter
-    def auto_scaling_disk_gb_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_scaling_disk_gb_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_scaling_disk_gb_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="backingProviderName")
-    def backing_provider_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backing_provider_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 
@@ -382,12 +382,12 @@ class ClusterArgs:
         return pulumi.get(self, "backing_provider_name")
 
     @backing_provider_name.setter
-    def backing_provider_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backing_provider_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backing_provider_name", value)
 
     @_builtins.property
     @pulumi.getter(name="backupEnabled")
-    def backup_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def backup_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
         **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
@@ -402,24 +402,24 @@ class ClusterArgs:
         return pulumi.get(self, "backup_enabled")
 
     @backup_enabled.setter
-    def backup_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def backup_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "backup_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="biConnectorConfig")
-    def bi_connector_config(self) -> Optional[pulumi.Input['ClusterBiConnectorConfigArgs']]:
+    def bi_connector_config(self) -> pulumi.Input[Optional['ClusterBiConnectorConfigArgs']]:
         """
         Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         """
         return pulumi.get(self, "bi_connector_config")
 
     @bi_connector_config.setter
-    def bi_connector_config(self, value: Optional[pulumi.Input['ClusterBiConnectorConfigArgs']]):
+    def bi_connector_config(self, value: pulumi.Input[Optional['ClusterBiConnectorConfigArgs']]):
         pulumi.set(self, "bi_connector_config", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudBackup")
-    def cloud_backup(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cloud_backup(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag indicating if the cluster uses Cloud Backup for backups.
 
@@ -432,12 +432,12 @@ class ClusterArgs:
         return pulumi.get(self, "cloud_backup")
 
     @cloud_backup.setter
-    def cloud_backup(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cloud_backup(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cloud_backup", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterType")
-    def cluster_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 
@@ -452,12 +452,12 @@ class ClusterArgs:
         return pulumi.get(self, "cluster_type")
 
     @cluster_type.setter
-    def cluster_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_type", value)
 
     @_builtins.property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def disk_size_gb(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
         Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
         * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
@@ -468,72 +468,72 @@ class ClusterArgs:
         return pulumi.get(self, "disk_size_gb")
 
     @disk_size_gb.setter
-    def disk_size_gb(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def disk_size_gb(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "disk_size_gb", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionAtRestProvider")
-    def encryption_at_rest_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_at_rest_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         """
         return pulumi.get(self, "encryption_at_rest_provider")
 
     @encryption_at_rest_provider.setter
-    def encryption_at_rest_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_at_rest_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_at_rest_provider", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]]:
+    def labels(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterLabelArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]]):
+    def labels(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterLabelArgs']]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter(name="mongoDbMajorVersion")
-    def mongo_db_major_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mongo_db_major_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
         """
         return pulumi.get(self, "mongo_db_major_version")
 
     @mongo_db_major_version.setter
-    def mongo_db_major_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mongo_db_major_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mongo_db_major_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="numShards")
-    def num_shards(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_shards(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
         """
         return pulumi.get(self, "num_shards")
 
     @num_shards.setter
-    def num_shards(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_shards(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_shards", value)
 
     @_builtins.property
     @pulumi.getter
-    def paused(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def paused(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters)  
         **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
@@ -544,60 +544,60 @@ class ClusterArgs:
         return pulumi.get(self, "paused")
 
     @paused.setter
-    def paused(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def paused(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "paused", value)
 
     @_builtins.property
     @pulumi.getter(name="pinnedFcv")
-    def pinned_fcv(self) -> Optional[pulumi.Input['ClusterPinnedFcvArgs']]:
+    def pinned_fcv(self) -> pulumi.Input[Optional['ClusterPinnedFcvArgs']]:
         """
         Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         """
         return pulumi.get(self, "pinned_fcv")
 
     @pinned_fcv.setter
-    def pinned_fcv(self, value: Optional[pulumi.Input['ClusterPinnedFcvArgs']]):
+    def pinned_fcv(self, value: pulumi.Input[Optional['ClusterPinnedFcvArgs']]):
         pulumi.set(self, "pinned_fcv", value)
 
     @_builtins.property
     @pulumi.getter(name="pitEnabled")
-    def pit_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def pit_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
         """
         return pulumi.get(self, "pit_enabled")
 
     @pit_enabled.setter
-    def pit_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def pit_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "pit_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="providerAutoScalingComputeMaxInstanceSize")
-    def provider_auto_scaling_compute_max_instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_auto_scaling_compute_max_instance_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
         """
         return pulumi.get(self, "provider_auto_scaling_compute_max_instance_size")
 
     @provider_auto_scaling_compute_max_instance_size.setter
-    def provider_auto_scaling_compute_max_instance_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_auto_scaling_compute_max_instance_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_auto_scaling_compute_max_instance_size", value)
 
     @_builtins.property
     @pulumi.getter(name="providerAutoScalingComputeMinInstanceSize")
-    def provider_auto_scaling_compute_min_instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_auto_scaling_compute_min_instance_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
         """
         return pulumi.get(self, "provider_auto_scaling_compute_min_instance_size")
 
     @provider_auto_scaling_compute_min_instance_size.setter
-    def provider_auto_scaling_compute_min_instance_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_auto_scaling_compute_min_instance_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_auto_scaling_compute_min_instance_size", value)
 
     @_builtins.property
     @pulumi.getter(name="providerDiskIops")
-    def provider_disk_iops(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def provider_disk_iops(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
         * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
@@ -605,37 +605,37 @@ class ClusterArgs:
         return pulumi.get(self, "provider_disk_iops")
 
     @provider_disk_iops.setter
-    def provider_disk_iops(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def provider_disk_iops(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "provider_disk_iops", value)
 
     @_builtins.property
     @pulumi.getter(name="providerDiskTypeName")
-    def provider_disk_type_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_disk_type_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
         """
         return pulumi.get(self, "provider_disk_type_name")
 
     @provider_disk_type_name.setter
-    def provider_disk_type_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_disk_type_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_disk_type_name", value)
 
     @_builtins.property
     @pulumi.getter(name="providerEncryptEbsVolume")
     @_utilities.deprecated("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
-    def provider_encrypt_ebs_volume(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def provider_encrypt_ebs_volume(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         """
         return pulumi.get(self, "provider_encrypt_ebs_volume")
 
     @provider_encrypt_ebs_volume.setter
-    def provider_encrypt_ebs_volume(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def provider_encrypt_ebs_volume(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "provider_encrypt_ebs_volume", value)
 
     @_builtins.property
     @pulumi.getter(name="providerRegionName")
-    def provider_region_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_region_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -643,12 +643,12 @@ class ClusterArgs:
         return pulumi.get(self, "provider_region_name")
 
     @provider_region_name.setter
-    def provider_region_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_region_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_region_name", value)
 
     @_builtins.property
     @pulumi.getter(name="providerVolumeType")
-    def provider_volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         > **NOTE:** `STANDARD` is not available for NVME clusters.
@@ -656,84 +656,84 @@ class ClusterArgs:
         return pulumi.get(self, "provider_volume_type")
 
     @provider_volume_type.setter
-    def provider_volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_volume_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_volume_type", value)
 
     @_builtins.property
     @pulumi.getter(name="redactClientLogData")
-    def redact_client_log_data(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def redact_client_log_data(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `AdvancedCluster`.
         """
         return pulumi.get(self, "redact_client_log_data")
 
     @redact_client_log_data.setter
-    def redact_client_log_data(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def redact_client_log_data(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "redact_client_log_data", value)
 
     @_builtins.property
     @pulumi.getter(name="replicationFactor")
-    def replication_factor(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def replication_factor(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         """
         return pulumi.get(self, "replication_factor")
 
     @replication_factor.setter
-    def replication_factor(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def replication_factor(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "replication_factor", value)
 
     @_builtins.property
     @pulumi.getter(name="replicationSpecs")
-    def replication_specs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]]:
+    def replication_specs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]]:
         """
         Configuration for cluster regions.  See Replication Spec below for more details.
         """
         return pulumi.get(self, "replication_specs")
 
     @replication_specs.setter
-    def replication_specs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]]):
+    def replication_specs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]]):
         pulumi.set(self, "replication_specs", value)
 
     @_builtins.property
     @pulumi.getter(name="retainBackupsEnabled")
-    def retain_backups_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def retain_backups_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         - (Optional) Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
         """
         return pulumi.get(self, "retain_backups_enabled")
 
     @retain_backups_enabled.setter
-    def retain_backups_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def retain_backups_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "retain_backups_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterTagArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterTagArgs']]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="terminationProtectionEnabled")
-    def termination_protection_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def termination_protection_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         return pulumi.get(self, "termination_protection_enabled")
 
     @termination_protection_enabled.setter
-    def termination_protection_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def termination_protection_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "termination_protection_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="versionReleaseSystem")
-    def version_release_system(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version_release_system(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
@@ -742,60 +742,60 @@ class ClusterArgs:
         return pulumi.get(self, "version_release_system")
 
     @version_release_system.setter
-    def version_release_system(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version_release_system(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version_release_system", value)
 
 
 @pulumi.input_type
 class _ClusterState:
     def __init__(__self__, *,
-                 accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[_builtins.str]] = None,
-                 advanced_configuration: Optional[pulumi.Input['ClusterAdvancedConfigurationArgs']] = None,
-                 auto_scaling_compute_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_scaling_compute_scale_down_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_scaling_disk_gb_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backing_provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 backup_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 bi_connector_config: Optional[pulumi.Input['ClusterBiConnectorConfigArgs']] = None,
-                 cloud_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 connection_strings: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringArgs']]]] = None,
-                 container_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
-                 encryption_at_rest_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]] = None,
-                 mongo_db_major_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 mongo_db_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 mongo_uri: Optional[pulumi.Input[_builtins.str]] = None,
-                 mongo_uri_updated: Optional[pulumi.Input[_builtins.str]] = None,
-                 mongo_uri_with_options: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_shards: Optional[pulumi.Input[_builtins.int]] = None,
-                 paused: Optional[pulumi.Input[_builtins.bool]] = None,
-                 pinned_fcv: Optional[pulumi.Input['ClusterPinnedFcvArgs']] = None,
-                 pit_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_auto_scaling_compute_max_instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_auto_scaling_compute_min_instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_disk_iops: Optional[pulumi.Input[_builtins.int]] = None,
-                 provider_disk_type_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_encrypt_ebs_volume: Optional[pulumi.Input[_builtins.bool]] = None,
-                 provider_encrypt_ebs_volume_flag: Optional[pulumi.Input[_builtins.bool]] = None,
-                 provider_instance_size_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_region_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 redact_client_log_data: Optional[pulumi.Input[_builtins.bool]] = None,
-                 replication_factor: Optional[pulumi.Input[_builtins.int]] = None,
-                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]] = None,
-                 retain_backups_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 snapshot_backup_policies: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyArgs']]]] = None,
-                 srv_address: Optional[pulumi.Input[_builtins.str]] = None,
-                 state_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]] = None,
-                 termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 version_release_system: Optional[pulumi.Input[_builtins.str]] = None):
+                 accept_data_risks_and_force_replica_set_reconfig: pulumi.Input[Optional[_builtins.str]] = None,
+                 advanced_configuration: pulumi.Input[Optional['ClusterAdvancedConfigurationArgs']] = None,
+                 auto_scaling_compute_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_scaling_compute_scale_down_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_scaling_disk_gb_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backing_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 backup_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 bi_connector_config: pulumi.Input[Optional['ClusterBiConnectorConfigArgs']] = None,
+                 cloud_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 connection_strings: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterConnectionStringArgs']]]] = None,
+                 container_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 disk_size_gb: pulumi.Input[Optional[_builtins.float]] = None,
+                 encryption_at_rest_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterLabelArgs']]]] = None,
+                 mongo_db_major_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 mongo_db_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 mongo_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 mongo_uri_updated: pulumi.Input[Optional[_builtins.str]] = None,
+                 mongo_uri_with_options: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_shards: pulumi.Input[Optional[_builtins.int]] = None,
+                 paused: pulumi.Input[Optional[_builtins.bool]] = None,
+                 pinned_fcv: pulumi.Input[Optional['ClusterPinnedFcvArgs']] = None,
+                 pit_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_auto_scaling_compute_max_instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_auto_scaling_compute_min_instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_disk_iops: pulumi.Input[Optional[_builtins.int]] = None,
+                 provider_disk_type_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_encrypt_ebs_volume: pulumi.Input[Optional[_builtins.bool]] = None,
+                 provider_encrypt_ebs_volume_flag: pulumi.Input[Optional[_builtins.bool]] = None,
+                 provider_instance_size_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_region_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 redact_client_log_data: pulumi.Input[Optional[_builtins.bool]] = None,
+                 replication_factor: pulumi.Input[Optional[_builtins.int]] = None,
+                 replication_specs: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]] = None,
+                 retain_backups_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 snapshot_backup_policies: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyArgs']]]] = None,
+                 srv_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 state_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterTagArgs']]]] = None,
+                 termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 version_release_system: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering Cluster resources.
 
@@ -1024,28 +1024,28 @@ class _ClusterState:
 
     @_builtins.property
     @pulumi.getter(name="acceptDataRisksAndForceReplicaSetReconfig")
-    def accept_data_risks_and_force_replica_set_reconfig(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def accept_data_risks_and_force_replica_set_reconfig(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `accept_data_risks_and_force_replica_set_reconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
         """
         return pulumi.get(self, "accept_data_risks_and_force_replica_set_reconfig")
 
     @accept_data_risks_and_force_replica_set_reconfig.setter
-    def accept_data_risks_and_force_replica_set_reconfig(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def accept_data_risks_and_force_replica_set_reconfig(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "accept_data_risks_and_force_replica_set_reconfig", value)
 
     @_builtins.property
     @pulumi.getter(name="advancedConfiguration")
-    def advanced_configuration(self) -> Optional[pulumi.Input['ClusterAdvancedConfigurationArgs']]:
+    def advanced_configuration(self) -> pulumi.Input[Optional['ClusterAdvancedConfigurationArgs']]:
         return pulumi.get(self, "advanced_configuration")
 
     @advanced_configuration.setter
-    def advanced_configuration(self, value: Optional[pulumi.Input['ClusterAdvancedConfigurationArgs']]):
+    def advanced_configuration(self, value: pulumi.Input[Optional['ClusterAdvancedConfigurationArgs']]):
         pulumi.set(self, "advanced_configuration", value)
 
     @_builtins.property
     @pulumi.getter(name="autoScalingComputeEnabled")
-    def auto_scaling_compute_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_scaling_compute_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether cluster tier auto-scaling is enabled. The default is false.
         - Set to `true` to enable cluster tier auto-scaling. If enabled, you must specify a value for `providerSettings.autoScaling.compute.maxInstanceSize`.
@@ -1062,12 +1062,12 @@ class _ClusterState:
         return pulumi.get(self, "auto_scaling_compute_enabled")
 
     @auto_scaling_compute_enabled.setter
-    def auto_scaling_compute_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_scaling_compute_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_scaling_compute_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="autoScalingComputeScaleDownEnabled")
-    def auto_scaling_compute_scale_down_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_scaling_compute_scale_down_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Set to `true` to enable the cluster tier to scale down. This option is only available if `autoScaling.compute.enabled` is `true`.
         - If this option is enabled, you must specify a value for `providerSettings.autoScaling.compute.minInstanceSize`
@@ -1075,12 +1075,12 @@ class _ClusterState:
         return pulumi.get(self, "auto_scaling_compute_scale_down_enabled")
 
     @auto_scaling_compute_scale_down_enabled.setter
-    def auto_scaling_compute_scale_down_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_scaling_compute_scale_down_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_scaling_compute_scale_down_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="autoScalingDiskGbEnabled")
-    def auto_scaling_disk_gb_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_scaling_disk_gb_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Specifies whether disk auto-scaling is enabled. The default is false.
         - Set to `true` to enable disk auto-scaling.
@@ -1099,12 +1099,12 @@ class _ClusterState:
         return pulumi.get(self, "auto_scaling_disk_gb_enabled")
 
     @auto_scaling_disk_gb_enabled.setter
-    def auto_scaling_disk_gb_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_scaling_disk_gb_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_scaling_disk_gb_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="backingProviderName")
-    def backing_provider_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def backing_provider_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cloud service provider on which the server for a multi-tenant cluster is provisioned.
 
@@ -1119,12 +1119,12 @@ class _ClusterState:
         return pulumi.get(self, "backing_provider_name")
 
     @backing_provider_name.setter
-    def backing_provider_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def backing_provider_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "backing_provider_name", value)
 
     @_builtins.property
     @pulumi.getter(name="backupEnabled")
-    def backup_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def backup_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
         **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
@@ -1139,24 +1139,24 @@ class _ClusterState:
         return pulumi.get(self, "backup_enabled")
 
     @backup_enabled.setter
-    def backup_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def backup_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "backup_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="biConnectorConfig")
-    def bi_connector_config(self) -> Optional[pulumi.Input['ClusterBiConnectorConfigArgs']]:
+    def bi_connector_config(self) -> pulumi.Input[Optional['ClusterBiConnectorConfigArgs']]:
         """
         Specifies BI Connector for Atlas configuration on this cluster. BI Connector for Atlas is only available for M10+ clusters. See BI Connector below for more details.
         """
         return pulumi.get(self, "bi_connector_config")
 
     @bi_connector_config.setter
-    def bi_connector_config(self, value: Optional[pulumi.Input['ClusterBiConnectorConfigArgs']]):
+    def bi_connector_config(self, value: pulumi.Input[Optional['ClusterBiConnectorConfigArgs']]):
         pulumi.set(self, "bi_connector_config", value)
 
     @_builtins.property
     @pulumi.getter(name="cloudBackup")
-    def cloud_backup(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cloud_backup(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag indicating if the cluster uses Cloud Backup for backups.
 
@@ -1169,24 +1169,24 @@ class _ClusterState:
         return pulumi.get(self, "cloud_backup")
 
     @cloud_backup.setter
-    def cloud_backup(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cloud_backup(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cloud_backup", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterId")
-    def cluster_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The cluster ID.
         """
         return pulumi.get(self, "cluster_id")
 
     @cluster_id.setter
-    def cluster_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_id", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterType")
-    def cluster_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Specifies the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 
@@ -1201,36 +1201,36 @@ class _ClusterState:
         return pulumi.get(self, "cluster_type")
 
     @cluster_type.setter
-    def cluster_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_type", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionStrings")
-    def connection_strings(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringArgs']]]]:
+    def connection_strings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterConnectionStringArgs']]]]:
         """
         Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         """
         return pulumi.get(self, "connection_strings")
 
     @connection_strings.setter
-    def connection_strings(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterConnectionStringArgs']]]]):
+    def connection_strings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterConnectionStringArgs']]]]):
         pulumi.set(self, "connection_strings", value)
 
     @_builtins.property
     @pulumi.getter(name="containerId")
-    def container_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def container_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
         """
         return pulumi.get(self, "container_id")
 
     @container_id.setter
-    def container_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def container_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "container_id", value)
 
     @_builtins.property
     @pulumi.getter(name="diskSizeGb")
-    def disk_size_gb(self) -> Optional[pulumi.Input[_builtins.float]]:
+    def disk_size_gb(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
         Capacity, in gigabytes, of the host’s root volume. Increase this number to add capacity, up to a maximum possible value of 4096 (i.e., 4 TB). This value must be a positive integer.
         * The minimum disk size for dedicated clusters is 10GB for AWS and GCP. If you specify diskSizeGB with a lower disk size, Atlas defaults to the minimum disk size value.
@@ -1241,120 +1241,120 @@ class _ClusterState:
         return pulumi.get(self, "disk_size_gb")
 
     @disk_size_gb.setter
-    def disk_size_gb(self, value: Optional[pulumi.Input[_builtins.float]]):
+    def disk_size_gb(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "disk_size_gb", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionAtRestProvider")
-    def encryption_at_rest_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_at_rest_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         """
         return pulumi.get(self, "encryption_at_rest_provider")
 
     @encryption_at_rest_provider.setter
-    def encryption_at_rest_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_at_rest_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_at_rest_provider", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]]:
+    def labels(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterLabelArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **DEPRECATED** Use `tags` instead.
         """
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterLabelArgs']]]]):
+    def labels(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterLabelArgs']]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter(name="mongoDbMajorVersion")
-    def mongo_db_major_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mongo_db_major_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version. See [Release Notes](https://www.mongodb.com/docs/upcoming/release-notes/) for latest Current Stable Release.
         """
         return pulumi.get(self, "mongo_db_major_version")
 
     @mongo_db_major_version.setter
-    def mongo_db_major_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mongo_db_major_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mongo_db_major_version", value)
 
     @_builtins.property
     @pulumi.getter(name="mongoDbVersion")
-    def mongo_db_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mongo_db_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Version of MongoDB the cluster runs, in `major-version`.`minor-version` format.
         """
         return pulumi.get(self, "mongo_db_version")
 
     @mongo_db_version.setter
-    def mongo_db_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mongo_db_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mongo_db_version", value)
 
     @_builtins.property
     @pulumi.getter(name="mongoUri")
-    def mongo_uri(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mongo_uri(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Base connection string for the cluster. Atlas only displays this field after the cluster is operational, not while it builds the cluster.
         """
         return pulumi.get(self, "mongo_uri")
 
     @mongo_uri.setter
-    def mongo_uri(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mongo_uri(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mongo_uri", value)
 
     @_builtins.property
     @pulumi.getter(name="mongoUriUpdated")
-    def mongo_uri_updated(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mongo_uri_updated(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Lists when the connection string was last updated. The connection string changes, for example, if you change a replica set to a sharded cluster.
         """
         return pulumi.get(self, "mongo_uri_updated")
 
     @mongo_uri_updated.setter
-    def mongo_uri_updated(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mongo_uri_updated(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mongo_uri_updated", value)
 
     @_builtins.property
     @pulumi.getter(name="mongoUriWithOptions")
-    def mongo_uri_with_options(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mongo_uri_with_options(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         connection string for connecting to the Atlas cluster. Includes the replicaSet, ssl, and authSource query parameters in the connection string with values appropriate for the cluster.
         """
         return pulumi.get(self, "mongo_uri_with_options")
 
     @mongo_uri_with_options.setter
-    def mongo_uri_with_options(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mongo_uri_with_options(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mongo_uri_with_options", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the cluster as it appears in Atlas. Once the cluster is created, its name cannot be changed. **WARNING** Changing the name will result in destruction of the existing cluster and the creation of a new cluster.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="numShards")
-    def num_shards(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_shards(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
         """
         return pulumi.get(self, "num_shards")
 
     @num_shards.setter
-    def num_shards(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_shards(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_shards", value)
 
     @_builtins.property
     @pulumi.getter
-    def paused(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def paused(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters)  
         **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
@@ -1365,72 +1365,72 @@ class _ClusterState:
         return pulumi.get(self, "paused")
 
     @paused.setter
-    def paused(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def paused(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "paused", value)
 
     @_builtins.property
     @pulumi.getter(name="pinnedFcv")
-    def pinned_fcv(self) -> Optional[pulumi.Input['ClusterPinnedFcvArgs']]:
+    def pinned_fcv(self) -> pulumi.Input[Optional['ClusterPinnedFcvArgs']]:
         """
         Pins the Feature Compatibility Version (FCV) to the current MongoDB version with a provided expiration date. To unpin the FCV the `pinned_fcv` attribute must be removed. This operation can take several minutes as the request processes through the MongoDB data plane. Once FCV is unpinned it will not be possible to downgrade the `mongo_db_major_version`. It is advised that updates to `pinned_fcv` are done isolated from other cluster changes. If a plan contains multiple changes, the FCV change will be applied first. If FCV is unpinned past the expiration date the `pinned_fcv` attribute must be removed. The following [knowledge hub article](https://kb.corp.mongodb.com/article/000021785/) and [FCV documentation](https://www.mongodb.com/docs/atlas/tutorial/major-version-change/#manage-feature-compatibility--fcv--during-upgrades) can be referenced for more details. See below.
         """
         return pulumi.get(self, "pinned_fcv")
 
     @pinned_fcv.setter
-    def pinned_fcv(self, value: Optional[pulumi.Input['ClusterPinnedFcvArgs']]):
+    def pinned_fcv(self, value: pulumi.Input[Optional['ClusterPinnedFcvArgs']]):
         pulumi.set(self, "pinned_fcv", value)
 
     @_builtins.property
     @pulumi.getter(name="pitEnabled")
-    def pit_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def pit_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates if the cluster uses Continuous Cloud Backup. If set to true, cloud_backup must also be set to true.
         """
         return pulumi.get(self, "pit_enabled")
 
     @pit_enabled.setter
-    def pit_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def pit_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "pit_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID for the project to create the cluster, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="providerAutoScalingComputeMaxInstanceSize")
-    def provider_auto_scaling_compute_max_instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_auto_scaling_compute_max_instance_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Maximum instance size to which your cluster can automatically scale (e.g., M40). Required if `autoScaling.compute.enabled` is `true`.
         """
         return pulumi.get(self, "provider_auto_scaling_compute_max_instance_size")
 
     @provider_auto_scaling_compute_max_instance_size.setter
-    def provider_auto_scaling_compute_max_instance_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_auto_scaling_compute_max_instance_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_auto_scaling_compute_max_instance_size", value)
 
     @_builtins.property
     @pulumi.getter(name="providerAutoScalingComputeMinInstanceSize")
-    def provider_auto_scaling_compute_min_instance_size(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_auto_scaling_compute_min_instance_size(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Minimum instance size to which your cluster can automatically scale (e.g., M10). Required if `autoScaling.compute.scaleDownEnabled` is `true`.
         """
         return pulumi.get(self, "provider_auto_scaling_compute_min_instance_size")
 
     @provider_auto_scaling_compute_min_instance_size.setter
-    def provider_auto_scaling_compute_min_instance_size(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_auto_scaling_compute_min_instance_size(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_auto_scaling_compute_min_instance_size", value)
 
     @_builtins.property
     @pulumi.getter(name="providerDiskIops")
-    def provider_disk_iops(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def provider_disk_iops(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `provider_instance_size_name` and `disk_size_gb`.  This setting requires that `provider_instance_size_name` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `provider_disk_iops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
         * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
@@ -1438,58 +1438,58 @@ class _ClusterState:
         return pulumi.get(self, "provider_disk_iops")
 
     @provider_disk_iops.setter
-    def provider_disk_iops(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def provider_disk_iops(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "provider_disk_iops", value)
 
     @_builtins.property
     @pulumi.getter(name="providerDiskTypeName")
-    def provider_disk_type_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_disk_type_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
         """
         return pulumi.get(self, "provider_disk_type_name")
 
     @provider_disk_type_name.setter
-    def provider_disk_type_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_disk_type_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_disk_type_name", value)
 
     @_builtins.property
     @pulumi.getter(name="providerEncryptEbsVolume")
     @_utilities.deprecated("""All EBS volumes are encrypted by default, the option to disable encryption has been removed""")
-    def provider_encrypt_ebs_volume(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def provider_encrypt_ebs_volume(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         **(Deprecated) The Flag is always true.** Flag that indicates whether the Amazon EBS encryption feature encrypts the host's root volume for both data at rest within the volume and for data moving between the volume and the cluster. Note: This setting is always enabled for clusters with local NVMe SSDs. **Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default.**.
         """
         return pulumi.get(self, "provider_encrypt_ebs_volume")
 
     @provider_encrypt_ebs_volume.setter
-    def provider_encrypt_ebs_volume(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def provider_encrypt_ebs_volume(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "provider_encrypt_ebs_volume", value)
 
     @_builtins.property
     @pulumi.getter(name="providerEncryptEbsVolumeFlag")
-    def provider_encrypt_ebs_volume_flag(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def provider_encrypt_ebs_volume_flag(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "provider_encrypt_ebs_volume_flag")
 
     @provider_encrypt_ebs_volume_flag.setter
-    def provider_encrypt_ebs_volume_flag(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def provider_encrypt_ebs_volume_flag(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "provider_encrypt_ebs_volume_flag", value)
 
     @_builtins.property
     @pulumi.getter(name="providerInstanceSizeName")
-    def provider_instance_size_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_instance_size_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         """
         return pulumi.get(self, "provider_instance_size_name")
 
     @provider_instance_size_name.setter
-    def provider_instance_size_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_instance_size_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_instance_size_name", value)
 
     @_builtins.property
     @pulumi.getter(name="providerName")
-    def provider_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cloud service provider on which the servers are provisioned.
 
@@ -1503,12 +1503,12 @@ class _ClusterState:
         return pulumi.get(self, "provider_name")
 
     @provider_name.setter
-    def provider_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_name", value)
 
     @_builtins.property
     @pulumi.getter(name="providerRegionName")
-    def provider_region_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_region_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
         Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
@@ -1516,12 +1516,12 @@ class _ClusterState:
         return pulumi.get(self, "provider_region_name")
 
     @provider_region_name.setter
-    def provider_region_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_region_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_region_name", value)
 
     @_builtins.property
     @pulumi.getter(name="providerVolumeType")
-    def provider_volume_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.  `PROVISIONED` is ONLY required if setting IOPS higher than the default instance IOPS.
         > **NOTE:** `STANDARD` is not available for NVME clusters.
@@ -1529,84 +1529,84 @@ class _ClusterState:
         return pulumi.get(self, "provider_volume_type")
 
     @provider_volume_type.setter
-    def provider_volume_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_volume_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_volume_type", value)
 
     @_builtins.property
     @pulumi.getter(name="redactClientLogData")
-    def redact_client_log_data(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def redact_client_log_data(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that enables or disables log redaction, see the [manual](https://www.mongodb.com/docs/manual/administration/monitoring/#log-redaction) for more information. Use this in conjunction with Encryption at Rest and TLS/SSL (Transport Encryption) to assist compliance with regulatory requirements. **Note**: Changing this setting on a cluster will trigger a rolling restart as soon as the cluster is updated. The log redaction field is updated via an Atlas API call after cluster creation. Consequently, there may be a brief period during resource creation when log redaction is not yet enabled. To ensure complete log redaction from the outset, use `AdvancedCluster`.
         """
         return pulumi.get(self, "redact_client_log_data")
 
     @redact_client_log_data.setter
-    def redact_client_log_data(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def redact_client_log_data(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "redact_client_log_data", value)
 
     @_builtins.property
     @pulumi.getter(name="replicationFactor")
-    def replication_factor(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def replication_factor(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of replica set members. Each member keeps a copy of your databases, providing high availability and data redundancy. The possible values are 3, 5, or 7. The default value is 3.
         """
         return pulumi.get(self, "replication_factor")
 
     @replication_factor.setter
-    def replication_factor(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def replication_factor(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "replication_factor", value)
 
     @_builtins.property
     @pulumi.getter(name="replicationSpecs")
-    def replication_specs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]]:
+    def replication_specs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]]:
         """
         Configuration for cluster regions.  See Replication Spec below for more details.
         """
         return pulumi.get(self, "replication_specs")
 
     @replication_specs.setter
-    def replication_specs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]]):
+    def replication_specs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterReplicationSpecArgs']]]]):
         pulumi.set(self, "replication_specs", value)
 
     @_builtins.property
     @pulumi.getter(name="retainBackupsEnabled")
-    def retain_backups_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def retain_backups_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         - (Optional) Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. If you encounter the `CANNOT_DELETE_SNAPSHOT_WITH_BACKUP_COMPLIANCE_POLICY` error code, see how to delete a cluster with Backup Compliance Policy.
         """
         return pulumi.get(self, "retain_backups_enabled")
 
     @retain_backups_enabled.setter
-    def retain_backups_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def retain_backups_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "retain_backups_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotBackupPolicies")
-    def snapshot_backup_policies(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyArgs']]]]:
+    def snapshot_backup_policies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyArgs']]]]:
         """
         current snapshot schedule and retention settings for the cluster.
         """
         return pulumi.get(self, "snapshot_backup_policies")
 
     @snapshot_backup_policies.setter
-    def snapshot_backup_policies(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyArgs']]]]):
+    def snapshot_backup_policies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyArgs']]]]):
         pulumi.set(self, "snapshot_backup_policies", value)
 
     @_builtins.property
     @pulumi.getter(name="srvAddress")
-    def srv_address(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def srv_address(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection string for connecting to the Atlas cluster. The +srv modifier forces the connection to use TLS/SSL. See the mongoURI for additional options.
         """
         return pulumi.get(self, "srv_address")
 
     @srv_address.setter
-    def srv_address(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def srv_address(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "srv_address", value)
 
     @_builtins.property
     @pulumi.getter(name="stateName")
-    def state_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Current state of the cluster. The possible states are:
         - IDLE
@@ -1619,36 +1619,36 @@ class _ClusterState:
         return pulumi.get(self, "state_name")
 
     @state_name.setter
-    def state_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ClusterTagArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ClusterTagArgs']]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ClusterTagArgs']]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="terminationProtectionEnabled")
-    def termination_protection_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def termination_protection_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         return pulumi.get(self, "termination_protection_enabled")
 
     @termination_protection_enabled.setter
-    def termination_protection_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def termination_protection_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "termination_protection_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="versionReleaseSystem")
-    def version_release_system(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def version_release_system(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Release cadence that Atlas uses for this cluster. This parameter defaults to `LTS`. If you set this field to `CONTINUOUS`, you must omit the `mongo_db_major_version` field. Atlas accepts:
         - `CONTINUOUS`:  Atlas creates your cluster using the most recent MongoDB release. Atlas automatically updates your cluster to the latest major and rapid MongoDB releases as they become available.
@@ -1657,7 +1657,7 @@ class _ClusterState:
         return pulumi.get(self, "version_release_system")
 
     @version_release_system.setter
-    def version_release_system(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def version_release_system(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "version_release_system", value)
 
 
@@ -1667,42 +1667,42 @@ class Cluster(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[_builtins.str]] = None,
-                 advanced_configuration: Optional[pulumi.Input[Union['ClusterAdvancedConfigurationArgs', 'ClusterAdvancedConfigurationArgsDict']]] = None,
-                 auto_scaling_compute_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_scaling_compute_scale_down_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_scaling_disk_gb_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backing_provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 backup_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 bi_connector_config: Optional[pulumi.Input[Union['ClusterBiConnectorConfigArgs', 'ClusterBiConnectorConfigArgsDict']]] = None,
-                 cloud_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cluster_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
-                 encryption_at_rest_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterLabelArgs', 'ClusterLabelArgsDict']]]]] = None,
-                 mongo_db_major_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_shards: Optional[pulumi.Input[_builtins.int]] = None,
-                 paused: Optional[pulumi.Input[_builtins.bool]] = None,
-                 pinned_fcv: Optional[pulumi.Input[Union['ClusterPinnedFcvArgs', 'ClusterPinnedFcvArgsDict']]] = None,
-                 pit_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_auto_scaling_compute_max_instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_auto_scaling_compute_min_instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_disk_iops: Optional[pulumi.Input[_builtins.int]] = None,
-                 provider_disk_type_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_encrypt_ebs_volume: Optional[pulumi.Input[_builtins.bool]] = None,
-                 provider_instance_size_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_region_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 redact_client_log_data: Optional[pulumi.Input[_builtins.bool]] = None,
-                 replication_factor: Optional[pulumi.Input[_builtins.int]] = None,
-                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterReplicationSpecArgs', 'ClusterReplicationSpecArgsDict']]]]] = None,
-                 retain_backups_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterTagArgs', 'ClusterTagArgsDict']]]]] = None,
-                 termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 version_release_system: Optional[pulumi.Input[_builtins.str]] = None,
+                 accept_data_risks_and_force_replica_set_reconfig: pulumi.Input[Optional[_builtins.str]] = None,
+                 advanced_configuration: pulumi.Input[Optional[Union['ClusterAdvancedConfigurationArgs', 'ClusterAdvancedConfigurationArgsDict']]] = None,
+                 auto_scaling_compute_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_scaling_compute_scale_down_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_scaling_disk_gb_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backing_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 backup_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 bi_connector_config: pulumi.Input[Optional[Union['ClusterBiConnectorConfigArgs', 'ClusterBiConnectorConfigArgsDict']]] = None,
+                 cloud_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cluster_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 disk_size_gb: pulumi.Input[Optional[_builtins.float]] = None,
+                 encryption_at_rest_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterLabelArgs', 'ClusterLabelArgsDict']]]]] = None,
+                 mongo_db_major_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_shards: pulumi.Input[Optional[_builtins.int]] = None,
+                 paused: pulumi.Input[Optional[_builtins.bool]] = None,
+                 pinned_fcv: pulumi.Input[Optional[Union['ClusterPinnedFcvArgs', 'ClusterPinnedFcvArgsDict']]] = None,
+                 pit_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_auto_scaling_compute_max_instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_auto_scaling_compute_min_instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_disk_iops: pulumi.Input[Optional[_builtins.int]] = None,
+                 provider_disk_type_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_encrypt_ebs_volume: pulumi.Input[Optional[_builtins.bool]] = None,
+                 provider_instance_size_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_region_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 redact_client_log_data: pulumi.Input[Optional[_builtins.bool]] = None,
+                 replication_factor: pulumi.Input[Optional[_builtins.int]] = None,
+                 replication_specs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterReplicationSpecArgs', 'ClusterReplicationSpecArgsDict']]]]] = None,
+                 retain_backups_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterTagArgs', 'ClusterTagArgsDict']]]]] = None,
+                 termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 version_release_system: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.
@@ -2320,42 +2320,42 @@ class Cluster(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[_builtins.str]] = None,
-                 advanced_configuration: Optional[pulumi.Input[Union['ClusterAdvancedConfigurationArgs', 'ClusterAdvancedConfigurationArgsDict']]] = None,
-                 auto_scaling_compute_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_scaling_compute_scale_down_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 auto_scaling_disk_gb_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 backing_provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 backup_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 bi_connector_config: Optional[pulumi.Input[Union['ClusterBiConnectorConfigArgs', 'ClusterBiConnectorConfigArgsDict']]] = None,
-                 cloud_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cluster_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
-                 encryption_at_rest_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterLabelArgs', 'ClusterLabelArgsDict']]]]] = None,
-                 mongo_db_major_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_shards: Optional[pulumi.Input[_builtins.int]] = None,
-                 paused: Optional[pulumi.Input[_builtins.bool]] = None,
-                 pinned_fcv: Optional[pulumi.Input[Union['ClusterPinnedFcvArgs', 'ClusterPinnedFcvArgsDict']]] = None,
-                 pit_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_auto_scaling_compute_max_instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_auto_scaling_compute_min_instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_disk_iops: Optional[pulumi.Input[_builtins.int]] = None,
-                 provider_disk_type_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_encrypt_ebs_volume: Optional[pulumi.Input[_builtins.bool]] = None,
-                 provider_instance_size_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_region_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 redact_client_log_data: Optional[pulumi.Input[_builtins.bool]] = None,
-                 replication_factor: Optional[pulumi.Input[_builtins.int]] = None,
-                 replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterReplicationSpecArgs', 'ClusterReplicationSpecArgsDict']]]]] = None,
-                 retain_backups_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterTagArgs', 'ClusterTagArgsDict']]]]] = None,
-                 termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 version_release_system: Optional[pulumi.Input[_builtins.str]] = None,
+                 accept_data_risks_and_force_replica_set_reconfig: pulumi.Input[Optional[_builtins.str]] = None,
+                 advanced_configuration: pulumi.Input[Optional[Union['ClusterAdvancedConfigurationArgs', 'ClusterAdvancedConfigurationArgsDict']]] = None,
+                 auto_scaling_compute_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_scaling_compute_scale_down_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 auto_scaling_disk_gb_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 backing_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 backup_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 bi_connector_config: pulumi.Input[Optional[Union['ClusterBiConnectorConfigArgs', 'ClusterBiConnectorConfigArgsDict']]] = None,
+                 cloud_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cluster_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 disk_size_gb: pulumi.Input[Optional[_builtins.float]] = None,
+                 encryption_at_rest_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterLabelArgs', 'ClusterLabelArgsDict']]]]] = None,
+                 mongo_db_major_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_shards: pulumi.Input[Optional[_builtins.int]] = None,
+                 paused: pulumi.Input[Optional[_builtins.bool]] = None,
+                 pinned_fcv: pulumi.Input[Optional[Union['ClusterPinnedFcvArgs', 'ClusterPinnedFcvArgsDict']]] = None,
+                 pit_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_auto_scaling_compute_max_instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_auto_scaling_compute_min_instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_disk_iops: pulumi.Input[Optional[_builtins.int]] = None,
+                 provider_disk_type_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_encrypt_ebs_volume: pulumi.Input[Optional[_builtins.bool]] = None,
+                 provider_instance_size_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_region_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 redact_client_log_data: pulumi.Input[Optional[_builtins.bool]] = None,
+                 replication_factor: pulumi.Input[Optional[_builtins.int]] = None,
+                 replication_specs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterReplicationSpecArgs', 'ClusterReplicationSpecArgsDict']]]]] = None,
+                 retain_backups_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterTagArgs', 'ClusterTagArgsDict']]]]] = None,
+                 termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 version_release_system: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -2428,53 +2428,53 @@ class Cluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            accept_data_risks_and_force_replica_set_reconfig: Optional[pulumi.Input[_builtins.str]] = None,
-            advanced_configuration: Optional[pulumi.Input[Union['ClusterAdvancedConfigurationArgs', 'ClusterAdvancedConfigurationArgsDict']]] = None,
-            auto_scaling_compute_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            auto_scaling_compute_scale_down_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            auto_scaling_disk_gb_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            backing_provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-            backup_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            bi_connector_config: Optional[pulumi.Input[Union['ClusterBiConnectorConfigArgs', 'ClusterBiConnectorConfigArgsDict']]] = None,
-            cloud_backup: Optional[pulumi.Input[_builtins.bool]] = None,
-            cluster_id: Optional[pulumi.Input[_builtins.str]] = None,
-            cluster_type: Optional[pulumi.Input[_builtins.str]] = None,
-            connection_strings: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterConnectionStringArgs', 'ClusterConnectionStringArgsDict']]]]] = None,
-            container_id: Optional[pulumi.Input[_builtins.str]] = None,
-            disk_size_gb: Optional[pulumi.Input[_builtins.float]] = None,
-            encryption_at_rest_provider: Optional[pulumi.Input[_builtins.str]] = None,
-            labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterLabelArgs', 'ClusterLabelArgsDict']]]]] = None,
-            mongo_db_major_version: Optional[pulumi.Input[_builtins.str]] = None,
-            mongo_db_version: Optional[pulumi.Input[_builtins.str]] = None,
-            mongo_uri: Optional[pulumi.Input[_builtins.str]] = None,
-            mongo_uri_updated: Optional[pulumi.Input[_builtins.str]] = None,
-            mongo_uri_with_options: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            num_shards: Optional[pulumi.Input[_builtins.int]] = None,
-            paused: Optional[pulumi.Input[_builtins.bool]] = None,
-            pinned_fcv: Optional[pulumi.Input[Union['ClusterPinnedFcvArgs', 'ClusterPinnedFcvArgsDict']]] = None,
-            pit_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            provider_auto_scaling_compute_max_instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-            provider_auto_scaling_compute_min_instance_size: Optional[pulumi.Input[_builtins.str]] = None,
-            provider_disk_iops: Optional[pulumi.Input[_builtins.int]] = None,
-            provider_disk_type_name: Optional[pulumi.Input[_builtins.str]] = None,
-            provider_encrypt_ebs_volume: Optional[pulumi.Input[_builtins.bool]] = None,
-            provider_encrypt_ebs_volume_flag: Optional[pulumi.Input[_builtins.bool]] = None,
-            provider_instance_size_name: Optional[pulumi.Input[_builtins.str]] = None,
-            provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-            provider_region_name: Optional[pulumi.Input[_builtins.str]] = None,
-            provider_volume_type: Optional[pulumi.Input[_builtins.str]] = None,
-            redact_client_log_data: Optional[pulumi.Input[_builtins.bool]] = None,
-            replication_factor: Optional[pulumi.Input[_builtins.int]] = None,
-            replication_specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterReplicationSpecArgs', 'ClusterReplicationSpecArgsDict']]]]] = None,
-            retain_backups_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            snapshot_backup_policies: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterSnapshotBackupPolicyArgs', 'ClusterSnapshotBackupPolicyArgsDict']]]]] = None,
-            srv_address: Optional[pulumi.Input[_builtins.str]] = None,
-            state_name: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ClusterTagArgs', 'ClusterTagArgsDict']]]]] = None,
-            termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            version_release_system: Optional[pulumi.Input[_builtins.str]] = None) -> 'Cluster':
+            accept_data_risks_and_force_replica_set_reconfig: pulumi.Input[Optional[_builtins.str]] = None,
+            advanced_configuration: pulumi.Input[Optional[Union['ClusterAdvancedConfigurationArgs', 'ClusterAdvancedConfigurationArgsDict']]] = None,
+            auto_scaling_compute_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            auto_scaling_compute_scale_down_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            auto_scaling_disk_gb_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            backing_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+            backup_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            bi_connector_config: pulumi.Input[Optional[Union['ClusterBiConnectorConfigArgs', 'ClusterBiConnectorConfigArgsDict']]] = None,
+            cloud_backup: pulumi.Input[Optional[_builtins.bool]] = None,
+            cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_type: pulumi.Input[Optional[_builtins.str]] = None,
+            connection_strings: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterConnectionStringArgs', 'ClusterConnectionStringArgsDict']]]]] = None,
+            container_id: pulumi.Input[Optional[_builtins.str]] = None,
+            disk_size_gb: pulumi.Input[Optional[_builtins.float]] = None,
+            encryption_at_rest_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterLabelArgs', 'ClusterLabelArgsDict']]]]] = None,
+            mongo_db_major_version: pulumi.Input[Optional[_builtins.str]] = None,
+            mongo_db_version: pulumi.Input[Optional[_builtins.str]] = None,
+            mongo_uri: pulumi.Input[Optional[_builtins.str]] = None,
+            mongo_uri_updated: pulumi.Input[Optional[_builtins.str]] = None,
+            mongo_uri_with_options: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            num_shards: pulumi.Input[Optional[_builtins.int]] = None,
+            paused: pulumi.Input[Optional[_builtins.bool]] = None,
+            pinned_fcv: pulumi.Input[Optional[Union['ClusterPinnedFcvArgs', 'ClusterPinnedFcvArgsDict']]] = None,
+            pit_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_auto_scaling_compute_max_instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_auto_scaling_compute_min_instance_size: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_disk_iops: pulumi.Input[Optional[_builtins.int]] = None,
+            provider_disk_type_name: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_encrypt_ebs_volume: pulumi.Input[Optional[_builtins.bool]] = None,
+            provider_encrypt_ebs_volume_flag: pulumi.Input[Optional[_builtins.bool]] = None,
+            provider_instance_size_name: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_region_name: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_volume_type: pulumi.Input[Optional[_builtins.str]] = None,
+            redact_client_log_data: pulumi.Input[Optional[_builtins.bool]] = None,
+            replication_factor: pulumi.Input[Optional[_builtins.int]] = None,
+            replication_specs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterReplicationSpecArgs', 'ClusterReplicationSpecArgsDict']]]]] = None,
+            retain_backups_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            snapshot_backup_policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterSnapshotBackupPolicyArgs', 'ClusterSnapshotBackupPolicyArgsDict']]]]] = None,
+            srv_address: pulumi.Input[Optional[_builtins.str]] = None,
+            state_name: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterTagArgs', 'ClusterTagArgsDict']]]]] = None,
+            termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            version_release_system: pulumi.Input[Optional[_builtins.str]] = None) -> 'Cluster':
         """
         Get an existing Cluster resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

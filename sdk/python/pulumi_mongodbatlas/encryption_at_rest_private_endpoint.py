@@ -24,8 +24,8 @@ class EncryptionAtRestPrivateEndpointArgs:
                  cloud_provider: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
                  region_name: pulumi.Input[_builtins.str],
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 timeouts: Optional[pulumi.Input['EncryptionAtRestPrivateEndpointTimeoutsArgs']] = None):
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 timeouts: pulumi.Input[Optional['EncryptionAtRestPrivateEndpointTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a EncryptionAtRestPrivateEndpoint resource.
 
@@ -80,37 +80,37 @@ class EncryptionAtRestPrivateEndpointArgs:
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
-    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_on_create_timeout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
     @delete_on_create_timeout.setter
-    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['EncryptionAtRestPrivateEndpointTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['EncryptionAtRestPrivateEndpointTimeoutsArgs']]:
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['EncryptionAtRestPrivateEndpointTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['EncryptionAtRestPrivateEndpointTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
 
 @pulumi.input_type
 class _EncryptionAtRestPrivateEndpointState:
     def __init__(__self__, *,
-                 cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 error_message: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_endpoint_connection_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input['EncryptionAtRestPrivateEndpointTimeoutsArgs']] = None):
+                 cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 error_message: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_endpoint_connection_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional['EncryptionAtRestPrivateEndpointTimeoutsArgs']] = None):
         """
         Input properties used for looking up and filtering EncryptionAtRestPrivateEndpoint resources.
 
@@ -141,95 +141,95 @@ class _EncryptionAtRestPrivateEndpointState:
 
     @_builtins.property
     @pulumi.getter(name="cloudProvider")
-    def cloud_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cloud_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label that identifies the cloud provider for the Encryption At Rest private endpoint.
         """
         return pulumi.get(self, "cloud_provider")
 
     @cloud_provider.setter
-    def cloud_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cloud_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cloud_provider", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
-    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_on_create_timeout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
     @delete_on_create_timeout.setter
-    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="errorMessage")
-    def error_message(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def error_message(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Error message for failures associated with the Encryption At Rest private endpoint.
         """
         return pulumi.get(self, "error_message")
 
     @error_message.setter
-    def error_message(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def error_message(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "error_message", value)
 
     @_builtins.property
     @pulumi.getter(name="privateEndpointConnectionName")
-    def private_endpoint_connection_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_endpoint_connection_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Connection name of the Azure Private Endpoint.
         """
         return pulumi.get(self, "private_endpoint_connection_name")
 
     @private_endpoint_connection_name.setter
-    def private_endpoint_connection_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_endpoint_connection_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_endpoint_connection_name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="regionName")
-    def region_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cloud provider region in which the Encryption At Rest private endpoint is located.
         """
         return pulumi.get(self, "region_name")
 
     @region_name.setter
-    def region_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         State of the Encryption At Rest private endpoint.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['EncryptionAtRestPrivateEndpointTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['EncryptionAtRestPrivateEndpointTimeoutsArgs']]:
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['EncryptionAtRestPrivateEndpointTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['EncryptionAtRestPrivateEndpointTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
 
@@ -239,11 +239,11 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict']]] = None,
+                 cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
         `EncryptionAtRestPrivateEndpoint` provides a resource for managing a private endpoint used for encryption at rest with customer-managed keys. This ensures all traffic between Atlas and customer key management systems take place over private network interfaces.
@@ -465,11 +465,11 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict']]] = None,
+                 cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -503,14 +503,14 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-            delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-            error_message: Optional[pulumi.Input[_builtins.str]] = None,
-            private_endpoint_connection_name: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region_name: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            timeouts: Optional[pulumi.Input[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict']]] = None) -> 'EncryptionAtRestPrivateEndpoint':
+            cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            error_message: pulumi.Input[Optional[_builtins.str]] = None,
+            private_endpoint_connection_name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region_name: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict']]] = None) -> 'EncryptionAtRestPrivateEndpoint':
         """
         Get an existing EncryptionAtRestPrivateEndpoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

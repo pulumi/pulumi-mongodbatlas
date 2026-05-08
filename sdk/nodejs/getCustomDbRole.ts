@@ -129,7 +129,7 @@ export function getCustomDbRoleOutput(args: GetCustomDbRoleOutputArgs, opts?: pu
  * A collection of arguments for invoking getCustomDbRole.
  */
 export interface GetCustomDbRoleOutputArgs {
-    inheritedRoles?: pulumi.Input<pulumi.Input<inputs.GetCustomDbRoleInheritedRoleArgs>[]>;
+    inheritedRoles?: pulumi.Input<pulumi.Input<inputs.GetCustomDbRoleInheritedRoleArgs>[] | undefined>;
     /**
      * The unique ID for the project, also known as `groupId` in the official documentation.
      */

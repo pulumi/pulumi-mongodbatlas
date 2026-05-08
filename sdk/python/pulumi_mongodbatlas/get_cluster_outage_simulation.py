@@ -162,8 +162,8 @@ def get_cluster_outage_simulation(cluster_name: Optional[_builtins.str] = None,
         simulation_id=pulumi.get(__ret__, 'simulation_id'),
         start_request_date=pulumi.get(__ret__, 'start_request_date'),
         state=pulumi.get(__ret__, 'state'))
-def get_cluster_outage_simulation_output(cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                         project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_cluster_outage_simulation_output(cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                         project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClusterOutageSimulationResult]:
     """
     `ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/

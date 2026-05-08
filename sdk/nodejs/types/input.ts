@@ -9,59 +9,59 @@ export interface AdvancedClusterAdvancedConfiguration {
     /**
      * The minimum pre- and post-image retention time in seconds.
      */
-    changeStreamOptionsPreAndPostImagesExpireAfterSeconds?: pulumi.Input<number>;
+    changeStreamOptionsPreAndPostImagesExpireAfterSeconds?: pulumi.Input<number | undefined>;
     /**
      * The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
      */
-    customOpensslCipherConfigTls12s?: pulumi.Input<pulumi.Input<string>[]>;
+    customOpensslCipherConfigTls12s?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The custom OpenSSL cipher suite list for TLS 1.3. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
      */
-    customOpensslCipherConfigTls13s?: pulumi.Input<pulumi.Input<string>[]>;
+    customOpensslCipherConfigTls13s?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Default time limit in milliseconds for individual read operations to complete. This parameter is supported only for MongoDB version 8.0 and above.
      */
-    defaultMaxTimeMs?: pulumi.Input<number>;
+    defaultMaxTimeMs?: pulumi.Input<number | undefined>;
     /**
      * Default level of acknowledgment requested from MongoDB for write operations when none is specified by the driver.
      */
-    defaultWriteConcern?: pulumi.Input<string>;
+    defaultWriteConcern?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether the cluster allows execution of operations that perform server-side executions of JavaScript. When using 8.0+, we recommend disabling server-side JavaScript and using operators of aggregation pipeline as more performant alternative.
      */
-    javascriptEnabled?: pulumi.Input<boolean>;
+    javascriptEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Minimum Transport Layer Security (TLS) version that the cluster accepts for incoming connections. Clusters using TLS 1.0 or 1.1 should consider setting TLS 1.2 as the minimum TLS protocol version.
      */
-    minimumEnabledTlsProtocol?: pulumi.Input<string>;
+    minimumEnabledTlsProtocol?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether the cluster disables executing any query that requires a collection scan to return results.
      */
-    noTableScan?: pulumi.Input<boolean>;
+    noTableScan?: pulumi.Input<boolean | undefined>;
     /**
      * Minimum retention window for cluster's oplog expressed in hours. Once this attribute has been set to a non-null value, removing it from your configuration or setting it to `null` will retain the last applied value rather than reverting to the default value. To disable this setting, check the [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours) for the specific value to use (currently `0`).
      */
-    oplogMinRetentionHours?: pulumi.Input<number>;
+    oplogMinRetentionHours?: pulumi.Input<number | undefined>;
     /**
      * Storage limit of cluster's oplog expressed in megabytes. A value of null indicates that the cluster uses the default oplog size that MongoDB Cloud calculates.
      */
-    oplogSizeMb?: pulumi.Input<number>;
+    oplogSizeMb?: pulumi.Input<number | undefined>;
     /**
      * Interval in seconds at which the mongosqld process re-samples data to create its relational schema.
      */
-    sampleRefreshIntervalBiConnector?: pulumi.Input<number>;
+    sampleRefreshIntervalBiConnector?: pulumi.Input<number | undefined>;
     /**
      * Number of documents per database to sample when gathering schema information.
      */
-    sampleSizeBiConnector?: pulumi.Input<number>;
+    sampleSizeBiConnector?: pulumi.Input<number | undefined>;
     /**
      * The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
      */
-    tlsCipherConfigMode?: pulumi.Input<string>;
+    tlsCipherConfigMode?: pulumi.Input<string | undefined>;
     /**
      * Lifetime, in seconds, of multi-document transactions. Atlas considers the transactions that exceed this limit as expired and so aborts them through a periodic cleanup process.
      */
-    transactionLifetimeLimitSeconds?: pulumi.Input<number>;
+    transactionLifetimeLimitSeconds?: pulumi.Input<number | undefined>;
 }
 
 export interface AdvancedClusterBiConnectorConfig {
@@ -71,7 +71,7 @@ export interface AdvancedClusterBiConnectorConfig {
      * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
      *
@@ -81,14 +81,14 @@ export interface AdvancedClusterBiConnectorConfig {
      *
      * - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
      */
-    readPreference?: pulumi.Input<string>;
+    readPreference?: pulumi.Input<string | undefined>;
 }
 
 export interface AdvancedClusterConnectionStrings {
     /**
      * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
-    private?: pulumi.Input<string>;
+    private?: pulumi.Input<string | undefined>;
     /**
      * Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
      * - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -100,57 +100,57 @@ export interface AdvancedClusterConnectionStrings {
      * - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
      * - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
      */
-    privateEndpoints?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterConnectionStringsPrivateEndpoint>[]>;
+    privateEndpoints?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterConnectionStringsPrivateEndpoint>[] | undefined>;
     /**
      * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
-    privateSrv?: pulumi.Input<string>;
+    privateSrv?: pulumi.Input<string | undefined>;
     /**
      * Public mongodb:// connection string for this cluster.
      */
-    standard?: pulumi.Input<string>;
+    standard?: pulumi.Input<string | undefined>;
     /**
      * Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t  , use connectionStrings.standard.
      */
-    standardSrv?: pulumi.Input<string>;
+    standardSrv?: pulumi.Input<string | undefined>;
 }
 
 export interface AdvancedClusterConnectionStringsPrivateEndpoint {
     /**
      * Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
      */
-    connectionString?: pulumi.Input<string>;
+    connectionString?: pulumi.Input<string | undefined>;
     /**
      * List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
      */
-    endpoints?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterConnectionStringsPrivateEndpointEndpoint>[]>;
+    endpoints?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterConnectionStringsPrivateEndpointEndpoint>[] | undefined>;
     /**
      * Private endpoint-aware connection string that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. The `mongodb+srv` protocol tells the driver to look up the seed list of hosts in the Domain Name System (DNS). This list synchronizes with the nodes in a cluster. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to append the seed list or change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application supports it. If it doesn't, use connectionStrings.privateEndpoint[n].connectionString.
      */
-    srvConnectionString?: pulumi.Input<string>;
+    srvConnectionString?: pulumi.Input<string | undefined>;
     /**
      * Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint. If the connection string uses this Uniform Resource Identifier (URI) format, you don't need to change the Uniform Resource Identifier (URI) if the nodes change. Use this Uniform Resource Identifier (URI) format if your application and Atlas cluster supports it. If it doesn't, use and consult the documentation for connectionStrings.privateEndpoint[n].srvConnectionString.
      */
-    srvShardOptimizedConnectionString?: pulumi.Input<string>;
+    srvShardOptimizedConnectionString?: pulumi.Input<string | undefined>;
     /**
      * MongoDB process type to which your application connects. Use `MONGOD` for replica sets and `MONGOS` for sharded clusters.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface AdvancedClusterConnectionStringsPrivateEndpointEndpoint {
     /**
      * Unique string that the cloud provider uses to identify the private endpoint.
      */
-    endpointId?: pulumi.Input<string>;
+    endpointId?: pulumi.Input<string | undefined>;
     /**
      * Cloud provider in which MongoDB Cloud deploys the private endpoint.
      */
-    providerName?: pulumi.Input<string>;
+    providerName?: pulumi.Input<string | undefined>;
     /**
      * Region where the private endpoint is deployed.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }
 
 export interface AdvancedClusterPinnedFcv {
@@ -161,18 +161,18 @@ export interface AdvancedClusterPinnedFcv {
     /**
      * Feature compatibility version of the cluster.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 export interface AdvancedClusterReplicationSpec {
     /**
      * A key-value map of the Network Peering Container ID(s) for the configuration specified in region_configs. The Container ID is the id of the container created when the first cluster in the region (AWS/Azure) or project (GCP) was created.
      */
-    containerId?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    containerId?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
      */
-    externalId?: pulumi.Input<string>;
+    externalId?: pulumi.Input<string | undefined>;
     /**
      * Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
      */
@@ -180,34 +180,34 @@ export interface AdvancedClusterReplicationSpec {
     /**
      * Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
      */
-    zoneId?: pulumi.Input<string>;
+    zoneId?: pulumi.Input<string | undefined>;
     /**
      * Name for the zone in a Global Cluster.
      */
-    zoneName?: pulumi.Input<string>;
+    zoneName?: pulumi.Input<string | undefined>;
 }
 
 export interface AdvancedClusterReplicationSpecRegionConfig {
     /**
      * Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
      */
-    analyticsAutoScaling?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling>;
+    analyticsAutoScaling?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling | undefined>;
     /**
      * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
      */
-    analyticsSpecs?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs>;
+    analyticsSpecs?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs | undefined>;
     /**
      * Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
      */
-    autoScaling?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling>;
+    autoScaling?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigAutoScaling | undefined>;
     /**
      * Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `providerName` is `TENANT` and `instanceSize` is `M0`, or when the `providerName` is `FLEX`.
      */
-    backingProviderName?: pulumi.Input<string>;
+    backingProviderName?: pulumi.Input<string | undefined>;
     /**
      * Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
      */
-    electableSpecs?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecs>;
+    electableSpecs?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecs | undefined>;
     /**
      * Election priority of the region. For regions with only read-only nodes, set this value to 0.
      * * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
@@ -227,7 +227,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
     /**
      * Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
      */
-    readOnlySpecs?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs>;
+    readOnlySpecs?: pulumi.Input<inputs.AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs | undefined>;
     /**
      * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      */
@@ -238,62 +238,62 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling 
     /**
      * Flag that indicates whether analytics instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of analytics instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
      */
-    computeEnabled?: pulumi.Input<boolean>;
+    computeEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` is true.
      *
      * **Note:** The configuration options and considerations for analytics auto-scaling are similar to those described in auto_scaling. When using `useEffectiveFields = true`, you can read scaled values using `effectiveAnalyticsSpecs` in the data source. When not using `useEffectiveFields`, you may need lifecycle ignore customizations for `analyticsSpecs` fields similar to the example shown in the autoScaling section.
      */
-    computeMaxInstanceSize?: pulumi.Input<string>;
+    computeMaxInstanceSize?: pulumi.Input<string | undefined>;
     /**
      * Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_scale_down_enabled` is true.
      */
-    computeMinInstanceSize?: pulumi.Input<string>;
+    computeMinInstanceSize?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].analytics_auto_scaling.compute_min_instance_size`.
      */
-    computeScaleDownEnabled?: pulumi.Input<boolean>;
+    computeScaleDownEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
      * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
      * - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
      * - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
      */
-    diskGbEnabled?: pulumi.Input<boolean>;
+    diskGbEnabled?: pulumi.Input<boolean | undefined>;
 }
 
 export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
     /**
      * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
      */
-    diskIops?: pulumi.Input<number>;
+    diskIops?: pulumi.Input<number | undefined>;
     /**
      * Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
      */
-    diskSizeGb?: pulumi.Input<number>;
+    diskSizeGb?: pulumi.Input<number | undefined>;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
      * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
      * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
-    ebsVolumeType?: pulumi.Input<string>;
+    ebsVolumeType?: pulumi.Input<string | undefined>;
     /**
      * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
      *
      * > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
      */
-    instanceSize?: pulumi.Input<string>;
+    instanceSize?: pulumi.Input<string | undefined>;
     /**
      * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
-    nodeCount?: pulumi.Input<number>;
+    nodeCount?: pulumi.Input<number | undefined>;
 }
 
 export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
     /**
      * Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
      */
-    computeEnabled?: pulumi.Input<boolean>;
+    computeEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
      *
@@ -309,91 +309,91 @@ export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
      *
      * **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
      */
-    computeMaxInstanceSize?: pulumi.Input<string>;
+    computeMaxInstanceSize?: pulumi.Input<string | undefined>;
     /**
      * Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
      */
-    computeMinInstanceSize?: pulumi.Input<string>;
+    computeMinInstanceSize?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
      */
-    computeScaleDownEnabled?: pulumi.Input<boolean>;
+    computeScaleDownEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
      * - To set `diskGbEnabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
      * - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
      * - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
      */
-    diskGbEnabled?: pulumi.Input<boolean>;
+    diskGbEnabled?: pulumi.Input<boolean | undefined>;
 }
 
 export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     /**
      * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
      */
-    diskIops?: pulumi.Input<number>;
+    diskIops?: pulumi.Input<number | undefined>;
     /**
      * Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
      */
-    diskSizeGb?: pulumi.Input<number>;
+    diskSizeGb?: pulumi.Input<number | undefined>;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
      * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
      * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
-    ebsVolumeType?: pulumi.Input<string>;
+    ebsVolumeType?: pulumi.Input<string | undefined>;
     /**
      * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
      *
      * > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
      */
-    instanceSize?: pulumi.Input<string>;
+    instanceSize?: pulumi.Input<string | undefined>;
     /**
      * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
-    nodeCount?: pulumi.Input<number>;
+    nodeCount?: pulumi.Input<number | undefined>;
 }
 
 export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     /**
      * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
      */
-    diskIops?: pulumi.Input<number>;
+    diskIops?: pulumi.Input<number | undefined>;
     /**
      * Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
      */
-    diskSizeGb?: pulumi.Input<number>;
+    diskSizeGb?: pulumi.Input<number | undefined>;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
      * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
      * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
      */
-    ebsVolumeType?: pulumi.Input<string>;
+    ebsVolumeType?: pulumi.Input<string | undefined>;
     /**
      * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
      *
      * > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
      */
-    instanceSize?: pulumi.Input<string>;
+    instanceSize?: pulumi.Input<string | undefined>;
     /**
      * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
-    nodeCount?: pulumi.Input<number>;
+    nodeCount?: pulumi.Input<number | undefined>;
 }
 
 export interface AdvancedClusterTimeouts {
     /**
      * (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
      */
-    create?: pulumi.Input<string>;
+    create?: pulumi.Input<string | undefined>;
     /**
      * (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
      */
-    delete?: pulumi.Input<string>;
+    delete?: pulumi.Input<string | undefined>;
     /**
      * (String) A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
      */
-    update?: pulumi.Input<string>;
+    update?: pulumi.Input<string | undefined>;
 }
 
 export interface AlertConfigurationMatcher {
@@ -433,69 +433,69 @@ export interface AlertConfigurationMetricThresholdConfig {
     /**
      * This must be set to AVERAGE. Atlas computes the current metric value as an average.
      */
-    mode?: pulumi.Input<string>;
-    operator?: pulumi.Input<string>;
-    threshold?: pulumi.Input<number>;
-    units?: pulumi.Input<string>;
+    mode?: pulumi.Input<string | undefined>;
+    operator?: pulumi.Input<string | undefined>;
+    threshold?: pulumi.Input<number | undefined>;
+    units?: pulumi.Input<string | undefined>;
 }
 
 export interface AlertConfigurationNotification {
     /**
      * Slack API token. Required for the SLACK notifications type. If the token later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
      */
-    apiToken?: pulumi.Input<string>;
+    apiToken?: pulumi.Input<string | undefined>;
     /**
      * Slack channel name. Required for the SLACK notifications type.
      */
-    channelName?: pulumi.Input<string>;
+    channelName?: pulumi.Input<string | undefined>;
     /**
      * Datadog API Key. Found in the Datadog dashboard. Required for the DATADOG notifications type.
      */
-    datadogApiKey?: pulumi.Input<string>;
+    datadogApiKey?: pulumi.Input<string | undefined>;
     /**
      * Region that indicates which API URL to use. See the `datadogRegion` field in the `notifications` request parameter of [MongoDB API Alert Configuration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createalertconfiguration) for more details. The default Datadog region is US.
      */
-    datadogRegion?: pulumi.Input<string>;
+    datadogRegion?: pulumi.Input<string | undefined>;
     /**
      * Number of minutes to wait after an alert condition is detected before sending out the first notification.
      */
-    delayMin?: pulumi.Input<number>;
+    delayMin?: pulumi.Input<number | undefined>;
     /**
      * Email address to which alert notifications are sent. Required for the EMAIL notifications type.
      */
-    emailAddress?: pulumi.Input<string>;
+    emailAddress?: pulumi.Input<string | undefined>;
     /**
      * Flag indicating email notifications should be sent. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      */
-    emailEnabled?: pulumi.Input<boolean>;
+    emailEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The ID of the associated integration, the credentials of which to use for requests.
      */
-    integrationId?: pulumi.Input<string>;
+    integrationId?: pulumi.Input<string | undefined>;
     /**
      * Number of minutes to wait between successive notifications for unacknowledged alerts that are not resolved. The minimum value is 5. **NOTE** `PAGER_DUTY`, `VICTOR_OPS`, and `OPS_GENIE` notifications do not return this value. The notification interval must be configured and managed within each external service.
      */
-    intervalMin?: pulumi.Input<number>;
+    intervalMin?: pulumi.Input<number | undefined>;
     /**
      * Microsoft Teams Webhook Uniform Resource Locator (URL) that MongoDB Cloud needs to send this notification via Microsoft Teams. Required if `typeName` is `MICROSOFT_TEAMS`. If the URL later becomes invalid, MongoDB Cloud sends an email to the project owners. If the key remains invalid, MongoDB Cloud removes it.
      */
-    microsoftTeamsWebhookUrl?: pulumi.Input<string>;
+    microsoftTeamsWebhookUrl?: pulumi.Input<string | undefined>;
     /**
      * Mobile number to which alert notifications are sent. Required for the SMS notifications type.
      */
-    mobileNumber?: pulumi.Input<string>;
+    mobileNumber?: pulumi.Input<string | undefined>;
     /**
      * The notifier ID is a system-generated unique identifier assigned to each notification method. This is needed when updating third-party notifications without requiring explicit authentication credentials.
      */
-    notifierId?: pulumi.Input<string>;
+    notifierId?: pulumi.Input<string | undefined>;
     /**
      * Opsgenie API Key. Required for the `OPS_GENIE` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the token.
      */
-    opsGenieApiKey?: pulumi.Input<string>;
+    opsGenieApiKey?: pulumi.Input<string | undefined>;
     /**
      * Region that indicates which API URL to use. Accepted regions are: `US` ,`EU`. The default Opsgenie region is US.
      */
-    opsGenieRegion?: pulumi.Input<string>;
+    opsGenieRegion?: pulumi.Input<string | undefined>;
     /**
      * Optional. One or more roles that receive the configured alert. If you include this field, Atlas sends alerts only to users assigned the roles you specify in the array. If you omit this field, Atlas sends alerts to users assigned any role. This parameter is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      * Accepted values are:
@@ -509,23 +509,23 @@ export interface AlertConfigurationNotification {
      * | `GROUP_OWNER`                   | `ORG_READ_ONLY`     |
      * | `GROUP_READ_ONLY`               |                     |
      */
-    roles?: pulumi.Input<pulumi.Input<string>[]>;
+    roles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * PagerDuty service key. Required for the PAGER_DUTY notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
-    serviceKey?: pulumi.Input<string>;
+    serviceKey?: pulumi.Input<string | undefined>;
     /**
      * Flag indicating if text message notifications should be sent to this user's mobile phone. This flag is only valid if `typeName` is set to `ORG`, `GROUP`, or `USER`.
      */
-    smsEnabled?: pulumi.Input<boolean>;
+    smsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Unique identifier of a team.
      */
-    teamId?: pulumi.Input<string>;
+    teamId?: pulumi.Input<string | undefined>;
     /**
      * Label for the team that receives this notification.
      */
-    teamName?: pulumi.Input<string>;
+    teamName?: pulumi.Input<string | undefined>;
     /**
      * Type of alert notification.
      * Accepted values are:
@@ -547,29 +547,29 @@ export interface AlertConfigurationNotification {
     /**
      * Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
     /**
      * VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
-    victorOpsApiKey?: pulumi.Input<string>;
+    victorOpsApiKey?: pulumi.Input<string | undefined>;
     /**
      * VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
-    victorOpsRoutingKey?: pulumi.Input<string>;
+    victorOpsRoutingKey?: pulumi.Input<string | undefined>;
     /**
      * Optional authentication secret for the `WEBHOOK` notifications type.
      */
-    webhookSecret?: pulumi.Input<string>;
+    webhookSecret?: pulumi.Input<string | undefined>;
     /**
      * Target URL  for the `WEBHOOK` notifications type.
      */
-    webhookUrl?: pulumi.Input<string>;
+    webhookUrl?: pulumi.Input<string | undefined>;
 }
 
 export interface AlertConfigurationThresholdConfig {
-    operator?: pulumi.Input<string>;
-    threshold?: pulumi.Input<number>;
-    units?: pulumi.Input<string>;
+    operator?: pulumi.Input<string | undefined>;
+    threshold?: pulumi.Input<number | undefined>;
+    units?: pulumi.Input<string | undefined>;
 }
 
 export interface BackupCompliancePolicyOnDemandPolicyItem {
@@ -580,11 +580,11 @@ export interface BackupCompliancePolicyOnDemandPolicyItem {
     /**
      * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
-    frequencyType?: pulumi.Input<string>;
+    frequencyType?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the backup policy item.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
@@ -603,11 +603,11 @@ export interface BackupCompliancePolicyPolicyItemDaily {
     /**
      * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
-    frequencyType?: pulumi.Input<string>;
+    frequencyType?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the backup policy item.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
@@ -626,11 +626,11 @@ export interface BackupCompliancePolicyPolicyItemHourly {
     /**
      * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
-    frequencyType?: pulumi.Input<string>;
+    frequencyType?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the backup policy item.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
@@ -649,11 +649,11 @@ export interface BackupCompliancePolicyPolicyItemMonthly {
     /**
      * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
-    frequencyType?: pulumi.Input<string>;
+    frequencyType?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the backup policy item.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
@@ -672,11 +672,11 @@ export interface BackupCompliancePolicyPolicyItemWeekly {
     /**
      * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
-    frequencyType?: pulumi.Input<string>;
+    frequencyType?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the backup policy item.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
@@ -695,11 +695,11 @@ export interface BackupCompliancePolicyPolicyItemYearly {
     /**
      * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
-    frequencyType?: pulumi.Input<string>;
+    frequencyType?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the backup policy item.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
@@ -714,34 +714,34 @@ export interface CloudBackupScheduleCopySetting {
     /**
      * Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
      */
-    cloudProvider?: pulumi.Input<string>;
+    cloudProvider?: pulumi.Input<string | undefined>;
     /**
      * List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
      */
-    frequencies?: pulumi.Input<pulumi.Input<string>[]>;
+    frequencies?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
      */
-    regionName?: pulumi.Input<string>;
+    regionName?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
      */
-    shouldCopyOplogs?: pulumi.Input<boolean>;
+    shouldCopyOplogs?: pulumi.Input<boolean | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zoneId`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `mongodbatlas.AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
      */
-    zoneId?: pulumi.Input<string>;
+    zoneId?: pulumi.Input<string | undefined>;
 }
 
 export interface CloudBackupScheduleExport {
     /**
      * Unique identifier of the mongodbatlas.CloudBackupSnapshotExportBucket export_bucket_id value.
      */
-    exportBucketId?: pulumi.Input<string>;
+    exportBucketId?: pulumi.Input<string | undefined>;
     /**
      * Frequency associated with the export snapshot item: `weekly`, `monthly`, `yearly`, `daily` (requires reaching out to Customer Support)
      */
-    frequencyType?: pulumi.Input<string>;
+    frequencyType?: pulumi.Input<string | undefined>;
 }
 
 export interface CloudBackupSchedulePolicyItemDaily {
@@ -752,11 +752,11 @@ export interface CloudBackupSchedulePolicyItemDaily {
     /**
      * Frequency associated with the backup policy item. For daily policies, the frequency type is defined as `daily`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
-    frequencyType?: pulumi.Input<string>;
+    frequencyType?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the backup policy item.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
@@ -775,11 +775,11 @@ export interface CloudBackupSchedulePolicyItemHourly {
     /**
      * Frequency associated with the backup policy item. For hourly policies, the frequency type is defined as `hourly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
-    frequencyType?: pulumi.Input<string>;
+    frequencyType?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the backup policy item.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
@@ -798,11 +798,11 @@ export interface CloudBackupSchedulePolicyItemMonthly {
     /**
      * Frequency associated with the backup policy item. For monthly policies, the frequency type is defined as `monthly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
-    frequencyType?: pulumi.Input<string>;
+    frequencyType?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the backup policy item.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
@@ -821,11 +821,11 @@ export interface CloudBackupSchedulePolicyItemWeekly {
     /**
      * Frequency associated with the backup policy item. For weekly policies, the frequency type is defined as `weekly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
-    frequencyType?: pulumi.Input<string>;
+    frequencyType?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the backup policy item.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
@@ -844,11 +844,11 @@ export interface CloudBackupSchedulePolicyItemYearly {
     /**
      * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
      */
-    frequencyType?: pulumi.Input<string>;
+    frequencyType?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the backup policy item.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
      */
@@ -863,11 +863,11 @@ export interface CloudBackupSnapshotExportJobComponent {
     /**
      * _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
      */
-    exportId?: pulumi.Input<string>;
+    exportId?: pulumi.Input<string | undefined>;
     /**
      * _Returned for sharded clusters only._ Unique identifier of the export job for the replica set.
      */
-    replicaSetName?: pulumi.Input<string>;
+    replicaSetName?: pulumi.Input<string | undefined>;
 }
 
 export interface CloudBackupSnapshotExportJobCustomData {
@@ -885,32 +885,32 @@ export interface CloudBackupSnapshotMember {
     /**
      * Cloud provider that stores this snapshot.
      */
-    cloudProvider?: pulumi.Input<string>;
+    cloudProvider?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier for the sharded cluster snapshot.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Label given to a shard or config server from which Atlas took this snapshot.
      */
-    replicaSetName?: pulumi.Input<string>;
+    replicaSetName?: pulumi.Input<string | undefined>;
 }
 
 export interface CloudBackupSnapshotRestoreJobDeliveryTypeConfig {
-    automated?: pulumi.Input<boolean>;
-    download?: pulumi.Input<boolean>;
-    oplogInc?: pulumi.Input<number>;
-    oplogTs?: pulumi.Input<number>;
-    pointInTime?: pulumi.Input<boolean>;
-    pointInTimeUtcSeconds?: pulumi.Input<number>;
+    automated?: pulumi.Input<boolean | undefined>;
+    download?: pulumi.Input<boolean | undefined>;
+    oplogInc?: pulumi.Input<number | undefined>;
+    oplogTs?: pulumi.Input<number | undefined>;
+    pointInTime?: pulumi.Input<boolean | undefined>;
+    pointInTimeUtcSeconds?: pulumi.Input<number | undefined>;
     /**
      * Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
      */
-    targetClusterName?: pulumi.Input<string>;
+    targetClusterName?: pulumi.Input<string | undefined>;
     /**
      * Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
      */
-    targetProjectId?: pulumi.Input<string>;
+    targetProjectId?: pulumi.Input<string | undefined>;
 }
 
 export interface CloudProviderAccessAuthorizationAws {
@@ -936,26 +936,26 @@ export interface CloudProviderAccessAuthorizationAzure {
 }
 
 export interface CloudProviderAccessAuthorizationFeatureUsage {
-    featureId?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
-    featureType?: pulumi.Input<string>;
+    featureId?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    featureType?: pulumi.Input<string | undefined>;
 }
 
 export interface CloudProviderAccessAuthorizationGcp {
     /**
      * Email address for the Google Service Account created by Atlas.
      */
-    serviceAccountForAtlas?: pulumi.Input<string>;
+    serviceAccountForAtlas?: pulumi.Input<string | undefined>;
 }
 
 export interface CloudProviderAccessSetupAwsConfig {
     /**
      * Unique external ID Atlas uses when assuming the IAM role in your AWS account.
      */
-    atlasAssumedRoleExternalId?: pulumi.Input<string>;
+    atlasAssumedRoleExternalId?: pulumi.Input<string | undefined>;
     /**
      * ARN associated with the Atlas AWS account used to assume IAM roles in your AWS account.
      */
-    atlasAwsAccountArn?: pulumi.Input<string>;
+    atlasAwsAccountArn?: pulumi.Input<string | undefined>;
 }
 
 export interface CloudProviderAccessSetupAzureConfig {
@@ -977,122 +977,122 @@ export interface CloudProviderAccessSetupGcpConfig {
     /**
      * The GCP service account email that Atlas uses.
      */
-    serviceAccountForAtlas?: pulumi.Input<string>;
+    serviceAccountForAtlas?: pulumi.Input<string | undefined>;
     /**
      * The status of the GCP cloud provider access setup. See [MongoDB Atlas API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getgroupcloudprovideraccess#operation-getgroupcloudprovideraccess-200-body-application-vnd-atlas-2023-01-01-json-gcp-object-status).
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
 }
 
 export interface CloudUserOrgAssignmentRoles {
     /**
      * One or more organization level roles to assign the MongoDB Cloud user.
      */
-    orgRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    orgRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of project level role assignments to assign the MongoDB Cloud user.
      */
-    projectRoleAssignments?: pulumi.Input<pulumi.Input<inputs.CloudUserOrgAssignmentRolesProjectRoleAssignment>[]>;
+    projectRoleAssignments?: pulumi.Input<pulumi.Input<inputs.CloudUserOrgAssignmentRolesProjectRoleAssignment>[] | undefined>;
 }
 
 export interface CloudUserOrgAssignmentRolesProjectRoleAssignment {
     /**
      * Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * One or more project-level roles assigned to the MongoDB Cloud user.
      */
-    projectRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    projectRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface CloudUserTeamAssignmentRoles {
     /**
      * One or more organization level roles to assign the MongoDB Cloud user.
      */
-    orgRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    orgRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List of project level role assignments to assign the MongoDB Cloud user.
      */
-    projectRoleAssignments?: pulumi.Input<pulumi.Input<inputs.CloudUserTeamAssignmentRolesProjectRoleAssignment>[]>;
+    projectRoleAssignments?: pulumi.Input<pulumi.Input<inputs.CloudUserTeamAssignmentRolesProjectRoleAssignment>[] | undefined>;
 }
 
 export interface CloudUserTeamAssignmentRolesProjectRoleAssignment {
     /**
      * Unique 24-hexadecimal digit string that identifies the project to which these roles belong.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * One or more project-level roles assigned to the MongoDB Cloud user.
      */
-    projectRoles?: pulumi.Input<pulumi.Input<string>[]>;
+    projectRoles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface ClusterAdvancedConfiguration {
     /**
      * The minimum pre- and post-image retention time in seconds. This option corresponds to the `changeStreamOptions.preAndPostImages.expireAfterSeconds` cluster parameter. Defaults to `-1`(off). This setting controls the retention policy of change stream pre- and post-images. Pre- and post-images are the versions of a document before and after document modification, respectively.`expireAfterSeconds` controls how long MongoDB retains pre- and post-images. When set to -1 (off), MongoDB uses the default retention policy: pre- and post-images are retained until the corresponding change stream events are removed from the oplog. To set the minimum pre- and post-image retention time, specify an integer value greater than zero. Setting this too low could increase the risk of interrupting Realm sync or triggers processing. This parameter is only supported for MongoDB version 6.0 and above.
      */
-    changeStreamOptionsPreAndPostImagesExpireAfterSeconds?: pulumi.Input<number>;
+    changeStreamOptionsPreAndPostImagesExpireAfterSeconds?: pulumi.Input<number | undefined>;
     /**
      * The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
      */
-    customOpensslCipherConfigTls12s?: pulumi.Input<pulumi.Input<string>[]>;
-    defaultMaxTimeMs?: pulumi.Input<number>;
+    customOpensslCipherConfigTls12s?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    defaultMaxTimeMs?: pulumi.Input<number | undefined>;
     /**
      * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
-    defaultReadConcern?: pulumi.Input<string>;
+    defaultReadConcern?: pulumi.Input<string | undefined>;
     /**
      * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
      */
-    defaultWriteConcern?: pulumi.Input<string>;
+    defaultWriteConcern?: pulumi.Input<string | undefined>;
     /**
      * **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
-    failIndexKeyTooLong?: pulumi.Input<boolean>;
+    failIndexKeyTooLong?: pulumi.Input<boolean | undefined>;
     /**
      * When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
      */
-    javascriptEnabled?: pulumi.Input<boolean>;
+    javascriptEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Sets the minimum Transport Layer Security (TLS) version the cluster accepts for incoming connections. Valid values are:
      * - TLS1_2
      * - TLS1_3
      */
-    minimumEnabledTlsProtocol?: pulumi.Input<string>;
+    minimumEnabledTlsProtocol?: pulumi.Input<string | undefined>;
     /**
      * When true, the cluster disables the execution of any query that requires a collection scan to return results. When false, the cluster allows the execution of those operations.
      */
-    noTableScan?: pulumi.Input<boolean>;
+    noTableScan?: pulumi.Input<boolean | undefined>;
     /**
      * Minimum retention window for cluster's oplog expressed in hours. A value of null indicates that the cluster uses the default minimum oplog window that MongoDB Cloud calculates.
      * * **Note**  A minimum oplog retention is required when seeking to change a cluster's class to Local NVMe SSD. To learn more and for latest guidance see  [`oplogMinRetentionHours`](https://www.mongodb.com/docs/manual/core/replica-set-oplog/#std-label-replica-set-minimum-oplog-size)
      */
-    oplogMinRetentionHours?: pulumi.Input<number>;
+    oplogMinRetentionHours?: pulumi.Input<number | undefined>;
     /**
      * The custom oplog size of the cluster. Without a value that indicates that the cluster uses the default oplog size calculated by Atlas.
      */
-    oplogSizeMb?: pulumi.Input<number>;
+    oplogSizeMb?: pulumi.Input<number | undefined>;
     /**
      * Interval in seconds at which the mongosqld process re-samples data to create its relational schema. The default value is 300. The specified value must be a positive integer. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
      */
-    sampleRefreshIntervalBiConnector?: pulumi.Input<number>;
+    sampleRefreshIntervalBiConnector?: pulumi.Input<number | undefined>;
     /**
      * Number of documents per database to sample when gathering schema information. Defaults to 100. Available only for Atlas deployments in which BI Connector for Atlas is enabled.
      */
-    sampleSizeBiConnector?: pulumi.Input<number>;
+    sampleSizeBiConnector?: pulumi.Input<number | undefined>;
     /**
      * The TLS cipher suite configuration mode. Valid values include `CUSTOM` or `DEFAULT`. The `DEFAULT` mode uses the default cipher suites. The `CUSTOM` mode allows you to specify custom cipher suites for both TLS 1.2 and TLS 1.3. To unset, this should be set back to `DEFAULT`.
      */
-    tlsCipherConfigMode?: pulumi.Input<string>;
+    tlsCipherConfigMode?: pulumi.Input<string | undefined>;
     /**
      * Lifetime, in seconds, of multi-document transactions. Defaults to 60 seconds.
      */
-    transactionLifetimeLimitSeconds?: pulumi.Input<number>;
+    transactionLifetimeLimitSeconds?: pulumi.Input<number | undefined>;
 }
 
 export interface ClusterBiConnectorConfig {
@@ -1102,7 +1102,7 @@ export interface ClusterBiConnectorConfig {
      * - Set to `true` to enable BI Connector for Atlas.
      * - Set to `false` to disable BI Connector for Atlas.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
      *
@@ -1112,27 +1112,27 @@ export interface ClusterBiConnectorConfig {
      *
      * - Set to "analytics" to have BI Connector for Atlas read from an analytics node. Default if the cluster contains analytics nodes.
      */
-    readPreference?: pulumi.Input<string>;
+    readPreference?: pulumi.Input<string | undefined>;
 }
 
 export interface ClusterConnectionString {
-    private?: pulumi.Input<string>;
-    privateEndpoints?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionStringPrivateEndpoint>[]>;
-    privateSrv?: pulumi.Input<string>;
-    standard?: pulumi.Input<string>;
-    standardSrv?: pulumi.Input<string>;
+    private?: pulumi.Input<string | undefined>;
+    privateEndpoints?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionStringPrivateEndpoint>[] | undefined>;
+    privateSrv?: pulumi.Input<string | undefined>;
+    standard?: pulumi.Input<string | undefined>;
+    standardSrv?: pulumi.Input<string | undefined>;
 }
 
 export interface ClusterConnectionStringPrivateEndpoint {
-    connectionString?: pulumi.Input<string>;
-    endpoints?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionStringPrivateEndpointEndpoint>[]>;
-    srvConnectionString?: pulumi.Input<string>;
-    srvShardOptimizedConnectionString?: pulumi.Input<string>;
-    type?: pulumi.Input<string>;
+    connectionString?: pulumi.Input<string | undefined>;
+    endpoints?: pulumi.Input<pulumi.Input<inputs.ClusterConnectionStringPrivateEndpointEndpoint>[] | undefined>;
+    srvConnectionString?: pulumi.Input<string | undefined>;
+    srvShardOptimizedConnectionString?: pulumi.Input<string | undefined>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface ClusterConnectionStringPrivateEndpointEndpoint {
-    endpointId?: pulumi.Input<string>;
+    endpointId?: pulumi.Input<string | undefined>;
     /**
      * Cloud service provider on which the servers are provisioned.
      *
@@ -1143,21 +1143,21 @@ export interface ClusterConnectionStringPrivateEndpointEndpoint {
      * - `AZURE` - Microsoft Azure
      * - `TENANT` - A multi-tenant deployment on one of the supported cloud service providers. Only valid when providerSettings.instanceSizeName is M0.
      */
-    providerName?: pulumi.Input<string>;
-    region?: pulumi.Input<string>;
+    providerName?: pulumi.Input<string | undefined>;
+    region?: pulumi.Input<string | undefined>;
 }
 
 export interface ClusterLabel {
     /**
      * The key that you want to write.
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * The value that you want to write.
      *
      * > **NOTE:** MongoDB Atlas doesn't display your labels.
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface ClusterOutageSimulationOutageFilter {
@@ -1176,7 +1176,7 @@ export interface ClusterOutageSimulationOutageFilter {
      * The type of cluster outage simulation. Following values are supported:
      * * `REGION` - Simulates a cluster outage for a region
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface ClusterPinnedFcv {
@@ -1187,14 +1187,14 @@ export interface ClusterPinnedFcv {
     /**
      * Feature compatibility version of the cluster.
      */
-    version?: pulumi.Input<string>;
+    version?: pulumi.Input<string | undefined>;
 }
 
 export interface ClusterReplicationSpec {
     /**
      * The Terraform's unique identifier used internally for state management.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
      */
@@ -1202,39 +1202,39 @@ export interface ClusterReplicationSpec {
     /**
      * Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
      */
-    regionsConfigs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpecRegionsConfig>[]>;
+    regionsConfigs?: pulumi.Input<pulumi.Input<inputs.ClusterReplicationSpecRegionsConfig>[] | undefined>;
     /**
      * Name for the zone in a Global Cluster.
      *
      *
      * **Region Config**
      */
-    zoneName?: pulumi.Input<string>;
+    zoneName?: pulumi.Input<string | undefined>;
 }
 
 export interface ClusterReplicationSpecRegionsConfig {
     /**
      * The number of analytics nodes for Atlas to deploy to the region. Analytics nodes are useful for handling analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only, and can never become the primary. If you do not specify this option, no analytics nodes are deployed to the region.
      */
-    analyticsNodes?: pulumi.Input<number>;
+    analyticsNodes?: pulumi.Input<number | undefined>;
     /**
      * Number of electable nodes for Atlas to deploy to the region. Electable nodes can become the primary and can facilitate local reads.
      * * The total number of electableNodes across all replication spec regions  must total 3, 5, or 7.
      * * Specify 0 if you do not want any electable nodes in the region.
      * * You cannot create electable nodes in a region if `priority` is 0.
      */
-    electableNodes?: pulumi.Input<number>;
+    electableNodes?: pulumi.Input<number | undefined>;
     /**
      * Election priority of the region. For regions with only read-only nodes, set this value to 0.
      * * For regions where `electableNodes` is at least 1, each region must have a priority of exactly one (1) less than the previous region. The first region must have a priority of 7. The lowest possible priority is 1.
      * * The priority 7 region identifies the Preferred Region of the cluster. Atlas places the primary node in the Preferred Region. Priorities 1 through 7 are exclusive - no more than one region per cluster can be assigned a given priority.
      * * Example: If you have three regions, their priorities would be 7, 6, and 5 respectively. If you added two more regions for supporting electable nodes, the priorities of those regions would be 4 and 3 respectively.
      */
-    priority?: pulumi.Input<number>;
+    priority?: pulumi.Input<number | undefined>;
     /**
      * Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
      */
-    readOnlyNodes?: pulumi.Input<number>;
+    readOnlyNodes?: pulumi.Input<number | undefined>;
     /**
      * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      */
@@ -1245,33 +1245,33 @@ export interface ClusterSnapshotBackupPolicy {
     /**
      * The cluster ID.
      */
-    clusterId?: pulumi.Input<string>;
-    clusterName?: pulumi.Input<string>;
-    nextSnapshot?: pulumi.Input<string>;
-    policies?: pulumi.Input<pulumi.Input<inputs.ClusterSnapshotBackupPolicyPolicy>[]>;
-    referenceHourOfDay?: pulumi.Input<number>;
-    referenceMinuteOfHour?: pulumi.Input<number>;
-    restoreWindowDays?: pulumi.Input<number>;
-    updateSnapshots?: pulumi.Input<boolean>;
+    clusterId?: pulumi.Input<string | undefined>;
+    clusterName?: pulumi.Input<string | undefined>;
+    nextSnapshot?: pulumi.Input<string | undefined>;
+    policies?: pulumi.Input<pulumi.Input<inputs.ClusterSnapshotBackupPolicyPolicy>[] | undefined>;
+    referenceHourOfDay?: pulumi.Input<number | undefined>;
+    referenceMinuteOfHour?: pulumi.Input<number | undefined>;
+    restoreWindowDays?: pulumi.Input<number | undefined>;
+    updateSnapshots?: pulumi.Input<boolean | undefined>;
 }
 
 export interface ClusterSnapshotBackupPolicyPolicy {
     /**
      * The Terraform's unique identifier used internally for state management.
      */
-    id?: pulumi.Input<string>;
-    policyItems?: pulumi.Input<pulumi.Input<inputs.ClusterSnapshotBackupPolicyPolicyPolicyItem>[]>;
+    id?: pulumi.Input<string | undefined>;
+    policyItems?: pulumi.Input<pulumi.Input<inputs.ClusterSnapshotBackupPolicyPolicyPolicyItem>[] | undefined>;
 }
 
 export interface ClusterSnapshotBackupPolicyPolicyPolicyItem {
-    frequencyInterval?: pulumi.Input<number>;
-    frequencyType?: pulumi.Input<string>;
+    frequencyInterval?: pulumi.Input<number | undefined>;
+    frequencyType?: pulumi.Input<string | undefined>;
     /**
      * The Terraform's unique identifier used internally for state management.
      */
-    id?: pulumi.Input<string>;
-    retentionUnit?: pulumi.Input<string>;
-    retentionValue?: pulumi.Input<number>;
+    id?: pulumi.Input<string | undefined>;
+    retentionUnit?: pulumi.Input<string | undefined>;
+    retentionValue?: pulumi.Input<number | undefined>;
 }
 
 export interface ClusterTag {
@@ -1312,14 +1312,14 @@ export interface CustomDbRoleAction {
 }
 
 export interface CustomDbRoleActionResource {
-    cluster?: pulumi.Input<boolean>;
-    collectionName?: pulumi.Input<string>;
+    cluster?: pulumi.Input<boolean | undefined>;
+    collectionName?: pulumi.Input<string | undefined>;
     /**
      * Database on which the inherited role is granted.
      *
      * > **NOTE** This value should be admin for all roles except read and readWrite.
      */
-    databaseName?: pulumi.Input<string>;
+    databaseName?: pulumi.Input<string | undefined>;
 }
 
 export interface CustomDbRoleInheritedRole {
@@ -1341,18 +1341,18 @@ export interface DatabaseUserLabel {
     /**
      * The key that you want to write.
      */
-    key?: pulumi.Input<string>;
+    key?: pulumi.Input<string | undefined>;
     /**
      * The value that you want to write.
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface DatabaseUserRole {
     /**
      * Collection for which the role applies. You can specify a collection for the `read` and `readWrite` roles. If you do not specify a collection for `read` and `readWrite`, the role applies to all collections in the database (excluding some collections in the `system`. database).
      */
-    collectionName?: pulumi.Input<string>;
+    collectionName?: pulumi.Input<string | undefined>;
     /**
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
      */
@@ -1367,184 +1367,184 @@ export interface DatabaseUserScope {
     /**
      * Name of the cluster or Atlas Data Federation that the user has access to.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
 }
 
 export interface EncryptionAtRestAwsKmsConfig {
     /**
      * Unique alphanumeric string that identifies an Identity and Access Management (IAM) access key with permissions required to access your Amazon Web Services (AWS) Customer Master Key (CMK).
      */
-    accessKeyId?: pulumi.Input<string>;
+    accessKeyId?: pulumi.Input<string | undefined>;
     /**
      * Unique alphanumeric string that identifies the Amazon Web Services (AWS) Customer Master Key (CMK) you used to encrypt and decrypt the MongoDB master keys.
      */
-    customerMasterKeyId?: pulumi.Input<string>;
+    customerMasterKeyId?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether someone enabled encryption at rest for the specified project through Amazon Web Services (AWS) Key Management Service (KMS). Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Physical location where MongoDB Atlas deploys your AWS-hosted MongoDB cluster nodes. The region you choose can affect network latency for clients accessing your databases. When MongoDB Cloud deploys a dedicated cluster, it checks if a VPC or VPC connection exists for that provider and region. If not, MongoDB Atlas creates them as part of the deployment. MongoDB Atlas assigns the VPC a CIDR block. To limit a new VPC peering connection to one CIDR block and region, create the connection first. Deploy the cluster after the connection starts.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Enable connection to your Amazon Web Services (AWS) Key Management Service (KMS) over private networking.
      */
-    requirePrivateNetworking?: pulumi.Input<boolean>;
+    requirePrivateNetworking?: pulumi.Input<boolean | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies an Amazon Web Services (AWS) Identity and Access Management (IAM) role. This IAM role has the permissions required to manage your AWS customer master key.
      */
-    roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label of the Identity and Access Management (IAM) secret access key with permissions required to access your Amazon Web Services (AWS) customer master key.
      */
-    secretAccessKey?: pulumi.Input<string>;
+    secretAccessKey?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether the Amazon Web Services (AWS) Key Management Service (KMS) encryption key can encrypt and decrypt data.
      */
-    valid?: pulumi.Input<boolean>;
+    valid?: pulumi.Input<boolean | undefined>;
 }
 
 export interface EncryptionAtRestAzureKeyVaultConfig {
     /**
      * Azure environment in which your account credentials reside.
      */
-    azureEnvironment?: pulumi.Input<string>;
+    azureEnvironment?: pulumi.Input<string | undefined>;
     /**
      * Unique 36-hexadecimal character string that identifies an Azure application associated with your Azure Active Directory tenant.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Web address with a unique key that identifies for your Azure Key Vault.
      */
-    keyIdentifier?: pulumi.Input<string>;
+    keyIdentifier?: pulumi.Input<string | undefined>;
     /**
      * Unique string that identifies the Azure Key Vault that contains your key.
      */
-    keyVaultName?: pulumi.Input<string>;
+    keyVaultName?: pulumi.Input<string | undefined>;
     /**
      * Enable connection to your Azure Key Vault over private networking.
      */
-    requirePrivateNetworking?: pulumi.Input<boolean>;
+    requirePrivateNetworking?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the Azure resource group that contains your Azure Key Vault.
      */
-    resourceGroupName?: pulumi.Input<string>;
+    resourceGroupName?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the Azure Service Principal that Atlas uses to access the Azure Key Vault.
      */
-    roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string | undefined>;
     /**
      * Private data that you need secured and that belongs to the specified Azure Key Vault (AKV) tenant (**azureKeyVault.tenantID**). This data can include any type of sensitive data such as passwords, database connection strings, API keys, and the like. AKV stores this information as encrypted binary data.
      */
-    secret?: pulumi.Input<string>;
+    secret?: pulumi.Input<string | undefined>;
     /**
      * Unique 36-hexadecimal character string that identifies your Azure subscription.
      */
-    subscriptionId?: pulumi.Input<string>;
+    subscriptionId?: pulumi.Input<string | undefined>;
     /**
      * Unique 36-hexadecimal character string that identifies the Azure Active Directory tenant within your Azure subscription.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether the Azure encryption key can encrypt and decrypt data.
      */
-    valid?: pulumi.Input<boolean>;
+    valid?: pulumi.Input<boolean | undefined>;
 }
 
 export interface EncryptionAtRestGoogleCloudKmsConfig {
     /**
      * Flag that indicates whether someone enabled encryption at rest for the specified  project. Setting this field to `false` might lead to an inconsistent Terraform state. To disable encryption at rest, remove the `mongodbatlas.EncryptionAtRest` resource and reapply your configuration.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * Resource path that displays the key version resource ID for your Google Cloud KMS.
      */
-    keyVersionResourceId?: pulumi.Input<string>;
+    keyVersionResourceId?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the Google Cloud Provider Access Role that MongoDB Cloud uses to access the Google Cloud KMS.
      */
-    roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string | undefined>;
     /**
      * JavaScript Object Notation (JSON) object that contains the Google Cloud Key Management Service (KMS). Format the JSON as a string and not as an object.
      */
-    serviceAccountKey?: pulumi.Input<string>;
+    serviceAccountKey?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether the Google Cloud Key Management Service (KMS) encryption key can encrypt and decrypt data.
      */
-    valid?: pulumi.Input<boolean>;
+    valid?: pulumi.Input<boolean | undefined>;
 }
 
 export interface EncryptionAtRestPrivateEndpointTimeouts {
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
      */
-    create?: pulumi.Input<string>;
+    create?: pulumi.Input<string | undefined>;
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
      */
-    delete?: pulumi.Input<string>;
+    delete?: pulumi.Input<string | undefined>;
 }
 
 export interface EventTriggerEventProcessors {
-    awsEventbridge?: pulumi.Input<inputs.EventTriggerEventProcessorsAwsEventbridge>;
+    awsEventbridge?: pulumi.Input<inputs.EventTriggerEventProcessorsAwsEventbridge | undefined>;
 }
 
 export interface EventTriggerEventProcessorsAwsEventbridge {
-    configAccountId?: pulumi.Input<string>;
-    configRegion?: pulumi.Input<string>;
+    configAccountId?: pulumi.Input<string | undefined>;
+    configRegion?: pulumi.Input<string | undefined>;
 }
 
 export interface FederatedDatabaseInstanceCloudProviderConfig {
     /**
      * Name of the cloud service that hosts the Atlas Data Federation data stores.
      */
-    aws?: pulumi.Input<inputs.FederatedDatabaseInstanceCloudProviderConfigAws>;
+    aws?: pulumi.Input<inputs.FederatedDatabaseInstanceCloudProviderConfigAws | undefined>;
     /**
      * Microsoft Azure cloud service configuration.
      */
-    azure?: pulumi.Input<inputs.FederatedDatabaseInstanceCloudProviderConfigAzure>;
+    azure?: pulumi.Input<inputs.FederatedDatabaseInstanceCloudProviderConfigAzure | undefined>;
 }
 
 export interface FederatedDatabaseInstanceCloudProviderConfigAws {
     /**
      * Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
      */
-    externalId?: pulumi.Input<string>;
+    externalId?: pulumi.Input<string | undefined>;
     /**
      * Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
      * * `s3:GetObject`
      * * `s3:ListBucket`
      * * `s3:GetObjectVersion`
      */
-    iamAssumedRoleArn?: pulumi.Input<string>;
+    iamAssumedRoleArn?: pulumi.Input<string | undefined>;
     /**
      * Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
      */
-    iamUserArn?: pulumi.Input<string>;
+    iamUserArn?: pulumi.Input<string | undefined>;
     roleId: pulumi.Input<string>;
     testS3Bucket: pulumi.Input<string>;
 }
 
 export interface FederatedDatabaseInstanceCloudProviderConfigAzure {
-    atlasAppId?: pulumi.Input<string>;
+    atlasAppId?: pulumi.Input<string | undefined>;
     roleId: pulumi.Input<string>;
     /**
      * Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
      */
-    servicePrincipalId?: pulumi.Input<string>;
+    servicePrincipalId?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the Azure Active Directory tenant where the service principal resides.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
 }
 
 export interface FederatedDatabaseInstanceDataProcessRegion {
@@ -1553,79 +1553,79 @@ export interface FederatedDatabaseInstanceDataProcessRegion {
 }
 
 export interface FederatedDatabaseInstancePrivateEndpointHostname {
-    hostname?: pulumi.Input<string>;
-    privateEndpoint?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
+    privateEndpoint?: pulumi.Input<string | undefined>;
 }
 
 export interface FederatedDatabaseInstanceStorageDatabase {
-    collections?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabaseCollection>[]>;
-    maxWildcardCollections?: pulumi.Input<number>;
+    collections?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabaseCollection>[] | undefined>;
+    maxWildcardCollections?: pulumi.Input<number | undefined>;
     /**
      * Name of the Atlas Federated Database Instance.
      */
-    name?: pulumi.Input<string>;
-    views?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabaseView>[]>;
+    name?: pulumi.Input<string | undefined>;
+    views?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabaseView>[] | undefined>;
 }
 
 export interface FederatedDatabaseInstanceStorageDatabaseCollection {
-    dataSources?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSource>[]>;
+    dataSources?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabaseCollectionDataSource>[] | undefined>;
     /**
      * Name of the Atlas Federated Database Instance.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
 
 export interface FederatedDatabaseInstanceStorageDatabaseCollectionDataSource {
-    allowInsecure?: pulumi.Input<boolean>;
-    collection?: pulumi.Input<string>;
-    collectionRegex?: pulumi.Input<string>;
-    database?: pulumi.Input<string>;
-    databaseRegex?: pulumi.Input<string>;
-    datasetName?: pulumi.Input<string>;
-    defaultFormat?: pulumi.Input<string>;
-    path?: pulumi.Input<string>;
-    provenanceFieldName?: pulumi.Input<string>;
-    storeName?: pulumi.Input<string>;
-    urls?: pulumi.Input<pulumi.Input<string>[]>;
+    allowInsecure?: pulumi.Input<boolean | undefined>;
+    collection?: pulumi.Input<string | undefined>;
+    collectionRegex?: pulumi.Input<string | undefined>;
+    database?: pulumi.Input<string | undefined>;
+    databaseRegex?: pulumi.Input<string | undefined>;
+    datasetName?: pulumi.Input<string | undefined>;
+    defaultFormat?: pulumi.Input<string | undefined>;
+    path?: pulumi.Input<string | undefined>;
+    provenanceFieldName?: pulumi.Input<string | undefined>;
+    storeName?: pulumi.Input<string | undefined>;
+    urls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface FederatedDatabaseInstanceStorageDatabaseView {
     /**
      * Name of the Atlas Federated Database Instance.
      */
-    name?: pulumi.Input<string>;
-    pipeline?: pulumi.Input<string>;
-    source?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
+    pipeline?: pulumi.Input<string | undefined>;
+    source?: pulumi.Input<string | undefined>;
 }
 
 export interface FederatedDatabaseInstanceStorageStore {
-    additionalStorageClasses?: pulumi.Input<pulumi.Input<string>[]>;
-    allowInsecure?: pulumi.Input<boolean>;
-    bucket?: pulumi.Input<string>;
-    clusterName?: pulumi.Input<string>;
-    defaultFormat?: pulumi.Input<string>;
-    delimiter?: pulumi.Input<string>;
-    includeTags?: pulumi.Input<boolean>;
+    additionalStorageClasses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    allowInsecure?: pulumi.Input<boolean | undefined>;
+    bucket?: pulumi.Input<string | undefined>;
+    clusterName?: pulumi.Input<string | undefined>;
+    defaultFormat?: pulumi.Input<string | undefined>;
+    delimiter?: pulumi.Input<string | undefined>;
+    includeTags?: pulumi.Input<boolean | undefined>;
     /**
      * Name of the Atlas Federated Database Instance.
      */
-    name?: pulumi.Input<string>;
-    prefix?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
+    prefix?: pulumi.Input<string | undefined>;
     /**
      * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
-    provider?: pulumi.Input<string>;
-    public?: pulumi.Input<string>;
-    readPreference?: pulumi.Input<inputs.FederatedDatabaseInstanceStorageStoreReadPreference>;
-    region?: pulumi.Input<string>;
-    urls?: pulumi.Input<pulumi.Input<string>[]>;
+    projectId?: pulumi.Input<string | undefined>;
+    provider?: pulumi.Input<string | undefined>;
+    public?: pulumi.Input<string | undefined>;
+    readPreference?: pulumi.Input<inputs.FederatedDatabaseInstanceStorageStoreReadPreference | undefined>;
+    region?: pulumi.Input<string | undefined>;
+    urls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface FederatedDatabaseInstanceStorageStoreReadPreference {
-    maxStalenessSeconds?: pulumi.Input<number>;
-    mode?: pulumi.Input<string>;
-    tagSets?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet>[]>;
+    maxStalenessSeconds?: pulumi.Input<number | undefined>;
+    mode?: pulumi.Input<string | undefined>;
+    tagSets?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet>[] | undefined>;
 }
 
 export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSet {
@@ -1636,65 +1636,65 @@ export interface FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetTag {
     /**
      * Name of the Atlas Federated Database Instance.
      */
-    name?: pulumi.Input<string>;
-    value?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface FederatedSettingsOrgConfigUserConflict {
     /**
      * Email address of the the user that conflicts with selected domains.
      */
-    emailAddress?: pulumi.Input<string>;
+    emailAddress?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
-    federationSettingsId?: pulumi.Input<string>;
+    federationSettingsId?: pulumi.Input<string | undefined>;
     /**
      * First name of the the user that conflicts with selected domains.
      */
-    firstName?: pulumi.Input<string>;
+    firstName?: pulumi.Input<string | undefined>;
     /**
      * Last name of the the user that conflicts with selected domains.
      */
-    lastName?: pulumi.Input<string>;
+    lastName?: pulumi.Input<string | undefined>;
     /**
      * Name of the Atlas user that conflicts with selected domains.
      */
-    userId?: pulumi.Input<string>;
+    userId?: pulumi.Input<string | undefined>;
 }
 
 export interface FederatedSettingsOrgRoleMappingRoleAssignment {
     /**
      * Unique identifier of the project to which you want the role mapping to apply.
      */
-    groupId?: pulumi.Input<string>;
+    groupId?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
-    orgId?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string | undefined>;
     /**
      * Specifies the Roles that are attached to the Role Mapping. Available role IDs can be found on [the User Roles
      * Reference](https://www.mongodb.com/docs/atlas/reference/user-roles/).
      */
-    roles?: pulumi.Input<pulumi.Input<string>[]>;
+    roles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface FlexClusterBackupSettings {
     /**
      * Flag that indicates whether backups are performed for this flex cluster. Backup uses [flex cluster backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/).
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
 }
 
 export interface FlexClusterConnectionStrings {
     /**
      * Public connection string that you can use to connect to this cluster. This connection string uses the mongodb:// protocol.
      */
-    standard?: pulumi.Input<string>;
+    standard?: pulumi.Input<string | undefined>;
     /**
      * Public connection string that you can use to connect to this flex cluster. This connection string uses the `mongodb+srv://` protocol.
      */
-    standardSrv?: pulumi.Input<string>;
+    standardSrv?: pulumi.Input<string | undefined>;
 }
 
 export interface FlexClusterProviderSettings {
@@ -1705,11 +1705,11 @@ export interface FlexClusterProviderSettings {
     /**
      * Storage capacity available to the flex cluster expressed in gigabytes.
      */
-    diskSizeGb?: pulumi.Input<number>;
+    diskSizeGb?: pulumi.Input<number | undefined>;
     /**
      * Human-readable label that identifies the cloud service provider.
      */
-    providerName?: pulumi.Input<string>;
+    providerName?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
      */
@@ -1720,15 +1720,15 @@ export interface FlexClusterTimeouts {
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
      */
-    create?: pulumi.Input<string>;
+    create?: pulumi.Input<string | undefined>;
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
      */
-    delete?: pulumi.Input<string>;
+    delete?: pulumi.Input<string | undefined>;
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
      */
-    update?: pulumi.Input<string>;
+    update?: pulumi.Input<string | undefined>;
 }
 
 export interface GetAlertConfigurationOutput {
@@ -1746,7 +1746,7 @@ export interface GetAlertConfigurationOutput {
 }
 
 export interface GetAlertConfigurationOutputArgs {
-    label?: pulumi.Input<string>;
+    label?: pulumi.Input<string | undefined>;
     type: pulumi.Input<string>;
     /**
      * Value to test with the specified operator. If `fieldName` is set to TYPE_NAME, you can match on the following values:
@@ -1756,7 +1756,7 @@ export interface GetAlertConfigurationOutputArgs {
      * - `CONFIG`
      * - `MONGOS`
      */
-    value?: pulumi.Input<string>;
+    value?: pulumi.Input<string | undefined>;
 }
 
 export interface GetAlertConfigurationsListOption {
@@ -1766,9 +1766,9 @@ export interface GetAlertConfigurationsListOption {
 }
 
 export interface GetAlertConfigurationsListOptionArgs {
-    includeCount?: pulumi.Input<boolean>;
-    itemsPerPage?: pulumi.Input<number>;
-    pageNum?: pulumi.Input<number>;
+    includeCount?: pulumi.Input<boolean | undefined>;
+    itemsPerPage?: pulumi.Input<number | undefined>;
+    pageNum?: pulumi.Input<number | undefined>;
 }
 
 export interface GetCloudProviderAccessSetupAzureConfig {
@@ -1790,15 +1790,15 @@ export interface GetCloudProviderAccessSetupAzureConfigArgs {
     /**
      * Azure Active Directory Application ID of Atlas.
      */
-    atlasAzureAppId?: pulumi.Input<string>;
+    atlasAzureAppId?: pulumi.Input<string | undefined>;
     /**
      * UUID string that identifies the Azure Service Principal.
      */
-    servicePrincipalId?: pulumi.Input<string>;
+    servicePrincipalId?: pulumi.Input<string | undefined>;
     /**
      * UUID String that identifies the Azure Active Directory Tenant ID.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
 }
 
 export interface GetCustomDbRoleInheritedRole {
@@ -1816,11 +1816,11 @@ export interface GetCustomDbRoleInheritedRoleArgs {
     /**
      * (Required) Database on which the inherited role is granted.
      */
-    databaseName?: pulumi.Input<string>;
+    databaseName?: pulumi.Input<string | undefined>;
     /**
      * Name of the custom role.
      */
-    roleName?: pulumi.Input<string>;
+    roleName?: pulumi.Input<string | undefined>;
 }
 
 export interface GetFederatedDatabaseInstanceCloudProviderConfig {
@@ -1829,8 +1829,8 @@ export interface GetFederatedDatabaseInstanceCloudProviderConfig {
 }
 
 export interface GetFederatedDatabaseInstanceCloudProviderConfigArgs {
-    aws?: pulumi.Input<pulumi.Input<inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwArgs>[]>;
-    azures?: pulumi.Input<pulumi.Input<inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs>[]>;
+    aws?: pulumi.Input<pulumi.Input<inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwArgs>[] | undefined>;
+    azures?: pulumi.Input<pulumi.Input<inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs>[] | undefined>;
 }
 
 export interface GetFederatedDatabaseInstanceCloudProviderConfigAw {
@@ -1860,23 +1860,23 @@ export interface GetFederatedDatabaseInstanceCloudProviderConfigAwArgs {
     /**
      * Unique identifier associated with the IAM Role that the Federated Database Instance assumes when accessing the data stores.
      */
-    externalId?: pulumi.Input<string>;
+    externalId?: pulumi.Input<string | undefined>;
     /**
      * Amazon Resource Name (ARN) of the IAM Role that the Federated Database Instance assumes when accessing S3 Bucket data stores. The IAM Role must support the following actions against each S3 bucket:
      * * `s3:GetObject`
      * * `s3:ListBucket`
      * * `s3:GetObjectVersion`
      */
-    iamAssumedRoleArn?: pulumi.Input<string>;
+    iamAssumedRoleArn?: pulumi.Input<string | undefined>;
     /**
      * Amazon Resource Name (ARN) of the user that the Federated Database Instance assumes when accessing S3 Bucket data stores.
      */
-    iamUserArn?: pulumi.Input<string>;
+    iamUserArn?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the role that the Federated Database Instance can use to access the data stores.
      */
-    roleId?: pulumi.Input<string>;
-    testS3Bucket?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string | undefined>;
+    testS3Bucket?: pulumi.Input<string | undefined>;
 }
 
 export interface GetFederatedDatabaseInstanceCloudProviderConfigAzure {
@@ -1896,19 +1896,19 @@ export interface GetFederatedDatabaseInstanceCloudProviderConfigAzure {
 }
 
 export interface GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs {
-    atlasAppId?: pulumi.Input<string>;
+    atlasAppId?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the role that the Federated Database Instance can use to access the data stores.
      */
-    roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
      */
-    servicePrincipalId?: pulumi.Input<string>;
+    servicePrincipalId?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the Azure Active Directory tenant where the service principal resides.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
 }
 
 export interface GetGlobalClusterConfigManagedNamespace {
@@ -1950,11 +1950,11 @@ export interface GetGlobalClusterConfigManagedNamespaceArgs {
     /**
      * Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
      */
-    isCustomShardKeyHashed?: pulumi.Input<boolean>;
+    isCustomShardKeyHashed?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
      */
-    isShardKeyUnique?: pulumi.Input<boolean>;
+    isShardKeyUnique?: pulumi.Input<boolean | undefined>;
 }
 
 export interface GetServerlessInstanceLink {
@@ -1963,19 +1963,19 @@ export interface GetServerlessInstanceLink {
 }
 
 export interface GetServerlessInstanceLinkArgs {
-    href?: pulumi.Input<string>;
-    rel?: pulumi.Input<string>;
+    href?: pulumi.Input<string | undefined>;
+    rel?: pulumi.Input<string | undefined>;
 }
 
 export interface GlobalClusterConfigCustomZoneMapping {
     /**
      * The ISO location code to which you want to map a zone in your Global Cluster. You can find a list of all supported location codes [here](https://cloud.mongodb.com/static/atlas/country_iso_codes.txt).
      */
-    location?: pulumi.Input<string>;
+    location?: pulumi.Input<string | undefined>;
     /**
      * The name of the zone in your Global Cluster that you want to map to location.
      */
-    zone?: pulumi.Input<string>;
+    zone?: pulumi.Input<string | undefined>;
 }
 
 export interface GlobalClusterConfigManagedNamespace {
@@ -1994,30 +1994,30 @@ export interface GlobalClusterConfigManagedNamespace {
     /**
      * Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
      */
-    isCustomShardKeyHashed?: pulumi.Input<boolean>;
+    isCustomShardKeyHashed?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
      */
-    isShardKeyUnique?: pulumi.Input<boolean>;
+    isShardKeyUnique?: pulumi.Input<boolean | undefined>;
 }
 
 export interface LdapConfigurationUserToDnMapping {
-    ldapQuery?: pulumi.Input<string>;
-    match?: pulumi.Input<string>;
-    substitution?: pulumi.Input<string>;
+    ldapQuery?: pulumi.Input<string | undefined>;
+    match?: pulumi.Input<string | undefined>;
+    substitution?: pulumi.Input<string | undefined>;
 }
 
 export interface LdapVerifyLink {
-    href?: pulumi.Input<string>;
-    rel?: pulumi.Input<string>;
+    href?: pulumi.Input<string | undefined>;
+    rel?: pulumi.Input<string | undefined>;
 }
 
 export interface LdapVerifyValidation {
     /**
      * The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
      */
-    status?: pulumi.Input<string>;
-    validationType?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
+    validationType?: pulumi.Input<string | undefined>;
 }
 
 export interface LogIntegrationOtelSuppliedHeader {
@@ -2046,11 +2046,11 @@ export interface OnlineArchiveCriteria {
     /**
      * Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
      */
-    dateField?: pulumi.Input<string>;
+    dateField?: pulumi.Input<string | undefined>;
     /**
      * Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
      */
-    dateFormat?: pulumi.Input<string>;
+    dateFormat?: pulumi.Input<string | undefined>;
     /**
      * Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
      *
@@ -2058,11 +2058,11 @@ export interface OnlineArchiveCriteria {
      *
      * The only field required for criteria type `CUSTOM`
      */
-    expireAfterDays?: pulumi.Input<number>;
+    expireAfterDays?: pulumi.Input<number | undefined>;
     /**
      * JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported.
      */
-    query?: pulumi.Input<string>;
+    query?: pulumi.Input<string | undefined>;
     /**
      * Type of criteria (DATE, CUSTOM)
      *
@@ -2082,11 +2082,11 @@ export interface OnlineArchiveDataProcessRegion {
     /**
      * Human-readable label that identifies the Cloud service provider where you wish to store your archived data. `AZURE` may be selected only if Azure is the Cloud service provider for the cluster and no AWS online archive has been created for the cluster.
      */
-    cloudProvider?: pulumi.Input<string>;
+    cloudProvider?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
 }
 
 export interface OnlineArchivePartitionField {
@@ -2097,7 +2097,7 @@ export interface OnlineArchivePartitionField {
     /**
      * Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      */
-    fieldType?: pulumi.Input<string>;
+    fieldType?: pulumi.Input<string | undefined>;
     /**
      * Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
      */
@@ -2108,27 +2108,27 @@ export interface OnlineArchiveSchedule {
     /**
      * Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
      */
-    dayOfMonth?: pulumi.Input<number>;
+    dayOfMonth?: pulumi.Input<number | undefined>;
     /**
      * Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `type` is `WEEKLY`.
      */
-    dayOfWeek?: pulumi.Input<number>;
+    dayOfWeek?: pulumi.Input<number | undefined>;
     /**
      * Hour of the day when the scheduled window to run one online archive ends.
      */
-    endHour?: pulumi.Input<number>;
+    endHour?: pulumi.Input<number | undefined>;
     /**
      * Minute of the hour when the scheduled window to run one online archive ends.
      */
-    endMinute?: pulumi.Input<number>;
+    endMinute?: pulumi.Input<number | undefined>;
     /**
      * Hour of the day when the when the scheduled window to run one online archive starts.
      */
-    startHour?: pulumi.Input<number>;
+    startHour?: pulumi.Input<number | undefined>;
     /**
      * Minute of the hour when the scheduled window to run one online archive starts.
      */
-    startMinute?: pulumi.Input<number>;
+    startMinute?: pulumi.Input<number | undefined>;
     /**
      * Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
      */
@@ -2139,11 +2139,11 @@ export interface OrganizationServiceAccount {
     /**
      * The Client ID of the Service Account.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Human readable description for the Service Account.
      */
@@ -2165,56 +2165,56 @@ export interface OrganizationServiceAccount {
     /**
      * A list of secrets associated with the specified Service Account. See Secrets.
      */
-    secrets?: pulumi.Input<pulumi.Input<inputs.OrganizationServiceAccountSecret>[]>;
+    secrets?: pulumi.Input<pulumi.Input<inputs.OrganizationServiceAccountSecret>[] | undefined>;
 }
 
 export interface OrganizationServiceAccountSecret {
     /**
      * The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      */
-    expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string | undefined>;
     /**
      * The secret for the Service Account. It will be returned only the first time after creation.
      */
-    secret?: pulumi.Input<string>;
+    secret?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the secret.
      */
-    secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string | undefined>;
 }
 
 export interface PrivateLinkEndpointServiceEndpoint {
     /**
      * Forwarding rule that corresponds to the endpoint you created.
      */
-    endpointName?: pulumi.Input<string>;
+    endpointName?: pulumi.Input<string | undefined>;
     /**
      * Private IP address of the endpoint you created.
      */
-    ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string | undefined>;
     /**
      * Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
 }
 
 export interface PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts {
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
      */
-    create?: pulumi.Input<string>;
+    create?: pulumi.Input<string | undefined>;
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
      */
-    delete?: pulumi.Input<string>;
+    delete?: pulumi.Input<string | undefined>;
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
      */
-    update?: pulumi.Input<string>;
+    update?: pulumi.Input<string | undefined>;
 }
 
 export interface ProjectApiKeyProjectAssignment {
@@ -2232,31 +2232,31 @@ export interface ProjectIpAccessListTimeouts {
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
      */
-    delete?: pulumi.Input<string>;
+    delete?: pulumi.Input<string | undefined>;
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
      */
-    read?: pulumi.Input<string>;
+    read?: pulumi.Input<string | undefined>;
 }
 
 export interface ProjectIpAddresses {
-    services?: pulumi.Input<inputs.ProjectIpAddressesServices>;
+    services?: pulumi.Input<inputs.ProjectIpAddressesServices | undefined>;
 }
 
 export interface ProjectIpAddressesServices {
-    clusters?: pulumi.Input<pulumi.Input<inputs.ProjectIpAddressesServicesCluster>[]>;
+    clusters?: pulumi.Input<pulumi.Input<inputs.ProjectIpAddressesServicesCluster>[] | undefined>;
 }
 
 export interface ProjectIpAddressesServicesCluster {
-    clusterName?: pulumi.Input<string>;
-    inbounds?: pulumi.Input<pulumi.Input<string>[]>;
-    outbounds?: pulumi.Input<pulumi.Input<string>[]>;
+    clusterName?: pulumi.Input<string | undefined>;
+    inbounds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    outbounds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 export interface ProjectLimit {
-    currentUsage?: pulumi.Input<number>;
-    defaultLimit?: pulumi.Input<number>;
-    maximumLimit?: pulumi.Input<number>;
+    currentUsage?: pulumi.Input<number | undefined>;
+    defaultLimit?: pulumi.Input<number | undefined>;
+    maximumLimit?: pulumi.Input<number | undefined>;
     /**
      * Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
      */
@@ -2271,27 +2271,27 @@ export interface ProjectServiceAccountSecret {
     /**
      * The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      */
-    expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string | undefined>;
     /**
      * The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      */
-    lastUsedAt?: pulumi.Input<string>;
+    lastUsedAt?: pulumi.Input<string | undefined>;
     /**
      * The masked Service Account secret.
      */
-    maskedSecretValue?: pulumi.Input<string>;
+    maskedSecretValue?: pulumi.Input<string | undefined>;
     /**
      * The secret for the Service Account. It will be returned only the first time after creation.
      */
-    secret?: pulumi.Input<string>;
+    secret?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the secret.
      */
-    secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string | undefined>;
 }
 
 export interface ProjectTeam {
@@ -2311,44 +2311,44 @@ export interface ProviderAssumeRole {
     /**
      * Amazon Resource Name (ARN) of an IAM Role to assume prior to making API calls.
      */
-    roleArn?: pulumi.Input<string>;
+    roleArn?: pulumi.Input<string | undefined>;
 }
 
 export interface PushBasedLogExportTimeouts {
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `15m`.
      */
-    create?: pulumi.Input<string>;
+    create?: pulumi.Input<string | undefined>;
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `15m`.
      */
-    delete?: pulumi.Input<string>;
+    delete?: pulumi.Input<string | undefined>;
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `15m`.
      */
-    update?: pulumi.Input<string>;
+    update?: pulumi.Input<string | undefined>;
 }
 
 export interface ResourcePolicyCreatedByUser {
     /**
      * Unique 24-hexadecimal character string that identifies a user.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label that describes a user.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
 
 export interface ResourcePolicyLastUpdatedByUser {
     /**
      * Unique 24-hexadecimal character string that identifies a user.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label that describes a user.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
 }
 
 export interface ResourcePolicyPolicy {
@@ -2359,7 +2359,7 @@ export interface ResourcePolicyPolicy {
     /**
      * Unique 24-hexadecimal character string that identifies the policy.
      */
-    id?: pulumi.Input<string>;
+    id?: pulumi.Input<string | undefined>;
 }
 
 export interface SearchDeploymentSpec {
@@ -2377,15 +2377,15 @@ export interface SearchDeploymentTimeouts {
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
      */
-    create?: pulumi.Input<string>;
+    create?: pulumi.Input<string | undefined>;
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `3h`.
      */
-    delete?: pulumi.Input<string>;
+    delete?: pulumi.Input<string | undefined>;
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
      */
-    update?: pulumi.Input<string>;
+    update?: pulumi.Input<string | undefined>;
 }
 
 export interface SearchIndexSynonym {
@@ -2411,12 +2411,12 @@ export interface SearchIndexTypeSet {
     /**
      * JSON array describing the types.
      */
-    types?: pulumi.Input<string>;
+    types?: pulumi.Input<string | undefined>;
 }
 
 export interface ServerlessInstanceLink {
-    href?: pulumi.Input<string>;
-    rel?: pulumi.Input<string>;
+    href?: pulumi.Input<string | undefined>;
+    rel?: pulumi.Input<string | undefined>;
 }
 
 export interface ServerlessInstanceTag {
@@ -2436,66 +2436,66 @@ export interface ServiceAccountSecret {
     /**
      * The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      */
-    expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string | undefined>;
     /**
      * The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      */
-    lastUsedAt?: pulumi.Input<string>;
+    lastUsedAt?: pulumi.Input<string | undefined>;
     /**
      * The masked Service Account secret.
      */
-    maskedSecretValue?: pulumi.Input<string>;
+    maskedSecretValue?: pulumi.Input<string | undefined>;
     /**
      * The secret for the Service Account. It will be returned only the first time after creation.
      */
-    secret?: pulumi.Input<string>;
+    secret?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the secret.
      */
-    secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string | undefined>;
 }
 
 export interface StreamConnectionAuthentication {
     /**
      * Public identifier for the Kafka client.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * Secret known only to the Kafka client and the authorization server.
      */
-    clientSecret?: pulumi.Input<string>;
+    clientSecret?: pulumi.Input<string | undefined>;
     /**
      * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
      */
-    mechanism?: pulumi.Input<string>;
+    mechanism?: pulumi.Input<string | undefined>;
     /**
      * SASL OAUTHBEARER authentication method. Value must be OIDC.
      */
-    method?: pulumi.Input<string>;
+    method?: pulumi.Input<string | undefined>;
     /**
      * Password of the account to connect to the Kafka cluster.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Additional information to provide to the Kafka broker.
      */
-    saslOauthbearerExtensions?: pulumi.Input<string>;
+    saslOauthbearerExtensions?: pulumi.Input<string | undefined>;
     /**
      * Scope of the access request to the broker specified by the Kafka clients.
      */
-    scope?: pulumi.Input<string>;
+    scope?: pulumi.Input<string | undefined>;
     /**
      * OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
      */
-    tokenEndpointUrl?: pulumi.Input<string>;
+    tokenEndpointUrl?: pulumi.Input<string | undefined>;
     /**
      * Username of the account to connect to the Kafka cluster.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface StreamConnectionAws {
@@ -2509,7 +2509,7 @@ export interface StreamConnectionAzure {
     /**
      * Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
      */
@@ -2549,7 +2549,7 @@ export interface StreamConnectionNetworkingAccess {
     /**
      * Id of the Private Link connection when type is `PRIVATE_LINK`.
      */
-    connectionId?: pulumi.Input<string>;
+    connectionId?: pulumi.Input<string | undefined>;
     /**
      * Selected networking type. Either `PUBLIC`, `VPC` or `PRIVATE_LINK`. Defaults to `PUBLIC`.
      */
@@ -2560,43 +2560,43 @@ export interface StreamConnectionSchemaRegistryAuthentication {
     /**
      * Password for the Schema Registry. Required when `type` is `USER_INFO`.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
      * * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
      * * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Username for the Schema Registry. Required when `type` is `USER_INFO`.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 export interface StreamConnectionSecurity {
     /**
      * A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
      */
-    brokerPublicCertificate?: pulumi.Input<string>;
+    brokerPublicCertificate?: pulumi.Input<string | undefined>;
     /**
      * Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
      */
-    protocol?: pulumi.Input<string>;
+    protocol?: pulumi.Input<string | undefined>;
 }
 
 export interface StreamConnectionTimeouts {
     /**
      * The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
      */
-    create?: pulumi.Input<string>;
+    create?: pulumi.Input<string | undefined>;
     /**
      * The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
      */
-    delete?: pulumi.Input<string>;
+    delete?: pulumi.Input<string | undefined>;
     /**
      * The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
      */
-    update?: pulumi.Input<string>;
+    update?: pulumi.Input<string | undefined>;
 }
 
 export interface StreamInstanceDataProcessRegion {
@@ -2611,11 +2611,11 @@ export interface StreamInstanceDataProcessRegion {
 }
 
 export interface StreamInstanceStreamConfig {
-    maxTierSize?: pulumi.Input<string>;
+    maxTierSize?: pulumi.Input<string | undefined>;
     /**
      * Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
      */
-    tier?: pulumi.Input<string>;
+    tier?: pulumi.Input<string | undefined>;
 }
 
 export interface StreamProcessorOptions {
@@ -2644,7 +2644,7 @@ export interface StreamProcessorTimeouts {
     /**
      * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Default: `3h`.
      */
-    create?: pulumi.Input<string>;
+    create?: pulumi.Input<string | undefined>;
 }
 
 export interface StreamWorkspaceDataProcessRegion {
@@ -2662,19 +2662,19 @@ export interface StreamWorkspaceStreamConfig {
     /**
      * Max tier size for the Stream Workspace. Configures Memory / VCPU allowances.
      */
-    maxTierSize?: pulumi.Input<string>;
+    maxTierSize?: pulumi.Input<string | undefined>;
     /**
      * Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
      */
-    tier?: pulumi.Input<string>;
+    tier?: pulumi.Input<string | undefined>;
 }
 
 export interface X509AuthenticationDatabaseUserCertificate {
-    createdAt?: pulumi.Input<string>;
-    groupId?: pulumi.Input<string>;
-    id?: pulumi.Input<number>;
-    notAfter?: pulumi.Input<string>;
-    subject?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
+    groupId?: pulumi.Input<string | undefined>;
+    id?: pulumi.Input<number | undefined>;
+    notAfter?: pulumi.Input<string | undefined>;
+    subject?: pulumi.Input<string | undefined>;
 }
 export namespace config {
 }

@@ -240,7 +240,7 @@ export interface GetGlobalClusterConfigOutputArgs {
     /**
      * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
      */
-    managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GetGlobalClusterConfigManagedNamespaceArgs>[]>;
+    managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GetGlobalClusterConfigManagedNamespaceArgs>[] | undefined>;
     /**
      * The unique ID for the project, also known as `groupId` in the official documentation.
      */

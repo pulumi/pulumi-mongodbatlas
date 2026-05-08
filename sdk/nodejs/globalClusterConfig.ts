@@ -173,23 +173,23 @@ export interface GlobalClusterConfigState {
     /**
      * The name of the Global Cluster.
      */
-    clusterName?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string | undefined>;
     /**
      * A map of all custom zone mappings defined for the Global Cluster to `replication_specs.*.zone_id`. Atlas automatically maps each location code to the closest geographical zone. Custom zone mappings allow administrators to override these automatic mappings. If your Global Cluster does not have any custom zone mappings, this document is empty.
      */
-    customZoneMappingZoneId?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    customZoneMappingZoneId?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
      */
-    customZoneMappings?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigCustomZoneMapping>[]>;
+    customZoneMappings?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigCustomZoneMapping>[] | undefined>;
     /**
      * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
      */
-    managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigManagedNamespace>[]>;
+    managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigManagedNamespace>[] | undefined>;
     /**
      * The unique ID for the project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -203,11 +203,11 @@ export interface GlobalClusterConfigArgs {
     /**
      * Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
      */
-    customZoneMappings?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigCustomZoneMapping>[]>;
+    customZoneMappings?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigCustomZoneMapping>[] | undefined>;
     /**
      * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
      */
-    managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigManagedNamespace>[]>;
+    managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigManagedNamespace>[] | undefined>;
     /**
      * The unique ID for the project, also known as `groupId` in the official documentation.
      */

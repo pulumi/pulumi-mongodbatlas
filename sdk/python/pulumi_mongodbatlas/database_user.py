@@ -25,14 +25,14 @@ class DatabaseUserArgs:
                  project_id: pulumi.Input[_builtins.str],
                  roles: pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]],
                  username: pulumi.Input[_builtins.str],
-                 aws_iam_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]] = None,
-                 ldap_auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 oidc_auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]] = None,
-                 x509_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 aws_iam_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]] = None,
+                 ldap_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 oidc_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]] = None,
+                 x509_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a DatabaseUser resource.
 
@@ -132,7 +132,7 @@ class DatabaseUserArgs:
 
     @_builtins.property
     @pulumi.getter(name="awsIamType")
-    def aws_iam_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_iam_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         * `NONE` -	The user does not use AWS IAM credentials.
@@ -142,33 +142,33 @@ class DatabaseUserArgs:
         return pulumi.get(self, "aws_iam_type")
 
     @aws_iam_type.setter
-    def aws_iam_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_iam_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_iam_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description of this database user.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]]:
+    def labels(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]]:
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]]):
+    def labels(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter(name="ldapAuthType")
-    def ldap_auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ldap_auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
         * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
@@ -178,12 +178,12 @@ class DatabaseUserArgs:
         return pulumi.get(self, "ldap_auth_type")
 
     @ldap_auth_type.setter
-    def ldap_auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ldap_auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ldap_auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="oidcAuthType")
-    def oidc_auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oidc_auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         * `NONE` -	The user does not use OIDC federated authentication.
@@ -193,33 +193,33 @@ class DatabaseUserArgs:
         return pulumi.get(self, "oidc_auth_type")
 
     @oidc_auth_type.setter
-    def oidc_auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oidc_auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oidc_auth_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter
-    def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]]:
+    def scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]]:
         return pulumi.get(self, "scopes")
 
     @scopes.setter
-    def scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]]):
+    def scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]]):
         pulumi.set(self, "scopes", value)
 
     @_builtins.property
     @pulumi.getter(name="x509Type")
-    def x509_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def x509_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
         * `NONE` -	The user does not use X.509 authentication.
@@ -229,25 +229,25 @@ class DatabaseUserArgs:
         return pulumi.get(self, "x509_type")
 
     @x509_type.setter
-    def x509_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def x509_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "x509_type", value)
 
 
 @pulumi.input_type
 class _DatabaseUserState:
     def __init__(__self__, *,
-                 auth_database_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_iam_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]] = None,
-                 ldap_auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 oidc_auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 x509_type: Optional[pulumi.Input[_builtins.str]] = None):
+                 auth_database_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_iam_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]] = None,
+                 ldap_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 oidc_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 x509_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering DatabaseUser resources.
 
@@ -302,7 +302,7 @@ class _DatabaseUserState:
 
     @_builtins.property
     @pulumi.getter(name="authDatabaseName")
-    def auth_database_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def auth_database_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
         Accepted values include:
@@ -310,12 +310,12 @@ class _DatabaseUserState:
         return pulumi.get(self, "auth_database_name")
 
     @auth_database_name.setter
-    def auth_database_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def auth_database_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "auth_database_name", value)
 
     @_builtins.property
     @pulumi.getter(name="awsIamType")
-    def aws_iam_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def aws_iam_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         * `NONE` -	The user does not use AWS IAM credentials.
@@ -325,33 +325,33 @@ class _DatabaseUserState:
         return pulumi.get(self, "aws_iam_type")
 
     @aws_iam_type.setter
-    def aws_iam_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def aws_iam_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "aws_iam_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description of this database user.
         """
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter
-    def labels(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]]:
+    def labels(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]]:
         return pulumi.get(self, "labels")
 
     @labels.setter
-    def labels(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]]):
+    def labels(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserLabelArgs']]]]):
         pulumi.set(self, "labels", value)
 
     @_builtins.property
     @pulumi.getter(name="ldapAuthType")
-    def ldap_auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ldap_auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
         * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
@@ -361,12 +361,12 @@ class _DatabaseUserState:
         return pulumi.get(self, "ldap_auth_type")
 
     @ldap_auth_type.setter
-    def ldap_auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ldap_auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ldap_auth_type", value)
 
     @_builtins.property
     @pulumi.getter(name="oidcAuthType")
-    def oidc_auth_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def oidc_auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
         * `NONE` -	The user does not use OIDC federated authentication.
@@ -376,69 +376,69 @@ class _DatabaseUserState:
         return pulumi.get(self, "oidc_auth_type")
 
     @oidc_auth_type.setter
-    def oidc_auth_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def oidc_auth_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "oidc_auth_type", value)
 
     @_builtins.property
     @pulumi.getter
-    def password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
         """
         return pulumi.get(self, "password")
 
     @password.setter
-    def password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def roles(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]]:
+    def roles(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]]:
         """
         List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         """
         return pulumi.get(self, "roles")
 
     @roles.setter
-    def roles(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]]):
+    def roles(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]]):
         pulumi.set(self, "roles", value)
 
     @_builtins.property
     @pulumi.getter
-    def scopes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]]:
+    def scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]]:
         return pulumi.get(self, "scopes")
 
     @scopes.setter
-    def scopes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]]):
+    def scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]]):
         pulumi.set(self, "scopes", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
     @_builtins.property
     @pulumi.getter(name="x509Type")
-    def x509_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def x509_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
         * `NONE` -	The user does not use X.509 authentication.
@@ -448,7 +448,7 @@ class _DatabaseUserState:
         return pulumi.get(self, "x509_type")
 
     @x509_type.setter
-    def x509_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def x509_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "x509_type", value)
 
 
@@ -458,18 +458,18 @@ class DatabaseUser(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auth_database_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_iam_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict']]]]] = None,
-                 ldap_auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 oidc_auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict']]]]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 x509_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 auth_database_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_iam_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict']]]]] = None,
+                 ldap_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 oidc_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict']]]]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 x509_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `DatabaseUser` provides a Database User resource. This represents a database user which will be applied to all clusters within the project.
@@ -782,18 +782,18 @@ class DatabaseUser(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auth_database_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 aws_iam_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict']]]]] = None,
-                 ldap_auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 oidc_auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 password: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]]] = None,
-                 scopes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict']]]]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None,
-                 x509_type: Optional[pulumi.Input[_builtins.str]] = None,
+                 auth_database_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 aws_iam_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict']]]]] = None,
+                 ldap_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 oidc_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 password: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict']]]]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None,
+                 x509_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -835,18 +835,18 @@ class DatabaseUser(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            auth_database_name: Optional[pulumi.Input[_builtins.str]] = None,
-            aws_iam_type: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            labels: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict']]]]] = None,
-            ldap_auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-            oidc_auth_type: Optional[pulumi.Input[_builtins.str]] = None,
-            password: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            roles: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]]] = None,
-            scopes: Optional[pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict']]]]] = None,
-            username: Optional[pulumi.Input[_builtins.str]] = None,
-            x509_type: Optional[pulumi.Input[_builtins.str]] = None) -> 'DatabaseUser':
+            auth_database_name: pulumi.Input[Optional[_builtins.str]] = None,
+            aws_iam_type: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict']]]]] = None,
+            ldap_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+            oidc_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
+            password: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]]] = None,
+            scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict']]]]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None,
+            x509_type: pulumi.Input[Optional[_builtins.str]] = None) -> 'DatabaseUser':
         """
         Get an existing DatabaseUser resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

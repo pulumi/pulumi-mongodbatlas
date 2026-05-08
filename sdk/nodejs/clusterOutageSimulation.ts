@@ -165,27 +165,27 @@ export interface ClusterOutageSimulationState {
     /**
      * Name of the Atlas Cluster that is/will undergoing outage simulation.
      */
-    clusterName?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * List of settings that specify the type of cluster outage simulation.
      */
-    outageFilters?: pulumi.Input<pulumi.Input<inputs.ClusterOutageSimulationOutageFilter>[]>;
+    outageFilters?: pulumi.Input<pulumi.Input<inputs.ClusterOutageSimulationOutageFilter>[] | undefined>;
     /**
      * The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal character string that identifies the outage simulation.
      */
-    simulationId?: pulumi.Input<string>;
+    simulationId?: pulumi.Input<string | undefined>;
     /**
      * Date and time when MongoDB Cloud started the regional outage simulation.
      */
-    startRequestDate?: pulumi.Input<string>;
+    startRequestDate?: pulumi.Input<string | undefined>;
     /**
      * Current phase of the outage simulation:
      * * `START_REQUESTED` - User has requested cluster outage simulation.
@@ -195,7 +195,7 @@ export interface ClusterOutageSimulationState {
      * * `RECOVERING` - MongoDB Cloud is recovering the cluster from the simulated outage.
      * * `COMPLETE` - MongoDB Cloud has completed the cluster outage simulation.
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -209,7 +209,7 @@ export interface ClusterOutageSimulationArgs {
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * List of settings that specify the type of cluster outage simulation.
      */

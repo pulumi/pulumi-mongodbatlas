@@ -203,27 +203,27 @@ export interface X509AuthenticationDatabaseUserState {
     /**
      * Array of objects where each details one unexpired database user certificate.
      */
-    certificates?: pulumi.Input<pulumi.Input<inputs.X509AuthenticationDatabaseUserCertificate>[]>;
+    certificates?: pulumi.Input<pulumi.Input<inputs.X509AuthenticationDatabaseUserCertificate>[] | undefined>;
     /**
      * Contains the last X.509 certificate and private key created for a database user.
      */
-    currentCertificate?: pulumi.Input<string>;
+    currentCertificate?: pulumi.Input<string | undefined>;
     /**
      * PEM string containing one or more customer CAs for database user authentication.
      */
-    customerX509Cas?: pulumi.Input<string>;
+    customerX509Cas?: pulumi.Input<string | undefined>;
     /**
      * A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
      */
-    monthsUntilExpiration?: pulumi.Input<number>;
+    monthsUntilExpiration?: pulumi.Input<number | undefined>;
     /**
      * Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Username of the database user to create a certificate for.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -233,11 +233,11 @@ export interface X509AuthenticationDatabaseUserArgs {
     /**
      * PEM string containing one or more customer CAs for database user authentication.
      */
-    customerX509Cas?: pulumi.Input<string>;
+    customerX509Cas?: pulumi.Input<string | undefined>;
     /**
      * A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.
      */
-    monthsUntilExpiration?: pulumi.Input<number>;
+    monthsUntilExpiration?: pulumi.Input<number | undefined>;
     /**
      * Identifier for the Atlas project associated with the X.509 configuration, also known as `groupId` in the official documentation.
      */
@@ -245,5 +245,5 @@ export interface X509AuthenticationDatabaseUserArgs {
     /**
      * Username of the database user to create a certificate for.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }

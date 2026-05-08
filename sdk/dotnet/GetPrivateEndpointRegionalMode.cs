@@ -24,12 +24,12 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testEndpointRegionalMode = new Private.Index.EndpointRegionalMode("test", new()
+        ///     var testEndpointRegionalMode = new Private.EndpointRegionalMode("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///     });
         /// 
-        ///     var test = Private.Index.EndpointRegionalMode.Invoke(new()
+        ///     var test = Private.EndpointRegionalMode.Invoke(new()
         ///     {
         ///         ProjectId = testEndpointRegionalMode.ProjectId,
         ///     });
@@ -53,12 +53,12 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testEndpointRegionalMode = new Private.Index.EndpointRegionalMode("test", new()
+        ///     var testEndpointRegionalMode = new Private.EndpointRegionalMode("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///     });
         /// 
-        ///     var test = Private.Index.EndpointRegionalMode.Invoke(new()
+        ///     var test = Private.EndpointRegionalMode.Invoke(new()
         ///     {
         ///         ProjectId = testEndpointRegionalMode.ProjectId,
         ///     });
@@ -82,12 +82,12 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testEndpointRegionalMode = new Private.Index.EndpointRegionalMode("test", new()
+        ///     var testEndpointRegionalMode = new Private.EndpointRegionalMode("test", new()
         ///     {
         ///         ProjectId = "&lt;PROJECT-ID&gt;",
         ///     });
         /// 
-        ///     var test = Private.Index.EndpointRegionalMode.Invoke(new()
+        ///     var test = Private.EndpointRegionalMode.Invoke(new()
         ///     {
         ///         ProjectId = testEndpointRegionalMode.ProjectId,
         ///     });

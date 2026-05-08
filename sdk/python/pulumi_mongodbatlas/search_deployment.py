@@ -24,9 +24,9 @@ class SearchDeploymentArgs:
                  cluster_name: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
                  specs: pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]],
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 skip_wait_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
-                 timeouts: Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']] = None):
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 skip_wait_on_update: pulumi.Input[Optional[_builtins.bool]] = None,
+                 timeouts: pulumi.Input[Optional['SearchDeploymentTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a SearchDeployment resource.
 
@@ -84,49 +84,49 @@ class SearchDeploymentArgs:
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
-    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_on_create_timeout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
     @delete_on_create_timeout.setter
-    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="skipWaitOnUpdate")
-    def skip_wait_on_update(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_wait_on_update(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
         """
         return pulumi.get(self, "skip_wait_on_update")
 
     @skip_wait_on_update.setter
-    def skip_wait_on_update(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_wait_on_update(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_wait_on_update", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['SearchDeploymentTimeoutsArgs']]:
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['SearchDeploymentTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
 
 @pulumi.input_type
 class _SearchDeploymentState:
     def __init__(__self__, *,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 encryption_at_rest_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 skip_wait_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
-                 specs: Optional[pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]]] = None,
-                 state_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']] = None):
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 encryption_at_rest_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 skip_wait_on_update: pulumi.Input[Optional[_builtins.bool]] = None,
+                 specs: pulumi.Input[Optional[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]]] = None,
+                 state_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional['SearchDeploymentTimeoutsArgs']] = None):
         """
         Input properties used for looking up and filtering SearchDeployment resources.
 
@@ -157,95 +157,95 @@ class _SearchDeploymentState:
 
     @_builtins.property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label that identifies the cluster to return the search nodes for.
         """
         return pulumi.get(self, "cluster_name")
 
     @cluster_name.setter
-    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_name", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
-    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_on_create_timeout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
     @delete_on_create_timeout.setter
-    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="encryptionAtRestProvider")
-    def encryption_at_rest_provider(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def encryption_at_rest_provider(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
         """
         return pulumi.get(self, "encryption_at_rest_provider")
 
     @encryption_at_rest_provider.setter
-    def encryption_at_rest_provider(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def encryption_at_rest_provider(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "encryption_at_rest_provider", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="skipWaitOnUpdate")
-    def skip_wait_on_update(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def skip_wait_on_update(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
         """
         return pulumi.get(self, "skip_wait_on_update")
 
     @skip_wait_on_update.setter
-    def skip_wait_on_update(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def skip_wait_on_update(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "skip_wait_on_update", value)
 
     @_builtins.property
     @pulumi.getter
-    def specs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]]]:
+    def specs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]]]:
         """
         List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         """
         return pulumi.get(self, "specs")
 
     @specs.setter
-    def specs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]]]):
+    def specs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SearchDeploymentSpecArgs']]]]):
         pulumi.set(self, "specs", value)
 
     @_builtins.property
     @pulumi.getter(name="stateName")
-    def state_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that indicates the current operating condition of this search deployment.
         """
         return pulumi.get(self, "state_name")
 
     @state_name.setter
-    def state_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['SearchDeploymentTimeoutsArgs']]:
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['SearchDeploymentTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['SearchDeploymentTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
 
@@ -255,12 +255,12 @@ class SearchDeployment(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 skip_wait_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
-                 specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
-                 timeouts: Optional[pulumi.Input[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 skip_wait_on_update: pulumi.Input[Optional[_builtins.bool]] = None,
+                 specs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
+                 timeouts: pulumi.Input[Optional[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
         `SearchDeployment` provides a Search Deployment resource. The resource lets you create, edit and delete dedicated search nodes in a cluster.
@@ -407,12 +407,12 @@ class SearchDeployment(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 skip_wait_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
-                 specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
-                 timeouts: Optional[pulumi.Input[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 skip_wait_on_update: pulumi.Input[Optional[_builtins.bool]] = None,
+                 specs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
+                 timeouts: pulumi.Input[Optional[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -446,14 +446,14 @@ class SearchDeployment(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-            delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-            encryption_at_rest_provider: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            skip_wait_on_update: Optional[pulumi.Input[_builtins.bool]] = None,
-            specs: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
-            state_name: Optional[pulumi.Input[_builtins.str]] = None,
-            timeouts: Optional[pulumi.Input[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None) -> 'SearchDeployment':
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            encryption_at_rest_provider: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            skip_wait_on_update: pulumi.Input[Optional[_builtins.bool]] = None,
+            specs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
+            state_name: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None) -> 'SearchDeployment':
         """
         Get an existing SearchDeployment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

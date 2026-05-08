@@ -23,8 +23,8 @@ class CloudBackupSnapshotRestoreJobArgs:
     def __init__(__self__, *,
                  cluster_name: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
-                 delivery_type_config: Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 delivery_type_config: pulumi.Input[Optional['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a CloudBackupSnapshotRestoreJob resource.
 
@@ -74,7 +74,7 @@ class CloudBackupSnapshotRestoreJobArgs:
 
     @_builtins.property
     @pulumi.getter(name="deliveryTypeConfig")
-    def delivery_type_config(self) -> Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']]:
+    def delivery_type_config(self) -> pulumi.Input[Optional['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']]:
         """
         Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
         * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -89,37 +89,37 @@ class CloudBackupSnapshotRestoreJobArgs:
         return pulumi.get(self, "delivery_type_config")
 
     @delivery_type_config.setter
-    def delivery_type_config(self, value: Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']]):
+    def delivery_type_config(self, value: pulumi.Input[Optional['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']]):
         pulumi.set(self, "delivery_type_config", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotId")
-    def snapshot_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def snapshot_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         """
         return pulumi.get(self, "snapshot_id")
 
     @snapshot_id.setter
-    def snapshot_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def snapshot_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "snapshot_id", value)
 
 
 @pulumi.input_type
 class _CloudBackupSnapshotRestoreJobState:
     def __init__(__self__, *,
-                 cancelled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 delivery_type_config: Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']] = None,
-                 delivery_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 expired: Optional[pulumi.Input[_builtins.bool]] = None,
-                 expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 failed: Optional[pulumi.Input[_builtins.bool]] = None,
-                 finished_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snapshot_restore_job_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 timestamp: Optional[pulumi.Input[_builtins.str]] = None):
+                 cancelled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 delivery_type_config: pulumi.Input[Optional['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']] = None,
+                 delivery_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 expired: pulumi.Input[Optional[_builtins.bool]] = None,
+                 expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 failed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 finished_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snapshot_restore_job_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 timestamp: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CloudBackupSnapshotRestoreJob resources.
 
@@ -185,31 +185,31 @@ class _CloudBackupSnapshotRestoreJobState:
 
     @_builtins.property
     @pulumi.getter
-    def cancelled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def cancelled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether the restore job was canceled.
         """
         return pulumi.get(self, "cancelled")
 
     @cancelled.setter
-    def cancelled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def cancelled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "cancelled", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the Atlas cluster whose snapshot you want to restore.
         """
         return pulumi.get(self, "cluster_name")
 
     @cluster_name.setter
-    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_name", value)
 
     @_builtins.property
     @pulumi.getter(name="deliveryTypeConfig")
-    def delivery_type_config(self) -> Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']]:
+    def delivery_type_config(self) -> pulumi.Input[Optional['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']]:
         """
         Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
         * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
@@ -224,108 +224,108 @@ class _CloudBackupSnapshotRestoreJobState:
         return pulumi.get(self, "delivery_type_config")
 
     @delivery_type_config.setter
-    def delivery_type_config(self, value: Optional[pulumi.Input['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']]):
+    def delivery_type_config(self, value: pulumi.Input[Optional['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs']]):
         pulumi.set(self, "delivery_type_config", value)
 
     @_builtins.property
     @pulumi.getter(name="deliveryUrls")
-    def delivery_urls(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def delivery_urls(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         One or more URLs for the compressed snapshot files for manual download. Only visible if deliveryType is download.
         """
         return pulumi.get(self, "delivery_urls")
 
     @delivery_urls.setter
-    def delivery_urls(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def delivery_urls(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "delivery_urls", value)
 
     @_builtins.property
     @pulumi.getter
-    def expired(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def expired(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether the restore job expired.
         """
         return pulumi.get(self, "expired")
 
     @expired.setter
-    def expired(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def expired(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "expired", value)
 
     @_builtins.property
     @pulumi.getter(name="expiresAt")
-    def expires_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expires_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         UTC ISO 8601 formatted point in time when the restore job expires.
         """
         return pulumi.get(self, "expires_at")
 
     @expires_at.setter
-    def expires_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expires_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expires_at", value)
 
     @_builtins.property
     @pulumi.getter
-    def failed(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def failed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether the restore job failed.
         """
         return pulumi.get(self, "failed")
 
     @failed.setter
-    def failed(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def failed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "failed", value)
 
     @_builtins.property
     @pulumi.getter(name="finishedAt")
-    def finished_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def finished_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         UTC ISO 8601 formatted point in time when the restore job completed.
         """
         return pulumi.get(self, "finished_at")
 
     @finished_at.setter
-    def finished_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def finished_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "finished_at", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique identifier of the project for the Atlas cluster whose snapshot you want to restore, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotId")
-    def snapshot_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def snapshot_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional setting for **pointInTime** configuration. Unique identifier of the snapshot to restore.
         """
         return pulumi.get(self, "snapshot_id")
 
     @snapshot_id.setter
-    def snapshot_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def snapshot_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "snapshot_id", value)
 
     @_builtins.property
     @pulumi.getter(name="snapshotRestoreJobId")
-    def snapshot_restore_job_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def snapshot_restore_job_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique identifier of the restore job.
         """
         return pulumi.get(self, "snapshot_restore_job_id")
 
     @snapshot_restore_job_id.setter
-    def snapshot_restore_job_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def snapshot_restore_job_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "snapshot_restore_job_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def timestamp(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def timestamp(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
         * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch from which to you want to restore this snapshot.
@@ -346,7 +346,7 @@ class _CloudBackupSnapshotRestoreJobState:
         return pulumi.get(self, "timestamp")
 
     @timestamp.setter
-    def timestamp(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def timestamp(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "timestamp", value)
 
 
@@ -356,10 +356,10 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 delivery_type_config: Optional[pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 delivery_type_config: pulumi.Input[Optional[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `CloudBackupSnapshotRestoreJob` provides a resource to create a new restore job from a cloud backup snapshot of a specified cluster. The restore job must define one of three delivery types:
@@ -453,6 +453,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         ### Example of a point in time restore
         ```python
         import pulumi
+        from typing import Any
         import pulumi_mongodbatlas as mongodbatlas
 
         my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
@@ -476,7 +477,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             cluster_name=cluster_test["name"],
             description="My description",
             retention_in_days=1)
-        test_cloud_backup_snapshot_restore_job = []
+        test_cloud_backup_snapshot_restore_job: list[Any] = []
         for range in [{"value": i} for i in range(0, 0 if point_in_time_utc_seconds == 0 else 1)]:
             test_cloud_backup_snapshot_restore_job.append(mongodbatlas.CloudBackupSnapshotRestoreJob(f"test-{range['value']}",
                 project_id=test.project_id,
@@ -486,7 +487,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                     "point_in_time": True,
                     "target_cluster_name": cluster_test["name"],
                     "target_project_id": cluster_test["projectId"],
-                    "point_in_time_utc_seconds": point_in_time_utc_seconds,
+                    "point_in_time_utc_seconds": int(point_in_time_utc_seconds),
                 }))
         ```
 
@@ -618,6 +619,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         ### Example of a point in time restore
         ```python
         import pulumi
+        from typing import Any
         import pulumi_mongodbatlas as mongodbatlas
 
         my_cluster = mongodbatlas.AdvancedCluster("my_cluster",
@@ -641,7 +643,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             cluster_name=cluster_test["name"],
             description="My description",
             retention_in_days=1)
-        test_cloud_backup_snapshot_restore_job = []
+        test_cloud_backup_snapshot_restore_job: list[Any] = []
         for range in [{"value": i} for i in range(0, 0 if point_in_time_utc_seconds == 0 else 1)]:
             test_cloud_backup_snapshot_restore_job.append(mongodbatlas.CloudBackupSnapshotRestoreJob(f"test-{range['value']}",
                 project_id=test.project_id,
@@ -651,7 +653,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                     "point_in_time": True,
                     "target_cluster_name": cluster_test["name"],
                     "target_project_id": cluster_test["projectId"],
-                    "point_in_time_utc_seconds": point_in_time_utc_seconds,
+                    "point_in_time_utc_seconds": int(point_in_time_utc_seconds),
                 }))
         ```
 
@@ -685,10 +687,10 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 delivery_type_config: Optional[pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 delivery_type_config: pulumi.Input[Optional[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -724,18 +726,18 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cancelled: Optional[pulumi.Input[_builtins.bool]] = None,
-            cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-            delivery_type_config: Optional[pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']]] = None,
-            delivery_urls: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            expired: Optional[pulumi.Input[_builtins.bool]] = None,
-            expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-            failed: Optional[pulumi.Input[_builtins.bool]] = None,
-            finished_at: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
-            snapshot_restore_job_id: Optional[pulumi.Input[_builtins.str]] = None,
-            timestamp: Optional[pulumi.Input[_builtins.str]] = None) -> 'CloudBackupSnapshotRestoreJob':
+            cancelled: pulumi.Input[Optional[_builtins.bool]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            delivery_type_config: pulumi.Input[Optional[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']]] = None,
+            delivery_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            expired: pulumi.Input[Optional[_builtins.bool]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            failed: pulumi.Input[Optional[_builtins.bool]] = None,
+            finished_at: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+            snapshot_restore_job_id: pulumi.Input[Optional[_builtins.str]] = None,
+            timestamp: pulumi.Input[Optional[_builtins.str]] = None) -> 'CloudBackupSnapshotRestoreJob':
         """
         Get an existing CloudBackupSnapshotRestoreJob resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

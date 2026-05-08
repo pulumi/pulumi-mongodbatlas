@@ -25,14 +25,14 @@ class ServerlessInstanceArgs:
                  provider_settings_backing_provider_name: pulumi.Input[_builtins.str],
                  provider_settings_provider_name: pulumi.Input[_builtins.str],
                  provider_settings_region_name: pulumi.Input[_builtins.str],
-                 auto_indexing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 continuous_backup_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 links: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 serverless_instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 state_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]] = None,
-                 termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None):
+                 auto_indexing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 continuous_backup_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 links: pulumi.Input[Optional[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 serverless_instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 state_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]] = None,
+                 termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ServerlessInstance resource.
 
@@ -126,118 +126,118 @@ class ServerlessInstanceArgs:
     @_builtins.property
     @pulumi.getter(name="autoIndexing")
     @_utilities.deprecated("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
-    def auto_indexing(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_indexing(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
         """
         return pulumi.get(self, "auto_indexing")
 
     @auto_indexing.setter
-    def auto_indexing(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_indexing(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_indexing", value)
 
     @_builtins.property
     @pulumi.getter(name="continuousBackupEnabled")
     @_utilities.deprecated("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
-    def continuous_backup_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def continuous_backup_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
         """
         return pulumi.get(self, "continuous_backup_enabled")
 
     @continuous_backup_enabled.setter
-    def continuous_backup_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def continuous_backup_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "continuous_backup_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def links(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]]:
+    def links(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]]:
         return pulumi.get(self, "links")
 
     @links.setter
-    def links(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]]):
+    def links(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]]):
         pulumi.set(self, "links", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that identifies the serverless instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="serverlessInstanceId")
-    def serverless_instance_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def serverless_instance_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the serverless instance.
         """
         return pulumi.get(self, "serverless_instance_id")
 
     @serverless_instance_id.setter
-    def serverless_instance_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def serverless_instance_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "serverless_instance_id", value)
 
     @_builtins.property
     @pulumi.getter(name="stateName")
-    def state_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Stage of deployment of this serverless instance when the resource made its request.
         """
         return pulumi.get(self, "state_name")
 
     @state_name.setter
-    def state_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="terminationProtectionEnabled")
-    def termination_protection_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def termination_protection_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         return pulumi.get(self, "termination_protection_enabled")
 
     @termination_protection_enabled.setter
-    def termination_protection_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def termination_protection_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "termination_protection_enabled", value)
 
 
 @pulumi.input_type
 class _ServerlessInstanceState:
     def __init__(__self__, *,
-                 auto_indexing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 connection_strings_private_endpoint_srvs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 connection_strings_standard_srv: Optional[pulumi.Input[_builtins.str]] = None,
-                 continuous_backup_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 create_date: Optional[pulumi.Input[_builtins.str]] = None,
-                 links: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]] = None,
-                 mongo_db_version: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_settings_backing_provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_settings_provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_settings_region_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 serverless_instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 state_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]] = None,
-                 termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None):
+                 auto_indexing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 connection_strings_private_endpoint_srvs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 connection_strings_standard_srv: pulumi.Input[Optional[_builtins.str]] = None,
+                 continuous_backup_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 create_date: pulumi.Input[Optional[_builtins.str]] = None,
+                 links: pulumi.Input[Optional[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]] = None,
+                 mongo_db_version: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_settings_backing_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_settings_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_settings_region_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 serverless_instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 state_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]] = None,
+                 termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering ServerlessInstance resources.
 
@@ -299,192 +299,192 @@ class _ServerlessInstanceState:
     @_builtins.property
     @pulumi.getter(name="autoIndexing")
     @_utilities.deprecated("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
-    def auto_indexing(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def auto_indexing(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the serverless instance uses [Serverless Auto Indexing](https://www.mongodb.com/docs/atlas/performance-advisor/auto-index-serverless/). This parameter defaults to true.
         """
         return pulumi.get(self, "auto_indexing")
 
     @auto_indexing.setter
-    def auto_indexing(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def auto_indexing(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "auto_indexing", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionStringsPrivateEndpointSrvs")
-    def connection_strings_private_endpoint_srvs(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def connection_strings_private_endpoint_srvs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of Serverless Private Endpoint Connections
         """
         return pulumi.get(self, "connection_strings_private_endpoint_srvs")
 
     @connection_strings_private_endpoint_srvs.setter
-    def connection_strings_private_endpoint_srvs(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def connection_strings_private_endpoint_srvs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "connection_strings_private_endpoint_srvs", value)
 
     @_builtins.property
     @pulumi.getter(name="connectionStringsStandardSrv")
-    def connection_strings_standard_srv(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def connection_strings_standard_srv(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
         """
         return pulumi.get(self, "connection_strings_standard_srv")
 
     @connection_strings_standard_srv.setter
-    def connection_strings_standard_srv(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def connection_strings_standard_srv(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "connection_strings_standard_srv", value)
 
     @_builtins.property
     @pulumi.getter(name="continuousBackupEnabled")
     @_utilities.deprecated("""This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.""")
-    def continuous_backup_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def continuous_backup_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
         """
         return pulumi.get(self, "continuous_backup_enabled")
 
     @continuous_backup_enabled.setter
-    def continuous_backup_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def continuous_backup_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "continuous_backup_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="createDate")
-    def create_date(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def create_date(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
         """
         return pulumi.get(self, "create_date")
 
     @create_date.setter
-    def create_date(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def create_date(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "create_date", value)
 
     @_builtins.property
     @pulumi.getter
-    def links(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]]:
+    def links(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]]:
         return pulumi.get(self, "links")
 
     @links.setter
-    def links(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]]):
+    def links(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerlessInstanceLinkArgs']]]]):
         pulumi.set(self, "links", value)
 
     @_builtins.property
     @pulumi.getter(name="mongoDbVersion")
-    def mongo_db_version(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mongo_db_version(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Version of MongoDB that the serverless instance runs, in `<major version>`.`<minor version>` format.
         """
         return pulumi.get(self, "mongo_db_version")
 
     @mongo_db_version.setter
-    def mongo_db_version(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mongo_db_version(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mongo_db_version", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that identifies the serverless instance.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="providerSettingsBackingProviderName")
-    def provider_settings_backing_provider_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_settings_backing_provider_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
         """
         return pulumi.get(self, "provider_settings_backing_provider_name")
 
     @provider_settings_backing_provider_name.setter
-    def provider_settings_backing_provider_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_settings_backing_provider_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_settings_backing_provider_name", value)
 
     @_builtins.property
     @pulumi.getter(name="providerSettingsProviderName")
-    def provider_settings_provider_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_settings_provider_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cloud service provider that applies to the provisioned the serverless instance.
         """
         return pulumi.get(self, "provider_settings_provider_name")
 
     @provider_settings_provider_name.setter
-    def provider_settings_provider_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_settings_provider_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_settings_provider_name", value)
 
     @_builtins.property
     @pulumi.getter(name="providerSettingsRegionName")
-    def provider_settings_region_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def provider_settings_region_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
         """
         return pulumi.get(self, "provider_settings_region_name")
 
     @provider_settings_region_name.setter
-    def provider_settings_region_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def provider_settings_region_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "provider_settings_region_name", value)
 
     @_builtins.property
     @pulumi.getter(name="serverlessInstanceId")
-    def serverless_instance_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def serverless_instance_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the serverless instance.
         """
         return pulumi.get(self, "serverless_instance_id")
 
     @serverless_instance_id.setter
-    def serverless_instance_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def serverless_instance_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "serverless_instance_id", value)
 
     @_builtins.property
     @pulumi.getter(name="stateName")
-    def state_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Stage of deployment of this serverless instance when the resource made its request.
         """
         return pulumi.get(self, "state_name")
 
     @state_name.setter
-    def state_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]]:
+    def tags(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]]:
         """
         Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]]):
+    def tags(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServerlessInstanceTagArgs']]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter(name="terminationProtectionEnabled")
-    def termination_protection_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def termination_protection_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         return pulumi.get(self, "termination_protection_enabled")
 
     @termination_protection_enabled.setter
-    def termination_protection_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def termination_protection_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "termination_protection_enabled", value)
 
 
@@ -494,18 +494,18 @@ class ServerlessInstance(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_indexing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 continuous_backup_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 links: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerlessInstanceLinkArgs', 'ServerlessInstanceLinkArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_settings_backing_provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_settings_provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_settings_region_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 serverless_instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 state_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict']]]]] = None,
-                 termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 auto_indexing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 continuous_backup_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceLinkArgs', 'ServerlessInstanceLinkArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_settings_backing_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_settings_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_settings_region_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 serverless_instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 state_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict']]]]] = None,
+                 termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         > **DEPRECATION:** This resource is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.
@@ -610,18 +610,18 @@ class ServerlessInstance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 auto_indexing: Optional[pulumi.Input[_builtins.bool]] = None,
-                 continuous_backup_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 links: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerlessInstanceLinkArgs', 'ServerlessInstanceLinkArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_settings_backing_provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_settings_provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 provider_settings_region_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 serverless_instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 state_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict']]]]] = None,
-                 termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
+                 auto_indexing: pulumi.Input[Optional[_builtins.bool]] = None,
+                 continuous_backup_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceLinkArgs', 'ServerlessInstanceLinkArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_settings_backing_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_settings_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 provider_settings_region_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 serverless_instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 state_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict']]]]] = None,
+                 termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -665,22 +665,22 @@ class ServerlessInstance(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            auto_indexing: Optional[pulumi.Input[_builtins.bool]] = None,
-            connection_strings_private_endpoint_srvs: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            connection_strings_standard_srv: Optional[pulumi.Input[_builtins.str]] = None,
-            continuous_backup_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            create_date: Optional[pulumi.Input[_builtins.str]] = None,
-            links: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerlessInstanceLinkArgs', 'ServerlessInstanceLinkArgsDict']]]]] = None,
-            mongo_db_version: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            provider_settings_backing_provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-            provider_settings_provider_name: Optional[pulumi.Input[_builtins.str]] = None,
-            provider_settings_region_name: Optional[pulumi.Input[_builtins.str]] = None,
-            serverless_instance_id: Optional[pulumi.Input[_builtins.str]] = None,
-            state_name: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict']]]]] = None,
-            termination_protection_enabled: Optional[pulumi.Input[_builtins.bool]] = None) -> 'ServerlessInstance':
+            auto_indexing: pulumi.Input[Optional[_builtins.bool]] = None,
+            connection_strings_private_endpoint_srvs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            connection_strings_standard_srv: pulumi.Input[Optional[_builtins.str]] = None,
+            continuous_backup_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            create_date: pulumi.Input[Optional[_builtins.str]] = None,
+            links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceLinkArgs', 'ServerlessInstanceLinkArgsDict']]]]] = None,
+            mongo_db_version: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_settings_backing_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_settings_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
+            provider_settings_region_name: pulumi.Input[Optional[_builtins.str]] = None,
+            serverless_instance_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state_name: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict']]]]] = None,
+            termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None) -> 'ServerlessInstance':
         """
         Get an existing ServerlessInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

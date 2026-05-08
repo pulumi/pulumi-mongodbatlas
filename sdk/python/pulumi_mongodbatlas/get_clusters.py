@@ -121,7 +121,7 @@ def get_clusters(project_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
-def get_clusters_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_clusters_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetClustersResult]:
     """
     `Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
