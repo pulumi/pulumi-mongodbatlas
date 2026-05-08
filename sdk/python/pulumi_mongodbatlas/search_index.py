@@ -25,20 +25,20 @@ class SearchIndexArgs:
                  collection_name: pulumi.Input[_builtins.str],
                  database: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
-                 analyzer: Optional[pulumi.Input[_builtins.str]] = None,
-                 analyzers: Optional[pulumi.Input[_builtins.str]] = None,
-                 fields: Optional[pulumi.Input[_builtins.str]] = None,
-                 mappings_dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mappings_dynamic_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 mappings_fields: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_partitions: Optional[pulumi.Input[_builtins.int]] = None,
-                 search_analyzer: Optional[pulumi.Input[_builtins.str]] = None,
-                 stored_source: Optional[pulumi.Input[_builtins.str]] = None,
-                 synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 type_sets: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]] = None,
-                 wait_for_index_build_completion: Optional[pulumi.Input[_builtins.bool]] = None):
+                 analyzer: pulumi.Input[Optional[_builtins.str]] = None,
+                 analyzers: pulumi.Input[Optional[_builtins.str]] = None,
+                 fields: pulumi.Input[Optional[_builtins.str]] = None,
+                 mappings_dynamic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mappings_dynamic_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 mappings_fields: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_partitions: pulumi.Input[Optional[_builtins.int]] = None,
+                 search_analyzer: pulumi.Input[Optional[_builtins.str]] = None,
+                 stored_source: pulumi.Input[Optional[_builtins.str]] = None,
+                 synonyms: pulumi.Input[Optional[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 type_sets: pulumi.Input[Optional[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]] = None,
+                 wait_for_index_build_completion: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a SearchIndex resource.
 
@@ -165,19 +165,19 @@ class SearchIndexArgs:
 
     @_builtins.property
     @pulumi.getter
-    def analyzer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def analyzer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         """
         return pulumi.get(self, "analyzer")
 
     @analyzer.setter
-    def analyzer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def analyzer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "analyzer", value)
 
     @_builtins.property
     @pulumi.getter
-    def analyzers(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def analyzers(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
         ```
@@ -205,177 +205,177 @@ class SearchIndexArgs:
         return pulumi.get(self, "analyzers")
 
     @analyzers.setter
-    def analyzers(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def analyzers(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "analyzers", value)
 
     @_builtins.property
     @pulumi.getter
-    def fields(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def fields(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
         """
         return pulumi.get(self, "fields")
 
     @fields.setter
-    def fields(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def fields(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "fields", value)
 
     @_builtins.property
     @pulumi.getter(name="mappingsDynamic")
-    def mappings_dynamic(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def mappings_dynamic(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`. Mutually exclusive with `mappings_dynamic_config`.
         """
         return pulumi.get(self, "mappings_dynamic")
 
     @mappings_dynamic.setter
-    def mappings_dynamic(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def mappings_dynamic(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "mappings_dynamic", value)
 
     @_builtins.property
     @pulumi.getter(name="mappingsDynamicConfig")
-    def mappings_dynamic_config(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mappings_dynamic_config(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
         """
         return pulumi.get(self, "mappings_dynamic_config")
 
     @mappings_dynamic_config.setter
-    def mappings_dynamic_config(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mappings_dynamic_config(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mappings_dynamic_config", value)
 
     @_builtins.property
     @pulumi.getter(name="mappingsFields")
-    def mappings_fields(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mappings_fields(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         """
         return pulumi.get(self, "mappings_fields")
 
     @mappings_fields.setter
-    def mappings_fields(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mappings_fields(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mappings_fields", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the search index you want to create.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="numPartitions")
-    def num_partitions(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_partitions(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
         """
         return pulumi.get(self, "num_partitions")
 
     @num_partitions.setter
-    def num_partitions(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_partitions(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_partitions", value)
 
     @_builtins.property
     @pulumi.getter(name="searchAnalyzer")
-    def search_analyzer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def search_analyzer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         """
         return pulumi.get(self, "search_analyzer")
 
     @search_analyzer.setter
-    def search_analyzer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def search_analyzer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "search_analyzer", value)
 
     @_builtins.property
     @pulumi.getter(name="storedSource")
-    def stored_source(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def stored_source(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         """
         return pulumi.get(self, "stored_source")
 
     @stored_source.setter
-    def stored_source(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def stored_source(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "stored_source", value)
 
     @_builtins.property
     @pulumi.getter
-    def synonyms(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]]:
+    def synonyms(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]]:
         """
         Synonyms mapping definition to use in this index.
         """
         return pulumi.get(self, "synonyms")
 
     @synonyms.setter
-    def synonyms(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]]):
+    def synonyms(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]]):
         pulumi.set(self, "synonyms", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of index: `search` or `vectorSearch`. Default type is `search`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="typeSets")
-    def type_sets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]]:
+    def type_sets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]]:
         """
         One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
         """
         return pulumi.get(self, "type_sets")
 
     @type_sets.setter
-    def type_sets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]]):
+    def type_sets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]]):
         pulumi.set(self, "type_sets", value)
 
     @_builtins.property
     @pulumi.getter(name="waitForIndexBuildCompletion")
-    def wait_for_index_build_completion(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def wait_for_index_build_completion(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Wait for search index to achieve Active status before terraform considers resource built.
         """
         return pulumi.get(self, "wait_for_index_build_completion")
 
     @wait_for_index_build_completion.setter
-    def wait_for_index_build_completion(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def wait_for_index_build_completion(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "wait_for_index_build_completion", value)
 
 
 @pulumi.input_type
 class _SearchIndexState:
     def __init__(__self__, *,
-                 analyzer: Optional[pulumi.Input[_builtins.str]] = None,
-                 analyzers: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 collection_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 database: Optional[pulumi.Input[_builtins.str]] = None,
-                 fields: Optional[pulumi.Input[_builtins.str]] = None,
-                 index_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 mappings_dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mappings_dynamic_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 mappings_fields: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_partitions: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 search_analyzer: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 stored_source: Optional[pulumi.Input[_builtins.str]] = None,
-                 synonyms: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 type_sets: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]] = None,
-                 wait_for_index_build_completion: Optional[pulumi.Input[_builtins.bool]] = None):
+                 analyzer: pulumi.Input[Optional[_builtins.str]] = None,
+                 analyzers: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 collection_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 database: pulumi.Input[Optional[_builtins.str]] = None,
+                 fields: pulumi.Input[Optional[_builtins.str]] = None,
+                 index_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 mappings_dynamic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mappings_dynamic_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 mappings_fields: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_partitions: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 search_analyzer: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 stored_source: pulumi.Input[Optional[_builtins.str]] = None,
+                 synonyms: pulumi.Input[Optional[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 type_sets: pulumi.Input[Optional[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]] = None,
+                 wait_for_index_build_completion: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering SearchIndex resources.
 
@@ -464,19 +464,19 @@ class _SearchIndexState:
 
     @_builtins.property
     @pulumi.getter
-    def analyzer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def analyzer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         """
         return pulumi.get(self, "analyzer")
 
     @analyzer.setter
-    def analyzer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def analyzer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "analyzer", value)
 
     @_builtins.property
     @pulumi.getter
-    def analyzers(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def analyzers(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
         ```
@@ -504,223 +504,223 @@ class _SearchIndexState:
         return pulumi.get(self, "analyzers")
 
     @analyzers.setter
-    def analyzers(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def analyzers(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "analyzers", value)
 
     @_builtins.property
     @pulumi.getter(name="clusterName")
-    def cluster_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def cluster_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the cluster where you want to create the search index within.
         """
         return pulumi.get(self, "cluster_name")
 
     @cluster_name.setter
-    def cluster_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def cluster_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "cluster_name", value)
 
     @_builtins.property
     @pulumi.getter(name="collectionName")
-    def collection_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def collection_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         """
         return pulumi.get(self, "collection_name")
 
     @collection_name.setter
-    def collection_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def collection_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "collection_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def database(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def database(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the database the collection is in.
         """
         return pulumi.get(self, "database")
 
     @database.setter
-    def database(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def database(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "database", value)
 
     @_builtins.property
     @pulumi.getter
-    def fields(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def fields(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
         """
         return pulumi.get(self, "fields")
 
     @fields.setter
-    def fields(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def fields(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "fields", value)
 
     @_builtins.property
     @pulumi.getter(name="indexId")
-    def index_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def index_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique identifier of the Atlas Search index.
         """
         return pulumi.get(self, "index_id")
 
     @index_id.setter
-    def index_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def index_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "index_id", value)
 
     @_builtins.property
     @pulumi.getter(name="mappingsDynamic")
-    def mappings_dynamic(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def mappings_dynamic(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`. Mutually exclusive with `mappings_dynamic_config`.
         """
         return pulumi.get(self, "mappings_dynamic")
 
     @mappings_dynamic.setter
-    def mappings_dynamic(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def mappings_dynamic(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "mappings_dynamic", value)
 
     @_builtins.property
     @pulumi.getter(name="mappingsDynamicConfig")
-    def mappings_dynamic_config(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mappings_dynamic_config(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
         """
         return pulumi.get(self, "mappings_dynamic_config")
 
     @mappings_dynamic_config.setter
-    def mappings_dynamic_config(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mappings_dynamic_config(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mappings_dynamic_config", value)
 
     @_builtins.property
     @pulumi.getter(name="mappingsFields")
-    def mappings_fields(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mappings_fields(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         """
         return pulumi.get(self, "mappings_fields")
 
     @mappings_fields.setter
-    def mappings_fields(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mappings_fields(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mappings_fields", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the search index you want to create.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="numPartitions")
-    def num_partitions(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def num_partitions(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
         """
         return pulumi.get(self, "num_partitions")
 
     @num_partitions.setter
-    def num_partitions(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def num_partitions(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "num_partitions", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="searchAnalyzer")
-    def search_analyzer(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def search_analyzer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         """
         return pulumi.get(self, "search_analyzer")
 
     @search_analyzer.setter
-    def search_analyzer(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def search_analyzer(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "search_analyzer", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Current status of the index.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter(name="storedSource")
-    def stored_source(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def stored_source(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         """
         return pulumi.get(self, "stored_source")
 
     @stored_source.setter
-    def stored_source(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def stored_source(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "stored_source", value)
 
     @_builtins.property
     @pulumi.getter
-    def synonyms(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]]:
+    def synonyms(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]]:
         """
         Synonyms mapping definition to use in this index.
         """
         return pulumi.get(self, "synonyms")
 
     @synonyms.setter
-    def synonyms(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]]):
+    def synonyms(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SearchIndexSynonymArgs']]]]):
         pulumi.set(self, "synonyms", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Type of index: `search` or `vectorSearch`. Default type is `search`.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="typeSets")
-    def type_sets(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]]:
+    def type_sets(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]]:
         """
         One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
         """
         return pulumi.get(self, "type_sets")
 
     @type_sets.setter
-    def type_sets(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]]):
+    def type_sets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['SearchIndexTypeSetArgs']]]]):
         pulumi.set(self, "type_sets", value)
 
     @_builtins.property
     @pulumi.getter(name="waitForIndexBuildCompletion")
-    def wait_for_index_build_completion(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def wait_for_index_build_completion(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Wait for search index to achieve Active status before terraform considers resource built.
         """
         return pulumi.get(self, "wait_for_index_build_completion")
 
     @wait_for_index_build_completion.setter
-    def wait_for_index_build_completion(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def wait_for_index_build_completion(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "wait_for_index_build_completion", value)
 
 
@@ -730,24 +730,24 @@ class SearchIndex(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 analyzer: Optional[pulumi.Input[_builtins.str]] = None,
-                 analyzers: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 collection_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 database: Optional[pulumi.Input[_builtins.str]] = None,
-                 fields: Optional[pulumi.Input[_builtins.str]] = None,
-                 mappings_dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mappings_dynamic_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 mappings_fields: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_partitions: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 search_analyzer: Optional[pulumi.Input[_builtins.str]] = None,
-                 stored_source: Optional[pulumi.Input[_builtins.str]] = None,
-                 synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 type_sets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]]] = None,
-                 wait_for_index_build_completion: Optional[pulumi.Input[_builtins.bool]] = None,
+                 analyzer: pulumi.Input[Optional[_builtins.str]] = None,
+                 analyzers: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 collection_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 database: pulumi.Input[Optional[_builtins.str]] = None,
+                 fields: pulumi.Input[Optional[_builtins.str]] = None,
+                 mappings_dynamic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mappings_dynamic_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 mappings_fields: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_partitions: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 search_analyzer: pulumi.Input[Optional[_builtins.str]] = None,
+                 stored_source: pulumi.Input[Optional[_builtins.str]] = None,
+                 synonyms: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 type_sets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]]] = None,
+                 wait_for_index_build_completion: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         `SearchIndex` provides a Search Index resource. This allows indexes to be created.
@@ -1096,24 +1096,24 @@ class SearchIndex(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 analyzer: Optional[pulumi.Input[_builtins.str]] = None,
-                 analyzers: Optional[pulumi.Input[_builtins.str]] = None,
-                 cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 collection_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 database: Optional[pulumi.Input[_builtins.str]] = None,
-                 fields: Optional[pulumi.Input[_builtins.str]] = None,
-                 mappings_dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
-                 mappings_dynamic_config: Optional[pulumi.Input[_builtins.str]] = None,
-                 mappings_fields: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 num_partitions: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 search_analyzer: Optional[pulumi.Input[_builtins.str]] = None,
-                 stored_source: Optional[pulumi.Input[_builtins.str]] = None,
-                 synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 type_sets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]]] = None,
-                 wait_for_index_build_completion: Optional[pulumi.Input[_builtins.bool]] = None,
+                 analyzer: pulumi.Input[Optional[_builtins.str]] = None,
+                 analyzers: pulumi.Input[Optional[_builtins.str]] = None,
+                 cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 collection_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 database: pulumi.Input[Optional[_builtins.str]] = None,
+                 fields: pulumi.Input[Optional[_builtins.str]] = None,
+                 mappings_dynamic: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mappings_dynamic_config: pulumi.Input[Optional[_builtins.str]] = None,
+                 mappings_fields: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 num_partitions: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 search_analyzer: pulumi.Input[Optional[_builtins.str]] = None,
+                 stored_source: pulumi.Input[Optional[_builtins.str]] = None,
+                 synonyms: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 type_sets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]]] = None,
+                 wait_for_index_build_completion: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1161,26 +1161,26 @@ class SearchIndex(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            analyzer: Optional[pulumi.Input[_builtins.str]] = None,
-            analyzers: Optional[pulumi.Input[_builtins.str]] = None,
-            cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-            collection_name: Optional[pulumi.Input[_builtins.str]] = None,
-            database: Optional[pulumi.Input[_builtins.str]] = None,
-            fields: Optional[pulumi.Input[_builtins.str]] = None,
-            index_id: Optional[pulumi.Input[_builtins.str]] = None,
-            mappings_dynamic: Optional[pulumi.Input[_builtins.bool]] = None,
-            mappings_dynamic_config: Optional[pulumi.Input[_builtins.str]] = None,
-            mappings_fields: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            num_partitions: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            search_analyzer: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            stored_source: Optional[pulumi.Input[_builtins.str]] = None,
-            synonyms: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            type_sets: Optional[pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]]] = None,
-            wait_for_index_build_completion: Optional[pulumi.Input[_builtins.bool]] = None) -> 'SearchIndex':
+            analyzer: pulumi.Input[Optional[_builtins.str]] = None,
+            analyzers: pulumi.Input[Optional[_builtins.str]] = None,
+            cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+            collection_name: pulumi.Input[Optional[_builtins.str]] = None,
+            database: pulumi.Input[Optional[_builtins.str]] = None,
+            fields: pulumi.Input[Optional[_builtins.str]] = None,
+            index_id: pulumi.Input[Optional[_builtins.str]] = None,
+            mappings_dynamic: pulumi.Input[Optional[_builtins.bool]] = None,
+            mappings_dynamic_config: pulumi.Input[Optional[_builtins.str]] = None,
+            mappings_fields: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            num_partitions: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            search_analyzer: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            stored_source: pulumi.Input[Optional[_builtins.str]] = None,
+            synonyms: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            type_sets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]]] = None,
+            wait_for_index_build_completion: pulumi.Input[Optional[_builtins.bool]] = None) -> 'SearchIndex':
         """
         Get an existing SearchIndex resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

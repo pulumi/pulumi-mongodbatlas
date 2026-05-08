@@ -417,8 +417,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -472,8 +472,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -527,8 +527,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -582,8 +582,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -637,8 +637,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -692,8 +692,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -746,8 +746,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -800,8 +800,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -854,8 +854,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -908,8 +908,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AccessListApiKeyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAccessListApiKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -958,8 +958,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1012,8 +1012,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1077,8 +1077,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1146,8 +1146,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1204,8 +1204,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1258,8 +1258,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1323,8 +1323,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1392,8 +1392,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1450,8 +1450,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1504,8 +1504,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1569,8 +1569,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1638,8 +1638,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1696,8 +1696,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1750,8 +1750,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1815,8 +1815,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1884,8 +1884,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1942,8 +1942,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -1996,8 +1996,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2061,8 +2061,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2130,8 +2130,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2188,8 +2188,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2243,8 +2243,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2312,8 +2312,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2369,8 +2369,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2424,8 +2424,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2493,8 +2493,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2550,8 +2550,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2605,8 +2605,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2674,8 +2674,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2731,8 +2731,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2786,8 +2786,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2855,8 +2855,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2912,8 +2912,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -2967,8 +2967,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3036,8 +3036,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3095,8 +3095,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMetricThresholdConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3159,8 +3159,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AlertConfigurationThresholdConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3231,8 +3231,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMetricThresholdConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3295,8 +3295,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AlertConfigurationThresholdConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3367,8 +3367,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMetricThresholdConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3431,8 +3431,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AlertConfigurationThresholdConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3503,8 +3503,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMetricThresholdConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3567,8 +3567,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AlertConfigurationThresholdConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3639,8 +3639,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AlertConfigurationMetricThresholdConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -3703,8 +3703,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AlertConfigurationThresholdConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4055,8 +4055,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4087,8 +4087,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4132,8 +4132,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4164,8 +4164,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4209,8 +4209,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4241,8 +4241,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4286,8 +4286,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4318,8 +4318,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4363,8 +4363,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4395,8 +4395,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4440,8 +4440,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4472,8 +4472,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4517,8 +4517,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4549,8 +4549,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4593,8 +4593,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4626,8 +4626,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4659,8 +4659,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4704,8 +4704,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4737,8 +4737,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4770,8 +4770,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4815,8 +4815,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4848,8 +4848,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4881,8 +4881,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4926,8 +4926,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4959,8 +4959,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -4992,8 +4992,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5037,8 +5037,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5070,8 +5070,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5103,8 +5103,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5148,8 +5148,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5181,8 +5181,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5214,8 +5214,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5259,8 +5259,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5292,8 +5292,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5325,8 +5325,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAtlasUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5368,8 +5368,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AuditingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAuditingArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5417,8 +5417,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AuditingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAuditingArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5466,8 +5466,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AuditingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAuditingArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5515,8 +5515,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AuditingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAuditingArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5564,8 +5564,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AuditingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAuditingArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5634,8 +5634,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemWeeklyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemMonthlyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemYearlyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5794,8 +5794,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemWeeklyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemMonthlyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemYearlyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -5954,8 +5954,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemWeeklyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemMonthlyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemYearlyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6114,8 +6114,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemWeeklyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemMonthlyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemYearlyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6274,8 +6274,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemWeeklyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemMonthlyArgs;
      * import com.pulumi.mongodbatlas.inputs.BackupCompliancePolicyPolicyItemYearlyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6420,8 +6420,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6514,8 +6514,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6608,8 +6608,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6702,8 +6702,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6796,8 +6796,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6883,8 +6883,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6934,8 +6934,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -6985,8 +6985,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7036,8 +7036,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7087,8 +7087,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7138,8 +7138,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportBucketArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7188,8 +7188,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportBucketArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7238,8 +7238,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportBucketArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7288,8 +7288,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportBucketArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7338,8 +7338,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportBucketArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7388,8 +7388,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportBucketsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7437,8 +7437,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportBucketsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7486,8 +7486,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportBucketsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7535,8 +7535,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportBucketsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7584,8 +7584,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotExportBucketArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportBucketsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7636,8 +7636,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotExportJobCustomDataArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportJobArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7701,8 +7701,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotExportJobCustomDataArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportJobArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7766,8 +7766,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotExportJobCustomDataArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportJobArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7831,8 +7831,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotExportJobCustomDataArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportJobArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7896,8 +7896,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotExportJobCustomDataArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportJobArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -7961,8 +7961,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotExportJobCustomDataArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportJobsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8025,8 +8025,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotExportJobCustomDataArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportJobsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8089,8 +8089,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotExportJobCustomDataArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportJobsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8153,8 +8153,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotExportJobCustomDataArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportJobsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8217,8 +8217,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotExportJobCustomDataArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportJobsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8282,8 +8282,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8306,7 +8306,7 @@ public final class MongodbatlasFunctions {
      *             .projectId("5cf5a45a9ccf6400e60981b6")
      *             .clusterName("MyCluster")
      *             .snapshotId(testCloudBackupSnapshot.id())
-     *             .deliveryType(List.of(Map.ofEntries(
+     *             .deliveryType(Arrays.asList(Map.ofEntries(
      *                 Map.entry("automated", true),
      *                 Map.entry("targetClusterName", "MyCluster"),
      *                 Map.entry("targetProjectId", "5cf5a45a9ccf6400e60981b6")
@@ -8348,8 +8348,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8372,7 +8372,7 @@ public final class MongodbatlasFunctions {
      *             .projectId("5cf5a45a9ccf6400e60981b6")
      *             .clusterName("MyCluster")
      *             .snapshotId(testCloudBackupSnapshot.id())
-     *             .deliveryType(List.of(Map.ofEntries(
+     *             .deliveryType(Arrays.asList(Map.ofEntries(
      *                 Map.entry("automated", true),
      *                 Map.entry("targetClusterName", "MyCluster"),
      *                 Map.entry("targetProjectId", "5cf5a45a9ccf6400e60981b6")
@@ -8414,8 +8414,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8438,7 +8438,7 @@ public final class MongodbatlasFunctions {
      *             .projectId("5cf5a45a9ccf6400e60981b6")
      *             .clusterName("MyCluster")
      *             .snapshotId(testCloudBackupSnapshot.id())
-     *             .deliveryType(List.of(Map.ofEntries(
+     *             .deliveryType(Arrays.asList(Map.ofEntries(
      *                 Map.entry("automated", true),
      *                 Map.entry("targetClusterName", "MyCluster"),
      *                 Map.entry("targetProjectId", "5cf5a45a9ccf6400e60981b6")
@@ -8480,8 +8480,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8504,7 +8504,7 @@ public final class MongodbatlasFunctions {
      *             .projectId("5cf5a45a9ccf6400e60981b6")
      *             .clusterName("MyCluster")
      *             .snapshotId(testCloudBackupSnapshot.id())
-     *             .deliveryType(List.of(Map.ofEntries(
+     *             .deliveryType(Arrays.asList(Map.ofEntries(
      *                 Map.entry("automated", true),
      *                 Map.entry("targetClusterName", "MyCluster"),
      *                 Map.entry("targetProjectId", "5cf5a45a9ccf6400e60981b6")
@@ -8546,8 +8546,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotRestoreJobArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8570,7 +8570,7 @@ public final class MongodbatlasFunctions {
      *             .projectId("5cf5a45a9ccf6400e60981b6")
      *             .clusterName("MyCluster")
      *             .snapshotId(testCloudBackupSnapshot.id())
-     *             .deliveryType(List.of(Map.ofEntries(
+     *             .deliveryType(Arrays.asList(Map.ofEntries(
      *                 Map.entry("automated", true),
      *                 Map.entry("targetClusterName", "MyCluster"),
      *                 Map.entry("targetProjectId", "5cf5a45a9ccf6400e60981b6")
@@ -8613,8 +8613,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8644,16 +8644,12 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var test = Output.tuple(testCloudBackupSnapshotRestoreJob.projectId(), testCloudBackupSnapshotRestoreJob.clusterName()).applyValue(values -> {
-     *             var projectId = values.t1;
-     *             var clusterName = values.t2;
-     *             return MongodbatlasFunctions.getCloudBackupSnapshotRestoreJobs(GetCloudBackupSnapshotRestoreJobsArgs.builder()
-     *                 .projectId(projectId)
-     *                 .clusterName(clusterName)
-     *                 .pageNum(1)
-     *                 .itemsPerPage(5)
-     *                 .build());
-     *         });
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotRestoreJobs(GetCloudBackupSnapshotRestoreJobsArgs.builder()
+     *             .projectId(testCloudBackupSnapshotRestoreJob.projectId())
+     *             .clusterName(testCloudBackupSnapshotRestoreJob.clusterName())
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build());
      * 
      *     }
      * }
@@ -8685,8 +8681,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8716,16 +8712,12 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var test = Output.tuple(testCloudBackupSnapshotRestoreJob.projectId(), testCloudBackupSnapshotRestoreJob.clusterName()).applyValue(values -> {
-     *             var projectId = values.t1;
-     *             var clusterName = values.t2;
-     *             return MongodbatlasFunctions.getCloudBackupSnapshotRestoreJobs(GetCloudBackupSnapshotRestoreJobsArgs.builder()
-     *                 .projectId(projectId)
-     *                 .clusterName(clusterName)
-     *                 .pageNum(1)
-     *                 .itemsPerPage(5)
-     *                 .build());
-     *         });
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotRestoreJobs(GetCloudBackupSnapshotRestoreJobsArgs.builder()
+     *             .projectId(testCloudBackupSnapshotRestoreJob.projectId())
+     *             .clusterName(testCloudBackupSnapshotRestoreJob.clusterName())
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build());
      * 
      *     }
      * }
@@ -8757,8 +8749,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8788,16 +8780,12 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var test = Output.tuple(testCloudBackupSnapshotRestoreJob.projectId(), testCloudBackupSnapshotRestoreJob.clusterName()).applyValue(values -> {
-     *             var projectId = values.t1;
-     *             var clusterName = values.t2;
-     *             return MongodbatlasFunctions.getCloudBackupSnapshotRestoreJobs(GetCloudBackupSnapshotRestoreJobsArgs.builder()
-     *                 .projectId(projectId)
-     *                 .clusterName(clusterName)
-     *                 .pageNum(1)
-     *                 .itemsPerPage(5)
-     *                 .build());
-     *         });
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotRestoreJobs(GetCloudBackupSnapshotRestoreJobsArgs.builder()
+     *             .projectId(testCloudBackupSnapshotRestoreJob.projectId())
+     *             .clusterName(testCloudBackupSnapshotRestoreJob.clusterName())
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build());
      * 
      *     }
      * }
@@ -8829,8 +8817,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8860,16 +8848,12 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var test = Output.tuple(testCloudBackupSnapshotRestoreJob.projectId(), testCloudBackupSnapshotRestoreJob.clusterName()).applyValue(values -> {
-     *             var projectId = values.t1;
-     *             var clusterName = values.t2;
-     *             return MongodbatlasFunctions.getCloudBackupSnapshotRestoreJobs(GetCloudBackupSnapshotRestoreJobsArgs.builder()
-     *                 .projectId(projectId)
-     *                 .clusterName(clusterName)
-     *                 .pageNum(1)
-     *                 .itemsPerPage(5)
-     *                 .build());
-     *         });
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotRestoreJobs(GetCloudBackupSnapshotRestoreJobsArgs.builder()
+     *             .projectId(testCloudBackupSnapshotRestoreJob.projectId())
+     *             .clusterName(testCloudBackupSnapshotRestoreJob.clusterName())
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build());
      * 
      *     }
      * }
@@ -8901,8 +8885,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotRestoreJobsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -8932,16 +8916,12 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var test = Output.tuple(testCloudBackupSnapshotRestoreJob.projectId(), testCloudBackupSnapshotRestoreJob.clusterName()).applyValue(values -> {
-     *             var projectId = values.t1;
-     *             var clusterName = values.t2;
-     *             return MongodbatlasFunctions.getCloudBackupSnapshotRestoreJobs(GetCloudBackupSnapshotRestoreJobsArgs.builder()
-     *                 .projectId(projectId)
-     *                 .clusterName(clusterName)
-     *                 .pageNum(1)
-     *                 .itemsPerPage(5)
-     *                 .build());
-     *         });
+     *         final var test = MongodbatlasFunctions.getCloudBackupSnapshotRestoreJobs(GetCloudBackupSnapshotRestoreJobsArgs.builder()
+     *             .projectId(testCloudBackupSnapshotRestoreJob.projectId())
+     *             .clusterName(testCloudBackupSnapshotRestoreJob.clusterName())
+     *             .pageNum(1)
+     *             .itemsPerPage(5)
+     *             .build());
      * 
      *     }
      * }
@@ -8968,8 +8948,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9020,8 +9000,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9072,8 +9052,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9124,8 +9104,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9176,8 +9156,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupSnapshotsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9229,8 +9209,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9271,8 +9251,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9318,8 +9298,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9368,8 +9348,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9410,8 +9390,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9457,8 +9437,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9507,8 +9487,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9549,8 +9529,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9596,8 +9576,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9646,8 +9626,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9688,8 +9668,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9735,8 +9715,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9785,8 +9765,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9827,8 +9807,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudProviderAccessSetupAzureConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9874,8 +9854,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudProviderAccessSetupArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudProviderAccessSetupArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9930,8 +9910,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudUserOrgAssignmentRolesArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudUserOrgAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -9993,8 +9973,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudUserOrgAssignmentRolesArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudUserOrgAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10056,8 +10036,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudUserOrgAssignmentRolesArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudUserOrgAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10119,8 +10099,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudUserOrgAssignmentRolesArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudUserOrgAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10182,8 +10162,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CloudUserOrgAssignmentRolesArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudUserOrgAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10244,8 +10224,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudUserProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudUserProjectAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10306,8 +10286,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudUserProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudUserProjectAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10368,8 +10348,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudUserProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudUserProjectAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10430,8 +10410,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudUserProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudUserProjectAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10492,8 +10472,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudUserProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudUserProjectAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10554,8 +10534,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudUserTeamAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudUserTeamAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10616,8 +10596,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudUserTeamAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudUserTeamAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10678,8 +10658,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudUserTeamAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudUserTeamAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10740,8 +10720,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudUserTeamAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudUserTeamAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10802,8 +10782,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudUserTeamAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudUserTeamAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10868,8 +10848,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -10940,8 +10920,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11012,8 +10992,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11084,8 +11064,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11156,8 +11136,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClusterArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11222,8 +11202,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClusterOutageSimulationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11269,8 +11249,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClusterOutageSimulationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11316,8 +11296,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClusterOutageSimulationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11363,8 +11343,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClusterOutageSimulationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11410,8 +11390,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClusterOutageSimulationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11461,8 +11441,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClustersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11530,8 +11510,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClustersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11599,8 +11579,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClustersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11668,8 +11648,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClustersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11737,8 +11717,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClustersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11796,8 +11776,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11835,8 +11815,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11874,8 +11854,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11913,8 +11893,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11952,8 +11932,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -11991,8 +11971,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12030,8 +12010,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12072,8 +12052,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDbRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12136,8 +12116,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDbRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12200,8 +12180,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDbRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12264,8 +12244,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDbRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12328,8 +12308,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDbRoleArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12392,8 +12372,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12451,8 +12431,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12510,8 +12490,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12569,8 +12549,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12628,8 +12608,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDbRolesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12686,8 +12666,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CustomDnsConfigurationClusterAwsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDnsConfigurationClusterAwsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12733,8 +12713,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CustomDnsConfigurationClusterAwsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDnsConfigurationClusterAwsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12780,8 +12760,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CustomDnsConfigurationClusterAwsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDnsConfigurationClusterAwsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12827,8 +12807,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CustomDnsConfigurationClusterAwsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDnsConfigurationClusterAwsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12874,8 +12854,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CustomDnsConfigurationClusterAwsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDnsConfigurationClusterAwsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12925,8 +12905,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -12987,8 +12967,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13047,8 +13027,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13109,8 +13089,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13169,8 +13149,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13231,8 +13211,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13291,8 +13271,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13353,8 +13333,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13413,8 +13393,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13475,8 +13455,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13535,8 +13515,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13595,8 +13575,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13653,8 +13633,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13713,8 +13693,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13771,8 +13751,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13831,8 +13811,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13889,8 +13869,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -13949,8 +13929,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14007,8 +13987,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14067,8 +14047,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetDatabaseUsersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14141,8 +14121,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14220,8 +14200,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAzureKeyVaultConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14273,8 +14253,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestGoogleCloudKmsConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14345,8 +14325,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14424,8 +14404,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAzureKeyVaultConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14477,8 +14457,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestGoogleCloudKmsConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14549,8 +14529,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14628,8 +14608,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAzureKeyVaultConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14681,8 +14661,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestGoogleCloudKmsConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14753,8 +14733,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14832,8 +14812,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAzureKeyVaultConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14885,8 +14865,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestGoogleCloudKmsConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -14957,8 +14937,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15036,8 +15016,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestAzureKeyVaultConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15089,8 +15069,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.EncryptionAtRestGoogleCloudKmsConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15146,8 +15126,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15181,8 +15161,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15231,8 +15211,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15266,8 +15246,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15316,8 +15296,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15351,8 +15331,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15401,8 +15381,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15436,8 +15416,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15486,8 +15466,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15521,8 +15501,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15571,8 +15551,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15605,8 +15585,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15654,8 +15634,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15688,8 +15668,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15737,8 +15717,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15771,8 +15751,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15820,8 +15800,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15854,8 +15834,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15903,8 +15883,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -15937,8 +15917,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestPrivateEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16053,8 +16033,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16087,8 +16067,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16126,8 +16106,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16176,8 +16156,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16210,8 +16190,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16249,8 +16229,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16299,8 +16279,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16333,8 +16313,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16372,8 +16352,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16422,8 +16402,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16456,8 +16436,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16495,8 +16475,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16545,8 +16525,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16579,8 +16559,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16618,8 +16598,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16729,8 +16709,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedQueryLimitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16771,8 +16751,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedQueryLimitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16813,8 +16793,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedQueryLimitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16855,8 +16835,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedQueryLimitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16897,8 +16877,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedQueryLimitArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16941,8 +16921,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedQueryLimitsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -16984,8 +16964,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedQueryLimitsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17027,8 +17007,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedQueryLimitsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17070,8 +17050,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedQueryLimitsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17113,8 +17093,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedQueryLimitsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17154,8 +17134,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17194,8 +17174,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17234,8 +17214,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17274,8 +17254,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17314,8 +17294,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17356,8 +17336,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProviderArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsIdentityProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17411,8 +17391,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProviderArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsIdentityProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17466,8 +17446,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProviderArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsIdentityProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17521,8 +17501,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProviderArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsIdentityProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17576,8 +17556,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProviderArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsIdentityProviderArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17686,8 +17666,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17739,8 +17719,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17792,8 +17772,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17845,8 +17825,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17898,8 +17878,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -17951,8 +17931,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -18003,8 +17983,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -18055,8 +18035,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -18107,8 +18087,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -18159,8 +18139,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsOrgConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgConfigsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -18212,8 +18192,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -18288,8 +18268,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -18364,8 +18344,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -18440,8 +18420,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -18516,8 +18496,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.FederatedSettingsOrgRoleMappingRoleAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -18591,8 +18571,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMappingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -18609,13 +18589,13 @@ public final class MongodbatlasFunctions {
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .groupId("628aa20d7f7f7f7f7098b81b8")
      *             .externalGroupName("myGrouptest")
-     *             .organizationRoles(List.of(            
+     *             .organizationRoles(Arrays.asList(            
      *                 "ORG_OWNER",
      *                 "ORG_MEMBER",
      *                 "ORG_BILLING_ADMIN",
      *                 "ORG_GROUP_CREATOR",
      *                 "ORG_READ_ONLY"))
-     *             .groupRoles(List.of(            
+     *             .groupRoles(Arrays.asList(            
      *                 "GROUP_OWNER",
      *                 "GROUP_CLUSTER_MANAGER",
      *                 "GROUP_DATA_ACCESS_ADMIN",
@@ -18625,12 +18605,12 @@ public final class MongodbatlasFunctions {
      *                 "GROUP_READ_ONLY"))
      *             .build());
      * 
-     *         final var roleMappings = orgGroupRoleMappingImport.id().applyValue(_id -> MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
-     *             .federationSettingsId(_id)
+     *         final var roleMappings = MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
+     *             .federationSettingsId(orgGroupRoleMappingImport.id())
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .pageNum(1)
      *             .itemsPerPage(5)
-     *             .build()));
+     *             .build());
      * 
      *     }
      * }
@@ -18657,8 +18637,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMappingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -18675,13 +18655,13 @@ public final class MongodbatlasFunctions {
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .groupId("628aa20d7f7f7f7f7098b81b8")
      *             .externalGroupName("myGrouptest")
-     *             .organizationRoles(List.of(            
+     *             .organizationRoles(Arrays.asList(            
      *                 "ORG_OWNER",
      *                 "ORG_MEMBER",
      *                 "ORG_BILLING_ADMIN",
      *                 "ORG_GROUP_CREATOR",
      *                 "ORG_READ_ONLY"))
-     *             .groupRoles(List.of(            
+     *             .groupRoles(Arrays.asList(            
      *                 "GROUP_OWNER",
      *                 "GROUP_CLUSTER_MANAGER",
      *                 "GROUP_DATA_ACCESS_ADMIN",
@@ -18691,12 +18671,12 @@ public final class MongodbatlasFunctions {
      *                 "GROUP_READ_ONLY"))
      *             .build());
      * 
-     *         final var roleMappings = orgGroupRoleMappingImport.id().applyValue(_id -> MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
-     *             .federationSettingsId(_id)
+     *         final var roleMappings = MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
+     *             .federationSettingsId(orgGroupRoleMappingImport.id())
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .pageNum(1)
      *             .itemsPerPage(5)
-     *             .build()));
+     *             .build());
      * 
      *     }
      * }
@@ -18723,8 +18703,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMappingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -18741,13 +18721,13 @@ public final class MongodbatlasFunctions {
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .groupId("628aa20d7f7f7f7f7098b81b8")
      *             .externalGroupName("myGrouptest")
-     *             .organizationRoles(List.of(            
+     *             .organizationRoles(Arrays.asList(            
      *                 "ORG_OWNER",
      *                 "ORG_MEMBER",
      *                 "ORG_BILLING_ADMIN",
      *                 "ORG_GROUP_CREATOR",
      *                 "ORG_READ_ONLY"))
-     *             .groupRoles(List.of(            
+     *             .groupRoles(Arrays.asList(            
      *                 "GROUP_OWNER",
      *                 "GROUP_CLUSTER_MANAGER",
      *                 "GROUP_DATA_ACCESS_ADMIN",
@@ -18757,12 +18737,12 @@ public final class MongodbatlasFunctions {
      *                 "GROUP_READ_ONLY"))
      *             .build());
      * 
-     *         final var roleMappings = orgGroupRoleMappingImport.id().applyValue(_id -> MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
-     *             .federationSettingsId(_id)
+     *         final var roleMappings = MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
+     *             .federationSettingsId(orgGroupRoleMappingImport.id())
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .pageNum(1)
      *             .itemsPerPage(5)
-     *             .build()));
+     *             .build());
      * 
      *     }
      * }
@@ -18789,8 +18769,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMappingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -18807,13 +18787,13 @@ public final class MongodbatlasFunctions {
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .groupId("628aa20d7f7f7f7f7098b81b8")
      *             .externalGroupName("myGrouptest")
-     *             .organizationRoles(List.of(            
+     *             .organizationRoles(Arrays.asList(            
      *                 "ORG_OWNER",
      *                 "ORG_MEMBER",
      *                 "ORG_BILLING_ADMIN",
      *                 "ORG_GROUP_CREATOR",
      *                 "ORG_READ_ONLY"))
-     *             .groupRoles(List.of(            
+     *             .groupRoles(Arrays.asList(            
      *                 "GROUP_OWNER",
      *                 "GROUP_CLUSTER_MANAGER",
      *                 "GROUP_DATA_ACCESS_ADMIN",
@@ -18823,12 +18803,12 @@ public final class MongodbatlasFunctions {
      *                 "GROUP_READ_ONLY"))
      *             .build());
      * 
-     *         final var roleMappings = orgGroupRoleMappingImport.id().applyValue(_id -> MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
-     *             .federationSettingsId(_id)
+     *         final var roleMappings = MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
+     *             .federationSettingsId(orgGroupRoleMappingImport.id())
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .pageNum(1)
      *             .itemsPerPage(5)
-     *             .build()));
+     *             .build());
      * 
      *     }
      * }
@@ -18855,8 +18835,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.FederatedSettingsOrgRoleMappingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsOrgRoleMappingsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -18873,13 +18853,13 @@ public final class MongodbatlasFunctions {
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .groupId("628aa20d7f7f7f7f7098b81b8")
      *             .externalGroupName("myGrouptest")
-     *             .organizationRoles(List.of(            
+     *             .organizationRoles(Arrays.asList(            
      *                 "ORG_OWNER",
      *                 "ORG_MEMBER",
      *                 "ORG_BILLING_ADMIN",
      *                 "ORG_GROUP_CREATOR",
      *                 "ORG_READ_ONLY"))
-     *             .groupRoles(List.of(            
+     *             .groupRoles(Arrays.asList(            
      *                 "GROUP_OWNER",
      *                 "GROUP_CLUSTER_MANAGER",
      *                 "GROUP_DATA_ACCESS_ADMIN",
@@ -18889,12 +18869,12 @@ public final class MongodbatlasFunctions {
      *                 "GROUP_READ_ONLY"))
      *             .build());
      * 
-     *         final var roleMappings = orgGroupRoleMappingImport.id().applyValue(_id -> MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
-     *             .federationSettingsId(_id)
+     *         final var roleMappings = MongodbatlasFunctions.getFederatedSettingsOrgRoleMappings(GetFederatedSettingsOrgRoleMappingsArgs.builder()
+     *             .federationSettingsId(orgGroupRoleMappingImport.id())
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .pageNum(1)
      *             .itemsPerPage(5)
-     *             .build()));
+     *             .build());
      * 
      *     }
      * }
@@ -19276,8 +19256,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigCustomZoneMappingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetGlobalClusterConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -19394,8 +19374,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigCustomZoneMappingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetGlobalClusterConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -19512,8 +19492,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigCustomZoneMappingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetGlobalClusterConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -19630,8 +19610,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigCustomZoneMappingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetGlobalClusterConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -19748,8 +19728,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigCustomZoneMappingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetGlobalClusterConfigArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -19863,8 +19843,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.LdapConfigurationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLdapConfigurationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -19921,8 +19901,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.LdapConfigurationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLdapConfigurationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -19979,8 +19959,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.LdapConfigurationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLdapConfigurationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20037,8 +20017,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.LdapConfigurationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLdapConfigurationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20095,8 +20075,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.LdapConfigurationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLdapConfigurationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20157,8 +20137,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLdapVerifyArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20239,8 +20219,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLdapVerifyArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20321,8 +20301,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLdapVerifyArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20403,8 +20383,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLdapVerifyArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20485,8 +20465,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLdapVerifyArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20561,8 +20541,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20608,8 +20588,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20655,8 +20635,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20702,8 +20682,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20749,8 +20729,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetLogIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20868,8 +20848,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MaintenanceWindowArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20908,8 +20888,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MaintenanceWindowArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20957,8 +20937,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MaintenanceWindowArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -20997,8 +20977,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MaintenanceWindowArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21046,8 +21026,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MaintenanceWindowArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21086,8 +21066,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MaintenanceWindowArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21135,8 +21115,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MaintenanceWindowArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21175,8 +21155,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MaintenanceWindowArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21224,8 +21204,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MaintenanceWindowArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21264,8 +21244,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MaintenanceWindowArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21312,8 +21292,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbEmployeeAccessGrantArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetMongodbEmployeeAccessGrantArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21365,8 +21345,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbEmployeeAccessGrantArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetMongodbEmployeeAccessGrantArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21418,8 +21398,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbEmployeeAccessGrantArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetMongodbEmployeeAccessGrantArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21471,8 +21451,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbEmployeeAccessGrantArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetMongodbEmployeeAccessGrantArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21524,8 +21504,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbEmployeeAccessGrantArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetMongodbEmployeeAccessGrantArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21580,8 +21560,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkContainerArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkContainerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21634,8 +21614,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkContainerArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkContainerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21688,8 +21668,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkContainerArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkContainerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21742,8 +21722,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkContainerArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkContainerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21796,8 +21776,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkContainerArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkContainerArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21848,8 +21828,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkContainerArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkContainersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21904,8 +21884,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkContainerArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkContainersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -21960,8 +21940,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkContainerArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkContainersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22016,8 +21996,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkContainerArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkContainersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22072,8 +22052,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkContainerArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkContainersArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22128,8 +22108,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkPeeringArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22183,8 +22163,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkPeeringArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22238,8 +22218,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkPeeringArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22293,8 +22273,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkPeeringArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22348,8 +22328,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkPeeringArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22403,8 +22383,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkPeeringsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22457,8 +22437,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkPeeringsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22511,8 +22491,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkPeeringsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22565,8 +22545,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkPeeringsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22619,8 +22599,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.NetworkPeeringArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetNetworkPeeringsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22669,8 +22649,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOnlineArchiveArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22755,8 +22735,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOnlineArchiveArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22841,8 +22821,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOnlineArchiveArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -22927,8 +22907,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOnlineArchiveArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23013,8 +22993,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOnlineArchiveArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23099,8 +23079,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOnlineArchivesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23182,8 +23162,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOnlineArchivesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23265,8 +23245,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOnlineArchivesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23348,8 +23328,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOnlineArchivesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23431,8 +23411,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOnlineArchivesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23560,8 +23540,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOrganizationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23601,8 +23581,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOrganizationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23642,8 +23622,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOrganizationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23683,8 +23663,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOrganizationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23724,8 +23704,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOrganizationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23764,8 +23744,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOrganizationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23805,8 +23785,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOrganizationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23846,8 +23826,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOrganizationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23887,8 +23867,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOrganizationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23928,8 +23908,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOrganizationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -23969,8 +23949,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOrganizationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24010,8 +23990,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetOrganizationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24052,8 +24032,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.private.EndpointRegionalMode;
      * import com.pulumi.private.EndpointRegionalModeArgs;
      * import com.pulumi.private.PrivateFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24095,8 +24075,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.private.EndpointRegionalMode;
      * import com.pulumi.private.EndpointRegionalModeArgs;
      * import com.pulumi.private.PrivateFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24138,8 +24118,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.private.EndpointRegionalMode;
      * import com.pulumi.private.EndpointRegionalModeArgs;
      * import com.pulumi.private.PrivateFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24181,8 +24161,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.private.EndpointRegionalMode;
      * import com.pulumi.private.EndpointRegionalModeArgs;
      * import com.pulumi.private.PrivateFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24224,8 +24204,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.private.EndpointRegionalMode;
      * import com.pulumi.private.EndpointRegionalModeArgs;
      * import com.pulumi.private.PrivateFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24270,8 +24250,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24327,8 +24307,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24384,8 +24364,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24441,8 +24421,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24498,8 +24478,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24551,8 +24531,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServiceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24600,8 +24580,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServiceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24649,8 +24629,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServiceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24698,8 +24678,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServiceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24747,8 +24727,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivateLinkEndpointServiceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24800,8 +24780,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24859,8 +24839,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24918,8 +24898,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -24977,8 +24957,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25036,8 +25016,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25095,8 +25075,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25153,8 +25133,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25211,8 +25191,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25269,8 +25249,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25327,8 +25307,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointServiceDataFederationOnlineArchivesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25385,8 +25365,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25441,8 +25421,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25497,8 +25477,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25553,8 +25533,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25609,8 +25589,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PrivateLinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPrivatelinkEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25665,8 +25645,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25711,8 +25691,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25764,8 +25744,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25810,8 +25790,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25863,8 +25843,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25909,8 +25889,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -25962,8 +25942,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26008,8 +25988,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26061,8 +26041,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26107,8 +26087,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26160,8 +26140,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26206,8 +26186,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26259,8 +26239,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26305,8 +26285,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26364,8 +26344,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26423,8 +26403,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26482,8 +26462,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26541,8 +26521,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26600,8 +26580,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.ProjectApiKeyProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeyArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26653,8 +26633,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26699,8 +26679,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26745,8 +26725,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26791,8 +26771,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26837,8 +26817,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectApiKeysArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26885,8 +26865,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectInvitationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectInvitationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26938,8 +26918,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectInvitationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectInvitationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -26991,8 +26971,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectInvitationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectInvitationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27044,8 +27024,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectInvitationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectInvitationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27097,8 +27077,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectInvitationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectInvitationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27147,8 +27127,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27188,8 +27168,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27234,8 +27214,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27303,8 +27283,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27344,8 +27324,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27390,8 +27370,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27459,8 +27439,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27500,8 +27480,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27546,8 +27526,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27615,8 +27595,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27656,8 +27636,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27702,8 +27682,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27771,8 +27751,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27812,8 +27792,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27858,8 +27838,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27926,8 +27906,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -27980,8 +27960,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -28034,8 +28014,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -28088,8 +28068,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -28142,8 +28122,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectIpAccessListArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -28195,8 +28175,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -28237,8 +28217,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -28279,8 +28259,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -28321,8 +28301,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -28363,8 +28343,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -28470,8 +28450,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -28554,8 +28534,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -28638,8 +28618,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -28722,8 +28702,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -28806,8 +28786,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -28890,8 +28870,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -28974,8 +28954,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -29058,8 +29038,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -29142,8 +29122,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -29226,8 +29206,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -29306,8 +29286,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectServiceAccountSecretArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountSecretArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -29376,8 +29356,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectServiceAccountSecretArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountSecretArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -29446,8 +29426,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectServiceAccountSecretArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountSecretArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -29516,8 +29496,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectServiceAccountSecretArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountSecretArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -29586,8 +29566,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectServiceAccountSecretArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountSecretArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -29707,8 +29687,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -29762,8 +29742,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -29817,8 +29797,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -29872,8 +29852,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -29927,8 +29907,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -29982,8 +29962,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -30037,8 +30017,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ProjectArgs;
      * import com.pulumi.mongodbatlas.inputs.ProjectLimitArgs;
      * import com.pulumi.mongodbatlas.inputs.GetProjectsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -30101,8 +30081,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PushBasedLogExportArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -30181,8 +30161,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PushBasedLogExportArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -30261,8 +30241,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PushBasedLogExportArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -30341,8 +30321,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PushBasedLogExportArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -30421,8 +30401,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.PushBasedLogExportArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetPushBasedLogExportArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -30579,8 +30559,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -30618,8 +30598,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -30657,8 +30637,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -30696,8 +30676,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -30735,8 +30715,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -30774,8 +30754,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -30813,8 +30793,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -30861,8 +30841,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -30944,8 +30924,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31027,8 +31007,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31110,8 +31090,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31193,8 +31173,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetSearchDeploymentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31267,8 +31247,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetSearchIndexArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31309,8 +31289,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetSearchIndexArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31351,8 +31331,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetSearchIndexArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31393,8 +31373,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetSearchIndexArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31435,8 +31415,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetSearchIndexArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31527,8 +31507,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServerlessInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31573,8 +31553,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServerlessInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31619,8 +31599,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServerlessInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31665,8 +31645,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServerlessInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31711,8 +31691,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServerlessInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31757,8 +31737,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServerlessInstancesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31802,8 +31782,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServerlessInstancesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31847,8 +31827,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServerlessInstancesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31892,8 +31872,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServerlessInstancesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -31937,8 +31917,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServerlessInstancesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -32043,8 +32023,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -32127,8 +32107,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -32211,8 +32191,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -32295,8 +32275,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -32379,8 +32359,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -32463,8 +32443,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -32547,8 +32527,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -32631,8 +32611,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -32715,8 +32695,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -32799,8 +32779,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntryArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountAccessListEntriesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -32881,8 +32861,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -32952,8 +32932,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -33023,8 +33003,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -33094,8 +33074,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -33165,8 +33145,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -33236,8 +33216,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -33307,8 +33287,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -33378,8 +33358,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -33449,8 +33429,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -33520,8 +33500,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountProjectAssignmentsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -33588,8 +33568,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ServiceAccountSecretArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountSecretArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -33657,8 +33637,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ServiceAccountSecretArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountSecretArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -33726,8 +33706,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ServiceAccountSecretArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountSecretArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -33795,8 +33775,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ServiceAccountSecretArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountSecretArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -33864,8 +33844,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ServiceAccountSecretArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetServiceAccountSecretArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34043,8 +34023,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamAccountDetailsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34090,8 +34070,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamAccountDetailsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34137,8 +34117,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamAccountDetailsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34184,8 +34164,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamAccountDetailsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34231,8 +34211,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamAccountDetailsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34277,8 +34257,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34312,8 +34292,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34354,8 +34334,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34389,8 +34369,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34431,8 +34411,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34466,8 +34446,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34508,8 +34488,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34543,8 +34523,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34585,8 +34565,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34620,8 +34600,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34662,8 +34642,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34703,8 +34683,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34744,8 +34724,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34785,8 +34765,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34826,8 +34806,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34872,8 +34852,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspaceArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34913,8 +34893,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -34959,8 +34939,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspaceArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35000,8 +34980,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35046,8 +35026,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspaceArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35087,8 +35067,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35133,8 +35113,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspaceArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35174,8 +35154,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35220,8 +35200,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspaceArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35261,8 +35241,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstanceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35307,8 +35287,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacesArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35346,8 +35326,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35391,8 +35371,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacesArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35430,8 +35410,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35475,8 +35455,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacesArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35514,8 +35494,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35559,8 +35539,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacesArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35598,8 +35578,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35643,8 +35623,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacesArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35682,8 +35662,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamInstancesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35737,8 +35717,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35758,17 +35738,17 @@ public final class MongodbatlasFunctions {
      *             .displayName("terraform-test-private-link-network-manual")
      *             .cloud("AWS")
      *             .region(awsRegion)
-     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
      *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
      *             .build());
      * 
      *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
      *             .displayName("example-private-link-access")
-     *             .aws(List.of(Map.of("account", awsAccountId)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
@@ -35776,9 +35756,9 @@ public final class MongodbatlasFunctions {
      *             .availability("MULTI_ZONE")
      *             .cloud(privateLink.cloud())
      *             .region(privateLink.region())
-     *             .dedicated(List.of(Map.of("cku", 2)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
@@ -35823,8 +35803,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35844,12 +35824,12 @@ public final class MongodbatlasFunctions {
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -35879,8 +35859,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -35933,8 +35913,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -36002,8 +35982,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -36084,8 +36064,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -36105,17 +36085,17 @@ public final class MongodbatlasFunctions {
      *             .displayName("terraform-test-private-link-network-manual")
      *             .cloud("AWS")
      *             .region(awsRegion)
-     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
      *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
      *             .build());
      * 
      *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
      *             .displayName("example-private-link-access")
-     *             .aws(List.of(Map.of("account", awsAccountId)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
@@ -36123,9 +36103,9 @@ public final class MongodbatlasFunctions {
      *             .availability("MULTI_ZONE")
      *             .cloud(privateLink.cloud())
      *             .region(privateLink.region())
-     *             .dedicated(List.of(Map.of("cku", 2)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
@@ -36170,8 +36150,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -36191,12 +36171,12 @@ public final class MongodbatlasFunctions {
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -36226,8 +36206,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -36280,8 +36260,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -36349,8 +36329,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -36431,8 +36411,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -36452,17 +36432,17 @@ public final class MongodbatlasFunctions {
      *             .displayName("terraform-test-private-link-network-manual")
      *             .cloud("AWS")
      *             .region(awsRegion)
-     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
      *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
      *             .build());
      * 
      *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
      *             .displayName("example-private-link-access")
-     *             .aws(List.of(Map.of("account", awsAccountId)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
@@ -36470,9 +36450,9 @@ public final class MongodbatlasFunctions {
      *             .availability("MULTI_ZONE")
      *             .cloud(privateLink.cloud())
      *             .region(privateLink.region())
-     *             .dedicated(List.of(Map.of("cku", 2)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
@@ -36517,8 +36497,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -36538,12 +36518,12 @@ public final class MongodbatlasFunctions {
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -36573,8 +36553,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -36627,8 +36607,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -36696,8 +36676,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -36778,8 +36758,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -36799,17 +36779,17 @@ public final class MongodbatlasFunctions {
      *             .displayName("terraform-test-private-link-network-manual")
      *             .cloud("AWS")
      *             .region(awsRegion)
-     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
      *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
      *             .build());
      * 
      *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
      *             .displayName("example-private-link-access")
-     *             .aws(List.of(Map.of("account", awsAccountId)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
@@ -36817,9 +36797,9 @@ public final class MongodbatlasFunctions {
      *             .availability("MULTI_ZONE")
      *             .cloud(privateLink.cloud())
      *             .region(privateLink.region())
-     *             .dedicated(List.of(Map.of("cku", 2)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
@@ -36864,8 +36844,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -36885,12 +36865,12 @@ public final class MongodbatlasFunctions {
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -36920,8 +36900,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -36974,8 +36954,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -37043,8 +37023,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -37125,8 +37105,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -37146,17 +37126,17 @@ public final class MongodbatlasFunctions {
      *             .displayName("terraform-test-private-link-network-manual")
      *             .cloud("AWS")
      *             .region(awsRegion)
-     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
      *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
      *             .build());
      * 
      *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
      *             .displayName("example-private-link-access")
-     *             .aws(List.of(Map.of("account", awsAccountId)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
@@ -37164,9 +37144,9 @@ public final class MongodbatlasFunctions {
      *             .availability("MULTI_ZONE")
      *             .cloud(privateLink.cloud())
      *             .region(privateLink.region())
-     *             .dedicated(List.of(Map.of("cku", 2)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
@@ -37211,8 +37191,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -37232,12 +37212,12 @@ public final class MongodbatlasFunctions {
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -37267,8 +37247,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -37321,8 +37301,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -37390,8 +37370,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -37472,8 +37452,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -37493,17 +37473,17 @@ public final class MongodbatlasFunctions {
      *             .displayName("terraform-test-private-link-network-manual")
      *             .cloud("AWS")
      *             .region(awsRegion)
-     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
      *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
      *             .build());
      * 
      *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
      *             .displayName("example-private-link-access")
-     *             .aws(List.of(Map.of("account", awsAccountId)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
@@ -37511,9 +37491,9 @@ public final class MongodbatlasFunctions {
      *             .availability("MULTI_ZONE")
      *             .cloud(privateLink.cloud())
      *             .region(privateLink.region())
-     *             .dedicated(List.of(Map.of("cku", 2)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
@@ -37558,8 +37538,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -37579,12 +37559,12 @@ public final class MongodbatlasFunctions {
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -37614,8 +37594,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -37668,8 +37648,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -37737,8 +37717,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -37819,8 +37799,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -37840,17 +37820,17 @@ public final class MongodbatlasFunctions {
      *             .displayName("terraform-test-private-link-network-manual")
      *             .cloud("AWS")
      *             .region(awsRegion)
-     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
      *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
      *             .build());
      * 
      *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
      *             .displayName("example-private-link-access")
-     *             .aws(List.of(Map.of("account", awsAccountId)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
@@ -37858,9 +37838,9 @@ public final class MongodbatlasFunctions {
      *             .availability("MULTI_ZONE")
      *             .cloud(privateLink.cloud())
      *             .region(privateLink.region())
-     *             .dedicated(List.of(Map.of("cku", 2)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
@@ -37905,8 +37885,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -37926,12 +37906,12 @@ public final class MongodbatlasFunctions {
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -37961,8 +37941,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -38015,8 +37995,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -38084,8 +38064,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -38166,8 +38146,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -38187,17 +38167,17 @@ public final class MongodbatlasFunctions {
      *             .displayName("terraform-test-private-link-network-manual")
      *             .cloud("AWS")
      *             .region(awsRegion)
-     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
      *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
      *             .build());
      * 
      *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
      *             .displayName("example-private-link-access")
-     *             .aws(List.of(Map.of("account", awsAccountId)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
@@ -38205,9 +38185,9 @@ public final class MongodbatlasFunctions {
      *             .availability("MULTI_ZONE")
      *             .cloud(privateLink.cloud())
      *             .region(privateLink.region())
-     *             .dedicated(List.of(Map.of("cku", 2)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
@@ -38252,8 +38232,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -38273,12 +38253,12 @@ public final class MongodbatlasFunctions {
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -38308,8 +38288,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -38362,8 +38342,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -38431,8 +38411,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -38513,8 +38493,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -38534,17 +38514,17 @@ public final class MongodbatlasFunctions {
      *             .displayName("terraform-test-private-link-network-manual")
      *             .cloud("AWS")
      *             .region(awsRegion)
-     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
      *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
      *             .build());
      * 
      *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
      *             .displayName("example-private-link-access")
-     *             .aws(List.of(Map.of("account", awsAccountId)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
@@ -38552,9 +38532,9 @@ public final class MongodbatlasFunctions {
      *             .availability("MULTI_ZONE")
      *             .cloud(privateLink.cloud())
      *             .region(privateLink.region())
-     *             .dedicated(List.of(Map.of("cku", 2)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
@@ -38599,8 +38579,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -38620,12 +38600,12 @@ public final class MongodbatlasFunctions {
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -38655,8 +38635,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -38709,8 +38689,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -38778,8 +38758,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -38860,8 +38840,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -38881,17 +38861,17 @@ public final class MongodbatlasFunctions {
      *             .displayName("terraform-test-private-link-network-manual")
      *             .cloud("AWS")
      *             .region(awsRegion)
-     *             .connectionTypes(List.of("PRIVATELINK"))
+     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
      *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
      *             .build());
      * 
      *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
      *             .displayName("example-private-link-access")
-     *             .aws(List.of(Map.of("account", awsAccountId)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
@@ -38899,9 +38879,9 @@ public final class MongodbatlasFunctions {
      *             .availability("MULTI_ZONE")
      *             .cloud(privateLink.cloud())
      *             .region(privateLink.region())
-     *             .dedicated(List.of(Map.of("cku", 2)))
-     *             .environment(List.of(Map.of("id", staging.id())))
-     *             .network(List.of(Map.of("id", privateLink.id())))
+     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
+     *             .environment(Arrays.asList(Map.of("id", staging.id())))
+     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
      *             .build());
      * 
      *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
@@ -38946,8 +38926,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -38967,12 +38947,12 @@ public final class MongodbatlasFunctions {
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+     *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
      *             .bucket(streamBucket.id())
-     *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+     *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
      *         // PrivateLink for S3
@@ -39002,8 +38982,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -39056,8 +39036,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -39125,8 +39105,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -39207,8 +39187,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -39400,8 +39380,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -39593,8 +39573,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -39786,8 +39766,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -39979,8 +39959,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -40172,8 +40152,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -40365,8 +40345,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -40558,8 +40538,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -40751,8 +40731,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -40944,8 +40924,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
      * import static com.pulumi.codegen.internal.Serialization.*;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41124,8 +41104,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41171,8 +41151,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41218,8 +41198,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41265,8 +41245,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41312,8 +41292,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspaceArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41359,8 +41339,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41405,8 +41385,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41451,8 +41431,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41497,8 +41477,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41543,8 +41523,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamWorkspacesArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41589,8 +41569,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.TeamArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41632,8 +41612,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.TeamArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41684,8 +41664,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.TeamArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41727,8 +41707,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.TeamArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41779,8 +41759,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.TeamArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41822,8 +41802,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.TeamArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41874,8 +41854,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.TeamArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41917,8 +41897,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.TeamArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -41969,8 +41949,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.TeamArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42012,8 +41992,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.TeamArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetTeamArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42066,8 +42046,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.TeamProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetTeamProjectAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42119,8 +42099,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.TeamProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetTeamProjectAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42172,8 +42152,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.TeamProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetTeamProjectAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42225,8 +42205,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.TeamProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetTeamProjectAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42278,8 +42258,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.TeamProjectAssignmentArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetTeamProjectAssignmentArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42329,8 +42309,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ThirdPartyIntegrationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42379,8 +42359,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ThirdPartyIntegrationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42429,8 +42409,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ThirdPartyIntegrationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42479,8 +42459,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ThirdPartyIntegrationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42529,8 +42509,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ThirdPartyIntegrationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42580,8 +42560,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ThirdPartyIntegrationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42636,8 +42616,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ThirdPartyIntegrationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42692,8 +42672,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ThirdPartyIntegrationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42748,8 +42728,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ThirdPartyIntegrationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42804,8 +42784,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.ThirdPartyIntegrationArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetThirdPartyIntegrationsArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42866,8 +42846,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42926,8 +42906,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -42997,8 +42977,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -43057,8 +43037,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -43128,8 +43108,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -43188,8 +43168,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -43259,8 +43239,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -43319,8 +43299,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -43390,8 +43370,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;
@@ -43450,8 +43430,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.X509AuthenticationDatabaseUserArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetX509AuthenticationDatabaseUserArgs;
-     * import java.util.List;
      * import java.util.ArrayList;
+     * import java.util.Arrays;
      * import java.util.Map;
      * import java.io.File;
      * import java.nio.file.Files;

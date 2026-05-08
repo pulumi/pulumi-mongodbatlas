@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshots = new Mongodbatlas.Index.CloudBackupSnapshots("test", new()
+        ///     var testCloudBackupSnapshots = new Mongodbatlas.CloudBackupSnapshots("test", new()
         ///     {
         ///         ProjectId = "5d0f1f73cf09a29120e173cf",
         ///         ClusterName = "MyClusterTest",
@@ -33,7 +33,7 @@ namespace Pulumi.Mongodbatlas
         ///         RetentionInDays = 1,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.Index.GetCloudBackupSnapshots.Invoke(new()
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshots.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSnapshots.ProjectId,
         ///         ClusterName = testCloudBackupSnapshots.ClusterName,
@@ -61,7 +61,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshots = new Mongodbatlas.Index.CloudBackupSnapshots("test", new()
+        ///     var testCloudBackupSnapshots = new Mongodbatlas.CloudBackupSnapshots("test", new()
         ///     {
         ///         ProjectId = "5d0f1f73cf09a29120e173cf",
         ///         ClusterName = "MyClusterTest",
@@ -69,7 +69,7 @@ namespace Pulumi.Mongodbatlas
         ///         RetentionInDays = 1,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.Index.GetCloudBackupSnapshots.Invoke(new()
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshots.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSnapshots.ProjectId,
         ///         ClusterName = testCloudBackupSnapshots.ClusterName,
@@ -97,7 +97,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var testCloudBackupSnapshots = new Mongodbatlas.Index.CloudBackupSnapshots("test", new()
+        ///     var testCloudBackupSnapshots = new Mongodbatlas.CloudBackupSnapshots("test", new()
         ///     {
         ///         ProjectId = "5d0f1f73cf09a29120e173cf",
         ///         ClusterName = "MyClusterTest",
@@ -105,7 +105,7 @@ namespace Pulumi.Mongodbatlas
         ///         RetentionInDays = 1,
         ///     });
         /// 
-        ///     var test = Mongodbatlas.Index.GetCloudBackupSnapshots.Invoke(new()
+        ///     var test = Mongodbatlas.GetCloudBackupSnapshots.Invoke(new()
         ///     {
         ///         ProjectId = testCloudBackupSnapshots.ProjectId,
         ///         ClusterName = testCloudBackupSnapshots.ClusterName,

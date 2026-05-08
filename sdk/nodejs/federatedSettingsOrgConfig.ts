@@ -161,37 +161,37 @@ export interface FederatedSettingsOrgConfigState {
     /**
      * The collection of unique ids representing the identity providers that can be used for data access in this organization.
      */
-    dataAccessIdentityProviderIds?: pulumi.Input<pulumi.Input<string>[]>;
+    dataAccessIdentityProviderIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List that contains the approved domains from which organization users can log in.
      */
-    domainAllowLists?: pulumi.Input<pulumi.Input<string>[]>;
+    domainAllowLists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag that indicates whether domain restriction is enabled for the connected organization.
      */
-    domainRestrictionEnabled?: pulumi.Input<boolean>;
+    domainRestrictionEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
      */
-    federationSettingsId?: pulumi.Input<string>;
+    federationSettingsId?: pulumi.Input<string | undefined>;
     /**
      * Legacy 20-hexadecimal digit string that identifies the SAML access identity provider that this connected org config is associated with. Removing the attribute or providing the value `""` will detach/remove the SAML identity provider. This id can be found in two ways:
      * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
      * 2. `oktaIdpId` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      */
-    identityProviderId?: pulumi.Input<string>;
+    identityProviderId?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
-    orgId?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string | undefined>;
     /**
      * List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
      */
-    postAuthRoleGrants?: pulumi.Input<pulumi.Input<string>[]>;
+    postAuthRoleGrants?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
      */
-    userConflicts?: pulumi.Input<pulumi.Input<inputs.FederatedSettingsOrgConfigUserConflict>[]>;
+    userConflicts?: pulumi.Input<pulumi.Input<inputs.FederatedSettingsOrgConfigUserConflict>[] | undefined>;
 }
 
 /**
@@ -201,11 +201,11 @@ export interface FederatedSettingsOrgConfigArgs {
     /**
      * The collection of unique ids representing the identity providers that can be used for data access in this organization.
      */
-    dataAccessIdentityProviderIds?: pulumi.Input<pulumi.Input<string>[]>;
+    dataAccessIdentityProviderIds?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * List that contains the approved domains from which organization users can log in.
      */
-    domainAllowLists?: pulumi.Input<pulumi.Input<string>[]>;
+    domainAllowLists?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Flag that indicates whether domain restriction is enabled for the connected organization.
      */
@@ -219,7 +219,7 @@ export interface FederatedSettingsOrgConfigArgs {
      * 1. Within the Federation Management UI in Atlas in the Identity Providers tab by clicking the info icon in the IdP ID row of a configured SAML identity provider
      * 2. `oktaIdpId` on the `mongodbatlas.FederatedSettingsIdentityProvider` resource
      */
-    identityProviderId?: pulumi.Input<string>;
+    identityProviderId?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
@@ -227,5 +227,5 @@ export interface FederatedSettingsOrgConfigArgs {
     /**
      * List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
      */
-    postAuthRoleGrants?: pulumi.Input<pulumi.Input<string>[]>;
+    postAuthRoleGrants?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

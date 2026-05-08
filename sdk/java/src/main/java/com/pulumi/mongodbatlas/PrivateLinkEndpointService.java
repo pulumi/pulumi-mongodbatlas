@@ -43,8 +43,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.aws.VpcEndpointArgs;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -66,8 +66,8 @@ import javax.annotation.Nullable;
  *             .vpcId("vpc-7fc0a543")
  *             .serviceName(this_.endpointServiceName())
  *             .vpcEndpointType("Interface")
- *             .subnetIds(List.of("subnet-de0406d2"))
- *             .securityGroupIds(List.of("sg-3f238186"))
+ *             .subnetIds(Arrays.asList("subnet-de0406d2"))
+ *             .securityGroupIds(Arrays.asList("sg-3f238186"))
  *             .build());
  * 
  *         var thisPrivateLinkEndpointService = new PrivateLinkEndpointService("thisPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
@@ -97,8 +97,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.aws.VpcEndpointArgs;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -121,8 +121,8 @@ import javax.annotation.Nullable;
  *             .vpcId("vpc-7fc0a543")
  *             .serviceName(this_.endpointServiceName())
  *             .vpcEndpointType("Interface")
- *             .subnetIds(List.of("subnet-de0406d2"))
- *             .securityGroupIds(List.of("sg-3f238186"))
+ *             .subnetIds(Arrays.asList("subnet-de0406d2"))
+ *             .securityGroupIds(Arrays.asList("sg-3f238186"))
  *             .region("us-east-1")
  *             .serviceRegion("eu-west-1")
  *             .build());
@@ -154,8 +154,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.azurerm.PrivateEndpointArgs;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -178,7 +178,7 @@ import javax.annotation.Nullable;
  *             .location(thisAzurermResourceGroup.location())
  *             .resourceGroupName(resourceGroupName)
  *             .subnetId(thisAzurermSubnet.id())
- *             .privateServiceConnection(List.of(Map.ofEntries(
+ *             .privateServiceConnection(Arrays.asList(Map.ofEntries(
  *                 Map.entry("name", this_.privateLinkServiceName()),
  *                 Map.entry("privateConnectionResourceId", this_.privateLinkServiceResourceId()),
  *                 Map.entry("isManualConnection", true),
@@ -227,8 +227,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpointService;
  * import com.pulumi.mongodbatlas.PrivateLinkEndpointServiceArgs;
  * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -272,7 +272,7 @@ import javax.annotation.Nullable;
  *             .address("10.0.42.1")
  *             .region(defaultComputeSubnetwork.region())
  *             .build(), CustomResourceOptions.builder()
- *                 .dependsOn(List.of(this_))
+ *                 .dependsOn(Arrays.asList(this_))
  *                 .build());
  * 
  *         // Create Forwarding Rule (1 rule for port-mapped architecture)

@@ -327,87 +327,87 @@ export interface EventTriggerState {
      * The ObjectID of your application.
      * * For more details on `projectId` and `appId` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
      */
-    appId?: pulumi.Input<string>;
+    appId?: pulumi.Input<string | undefined>;
     /**
      * Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
      */
-    configCollection?: pulumi.Input<string>;
+    configCollection?: pulumi.Input<string | undefined>;
     /**
      * Required for `DATABASE` type. The name of the MongoDB database to watch.
      */
-    configDatabase?: pulumi.Input<string>;
+    configDatabase?: pulumi.Input<string | undefined>;
     /**
      * Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
      */
-    configFullDocument?: pulumi.Input<boolean>;
-    configFullDocumentBefore?: pulumi.Input<boolean>;
+    configFullDocument?: pulumi.Input<boolean | undefined>;
+    configFullDocumentBefore?: pulumi.Input<boolean | undefined>;
     /**
      * Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
      */
-    configMatch?: pulumi.Input<string>;
+    configMatch?: pulumi.Input<string | undefined>;
     /**
      * Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
      */
-    configOperationType?: pulumi.Input<string>;
+    configOperationType?: pulumi.Input<string | undefined>;
     /**
      * Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
      */
-    configOperationTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    configOperationTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
      */
-    configProject?: pulumi.Input<string>;
+    configProject?: pulumi.Input<string | undefined>;
     /**
      * Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
      */
-    configProviders?: pulumi.Input<pulumi.Input<string>[]>;
+    configProviders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
      */
-    configSchedule?: pulumi.Input<string>;
-    configScheduleType?: pulumi.Input<string>;
+    configSchedule?: pulumi.Input<string | undefined>;
+    configScheduleType?: pulumi.Input<string | undefined>;
     /**
      * Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
      */
-    configServiceId?: pulumi.Input<string>;
+    configServiceId?: pulumi.Input<string | undefined>;
     /**
      * Default: `false` If `true`, the trigger is disabled.
      */
-    disabled?: pulumi.Input<boolean>;
+    disabled?: pulumi.Input<boolean | undefined>;
     /**
      * An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
      * * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
      * * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
      */
-    eventProcessors?: pulumi.Input<inputs.EventTriggerEventProcessors>;
+    eventProcessors?: pulumi.Input<inputs.EventTriggerEventProcessors | undefined>;
     /**
      * The ID of the function associated with the trigger.
      */
-    functionId?: pulumi.Input<string>;
+    functionId?: pulumi.Input<string | undefined>;
     /**
      * The name of the function associated with the trigger.
      */
-    functionName?: pulumi.Input<string>;
+    functionName?: pulumi.Input<string | undefined>;
     /**
      * The name of the trigger.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * The unique ID of the trigger.
      */
-    triggerId?: pulumi.Input<string>;
+    triggerId?: pulumi.Input<string | undefined>;
     /**
      * The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
      */
-    unordered?: pulumi.Input<boolean>;
+    unordered?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -422,62 +422,62 @@ export interface EventTriggerArgs {
     /**
      * Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
      */
-    configCollection?: pulumi.Input<string>;
+    configCollection?: pulumi.Input<string | undefined>;
     /**
      * Required for `DATABASE` type. The name of the MongoDB database to watch.
      */
-    configDatabase?: pulumi.Input<string>;
+    configDatabase?: pulumi.Input<string | undefined>;
     /**
      * Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
      */
-    configFullDocument?: pulumi.Input<boolean>;
-    configFullDocumentBefore?: pulumi.Input<boolean>;
+    configFullDocument?: pulumi.Input<boolean | undefined>;
+    configFullDocumentBefore?: pulumi.Input<boolean | undefined>;
     /**
      * Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
      */
-    configMatch?: pulumi.Input<string>;
+    configMatch?: pulumi.Input<string | undefined>;
     /**
      * Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
      */
-    configOperationType?: pulumi.Input<string>;
+    configOperationType?: pulumi.Input<string | undefined>;
     /**
      * Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
      */
-    configOperationTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    configOperationTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
      */
-    configProject?: pulumi.Input<string>;
+    configProject?: pulumi.Input<string | undefined>;
     /**
      * Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
      */
-    configProviders?: pulumi.Input<pulumi.Input<string>[]>;
+    configProviders?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
      */
-    configSchedule?: pulumi.Input<string>;
+    configSchedule?: pulumi.Input<string | undefined>;
     /**
      * Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
      */
-    configServiceId?: pulumi.Input<string>;
+    configServiceId?: pulumi.Input<string | undefined>;
     /**
      * Default: `false` If `true`, the trigger is disabled.
      */
-    disabled?: pulumi.Input<boolean>;
+    disabled?: pulumi.Input<boolean | undefined>;
     /**
      * An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
      * * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
      * * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
      */
-    eventProcessors?: pulumi.Input<inputs.EventTriggerEventProcessors>;
+    eventProcessors?: pulumi.Input<inputs.EventTriggerEventProcessors | undefined>;
     /**
      * The ID of the function associated with the trigger.
      */
-    functionId?: pulumi.Input<string>;
+    functionId?: pulumi.Input<string | undefined>;
     /**
      * The name of the trigger.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
      */
@@ -489,5 +489,5 @@ export interface EventTriggerArgs {
     /**
      * Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
      */
-    unordered?: pulumi.Input<boolean>;
+    unordered?: pulumi.Input<boolean | undefined>;
 }

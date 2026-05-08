@@ -179,32 +179,32 @@ export interface SearchDeploymentState {
     /**
      * Label that identifies the cluster to return the search nodes for.
      */
-    clusterName?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
      */
-    encryptionAtRestProvider?: pulumi.Input<string>;
+    encryptionAtRestProvider?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
      */
-    skipWaitOnUpdate?: pulumi.Input<boolean>;
+    skipWaitOnUpdate?: pulumi.Input<boolean | undefined>;
     /**
      * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      */
-    specs?: pulumi.Input<pulumi.Input<inputs.SearchDeploymentSpec>[]>;
+    specs?: pulumi.Input<pulumi.Input<inputs.SearchDeploymentSpec>[] | undefined>;
     /**
      * Human-readable label that indicates the current operating condition of this search deployment.
      */
-    stateName?: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.SearchDeploymentTimeouts>;
+    stateName?: pulumi.Input<string | undefined>;
+    timeouts?: pulumi.Input<inputs.SearchDeploymentTimeouts | undefined>;
 }
 
 /**
@@ -218,7 +218,7 @@ export interface SearchDeploymentArgs {
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
@@ -226,10 +226,10 @@ export interface SearchDeploymentArgs {
     /**
      * If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
      */
-    skipWaitOnUpdate?: pulumi.Input<boolean>;
+    skipWaitOnUpdate?: pulumi.Input<boolean | undefined>;
     /**
      * List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
      */
     specs: pulumi.Input<pulumi.Input<inputs.SearchDeploymentSpec>[]>;
-    timeouts?: pulumi.Input<inputs.SearchDeploymentTimeouts>;
+    timeouts?: pulumi.Input<inputs.SearchDeploymentTimeouts | undefined>;
 }

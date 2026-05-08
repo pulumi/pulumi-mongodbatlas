@@ -255,9 +255,9 @@ def get_stream_processors(instance_name: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
         workspace_name=pulumi.get(__ret__, 'workspace_name'))
-def get_stream_processors_output(instance_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                 workspace_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_stream_processors_output(instance_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                 workspace_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamProcessorsResult]:
     """
     `get_stream_processors` returns all stream processors in a stream instance.

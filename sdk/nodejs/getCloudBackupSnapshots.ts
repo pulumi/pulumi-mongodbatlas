@@ -124,11 +124,11 @@ export interface GetCloudBackupSnapshotsOutputArgs {
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
-    itemsPerPage?: pulumi.Input<number>;
+    itemsPerPage?: pulumi.Input<number | undefined>;
     /**
      * The page to return. Defaults to `1`.
      */
-    pageNum?: pulumi.Input<number>;
+    pageNum?: pulumi.Input<number | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to retrieve, also known as `groupId` in the official documentation.
      */

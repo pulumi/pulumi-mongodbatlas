@@ -212,7 +212,7 @@ def get_organization(org_id: Optional[_builtins.str] = None,
         security_contact=pulumi.get(__ret__, 'security_contact'),
         skip_default_alerts_settings=pulumi.get(__ret__, 'skip_default_alerts_settings'),
         users=pulumi.get(__ret__, 'users'))
-def get_organization_output(org_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_organization_output(org_id: pulumi.Input[Optional[_builtins.str]] = None,
                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrganizationResult]:
     """
     `Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.

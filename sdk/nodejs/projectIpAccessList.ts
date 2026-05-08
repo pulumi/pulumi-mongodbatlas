@@ -176,24 +176,24 @@ export interface ProjectIpAccessListState {
     /**
      * Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
      */
-    awsSecurityGroup?: pulumi.Input<string>;
+    awsSecurityGroup?: pulumi.Input<string | undefined>;
     /**
      * Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
      */
-    cidrBlock?: pulumi.Input<string>;
+    cidrBlock?: pulumi.Input<string | undefined>;
     /**
      * Remark that explains the purpose or scope of this IP access list entry.
      */
-    comment?: pulumi.Input<string>;
+    comment?: pulumi.Input<string | undefined>;
     /**
      * Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
      */
-    ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.ProjectIpAccessListTimeouts>;
+    projectId?: pulumi.Input<string | undefined>;
+    timeouts?: pulumi.Input<inputs.ProjectIpAccessListTimeouts | undefined>;
 }
 
 /**
@@ -203,22 +203,22 @@ export interface ProjectIpAccessListArgs {
     /**
      * Unique identifier of the AWS security group to add to the access list. Mutually exclusive with `cidrBlock` and `ipAddress`.
      */
-    awsSecurityGroup?: pulumi.Input<string>;
+    awsSecurityGroup?: pulumi.Input<string | undefined>;
     /**
      * Range of IP addresses in CIDR notation to be added to the access list. Mutually exclusive with `ipAddress` and `awsSecurityGroup`.
      */
-    cidrBlock?: pulumi.Input<string>;
+    cidrBlock?: pulumi.Input<string | undefined>;
     /**
      * Remark that explains the purpose or scope of this IP access list entry.
      */
-    comment?: pulumi.Input<string>;
+    comment?: pulumi.Input<string | undefined>;
     /**
      * Single IP address to be added to the access list. Mutually exclusive with `cidrBlock` and `awsSecurityGroup`.
      */
-    ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
-    timeouts?: pulumi.Input<inputs.ProjectIpAccessListTimeouts>;
+    timeouts?: pulumi.Input<inputs.ProjectIpAccessListTimeouts | undefined>;
 }

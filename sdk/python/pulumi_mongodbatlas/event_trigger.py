@@ -24,22 +24,22 @@ class EventTriggerArgs:
                  app_id: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 config_collection: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_database: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_full_document: Optional[pulumi.Input[_builtins.bool]] = None,
-                 config_full_document_before: Optional[pulumi.Input[_builtins.bool]] = None,
-                 config_match: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_operation_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_operation_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 config_project: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_providers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 config_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 disabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 event_processors: Optional[pulumi.Input['EventTriggerEventProcessorsArgs']] = None,
-                 function_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 unordered: Optional[pulumi.Input[_builtins.bool]] = None):
+                 config_collection: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_database: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_full_document: pulumi.Input[Optional[_builtins.bool]] = None,
+                 config_full_document_before: pulumi.Input[Optional[_builtins.bool]] = None,
+                 config_match: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_operation_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_operation_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 config_project: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_providers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 config_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 event_processors: pulumi.Input[Optional['EventTriggerEventProcessorsArgs']] = None,
+                 function_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 unordered: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a EventTrigger resource.
 
@@ -140,148 +140,148 @@ class EventTriggerArgs:
 
     @_builtins.property
     @pulumi.getter(name="configCollection")
-    def config_collection(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_collection(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
         """
         return pulumi.get(self, "config_collection")
 
     @config_collection.setter
-    def config_collection(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_collection(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_collection", value)
 
     @_builtins.property
     @pulumi.getter(name="configDatabase")
-    def config_database(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_database(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for `DATABASE` type. The name of the MongoDB database to watch.
         """
         return pulumi.get(self, "config_database")
 
     @config_database.setter
-    def config_database(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_database(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_database", value)
 
     @_builtins.property
     @pulumi.getter(name="configFullDocument")
-    def config_full_document(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def config_full_document(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
         """
         return pulumi.get(self, "config_full_document")
 
     @config_full_document.setter
-    def config_full_document(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def config_full_document(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "config_full_document", value)
 
     @_builtins.property
     @pulumi.getter(name="configFullDocumentBefore")
-    def config_full_document_before(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def config_full_document_before(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "config_full_document_before")
 
     @config_full_document_before.setter
-    def config_full_document_before(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def config_full_document_before(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "config_full_document_before", value)
 
     @_builtins.property
     @pulumi.getter(name="configMatch")
-    def config_match(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_match(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
         """
         return pulumi.get(self, "config_match")
 
     @config_match.setter
-    def config_match(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_match(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_match", value)
 
     @_builtins.property
     @pulumi.getter(name="configOperationType")
-    def config_operation_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_operation_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
         """
         return pulumi.get(self, "config_operation_type")
 
     @config_operation_type.setter
-    def config_operation_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_operation_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_operation_type", value)
 
     @_builtins.property
     @pulumi.getter(name="configOperationTypes")
-    def config_operation_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def config_operation_types(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
         """
         return pulumi.get(self, "config_operation_types")
 
     @config_operation_types.setter
-    def config_operation_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def config_operation_types(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "config_operation_types", value)
 
     @_builtins.property
     @pulumi.getter(name="configProject")
-    def config_project(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_project(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
         """
         return pulumi.get(self, "config_project")
 
     @config_project.setter
-    def config_project(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_project(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_project", value)
 
     @_builtins.property
     @pulumi.getter(name="configProviders")
-    def config_providers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def config_providers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
         """
         return pulumi.get(self, "config_providers")
 
     @config_providers.setter
-    def config_providers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def config_providers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "config_providers", value)
 
     @_builtins.property
     @pulumi.getter(name="configSchedule")
-    def config_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
         """
         return pulumi.get(self, "config_schedule")
 
     @config_schedule.setter
-    def config_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="configServiceId")
-    def config_service_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
         """
         return pulumi.get(self, "config_service_id")
 
     @config_service_id.setter
-    def config_service_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_service_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_service_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def disabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Default: `false` If `true`, the trigger is disabled.
         """
         return pulumi.get(self, "disabled")
 
     @disabled.setter
-    def disabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disabled", value)
 
     @_builtins.property
     @pulumi.getter(name="eventProcessors")
-    def event_processors(self) -> Optional[pulumi.Input['EventTriggerEventProcessorsArgs']]:
+    def event_processors(self) -> pulumi.Input[Optional['EventTriggerEventProcessorsArgs']]:
         """
         An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
         * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
@@ -290,71 +290,71 @@ class EventTriggerArgs:
         return pulumi.get(self, "event_processors")
 
     @event_processors.setter
-    def event_processors(self, value: Optional[pulumi.Input['EventTriggerEventProcessorsArgs']]):
+    def event_processors(self, value: pulumi.Input[Optional['EventTriggerEventProcessorsArgs']]):
         pulumi.set(self, "event_processors", value)
 
     @_builtins.property
     @pulumi.getter(name="functionId")
-    def function_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def function_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the function associated with the trigger.
         """
         return pulumi.get(self, "function_id")
 
     @function_id.setter
-    def function_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def function_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "function_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the trigger.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter
-    def unordered(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def unordered(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
         """
         return pulumi.get(self, "unordered")
 
     @unordered.setter
-    def unordered(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def unordered(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "unordered", value)
 
 
 @pulumi.input_type
 class _EventTriggerState:
     def __init__(__self__, *,
-                 app_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_collection: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_database: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_full_document: Optional[pulumi.Input[_builtins.bool]] = None,
-                 config_full_document_before: Optional[pulumi.Input[_builtins.bool]] = None,
-                 config_match: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_operation_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_operation_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 config_project: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_providers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 config_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_schedule_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 disabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 event_processors: Optional[pulumi.Input['EventTriggerEventProcessorsArgs']] = None,
-                 function_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 function_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 trigger_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 unordered: Optional[pulumi.Input[_builtins.bool]] = None):
+                 app_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_collection: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_database: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_full_document: pulumi.Input[Optional[_builtins.bool]] = None,
+                 config_full_document_before: pulumi.Input[Optional[_builtins.bool]] = None,
+                 config_match: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_operation_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_operation_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 config_project: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_providers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 config_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_schedule_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 event_processors: pulumi.Input[Optional['EventTriggerEventProcessorsArgs']] = None,
+                 function_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 function_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 trigger_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 unordered: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering EventTrigger resources.
 
@@ -429,7 +429,7 @@ class _EventTriggerState:
 
     @_builtins.property
     @pulumi.getter(name="appId")
-    def app_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def app_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ObjectID of your application.
         * For more details on `project_id` and `app_id` see: https://www.mongodb.com/docs/api/doc/atlas-app-services-admin-api-v3/#topic-project-amp-application-ids
@@ -437,162 +437,162 @@ class _EventTriggerState:
         return pulumi.get(self, "app_id")
 
     @app_id.setter
-    def app_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def app_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "app_id", value)
 
     @_builtins.property
     @pulumi.getter(name="configCollection")
-    def config_collection(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_collection(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional for `DATABASE` type. The name of the MongoDB collection that the trigger watches for change events. The collection must be part of the specified database.
         """
         return pulumi.get(self, "config_collection")
 
     @config_collection.setter
-    def config_collection(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_collection(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_collection", value)
 
     @_builtins.property
     @pulumi.getter(name="configDatabase")
-    def config_database(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_database(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for `DATABASE` type. The name of the MongoDB database to watch.
         """
         return pulumi.get(self, "config_database")
 
     @config_database.setter
-    def config_database(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_database(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_database", value)
 
     @_builtins.property
     @pulumi.getter(name="configFullDocument")
-    def config_full_document(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def config_full_document(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
         """
         return pulumi.get(self, "config_full_document")
 
     @config_full_document.setter
-    def config_full_document(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def config_full_document(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "config_full_document", value)
 
     @_builtins.property
     @pulumi.getter(name="configFullDocumentBefore")
-    def config_full_document_before(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def config_full_document_before(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "config_full_document_before")
 
     @config_full_document_before.setter
-    def config_full_document_before(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def config_full_document_before(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "config_full_document_before", value)
 
     @_builtins.property
     @pulumi.getter(name="configMatch")
-    def config_match(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_match(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
         """
         return pulumi.get(self, "config_match")
 
     @config_match.setter
-    def config_match(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_match(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_match", value)
 
     @_builtins.property
     @pulumi.getter(name="configOperationType")
-    def config_operation_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_operation_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
         """
         return pulumi.get(self, "config_operation_type")
 
     @config_operation_type.setter
-    def config_operation_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_operation_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_operation_type", value)
 
     @_builtins.property
     @pulumi.getter(name="configOperationTypes")
-    def config_operation_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def config_operation_types(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
         """
         return pulumi.get(self, "config_operation_types")
 
     @config_operation_types.setter
-    def config_operation_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def config_operation_types(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "config_operation_types", value)
 
     @_builtins.property
     @pulumi.getter(name="configProject")
-    def config_project(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_project(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
         """
         return pulumi.get(self, "config_project")
 
     @config_project.setter
-    def config_project(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_project(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_project", value)
 
     @_builtins.property
     @pulumi.getter(name="configProviders")
-    def config_providers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def config_providers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
         """
         return pulumi.get(self, "config_providers")
 
     @config_providers.setter
-    def config_providers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def config_providers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "config_providers", value)
 
     @_builtins.property
     @pulumi.getter(name="configSchedule")
-    def config_schedule(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_schedule(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
         """
         return pulumi.get(self, "config_schedule")
 
     @config_schedule.setter
-    def config_schedule(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_schedule(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_schedule", value)
 
     @_builtins.property
     @pulumi.getter(name="configScheduleType")
-    def config_schedule_type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_schedule_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "config_schedule_type")
 
     @config_schedule_type.setter
-    def config_schedule_type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_schedule_type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_schedule_type", value)
 
     @_builtins.property
     @pulumi.getter(name="configServiceId")
-    def config_service_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def config_service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
         """
         return pulumi.get(self, "config_service_id")
 
     @config_service_id.setter
-    def config_service_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def config_service_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "config_service_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def disabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def disabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Default: `false` If `true`, the trigger is disabled.
         """
         return pulumi.get(self, "disabled")
 
     @disabled.setter
-    def disabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def disabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "disabled", value)
 
     @_builtins.property
     @pulumi.getter(name="eventProcessors")
-    def event_processors(self) -> Optional[pulumi.Input['EventTriggerEventProcessorsArgs']]:
+    def event_processors(self) -> pulumi.Input[Optional['EventTriggerEventProcessorsArgs']]:
         """
         An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
         * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
@@ -601,91 +601,91 @@ class _EventTriggerState:
         return pulumi.get(self, "event_processors")
 
     @event_processors.setter
-    def event_processors(self, value: Optional[pulumi.Input['EventTriggerEventProcessorsArgs']]):
+    def event_processors(self, value: pulumi.Input[Optional['EventTriggerEventProcessorsArgs']]):
         pulumi.set(self, "event_processors", value)
 
     @_builtins.property
     @pulumi.getter(name="functionId")
-    def function_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def function_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the function associated with the trigger.
         """
         return pulumi.get(self, "function_id")
 
     @function_id.setter
-    def function_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def function_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "function_id", value)
 
     @_builtins.property
     @pulumi.getter(name="functionName")
-    def function_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def function_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the function associated with the trigger.
         """
         return pulumi.get(self, "function_name")
 
     @function_name.setter
-    def function_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def function_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "function_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the trigger.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID for the project to create the trigger, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="triggerId")
-    def trigger_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def trigger_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID of the trigger.
         """
         return pulumi.get(self, "trigger_id")
 
     @trigger_id.setter
-    def trigger_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def trigger_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "trigger_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`,`SCHEDULED`
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter
-    def unordered(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def unordered(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Only Available for Database Triggers. If true, event ordering is disabled and this trigger can process events in parallel. If false, event ordering is enabled and the trigger executes serially.
         """
         return pulumi.get(self, "unordered")
 
     @unordered.setter
-    def unordered(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def unordered(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "unordered", value)
 
 
@@ -695,25 +695,25 @@ class EventTrigger(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 app_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_collection: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_database: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_full_document: Optional[pulumi.Input[_builtins.bool]] = None,
-                 config_full_document_before: Optional[pulumi.Input[_builtins.bool]] = None,
-                 config_match: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_operation_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_operation_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 config_project: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_providers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 config_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 disabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 event_processors: Optional[pulumi.Input[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict']]] = None,
-                 function_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 unordered: Optional[pulumi.Input[_builtins.bool]] = None,
+                 app_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_collection: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_database: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_full_document: pulumi.Input[Optional[_builtins.bool]] = None,
+                 config_full_document_before: pulumi.Input[Optional[_builtins.bool]] = None,
+                 config_match: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_operation_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_operation_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 config_project: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_providers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 config_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 event_processors: pulumi.Input[Optional[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict']]] = None,
+                 function_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 unordered: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         `EventTrigger` provides a Event Trigger resource.
@@ -1004,25 +1004,25 @@ class EventTrigger(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 app_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_collection: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_database: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_full_document: Optional[pulumi.Input[_builtins.bool]] = None,
-                 config_full_document_before: Optional[pulumi.Input[_builtins.bool]] = None,
-                 config_match: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_operation_type: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_operation_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 config_project: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_providers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 config_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-                 config_service_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 disabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 event_processors: Optional[pulumi.Input[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict']]] = None,
-                 function_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 unordered: Optional[pulumi.Input[_builtins.bool]] = None,
+                 app_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_collection: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_database: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_full_document: pulumi.Input[Optional[_builtins.bool]] = None,
+                 config_full_document_before: pulumi.Input[Optional[_builtins.bool]] = None,
+                 config_match: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_operation_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_operation_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 config_project: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_providers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 config_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+                 config_service_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 event_processors: pulumi.Input[Optional[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict']]] = None,
+                 function_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 unordered: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1070,28 +1070,28 @@ class EventTrigger(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            app_id: Optional[pulumi.Input[_builtins.str]] = None,
-            config_collection: Optional[pulumi.Input[_builtins.str]] = None,
-            config_database: Optional[pulumi.Input[_builtins.str]] = None,
-            config_full_document: Optional[pulumi.Input[_builtins.bool]] = None,
-            config_full_document_before: Optional[pulumi.Input[_builtins.bool]] = None,
-            config_match: Optional[pulumi.Input[_builtins.str]] = None,
-            config_operation_type: Optional[pulumi.Input[_builtins.str]] = None,
-            config_operation_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            config_project: Optional[pulumi.Input[_builtins.str]] = None,
-            config_providers: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            config_schedule: Optional[pulumi.Input[_builtins.str]] = None,
-            config_schedule_type: Optional[pulumi.Input[_builtins.str]] = None,
-            config_service_id: Optional[pulumi.Input[_builtins.str]] = None,
-            disabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            event_processors: Optional[pulumi.Input[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict']]] = None,
-            function_id: Optional[pulumi.Input[_builtins.str]] = None,
-            function_name: Optional[pulumi.Input[_builtins.str]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            trigger_id: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            unordered: Optional[pulumi.Input[_builtins.bool]] = None) -> 'EventTrigger':
+            app_id: pulumi.Input[Optional[_builtins.str]] = None,
+            config_collection: pulumi.Input[Optional[_builtins.str]] = None,
+            config_database: pulumi.Input[Optional[_builtins.str]] = None,
+            config_full_document: pulumi.Input[Optional[_builtins.bool]] = None,
+            config_full_document_before: pulumi.Input[Optional[_builtins.bool]] = None,
+            config_match: pulumi.Input[Optional[_builtins.str]] = None,
+            config_operation_type: pulumi.Input[Optional[_builtins.str]] = None,
+            config_operation_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            config_project: pulumi.Input[Optional[_builtins.str]] = None,
+            config_providers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            config_schedule: pulumi.Input[Optional[_builtins.str]] = None,
+            config_schedule_type: pulumi.Input[Optional[_builtins.str]] = None,
+            config_service_id: pulumi.Input[Optional[_builtins.str]] = None,
+            disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            event_processors: pulumi.Input[Optional[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict']]] = None,
+            function_id: pulumi.Input[Optional[_builtins.str]] = None,
+            function_name: pulumi.Input[Optional[_builtins.str]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            trigger_id: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            unordered: pulumi.Input[Optional[_builtins.bool]] = None) -> 'EventTrigger':
         """
         Get an existing EventTrigger resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

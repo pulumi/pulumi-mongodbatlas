@@ -249,7 +249,7 @@ export interface GetAlertConfigurationOutputArgs {
      * List of formatted output requested for this alert configuration
      * * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
      */
-    outputs?: pulumi.Input<pulumi.Input<inputs.GetAlertConfigurationOutputArgs>[]>;
+    outputs?: pulumi.Input<pulumi.Input<inputs.GetAlertConfigurationOutputArgs>[] | undefined>;
     /**
      * The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
      */

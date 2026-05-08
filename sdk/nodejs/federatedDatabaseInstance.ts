@@ -342,35 +342,35 @@ export interface FederatedDatabaseInstanceState {
      * * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
      * * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
      */
-    cloudProviderConfig?: pulumi.Input<inputs.FederatedDatabaseInstanceCloudProviderConfig>;
+    cloudProviderConfig?: pulumi.Input<inputs.FederatedDatabaseInstanceCloudProviderConfig | undefined>;
     /**
      * The cloud provider region to which the Federated Instance routes client connections for data processing.
      * * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
      * * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
      */
-    dataProcessRegion?: pulumi.Input<inputs.FederatedDatabaseInstanceDataProcessRegion>;
+    dataProcessRegion?: pulumi.Input<inputs.FederatedDatabaseInstanceDataProcessRegion | undefined>;
     /**
      * The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
      */
-    hostnames?: pulumi.Input<pulumi.Input<string>[]>;
+    hostnames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Name of the Atlas Federated Database Instance.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The list of private endpoint hostnames assigned to the Federated Database Instance.
      */
-    privateEndpointHostnames?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstancePrivateEndpointHostname>[]>;
+    privateEndpointHostnames?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstancePrivateEndpointHostname>[] | undefined>;
     /**
      * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Current state of the Federated Database Instance:
      * * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
      * * `DELETED` - The Federated Database Instance was deleted.
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
      * * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
@@ -394,7 +394,7 @@ export interface FederatedDatabaseInstanceState {
      * * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
      * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
      */
-    storageDatabases?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabase>[]>;
+    storageDatabases?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabase>[] | undefined>;
     /**
      * Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
      * * `storage_stores.#.name` - Name of the data store.
@@ -417,7 +417,7 @@ export interface FederatedDatabaseInstanceState {
      * * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
      * * `storage_stores.#.read_preference.tags.value` - Value of the tag.
      */
-    storageStores?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageStore>[]>;
+    storageStores?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageStore>[] | undefined>;
 }
 
 /**
@@ -432,17 +432,17 @@ export interface FederatedDatabaseInstanceArgs {
      * * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
      * * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
      */
-    cloudProviderConfig?: pulumi.Input<inputs.FederatedDatabaseInstanceCloudProviderConfig>;
+    cloudProviderConfig?: pulumi.Input<inputs.FederatedDatabaseInstanceCloudProviderConfig | undefined>;
     /**
      * The cloud provider region to which the Federated Instance routes client connections for data processing.
      * * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
      * * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
      */
-    dataProcessRegion?: pulumi.Input<inputs.FederatedDatabaseInstanceDataProcessRegion>;
+    dataProcessRegion?: pulumi.Input<inputs.FederatedDatabaseInstanceDataProcessRegion | undefined>;
     /**
      * Name of the Atlas Federated Database Instance.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
      */
@@ -470,7 +470,7 @@ export interface FederatedDatabaseInstanceArgs {
      * * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
      * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
      */
-    storageDatabases?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabase>[]>;
+    storageDatabases?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageDatabase>[] | undefined>;
     /**
      * Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
      * * `storage_stores.#.name` - Name of the data store.
@@ -493,5 +493,5 @@ export interface FederatedDatabaseInstanceArgs {
      * * `storage_stores.#.read_preference.tags.name` - Human-readable label of the tag.
      * * `storage_stores.#.read_preference.tags.value` - Value of the tag.
      */
-    storageStores?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageStore>[]>;
+    storageStores?: pulumi.Input<pulumi.Input<inputs.FederatedDatabaseInstanceStorageStore>[] | undefined>;
 }

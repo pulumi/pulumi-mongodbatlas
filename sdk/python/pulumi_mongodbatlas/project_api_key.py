@@ -60,11 +60,11 @@ class ProjectApiKeyArgs:
 @pulumi.input_type
 class _ProjectApiKeyState:
     def __init__(__self__, *,
-                 api_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 private_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]] = None,
-                 public_key: Optional[pulumi.Input[_builtins.str]] = None):
+                 api_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 private_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_assignments: pulumi.Input[Optional[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]] = None,
+                 public_key: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ProjectApiKey resources.
 
@@ -86,19 +86,19 @@ class _ProjectApiKeyState:
 
     @_builtins.property
     @pulumi.getter(name="apiKeyId")
-    def api_key_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier for this Project API key.
         """
         return pulumi.get(self, "api_key_id")
 
     @api_key_id.setter
-    def api_key_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_key_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def description(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Description of this Project API key.
 
@@ -107,34 +107,34 @@ class _ProjectApiKeyState:
         return pulumi.get(self, "description")
 
     @description.setter
-    def description(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "description", value)
 
     @_builtins.property
     @pulumi.getter(name="privateKey")
-    def private_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def private_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "private_key")
 
     @private_key.setter
-    def private_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def private_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "private_key", value)
 
     @_builtins.property
     @pulumi.getter(name="projectAssignments")
-    def project_assignments(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]]:
+    def project_assignments(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]]:
         return pulumi.get(self, "project_assignments")
 
     @project_assignments.setter
-    def project_assignments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]]):
+    def project_assignments(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ProjectApiKeyProjectAssignmentArgs']]]]):
         pulumi.set(self, "project_assignments", value)
 
     @_builtins.property
     @pulumi.getter(name="publicKey")
-    def public_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def public_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "public_key")
 
     @public_key.setter
-    def public_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def public_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "public_key", value)
 
 
@@ -144,8 +144,8 @@ class ProjectApiKey(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict']]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict']]]]] = None,
                  __props__=None):
         """
         `ProjectApiKey` provides a Project API Key resource. This allows project API Key to be created.
@@ -292,8 +292,8 @@ class ProjectApiKey(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 description: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict']]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -324,11 +324,11 @@ class ProjectApiKey(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            api_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-            description: Optional[pulumi.Input[_builtins.str]] = None,
-            private_key: Optional[pulumi.Input[_builtins.str]] = None,
-            project_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict']]]]] = None,
-            public_key: Optional[pulumi.Input[_builtins.str]] = None) -> 'ProjectApiKey':
+            api_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+            description: pulumi.Input[Optional[_builtins.str]] = None,
+            private_key: pulumi.Input[Optional[_builtins.str]] = None,
+            project_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict']]]]] = None,
+            public_key: pulumi.Input[Optional[_builtins.str]] = None) -> 'ProjectApiKey':
         """
         Get an existing ProjectApiKey resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -24,8 +24,8 @@ class FederatedQueryLimitArgs:
                  project_id: pulumi.Input[_builtins.str],
                  tenant_name: pulumi.Input[_builtins.str],
                  value: pulumi.Input[_builtins.int],
-                 default_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 maximum_limit: Optional[pulumi.Input[_builtins.int]] = None):
+                 default_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 maximum_limit: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a FederatedQueryLimit resource.
 
@@ -118,7 +118,7 @@ class FederatedQueryLimitArgs:
 
     @_builtins.property
     @pulumi.getter(name="defaultLimit")
-    def default_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Default value of the limit.
         * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
@@ -127,31 +127,31 @@ class FederatedQueryLimitArgs:
         return pulumi.get(self, "default_limit")
 
     @default_limit.setter
-    def default_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_limit", value)
 
     @_builtins.property
     @pulumi.getter(name="maximumLimit")
-    def maximum_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def maximum_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "maximum_limit")
 
     @maximum_limit.setter
-    def maximum_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def maximum_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "maximum_limit", value)
 
 
 @pulumi.input_type
 class _FederatedQueryLimitState:
     def __init__(__self__, *,
-                 current_usage: Optional[pulumi.Input[_builtins.int]] = None,
-                 default_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 last_modified_date: Optional[pulumi.Input[_builtins.str]] = None,
-                 limit_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 maximum_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 overrun_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.int]] = None):
+                 current_usage: pulumi.Input[Optional[_builtins.int]] = None,
+                 default_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 last_modified_date: pulumi.Input[Optional[_builtins.str]] = None,
+                 limit_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 maximum_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 overrun_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering FederatedQueryLimit resources.
 
@@ -190,19 +190,19 @@ class _FederatedQueryLimitState:
 
     @_builtins.property
     @pulumi.getter(name="currentUsage")
-    def current_usage(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def current_usage(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Amount that indicates the current usage of the limit.
         """
         return pulumi.get(self, "current_usage")
 
     @current_usage.setter
-    def current_usage(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def current_usage(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "current_usage", value)
 
     @_builtins.property
     @pulumi.getter(name="defaultLimit")
-    def default_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def default_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Default value of the limit.
         * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
@@ -211,21 +211,21 @@ class _FederatedQueryLimitState:
         return pulumi.get(self, "default_limit")
 
     @default_limit.setter
-    def default_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def default_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "default_limit", value)
 
     @_builtins.property
     @pulumi.getter(name="lastModifiedDate")
-    def last_modified_date(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_modified_date(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "last_modified_date")
 
     @last_modified_date.setter
-    def last_modified_date(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_modified_date(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_modified_date", value)
 
     @_builtins.property
     @pulumi.getter(name="limitName")
-    def limit_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def limit_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String enum that indicates whether the identity provider is active or not. Accepted values are:
         * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
@@ -236,64 +236,64 @@ class _FederatedQueryLimitState:
         return pulumi.get(self, "limit_name")
 
     @limit_name.setter
-    def limit_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def limit_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "limit_name", value)
 
     @_builtins.property
     @pulumi.getter(name="maximumLimit")
-    def maximum_limit(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def maximum_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         return pulumi.get(self, "maximum_limit")
 
     @maximum_limit.setter
-    def maximum_limit(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def maximum_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "maximum_limit", value)
 
     @_builtins.property
     @pulumi.getter(name="overrunPolicy")
-    def overrun_policy(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def overrun_policy(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
         """
         return pulumi.get(self, "overrun_policy")
 
     @overrun_policy.setter
-    def overrun_policy(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def overrun_policy(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "overrun_policy", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="tenantName")
-    def tenant_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def tenant_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Name of the Atlas Federated Database Instance.
         """
         return pulumi.get(self, "tenant_name")
 
     @tenant_name.setter
-    def tenant_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def tenant_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tenant_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def value(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def value(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Amount to set the limit to.
         """
         return pulumi.get(self, "value")
 
     @value.setter
-    def value(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def value(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "value", value)
 
 
@@ -303,13 +303,13 @@ class FederatedQueryLimit(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 default_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 limit_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 maximum_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 overrun_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.int]] = None,
+                 default_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 limit_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 maximum_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 overrun_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         `FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
@@ -327,7 +327,7 @@ class FederatedQueryLimit(pulumi.CustomResource):
             tenant_name="FederatedDatabseInstance0",
             limit_name="bytesProcessed.weekly",
             overrun_policy="BLOCK",
-            value=5147483648)
+            value=int(5147483648))
         ```
 
         ### Further Examples
@@ -382,7 +382,7 @@ class FederatedQueryLimit(pulumi.CustomResource):
             tenant_name="FederatedDatabseInstance0",
             limit_name="bytesProcessed.weekly",
             overrun_policy="BLOCK",
-            value=5147483648)
+            value=int(5147483648))
         ```
 
         ### Further Examples
@@ -415,13 +415,13 @@ class FederatedQueryLimit(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 default_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 limit_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 maximum_limit: Optional[pulumi.Input[_builtins.int]] = None,
-                 overrun_policy: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 tenant_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 value: Optional[pulumi.Input[_builtins.int]] = None,
+                 default_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 limit_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 maximum_limit: pulumi.Input[Optional[_builtins.int]] = None,
+                 overrun_policy: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenant_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -460,15 +460,15 @@ class FederatedQueryLimit(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            current_usage: Optional[pulumi.Input[_builtins.int]] = None,
-            default_limit: Optional[pulumi.Input[_builtins.int]] = None,
-            last_modified_date: Optional[pulumi.Input[_builtins.str]] = None,
-            limit_name: Optional[pulumi.Input[_builtins.str]] = None,
-            maximum_limit: Optional[pulumi.Input[_builtins.int]] = None,
-            overrun_policy: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            tenant_name: Optional[pulumi.Input[_builtins.str]] = None,
-            value: Optional[pulumi.Input[_builtins.int]] = None) -> 'FederatedQueryLimit':
+            current_usage: pulumi.Input[Optional[_builtins.int]] = None,
+            default_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            last_modified_date: pulumi.Input[Optional[_builtins.str]] = None,
+            limit_name: pulumi.Input[Optional[_builtins.str]] = None,
+            maximum_limit: pulumi.Input[Optional[_builtins.int]] = None,
+            overrun_policy: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            tenant_name: pulumi.Input[Optional[_builtins.str]] = None,
+            value: pulumi.Input[Optional[_builtins.int]] = None) -> 'FederatedQueryLimit':
         """
         Get an existing FederatedQueryLimit resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

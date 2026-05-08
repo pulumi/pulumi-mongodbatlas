@@ -143,9 +143,9 @@ def get_custom_db_role(inherited_roles: Optional[Sequence[Union['GetCustomDbRole
         inherited_roles=pulumi.get(__ret__, 'inherited_roles'),
         project_id=pulumi.get(__ret__, 'project_id'),
         role_name=pulumi.get(__ret__, 'role_name'))
-def get_custom_db_role_output(inherited_roles: Optional[pulumi.Input[Optional[Sequence[Union['GetCustomDbRoleInheritedRoleArgs', 'GetCustomDbRoleInheritedRoleArgsDict']]]]] = None,
-                              project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                              role_name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_custom_db_role_output(inherited_roles: pulumi.Input[Optional[Optional[Sequence[Union['GetCustomDbRoleInheritedRoleArgs', 'GetCustomDbRoleInheritedRoleArgsDict']]]]] = None,
+                              project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                              role_name: pulumi.Input[Optional[_builtins.str]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCustomDbRoleResult]:
     """
     `CustomDbRole` describes a Custom DB Role. This represents a custom db role.

@@ -216,10 +216,10 @@ def get_project_service_account_access_list_entry(cidr_block: Optional[_builtins
         last_used_at=pulumi.get(__ret__, 'last_used_at'),
         project_id=pulumi.get(__ret__, 'project_id'),
         request_count=pulumi.get(__ret__, 'request_count'))
-def get_project_service_account_access_list_entry_output(cidr_block: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                                         client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                         ip_address: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                                         project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_project_service_account_access_list_entry_output(cidr_block: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                                         client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                         ip_address: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                                         project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectServiceAccountAccessListEntryResult]:
     """
     `ProjectServiceAccountAccessListEntry` returns an Access List entry for the specified Project Service Account.

@@ -154,16 +154,16 @@ export interface ProjectApiKeyState {
     /**
      * Unique identifier for this Project API key.
      */
-    apiKeyId?: pulumi.Input<string>;
+    apiKeyId?: pulumi.Input<string | undefined>;
     /**
      * Description of this Project API key.
      *
      * > **NOTE:** Project created by API Keys must belong to an existing organization.
      */
-    description?: pulumi.Input<string>;
-    privateKey?: pulumi.Input<string>;
-    projectAssignments?: pulumi.Input<pulumi.Input<inputs.ProjectApiKeyProjectAssignment>[]>;
-    publicKey?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
+    privateKey?: pulumi.Input<string | undefined>;
+    projectAssignments?: pulumi.Input<pulumi.Input<inputs.ProjectApiKeyProjectAssignment>[] | undefined>;
+    publicKey?: pulumi.Input<string | undefined>;
 }
 
 /**

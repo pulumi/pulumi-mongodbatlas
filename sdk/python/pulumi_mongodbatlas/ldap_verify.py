@@ -26,8 +26,8 @@ class LdapVerifyArgs:
                  hostname: pulumi.Input[_builtins.str],
                  port: pulumi.Input[_builtins.int],
                  project_id: pulumi.Input[_builtins.str],
-                 authz_query_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 ca_certificate: Optional[pulumi.Input[_builtins.str]] = None):
+                 authz_query_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_certificate: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a LdapVerify resource.
 
@@ -111,43 +111,43 @@ class LdapVerifyArgs:
 
     @_builtins.property
     @pulumi.getter(name="authzQueryTemplate")
-    def authz_query_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authz_query_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
         """
         return pulumi.get(self, "authz_query_template")
 
     @authz_query_template.setter
-    def authz_query_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authz_query_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authz_query_template", value)
 
     @_builtins.property
     @pulumi.getter(name="caCertificate")
-    def ca_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ca_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
         """
         return pulumi.get(self, "ca_certificate")
 
     @ca_certificate.setter
-    def ca_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ca_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ca_certificate", value)
 
 
 @pulumi.input_type
 class _LdapVerifyState:
     def __init__(__self__, *,
-                 authz_query_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 bind_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 bind_username: Optional[pulumi.Input[_builtins.str]] = None,
-                 ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 links: Optional[pulumi.Input[Sequence[pulumi.Input['LdapVerifyLinkArgs']]]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 request_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 status: Optional[pulumi.Input[_builtins.str]] = None,
-                 validations: Optional[pulumi.Input[Sequence[pulumi.Input['LdapVerifyValidationArgs']]]] = None):
+                 authz_query_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_username: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 links: pulumi.Input[Optional[Sequence[pulumi.Input['LdapVerifyLinkArgs']]]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 request_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 status: pulumi.Input[Optional[_builtins.str]] = None,
+                 validations: pulumi.Input[Optional[Sequence[pulumi.Input['LdapVerifyValidationArgs']]]] = None):
         """
         Input properties used for looking up and filtering LdapVerify resources.
 
@@ -188,134 +188,134 @@ class _LdapVerifyState:
 
     @_builtins.property
     @pulumi.getter(name="authzQueryTemplate")
-    def authz_query_template(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def authz_query_template(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
         """
         return pulumi.get(self, "authz_query_template")
 
     @authz_query_template.setter
-    def authz_query_template(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def authz_query_template(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "authz_query_template", value)
 
     @_builtins.property
     @pulumi.getter(name="bindPassword")
-    def bind_password(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bind_password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The password used to authenticate the `bind_username`.
         """
         return pulumi.get(self, "bind_password")
 
     @bind_password.setter
-    def bind_password(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bind_password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bind_password", value)
 
     @_builtins.property
     @pulumi.getter(name="bindUsername")
-    def bind_username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bind_username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
         """
         return pulumi.get(self, "bind_username")
 
     @bind_username.setter
-    def bind_username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bind_username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bind_username", value)
 
     @_builtins.property
     @pulumi.getter(name="caCertificate")
-    def ca_certificate(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def ca_certificate(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
         """
         return pulumi.get(self, "ca_certificate")
 
     @ca_certificate.setter
-    def ca_certificate(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def ca_certificate(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "ca_certificate", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostname(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hostname(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
         """
         return pulumi.get(self, "hostname")
 
     @hostname.setter
-    def hostname(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hostname(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hostname", value)
 
     @_builtins.property
     @pulumi.getter
-    def links(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LdapVerifyLinkArgs']]]]:
+    def links(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LdapVerifyLinkArgs']]]]:
         """
         One or more links to sub-resources. The relations in the URLs are explained in the Web Linking Specification.
         """
         return pulumi.get(self, "links")
 
     @links.setter
-    def links(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LdapVerifyLinkArgs']]]]):
+    def links(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LdapVerifyLinkArgs']]]]):
         pulumi.set(self, "links", value)
 
     @_builtins.property
     @pulumi.getter
-    def port(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def port(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The port to which the LDAP server listens for client connections. Default: `636`
         """
         return pulumi.get(self, "port")
 
     @port.setter
-    def port(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def port(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "port", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="requestId")
-    def request_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def request_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
         """
         return pulumi.get(self, "request_id")
 
     @request_id.setter
-    def request_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def request_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "request_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
         """
         return pulumi.get(self, "status")
 
     @status.setter
-    def status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "status", value)
 
     @_builtins.property
     @pulumi.getter
-    def validations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LdapVerifyValidationArgs']]]]:
+    def validations(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LdapVerifyValidationArgs']]]]:
         """
         Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
         """
         return pulumi.get(self, "validations")
 
     @validations.setter
-    def validations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LdapVerifyValidationArgs']]]]):
+    def validations(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LdapVerifyValidationArgs']]]]):
         pulumi.set(self, "validations", value)
 
 
@@ -325,13 +325,13 @@ class LdapVerify(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authz_query_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 bind_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 bind_username: Optional[pulumi.Input[_builtins.str]] = None,
-                 ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 authz_query_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_username: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `LdapVerify` provides an LDAP Verify resource. This allows a a verification of an LDAP configuration over TLS for an Atlas project. Atlas retains only the most recent request for each project.
@@ -460,13 +460,13 @@ class LdapVerify(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authz_query_template: Optional[pulumi.Input[_builtins.str]] = None,
-                 bind_password: Optional[pulumi.Input[_builtins.str]] = None,
-                 bind_username: Optional[pulumi.Input[_builtins.str]] = None,
-                 ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-                 hostname: Optional[pulumi.Input[_builtins.str]] = None,
-                 port: Optional[pulumi.Input[_builtins.int]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 authz_query_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_password: pulumi.Input[Optional[_builtins.str]] = None,
+                 bind_username: pulumi.Input[Optional[_builtins.str]] = None,
+                 ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+                 hostname: pulumi.Input[Optional[_builtins.str]] = None,
+                 port: pulumi.Input[Optional[_builtins.int]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -509,17 +509,17 @@ class LdapVerify(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            authz_query_template: Optional[pulumi.Input[_builtins.str]] = None,
-            bind_password: Optional[pulumi.Input[_builtins.str]] = None,
-            bind_username: Optional[pulumi.Input[_builtins.str]] = None,
-            ca_certificate: Optional[pulumi.Input[_builtins.str]] = None,
-            hostname: Optional[pulumi.Input[_builtins.str]] = None,
-            links: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LdapVerifyLinkArgs', 'LdapVerifyLinkArgsDict']]]]] = None,
-            port: Optional[pulumi.Input[_builtins.int]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            request_id: Optional[pulumi.Input[_builtins.str]] = None,
-            status: Optional[pulumi.Input[_builtins.str]] = None,
-            validations: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LdapVerifyValidationArgs', 'LdapVerifyValidationArgsDict']]]]] = None) -> 'LdapVerify':
+            authz_query_template: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_password: pulumi.Input[Optional[_builtins.str]] = None,
+            bind_username: pulumi.Input[Optional[_builtins.str]] = None,
+            ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
+            hostname: pulumi.Input[Optional[_builtins.str]] = None,
+            links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LdapVerifyLinkArgs', 'LdapVerifyLinkArgsDict']]]]] = None,
+            port: pulumi.Input[Optional[_builtins.int]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            request_id: pulumi.Input[Optional[_builtins.str]] = None,
+            status: pulumi.Input[Optional[_builtins.str]] = None,
+            validations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LdapVerifyValidationArgs', 'LdapVerifyValidationArgsDict']]]]] = None) -> 'LdapVerify':
         """
         Get an existing LdapVerify resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

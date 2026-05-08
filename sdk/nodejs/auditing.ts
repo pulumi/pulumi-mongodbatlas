@@ -126,28 +126,28 @@ export interface AuditingState {
     /**
      * Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
      */
-    auditAuthorizationSuccess?: pulumi.Input<boolean>;
+    auditAuthorizationSuccess?: pulumi.Input<boolean | undefined>;
     /**
      * JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
      */
-    auditFilter?: pulumi.Input<string>;
+    auditFilter?: pulumi.Input<string | undefined>;
     /**
      * Denotes the configuration method for the audit filter. Possible values are: 
      * * NONE - auditing not configured for the project.
      * * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
      * * FILTER_JSON - auditing configured via Atlas custom filter or API.
      */
-    configurationType?: pulumi.Input<string>;
+    configurationType?: pulumi.Input<string | undefined>;
     /**
      * Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
      *
      * > **NOTE:** Auditing created by API Keys must belong to an existing organization.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * The unique ID for the project to configure auditing, also known as `groupId` in the official documentation. **Note: When changing this value to a different projectId it will delete the current audit settings for the original project that was assigned to.**
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -157,17 +157,17 @@ export interface AuditingArgs {
     /**
      * Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
      */
-    auditAuthorizationSuccess?: pulumi.Input<boolean>;
+    auditAuthorizationSuccess?: pulumi.Input<boolean | undefined>;
     /**
      * JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
      */
-    auditFilter?: pulumi.Input<string>;
+    auditFilter?: pulumi.Input<string | undefined>;
     /**
      * Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
      *
      * > **NOTE:** Auditing created by API Keys must belong to an existing organization.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * The unique ID for the project to configure auditing, also known as `groupId` in the official documentation. **Note: When changing this value to a different projectId it will delete the current audit settings for the original project that was assigned to.**
      */

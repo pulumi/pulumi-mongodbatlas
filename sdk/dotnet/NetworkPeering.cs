@@ -42,7 +42,7 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     // Container example provided but not always required, 
     ///     // see network_container documentation for details. 
-    ///     var test = new Mongodbatlas.Index.NetworkContainer("test", new()
+    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         AtlasCidrBlock = "10.8.0.0/21",
@@ -51,7 +51,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Create the peering connection request
-    ///     var testNetworkPeering = new Mongodbatlas.Index.NetworkPeering("test", new()
+    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
     ///     {
     ///         AccepterRegionName = "us-east-1",
     ///         ProjectId = projectId,
@@ -64,7 +64,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     ///     // the following assumes an AWS provider is configured
     ///     // Accept the peering connection request
-    ///     var peer = new Aws.Index.VpcPeeringConnectionAccepter("peer", new()
+    ///     var peer = new Aws.VpcPeeringConnectionAccepter("peer", new()
     ///     {
     ///         VpcPeeringConnectionId = testNetworkPeering.ConnectionId,
     ///         AutoAccept = true,
@@ -86,7 +86,7 @@ namespace Pulumi.Mongodbatlas
     /// {
     ///     // Container example provided but not always required, 
     ///     // see network_container documentation for details. 
-    ///     var test = new Mongodbatlas.Index.NetworkContainer("test", new()
+    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         AtlasCidrBlock = "10.8.0.0/21",
@@ -94,7 +94,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Create the peering connection request
-    ///     var testNetworkPeering = new Mongodbatlas.Index.NetworkPeering("test", new()
+    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ContainerId = test.ContainerId,
@@ -104,13 +104,13 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // the following assumes a GCP provider is configured
-    ///     var @default = Google.Index.ComputeNetwork.Invoke(new()
+    ///     var @default = Google.ComputeNetwork.Invoke(new()
     ///     {
     ///         Name = "default",
     ///     });
     /// 
     ///     // Create the GCP peer
-    ///     var peering = new Google.Index.ComputeNetworkPeering("peering", new()
+    ///     var peering = new Google.ComputeNetworkPeering("peering", new()
     ///     {
     ///         Name = "peering-gcp-terraform-test",
     ///         Network = @default.SelfLink,
@@ -118,7 +118,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Create the cluster once the peering connection is completed
-    ///     var testAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("test", new()
+    ///     var testAdvancedCluster = new Mongodbatlas.AdvancedCluster("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         Name = "terraform-manually-test",
@@ -169,7 +169,7 @@ namespace Pulumi.Mongodbatlas
     ///     // see https://docs.atlas.mongodb.com/security-vpc-peering/
     ///     // Container example provided but not always required, 
     ///     // see network_container documentation for details. 
-    ///     var test = new Mongodbatlas.Index.NetworkContainer("test", new()
+    ///     var test = new Mongodbatlas.NetworkContainer("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         AtlasCidrBlock = ATLAS_CIDR_BLOCK,
@@ -178,7 +178,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Create the peering connection request
-    ///     var testNetworkPeering = new Mongodbatlas.Index.NetworkPeering("test", new()
+    ///     var testNetworkPeering = new Mongodbatlas.NetworkPeering("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ContainerId = test.ContainerId,
@@ -190,7 +190,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Create the cluster once the peering connection is completed
-    ///     var testAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("test", new()
+    ///     var testAdvancedCluster = new Mongodbatlas.AdvancedCluster("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         Name = "terraform-manually-test",

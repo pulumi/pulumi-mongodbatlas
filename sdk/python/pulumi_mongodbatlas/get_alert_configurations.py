@@ -153,9 +153,9 @@ def get_alert_configurations(list_options: Optional[Sequence[Union['GetAlertConf
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
         total_count=pulumi.get(__ret__, 'total_count'))
-def get_alert_configurations_output(list_options: Optional[pulumi.Input[Optional[Sequence[Union['GetAlertConfigurationsListOptionArgs', 'GetAlertConfigurationsListOptionArgsDict']]]]] = None,
-                                    output_types: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                                    project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_alert_configurations_output(list_options: pulumi.Input[Optional[Optional[Sequence[Union['GetAlertConfigurationsListOptionArgs', 'GetAlertConfigurationsListOptionArgsDict']]]]] = None,
+                                    output_types: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                                    project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAlertConfigurationsResult]:
     """
     `get_alert_configurations` describes all Alert Configurations by the provided project_id. The data source requires your Project ID.

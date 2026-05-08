@@ -338,8 +338,8 @@ def get_project(name: Optional[_builtins.str] = None,
         tags=pulumi.get(__ret__, 'tags'),
         teams=pulumi.get(__ret__, 'teams'),
         users=pulumi.get(__ret__, 'users'))
-def get_project_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                       project_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_project_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                       project_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectResult]:
     """
     `Project` describes a MongoDB Atlas Project. This represents a project that has been created.

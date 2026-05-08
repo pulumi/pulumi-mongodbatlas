@@ -108,7 +108,7 @@ def get_project_ip_access_lists(project_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
-def get_project_ip_access_lists_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_project_ip_access_lists_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectIpAccessListsResult]:
     """
     `get_project_ip_access_lists` returns all IP Access List entries for a project. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.

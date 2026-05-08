@@ -135,9 +135,9 @@ def get_federated_settings_org_configs(federation_settings_id: Optional[_builtin
         items_per_page=pulumi.get(__ret__, 'items_per_page'),
         page_num=pulumi.get(__ret__, 'page_num'),
         results=pulumi.get(__ret__, 'results'))
-def get_federated_settings_org_configs_output(federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                              items_per_page: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                                              page_num: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
+def get_federated_settings_org_configs_output(federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                              items_per_page: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                                              page_num: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
                                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedSettingsOrgConfigsResult]:
     """
     `get_federated_settings_org_configs` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.

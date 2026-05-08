@@ -557,9 +557,9 @@ def get_advanced_cluster(name: Optional[_builtins.str] = None,
         use_aws_time_based_snapshot_copy_for_fast_initial_sync=pulumi.get(__ret__, 'use_aws_time_based_snapshot_copy_for_fast_initial_sync'),
         use_effective_fields=pulumi.get(__ret__, 'use_effective_fields'),
         version_release_system=pulumi.get(__ret__, 'version_release_system'))
-def get_advanced_cluster_output(name: Optional[pulumi.Input[_builtins.str]] = None,
-                                project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                use_effective_fields: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_advanced_cluster_output(name: pulumi.Input[Optional[_builtins.str]] = None,
+                                project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                use_effective_fields: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAdvancedClusterResult]:
     """
     `AdvancedCluster` describes an Advanced Cluster, including Flex clusters, for the specified name and project_id.

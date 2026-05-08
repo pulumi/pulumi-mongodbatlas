@@ -87,9 +87,9 @@ export interface GetFederatedSettingsIdentityProvidersOutputArgs {
     /**
      * The types of the target identity providers. Valid values are `WORKFORCE` and `WORKLOAD`.
      */
-    idpTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    idpTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * The protocols of the target identity providers. Valid values are `SAML` and `OIDC`.
      */
-    protocols?: pulumi.Input<pulumi.Input<string>[]>;
+    protocols?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }

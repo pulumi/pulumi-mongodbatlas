@@ -211,7 +211,7 @@ def get_ldap_configuration(project_id: Optional[_builtins.str] = None,
         port=pulumi.get(__ret__, 'port'),
         project_id=pulumi.get(__ret__, 'project_id'),
         user_to_dn_mappings=pulumi.get(__ret__, 'user_to_dn_mappings'))
-def get_ldap_configuration_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_ldap_configuration_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLdapConfigurationResult]:
     """
     `LdapConfiguration` describes a LDAP Configuration.

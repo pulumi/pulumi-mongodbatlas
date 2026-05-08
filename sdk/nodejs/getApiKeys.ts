@@ -72,7 +72,7 @@ export interface GetApiKeysOutputArgs {
     /**
      * Number of items to return per page, up to a maximum of 500. Defaults to `100`.
      */
-    itemsPerPage?: pulumi.Input<number>;
+    itemsPerPage?: pulumi.Input<number | undefined>;
     /**
      * Unique identifier for the organization whose API keys you want to retrieve.
      */
@@ -80,5 +80,5 @@ export interface GetApiKeysOutputArgs {
     /**
      * The page to return. Defaults to `1`.
      */
-    pageNum?: pulumi.Input<number>;
+    pageNum?: pulumi.Input<number | undefined>;
 }

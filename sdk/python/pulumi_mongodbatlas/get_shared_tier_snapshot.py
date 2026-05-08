@@ -155,9 +155,9 @@ def get_shared_tier_snapshot(cluster_name: Optional[_builtins.str] = None,
         snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
         start_time=pulumi.get(__ret__, 'start_time'),
         status=pulumi.get(__ret__, 'status'))
-def get_shared_tier_snapshot_output(cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                    project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                    snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_shared_tier_snapshot_output(cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                    project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                    snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSharedTierSnapshotResult]:
     """
     Use this data source to access information about an existing resource.

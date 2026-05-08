@@ -239,43 +239,43 @@ export interface CloudBackupSnapshotExportJobState {
     /**
      * Name of the Atlas cluster whose snapshot you want to export.
      */
-    clusterName?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string | undefined>;
     /**
      * _Returned for sharded clusters only._ Export job details for each replica set in the sharded cluster.
      */
-    components?: pulumi.Input<pulumi.Input<inputs.CloudBackupSnapshotExportJobComponent>[]>;
+    components?: pulumi.Input<pulumi.Input<inputs.CloudBackupSnapshotExportJobComponent>[] | undefined>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the export job was created.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
      */
-    customDatas?: pulumi.Input<pulumi.Input<inputs.CloudBackupSnapshotExportJobCustomData>[]>;
+    customDatas?: pulumi.Input<pulumi.Input<inputs.CloudBackupSnapshotExportJobCustomData>[] | undefined>;
     /**
      * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
      */
-    exportBucketId?: pulumi.Input<string>;
+    exportBucketId?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the export job.
      * * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
      */
-    exportJobId?: pulumi.Input<string>;
-    exportStatusExportedCollections?: pulumi.Input<number>;
-    exportStatusTotalCollections?: pulumi.Input<number>;
+    exportJobId?: pulumi.Input<string | undefined>;
+    exportStatusExportedCollections?: pulumi.Input<number | undefined>;
+    exportStatusTotalCollections?: pulumi.Input<number | undefined>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the export job completes.
      */
-    finishedAt?: pulumi.Input<string>;
-    prefix?: pulumi.Input<string>;
+    finishedAt?: pulumi.Input<string | undefined>;
+    prefix?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project which contains the Atlas cluster whose snapshot you want to export, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
      */
-    snapshotId?: pulumi.Input<string>;
+    snapshotId?: pulumi.Input<string | undefined>;
     /**
      * Status of the export job. Value can be one of the following:
      * * `Queued` - indicates that the export job is queued
@@ -284,7 +284,7 @@ export interface CloudBackupSnapshotExportJobState {
      * * `Failed` - indicates that the export job has failed
      * * `Cancelled` - indicates that the export job has cancelled
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -298,7 +298,7 @@ export interface CloudBackupSnapshotExportJobArgs {
     /**
      * Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
      */
-    customDatas?: pulumi.Input<pulumi.Input<inputs.CloudBackupSnapshotExportJobCustomData>[]>;
+    customDatas?: pulumi.Input<pulumi.Input<inputs.CloudBackupSnapshotExportJobCustomData>[] | undefined>;
     /**
      * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
      */

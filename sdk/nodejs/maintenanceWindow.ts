@@ -209,43 +209,43 @@ export interface MaintenanceWindowState {
     /**
      * Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** <!-- see CLOUDP-375465 for details -->
      */
-    autoDefer?: pulumi.Input<boolean>;
+    autoDefer?: pulumi.Input<boolean | undefined>;
     /**
      * **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
      */
-    autoDeferOnceEnabled?: pulumi.Input<boolean>;
+    autoDeferOnceEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
      */
-    dayOfWeek?: pulumi.Input<number>;
+    dayOfWeek?: pulumi.Input<number | undefined>;
     /**
      * Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
      */
-    defer?: pulumi.Input<boolean>;
+    defer?: pulumi.Input<boolean | undefined>;
     /**
      * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
      */
-    hourOfDay?: pulumi.Input<number>;
+    hourOfDay?: pulumi.Input<number | undefined>;
     /**
      * Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
      */
-    numberOfDeferrals?: pulumi.Input<number>;
+    numberOfDeferrals?: pulumi.Input<number | undefined>;
     /**
      * The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
      */
-    protectedHours?: pulumi.Input<inputs.MaintenanceWindowProtectedHours>;
+    protectedHours?: pulumi.Input<inputs.MaintenanceWindowProtectedHours | undefined>;
     /**
      * Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
      */
-    startAsap?: pulumi.Input<boolean>;
+    startAsap?: pulumi.Input<boolean | undefined>;
     /**
      * Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
      */
-    timeZoneId?: pulumi.Input<string>;
+    timeZoneId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -255,11 +255,11 @@ export interface MaintenanceWindowArgs {
     /**
      * Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `autoDeferOnceEnabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `autoDeferOnceEnabled` instead.** <!-- see CLOUDP-375465 for details -->
      */
-    autoDefer?: pulumi.Input<boolean>;
+    autoDefer?: pulumi.Input<boolean | undefined>;
     /**
      * **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
      */
-    autoDeferOnceEnabled?: pulumi.Input<boolean>;
+    autoDeferOnceEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
      */
@@ -267,7 +267,7 @@ export interface MaintenanceWindowArgs {
     /**
      * Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
      */
-    defer?: pulumi.Input<boolean>;
+    defer?: pulumi.Input<boolean | undefined>;
     /**
      * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
      */
@@ -279,5 +279,5 @@ export interface MaintenanceWindowArgs {
     /**
      * Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
      */
-    protectedHours?: pulumi.Input<inputs.MaintenanceWindowProtectedHours>;
+    protectedHours?: pulumi.Input<inputs.MaintenanceWindowProtectedHours | undefined>;
 }

@@ -404,81 +404,81 @@ export interface CloudBackupScheduleState {
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
      * * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
      */
-    autoExportEnabled?: pulumi.Input<boolean>;
+    autoExportEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Unique identifier of the Atlas cluster.
      */
-    clusterId?: pulumi.Input<string>;
+    clusterId?: pulumi.Input<string | undefined>;
     /**
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
      */
-    clusterName?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string | undefined>;
     /**
      * List that contains a document for each copy setting item in the desired backup policy. See below
      */
-    copySettings?: pulumi.Input<pulumi.Input<inputs.CloudBackupScheduleCopySetting>[]>;
+    copySettings?: pulumi.Input<pulumi.Input<inputs.CloudBackupScheduleCopySetting>[] | undefined>;
     /**
      * Policy for automatically exporting Cloud Backup Snapshots. See below
      */
-    export?: pulumi.Input<inputs.CloudBackupScheduleExport>;
+    export?: pulumi.Input<inputs.CloudBackupScheduleExport | undefined>;
     /**
      * Unique identifier of the backup policy.
      */
-    idPolicy?: pulumi.Input<string>;
+    idPolicy?: pulumi.Input<string | undefined>;
     /**
      * Timestamp in the number of seconds that have elapsed since the UNIX epoch when Atlas takes the next snapshot.
      */
-    nextSnapshot?: pulumi.Input<string>;
+    nextSnapshot?: pulumi.Input<string | undefined>;
     /**
      * Daily policy item. See below
      */
-    policyItemDaily?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemDaily>;
+    policyItemDaily?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemDaily | undefined>;
     /**
      * Hourly policy item. See below
      */
-    policyItemHourly?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemHourly>;
+    policyItemHourly?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemHourly | undefined>;
     /**
      * Monthly policy item. See below
      */
-    policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemMonthly>[]>;
+    policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemMonthly>[] | undefined>;
     /**
      * Weekly policy item. See below
      */
-    policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemWeekly>[]>;
+    policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemWeekly>[] | undefined>;
     /**
      * Yearly policy item. See below
      */
-    policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemYearly>[]>;
+    policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemYearly>[] | undefined>;
     /**
      * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
      */
-    referenceHourOfDay?: pulumi.Input<number>;
+    referenceHourOfDay?: pulumi.Input<number | undefined>;
     /**
      * UTC Minutes after `referenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
      */
-    referenceMinuteOfHour?: pulumi.Input<number>;
+    referenceMinuteOfHour?: pulumi.Input<number | undefined>;
     /**
      * Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
      */
-    restoreWindowDays?: pulumi.Input<number>;
+    restoreWindowDays?: pulumi.Input<number | undefined>;
     /**
      * Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
      */
-    skipDestroy?: pulumi.Input<boolean>;
+    skipDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
      *
      * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
      */
-    updateSnapshots?: pulumi.Input<boolean>;
+    updateSnapshots?: pulumi.Input<boolean | undefined>;
     /**
      * Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
      */
-    useOrgAndGroupNamesInExportPrefix?: pulumi.Input<boolean>;
+    useOrgAndGroupNamesInExportPrefix?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -490,7 +490,7 @@ export interface CloudBackupScheduleArgs {
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
      * * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
      */
-    autoExportEnabled?: pulumi.Input<boolean>;
+    autoExportEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
      */
@@ -498,31 +498,31 @@ export interface CloudBackupScheduleArgs {
     /**
      * List that contains a document for each copy setting item in the desired backup policy. See below
      */
-    copySettings?: pulumi.Input<pulumi.Input<inputs.CloudBackupScheduleCopySetting>[]>;
+    copySettings?: pulumi.Input<pulumi.Input<inputs.CloudBackupScheduleCopySetting>[] | undefined>;
     /**
      * Policy for automatically exporting Cloud Backup Snapshots. See below
      */
-    export?: pulumi.Input<inputs.CloudBackupScheduleExport>;
+    export?: pulumi.Input<inputs.CloudBackupScheduleExport | undefined>;
     /**
      * Daily policy item. See below
      */
-    policyItemDaily?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemDaily>;
+    policyItemDaily?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemDaily | undefined>;
     /**
      * Hourly policy item. See below
      */
-    policyItemHourly?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemHourly>;
+    policyItemHourly?: pulumi.Input<inputs.CloudBackupSchedulePolicyItemHourly | undefined>;
     /**
      * Monthly policy item. See below
      */
-    policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemMonthly>[]>;
+    policyItemMonthlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemMonthly>[] | undefined>;
     /**
      * Weekly policy item. See below
      */
-    policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemWeekly>[]>;
+    policyItemWeeklies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemWeekly>[] | undefined>;
     /**
      * Yearly policy item. See below
      */
-    policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemYearly>[]>;
+    policyItemYearlies?: pulumi.Input<pulumi.Input<inputs.CloudBackupSchedulePolicyItemYearly>[] | undefined>;
     /**
      * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
@@ -530,27 +530,27 @@ export interface CloudBackupScheduleArgs {
     /**
      * UTC Hour of day between 0 and 23, inclusive, representing which hour of the day that Atlas takes snapshots for backup policy items.
      */
-    referenceHourOfDay?: pulumi.Input<number>;
+    referenceHourOfDay?: pulumi.Input<number | undefined>;
     /**
      * UTC Minutes after `referenceHourOfDay` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
      */
-    referenceMinuteOfHour?: pulumi.Input<number>;
+    referenceMinuteOfHour?: pulumi.Input<number | undefined>;
     /**
      * Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
      */
-    restoreWindowDays?: pulumi.Input<number>;
+    restoreWindowDays?: pulumi.Input<number | undefined>;
     /**
      * Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
      */
-    skipDestroy?: pulumi.Input<boolean>;
+    skipDestroy?: pulumi.Input<boolean | undefined>;
     /**
      * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
      *
      * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
      */
-    updateSnapshots?: pulumi.Input<boolean>;
+    updateSnapshots?: pulumi.Input<boolean | undefined>;
     /**
      * Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
      */
-    useOrgAndGroupNamesInExportPrefix?: pulumi.Input<boolean>;
+    useOrgAndGroupNamesInExportPrefix?: pulumi.Input<boolean | undefined>;
 }

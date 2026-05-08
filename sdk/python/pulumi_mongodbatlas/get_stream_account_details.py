@@ -190,9 +190,9 @@ def get_stream_account_details(cloud_provider: Optional[_builtins.str] = None,
         region_name=pulumi.get(__ret__, 'region_name'),
         virtual_network_name=pulumi.get(__ret__, 'virtual_network_name'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
-def get_stream_account_details_output(cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                                      project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                      region_name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_stream_account_details_output(cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                                      project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                      region_name: pulumi.Input[Optional[_builtins.str]] = None,
                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamAccountDetailsResult]:
     """
     `get_stream_account_details` returns the AWS Account ID/Azure Subscription ID, and the AWS VPC ID/Azure Virtual Network Name for the group, cloud provider, and region that you specify.

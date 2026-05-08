@@ -152,8 +152,8 @@ def get_stream_instance(instance_name: Optional[_builtins.str] = None,
         instance_name=pulumi.get(__ret__, 'instance_name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         stream_config=pulumi.get(__ret__, 'stream_config'))
-def get_stream_instance_output(instance_name: Optional[pulumi.Input[_builtins.str]] = None,
-                               project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_stream_instance_output(instance_name: pulumi.Input[Optional[_builtins.str]] = None,
+                               project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamInstanceResult]:
     """
     > **DEPRECATED:** This data source is deprecated. Please use `StreamWorkspace` instead.

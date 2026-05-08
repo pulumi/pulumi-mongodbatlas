@@ -537,88 +537,88 @@ export class StreamConnection extends pulumi.CustomResource {
  * Input properties used for looking up and filtering StreamConnection resources.
  */
 export interface StreamConnectionState {
-    authentication?: pulumi.Input<inputs.StreamConnectionAuthentication>;
-    aws?: pulumi.Input<inputs.StreamConnectionAws>;
-    azure?: pulumi.Input<inputs.StreamConnectionAzure>;
-    bootstrapServers?: pulumi.Input<string>;
-    clusterName?: pulumi.Input<string>;
-    clusterProjectId?: pulumi.Input<string>;
-    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    authentication?: pulumi.Input<inputs.StreamConnectionAuthentication | undefined>;
+    aws?: pulumi.Input<inputs.StreamConnectionAws | undefined>;
+    azure?: pulumi.Input<inputs.StreamConnectionAzure | undefined>;
+    bootstrapServers?: pulumi.Input<string | undefined>;
+    clusterName?: pulumi.Input<string | undefined>;
+    clusterProjectId?: pulumi.Input<string | undefined>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
      */
-    connectionName?: pulumi.Input<string>;
-    dbRoleToExecute?: pulumi.Input<inputs.StreamConnectionDbRoleToExecute>;
-    gcp?: pulumi.Input<inputs.StreamConnectionGcp>;
-    headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    connectionName?: pulumi.Input<string | undefined>;
+    dbRoleToExecute?: pulumi.Input<inputs.StreamConnectionDbRoleToExecute | undefined>;
+    gcp?: pulumi.Input<inputs.StreamConnectionGcp | undefined>;
+    headers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
      *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    instanceName?: pulumi.Input<string>;
-    networking?: pulumi.Input<inputs.StreamConnectionNetworking>;
+    instanceName?: pulumi.Input<string | undefined>;
+    networking?: pulumi.Input<inputs.StreamConnectionNetworking | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
-    schemaRegistryAuthentication?: pulumi.Input<inputs.StreamConnectionSchemaRegistryAuthentication>;
-    schemaRegistryProvider?: pulumi.Input<string>;
-    schemaRegistryUrls?: pulumi.Input<pulumi.Input<string>[]>;
-    security?: pulumi.Input<inputs.StreamConnectionSecurity>;
-    timeouts?: pulumi.Input<inputs.StreamConnectionTimeouts>;
+    projectId?: pulumi.Input<string | undefined>;
+    schemaRegistryAuthentication?: pulumi.Input<inputs.StreamConnectionSchemaRegistryAuthentication | undefined>;
+    schemaRegistryProvider?: pulumi.Input<string | undefined>;
+    schemaRegistryUrls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    security?: pulumi.Input<inputs.StreamConnectionSecurity | undefined>;
+    timeouts?: pulumi.Input<inputs.StreamConnectionTimeouts | undefined>;
     /**
      * Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      */
-    type?: pulumi.Input<string>;
-    url?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
+    url?: pulumi.Input<string | undefined>;
     /**
      * Label that identifies the stream processing workspace.
      */
-    workspaceName?: pulumi.Input<string>;
+    workspaceName?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a StreamConnection resource.
  */
 export interface StreamConnectionArgs {
-    authentication?: pulumi.Input<inputs.StreamConnectionAuthentication>;
-    aws?: pulumi.Input<inputs.StreamConnectionAws>;
-    azure?: pulumi.Input<inputs.StreamConnectionAzure>;
-    bootstrapServers?: pulumi.Input<string>;
-    clusterName?: pulumi.Input<string>;
-    clusterProjectId?: pulumi.Input<string>;
-    config?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    authentication?: pulumi.Input<inputs.StreamConnectionAuthentication | undefined>;
+    aws?: pulumi.Input<inputs.StreamConnectionAws | undefined>;
+    azure?: pulumi.Input<inputs.StreamConnectionAzure | undefined>;
+    bootstrapServers?: pulumi.Input<string | undefined>;
+    clusterName?: pulumi.Input<string | undefined>;
+    clusterProjectId?: pulumi.Input<string | undefined>;
+    config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
      */
     connectionName: pulumi.Input<string>;
-    dbRoleToExecute?: pulumi.Input<inputs.StreamConnectionDbRoleToExecute>;
-    gcp?: pulumi.Input<inputs.StreamConnectionGcp>;
-    headers?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    dbRoleToExecute?: pulumi.Input<inputs.StreamConnectionDbRoleToExecute | undefined>;
+    gcp?: pulumi.Input<inputs.StreamConnectionGcp | undefined>;
+    headers?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Label that identifies the stream processing workspace. Use `workspaceName` instead; this attribute will be removed in a future major version.
      *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    instanceName?: pulumi.Input<string>;
-    networking?: pulumi.Input<inputs.StreamConnectionNetworking>;
+    instanceName?: pulumi.Input<string | undefined>;
+    networking?: pulumi.Input<inputs.StreamConnectionNetworking | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
-    schemaRegistryAuthentication?: pulumi.Input<inputs.StreamConnectionSchemaRegistryAuthentication>;
-    schemaRegistryProvider?: pulumi.Input<string>;
-    schemaRegistryUrls?: pulumi.Input<pulumi.Input<string>[]>;
-    security?: pulumi.Input<inputs.StreamConnectionSecurity>;
-    timeouts?: pulumi.Input<inputs.StreamConnectionTimeouts>;
+    schemaRegistryAuthentication?: pulumi.Input<inputs.StreamConnectionSchemaRegistryAuthentication | undefined>;
+    schemaRegistryProvider?: pulumi.Input<string | undefined>;
+    schemaRegistryUrls?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    security?: pulumi.Input<inputs.StreamConnectionSecurity | undefined>;
+    timeouts?: pulumi.Input<inputs.StreamConnectionTimeouts | undefined>;
     /**
      * Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
      */
     type: pulumi.Input<string>;
-    url?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
     /**
      * Label that identifies the stream processing workspace.
      */
-    workspaceName?: pulumi.Input<string>;
+    workspaceName?: pulumi.Input<string | undefined>;
 }

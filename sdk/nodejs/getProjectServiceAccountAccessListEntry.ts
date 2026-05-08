@@ -192,7 +192,7 @@ export interface GetProjectServiceAccountAccessListEntryOutputArgs {
     /**
      * Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
      */
-    cidrBlock?: pulumi.Input<string>;
+    cidrBlock?: pulumi.Input<string | undefined>;
     /**
      * The Client ID of the Service Account.
      */
@@ -200,7 +200,7 @@ export interface GetProjectServiceAccountAccessListEntryOutputArgs {
     /**
      * IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
      */
-    ipAddress?: pulumi.Input<string>;
+    ipAddress?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project.
      */

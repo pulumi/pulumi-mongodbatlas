@@ -135,8 +135,8 @@ def get_encryption_at_rest_private_endpoints(cloud_provider: Optional[_builtins.
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
-def get_encryption_at_rest_private_endpoints_output(cloud_provider: Optional[pulumi.Input[_builtins.str]] = None,
-                                                    project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_encryption_at_rest_private_endpoints_output(cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                                                    project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEncryptionAtRestPrivateEndpointsResult]:
     """
     `get_encryption_at_rest_private_endpoints` describes private endpoints of a particular cloud provider used for encryption at rest using customer-managed keys.

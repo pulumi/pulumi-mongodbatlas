@@ -361,7 +361,7 @@ export interface SearchIndexState {
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
-    analyzer?: pulumi.Input<string>;
+    analyzer?: pulumi.Input<string | undefined>;
     /**
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
      * ```
@@ -386,79 +386,79 @@ export interface SearchIndexState {
      * EOF
      * ```
      */
-    analyzers?: pulumi.Input<string>;
+    analyzers?: pulumi.Input<string | undefined>;
     /**
      * The name of the cluster where you want to create the search index within.
      */
-    clusterName?: pulumi.Input<string>;
+    clusterName?: pulumi.Input<string | undefined>;
     /**
      * Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
      */
-    collectionName?: pulumi.Input<string>;
+    collectionName?: pulumi.Input<string | undefined>;
     /**
      * Name of the database the collection is in.
      */
-    database?: pulumi.Input<string>;
+    database?: pulumi.Input<string | undefined>;
     /**
      * Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
      */
-    fields?: pulumi.Input<string>;
+    fields?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the Atlas Search index.
      */
-    indexId?: pulumi.Input<string>;
+    indexId?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
      */
-    mappingsDynamic?: pulumi.Input<boolean>;
+    mappingsDynamic?: pulumi.Input<boolean | undefined>;
     /**
      * JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
      */
-    mappingsDynamicConfig?: pulumi.Input<string>;
+    mappingsDynamicConfig?: pulumi.Input<string | undefined>;
     /**
      * attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      */
-    mappingsFields?: pulumi.Input<string>;
+    mappingsFields?: pulumi.Input<string | undefined>;
     /**
      * The name of the search index you want to create.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
      */
-    numPartitions?: pulumi.Input<number>;
+    numPartitions?: pulumi.Input<number | undefined>;
     /**
      * The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
-    searchAnalyzer?: pulumi.Input<string>;
+    searchAnalyzer?: pulumi.Input<string | undefined>;
     /**
      * Current status of the index.
      */
-    status?: pulumi.Input<string>;
+    status?: pulumi.Input<string | undefined>;
     /**
      * String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
      */
-    storedSource?: pulumi.Input<string>;
+    storedSource?: pulumi.Input<string | undefined>;
     /**
      * Synonyms mapping definition to use in this index.
      */
-    synonyms?: pulumi.Input<pulumi.Input<inputs.SearchIndexSynonym>[]>;
+    synonyms?: pulumi.Input<pulumi.Input<inputs.SearchIndexSynonym>[] | undefined>;
     /**
      * Type of index: `search` or `vectorSearch`. Default type is `search`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
      */
-    typeSets?: pulumi.Input<pulumi.Input<inputs.SearchIndexTypeSet>[]>;
+    typeSets?: pulumi.Input<pulumi.Input<inputs.SearchIndexTypeSet>[] | undefined>;
     /**
      * Wait for search index to achieve Active status before terraform considers resource built.
      */
-    waitForIndexBuildCompletion?: pulumi.Input<boolean>;
+    waitForIndexBuildCompletion?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -468,7 +468,7 @@ export interface SearchIndexArgs {
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
-    analyzer?: pulumi.Input<string>;
+    analyzer?: pulumi.Input<string | undefined>;
     /**
      * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
      * ```
@@ -493,7 +493,7 @@ export interface SearchIndexArgs {
      * EOF
      * ```
      */
-    analyzers?: pulumi.Input<string>;
+    analyzers?: pulumi.Input<string | undefined>;
     /**
      * The name of the cluster where you want to create the search index within.
      */
@@ -509,27 +509,27 @@ export interface SearchIndexArgs {
     /**
      * Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
      */
-    fields?: pulumi.Input<string>;
+    fields?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
      */
-    mappingsDynamic?: pulumi.Input<boolean>;
+    mappingsDynamic?: pulumi.Input<boolean | undefined>;
     /**
      * JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappingsDynamic`.
      */
-    mappingsDynamicConfig?: pulumi.Input<string>;
+    mappingsDynamicConfig?: pulumi.Input<string | undefined>;
     /**
      * attribute is required in search indexes when `mappingsDynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
      */
-    mappingsFields?: pulumi.Input<string>;
+    mappingsFields?: pulumi.Input<string | undefined>;
     /**
      * The name of the search index you want to create.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
      */
-    numPartitions?: pulumi.Input<number>;
+    numPartitions?: pulumi.Input<number | undefined>;
     /**
      * The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
      */
@@ -537,25 +537,25 @@ export interface SearchIndexArgs {
     /**
      * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
-    searchAnalyzer?: pulumi.Input<string>;
+    searchAnalyzer?: pulumi.Input<string | undefined>;
     /**
      * String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
      */
-    storedSource?: pulumi.Input<string>;
+    storedSource?: pulumi.Input<string | undefined>;
     /**
      * Synonyms mapping definition to use in this index.
      */
-    synonyms?: pulumi.Input<pulumi.Input<inputs.SearchIndexSynonym>[]>;
+    synonyms?: pulumi.Input<pulumi.Input<inputs.SearchIndexSynonym>[] | undefined>;
     /**
      * Type of index: `search` or `vectorSearch`. Default type is `search`.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
      */
-    typeSets?: pulumi.Input<pulumi.Input<inputs.SearchIndexTypeSet>[]>;
+    typeSets?: pulumi.Input<pulumi.Input<inputs.SearchIndexTypeSet>[] | undefined>;
     /**
      * Wait for search index to achieve Active status before terraform considers resource built.
      */
-    waitForIndexBuildCompletion?: pulumi.Input<boolean>;
+    waitForIndexBuildCompletion?: pulumi.Input<boolean | undefined>;
 }

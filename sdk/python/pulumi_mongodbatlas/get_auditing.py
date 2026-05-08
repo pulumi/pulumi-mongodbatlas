@@ -140,7 +140,7 @@ def get_auditing(project_id: Optional[_builtins.str] = None,
         enabled=pulumi.get(__ret__, 'enabled'),
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
-def get_auditing_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_auditing_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAuditingResult]:
     """
     `Auditing` describes a Auditing.

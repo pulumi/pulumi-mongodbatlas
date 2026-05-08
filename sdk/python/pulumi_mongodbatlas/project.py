@@ -22,20 +22,20 @@ __all__ = ['ProjectArgs', 'Project']
 class ProjectArgs:
     def __init__(__self__, *,
                  org_id: pulumi.Input[_builtins.str],
-                 is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_data_explorer_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_extended_storage_sizes_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_performance_advisor_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_realtime_performance_panel_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_schema_advisor_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_slow_operation_thresholding_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 limits: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region_usage_restrictions: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None,
-                 with_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None):
+                 is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_schema_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_slow_operation_thresholding_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 limits: pulumi.Input[Optional[Sequence[pulumi.Input['ProjectLimitArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region_usage_restrictions: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 teams: pulumi.Input[Optional[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None,
+                 with_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a Project resource.
 
@@ -103,190 +103,190 @@ class ProjectArgs:
 
     @_builtins.property
     @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
-    def is_collect_database_specifics_statistics_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_collect_database_specifics_statistics_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         """
         return pulumi.get(self, "is_collect_database_specifics_statistics_enabled")
 
     @is_collect_database_specifics_statistics_enabled.setter
-    def is_collect_database_specifics_statistics_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_collect_database_specifics_statistics_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_collect_database_specifics_statistics_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isDataExplorerEnabled")
-    def is_data_explorer_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_data_explorer_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
         """
         return pulumi.get(self, "is_data_explorer_enabled")
 
     @is_data_explorer_enabled.setter
-    def is_data_explorer_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_data_explorer_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_data_explorer_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isExtendedStorageSizesEnabled")
-    def is_extended_storage_sizes_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_extended_storage_sizes_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
         """
         return pulumi.get(self, "is_extended_storage_sizes_enabled")
 
     @is_extended_storage_sizes_enabled.setter
-    def is_extended_storage_sizes_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_extended_storage_sizes_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_extended_storage_sizes_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isPerformanceAdvisorEnabled")
-    def is_performance_advisor_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_performance_advisor_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
         """
         return pulumi.get(self, "is_performance_advisor_enabled")
 
     @is_performance_advisor_enabled.setter
-    def is_performance_advisor_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_performance_advisor_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_performance_advisor_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isRealtimePerformancePanelEnabled")
-    def is_realtime_performance_panel_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_realtime_performance_panel_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
         """
         return pulumi.get(self, "is_realtime_performance_panel_enabled")
 
     @is_realtime_performance_panel_enabled.setter
-    def is_realtime_performance_panel_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_realtime_performance_panel_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_realtime_performance_panel_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isSchemaAdvisorEnabled")
-    def is_schema_advisor_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_schema_advisor_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
         """
         return pulumi.get(self, "is_schema_advisor_enabled")
 
     @is_schema_advisor_enabled.setter
-    def is_schema_advisor_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_schema_advisor_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_schema_advisor_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isSlowOperationThresholdingEnabled")
     @_utilities.deprecated("""This parameter is deprecated.""")
-    def is_slow_operation_thresholding_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_slow_operation_thresholding_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
         """
         return pulumi.get(self, "is_slow_operation_thresholding_enabled")
 
     @is_slow_operation_thresholding_enabled.setter
-    def is_slow_operation_thresholding_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_slow_operation_thresholding_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_slow_operation_thresholding_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def limits(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]]:
+    def limits(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ProjectLimitArgs']]]]:
         return pulumi.get(self, "limits")
 
     @limits.setter
-    def limits(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]]):
+    def limits(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ProjectLimitArgs']]]]):
         pulumi.set(self, "limits", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the project you want to create.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="projectOwnerId")
-    def project_owner_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_owner_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         """
         return pulumi.get(self, "project_owner_id")
 
     @project_owner_id.setter
-    def project_owner_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_owner_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_owner_id", value)
 
     @_builtins.property
     @pulumi.getter(name="regionUsageRestrictions")
-    def region_usage_restrictions(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region_usage_restrictions(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         """
         return pulumi.get(self, "region_usage_restrictions")
 
     @region_usage_restrictions.setter
-    def region_usage_restrictions(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region_usage_restrictions(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region_usage_restrictions", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
-    def teams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]]:
+    def teams(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ProjectTeamArgs']]]]:
         return pulumi.get(self, "teams")
 
     @teams.setter
-    def teams(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]]):
+    def teams(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ProjectTeamArgs']]]]):
         pulumi.set(self, "teams", value)
 
     @_builtins.property
     @pulumi.getter(name="withDefaultAlertsSettings")
-    def with_default_alerts_settings(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def with_default_alerts_settings(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
         """
         return pulumi.get(self, "with_default_alerts_settings")
 
     @with_default_alerts_settings.setter
-    def with_default_alerts_settings(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def with_default_alerts_settings(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "with_default_alerts_settings", value)
 
 
 @pulumi.input_type
 class _ProjectState:
     def __init__(__self__, *,
-                 cluster_count: Optional[pulumi.Input[_builtins.int]] = None,
-                 created: Optional[pulumi.Input[_builtins.str]] = None,
-                 ip_addresses: Optional[pulumi.Input['ProjectIpAddressesArgs']] = None,
-                 is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_data_explorer_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_extended_storage_sizes_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_performance_advisor_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_realtime_performance_panel_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_schema_advisor_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_slow_operation_thresholding_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 limits: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region_usage_restrictions: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 teams: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None,
-                 with_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None):
+                 cluster_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 created: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_addresses: pulumi.Input[Optional['ProjectIpAddressesArgs']] = None,
+                 is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_schema_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_slow_operation_thresholding_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 limits: pulumi.Input[Optional[Sequence[pulumi.Input['ProjectLimitArgs']]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region_usage_restrictions: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 teams: pulumi.Input[Optional[Sequence[pulumi.Input['ProjectTeamArgs']]]] = None,
+                 with_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering Project resources.
 
@@ -355,215 +355,215 @@ class _ProjectState:
 
     @_builtins.property
     @pulumi.getter(name="clusterCount")
-    def cluster_count(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def cluster_count(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The number of Atlas clusters deployed in the project.
         """
         return pulumi.get(self, "cluster_count")
 
     @cluster_count.setter
-    def cluster_count(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def cluster_count(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "cluster_count", value)
 
     @_builtins.property
     @pulumi.getter
-    def created(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ISO-8601-formatted timestamp of when Atlas created the project.
         """
         return pulumi.get(self, "created")
 
     @created.setter
-    def created(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created", value)
 
     @_builtins.property
     @pulumi.getter(name="ipAddresses")
     @_utilities.deprecated("""This parameter is deprecated. Please transition to get_project_ip_addresses data source.""")
-    def ip_addresses(self) -> Optional[pulumi.Input['ProjectIpAddressesArgs']]:
+    def ip_addresses(self) -> pulumi.Input[Optional['ProjectIpAddressesArgs']]:
         """
         IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
         """
         return pulumi.get(self, "ip_addresses")
 
     @ip_addresses.setter
-    def ip_addresses(self, value: Optional[pulumi.Input['ProjectIpAddressesArgs']]):
+    def ip_addresses(self, value: pulumi.Input[Optional['ProjectIpAddressesArgs']]):
         pulumi.set(self, "ip_addresses", value)
 
     @_builtins.property
     @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
-    def is_collect_database_specifics_statistics_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_collect_database_specifics_statistics_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         """
         return pulumi.get(self, "is_collect_database_specifics_statistics_enabled")
 
     @is_collect_database_specifics_statistics_enabled.setter
-    def is_collect_database_specifics_statistics_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_collect_database_specifics_statistics_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_collect_database_specifics_statistics_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isDataExplorerEnabled")
-    def is_data_explorer_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_data_explorer_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
         """
         return pulumi.get(self, "is_data_explorer_enabled")
 
     @is_data_explorer_enabled.setter
-    def is_data_explorer_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_data_explorer_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_data_explorer_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isExtendedStorageSizesEnabled")
-    def is_extended_storage_sizes_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_extended_storage_sizes_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
         """
         return pulumi.get(self, "is_extended_storage_sizes_enabled")
 
     @is_extended_storage_sizes_enabled.setter
-    def is_extended_storage_sizes_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_extended_storage_sizes_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_extended_storage_sizes_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isPerformanceAdvisorEnabled")
-    def is_performance_advisor_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_performance_advisor_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
         """
         return pulumi.get(self, "is_performance_advisor_enabled")
 
     @is_performance_advisor_enabled.setter
-    def is_performance_advisor_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_performance_advisor_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_performance_advisor_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isRealtimePerformancePanelEnabled")
-    def is_realtime_performance_panel_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_realtime_performance_panel_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
         """
         return pulumi.get(self, "is_realtime_performance_panel_enabled")
 
     @is_realtime_performance_panel_enabled.setter
-    def is_realtime_performance_panel_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_realtime_performance_panel_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_realtime_performance_panel_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isSchemaAdvisorEnabled")
-    def is_schema_advisor_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_schema_advisor_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
         """
         return pulumi.get(self, "is_schema_advisor_enabled")
 
     @is_schema_advisor_enabled.setter
-    def is_schema_advisor_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_schema_advisor_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_schema_advisor_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isSlowOperationThresholdingEnabled")
     @_utilities.deprecated("""This parameter is deprecated.""")
-    def is_slow_operation_thresholding_enabled(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def is_slow_operation_thresholding_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
         """
         return pulumi.get(self, "is_slow_operation_thresholding_enabled")
 
     @is_slow_operation_thresholding_enabled.setter
-    def is_slow_operation_thresholding_enabled(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def is_slow_operation_thresholding_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_slow_operation_thresholding_enabled", value)
 
     @_builtins.property
     @pulumi.getter
-    def limits(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]]:
+    def limits(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ProjectLimitArgs']]]]:
         return pulumi.get(self, "limits")
 
     @limits.setter
-    def limits(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectLimitArgs']]]]):
+    def limits(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ProjectLimitArgs']]]]):
         pulumi.set(self, "limits", value)
 
     @_builtins.property
     @pulumi.getter
-    def name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the project you want to create.
         """
         return pulumi.get(self, "name")
 
     @name.setter
-    def name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The ID of the organization you want to create the project within.
         """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
-    def org_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_id", value)
 
     @_builtins.property
     @pulumi.getter(name="projectOwnerId")
-    def project_owner_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_owner_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
         """
         return pulumi.get(self, "project_owner_id")
 
     @project_owner_id.setter
-    def project_owner_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_owner_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_owner_id", value)
 
     @_builtins.property
     @pulumi.getter(name="regionUsageRestrictions")
-    def region_usage_restrictions(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region_usage_restrictions(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
         """
         return pulumi.get(self, "region_usage_restrictions")
 
     @region_usage_restrictions.setter
-    def region_usage_restrictions(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region_usage_restrictions(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region_usage_restrictions", value)
 
     @_builtins.property
     @pulumi.getter
-    def tags(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]:
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
         Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
         """
         return pulumi.get(self, "tags")
 
     @tags.setter
-    def tags(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]]):
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "tags", value)
 
     @_builtins.property
     @pulumi.getter
     @_utilities.deprecated("""This parameter is deprecated and will be removed in the next major release. Please transition to `TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.""")
-    def teams(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]]:
+    def teams(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ProjectTeamArgs']]]]:
         return pulumi.get(self, "teams")
 
     @teams.setter
-    def teams(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectTeamArgs']]]]):
+    def teams(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ProjectTeamArgs']]]]):
         pulumi.set(self, "teams", value)
 
     @_builtins.property
     @pulumi.getter(name="withDefaultAlertsSettings")
-    def with_default_alerts_settings(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def with_default_alerts_settings(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
         """
         return pulumi.get(self, "with_default_alerts_settings")
 
     @with_default_alerts_settings.setter
-    def with_default_alerts_settings(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def with_default_alerts_settings(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "with_default_alerts_settings", value)
 
 
@@ -573,21 +573,21 @@ class Project(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_data_explorer_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_extended_storage_sizes_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_performance_advisor_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_realtime_performance_panel_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_schema_advisor_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_slow_operation_thresholding_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region_usage_restrictions: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict']]]]] = None,
-                 with_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None,
+                 is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_schema_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_slow_operation_thresholding_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region_usage_restrictions: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 teams: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict']]]]] = None,
+                 with_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         `Project` provides a Project resource. This allows project to be created.
@@ -722,21 +722,21 @@ class Project(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_data_explorer_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_extended_storage_sizes_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_performance_advisor_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_realtime_performance_panel_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_schema_advisor_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 is_slow_operation_thresholding_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-                 limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict']]]]] = None,
-                 name: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region_usage_restrictions: Optional[pulumi.Input[_builtins.str]] = None,
-                 tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 teams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict']]]]] = None,
-                 with_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None,
+                 is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_schema_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_slow_operation_thresholding_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict']]]]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region_usage_restrictions: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 teams: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict']]]]] = None,
+                 with_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -776,24 +776,24 @@ class Project(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cluster_count: Optional[pulumi.Input[_builtins.int]] = None,
-            created: Optional[pulumi.Input[_builtins.str]] = None,
-            ip_addresses: Optional[pulumi.Input[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict']]] = None,
-            is_collect_database_specifics_statistics_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            is_data_explorer_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            is_extended_storage_sizes_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            is_performance_advisor_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            is_realtime_performance_panel_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            is_schema_advisor_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            is_slow_operation_thresholding_enabled: Optional[pulumi.Input[_builtins.bool]] = None,
-            limits: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict']]]]] = None,
-            name: Optional[pulumi.Input[_builtins.str]] = None,
-            org_id: Optional[pulumi.Input[_builtins.str]] = None,
-            project_owner_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region_usage_restrictions: Optional[pulumi.Input[_builtins.str]] = None,
-            tags: Optional[pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            teams: Optional[pulumi.Input[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict']]]]] = None,
-            with_default_alerts_settings: Optional[pulumi.Input[_builtins.bool]] = None) -> 'Project':
+            cluster_count: pulumi.Input[Optional[_builtins.int]] = None,
+            created: pulumi.Input[Optional[_builtins.str]] = None,
+            ip_addresses: pulumi.Input[Optional[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict']]] = None,
+            is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_schema_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_slow_operation_thresholding_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict']]]]] = None,
+            name: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            project_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region_usage_restrictions: pulumi.Input[Optional[_builtins.str]] = None,
+            tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+            teams: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict']]]]] = None,
+            with_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None) -> 'Project':
         """
         Get an existing Project resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

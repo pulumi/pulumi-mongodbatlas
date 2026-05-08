@@ -152,23 +152,23 @@ export interface StreamWorkspaceState {
     /**
      * Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
      */
-    dataProcessRegion?: pulumi.Input<inputs.StreamWorkspaceDataProcessRegion>;
+    dataProcessRegion?: pulumi.Input<inputs.StreamWorkspaceDataProcessRegion | undefined>;
     /**
      * List that contains the hostnames assigned to the stream workspace.
      */
-    hostnames?: pulumi.Input<pulumi.Input<string>[]>;
+    hostnames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Configuration options for an Atlas Stream Processing Instance. See stream config
      */
-    streamConfig?: pulumi.Input<inputs.StreamWorkspaceStreamConfig>;
+    streamConfig?: pulumi.Input<inputs.StreamWorkspaceStreamConfig | undefined>;
     /**
      * Label that identifies the stream workspace.
      */
-    workspaceName?: pulumi.Input<string>;
+    workspaceName?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -186,7 +186,7 @@ export interface StreamWorkspaceArgs {
     /**
      * Configuration options for an Atlas Stream Processing Instance. See stream config
      */
-    streamConfig?: pulumi.Input<inputs.StreamWorkspaceStreamConfig>;
+    streamConfig?: pulumi.Input<inputs.StreamWorkspaceStreamConfig | undefined>;
     /**
      * Label that identifies the stream workspace.
      */

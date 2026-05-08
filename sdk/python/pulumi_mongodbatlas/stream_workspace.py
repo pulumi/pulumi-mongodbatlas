@@ -24,7 +24,7 @@ class StreamWorkspaceArgs:
                  data_process_region: pulumi.Input['StreamWorkspaceDataProcessRegionArgs'],
                  project_id: pulumi.Input[_builtins.str],
                  workspace_name: pulumi.Input[_builtins.str],
-                 stream_config: Optional[pulumi.Input['StreamWorkspaceStreamConfigArgs']] = None):
+                 stream_config: pulumi.Input[Optional['StreamWorkspaceStreamConfigArgs']] = None):
         """
         The set of arguments for constructing a StreamWorkspace resource.
 
@@ -77,25 +77,25 @@ class StreamWorkspaceArgs:
 
     @_builtins.property
     @pulumi.getter(name="streamConfig")
-    def stream_config(self) -> Optional[pulumi.Input['StreamWorkspaceStreamConfigArgs']]:
+    def stream_config(self) -> pulumi.Input[Optional['StreamWorkspaceStreamConfigArgs']]:
         """
         Configuration options for an Atlas Stream Processing Instance. See stream config
         """
         return pulumi.get(self, "stream_config")
 
     @stream_config.setter
-    def stream_config(self, value: Optional[pulumi.Input['StreamWorkspaceStreamConfigArgs']]):
+    def stream_config(self, value: pulumi.Input[Optional['StreamWorkspaceStreamConfigArgs']]):
         pulumi.set(self, "stream_config", value)
 
 
 @pulumi.input_type
 class _StreamWorkspaceState:
     def __init__(__self__, *,
-                 data_process_region: Optional[pulumi.Input['StreamWorkspaceDataProcessRegionArgs']] = None,
-                 hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 stream_config: Optional[pulumi.Input['StreamWorkspaceStreamConfigArgs']] = None,
-                 workspace_name: Optional[pulumi.Input[_builtins.str]] = None):
+                 data_process_region: pulumi.Input[Optional['StreamWorkspaceDataProcessRegionArgs']] = None,
+                 hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 stream_config: pulumi.Input[Optional['StreamWorkspaceStreamConfigArgs']] = None,
+                 workspace_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering StreamWorkspace resources.
 
@@ -118,62 +118,62 @@ class _StreamWorkspaceState:
 
     @_builtins.property
     @pulumi.getter(name="dataProcessRegion")
-    def data_process_region(self) -> Optional[pulumi.Input['StreamWorkspaceDataProcessRegionArgs']]:
+    def data_process_region(self) -> pulumi.Input[Optional['StreamWorkspaceDataProcessRegionArgs']]:
         """
         Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
         """
         return pulumi.get(self, "data_process_region")
 
     @data_process_region.setter
-    def data_process_region(self, value: Optional[pulumi.Input['StreamWorkspaceDataProcessRegionArgs']]):
+    def data_process_region(self, value: pulumi.Input[Optional['StreamWorkspaceDataProcessRegionArgs']]):
         pulumi.set(self, "data_process_region", value)
 
     @_builtins.property
     @pulumi.getter
-    def hostnames(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def hostnames(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List that contains the hostnames assigned to the stream workspace.
         """
         return pulumi.get(self, "hostnames")
 
     @hostnames.setter
-    def hostnames(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def hostnames(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "hostnames", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter(name="streamConfig")
-    def stream_config(self) -> Optional[pulumi.Input['StreamWorkspaceStreamConfigArgs']]:
+    def stream_config(self) -> pulumi.Input[Optional['StreamWorkspaceStreamConfigArgs']]:
         """
         Configuration options for an Atlas Stream Processing Instance. See stream config
         """
         return pulumi.get(self, "stream_config")
 
     @stream_config.setter
-    def stream_config(self, value: Optional[pulumi.Input['StreamWorkspaceStreamConfigArgs']]):
+    def stream_config(self, value: pulumi.Input[Optional['StreamWorkspaceStreamConfigArgs']]):
         pulumi.set(self, "stream_config", value)
 
     @_builtins.property
     @pulumi.getter(name="workspaceName")
-    def workspace_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def workspace_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Label that identifies the stream workspace.
         """
         return pulumi.get(self, "workspace_name")
 
     @workspace_name.setter
-    def workspace_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def workspace_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "workspace_name", value)
 
 
@@ -183,10 +183,10 @@ class StreamWorkspace(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 data_process_region: Optional[pulumi.Input[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 stream_config: Optional[pulumi.Input[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict']]] = None,
-                 workspace_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 data_process_region: pulumi.Input[Optional[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 stream_config: pulumi.Input[Optional[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict']]] = None,
+                 workspace_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `StreamWorkspace` provides a Stream Workspace resource. The resource lets you create, edit, and delete stream workspaces in a project.
@@ -314,10 +314,10 @@ class StreamWorkspace(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 data_process_region: Optional[pulumi.Input[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 stream_config: Optional[pulumi.Input[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict']]] = None,
-                 workspace_name: Optional[pulumi.Input[_builtins.str]] = None,
+                 data_process_region: pulumi.Input[Optional[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 stream_config: pulumi.Input[Optional[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict']]] = None,
+                 workspace_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -348,11 +348,11 @@ class StreamWorkspace(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            data_process_region: Optional[pulumi.Input[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict']]] = None,
-            hostnames: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            stream_config: Optional[pulumi.Input[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict']]] = None,
-            workspace_name: Optional[pulumi.Input[_builtins.str]] = None) -> 'StreamWorkspace':
+            data_process_region: pulumi.Input[Optional[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict']]] = None,
+            hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            stream_config: pulumi.Input[Optional[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict']]] = None,
+            workspace_name: pulumi.Input[Optional[_builtins.str]] = None) -> 'StreamWorkspace':
         """
         Get an existing StreamWorkspace resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

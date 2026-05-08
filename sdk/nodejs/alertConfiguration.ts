@@ -280,15 +280,15 @@ export interface AlertConfigurationState {
     /**
      * Unique identifier for the alert configuration.
      */
-    alertConfigurationId?: pulumi.Input<string>;
+    alertConfigurationId?: pulumi.Input<string | undefined>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was created.
      */
-    created?: pulumi.Input<string>;
+    created?: pulumi.Input<string | undefined>;
     /**
      * It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * The type of event that will trigger an alert.
      *
@@ -297,23 +297,23 @@ export interface AlertConfigurationState {
      *
      * > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
      */
-    eventType?: pulumi.Input<string>;
-    matchers?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationMatcher>[]>;
-    metricThresholdConfig?: pulumi.Input<inputs.AlertConfigurationMetricThresholdConfig>;
-    notifications?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationNotification>[]>;
+    eventType?: pulumi.Input<string | undefined>;
+    matchers?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationMatcher>[] | undefined>;
+    metricThresholdConfig?: pulumi.Input<inputs.AlertConfigurationMetricThresholdConfig | undefined>;
+    notifications?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationNotification>[] | undefined>;
     /**
      * The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
      */
-    severityOverride?: pulumi.Input<string>;
-    thresholdConfig?: pulumi.Input<inputs.AlertConfigurationThresholdConfig>;
+    severityOverride?: pulumi.Input<string | undefined>;
+    thresholdConfig?: pulumi.Input<inputs.AlertConfigurationThresholdConfig | undefined>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when this alert configuration was last updated.
      */
-    updated?: pulumi.Input<string>;
+    updated?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -323,7 +323,7 @@ export interface AlertConfigurationArgs {
     /**
      * It is not required, but If the attribute is omitted, by default will be false, and the configuration would be disabled. You must set true to enable the configuration.
      */
-    enabled?: pulumi.Input<boolean>;
+    enabled?: pulumi.Input<boolean | undefined>;
     /**
      * The type of event that will trigger an alert.
      *
@@ -333,8 +333,8 @@ export interface AlertConfigurationArgs {
      * > **NOTE:** If `eventType` is set to `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`, the `metricThresholdConfig` field must also be configured.
      */
     eventType: pulumi.Input<string>;
-    matchers?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationMatcher>[]>;
-    metricThresholdConfig?: pulumi.Input<inputs.AlertConfigurationMetricThresholdConfig>;
+    matchers?: pulumi.Input<pulumi.Input<inputs.AlertConfigurationMatcher>[] | undefined>;
+    metricThresholdConfig?: pulumi.Input<inputs.AlertConfigurationMetricThresholdConfig | undefined>;
     notifications: pulumi.Input<pulumi.Input<inputs.AlertConfigurationNotification>[]>;
     /**
      * The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
@@ -343,6 +343,6 @@ export interface AlertConfigurationArgs {
     /**
      * Severity of the event. For the list of accepted values please read the [Create One Alert Configuration in One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupalertconfig) API documentation.
      */
-    severityOverride?: pulumi.Input<string>;
-    thresholdConfig?: pulumi.Input<inputs.AlertConfigurationThresholdConfig>;
+    severityOverride?: pulumi.Input<string | undefined>;
+    thresholdConfig?: pulumi.Input<inputs.AlertConfigurationThresholdConfig | undefined>;
 }

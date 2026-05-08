@@ -124,8 +124,8 @@ def get_network_containers(project_id: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         provider_name=pulumi.get(__ret__, 'provider_name'),
         results=pulumi.get(__ret__, 'results'))
-def get_network_containers_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                  provider_name: Optional[pulumi.Input[_builtins.str]] = None,
+def get_network_containers_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                  provider_name: pulumi.Input[Optional[_builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNetworkContainersResult]:
     """
     `get_network_containers` describes all Network Peering Containers. The data source requires your Project ID.

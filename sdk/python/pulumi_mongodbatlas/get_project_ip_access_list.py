@@ -193,10 +193,10 @@ def get_project_ip_access_list(aws_security_group: Optional[_builtins.str] = Non
         id=pulumi.get(__ret__, 'id'),
         ip_address=pulumi.get(__ret__, 'ip_address'),
         project_id=pulumi.get(__ret__, 'project_id'))
-def get_project_ip_access_list_output(aws_security_group: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                      cidr_block: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                      ip_address: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                      project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_project_ip_access_list_output(aws_security_group: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                      cidr_block: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                      ip_address: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                      project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectIpAccessListResult]:
     """
     `ProjectIpAccessList` describes an IP Access List entry resource. The access list grants access from IPs, CIDRs or AWS Security Groups (if VPC Peering is enabled) to clusters within the Project.

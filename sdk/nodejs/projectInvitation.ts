@@ -169,31 +169,31 @@ export interface ProjectInvitationState {
     /**
      * Timestamp in ISO 8601 date and time format in UTC when Atlas sent the invitation.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the invitation expires. Users have 30 days to accept an invitation.
      */
-    expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the invitation in Atlas.
      */
-    invitationId?: pulumi.Input<string>;
+    invitationId?: pulumi.Input<string | undefined>;
     /**
      * Atlas user who invited `username` to the project.
      */
-    inviterUsername?: pulumi.Input<string>;
+    inviterUsername?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the project to which you want to invite a user, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * List of Atlas roles to assign to the invited user. If the user accepts the invitation, Atlas assigns these roles to them. Refer to the [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#project-roles) for information on valid roles.
      */
-    roles?: pulumi.Input<pulumi.Input<string>[]>;
+    roles?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Email address to which Atlas sent the invitation. The user uses this email address as their Atlas username if they accept this invitation.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
 }
 
 /**

@@ -127,14 +127,14 @@ using Mongodbatlas = Pulumi.Mongodbatlas;
 return await Deployment.RunAsync(() =>
 {
     // Create a project
-    var @this = new Mongodbatlas.Index.Project("this", new()
+    var @this = new Mongodbatlas.Project("this", new()
     {
         Name = "my-project",
         OrgId = orgId,
     });
 
     // Create a cluster
-    var thisAdvancedCluster = new Mongodbatlas.Index.AdvancedCluster("this", new()
+    var thisAdvancedCluster = new Mongodbatlas.AdvancedCluster("this", new()
     {
         ProjectId = @this.Id,
         Name = "my-cluster",
@@ -291,8 +291,8 @@ import com.pulumi.mongodbatlas.ProjectArgs;
 import com.pulumi.mongodbatlas.AdvancedCluster;
 import com.pulumi.mongodbatlas.AdvancedClusterArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 import java.io.File;
 import java.nio.file.Files;

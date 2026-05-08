@@ -253,9 +253,9 @@ def get_cloud_backup_snapshot_export_job(cluster_name: Optional[_builtins.str] =
         project_id=pulumi.get(__ret__, 'project_id'),
         snapshot_id=pulumi.get(__ret__, 'snapshot_id'),
         state=pulumi.get(__ret__, 'state'))
-def get_cloud_backup_snapshot_export_job_output(cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                                export_job_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_cloud_backup_snapshot_export_job_output(cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                                export_job_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupSnapshotExportJobResult]:
     """
     `CloudBackupSnapshotExportJob` datasource allows you to retrieve a snapshot export job for the specified project and cluster.

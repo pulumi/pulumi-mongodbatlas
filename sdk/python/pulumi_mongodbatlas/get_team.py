@@ -170,9 +170,9 @@ def get_team(name: Optional[_builtins.str] = None,
         team_id=pulumi.get(__ret__, 'team_id'),
         usernames=pulumi.get(__ret__, 'usernames'),
         users=pulumi.get(__ret__, 'users'))
-def get_team_output(name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                    org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                    team_id: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_team_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                    org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                    team_id: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTeamResult]:
     """
     `Team` describes a Team. The resource requires your Organization ID, Project ID and Team ID.

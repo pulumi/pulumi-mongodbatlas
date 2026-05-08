@@ -24,9 +24,9 @@ class PushBasedLogExportArgs:
                  bucket_name: pulumi.Input[_builtins.str],
                  iam_role_id: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input['PushBasedLogExportTimeoutsArgs']] = None):
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional['PushBasedLogExportTimeoutsArgs']] = None):
         """
         The set of arguments for constructing a PushBasedLogExport resource.
 
@@ -84,49 +84,49 @@ class PushBasedLogExportArgs:
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
-    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_on_create_timeout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
     @delete_on_create_timeout.setter
-    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="prefixPath")
-    def prefix_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def prefix_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
         """
         return pulumi.get(self, "prefix_path")
 
     @prefix_path.setter
-    def prefix_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def prefix_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "prefix_path", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['PushBasedLogExportTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['PushBasedLogExportTimeoutsArgs']]:
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['PushBasedLogExportTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['PushBasedLogExportTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
 
 @pulumi.input_type
 class _PushBasedLogExportState:
     def __init__(__self__, *,
-                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 create_date: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 state: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input['PushBasedLogExportTimeoutsArgs']] = None):
+                 bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 create_date: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 iam_role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional['PushBasedLogExportTimeoutsArgs']] = None):
         """
         Input properties used for looking up and filtering PushBasedLogExport resources.
 
@@ -157,95 +157,95 @@ class _PushBasedLogExportState:
 
     @_builtins.property
     @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The name of the bucket to which the agent sends the logs to.
         """
         return pulumi.get(self, "bucket_name")
 
     @bucket_name.setter
-    def bucket_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket_name", value)
 
     @_builtins.property
     @pulumi.getter(name="createDate")
-    def create_date(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def create_date(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time that this feature was enabled on.
         """
         return pulumi.get(self, "create_date")
 
     @create_date.setter
-    def create_date(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def create_date(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "create_date", value)
 
     @_builtins.property
     @pulumi.getter(name="deleteOnCreateTimeout")
-    def delete_on_create_timeout(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def delete_on_create_timeout(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
 
     @delete_on_create_timeout.setter
-    def delete_on_create_timeout(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
 
     @_builtins.property
     @pulumi.getter(name="iamRoleId")
-    def iam_role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_role_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         ID of the AWS IAM role that is used to write to the S3 bucket.
         """
         return pulumi.get(self, "iam_role_id")
 
     @iam_role_id.setter
-    def iam_role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_role_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_role_id", value)
 
     @_builtins.property
     @pulumi.getter(name="prefixPath")
-    def prefix_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def prefix_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
         """
         return pulumi.get(self, "prefix_path")
 
     @prefix_path.setter
-    def prefix_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def prefix_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "prefix_path", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def state(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Describes whether or not the feature is enabled and what status it is in.
         """
         return pulumi.get(self, "state")
 
     @state.setter
-    def state(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "state", value)
 
     @_builtins.property
     @pulumi.getter
-    def timeouts(self) -> Optional[pulumi.Input['PushBasedLogExportTimeoutsArgs']]:
+    def timeouts(self) -> pulumi.Input[Optional['PushBasedLogExportTimeoutsArgs']]:
         return pulumi.get(self, "timeouts")
 
     @timeouts.setter
-    def timeouts(self, value: Optional[pulumi.Input['PushBasedLogExportTimeoutsArgs']]):
+    def timeouts(self, value: pulumi.Input[Optional['PushBasedLogExportTimeoutsArgs']]):
         pulumi.set(self, "timeouts", value)
 
 
@@ -255,12 +255,12 @@ class PushBasedLogExport(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict']]] = None,
+                 bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 iam_role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict']]] = None,
                  __props__=None):
         """
         > **DEPRECATED:** This resource is deprecated and will be removed in the next major version. Please use `LogIntegration` instead. For migration instructions, see the Push-Based Log Export to Log Integration Migration Guide.
@@ -389,12 +389,12 @@ class PushBasedLogExport(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-                 iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 timeouts: Optional[pulumi.Input[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict']]] = None,
+                 bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 iam_role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 timeouts: pulumi.Input[Optional[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -428,14 +428,14 @@ class PushBasedLogExport(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-            create_date: Optional[pulumi.Input[_builtins.str]] = None,
-            delete_on_create_timeout: Optional[pulumi.Input[_builtins.bool]] = None,
-            iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
-            prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            state: Optional[pulumi.Input[_builtins.str]] = None,
-            timeouts: Optional[pulumi.Input[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict']]] = None) -> 'PushBasedLogExport':
+            bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+            create_date: pulumi.Input[Optional[_builtins.str]] = None,
+            delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            iam_role_id: pulumi.Input[Optional[_builtins.str]] = None,
+            prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            state: pulumi.Input[Optional[_builtins.str]] = None,
+            timeouts: pulumi.Input[Optional[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict']]] = None) -> 'PushBasedLogExport':
         """
         Get an existing PushBasedLogExport resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

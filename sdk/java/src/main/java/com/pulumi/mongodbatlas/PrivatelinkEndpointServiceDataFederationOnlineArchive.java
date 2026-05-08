@@ -36,8 +36,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.aws.VpcEndpointArgs;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchive;
  * import com.pulumi.mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -58,8 +58,8 @@ import javax.annotation.Nullable;
  *             .vpcId("vpc-7fc0a543")
  *             .serviceName("<SERVICE-NAME>")
  *             .vpcEndpointType("Interface")
- *             .subnetIds(List.of("subnet-de0406d2"))
- *             .securityGroupIds(List.of("sg-3f238186"))
+ *             .subnetIds(Arrays.asList("subnet-de0406d2"))
+ *             .securityGroupIds(Arrays.asList("sg-3f238186"))
  *             .build());
  * 
  *         var testPrivatelinkEndpointServiceDataFederationOnlineArchive = new PrivatelinkEndpointServiceDataFederationOnlineArchive("testPrivatelinkEndpointServiceDataFederationOnlineArchive", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()

@@ -138,17 +138,17 @@ export class ApiKey extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ApiKey resources.
  */
 export interface ApiKeyState {
-    apiKeyId?: pulumi.Input<string>;
+    apiKeyId?: pulumi.Input<string | undefined>;
     /**
      * Description of this Organization API key.
      */
-    description?: pulumi.Input<string>;
+    description?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier for the organization whose API keys you want to retrieve. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
      */
-    orgId?: pulumi.Input<string>;
-    privateKey?: pulumi.Input<string>;
-    publicKey?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string | undefined>;
+    privateKey?: pulumi.Input<string | undefined>;
+    publicKey?: pulumi.Input<string | undefined>;
     /**
      * Name of the role. This resource returns all the roles the user has in Atlas.
      * The following are valid roles:
@@ -158,7 +158,7 @@ export interface ApiKeyState {
      * * `ORG_READ_ONLY`
      * * `ORG_MEMBER`
      */
-    roleNames?: pulumi.Input<pulumi.Input<string>[]>;
+    roleNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
 }
 
 /**

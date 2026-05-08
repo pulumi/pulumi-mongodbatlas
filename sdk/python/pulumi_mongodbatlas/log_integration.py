@@ -24,20 +24,20 @@ class LogIntegrationArgs:
                  log_types: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  project_id: pulumi.Input[_builtins.str],
                  type: pulumi.Input[_builtins.str],
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 hec_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 hec_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 kms_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 otel_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 otel_supplied_headers: Optional[pulumi.Input[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]] = None,
-                 prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_container_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_legacy_path_structure: Optional[pulumi.Input[_builtins.bool]] = None):
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 hec_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 hec_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 kms_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 otel_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 otel_supplied_headers: pulumi.Input[Optional[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]] = None,
+                 prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_container_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_legacy_path_structure: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a LogIntegration resource.
 
@@ -129,194 +129,194 @@ class LogIntegrationArgs:
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: DATADOG_LOG_EXPORT. API key for authentication.
         """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
-    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_key", value)
 
     @_builtins.property
     @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
         """
         return pulumi.get(self, "bucket_name")
 
     @bucket_name.setter
-    def bucket_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket_name", value)
 
     @_builtins.property
     @pulumi.getter(name="hecToken")
-    def hec_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hec_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
         """
         return pulumi.get(self, "hec_token")
 
     @hec_token.setter
-    def hec_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hec_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hec_token", value)
 
     @_builtins.property
     @pulumi.getter(name="hecUrl")
-    def hec_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hec_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
         """
         return pulumi.get(self, "hec_url")
 
     @hec_url.setter
-    def hec_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hec_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hec_url", value)
 
     @_builtins.property
     @pulumi.getter(name="iamRoleId")
-    def iam_role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_role_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
         """
         return pulumi.get(self, "iam_role_id")
 
     @iam_role_id.setter
-    def iam_role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_role_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_role_id", value)
 
     @_builtins.property
     @pulumi.getter(name="kmsKey")
-    def kms_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kms_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
         """
         return pulumi.get(self, "kms_key")
 
     @kms_key.setter
-    def kms_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kms_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kms_key", value)
 
     @_builtins.property
     @pulumi.getter(name="otelEndpoint")
-    def otel_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def otel_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
         """
         return pulumi.get(self, "otel_endpoint")
 
     @otel_endpoint.setter
-    def otel_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def otel_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "otel_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="otelSuppliedHeaders")
-    def otel_supplied_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]]:
+    def otel_supplied_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]]:
         """
         Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
         """
         return pulumi.get(self, "otel_supplied_headers")
 
     @otel_supplied_headers.setter
-    def otel_supplied_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]]):
+    def otel_supplied_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]]):
         pulumi.set(self, "otel_supplied_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="prefixPath")
-    def prefix_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def prefix_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
         """
         return pulumi.get(self, "prefix_path")
 
     @prefix_path.setter
-    def prefix_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def prefix_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "prefix_path", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="roleId")
-    def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
         """
         return pulumi.get(self, "role_id")
 
     @role_id.setter
-    def role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_id", value)
 
     @_builtins.property
     @pulumi.getter(name="storageAccountName")
-    def storage_account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def storage_account_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
         """
         return pulumi.get(self, "storage_account_name")
 
     @storage_account_name.setter
-    def storage_account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def storage_account_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "storage_account_name", value)
 
     @_builtins.property
     @pulumi.getter(name="storageContainerName")
-    def storage_container_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def storage_container_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
         """
         return pulumi.get(self, "storage_container_name")
 
     @storage_container_name.setter
-    def storage_container_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def storage_container_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "storage_container_name", value)
 
     @_builtins.property
     @pulumi.getter(name="useLegacyPathStructure")
-    def use_legacy_path_structure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_legacy_path_structure(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
         """
         return pulumi.get(self, "use_legacy_path_structure")
 
     @use_legacy_path_structure.setter
-    def use_legacy_path_structure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_legacy_path_structure(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_legacy_path_structure", value)
 
 
 @pulumi.input_type
 class _LogIntegrationState:
     def __init__(__self__, *,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 hec_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 hec_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 integration_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 kms_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 log_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 otel_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 otel_supplied_headers: Optional[pulumi.Input[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]] = None,
-                 prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_container_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_legacy_path_structure: Optional[pulumi.Input[_builtins.bool]] = None):
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 hec_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 hec_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 integration_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 kms_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 log_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 otel_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 otel_supplied_headers: pulumi.Input[Optional[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]] = None,
+                 prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_container_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_legacy_path_structure: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering LogIntegration resources.
 
@@ -378,218 +378,218 @@ class _LogIntegrationState:
 
     @_builtins.property
     @pulumi.getter(name="apiKey")
-    def api_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def api_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: DATADOG_LOG_EXPORT. API key for authentication.
         """
         return pulumi.get(self, "api_key")
 
     @api_key.setter
-    def api_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def api_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "api_key", value)
 
     @_builtins.property
     @pulumi.getter(name="bucketName")
-    def bucket_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def bucket_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
         """
         return pulumi.get(self, "bucket_name")
 
     @bucket_name.setter
-    def bucket_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def bucket_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "bucket_name", value)
 
     @_builtins.property
     @pulumi.getter(name="hecToken")
-    def hec_token(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hec_token(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
         """
         return pulumi.get(self, "hec_token")
 
     @hec_token.setter
-    def hec_token(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hec_token(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hec_token", value)
 
     @_builtins.property
     @pulumi.getter(name="hecUrl")
-    def hec_url(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def hec_url(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
         """
         return pulumi.get(self, "hec_url")
 
     @hec_url.setter
-    def hec_url(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def hec_url(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "hec_url", value)
 
     @_builtins.property
     @pulumi.getter(name="iamRoleId")
-    def iam_role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def iam_role_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
         """
         return pulumi.get(self, "iam_role_id")
 
     @iam_role_id.setter
-    def iam_role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def iam_role_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "iam_role_id", value)
 
     @_builtins.property
     @pulumi.getter(name="integrationId")
-    def integration_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def integration_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-character hexadecimal digit string that identifies the log integration configuration.
         """
         return pulumi.get(self, "integration_id")
 
     @integration_id.setter
-    def integration_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def integration_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "integration_id", value)
 
     @_builtins.property
     @pulumi.getter(name="kmsKey")
-    def kms_key(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def kms_key(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
         """
         return pulumi.get(self, "kms_key")
 
     @kms_key.setter
-    def kms_key(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def kms_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "kms_key", value)
 
     @_builtins.property
     @pulumi.getter(name="logTypes")
-    def log_types(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def log_types(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         Array of log types exported by this integration.
         """
         return pulumi.get(self, "log_types")
 
     @log_types.setter
-    def log_types(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def log_types(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "log_types", value)
 
     @_builtins.property
     @pulumi.getter(name="otelEndpoint")
-    def otel_endpoint(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def otel_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
         """
         return pulumi.get(self, "otel_endpoint")
 
     @otel_endpoint.setter
-    def otel_endpoint(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def otel_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "otel_endpoint", value)
 
     @_builtins.property
     @pulumi.getter(name="otelSuppliedHeaders")
-    def otel_supplied_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]]:
+    def otel_supplied_headers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]]:
         """
         Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
         """
         return pulumi.get(self, "otel_supplied_headers")
 
     @otel_supplied_headers.setter
-    def otel_supplied_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]]):
+    def otel_supplied_headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['LogIntegrationOtelSuppliedHeaderArgs']]]]):
         pulumi.set(self, "otel_supplied_headers", value)
 
     @_builtins.property
     @pulumi.getter(name="prefixPath")
-    def prefix_path(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def prefix_path(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
         """
         return pulumi.get(self, "prefix_path")
 
     @prefix_path.setter
-    def prefix_path(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def prefix_path(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "prefix_path", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def region(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
         """
         return pulumi.get(self, "region")
 
     @region.setter
-    def region(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def region(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "region", value)
 
     @_builtins.property
     @pulumi.getter(name="roleId")
-    def role_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
         """
         return pulumi.get(self, "role_id")
 
     @role_id.setter
-    def role_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_id", value)
 
     @_builtins.property
     @pulumi.getter(name="storageAccountName")
-    def storage_account_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def storage_account_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
         """
         return pulumi.get(self, "storage_account_name")
 
     @storage_account_name.setter
-    def storage_account_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def storage_account_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "storage_account_name", value)
 
     @_builtins.property
     @pulumi.getter(name="storageContainerName")
-    def storage_container_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def storage_container_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
         """
         return pulumi.get(self, "storage_container_name")
 
     @storage_container_name.setter
-    def storage_container_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def storage_container_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "storage_container_name", value)
 
     @_builtins.property
     @pulumi.getter
-    def type(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
         """
         return pulumi.get(self, "type")
 
     @type.setter
-    def type(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "type", value)
 
     @_builtins.property
     @pulumi.getter(name="useLegacyPathStructure")
-    def use_legacy_path_structure(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def use_legacy_path_structure(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
         """
         return pulumi.get(self, "use_legacy_path_structure")
 
     @use_legacy_path_structure.setter
-    def use_legacy_path_structure(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def use_legacy_path_structure(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "use_legacy_path_structure", value)
 
 
@@ -599,23 +599,23 @@ class LogIntegration(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 hec_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 hec_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 kms_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 log_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 otel_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 otel_supplied_headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]]] = None,
-                 prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_container_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_legacy_path_structure: Optional[pulumi.Input[_builtins.bool]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 hec_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 hec_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 kms_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 log_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 otel_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 otel_supplied_headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]]] = None,
+                 prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_container_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_legacy_path_structure: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         `LogIntegration` provides a resource for managing log integration configurations at the project level. This resource allows you to continually export `mongod`, `mongos`, and audit logs at 1-minute intervals. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.
@@ -649,7 +649,7 @@ class LogIntegration(pulumi.CustomResource):
             bucket_name=log_bucket["bucket"],
             iam_role_id=auth.role_id,
             prefix_path="atlas-logs",
-            use_legacy_path_structure=use_legacy_path_structure)
+            use_legacy_path_structure=use_legacy_path_structure == "true")
         ```
 
         ### Google Cloud Storage (GCS)
@@ -817,7 +817,7 @@ class LogIntegration(pulumi.CustomResource):
             bucket_name=log_bucket["bucket"],
             iam_role_id=auth.role_id,
             prefix_path="atlas-logs",
-            use_legacy_path_structure=use_legacy_path_structure)
+            use_legacy_path_structure=use_legacy_path_structure == "true")
         ```
 
         ### Google Cloud Storage (GCS)
@@ -942,23 +942,23 @@ class LogIntegration(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 api_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 hec_token: Optional[pulumi.Input[_builtins.str]] = None,
-                 hec_url: Optional[pulumi.Input[_builtins.str]] = None,
-                 iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 kms_key: Optional[pulumi.Input[_builtins.str]] = None,
-                 log_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 otel_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-                 otel_supplied_headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]]] = None,
-                 prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 region: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 storage_container_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 type: Optional[pulumi.Input[_builtins.str]] = None,
-                 use_legacy_path_structure: Optional[pulumi.Input[_builtins.bool]] = None,
+                 api_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 hec_token: pulumi.Input[Optional[_builtins.str]] = None,
+                 hec_url: pulumi.Input[Optional[_builtins.str]] = None,
+                 iam_role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 kms_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 log_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 otel_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 otel_supplied_headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]]] = None,
+                 prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 region: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 storage_container_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None,
+                 use_legacy_path_structure: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -1004,24 +1004,24 @@ class LogIntegration(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            api_key: Optional[pulumi.Input[_builtins.str]] = None,
-            bucket_name: Optional[pulumi.Input[_builtins.str]] = None,
-            hec_token: Optional[pulumi.Input[_builtins.str]] = None,
-            hec_url: Optional[pulumi.Input[_builtins.str]] = None,
-            iam_role_id: Optional[pulumi.Input[_builtins.str]] = None,
-            integration_id: Optional[pulumi.Input[_builtins.str]] = None,
-            kms_key: Optional[pulumi.Input[_builtins.str]] = None,
-            log_types: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            otel_endpoint: Optional[pulumi.Input[_builtins.str]] = None,
-            otel_supplied_headers: Optional[pulumi.Input[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]]] = None,
-            prefix_path: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            region: Optional[pulumi.Input[_builtins.str]] = None,
-            role_id: Optional[pulumi.Input[_builtins.str]] = None,
-            storage_account_name: Optional[pulumi.Input[_builtins.str]] = None,
-            storage_container_name: Optional[pulumi.Input[_builtins.str]] = None,
-            type: Optional[pulumi.Input[_builtins.str]] = None,
-            use_legacy_path_structure: Optional[pulumi.Input[_builtins.bool]] = None) -> 'LogIntegration':
+            api_key: pulumi.Input[Optional[_builtins.str]] = None,
+            bucket_name: pulumi.Input[Optional[_builtins.str]] = None,
+            hec_token: pulumi.Input[Optional[_builtins.str]] = None,
+            hec_url: pulumi.Input[Optional[_builtins.str]] = None,
+            iam_role_id: pulumi.Input[Optional[_builtins.str]] = None,
+            integration_id: pulumi.Input[Optional[_builtins.str]] = None,
+            kms_key: pulumi.Input[Optional[_builtins.str]] = None,
+            log_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            otel_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+            otel_supplied_headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]]] = None,
+            prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            region: pulumi.Input[Optional[_builtins.str]] = None,
+            role_id: pulumi.Input[Optional[_builtins.str]] = None,
+            storage_account_name: pulumi.Input[Optional[_builtins.str]] = None,
+            storage_container_name: pulumi.Input[Optional[_builtins.str]] = None,
+            type: pulumi.Input[Optional[_builtins.str]] = None,
+            use_legacy_path_structure: pulumi.Input[Optional[_builtins.bool]] = None) -> 'LogIntegration':
         """
         Get an existing LogIntegration resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

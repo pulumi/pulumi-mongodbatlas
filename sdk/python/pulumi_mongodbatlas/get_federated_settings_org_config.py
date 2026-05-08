@@ -202,8 +202,8 @@ def get_federated_settings_org_config(federation_settings_id: Optional[_builtins
         post_auth_role_grants=pulumi.get(__ret__, 'post_auth_role_grants'),
         role_mappings=pulumi.get(__ret__, 'role_mappings'),
         user_conflicts=pulumi.get(__ret__, 'user_conflicts'))
-def get_federated_settings_org_config_output(federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                             org_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_federated_settings_org_config_output(federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                             org_id: pulumi.Input[Optional[_builtins.str]] = None,
                                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedSettingsOrgConfigResult]:
     """
     `FederatedSettingsOrgConfig` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Organizational configuration provides federated settings outputs for the configured Organizational configuration.

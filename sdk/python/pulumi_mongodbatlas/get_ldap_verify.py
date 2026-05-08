@@ -205,8 +205,8 @@ def get_ldap_verify(project_id: Optional[_builtins.str] = None,
         request_id=pulumi.get(__ret__, 'request_id'),
         status=pulumi.get(__ret__, 'status'),
         validations=pulumi.get(__ret__, 'validations'))
-def get_ldap_verify_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                           request_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_ldap_verify_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                           request_id: pulumi.Input[Optional[_builtins.str]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLdapVerifyResult]:
     """
     `LdapVerify` describes a LDAP Verify.

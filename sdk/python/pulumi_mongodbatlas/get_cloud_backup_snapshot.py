@@ -286,9 +286,9 @@ def get_cloud_backup_snapshot(cluster_name: Optional[_builtins.str] = None,
         status=pulumi.get(__ret__, 'status'),
         storage_size_bytes=pulumi.get(__ret__, 'storage_size_bytes'),
         type=pulumi.get(__ret__, 'type'))
-def get_cloud_backup_snapshot_output(cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                     project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                     snapshot_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_cloud_backup_snapshot_output(cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                     project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                     snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupSnapshotResult]:
     """
     `CloudBackupSnapshot` provides an Cloud Backup Snapshot datasource. Atlas Cloud Backup Snapshots provide localized backup storage using the native snapshot functionality of the cluster’s cloud service.

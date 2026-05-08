@@ -167,9 +167,9 @@ def get_org_invitation(invitation_id: Optional[_builtins.str] = None,
         roles=pulumi.get(__ret__, 'roles'),
         teams_ids=pulumi.get(__ret__, 'teams_ids'),
         username=pulumi.get(__ret__, 'username'))
-def get_org_invitation_output(invitation_id: Optional[pulumi.Input[_builtins.str]] = None,
-                              org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                              username: Optional[pulumi.Input[_builtins.str]] = None,
+def get_org_invitation_output(invitation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                              org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                              username: pulumi.Input[Optional[_builtins.str]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOrgInvitationResult]:
     """
     `OrgInvitation` describes an invitation for a user to join an Atlas organization.

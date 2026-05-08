@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var import = Mongodbatlas.Index.GetAlertConfigurations.Invoke(new()
+        ///     var import = Mongodbatlas.GetAlertConfigurations.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         OutputTypes = new[]
@@ -37,7 +37,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     var alerts = import.Apply(getAlertConfigurationsResult =&gt; getAlertConfigurationsResult.Results);
         /// 
-        ///     var outputs = Std.Index.Flatten.Invoke(new()
+        ///     var outputs = Std.Flatten.Invoke(new()
         ///     {
         ///         Input = alerts.Apply(alerts =&gt; .Select(alert =&gt; 
         ///         {
@@ -45,7 +45,7 @@ namespace Pulumi.Mongodbatlas
         ///         }).ToList()),
         ///     }).Result;
         /// 
-        ///     var outputValues = Std.Index.Compact.Invoke(new()
+        ///     var outputValues = Std.Compact.Invoke(new()
         ///     {
         ///         Input = .Select(o =&gt; 
         ///         {
@@ -55,7 +55,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["alertOutput"] = Std.Index.Join.Invoke(new()
+        ///         ["alertOutput"] = Std.Join.Invoke(new()
         ///         {
         ///             Separator = @"
         /// ",
@@ -85,7 +85,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var import = Mongodbatlas.Index.GetAlertConfigurations.Invoke(new()
+        ///     var import = Mongodbatlas.GetAlertConfigurations.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         OutputTypes = new[]
@@ -97,7 +97,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     var alerts = import.Apply(getAlertConfigurationsResult =&gt; getAlertConfigurationsResult.Results);
         /// 
-        ///     var outputs = Std.Index.Flatten.Invoke(new()
+        ///     var outputs = Std.Flatten.Invoke(new()
         ///     {
         ///         Input = alerts.Apply(alerts =&gt; .Select(alert =&gt; 
         ///         {
@@ -105,7 +105,7 @@ namespace Pulumi.Mongodbatlas
         ///         }).ToList()),
         ///     }).Result;
         /// 
-        ///     var outputValues = Std.Index.Compact.Invoke(new()
+        ///     var outputValues = Std.Compact.Invoke(new()
         ///     {
         ///         Input = .Select(o =&gt; 
         ///         {
@@ -115,7 +115,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["alertOutput"] = Std.Index.Join.Invoke(new()
+        ///         ["alertOutput"] = Std.Join.Invoke(new()
         ///         {
         ///             Separator = @"
         /// ",
@@ -145,7 +145,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     var import = Mongodbatlas.Index.GetAlertConfigurations.Invoke(new()
+        ///     var import = Mongodbatlas.GetAlertConfigurations.Invoke(new()
         ///     {
         ///         ProjectId = projectId,
         ///         OutputTypes = new[]
@@ -157,7 +157,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     var alerts = import.Apply(getAlertConfigurationsResult =&gt; getAlertConfigurationsResult.Results);
         /// 
-        ///     var outputs = Std.Index.Flatten.Invoke(new()
+        ///     var outputs = Std.Flatten.Invoke(new()
         ///     {
         ///         Input = alerts.Apply(alerts =&gt; .Select(alert =&gt; 
         ///         {
@@ -165,7 +165,7 @@ namespace Pulumi.Mongodbatlas
         ///         }).ToList()),
         ///     }).Result;
         /// 
-        ///     var outputValues = Std.Index.Compact.Invoke(new()
+        ///     var outputValues = Std.Compact.Invoke(new()
         ///     {
         ///         Input = .Select(o =&gt; 
         ///         {
@@ -175,7 +175,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["alertOutput"] = Std.Index.Join.Invoke(new()
+        ///         ["alertOutput"] = Std.Join.Invoke(new()
         ///         {
         ///             Separator = @"
         /// ",

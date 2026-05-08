@@ -167,7 +167,7 @@ export interface GetTeamOutputArgs {
      *
      * > **IMPORTANT:** Either `teamId` or `name` must be configured.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier for the organization you want to associate the team with.
      */
@@ -175,5 +175,5 @@ export interface GetTeamOutputArgs {
     /**
      * The unique identifier for the team.
      */
-    teamId?: pulumi.Input<string>;
+    teamId?: pulumi.Input<string | undefined>;
 }

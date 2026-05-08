@@ -384,7 +384,7 @@ def get_backup_compliance_policy(project_id: Optional[_builtins.str] = None,
         state=pulumi.get(__ret__, 'state'),
         updated_date=pulumi.get(__ret__, 'updated_date'),
         updated_user=pulumi.get(__ret__, 'updated_user'))
-def get_backup_compliance_policy_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_backup_compliance_policy_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBackupCompliancePolicyResult]:
     """
     `BackupCompliancePolicy` provides an Atlas Backup Compliance Policy. An Atlas Backup Compliance Policy contains the current protection policy settings for a project. A compliance policy prevents any user, regardless of role, from modifying or deleting specific cluster configurations and backups. To disable a Backup Compliance Policy, you must contact MongoDB support. Backup Compliance Policies are only supported for clusters M10 and higher and are applied as the minimum policy for all clusters.

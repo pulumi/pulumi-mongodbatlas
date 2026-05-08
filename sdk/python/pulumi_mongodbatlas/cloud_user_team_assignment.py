@@ -75,22 +75,22 @@ class CloudUserTeamAssignmentArgs:
 @pulumi.input_type
 class _CloudUserTeamAssignmentState:
     def __init__(__self__, *,
-                 country: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 first_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 invitation_created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 invitation_expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 inviter_username: Optional[pulumi.Input[_builtins.str]] = None,
-                 last_auth: Optional[pulumi.Input[_builtins.str]] = None,
-                 last_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 mobile_number: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_membership_status: Optional[pulumi.Input[_builtins.str]] = None,
-                 roles: Optional[pulumi.Input['CloudUserTeamAssignmentRolesArgs']] = None,
-                 team_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 username: Optional[pulumi.Input[_builtins.str]] = None):
+                 country: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 first_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 invitation_created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 invitation_expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 inviter_username: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_auth: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 mobile_number: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_membership_status: pulumi.Input[Optional[_builtins.str]] = None,
+                 roles: pulumi.Input[Optional['CloudUserTeamAssignmentRolesArgs']] = None,
+                 team_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 username: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering CloudUserTeamAssignment resources.
 
@@ -146,194 +146,194 @@ class _CloudUserTeamAssignmentState:
 
     @_builtins.property
     @pulumi.getter
-    def country(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def country(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
         """
         return pulumi.get(self, "country")
 
     @country.setter
-    def country(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def country(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "country", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="firstName")
-    def first_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def first_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         First or given name that belongs to the MongoDB Cloud user.
         """
         return pulumi.get(self, "first_name")
 
     @first_name.setter
-    def first_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def first_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "first_name", value)
 
     @_builtins.property
     @pulumi.getter(name="invitationCreatedAt")
-    def invitation_created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def invitation_created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
         """
         return pulumi.get(self, "invitation_created_at")
 
     @invitation_created_at.setter
-    def invitation_created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def invitation_created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "invitation_created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="invitationExpiresAt")
-    def invitation_expires_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def invitation_expires_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
         """
         return pulumi.get(self, "invitation_expires_at")
 
     @invitation_expires_at.setter
-    def invitation_expires_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def invitation_expires_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "invitation_expires_at", value)
 
     @_builtins.property
     @pulumi.getter(name="inviterUsername")
-    def inviter_username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def inviter_username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Username of the MongoDB Cloud user who sent the invitation to join the organization.
         """
         return pulumi.get(self, "inviter_username")
 
     @inviter_username.setter
-    def inviter_username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def inviter_username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "inviter_username", value)
 
     @_builtins.property
     @pulumi.getter(name="lastAuth")
-    def last_auth(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_auth(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "last_auth")
 
     @last_auth.setter
-    def last_auth(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_auth(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_auth", value)
 
     @_builtins.property
     @pulumi.getter(name="lastName")
-    def last_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Last name, family name, or surname that belongs to the MongoDB Cloud user.
         """
         return pulumi.get(self, "last_name")
 
     @last_name.setter
-    def last_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_name", value)
 
     @_builtins.property
     @pulumi.getter(name="mobileNumber")
-    def mobile_number(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def mobile_number(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Mobile phone number that belongs to the MongoDB Cloud user.
         """
         return pulumi.get(self, "mobile_number")
 
     @mobile_number.setter
-    def mobile_number(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def mobile_number(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "mobile_number", value)
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-organizations) endpoint to retrieve all organizations to which the authenticated user has access.
         """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
-    def org_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_id", value)
 
     @_builtins.property
     @pulumi.getter(name="orgMembershipStatus")
-    def org_membership_status(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_membership_status(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
         """
         return pulumi.get(self, "org_membership_status")
 
     @org_membership_status.setter
-    def org_membership_status(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_membership_status(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_membership_status", value)
 
     @_builtins.property
     @pulumi.getter
-    def roles(self) -> Optional[pulumi.Input['CloudUserTeamAssignmentRolesArgs']]:
+    def roles(self) -> pulumi.Input[Optional['CloudUserTeamAssignmentRolesArgs']]:
         """
         Organization and project level roles to assign the MongoDB Cloud user within one organization.
         """
         return pulumi.get(self, "roles")
 
     @roles.setter
-    def roles(self, value: Optional[pulumi.Input['CloudUserTeamAssignmentRolesArgs']]):
+    def roles(self, value: pulumi.Input[Optional['CloudUserTeamAssignmentRolesArgs']]):
         pulumi.set(self, "roles", value)
 
     @_builtins.property
     @pulumi.getter(name="teamId")
-    def team_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def team_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the team to which you want to assign the MongoDB Cloud user. Use the [/teams](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-teams) endpoint to retrieve all teams to which the authenticated user has access.
         """
         return pulumi.get(self, "team_id")
 
     @team_id.setter
-    def team_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def team_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "team_id", value)
 
     @_builtins.property
     @pulumi.getter(name="teamIds")
-    def team_ids(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]:
+    def team_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
         List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
         """
         return pulumi.get(self, "team_ids")
 
     @team_ids.setter
-    def team_ids(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]):
+    def team_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "team_ids", value)
 
     @_builtins.property
     @pulumi.getter(name="userId")
-    def user_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def user_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
         """
         return pulumi.get(self, "user_id")
 
     @user_id.setter
-    def user_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def user_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "user_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def username(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def username(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Email address that represents the username of the MongoDB Cloud user.
         """
         return pulumi.get(self, "username")
 
     @username.setter
-    def username(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
 
 
@@ -343,9 +343,9 @@ class CloudUserTeamAssignment(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `CloudUserTeamAssignment` provides a Cloud User Team Assignment resource. It lets you manage the association between a cloud user and a team, enabling you to import, assign, remove, or update the user's membership.
@@ -460,9 +460,9 @@ class CloudUserTeamAssignment(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 team_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 user_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 team_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -504,22 +504,22 @@ class CloudUserTeamAssignment(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            country: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            first_name: Optional[pulumi.Input[_builtins.str]] = None,
-            invitation_created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            invitation_expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-            inviter_username: Optional[pulumi.Input[_builtins.str]] = None,
-            last_auth: Optional[pulumi.Input[_builtins.str]] = None,
-            last_name: Optional[pulumi.Input[_builtins.str]] = None,
-            mobile_number: Optional[pulumi.Input[_builtins.str]] = None,
-            org_id: Optional[pulumi.Input[_builtins.str]] = None,
-            org_membership_status: Optional[pulumi.Input[_builtins.str]] = None,
-            roles: Optional[pulumi.Input[Union['CloudUserTeamAssignmentRolesArgs', 'CloudUserTeamAssignmentRolesArgsDict']]] = None,
-            team_id: Optional[pulumi.Input[_builtins.str]] = None,
-            team_ids: Optional[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            user_id: Optional[pulumi.Input[_builtins.str]] = None,
-            username: Optional[pulumi.Input[_builtins.str]] = None) -> 'CloudUserTeamAssignment':
+            country: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            first_name: pulumi.Input[Optional[_builtins.str]] = None,
+            invitation_created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            invitation_expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            inviter_username: pulumi.Input[Optional[_builtins.str]] = None,
+            last_auth: pulumi.Input[Optional[_builtins.str]] = None,
+            last_name: pulumi.Input[Optional[_builtins.str]] = None,
+            mobile_number: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            org_membership_status: pulumi.Input[Optional[_builtins.str]] = None,
+            roles: pulumi.Input[Optional[Union['CloudUserTeamAssignmentRolesArgs', 'CloudUserTeamAssignmentRolesArgsDict']]] = None,
+            team_id: pulumi.Input[Optional[_builtins.str]] = None,
+            team_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            user_id: pulumi.Input[Optional[_builtins.str]] = None,
+            username: pulumi.Input[Optional[_builtins.str]] = None) -> 'CloudUserTeamAssignment':
         """
         Get an existing CloudUserTeamAssignment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

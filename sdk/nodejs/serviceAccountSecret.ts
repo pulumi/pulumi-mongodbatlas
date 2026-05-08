@@ -169,39 +169,39 @@ export interface ServiceAccountSecretState {
     /**
      * The Client ID of the Service Account.
      */
-    clientId?: pulumi.Input<string>;
+    clientId?: pulumi.Input<string | undefined>;
     /**
      * The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      */
-    createdAt?: pulumi.Input<string>;
+    createdAt?: pulumi.Input<string | undefined>;
     /**
      * The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      */
-    expiresAt?: pulumi.Input<string>;
+    expiresAt?: pulumi.Input<string | undefined>;
     /**
      * The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      */
-    lastUsedAt?: pulumi.Input<string>;
+    lastUsedAt?: pulumi.Input<string | undefined>;
     /**
      * The masked Service Account secret.
      */
-    maskedSecretValue?: pulumi.Input<string>;
+    maskedSecretValue?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
-    orgId?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string | undefined>;
     /**
      * The secret for the Service Account. It will be returned only the first time after creation.
      */
-    secret?: pulumi.Input<string>;
+    secret?: pulumi.Input<string | undefined>;
     /**
      * The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account Secret and you cannot update it later.
      */
-    secretExpiresAfterHours?: pulumi.Input<number>;
+    secretExpiresAfterHours?: pulumi.Input<number | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the secret.
      */
-    secretId?: pulumi.Input<string>;
+    secretId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -219,5 +219,5 @@ export interface ServiceAccountSecretArgs {
     /**
      * The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account Secret and you cannot update it later.
      */
-    secretExpiresAfterHours?: pulumi.Input<number>;
+    secretExpiresAfterHours?: pulumi.Input<number | undefined>;
 }

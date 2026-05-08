@@ -187,8 +187,8 @@ def get_resource_policy(id: Optional[_builtins.str] = None,
         org_id=pulumi.get(__ret__, 'org_id'),
         policies=pulumi.get(__ret__, 'policies'),
         version=pulumi.get(__ret__, 'version'))
-def get_resource_policy_output(id: Optional[pulumi.Input[_builtins.str]] = None,
-                               org_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_resource_policy_output(id: pulumi.Input[Optional[_builtins.str]] = None,
+                               org_id: pulumi.Input[Optional[_builtins.str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetResourcePolicyResult]:
     """
     `ResourcePolicy` describes a resource policy in an organization.

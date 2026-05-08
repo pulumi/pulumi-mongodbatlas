@@ -138,13 +138,10 @@ def get_cloud_backup_snapshot_restore_jobs(cluster_name: Optional[_builtins.str]
             "target_cluster_name": "MyCluster",
             "target_project_id": "5cf5a45a9ccf6400e60981b6",
         })
-    test = pulumi.Output.all(
-        project_id=test_cloud_backup_snapshot_restore_job.project_id,
-        cluster_name=test_cloud_backup_snapshot_restore_job.cluster_name
-    ).apply(lambda resolved_outputs: mongodbatlas.get_cloud_backup_snapshot_restore_jobs_output(project_id=resolved_outputs['project_id'],
-        cluster_name=resolved_outputs['cluster_name'],
+    test = mongodbatlas.get_cloud_backup_snapshot_restore_jobs_output(project_id=test_cloud_backup_snapshot_restore_job.project_id,
+        cluster_name=test_cloud_backup_snapshot_restore_job.cluster_name,
         page_num=1,
-        items_per_page=5))
+        items_per_page=5)
     ```
 
 
@@ -169,10 +166,10 @@ def get_cloud_backup_snapshot_restore_jobs(cluster_name: Optional[_builtins.str]
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
         total_count=pulumi.get(__ret__, 'total_count'))
-def get_cloud_backup_snapshot_restore_jobs_output(cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                                  items_per_page: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                                                  page_num: Optional[pulumi.Input[Optional[_builtins.int]]] = None,
-                                                  project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_cloud_backup_snapshot_restore_jobs_output(cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                                  items_per_page: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                                                  page_num: pulumi.Input[Optional[Optional[_builtins.int]]] = None,
+                                                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCloudBackupSnapshotRestoreJobsResult]:
     """
     `get_cloud_backup_snapshot_restore_jobs` provides a Cloud Backup Snapshot Restore Jobs datasource. Gets all the cloud backup snapshot restore jobs for the specified cluster.
@@ -199,13 +196,10 @@ def get_cloud_backup_snapshot_restore_jobs_output(cluster_name: Optional[pulumi.
             "target_cluster_name": "MyCluster",
             "target_project_id": "5cf5a45a9ccf6400e60981b6",
         })
-    test = pulumi.Output.all(
-        project_id=test_cloud_backup_snapshot_restore_job.project_id,
-        cluster_name=test_cloud_backup_snapshot_restore_job.cluster_name
-    ).apply(lambda resolved_outputs: mongodbatlas.get_cloud_backup_snapshot_restore_jobs_output(project_id=resolved_outputs['project_id'],
-        cluster_name=resolved_outputs['cluster_name'],
+    test = mongodbatlas.get_cloud_backup_snapshot_restore_jobs_output(project_id=test_cloud_backup_snapshot_restore_job.project_id,
+        cluster_name=test_cloud_backup_snapshot_restore_job.cluster_name,
         page_num=1,
-        items_per_page=5))
+        items_per_page=5)
     ```
 
 

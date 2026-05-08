@@ -99,7 +99,7 @@ def get_custom_dns_configuration_cluster_aws(project_id: Optional[_builtins.str]
         enabled=pulumi.get(__ret__, 'enabled'),
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
-def get_custom_dns_configuration_cluster_aws_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_custom_dns_configuration_cluster_aws_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCustomDnsConfigurationClusterAwsResult]:
     """
     `CustomDnsConfigurationClusterAws` describes a Custom DNS Configuration for Atlas Clusters on AWS.

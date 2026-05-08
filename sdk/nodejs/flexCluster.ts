@@ -192,56 +192,56 @@ export interface FlexClusterState {
     /**
      * Flex backup configuration
      */
-    backupSettings?: pulumi.Input<inputs.FlexClusterBackupSettings>;
+    backupSettings?: pulumi.Input<inputs.FlexClusterBackupSettings | undefined>;
     /**
      * Flex cluster topology.
      */
-    clusterType?: pulumi.Input<string>;
+    clusterType?: pulumi.Input<string | undefined>;
     /**
      * Collection of Uniform Resource Locators that point to the MongoDB database.
      */
-    connectionStrings?: pulumi.Input<inputs.FlexClusterConnectionStrings>;
+    connectionStrings?: pulumi.Input<inputs.FlexClusterConnectionStrings | undefined>;
     /**
      * Date and time when MongoDB Cloud created this instance. This parameter expresses its value in ISO 8601 format in UTC.
      */
-    createDate?: pulumi.Input<string>;
+    createDate?: pulumi.Input<string | undefined>;
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * Version of MongoDB that the instance runs.
      */
-    mongoDbVersion?: pulumi.Input<string>;
+    mongoDbVersion?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label that identifies the instance.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal character string that identifies the project.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
      */
-    providerSettings?: pulumi.Input<inputs.FlexClusterProviderSettings>;
+    providerSettings?: pulumi.Input<inputs.FlexClusterProviderSettings | undefined>;
     /**
      * Human-readable label that indicates the current operating condition of this instance.
      */
-    stateName?: pulumi.Input<string>;
+    stateName?: pulumi.Input<string | undefined>;
     /**
      * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
      */
-    terminationProtectionEnabled?: pulumi.Input<boolean>;
-    timeouts?: pulumi.Input<inputs.FlexClusterTimeouts>;
+    terminationProtectionEnabled?: pulumi.Input<boolean | undefined>;
+    timeouts?: pulumi.Input<inputs.FlexClusterTimeouts | undefined>;
     /**
      * Method by which the cluster maintains the MongoDB versions.
      */
-    versionReleaseSystem?: pulumi.Input<string>;
+    versionReleaseSystem?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -251,11 +251,11 @@ export interface FlexClusterArgs {
     /**
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
-    deleteOnCreateTimeout?: pulumi.Input<boolean>;
+    deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
      * Human-readable label that identifies the instance.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal character string that identifies the project.
      */
@@ -267,10 +267,10 @@ export interface FlexClusterArgs {
     /**
      * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
      */
-    terminationProtectionEnabled?: pulumi.Input<boolean>;
-    timeouts?: pulumi.Input<inputs.FlexClusterTimeouts>;
+    terminationProtectionEnabled?: pulumi.Input<boolean | undefined>;
+    timeouts?: pulumi.Input<inputs.FlexClusterTimeouts | undefined>;
 }

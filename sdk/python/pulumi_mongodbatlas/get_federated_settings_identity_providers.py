@@ -122,9 +122,9 @@ def get_federated_settings_identity_providers(federation_settings_id: Optional[_
         idp_types=pulumi.get(__ret__, 'idp_types'),
         protocols=pulumi.get(__ret__, 'protocols'),
         results=pulumi.get(__ret__, 'results'))
-def get_federated_settings_identity_providers_output(federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                     idp_types: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
-                                                     protocols: Optional[pulumi.Input[Optional[Sequence[_builtins.str]]]] = None,
+def get_federated_settings_identity_providers_output(federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                     idp_types: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
+                                                     protocols: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedSettingsIdentityProvidersResult]:
     """
     `get_federated_settings_identity_providers` provides an Federated Settings Identity Providers datasource. Atlas Cloud Federated Settings Identity Providers provides federated settings outputs for the configured Identity Providers.

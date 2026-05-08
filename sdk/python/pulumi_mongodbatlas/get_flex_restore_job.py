@@ -255,9 +255,9 @@ def get_flex_restore_job(name: Optional[_builtins.str] = None,
         status=pulumi.get(__ret__, 'status'),
         target_deployment_item_name=pulumi.get(__ret__, 'target_deployment_item_name'),
         target_project_id=pulumi.get(__ret__, 'target_project_id'))
-def get_flex_restore_job_output(name: Optional[pulumi.Input[_builtins.str]] = None,
-                                project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                restore_job_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_flex_restore_job_output(name: pulumi.Input[Optional[_builtins.str]] = None,
+                                project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                restore_job_id: pulumi.Input[Optional[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFlexRestoreJobResult]:
     """
     `get_flex_restore_job` describes a flex restore job.

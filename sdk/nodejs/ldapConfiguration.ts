@@ -202,46 +202,46 @@ export interface LdapConfigurationState {
     /**
      * Specifies whether user authentication with LDAP is enabled.
      */
-    authenticationEnabled?: pulumi.Input<boolean>;
+    authenticationEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Specifies whether user authorization with LDAP is enabled. You cannot enable user authorization with LDAP without first enabling user authentication with LDAP.
      */
-    authorizationEnabled?: pulumi.Input<boolean>;
+    authorizationEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
      */
-    authzQueryTemplate?: pulumi.Input<string>;
+    authzQueryTemplate?: pulumi.Input<string | undefined>;
     /**
      * The password used to authenticate the `bindUsername`.
      */
-    bindPassword?: pulumi.Input<string>;
+    bindPassword?: pulumi.Input<string | undefined>;
     /**
      * The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
      */
-    bindUsername?: pulumi.Input<string>;
+    bindUsername?: pulumi.Input<string | undefined>;
     /**
      * CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
      */
-    caCertificate?: pulumi.Input<string>;
+    caCertificate?: pulumi.Input<string | undefined>;
     /**
      * The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
      */
-    hostname?: pulumi.Input<string>;
+    hostname?: pulumi.Input<string | undefined>;
     /**
      * The port to which the LDAP server listens for client connections. Default: `636`
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Maps an LDAP username for authentication to an LDAP Distinguished Name (DN). Each document contains a `match` regular expression and either a `substitution` or `ldapQuery` template used to transform the LDAP username extracted from the regular expression. Atlas steps through the each document in the array in the given order, checking the authentication username against the `match` filter. If a match is found, Atlas applies the transformation and uses the output to authenticate the user. Atlas does not check the remaining documents in the array. For more details and examples see the [MongoDB Atlas API Reference](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-save/).
      * * `user_to_dn_mapping.0.match` - (Optional) A regular expression to match against a provided LDAP username. Each parenthesis-enclosed section represents a regular expression capture group used by the `substitution` or `ldapQuery` template.
      * * `user_to_dn_mapping.0.substitution` - (Optional) An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
      * * `user_to_dn_mapping.0.ldap_query` - (Optional) An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
      */
-    userToDnMappings?: pulumi.Input<pulumi.Input<inputs.LdapConfigurationUserToDnMapping>[]>;
+    userToDnMappings?: pulumi.Input<pulumi.Input<inputs.LdapConfigurationUserToDnMapping>[] | undefined>;
 }
 
 /**
@@ -255,11 +255,11 @@ export interface LdapConfigurationArgs {
     /**
      * Specifies whether user authorization with LDAP is enabled. You cannot enable user authorization with LDAP without first enabling user authentication with LDAP.
      */
-    authorizationEnabled?: pulumi.Input<boolean>;
+    authorizationEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * An LDAP query template that Atlas executes to obtain the LDAP groups to which the authenticated user belongs. Used only for user authorization. Use the {USER} placeholder in the URL to substitute the authenticated username. The query is relative to the host specified with hostname. The formatting for the query must conform to RFC4515 and RFC 4516. If you do not provide a query template, Atlas attempts to use the default value: `{USER}?memberOf?base`.
      */
-    authzQueryTemplate?: pulumi.Input<string>;
+    authzQueryTemplate?: pulumi.Input<string | undefined>;
     /**
      * The password used to authenticate the `bindUsername`.
      */
@@ -271,7 +271,7 @@ export interface LdapConfigurationArgs {
     /**
      * CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
      */
-    caCertificate?: pulumi.Input<string>;
+    caCertificate?: pulumi.Input<string | undefined>;
     /**
      * The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
      */
@@ -279,7 +279,7 @@ export interface LdapConfigurationArgs {
     /**
      * The port to which the LDAP server listens for client connections. Default: `636`
      */
-    port?: pulumi.Input<number>;
+    port?: pulumi.Input<number | undefined>;
     /**
      * The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
      */
@@ -290,5 +290,5 @@ export interface LdapConfigurationArgs {
      * * `user_to_dn_mapping.0.substitution` - (Optional) An LDAP Distinguished Name (DN) formatting template that converts the LDAP name matched by the `match` regular expression into an LDAP Distinguished Name. Each bracket-enclosed numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
      * * `user_to_dn_mapping.0.ldap_query` - (Optional) An LDAP query formatting template that inserts the LDAP name matched by the `match` regular expression into an LDAP query URI as specified by RFC 4515 and RFC 4516. Each numeric value is replaced by the corresponding regular expression capture group extracted from the LDAP username that matched the `match` regular expression.
      */
-    userToDnMappings?: pulumi.Input<pulumi.Input<inputs.LdapConfigurationUserToDnMapping>[]>;
+    userToDnMappings?: pulumi.Input<pulumi.Input<inputs.LdapConfigurationUserToDnMapping>[] | undefined>;
 }

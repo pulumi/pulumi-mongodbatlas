@@ -146,8 +146,8 @@ def get_api_key_project_assignment(api_key_id: Optional[_builtins.str] = None,
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         roles=pulumi.get(__ret__, 'roles'))
-def get_api_key_project_assignment_output(api_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                          project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_api_key_project_assignment_output(api_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                          project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetApiKeyProjectAssignmentResult]:
     """
     `ApiKeyProjectAssignment` describes an API Key Project Assignment.

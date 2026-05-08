@@ -389,8 +389,8 @@ def get_stream_privatelink_endpoint(id: Optional[_builtins.str] = None,
         service_endpoint_id=pulumi.get(__ret__, 'service_endpoint_id'),
         state=pulumi.get(__ret__, 'state'),
         vendor=pulumi.get(__ret__, 'vendor'))
-def get_stream_privatelink_endpoint_output(id: Optional[pulumi.Input[_builtins.str]] = None,
-                                           project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_stream_privatelink_endpoint_output(id: pulumi.Input[Optional[_builtins.str]] = None,
+                                           project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetStreamPrivatelinkEndpointResult]:
     """
     `StreamPrivatelinkEndpoint` describes a Privatelink Endpoint for Streams.

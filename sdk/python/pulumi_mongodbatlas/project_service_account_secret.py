@@ -21,7 +21,7 @@ class ProjectServiceAccountSecretInitArgs:
     def __init__(__self__, *,
                  client_id: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
-                 secret_expires_after_hours: Optional[pulumi.Input[_builtins.int]] = None):
+                 secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a ProjectServiceAccountSecret resource.
 
@@ -60,29 +60,29 @@ class ProjectServiceAccountSecretInitArgs:
 
     @_builtins.property
     @pulumi.getter(name="secretExpiresAfterHours")
-    def secret_expires_after_hours(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def secret_expires_after_hours(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account Secret and you cannot update it later.
         """
         return pulumi.get(self, "secret_expires_after_hours")
 
     @secret_expires_after_hours.setter
-    def secret_expires_after_hours(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def secret_expires_after_hours(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "secret_expires_after_hours", value)
 
 
 @pulumi.input_type
 class _ProjectServiceAccountSecretState:
     def __init__(__self__, *,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 created_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 last_used_at: Optional[pulumi.Input[_builtins.str]] = None,
-                 masked_secret_value: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_expires_after_hours: Optional[pulumi.Input[_builtins.int]] = None,
-                 secret_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 masked_secret_value: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None,
+                 secret_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering ProjectServiceAccountSecret resources.
 
@@ -117,110 +117,110 @@ class _ProjectServiceAccountSecretState:
 
     @_builtins.property
     @pulumi.getter(name="clientId")
-    def client_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def client_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The Client ID of the Service Account.
         """
         return pulumi.get(self, "client_id")
 
     @client_id.setter
-    def client_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def client_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "client_id", value)
 
     @_builtins.property
     @pulumi.getter(name="createdAt")
-    def created_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "created_at")
 
     @created_at.setter
-    def created_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "created_at", value)
 
     @_builtins.property
     @pulumi.getter(name="expiresAt")
-    def expires_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def expires_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "expires_at")
 
     @expires_at.setter
-    def expires_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def expires_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "expires_at", value)
 
     @_builtins.property
     @pulumi.getter(name="lastUsedAt")
-    def last_used_at(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def last_used_at(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "last_used_at")
 
     @last_used_at.setter
-    def last_used_at(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def last_used_at(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "last_used_at", value)
 
     @_builtins.property
     @pulumi.getter(name="maskedSecretValue")
-    def masked_secret_value(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def masked_secret_value(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The masked Service Account secret.
         """
         return pulumi.get(self, "masked_secret_value")
 
     @masked_secret_value.setter
-    def masked_secret_value(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def masked_secret_value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "masked_secret_value", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
     @_builtins.property
     @pulumi.getter
-    def secret(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         The secret for the Service Account. It will be returned only the first time after creation.
         """
         return pulumi.get(self, "secret")
 
     @secret.setter
-    def secret(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret", value)
 
     @_builtins.property
     @pulumi.getter(name="secretExpiresAfterHours")
-    def secret_expires_after_hours(self) -> Optional[pulumi.Input[_builtins.int]]:
+    def secret_expires_after_hours(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account Secret and you cannot update it later.
         """
         return pulumi.get(self, "secret_expires_after_hours")
 
     @secret_expires_after_hours.setter
-    def secret_expires_after_hours(self, value: Optional[pulumi.Input[_builtins.int]]):
+    def secret_expires_after_hours(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "secret_expires_after_hours", value)
 
     @_builtins.property
     @pulumi.getter(name="secretId")
-    def secret_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def secret_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the secret.
         """
         return pulumi.get(self, "secret_id")
 
     @secret_id.setter
-    def secret_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def secret_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "secret_id", value)
 
 
@@ -230,9 +230,9 @@ class ProjectServiceAccountSecret(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_expires_after_hours: Optional[pulumi.Input[_builtins.int]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         `ProjectServiceAccountSecret` provides a Project Service Account Secret resource. The resource lets you create and delete secrets for a Project Service Account.
@@ -355,9 +355,9 @@ class ProjectServiceAccountSecret(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 secret_expires_after_hours: Optional[pulumi.Input[_builtins.int]] = None,
+                 client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -392,15 +392,15 @@ class ProjectServiceAccountSecret(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            client_id: Optional[pulumi.Input[_builtins.str]] = None,
-            created_at: Optional[pulumi.Input[_builtins.str]] = None,
-            expires_at: Optional[pulumi.Input[_builtins.str]] = None,
-            last_used_at: Optional[pulumi.Input[_builtins.str]] = None,
-            masked_secret_value: Optional[pulumi.Input[_builtins.str]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None,
-            secret: Optional[pulumi.Input[_builtins.str]] = None,
-            secret_expires_after_hours: Optional[pulumi.Input[_builtins.int]] = None,
-            secret_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'ProjectServiceAccountSecret':
+            client_id: pulumi.Input[Optional[_builtins.str]] = None,
+            created_at: pulumi.Input[Optional[_builtins.str]] = None,
+            expires_at: pulumi.Input[Optional[_builtins.str]] = None,
+            last_used_at: pulumi.Input[Optional[_builtins.str]] = None,
+            masked_secret_value: pulumi.Input[Optional[_builtins.str]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None,
+            secret: pulumi.Input[Optional[_builtins.str]] = None,
+            secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None,
+            secret_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'ProjectServiceAccountSecret':
         """
         Get an existing ProjectServiceAccountSecret resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

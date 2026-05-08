@@ -175,25 +175,25 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
  * Input properties used for looking up and filtering ThirdPartyIntegration resources.
  */
 export interface ThirdPartyIntegrationState {
-    apiKey?: pulumi.Input<string>;
-    channelName?: pulumi.Input<string>;
-    enabled?: pulumi.Input<boolean>;
-    microsoftTeamsWebhookUrl?: pulumi.Input<string>;
-    password?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string | undefined>;
+    channelName?: pulumi.Input<string | undefined>;
+    enabled?: pulumi.Input<boolean | undefined>;
+    microsoftTeamsWebhookUrl?: pulumi.Input<string | undefined>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      */
-    projectId?: pulumi.Input<string>;
-    region?: pulumi.Input<string>;
-    routingKey?: pulumi.Input<string>;
-    secret?: pulumi.Input<string>;
-    sendCollectionLatencyMetrics?: pulumi.Input<boolean>;
-    sendDatabaseMetrics?: pulumi.Input<boolean>;
-    sendQueryStatsMetrics?: pulumi.Input<boolean>;
-    sendUserProvidedResourceTags?: pulumi.Input<boolean>;
-    serviceDiscovery?: pulumi.Input<string>;
-    serviceKey?: pulumi.Input<string>;
-    teamName?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
+    region?: pulumi.Input<string | undefined>;
+    routingKey?: pulumi.Input<string | undefined>;
+    secret?: pulumi.Input<string | undefined>;
+    sendCollectionLatencyMetrics?: pulumi.Input<boolean | undefined>;
+    sendDatabaseMetrics?: pulumi.Input<boolean | undefined>;
+    sendQueryStatsMetrics?: pulumi.Input<boolean | undefined>;
+    sendUserProvidedResourceTags?: pulumi.Input<boolean | undefined>;
+    serviceDiscovery?: pulumi.Input<string | undefined>;
+    serviceKey?: pulumi.Input<string | undefined>;
+    teamName?: pulumi.Input<string | undefined>;
     /**
      * Third-Party Integration Settings type 
      * * PAGER_DUTY
@@ -207,34 +207,34 @@ export interface ThirdPartyIntegrationState {
      *
      * * `PAGER_DUTY`
      */
-    type?: pulumi.Input<string>;
-    url?: pulumi.Input<string>;
-    userName?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
+    url?: pulumi.Input<string | undefined>;
+    userName?: pulumi.Input<string | undefined>;
 }
 
 /**
  * The set of arguments for constructing a ThirdPartyIntegration resource.
  */
 export interface ThirdPartyIntegrationArgs {
-    apiKey?: pulumi.Input<string>;
-    channelName?: pulumi.Input<string>;
-    enabled?: pulumi.Input<boolean>;
-    microsoftTeamsWebhookUrl?: pulumi.Input<string>;
-    password?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string | undefined>;
+    channelName?: pulumi.Input<string | undefined>;
+    enabled?: pulumi.Input<boolean | undefined>;
+    microsoftTeamsWebhookUrl?: pulumi.Input<string | undefined>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
      */
     projectId: pulumi.Input<string>;
-    region?: pulumi.Input<string>;
-    routingKey?: pulumi.Input<string>;
-    secret?: pulumi.Input<string>;
-    sendCollectionLatencyMetrics?: pulumi.Input<boolean>;
-    sendDatabaseMetrics?: pulumi.Input<boolean>;
-    sendQueryStatsMetrics?: pulumi.Input<boolean>;
-    sendUserProvidedResourceTags?: pulumi.Input<boolean>;
-    serviceDiscovery?: pulumi.Input<string>;
-    serviceKey?: pulumi.Input<string>;
-    teamName?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
+    routingKey?: pulumi.Input<string | undefined>;
+    secret?: pulumi.Input<string | undefined>;
+    sendCollectionLatencyMetrics?: pulumi.Input<boolean | undefined>;
+    sendDatabaseMetrics?: pulumi.Input<boolean | undefined>;
+    sendQueryStatsMetrics?: pulumi.Input<boolean | undefined>;
+    sendUserProvidedResourceTags?: pulumi.Input<boolean | undefined>;
+    serviceDiscovery?: pulumi.Input<string | undefined>;
+    serviceKey?: pulumi.Input<string | undefined>;
+    teamName?: pulumi.Input<string | undefined>;
     /**
      * Third-Party Integration Settings type 
      * * PAGER_DUTY
@@ -249,6 +249,6 @@ export interface ThirdPartyIntegrationArgs {
      * * `PAGER_DUTY`
      */
     type: pulumi.Input<string>;
-    url?: pulumi.Input<string>;
-    userName?: pulumi.Input<string>;
+    url?: pulumi.Input<string | undefined>;
+    userName?: pulumi.Input<string | undefined>;
 }

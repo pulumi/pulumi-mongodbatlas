@@ -40,7 +40,7 @@ import * as utilities from "./utilities";
  *     bucketName: logBucket.bucket,
  *     iamRoleId: auth.roleId,
  *     prefixPath: "atlas-logs",
- *     useLegacyPathStructure: useLegacyPathStructure,
+ *     useLegacyPathStructure: useLegacyPathStructure === "true",
  * });
  * ```
  *
@@ -335,75 +335,75 @@ export interface LogIntegrationState {
     /**
      * Required for type: DATADOG_LOG_EXPORT. API key for authentication.
      */
-    apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string | undefined>;
     /**
      * Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
      */
-    bucketName?: pulumi.Input<string>;
+    bucketName?: pulumi.Input<string | undefined>;
     /**
      * Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
      */
-    hecToken?: pulumi.Input<string>;
+    hecToken?: pulumi.Input<string | undefined>;
     /**
      * Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
      */
-    hecUrl?: pulumi.Input<string>;
+    hecUrl?: pulumi.Input<string | undefined>;
     /**
      * Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
      */
-    iamRoleId?: pulumi.Input<string>;
+    iamRoleId?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-character hexadecimal digit string that identifies the log integration configuration.
      */
-    integrationId?: pulumi.Input<string>;
+    integrationId?: pulumi.Input<string | undefined>;
     /**
      * Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
      */
-    kmsKey?: pulumi.Input<string>;
+    kmsKey?: pulumi.Input<string | undefined>;
     /**
      * Array of log types exported by this integration.
      */
-    logTypes?: pulumi.Input<pulumi.Input<string>[]>;
+    logTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
      */
-    otelEndpoint?: pulumi.Input<string>;
+    otelEndpoint?: pulumi.Input<string | undefined>;
     /**
      * Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
      */
-    otelSuppliedHeaders?: pulumi.Input<pulumi.Input<inputs.LogIntegrationOtelSuppliedHeader>[]>;
+    otelSuppliedHeaders?: pulumi.Input<pulumi.Input<inputs.LogIntegrationOtelSuppliedHeader>[] | undefined>;
     /**
      * Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
      */
-    prefixPath?: pulumi.Input<string>;
+    prefixPath?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
      */
-    roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string | undefined>;
     /**
      * Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
      */
-    storageAccountName?: pulumi.Input<string>;
+    storageAccountName?: pulumi.Input<string | undefined>;
     /**
      * Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
      */
-    storageContainerName?: pulumi.Input<string>;
+    storageContainerName?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      */
-    type?: pulumi.Input<string>;
+    type?: pulumi.Input<string | undefined>;
     /**
      * Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
      */
-    useLegacyPathStructure?: pulumi.Input<boolean>;
+    useLegacyPathStructure?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -413,27 +413,27 @@ export interface LogIntegrationArgs {
     /**
      * Required for type: DATADOG_LOG_EXPORT. API key for authentication.
      */
-    apiKey?: pulumi.Input<string>;
+    apiKey?: pulumi.Input<string | undefined>;
     /**
      * Required for type: GCS_LOG_EXPORT, S3_LOG_EXPORT. Name of the bucket to store log files.
      */
-    bucketName?: pulumi.Input<string>;
+    bucketName?: pulumi.Input<string | undefined>;
     /**
      * Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) token for authentication.
      */
-    hecToken?: pulumi.Input<string>;
+    hecToken?: pulumi.Input<string | undefined>;
     /**
      * Required for type: SPLUNK_LOG_EXPORT. HTTP Event Collector (HEC) endpoint URL.
      */
-    hecUrl?: pulumi.Input<string>;
+    hecUrl?: pulumi.Input<string | undefined>;
     /**
      * Required for type: S3_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the AWS IAM role that Atlas uses to access the S3 bucket.
      */
-    iamRoleId?: pulumi.Input<string>;
+    iamRoleId?: pulumi.Input<string | undefined>;
     /**
      * Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
      */
-    kmsKey?: pulumi.Input<string>;
+    kmsKey?: pulumi.Input<string | undefined>;
     /**
      * Array of log types exported by this integration.
      */
@@ -441,15 +441,15 @@ export interface LogIntegrationArgs {
     /**
      * Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
      */
-    otelEndpoint?: pulumi.Input<string>;
+    otelEndpoint?: pulumi.Input<string | undefined>;
     /**
      * Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
      */
-    otelSuppliedHeaders?: pulumi.Input<pulumi.Input<inputs.LogIntegrationOtelSuppliedHeader>[]>;
+    otelSuppliedHeaders?: pulumi.Input<pulumi.Input<inputs.LogIntegrationOtelSuppliedHeader>[] | undefined>;
     /**
      * Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
      */
-    prefixPath?: pulumi.Input<string>;
+    prefixPath?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
@@ -457,19 +457,19 @@ export interface LogIntegrationArgs {
     /**
      * Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT. Unique 24-character hexadecimal string that identifies the Atlas Cloud Provider Access role.
      */
-    roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string | undefined>;
     /**
      * Required for type: AZURE_LOG_EXPORT. Storage account name where logs will be stored.
      */
-    storageAccountName?: pulumi.Input<string>;
+    storageAccountName?: pulumi.Input<string | undefined>;
     /**
      * Required for type: AZURE_LOG_EXPORT. Storage container name for log files.
      */
-    storageContainerName?: pulumi.Input<string>;
+    storageContainerName?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
      */
@@ -477,5 +477,5 @@ export interface LogIntegrationArgs {
     /**
      * Optional for type: S3_LOG_EXPORT. When true, uses the legacy daily-folder path structure compatible with Push-Based Log Export: `{prefix}/{cluster}/{hostname}/{logType}/{YYYY-MM-DD}/{timestamp}-{logType}.log`. When false (default), uses the flat timestamped structure: `{prefix}/{cluster}/{hostname}/{logType}/{timestamp}-{logType}.log`.
      */
-    useLegacyPathStructure?: pulumi.Input<boolean>;
+    useLegacyPathStructure?: pulumi.Input<boolean | undefined>;
 }

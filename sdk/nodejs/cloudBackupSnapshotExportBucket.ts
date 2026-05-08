@@ -170,37 +170,37 @@ export interface CloudBackupSnapshotExportBucketState {
     /**
      * Name of the bucket that the provided role ID is authorized to access.
      */
-    bucketName?: pulumi.Input<string>;
+    bucketName?: pulumi.Input<string | undefined>;
     /**
      * Name of the provider of the cloud service where Atlas can access the S3 bucket.
      */
-    cloudProvider?: pulumi.Input<string>;
+    cloudProvider?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the snapshot export bucket.
      */
-    exportBucketId?: pulumi.Input<string>;
+    exportBucketId?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
      */
-    iamRoleId?: pulumi.Input<string>;
+    iamRoleId?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
      */
-    roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string | undefined>;
     /**
      * URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
      */
-    serviceUrl?: pulumi.Input<string>;
+    serviceUrl?: pulumi.Input<string | undefined>;
     /**
      * This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
      *
      * @deprecated This parameter is deprecated.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -218,7 +218,7 @@ export interface CloudBackupSnapshotExportBucketArgs {
     /**
      * Unique identifier of the role that Atlas can use to access the bucket. Required if `cloudProvider` is set to `AWS`.
      */
-    iamRoleId?: pulumi.Input<string>;
+    iamRoleId?: pulumi.Input<string | undefined>;
     /**
      * The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
      */
@@ -226,15 +226,15 @@ export interface CloudBackupSnapshotExportBucketArgs {
     /**
      * Unique identifier of the Azure Service Principal that Atlas can use to access the Azure Blob Storage Container. Required if `cloudProvider` is set to `AZURE`.
      */
-    roleId?: pulumi.Input<string>;
+    roleId?: pulumi.Input<string | undefined>;
     /**
      * URL that identifies the blob Endpoint of the Azure Blob Storage Account. Required if `cloudProvider` is set to `AZURE`.
      */
-    serviceUrl?: pulumi.Input<string>;
+    serviceUrl?: pulumi.Input<string | undefined>;
     /**
      * This field is ignored; the `mongodbatlas_cloud_provider_access_authorization.azure.tenant_id` is used instead and returned as an attribute. UUID that identifies the Azure Active Directory Tenant ID.
      *
      * @deprecated This parameter is deprecated.
      */
-    tenantId?: pulumi.Input<string>;
+    tenantId?: pulumi.Input<string | undefined>;
 }

@@ -380,7 +380,7 @@ export interface GetStreamProcessorOutputArgs {
      *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    instanceName?: pulumi.Input<string>;
+    instanceName?: pulumi.Input<string | undefined>;
     /**
      * Label that identifies the stream processor.
      */
@@ -392,5 +392,5 @@ export interface GetStreamProcessorOutputArgs {
     /**
      * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
      */
-    workspaceName?: pulumi.Input<string>;
+    workspaceName?: pulumi.Input<string | undefined>;
 }

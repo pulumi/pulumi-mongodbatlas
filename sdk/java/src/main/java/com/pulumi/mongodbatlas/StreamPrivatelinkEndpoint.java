@@ -44,8 +44,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
  * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
  * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -65,17 +65,17 @@ import javax.annotation.Nullable;
  *             .displayName("terraform-test-private-link-network-manual")
  *             .cloud("AWS")
  *             .region(awsRegion)
- *             .connectionTypes(List.of("PRIVATELINK"))
+ *             .connectionTypes(Arrays.asList("PRIVATELINK"))
  *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
- *             .environment(List.of(Map.of("id", staging.id())))
- *             .dnsConfig(List.of(Map.of("resolution", "PRIVATE")))
+ *             .environment(Arrays.asList(Map.of("id", staging.id())))
+ *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
  *             .build());
  * 
  *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
  *             .displayName("example-private-link-access")
- *             .aws(List.of(Map.of("account", awsAccountId)))
- *             .environment(List.of(Map.of("id", staging.id())))
- *             .network(List.of(Map.of("id", privateLink.id())))
+ *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
+ *             .environment(Arrays.asList(Map.of("id", staging.id())))
+ *             .network(Arrays.asList(Map.of("id", privateLink.id())))
  *             .build());
  * 
  *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
@@ -83,9 +83,9 @@ import javax.annotation.Nullable;
  *             .availability("MULTI_ZONE")
  *             .cloud(privateLink.cloud())
  *             .region(privateLink.region())
- *             .dedicated(List.of(Map.of("cku", 2)))
- *             .environment(List.of(Map.of("id", staging.id())))
- *             .network(List.of(Map.of("id", privateLink.id())))
+ *             .dedicated(Arrays.asList(Map.of("cku", 2)))
+ *             .environment(Arrays.asList(Map.of("id", staging.id())))
+ *             .network(Arrays.asList(Map.of("id", privateLink.id())))
  *             .build());
  * 
  *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
@@ -130,8 +130,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.aws.S3BucketServerSideEncryptionConfigurationArgs;
  * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
  * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -151,12 +151,12 @@ import javax.annotation.Nullable;
  * 
  *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
  *             .bucket(streamBucket.id())
- *             .versioningConfiguration(List.of(Map.of("status", "Enabled")))
+ *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
  *             .build());
  * 
  *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
  *             .bucket(streamBucket.id())
- *             .rule(List.of(Map.of("applyServerSideEncryptionByDefault", List.of(Map.of("sseAlgorithm", "AES256")))))
+ *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
  *             .build());
  * 
  *         // PrivateLink for S3
@@ -186,8 +186,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
  * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
  * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -243,8 +243,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
  * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
  * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;
@@ -312,8 +312,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
  * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
  * import com.pulumi.resources.CustomResourceOptions;
- * import java.util.List;
  * import java.util.ArrayList;
+ * import java.util.Arrays;
  * import java.util.Map;
  * import java.io.File;
  * import java.nio.file.Files;

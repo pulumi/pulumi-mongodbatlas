@@ -163,8 +163,8 @@ def get_project_service_account(client_id: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         roles=pulumi.get(__ret__, 'roles'),
         secrets=pulumi.get(__ret__, 'secrets'))
-def get_project_service_account_output(client_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                       project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_project_service_account_output(client_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                       project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectServiceAccountResult]:
     """
     `ProjectServiceAccount` describes a Project Service Account.

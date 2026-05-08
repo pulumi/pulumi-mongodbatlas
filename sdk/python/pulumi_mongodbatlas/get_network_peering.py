@@ -358,8 +358,8 @@ def get_network_peering(peering_id: Optional[_builtins.str] = None,
         status_name=pulumi.get(__ret__, 'status_name'),
         vnet_name=pulumi.get(__ret__, 'vnet_name'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
-def get_network_peering_output(peering_id: Optional[pulumi.Input[_builtins.str]] = None,
-                               project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_network_peering_output(peering_id: pulumi.Input[Optional[_builtins.str]] = None,
+                               project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNetworkPeeringResult]:
     """
     `NetworkPeering` describes a Network Peering Connection.

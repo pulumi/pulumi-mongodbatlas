@@ -249,8 +249,8 @@ def get_network_container(container_id: Optional[_builtins.str] = None,
         regions=pulumi.get(__ret__, 'regions'),
         vnet_name=pulumi.get(__ret__, 'vnet_name'),
         vpc_id=pulumi.get(__ret__, 'vpc_id'))
-def get_network_container_output(container_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_network_container_output(container_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetNetworkContainerResult]:
     """
     `NetworkContainer` describes a Network Peering Container. The resource requires your Project ID and container ID.

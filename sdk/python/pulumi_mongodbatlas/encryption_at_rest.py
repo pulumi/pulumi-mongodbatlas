@@ -22,10 +22,10 @@ __all__ = ['EncryptionAtRestArgs', 'EncryptionAtRest']
 class EncryptionAtRestArgs:
     def __init__(__self__, *,
                  project_id: pulumi.Input[_builtins.str],
-                 aws_kms_config: Optional[pulumi.Input['EncryptionAtRestAwsKmsConfigArgs']] = None,
-                 azure_key_vault_config: Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs']] = None,
-                 enabled_for_search_nodes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 google_cloud_kms_config: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']] = None):
+                 aws_kms_config: pulumi.Input[Optional['EncryptionAtRestAwsKmsConfigArgs']] = None,
+                 azure_key_vault_config: pulumi.Input[Optional['EncryptionAtRestAzureKeyVaultConfigArgs']] = None,
+                 enabled_for_search_nodes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 google_cloud_kms_config: pulumi.Input[Optional['EncryptionAtRestGoogleCloudKmsConfigArgs']] = None):
         """
         The set of arguments for constructing a EncryptionAtRest resource.
 
@@ -59,61 +59,61 @@ class EncryptionAtRestArgs:
 
     @_builtins.property
     @pulumi.getter(name="awsKmsConfig")
-    def aws_kms_config(self) -> Optional[pulumi.Input['EncryptionAtRestAwsKmsConfigArgs']]:
+    def aws_kms_config(self) -> pulumi.Input[Optional['EncryptionAtRestAwsKmsConfigArgs']]:
         """
         Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
         """
         return pulumi.get(self, "aws_kms_config")
 
     @aws_kms_config.setter
-    def aws_kms_config(self, value: Optional[pulumi.Input['EncryptionAtRestAwsKmsConfigArgs']]):
+    def aws_kms_config(self, value: pulumi.Input[Optional['EncryptionAtRestAwsKmsConfigArgs']]):
         pulumi.set(self, "aws_kms_config", value)
 
     @_builtins.property
     @pulumi.getter(name="azureKeyVaultConfig")
-    def azure_key_vault_config(self) -> Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs']]:
+    def azure_key_vault_config(self) -> pulumi.Input[Optional['EncryptionAtRestAzureKeyVaultConfigArgs']]:
         """
         Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
         """
         return pulumi.get(self, "azure_key_vault_config")
 
     @azure_key_vault_config.setter
-    def azure_key_vault_config(self, value: Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs']]):
+    def azure_key_vault_config(self, value: pulumi.Input[Optional['EncryptionAtRestAzureKeyVaultConfigArgs']]):
         pulumi.set(self, "azure_key_vault_config", value)
 
     @_builtins.property
     @pulumi.getter(name="enabledForSearchNodes")
-    def enabled_for_search_nodes(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled_for_search_nodes(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
         """
         return pulumi.get(self, "enabled_for_search_nodes")
 
     @enabled_for_search_nodes.setter
-    def enabled_for_search_nodes(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled_for_search_nodes(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled_for_search_nodes", value)
 
     @_builtins.property
     @pulumi.getter(name="googleCloudKmsConfig")
-    def google_cloud_kms_config(self) -> Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']]:
+    def google_cloud_kms_config(self) -> pulumi.Input[Optional['EncryptionAtRestGoogleCloudKmsConfigArgs']]:
         """
         Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
         """
         return pulumi.get(self, "google_cloud_kms_config")
 
     @google_cloud_kms_config.setter
-    def google_cloud_kms_config(self, value: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']]):
+    def google_cloud_kms_config(self, value: pulumi.Input[Optional['EncryptionAtRestGoogleCloudKmsConfigArgs']]):
         pulumi.set(self, "google_cloud_kms_config", value)
 
 
 @pulumi.input_type
 class _EncryptionAtRestState:
     def __init__(__self__, *,
-                 aws_kms_config: Optional[pulumi.Input['EncryptionAtRestAwsKmsConfigArgs']] = None,
-                 azure_key_vault_config: Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs']] = None,
-                 enabled_for_search_nodes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 google_cloud_kms_config: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 aws_kms_config: pulumi.Input[Optional['EncryptionAtRestAwsKmsConfigArgs']] = None,
+                 azure_key_vault_config: pulumi.Input[Optional['EncryptionAtRestAzureKeyVaultConfigArgs']] = None,
+                 enabled_for_search_nodes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 google_cloud_kms_config: pulumi.Input[Optional['EncryptionAtRestGoogleCloudKmsConfigArgs']] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering EncryptionAtRest resources.
 
@@ -136,62 +136,62 @@ class _EncryptionAtRestState:
 
     @_builtins.property
     @pulumi.getter(name="awsKmsConfig")
-    def aws_kms_config(self) -> Optional[pulumi.Input['EncryptionAtRestAwsKmsConfigArgs']]:
+    def aws_kms_config(self) -> pulumi.Input[Optional['EncryptionAtRestAwsKmsConfigArgs']]:
         """
         Amazon Web Services (AWS) KMS configuration details and encryption at rest configuration set for the specified project.
         """
         return pulumi.get(self, "aws_kms_config")
 
     @aws_kms_config.setter
-    def aws_kms_config(self, value: Optional[pulumi.Input['EncryptionAtRestAwsKmsConfigArgs']]):
+    def aws_kms_config(self, value: pulumi.Input[Optional['EncryptionAtRestAwsKmsConfigArgs']]):
         pulumi.set(self, "aws_kms_config", value)
 
     @_builtins.property
     @pulumi.getter(name="azureKeyVaultConfig")
-    def azure_key_vault_config(self) -> Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs']]:
+    def azure_key_vault_config(self) -> pulumi.Input[Optional['EncryptionAtRestAzureKeyVaultConfigArgs']]:
         """
         Details that define the configuration of Encryption at Rest using Azure Key Vault (AKV).
         """
         return pulumi.get(self, "azure_key_vault_config")
 
     @azure_key_vault_config.setter
-    def azure_key_vault_config(self, value: Optional[pulumi.Input['EncryptionAtRestAzureKeyVaultConfigArgs']]):
+    def azure_key_vault_config(self, value: pulumi.Input[Optional['EncryptionAtRestAzureKeyVaultConfigArgs']]):
         pulumi.set(self, "azure_key_vault_config", value)
 
     @_builtins.property
     @pulumi.getter(name="enabledForSearchNodes")
-    def enabled_for_search_nodes(self) -> Optional[pulumi.Input[_builtins.bool]]:
+    def enabled_for_search_nodes(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
         Flag that indicates whether Encryption at Rest for Dedicated Search Nodes is enabled in the specified project.
         """
         return pulumi.get(self, "enabled_for_search_nodes")
 
     @enabled_for_search_nodes.setter
-    def enabled_for_search_nodes(self, value: Optional[pulumi.Input[_builtins.bool]]):
+    def enabled_for_search_nodes(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "enabled_for_search_nodes", value)
 
     @_builtins.property
     @pulumi.getter(name="googleCloudKmsConfig")
-    def google_cloud_kms_config(self) -> Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']]:
+    def google_cloud_kms_config(self) -> pulumi.Input[Optional['EncryptionAtRestGoogleCloudKmsConfigArgs']]:
         """
         Details that define the configuration of Encryption at Rest using Google Cloud Key Management Service (KMS).
         """
         return pulumi.get(self, "google_cloud_kms_config")
 
     @google_cloud_kms_config.setter
-    def google_cloud_kms_config(self, value: Optional[pulumi.Input['EncryptionAtRestGoogleCloudKmsConfigArgs']]):
+    def google_cloud_kms_config(self, value: pulumi.Input[Optional['EncryptionAtRestGoogleCloudKmsConfigArgs']]):
         pulumi.set(self, "google_cloud_kms_config", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
-    def project_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         """
         return pulumi.get(self, "project_id")
 
     @project_id.setter
-    def project_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def project_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "project_id", value)
 
 
@@ -201,11 +201,11 @@ class EncryptionAtRest(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']]] = None,
-                 azure_key_vault_config: Optional[pulumi.Input[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']]] = None,
-                 enabled_for_search_nodes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 google_cloud_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 aws_kms_config: pulumi.Input[Optional[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']]] = None,
+                 azure_key_vault_config: pulumi.Input[Optional[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']]] = None,
+                 enabled_for_search_nodes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 google_cloud_kms_config: pulumi.Input[Optional[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
         `EncryptionAtRest` allows management of Encryption at Rest for an Atlas project using Customer Key Management configuration. The following providers are supported:
@@ -518,11 +518,11 @@ class EncryptionAtRest(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']]] = None,
-                 azure_key_vault_config: Optional[pulumi.Input[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']]] = None,
-                 enabled_for_search_nodes: Optional[pulumi.Input[_builtins.bool]] = None,
-                 google_cloud_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']]] = None,
-                 project_id: Optional[pulumi.Input[_builtins.str]] = None,
+                 aws_kms_config: pulumi.Input[Optional[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']]] = None,
+                 azure_key_vault_config: pulumi.Input[Optional[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']]] = None,
+                 enabled_for_search_nodes: pulumi.Input[Optional[_builtins.bool]] = None,
+                 google_cloud_kms_config: pulumi.Input[Optional[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']]] = None,
+                 project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -549,11 +549,11 @@ class EncryptionAtRest(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            aws_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']]] = None,
-            azure_key_vault_config: Optional[pulumi.Input[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']]] = None,
-            enabled_for_search_nodes: Optional[pulumi.Input[_builtins.bool]] = None,
-            google_cloud_kms_config: Optional[pulumi.Input[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']]] = None,
-            project_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'EncryptionAtRest':
+            aws_kms_config: pulumi.Input[Optional[Union['EncryptionAtRestAwsKmsConfigArgs', 'EncryptionAtRestAwsKmsConfigArgsDict']]] = None,
+            azure_key_vault_config: pulumi.Input[Optional[Union['EncryptionAtRestAzureKeyVaultConfigArgs', 'EncryptionAtRestAzureKeyVaultConfigArgsDict']]] = None,
+            enabled_for_search_nodes: pulumi.Input[Optional[_builtins.bool]] = None,
+            google_cloud_kms_config: pulumi.Input[Optional[Union['EncryptionAtRestGoogleCloudKmsConfigArgs', 'EncryptionAtRestGoogleCloudKmsConfigArgsDict']]] = None,
+            project_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'EncryptionAtRest':
         """
         Get an existing EncryptionAtRest resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

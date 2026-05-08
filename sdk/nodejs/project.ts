@@ -223,76 +223,76 @@ export interface ProjectState {
     /**
      * The number of Atlas clusters deployed in the project.
      */
-    clusterCount?: pulumi.Input<number>;
+    clusterCount?: pulumi.Input<number | undefined>;
     /**
      * The ISO-8601-formatted timestamp of when Atlas created the project.
      */
-    created?: pulumi.Input<string>;
+    created?: pulumi.Input<string | undefined>;
     /**
      * IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `mongodbatlas.getProjectIpAddresses` data source instead.
      *
      * @deprecated This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source.
      */
-    ipAddresses?: pulumi.Input<inputs.ProjectIpAddresses>;
+    ipAddresses?: pulumi.Input<inputs.ProjectIpAddresses | undefined>;
     /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
      */
-    isCollectDatabaseSpecificsStatisticsEnabled?: pulumi.Input<boolean>;
+    isCollectDatabaseSpecificsStatisticsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
      */
-    isDataExplorerEnabled?: pulumi.Input<boolean>;
+    isDataExplorerEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
      */
-    isExtendedStorageSizesEnabled?: pulumi.Input<boolean>;
+    isExtendedStorageSizesEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
      */
-    isPerformanceAdvisorEnabled?: pulumi.Input<boolean>;
+    isPerformanceAdvisorEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
      */
-    isRealtimePerformancePanelEnabled?: pulumi.Input<boolean>;
+    isRealtimePerformancePanelEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
      */
-    isSchemaAdvisorEnabled?: pulumi.Input<boolean>;
+    isSchemaAdvisorEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
      *
      * @deprecated This parameter is deprecated.
      */
-    isSlowOperationThresholdingEnabled?: pulumi.Input<boolean>;
-    limits?: pulumi.Input<pulumi.Input<inputs.ProjectLimit>[]>;
+    isSlowOperationThresholdingEnabled?: pulumi.Input<boolean | undefined>;
+    limits?: pulumi.Input<pulumi.Input<inputs.ProjectLimit>[] | undefined>;
     /**
      * The name of the project you want to create.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the organization you want to create the project within.
      */
-    orgId?: pulumi.Input<string>;
+    orgId?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
      */
-    projectOwnerId?: pulumi.Input<string>;
+    projectOwnerId?: pulumi.Input<string | undefined>;
     /**
      * Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      */
-    regionUsageRestrictions?: pulumi.Input<string>;
+    regionUsageRestrictions?: pulumi.Input<string | undefined>;
     /**
      * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      */
-    teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
+    teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[] | undefined>;
     /**
      * Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
      */
-    withDefaultAlertsSettings?: pulumi.Input<boolean>;
+    withDefaultAlertsSettings?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -302,38 +302,38 @@ export interface ProjectArgs {
     /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
      */
-    isCollectDatabaseSpecificsStatisticsEnabled?: pulumi.Input<boolean>;
+    isCollectDatabaseSpecificsStatisticsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
      */
-    isDataExplorerEnabled?: pulumi.Input<boolean>;
+    isDataExplorerEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
      */
-    isExtendedStorageSizesEnabled?: pulumi.Input<boolean>;
+    isExtendedStorageSizesEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
      */
-    isPerformanceAdvisorEnabled?: pulumi.Input<boolean>;
+    isPerformanceAdvisorEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
      */
-    isRealtimePerformancePanelEnabled?: pulumi.Input<boolean>;
+    isRealtimePerformancePanelEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
      */
-    isSchemaAdvisorEnabled?: pulumi.Input<boolean>;
+    isSchemaAdvisorEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * (Optional) Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
      *
      * @deprecated This parameter is deprecated.
      */
-    isSlowOperationThresholdingEnabled?: pulumi.Input<boolean>;
-    limits?: pulumi.Input<pulumi.Input<inputs.ProjectLimit>[]>;
+    isSlowOperationThresholdingEnabled?: pulumi.Input<boolean | undefined>;
+    limits?: pulumi.Input<pulumi.Input<inputs.ProjectLimit>[] | undefined>;
     /**
      * The name of the project you want to create.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the organization you want to create the project within.
      */
@@ -341,21 +341,21 @@ export interface ProjectArgs {
     /**
      * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
      */
-    projectOwnerId?: pulumi.Input<string>;
+    projectOwnerId?: pulumi.Input<string | undefined>;
     /**
      * Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
      */
-    regionUsageRestrictions?: pulumi.Input<string>;
+    regionUsageRestrictions?: pulumi.Input<string | undefined>;
     /**
      * Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the project. See below.
      */
-    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
      * @deprecated This parameter is deprecated and will be removed in the next major release. Please transition to `mongodbatlas.TeamProjectAssignment`. For more details, see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/atlas-user-management.
      */
-    teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[]>;
+    teams?: pulumi.Input<pulumi.Input<inputs.ProjectTeam>[] | undefined>;
     /**
      * Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
      */
-    withDefaultAlertsSettings?: pulumi.Input<boolean>;
+    withDefaultAlertsSettings?: pulumi.Input<boolean | undefined>;
 }

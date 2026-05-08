@@ -137,8 +137,8 @@ def get_mongodb_employee_access_grant(cluster_name: Optional[_builtins.str] = No
         grant_type=pulumi.get(__ret__, 'grant_type'),
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
-def get_mongodb_employee_access_grant_output(cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                                             project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_mongodb_employee_access_grant_output(cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                                             project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                              opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMongodbEmployeeAccessGrantResult]:
     """
     `MongodbEmployeeAccessGrant` describes a MongoDB employee access grant.

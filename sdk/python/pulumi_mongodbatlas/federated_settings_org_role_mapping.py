@@ -90,11 +90,11 @@ class FederatedSettingsOrgRoleMappingArgs:
 @pulumi.input_type
 class _FederatedSettingsOrgRoleMappingState:
     def __init__(__self__, *,
-                 external_group_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]] = None,
-                 role_mapping_id: Optional[pulumi.Input[_builtins.str]] = None):
+                 external_group_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_assignments: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]] = None,
+                 role_mapping_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering FederatedSettingsOrgRoleMapping resources.
 
@@ -117,62 +117,62 @@ class _FederatedSettingsOrgRoleMappingState:
 
     @_builtins.property
     @pulumi.getter(name="externalGroupName")
-    def external_group_name(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def external_group_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique label that identifies the identity provider group to which this role mapping applies.
         """
         return pulumi.get(self, "external_group_name")
 
     @external_group_name.setter
-    def external_group_name(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def external_group_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "external_group_name", value)
 
     @_builtins.property
     @pulumi.getter(name="federationSettingsId")
-    def federation_settings_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def federation_settings_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         """
         return pulumi.get(self, "federation_settings_id")
 
     @federation_settings_id.setter
-    def federation_settings_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def federation_settings_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "federation_settings_id", value)
 
     @_builtins.property
     @pulumi.getter(name="orgId")
-    def org_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def org_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         """
         return pulumi.get(self, "org_id")
 
     @org_id.setter
-    def org_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def org_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "org_id", value)
 
     @_builtins.property
     @pulumi.getter(name="roleAssignments")
-    def role_assignments(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]]:
+    def role_assignments(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]]:
         """
         Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
         return pulumi.get(self, "role_assignments")
 
     @role_assignments.setter
-    def role_assignments(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]]):
+    def role_assignments(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['FederatedSettingsOrgRoleMappingRoleAssignmentArgs']]]]):
         pulumi.set(self, "role_assignments", value)
 
     @_builtins.property
     @pulumi.getter(name="roleMappingId")
-    def role_mapping_id(self) -> Optional[pulumi.Input[_builtins.str]]:
+    def role_mapping_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique 24-hexadecimal digit string that identifies this role mapping.
         """
         return pulumi.get(self, "role_mapping_id")
 
     @role_mapping_id.setter
-    def role_mapping_id(self, value: Optional[pulumi.Input[_builtins.str]]):
+    def role_mapping_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "role_mapping_id", value)
 
 
@@ -182,10 +182,10 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 external_group_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict']]]]] = None,
+                 external_group_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict']]]]] = None,
                  __props__=None):
         """
         `FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
@@ -331,10 +331,10 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 external_group_name: Optional[pulumi.Input[_builtins.str]] = None,
-                 federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 org_id: Optional[pulumi.Input[_builtins.str]] = None,
-                 role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict']]]]] = None,
+                 external_group_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 org_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 role_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -367,11 +367,11 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            external_group_name: Optional[pulumi.Input[_builtins.str]] = None,
-            federation_settings_id: Optional[pulumi.Input[_builtins.str]] = None,
-            org_id: Optional[pulumi.Input[_builtins.str]] = None,
-            role_assignments: Optional[pulumi.Input[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict']]]]] = None,
-            role_mapping_id: Optional[pulumi.Input[_builtins.str]] = None) -> 'FederatedSettingsOrgRoleMapping':
+            external_group_name: pulumi.Input[Optional[_builtins.str]] = None,
+            federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
+            org_id: pulumi.Input[Optional[_builtins.str]] = None,
+            role_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict']]]]] = None,
+            role_mapping_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'FederatedSettingsOrgRoleMapping':
         """
         Get an existing FederatedSettingsOrgRoleMapping resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

@@ -218,9 +218,9 @@ export interface GetProjectOutputArgs {
      *
      * > **IMPORTANT:** Either `projectId` or `name` must be configurated.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The unique ID for the project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
 }

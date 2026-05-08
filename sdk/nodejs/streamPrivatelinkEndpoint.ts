@@ -398,7 +398,7 @@ export interface StreamPrivatelinkEndpointState {
     /**
      * Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
      */
-    arn?: pulumi.Input<string>;
+    arn?: pulumi.Input<string | undefined>;
     /**
      * The domain hostname. Required for the following provider and vendor combinations:
      *
@@ -410,51 +410,51 @@ export interface StreamPrivatelinkEndpointState {
      *
      * 	* For GCP provider with PUBSUB vendor, the API computes this process.
      */
-    dnsDomain?: pulumi.Input<string>;
+    dnsDomain?: pulumi.Input<string | undefined>;
     /**
      * Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
      */
-    dnsSubDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    dnsSubDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Error message if the connection is in a failed state.
      */
-    errorMessage?: pulumi.Input<string>;
+    errorMessage?: pulumi.Input<string | undefined>;
     /**
      * Interface endpoint ID that is created from the specified service endpoint ID.
      */
-    interfaceEndpointId?: pulumi.Input<string>;
+    interfaceEndpointId?: pulumi.Input<string | undefined>;
     /**
      * Name of interface endpoint that is created from the specified service endpoint ID.
      */
-    interfaceEndpointName?: pulumi.Input<string>;
+    interfaceEndpointName?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Account ID from the cloud provider.
      */
-    providerAccountId?: pulumi.Input<string>;
+    providerAccountId?: pulumi.Input<string | undefined>;
     /**
      * Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
      */
-    providerName?: pulumi.Input<string>;
+    providerName?: pulumi.Input<string | undefined>;
     /**
      * The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
      */
-    serviceAttachmentUris?: pulumi.Input<pulumi.Input<string>[]>;
+    serviceAttachmentUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
      */
-    serviceEndpointId?: pulumi.Input<string>;
+    serviceEndpointId?: pulumi.Input<string | undefined>;
     /**
      * Status of the connection.
      */
-    state?: pulumi.Input<string>;
+    state?: pulumi.Input<string | undefined>;
     /**
      * Vendor that manages the endpoint. The following are the vendor values per provider:
      *
@@ -464,7 +464,7 @@ export interface StreamPrivatelinkEndpointState {
      *
      * 	* **GCP**: CONFLUENT and PUBSUB
      */
-    vendor?: pulumi.Input<string>;
+    vendor?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -474,7 +474,7 @@ export interface StreamPrivatelinkEndpointArgs {
     /**
      * Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
      */
-    arn?: pulumi.Input<string>;
+    arn?: pulumi.Input<string | undefined>;
     /**
      * The domain hostname. Required for the following provider and vendor combinations:
      *
@@ -486,11 +486,11 @@ export interface StreamPrivatelinkEndpointArgs {
      *
      * 	* For GCP provider with PUBSUB vendor, the API computes this process.
      */
-    dnsDomain?: pulumi.Input<string>;
+    dnsDomain?: pulumi.Input<string | undefined>;
     /**
      * Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
      */
-    dnsSubDomains?: pulumi.Input<pulumi.Input<string>[]>;
+    dnsSubDomains?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
@@ -502,15 +502,15 @@ export interface StreamPrivatelinkEndpointArgs {
     /**
      * The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
      */
-    region?: pulumi.Input<string>;
+    region?: pulumi.Input<string | undefined>;
     /**
      * List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
      */
-    serviceAttachmentUris?: pulumi.Input<pulumi.Input<string>[]>;
+    serviceAttachmentUris?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
      */
-    serviceEndpointId?: pulumi.Input<string>;
+    serviceEndpointId?: pulumi.Input<string | undefined>;
     /**
      * Vendor that manages the endpoint. The following are the vendor values per provider:
      *

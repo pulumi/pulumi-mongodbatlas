@@ -280,12 +280,12 @@ def get_serverless_instance(auto_indexing: Optional[_builtins.bool] = None,
         state_name=pulumi.get(__ret__, 'state_name'),
         tags=pulumi.get(__ret__, 'tags'),
         termination_protection_enabled=pulumi.get(__ret__, 'termination_protection_enabled'))
-def get_serverless_instance_output(auto_indexing: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                                   continuous_backup_enabled: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
-                                   links: Optional[pulumi.Input[Optional[Sequence[Union['GetServerlessInstanceLinkArgs', 'GetServerlessInstanceLinkArgsDict']]]]] = None,
-                                   name: Optional[pulumi.Input[_builtins.str]] = None,
-                                   project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                   state_name: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_serverless_instance_output(auto_indexing: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                                   continuous_backup_enabled: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                                   links: pulumi.Input[Optional[Optional[Sequence[Union['GetServerlessInstanceLinkArgs', 'GetServerlessInstanceLinkArgsDict']]]]] = None,
+                                   name: pulumi.Input[Optional[_builtins.str]] = None,
+                                   project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                   state_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetServerlessInstanceResult]:
     """
     > **DEPRECATION:** This data source is deprecated and will be removed in January 2026. For more details, see Migration Guide: Transition out of Serverless Instances and Shared-tier clusters.

@@ -208,66 +208,66 @@ export interface ServerlessInstanceState {
      *
      * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      */
-    autoIndexing?: pulumi.Input<boolean>;
+    autoIndexing?: pulumi.Input<boolean | undefined>;
     /**
      * List of Serverless Private Endpoint Connections
      */
-    connectionStringsPrivateEndpointSrvs?: pulumi.Input<pulumi.Input<string>[]>;
+    connectionStringsPrivateEndpointSrvs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
      * Public `mongodb+srv://` connection string that you can use to connect to this serverless instance.
      */
-    connectionStringsStandardSrv?: pulumi.Input<string>;
+    connectionStringsStandardSrv?: pulumi.Input<string | undefined>;
     /**
      * Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
      *
      * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      */
-    continuousBackupEnabled?: pulumi.Input<boolean>;
+    continuousBackupEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
      */
-    createDate?: pulumi.Input<string>;
-    links?: pulumi.Input<pulumi.Input<inputs.ServerlessInstanceLink>[]>;
+    createDate?: pulumi.Input<string | undefined>;
+    links?: pulumi.Input<pulumi.Input<inputs.ServerlessInstanceLink>[] | undefined>;
     /**
      * Version of MongoDB that the serverless instance runs, in `<major version>`.`<minor version>` format.
      */
-    mongoDbVersion?: pulumi.Input<string>;
+    mongoDbVersion?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label that identifies the serverless instance.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
      */
-    providerSettingsBackingProviderName?: pulumi.Input<string>;
+    providerSettingsBackingProviderName?: pulumi.Input<string | undefined>;
     /**
      * Cloud service provider that applies to the provisioned the serverless instance.
      */
-    providerSettingsProviderName?: pulumi.Input<string>;
+    providerSettingsProviderName?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
      */
-    providerSettingsRegionName?: pulumi.Input<string>;
+    providerSettingsRegionName?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the serverless instance.
      */
-    serverlessInstanceId?: pulumi.Input<string>;
+    serverlessInstanceId?: pulumi.Input<string | undefined>;
     /**
      * Stage of deployment of this serverless instance when the resource made its request.
      */
-    stateName?: pulumi.Input<string>;
+    stateName?: pulumi.Input<string | undefined>;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      */
-    tags?: pulumi.Input<pulumi.Input<inputs.ServerlessInstanceTag>[]>;
+    tags?: pulumi.Input<pulumi.Input<inputs.ServerlessInstanceTag>[] | undefined>;
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
-    terminationProtectionEnabled?: pulumi.Input<boolean>;
+    terminationProtectionEnabled?: pulumi.Input<boolean | undefined>;
 }
 
 /**
@@ -279,18 +279,18 @@ export interface ServerlessInstanceArgs {
      *
      * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      */
-    autoIndexing?: pulumi.Input<boolean>;
+    autoIndexing?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether the serverless instance uses [Serverless Continuous Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup). If this parameter is false or not used, the serverless instance uses [Basic Backup](https://www.mongodb.com/docs/atlas/configure-serverless-backup).
      *
      * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      */
-    continuousBackupEnabled?: pulumi.Input<boolean>;
-    links?: pulumi.Input<pulumi.Input<inputs.ServerlessInstanceLink>[]>;
+    continuousBackupEnabled?: pulumi.Input<boolean | undefined>;
+    links?: pulumi.Input<pulumi.Input<inputs.ServerlessInstanceLink>[] | undefined>;
     /**
      * Human-readable label that identifies the serverless instance.
      */
-    name?: pulumi.Input<string>;
+    name?: pulumi.Input<string | undefined>;
     /**
      * The ID of the organization or project you want to create the serverless instance within, also known as `groupId` in the official documentation.
      */
@@ -310,17 +310,17 @@ export interface ServerlessInstanceArgs {
     /**
      * Unique 24-hexadecimal digit string that identifies the serverless instance.
      */
-    serverlessInstanceId?: pulumi.Input<string>;
+    serverlessInstanceId?: pulumi.Input<string | undefined>;
     /**
      * Stage of deployment of this serverless instance when the resource made its request.
      */
-    stateName?: pulumi.Input<string>;
+    stateName?: pulumi.Input<string | undefined>;
     /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
      */
-    tags?: pulumi.Input<pulumi.Input<inputs.ServerlessInstanceTag>[]>;
+    tags?: pulumi.Input<pulumi.Input<inputs.ServerlessInstanceTag>[] | undefined>;
     /**
      * Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
      */
-    terminationProtectionEnabled?: pulumi.Input<boolean>;
+    terminationProtectionEnabled?: pulumi.Input<boolean | undefined>;
 }

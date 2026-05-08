@@ -247,8 +247,8 @@ def get_advanced_clusters(project_id: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
         use_effective_fields=pulumi.get(__ret__, 'use_effective_fields'))
-def get_advanced_clusters_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                 use_effective_fields: Optional[pulumi.Input[Optional[_builtins.bool]]] = None,
+def get_advanced_clusters_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                 use_effective_fields: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAdvancedClustersResult]:
     """
     `get_advanced_clusters` describes all Advanced Clusters, including Flex clusters, for a project_id.

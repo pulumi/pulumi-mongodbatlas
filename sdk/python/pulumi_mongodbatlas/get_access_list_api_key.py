@@ -185,9 +185,9 @@ def get_access_list_api_key(api_key_id: Optional[_builtins.str] = None,
         last_used=pulumi.get(__ret__, 'last_used'),
         last_used_address=pulumi.get(__ret__, 'last_used_address'),
         org_id=pulumi.get(__ret__, 'org_id'))
-def get_access_list_api_key_output(api_key_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                   ip_address: Optional[pulumi.Input[_builtins.str]] = None,
-                                   org_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_access_list_api_key_output(api_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                   ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+                                   org_id: pulumi.Input[Optional[_builtins.str]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAccessListApiKeyResult]:
     """
     `AccessListApiKey` describes an Access List API Key entry resource. The access list grants access from IPs or CIDRs to clusters within the Project.

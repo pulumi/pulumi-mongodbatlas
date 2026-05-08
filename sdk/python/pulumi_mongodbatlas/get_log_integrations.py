@@ -122,8 +122,8 @@ def get_log_integrations(integration_type: Optional[_builtins.str] = None,
         integration_type=pulumi.get(__ret__, 'integration_type'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
-def get_log_integrations_output(integration_type: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
-                                project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_log_integrations_output(integration_type: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
+                                project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetLogIntegrationsResult]:
     """
     `get_log_integrations` describes all log integrations configured at the project level. Supported integration types include AWS S3, Google Cloud Storage, Azure Blob Storage, Datadog, Splunk, and OpenTelemetry.

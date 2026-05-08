@@ -125,8 +125,8 @@ def get_team_project_assignment(project_id: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         role_names=pulumi.get(__ret__, 'role_names'),
         team_id=pulumi.get(__ret__, 'team_id'))
-def get_team_project_assignment_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                       team_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_team_project_assignment_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                       team_id: pulumi.Input[Optional[_builtins.str]] = None,
                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetTeamProjectAssignmentResult]:
     """
     `TeamProjectAssignment` provides a Team Project Assignment data source. The data source lets you retrieve a team assigned to a project.

@@ -256,9 +256,9 @@ def get_online_archive(archive_id: Optional[_builtins.str] = None,
         project_id=pulumi.get(__ret__, 'project_id'),
         schedules=pulumi.get(__ret__, 'schedules'),
         state=pulumi.get(__ret__, 'state'))
-def get_online_archive_output(archive_id: Optional[pulumi.Input[_builtins.str]] = None,
-                              cluster_name: Optional[pulumi.Input[_builtins.str]] = None,
-                              project_id: Optional[pulumi.Input[_builtins.str]] = None,
+def get_online_archive_output(archive_id: pulumi.Input[Optional[_builtins.str]] = None,
+                              cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
+                              project_id: pulumi.Input[Optional[_builtins.str]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOnlineArchiveResult]:
     """
     `OnlineArchive` describes an Online Archive

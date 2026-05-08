@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Index.StreamConnection("test", new()
+    ///     var test = new Mongodbatlas.StreamConnection("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = "WorkspaceName",
@@ -51,7 +51,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Index.StreamConnection("test", new()
+    ///     var test = new Mongodbatlas.StreamConnection("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = "WorskpaceName",
@@ -74,7 +74,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Index.StreamConnection("test", new()
+    ///     var test = new Mongodbatlas.StreamConnection("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = "NewWorkspace",
@@ -110,7 +110,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleKafkaOauthbearer = new Mongodbatlas.Index.StreamConnection("example_kafka_oauthbearer", new()
+    ///     var exampleKafkaOauthbearer = new Mongodbatlas.StreamConnection("example_kafka_oauthbearer", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.WorkspaceName,
@@ -157,7 +157,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Index.StreamConnection("test", new()
+    ///     var test = new Mongodbatlas.StreamConnection("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = "NewWorkspace",
@@ -194,7 +194,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Index.StreamConnection("test", new()
+    ///     var test = new Mongodbatlas.StreamConnection("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = "NewWorkspace",
@@ -228,7 +228,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var test = new Mongodbatlas.Index.StreamConnection("test", new()
+    ///     var test = new Mongodbatlas.StreamConnection("test", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = "NewWorkspace",
@@ -253,19 +253,19 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var gcpSetup = new Mongodbatlas.Index.CloudProviderAccessSetup("gcp_setup", new()
+    ///     var gcpSetup = new Mongodbatlas.CloudProviderAccessSetup("gcp_setup", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ProviderName = "GCP",
     ///     });
     /// 
-    ///     var gcpAuth = new Mongodbatlas.Index.CloudProviderAccessAuthorization("gcp_auth", new()
+    ///     var gcpAuth = new Mongodbatlas.CloudProviderAccessAuthorization("gcp_auth", new()
     ///     {
     ///         ProjectId = projectId,
     ///         RoleId = gcpSetup.RoleId,
     ///     });
     /// 
-    ///     var exampleGcpPubsub = new Mongodbatlas.Index.StreamConnection("example_gcp_pubsub", new()
+    ///     var exampleGcpPubsub = new Mongodbatlas.StreamConnection("example_gcp_pubsub", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.WorkspaceName,
@@ -296,19 +296,19 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var gcpSetup = new Mongodbatlas.Index.CloudProviderAccessSetup("gcp_setup", new()
+    ///     var gcpSetup = new Mongodbatlas.CloudProviderAccessSetup("gcp_setup", new()
     ///     {
     ///         ProjectId = projectId,
     ///         ProviderName = "GCP",
     ///     });
     /// 
-    ///     var gcpAuth = new Mongodbatlas.Index.CloudProviderAccessAuthorization("gcp_auth", new()
+    ///     var gcpAuth = new Mongodbatlas.CloudProviderAccessAuthorization("gcp_auth", new()
     ///     {
     ///         ProjectId = projectId,
     ///         RoleId = gcpSetup.RoleId,
     ///     });
     /// 
-    ///     var exampleGcpPubsubPsc = new Mongodbatlas.Index.StreamConnection("example_gcp_pubsub_psc", new()
+    ///     var exampleGcpPubsubPsc = new Mongodbatlas.StreamConnection("example_gcp_pubsub_psc", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.WorkspaceName,
@@ -349,7 +349,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleAzureBlobPrivateLink = new Mongodbatlas.Index.StreamConnection("example_azure_blob_private_link", new()
+    ///     var exampleAzureBlobPrivateLink = new Mongodbatlas.StreamConnection("example_azure_blob_private_link", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.WorkspaceName,
@@ -384,7 +384,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleHttps = new Mongodbatlas.Index.StreamConnection("example_https", new()
+    ///     var exampleHttps = new Mongodbatlas.StreamConnection("example_https", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.WorkspaceName,
@@ -411,7 +411,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleSchemaRegistry = new Mongodbatlas.Index.StreamConnection("example_schema_registry", new()
+    ///     var exampleSchemaRegistry = new Mongodbatlas.StreamConnection("example_schema_registry", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.WorkspaceName,
@@ -443,7 +443,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var exampleSchemaRegistrySasl = new Mongodbatlas.Index.StreamConnection("example_schema_registry_sasl", new()
+    ///     var exampleSchemaRegistrySasl = new Mongodbatlas.StreamConnection("example_schema_registry_sasl", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.WorkspaceName,
@@ -476,7 +476,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
-    ///     var example = new Mongodbatlas.Index.StreamWorkspace("example", new()
+    ///     var example = new Mongodbatlas.StreamWorkspace("example", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = "ExampleWorkspace",
@@ -488,7 +488,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Source connection (Sample data)
-    ///     var source = new Mongodbatlas.Index.StreamConnection("source", new()
+    ///     var source = new Mongodbatlas.StreamConnection("source", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.WorkspaceName,
@@ -497,7 +497,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Sink connection (Atlas Cluster)
-    ///     var sink = new Mongodbatlas.Index.StreamConnection("sink", new()
+    ///     var sink = new Mongodbatlas.StreamConnection("sink", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.WorkspaceName,
@@ -512,7 +512,7 @@ namespace Pulumi.Mongodbatlas
     ///     });
     /// 
     ///     // Stream processor that depends on both connections
-    ///     var exampleStreamProcessor = new Mongodbatlas.Index.StreamProcessor("example", new()
+    ///     var exampleStreamProcessor = new Mongodbatlas.StreamProcessor("example", new()
     ///     {
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.WorkspaceName,

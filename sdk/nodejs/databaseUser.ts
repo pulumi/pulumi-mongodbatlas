@@ -292,57 +292,57 @@ export interface DatabaseUserState {
      * Database against which Atlas authenticates the user. A user must provide both a username and authentication database to log into MongoDB.
      * Accepted values include:
      */
-    authDatabaseName?: pulumi.Input<string>;
+    authDatabaseName?: pulumi.Input<string | undefined>;
     /**
      * If this value is set, the new database user authenticates with AWS IAM credentials. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      * * `NONE` -	The user does not use AWS IAM credentials.
      * * `USER` - New database user has AWS IAM user credentials.
      * * `ROLE` -  New database user has credentials associated with an AWS IAM role.
      */
-    awsIamType?: pulumi.Input<string>;
+    awsIamType?: pulumi.Input<string | undefined>;
     /**
      * Description of this database user.
      */
-    description?: pulumi.Input<string>;
-    labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
+    description?: pulumi.Input<string | undefined>;
+    labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[] | undefined>;
     /**
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
      * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
      * * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
      * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
      */
-    ldapAuthType?: pulumi.Input<string>;
+    ldapAuthType?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      * * `NONE` -	The user does not use OIDC federated authentication.
      * * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      * * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      */
-    oidcAuthType?: pulumi.Input<string>;
+    oidcAuthType?: pulumi.Input<string | undefined>;
     /**
      * User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
      */
-    projectId?: pulumi.Input<string>;
+    projectId?: pulumi.Input<string | undefined>;
     /**
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      */
-    roles?: pulumi.Input<pulumi.Input<inputs.DatabaseUserRole>[]>;
-    scopes?: pulumi.Input<pulumi.Input<inputs.DatabaseUserScope>[]>;
+    roles?: pulumi.Input<pulumi.Input<inputs.DatabaseUserRole>[] | undefined>;
+    scopes?: pulumi.Input<pulumi.Input<inputs.DatabaseUserScope>[] | undefined>;
     /**
      * Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
      */
-    username?: pulumi.Input<string>;
+    username?: pulumi.Input<string | undefined>;
     /**
      * X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
      * * `NONE` -	The user does not use X.509 authentication.
      * * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
      * * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
      */
-    x509Type?: pulumi.Input<string>;
+    x509Type?: pulumi.Input<string | undefined>;
 }
 
 /**
@@ -360,30 +360,30 @@ export interface DatabaseUserArgs {
      * * `USER` - New database user has AWS IAM user credentials.
      * * `ROLE` -  New database user has credentials associated with an AWS IAM role.
      */
-    awsIamType?: pulumi.Input<string>;
+    awsIamType?: pulumi.Input<string | undefined>;
     /**
      * Description of this database user.
      */
-    description?: pulumi.Input<string>;
-    labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[]>;
+    description?: pulumi.Input<string | undefined>;
+    labels?: pulumi.Input<pulumi.Input<inputs.DatabaseUserLabel>[] | undefined>;
     /**
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
      * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
      * * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
      * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
      */
-    ldapAuthType?: pulumi.Input<string>;
+    ldapAuthType?: pulumi.Input<string | undefined>;
     /**
      * Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
      * * `NONE` -	The user does not use OIDC federated authentication.
      * * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      * * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
      */
-    oidcAuthType?: pulumi.Input<string>;
+    oidcAuthType?: pulumi.Input<string | undefined>;
     /**
      * User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
      */
-    password?: pulumi.Input<string>;
+    password?: pulumi.Input<string | undefined>;
     /**
      * The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
      */
@@ -392,7 +392,7 @@ export interface DatabaseUserArgs {
      * List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
      */
     roles: pulumi.Input<pulumi.Input<inputs.DatabaseUserRole>[]>;
-    scopes?: pulumi.Input<pulumi.Input<inputs.DatabaseUserScope>[]>;
+    scopes?: pulumi.Input<pulumi.Input<inputs.DatabaseUserScope>[] | undefined>;
     /**
      * Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `awsIamType` is USER or ROLE.
      */
@@ -403,5 +403,5 @@ export interface DatabaseUserArgs {
      * * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
      * * `CUSTOMER` -  The user is being created for use with Self-Managed X.509. Users created with this x509Type require a Common Name (CN) in the username field. Externally authenticated users can only be created on the `$external` database.
      */
-    x509Type?: pulumi.Input<string>;
+    x509Type?: pulumi.Input<string | undefined>;
 }

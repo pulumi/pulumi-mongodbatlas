@@ -208,7 +208,7 @@ export interface GetStreamConnectionOutputArgs {
      *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
      */
-    instanceName?: pulumi.Input<string>;
+    instanceName?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
@@ -216,5 +216,5 @@ export interface GetStreamConnectionOutputArgs {
     /**
      * Label that identifies the stream processing workspace. Conflicts with `instanceName`.
      */
-    workspaceName?: pulumi.Input<string>;
+    workspaceName?: pulumi.Input<string | undefined>;
 }

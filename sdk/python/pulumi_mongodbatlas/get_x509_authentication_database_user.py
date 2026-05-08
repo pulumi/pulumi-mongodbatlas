@@ -171,8 +171,8 @@ def get_x509_authentication_database_user(project_id: Optional[_builtins.str] = 
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         username=pulumi.get(__ret__, 'username'))
-def get_x509_authentication_database_user_output(project_id: Optional[pulumi.Input[_builtins.str]] = None,
-                                                 username: Optional[pulumi.Input[Optional[_builtins.str]]] = None,
+def get_x509_authentication_database_user_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                                 username: pulumi.Input[Optional[Optional[_builtins.str]]] = None,
                                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetX509AuthenticationDatabaseUserResult]:
     """
     `X509AuthenticationDatabaseUser` describes a X509 Authentication Database User. This represents a X509 Authentication Database User.
