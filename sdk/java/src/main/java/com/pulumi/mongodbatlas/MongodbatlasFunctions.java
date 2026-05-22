@@ -9931,15 +9931,15 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
+     *         final var exampleUsername = MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
      *             .orgId(orgId)
-     *             .username(_username)
-     *             .build()));
+     *             .username(example.username())
+     *             .build());
      * 
-     *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
+     *         final var exampleUserId = MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
      *             .orgId(orgId)
-     *             .userId(_userId)
-     *             .build()));
+     *             .userId(example.userId())
+     *             .build());
      * 
      *     }
      * }
@@ -9994,15 +9994,15 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
+     *         final var exampleUsername = MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
      *             .orgId(orgId)
-     *             .username(_username)
-     *             .build()));
+     *             .username(example.username())
+     *             .build());
      * 
-     *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
+     *         final var exampleUserId = MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
      *             .orgId(orgId)
-     *             .userId(_userId)
-     *             .build()));
+     *             .userId(example.userId())
+     *             .build());
      * 
      *     }
      * }
@@ -10057,15 +10057,15 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
+     *         final var exampleUsername = MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
      *             .orgId(orgId)
-     *             .username(_username)
-     *             .build()));
+     *             .username(example.username())
+     *             .build());
      * 
-     *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
+     *         final var exampleUserId = MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
      *             .orgId(orgId)
-     *             .userId(_userId)
-     *             .build()));
+     *             .userId(example.userId())
+     *             .build());
      * 
      *     }
      * }
@@ -10120,15 +10120,15 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
+     *         final var exampleUsername = MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
      *             .orgId(orgId)
-     *             .username(_username)
-     *             .build()));
+     *             .username(example.username())
+     *             .build());
      * 
-     *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
+     *         final var exampleUserId = MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
      *             .orgId(orgId)
-     *             .userId(_userId)
-     *             .build()));
+     *             .userId(example.userId())
+     *             .build());
      * 
      *     }
      * }
@@ -10183,15 +10183,15 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
+     *         final var exampleUsername = MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
      *             .orgId(orgId)
-     *             .username(_username)
-     *             .build()));
+     *             .username(example.username())
+     *             .build());
      * 
-     *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
+     *         final var exampleUserId = MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
      *             .orgId(orgId)
-     *             .userId(_userId)
-     *             .build()));
+     *             .userId(example.userId())
+     *             .build());
      * 
      *     }
      * }
@@ -10245,15 +10245,15 @@ public final class MongodbatlasFunctions {
      *                 "GROUP_DATA_ACCESS_ADMIN")
      *             .build());
      * 
-     *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
+     *         final var exampleUsername = MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
      *             .projectId(projectId)
-     *             .username(_username)
-     *             .build()));
+     *             .username(example.username())
+     *             .build());
      * 
-     *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
+     *         final var exampleUserId = MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
      *             .projectId(projectId)
-     *             .userId(_userId)
-     *             .build()));
+     *             .userId(example.userId())
+     *             .build());
      * 
      *     }
      * }
@@ -10307,15 +10307,15 @@ public final class MongodbatlasFunctions {
      *                 "GROUP_DATA_ACCESS_ADMIN")
      *             .build());
      * 
-     *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
+     *         final var exampleUsername = MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
      *             .projectId(projectId)
-     *             .username(_username)
-     *             .build()));
+     *             .username(example.username())
+     *             .build());
      * 
-     *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
+     *         final var exampleUserId = MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
      *             .projectId(projectId)
-     *             .userId(_userId)
-     *             .build()));
+     *             .userId(example.userId())
+     *             .build());
      * 
      *     }
      * }
@@ -10369,15 +10369,15 @@ public final class MongodbatlasFunctions {
      *                 "GROUP_DATA_ACCESS_ADMIN")
      *             .build());
      * 
-     *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
+     *         final var exampleUsername = MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
      *             .projectId(projectId)
-     *             .username(_username)
-     *             .build()));
+     *             .username(example.username())
+     *             .build());
      * 
-     *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
+     *         final var exampleUserId = MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
      *             .projectId(projectId)
-     *             .userId(_userId)
-     *             .build()));
+     *             .userId(example.userId())
+     *             .build());
      * 
      *     }
      * }
@@ -10431,15 +10431,15 @@ public final class MongodbatlasFunctions {
      *                 "GROUP_DATA_ACCESS_ADMIN")
      *             .build());
      * 
-     *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
+     *         final var exampleUsername = MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
      *             .projectId(projectId)
-     *             .username(_username)
-     *             .build()));
+     *             .username(example.username())
+     *             .build());
      * 
-     *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
+     *         final var exampleUserId = MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
      *             .projectId(projectId)
-     *             .userId(_userId)
-     *             .build()));
+     *             .userId(example.userId())
+     *             .build());
      * 
      *     }
      * }
@@ -10493,15 +10493,15 @@ public final class MongodbatlasFunctions {
      *                 "GROUP_DATA_ACCESS_ADMIN")
      *             .build());
      * 
-     *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
+     *         final var exampleUsername = MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
      *             .projectId(projectId)
-     *             .username(_username)
-     *             .build()));
+     *             .username(example.username())
+     *             .build());
      * 
-     *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
+     *         final var exampleUserId = MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
      *             .projectId(projectId)
-     *             .userId(_userId)
-     *             .build()));
+     *             .userId(example.userId())
+     *             .build());
      * 
      *     }
      * }
@@ -10553,17 +10553,17 @@ public final class MongodbatlasFunctions {
      *             .userId(userId)
      *             .build());
      * 
-     *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
+     *         final var exampleUserId = MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
      *             .orgId(orgId)
      *             .teamId(teamId)
-     *             .userId(_userId)
-     *             .build()));
+     *             .userId(example.userId())
+     *             .build());
      * 
-     *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
+     *         final var exampleUsername = MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
      *             .orgId(orgId)
      *             .teamId(teamId)
-     *             .username(_username)
-     *             .build()));
+     *             .username(example.username())
+     *             .build());
      * 
      *     }
      * }
@@ -10615,17 +10615,17 @@ public final class MongodbatlasFunctions {
      *             .userId(userId)
      *             .build());
      * 
-     *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
+     *         final var exampleUserId = MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
      *             .orgId(orgId)
      *             .teamId(teamId)
-     *             .userId(_userId)
-     *             .build()));
+     *             .userId(example.userId())
+     *             .build());
      * 
-     *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
+     *         final var exampleUsername = MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
      *             .orgId(orgId)
      *             .teamId(teamId)
-     *             .username(_username)
-     *             .build()));
+     *             .username(example.username())
+     *             .build());
      * 
      *     }
      * }
@@ -10677,17 +10677,17 @@ public final class MongodbatlasFunctions {
      *             .userId(userId)
      *             .build());
      * 
-     *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
+     *         final var exampleUserId = MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
      *             .orgId(orgId)
      *             .teamId(teamId)
-     *             .userId(_userId)
-     *             .build()));
+     *             .userId(example.userId())
+     *             .build());
      * 
-     *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
+     *         final var exampleUsername = MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
      *             .orgId(orgId)
      *             .teamId(teamId)
-     *             .username(_username)
-     *             .build()));
+     *             .username(example.username())
+     *             .build());
      * 
      *     }
      * }
@@ -10739,17 +10739,17 @@ public final class MongodbatlasFunctions {
      *             .userId(userId)
      *             .build());
      * 
-     *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
+     *         final var exampleUserId = MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
      *             .orgId(orgId)
      *             .teamId(teamId)
-     *             .userId(_userId)
-     *             .build()));
+     *             .userId(example.userId())
+     *             .build());
      * 
-     *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
+     *         final var exampleUsername = MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
      *             .orgId(orgId)
      *             .teamId(teamId)
-     *             .username(_username)
-     *             .build()));
+     *             .username(example.username())
+     *             .build());
      * 
      *     }
      * }
@@ -10801,17 +10801,17 @@ public final class MongodbatlasFunctions {
      *             .userId(userId)
      *             .build());
      * 
-     *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
+     *         final var exampleUserId = MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
      *             .orgId(orgId)
      *             .teamId(teamId)
-     *             .userId(_userId)
-     *             .build()));
+     *             .userId(example.userId())
+     *             .build());
      * 
-     *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
+     *         final var exampleUsername = MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
      *             .orgId(orgId)
      *             .teamId(teamId)
-     *             .username(_username)
-     *             .build()));
+     *             .username(example.username())
+     *             .build());
      * 
      *     }
      * }
@@ -21848,14 +21848,10 @@ public final class MongodbatlasFunctions {
      *             .regionName("US_EAST_1")
      *             .build());
      * 
-     *         final var test = Output.tuple(testNetworkContainer.projectId(), testNetworkContainer.providerName()).applyValue(values -> {
-     *             var projectId = values.t1;
-     *             var providerName = values.t2;
-     *             return MongodbatlasFunctions.getNetworkContainers(GetNetworkContainersArgs.builder()
-     *                 .projectId(projectId)
-     *                 .providerName(providerName)
-     *                 .build());
-     *         });
+     *         final var test = MongodbatlasFunctions.getNetworkContainers(GetNetworkContainersArgs.builder()
+     *             .projectId(testNetworkContainer.projectId())
+     *             .providerName(testNetworkContainer.providerName())
+     *             .build());
      * 
      *     }
      * }
@@ -21904,14 +21900,10 @@ public final class MongodbatlasFunctions {
      *             .regionName("US_EAST_1")
      *             .build());
      * 
-     *         final var test = Output.tuple(testNetworkContainer.projectId(), testNetworkContainer.providerName()).applyValue(values -> {
-     *             var projectId = values.t1;
-     *             var providerName = values.t2;
-     *             return MongodbatlasFunctions.getNetworkContainers(GetNetworkContainersArgs.builder()
-     *                 .projectId(projectId)
-     *                 .providerName(providerName)
-     *                 .build());
-     *         });
+     *         final var test = MongodbatlasFunctions.getNetworkContainers(GetNetworkContainersArgs.builder()
+     *             .projectId(testNetworkContainer.projectId())
+     *             .providerName(testNetworkContainer.providerName())
+     *             .build());
      * 
      *     }
      * }
@@ -21960,14 +21952,10 @@ public final class MongodbatlasFunctions {
      *             .regionName("US_EAST_1")
      *             .build());
      * 
-     *         final var test = Output.tuple(testNetworkContainer.projectId(), testNetworkContainer.providerName()).applyValue(values -> {
-     *             var projectId = values.t1;
-     *             var providerName = values.t2;
-     *             return MongodbatlasFunctions.getNetworkContainers(GetNetworkContainersArgs.builder()
-     *                 .projectId(projectId)
-     *                 .providerName(providerName)
-     *                 .build());
-     *         });
+     *         final var test = MongodbatlasFunctions.getNetworkContainers(GetNetworkContainersArgs.builder()
+     *             .projectId(testNetworkContainer.projectId())
+     *             .providerName(testNetworkContainer.providerName())
+     *             .build());
      * 
      *     }
      * }
@@ -22016,14 +22004,10 @@ public final class MongodbatlasFunctions {
      *             .regionName("US_EAST_1")
      *             .build());
      * 
-     *         final var test = Output.tuple(testNetworkContainer.projectId(), testNetworkContainer.providerName()).applyValue(values -> {
-     *             var projectId = values.t1;
-     *             var providerName = values.t2;
-     *             return MongodbatlasFunctions.getNetworkContainers(GetNetworkContainersArgs.builder()
-     *                 .projectId(projectId)
-     *                 .providerName(providerName)
-     *                 .build());
-     *         });
+     *         final var test = MongodbatlasFunctions.getNetworkContainers(GetNetworkContainersArgs.builder()
+     *             .projectId(testNetworkContainer.projectId())
+     *             .providerName(testNetworkContainer.providerName())
+     *             .build());
      * 
      *     }
      * }
@@ -22072,14 +22056,10 @@ public final class MongodbatlasFunctions {
      *             .regionName("US_EAST_1")
      *             .build());
      * 
-     *         final var test = Output.tuple(testNetworkContainer.projectId(), testNetworkContainer.providerName()).applyValue(values -> {
-     *             var projectId = values.t1;
-     *             var providerName = values.t2;
-     *             return MongodbatlasFunctions.getNetworkContainers(GetNetworkContainersArgs.builder()
-     *                 .projectId(projectId)
-     *                 .providerName(providerName)
-     *                 .build());
-     *         });
+     *         final var test = MongodbatlasFunctions.getNetworkContainers(GetNetworkContainersArgs.builder()
+     *             .projectId(testNetworkContainer.projectId())
+     *             .providerName(testNetworkContainer.providerName())
+     *             .build());
      * 
      *     }
      * }
@@ -29313,15 +29293,11 @@ public final class MongodbatlasFunctions {
      *             .secretExpiresAfterHours(2160)
      *             .build());
      * 
-     *         final var this = Output.tuple(thisProjectServiceAccount.clientId(), thisProjectServiceAccountSecret.secretId()).applyValue(values -> {
-     *             var clientId = values.t1;
-     *             var secretId = values.t2;
-     *             return MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
-     *                 .projectId(projectId)
-     *                 .clientId(clientId)
-     *                 .secretId(secretId)
-     *                 .build());
-     *         });
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .secretId(thisProjectServiceAccountSecret.secretId())
+     *             .build());
      * 
      *         ctx.export("secretId", thisProjectServiceAccountSecret.secretId());
      *         ctx.export("secret", thisProjectServiceAccountSecret.secret());
@@ -29383,15 +29359,11 @@ public final class MongodbatlasFunctions {
      *             .secretExpiresAfterHours(2160)
      *             .build());
      * 
-     *         final var this = Output.tuple(thisProjectServiceAccount.clientId(), thisProjectServiceAccountSecret.secretId()).applyValue(values -> {
-     *             var clientId = values.t1;
-     *             var secretId = values.t2;
-     *             return MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
-     *                 .projectId(projectId)
-     *                 .clientId(clientId)
-     *                 .secretId(secretId)
-     *                 .build());
-     *         });
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .secretId(thisProjectServiceAccountSecret.secretId())
+     *             .build());
      * 
      *         ctx.export("secretId", thisProjectServiceAccountSecret.secretId());
      *         ctx.export("secret", thisProjectServiceAccountSecret.secret());
@@ -29453,15 +29425,11 @@ public final class MongodbatlasFunctions {
      *             .secretExpiresAfterHours(2160)
      *             .build());
      * 
-     *         final var this = Output.tuple(thisProjectServiceAccount.clientId(), thisProjectServiceAccountSecret.secretId()).applyValue(values -> {
-     *             var clientId = values.t1;
-     *             var secretId = values.t2;
-     *             return MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
-     *                 .projectId(projectId)
-     *                 .clientId(clientId)
-     *                 .secretId(secretId)
-     *                 .build());
-     *         });
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .secretId(thisProjectServiceAccountSecret.secretId())
+     *             .build());
      * 
      *         ctx.export("secretId", thisProjectServiceAccountSecret.secretId());
      *         ctx.export("secret", thisProjectServiceAccountSecret.secret());
@@ -29523,15 +29491,11 @@ public final class MongodbatlasFunctions {
      *             .secretExpiresAfterHours(2160)
      *             .build());
      * 
-     *         final var this = Output.tuple(thisProjectServiceAccount.clientId(), thisProjectServiceAccountSecret.secretId()).applyValue(values -> {
-     *             var clientId = values.t1;
-     *             var secretId = values.t2;
-     *             return MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
-     *                 .projectId(projectId)
-     *                 .clientId(clientId)
-     *                 .secretId(secretId)
-     *                 .build());
-     *         });
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .secretId(thisProjectServiceAccountSecret.secretId())
+     *             .build());
      * 
      *         ctx.export("secretId", thisProjectServiceAccountSecret.secretId());
      *         ctx.export("secret", thisProjectServiceAccountSecret.secret());
@@ -29593,15 +29557,11 @@ public final class MongodbatlasFunctions {
      *             .secretExpiresAfterHours(2160)
      *             .build());
      * 
-     *         final var this = Output.tuple(thisProjectServiceAccount.clientId(), thisProjectServiceAccountSecret.secretId()).applyValue(values -> {
-     *             var clientId = values.t1;
-     *             var secretId = values.t2;
-     *             return MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
-     *                 .projectId(projectId)
-     *                 .clientId(clientId)
-     *                 .secretId(secretId)
-     *                 .build());
-     *         });
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisProjectServiceAccount.clientId())
+     *             .secretId(thisProjectServiceAccountSecret.secretId())
+     *             .build());
      * 
      *         ctx.export("secretId", thisProjectServiceAccountSecret.secretId());
      *         ctx.export("secret", thisProjectServiceAccountSecret.secret());
@@ -32893,10 +32853,10 @@ public final class MongodbatlasFunctions {
      *             .clientId(thisServiceAccountProjectAssignment.clientId())
      *             .build());
      * 
-     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *         final var thisGetServiceAccountProjectAssignments = MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(_clientId)
-     *             .build()));
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
      * 
      *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
      *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
@@ -32964,10 +32924,10 @@ public final class MongodbatlasFunctions {
      *             .clientId(thisServiceAccountProjectAssignment.clientId())
      *             .build());
      * 
-     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *         final var thisGetServiceAccountProjectAssignments = MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(_clientId)
-     *             .build()));
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
      * 
      *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
      *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
@@ -33035,10 +32995,10 @@ public final class MongodbatlasFunctions {
      *             .clientId(thisServiceAccountProjectAssignment.clientId())
      *             .build());
      * 
-     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *         final var thisGetServiceAccountProjectAssignments = MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(_clientId)
-     *             .build()));
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
      * 
      *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
      *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
@@ -33106,10 +33066,10 @@ public final class MongodbatlasFunctions {
      *             .clientId(thisServiceAccountProjectAssignment.clientId())
      *             .build());
      * 
-     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *         final var thisGetServiceAccountProjectAssignments = MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(_clientId)
-     *             .build()));
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
      * 
      *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
      *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
@@ -33177,10 +33137,10 @@ public final class MongodbatlasFunctions {
      *             .clientId(thisServiceAccountProjectAssignment.clientId())
      *             .build());
      * 
-     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *         final var thisGetServiceAccountProjectAssignments = MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(_clientId)
-     *             .build()));
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
      * 
      *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
      *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
@@ -33248,10 +33208,10 @@ public final class MongodbatlasFunctions {
      *             .clientId(thisServiceAccountProjectAssignment.clientId())
      *             .build());
      * 
-     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *         final var thisGetServiceAccountProjectAssignments = MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(_clientId)
-     *             .build()));
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
      * 
      *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
      *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
@@ -33319,10 +33279,10 @@ public final class MongodbatlasFunctions {
      *             .clientId(thisServiceAccountProjectAssignment.clientId())
      *             .build());
      * 
-     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *         final var thisGetServiceAccountProjectAssignments = MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(_clientId)
-     *             .build()));
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
      * 
      *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
      *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
@@ -33390,10 +33350,10 @@ public final class MongodbatlasFunctions {
      *             .clientId(thisServiceAccountProjectAssignment.clientId())
      *             .build());
      * 
-     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *         final var thisGetServiceAccountProjectAssignments = MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(_clientId)
-     *             .build()));
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
      * 
      *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
      *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
@@ -33461,10 +33421,10 @@ public final class MongodbatlasFunctions {
      *             .clientId(thisServiceAccountProjectAssignment.clientId())
      *             .build());
      * 
-     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *         final var thisGetServiceAccountProjectAssignments = MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(_clientId)
-     *             .build()));
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
      * 
      *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
      *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
@@ -33532,10 +33492,10 @@ public final class MongodbatlasFunctions {
      *             .clientId(thisServiceAccountProjectAssignment.clientId())
      *             .build());
      * 
-     *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+     *         final var thisGetServiceAccountProjectAssignments = MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(_clientId)
-     *             .build()));
+     *             .clientId(thisServiceAccount.clientId())
+     *             .build());
      * 
      *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
      *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));
@@ -33595,15 +33555,11 @@ public final class MongodbatlasFunctions {
      *             .secretExpiresAfterHours(2160)
      *             .build());
      * 
-     *         final var this = Output.tuple(thisServiceAccount.clientId(), thisServiceAccountSecret.secretId()).applyValue(values -> {
-     *             var clientId = values.t1;
-     *             var secretId = values.t2;
-     *             return MongodbatlasFunctions.getServiceAccountSecret(GetServiceAccountSecretArgs.builder()
-     *                 .orgId(orgId)
-     *                 .clientId(clientId)
-     *                 .secretId(secretId)
-     *                 .build());
-     *         });
+     *         final var this = MongodbatlasFunctions.getServiceAccountSecret(GetServiceAccountSecretArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .secretId(thisServiceAccountSecret.secretId())
+     *             .build());
      * 
      *         ctx.export("secretId", thisServiceAccountSecret.secretId());
      *         ctx.export("secret", thisServiceAccountSecret.secret());
@@ -33664,15 +33620,11 @@ public final class MongodbatlasFunctions {
      *             .secretExpiresAfterHours(2160)
      *             .build());
      * 
-     *         final var this = Output.tuple(thisServiceAccount.clientId(), thisServiceAccountSecret.secretId()).applyValue(values -> {
-     *             var clientId = values.t1;
-     *             var secretId = values.t2;
-     *             return MongodbatlasFunctions.getServiceAccountSecret(GetServiceAccountSecretArgs.builder()
-     *                 .orgId(orgId)
-     *                 .clientId(clientId)
-     *                 .secretId(secretId)
-     *                 .build());
-     *         });
+     *         final var this = MongodbatlasFunctions.getServiceAccountSecret(GetServiceAccountSecretArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .secretId(thisServiceAccountSecret.secretId())
+     *             .build());
      * 
      *         ctx.export("secretId", thisServiceAccountSecret.secretId());
      *         ctx.export("secret", thisServiceAccountSecret.secret());
@@ -33733,15 +33685,11 @@ public final class MongodbatlasFunctions {
      *             .secretExpiresAfterHours(2160)
      *             .build());
      * 
-     *         final var this = Output.tuple(thisServiceAccount.clientId(), thisServiceAccountSecret.secretId()).applyValue(values -> {
-     *             var clientId = values.t1;
-     *             var secretId = values.t2;
-     *             return MongodbatlasFunctions.getServiceAccountSecret(GetServiceAccountSecretArgs.builder()
-     *                 .orgId(orgId)
-     *                 .clientId(clientId)
-     *                 .secretId(secretId)
-     *                 .build());
-     *         });
+     *         final var this = MongodbatlasFunctions.getServiceAccountSecret(GetServiceAccountSecretArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .secretId(thisServiceAccountSecret.secretId())
+     *             .build());
      * 
      *         ctx.export("secretId", thisServiceAccountSecret.secretId());
      *         ctx.export("secret", thisServiceAccountSecret.secret());
@@ -33802,15 +33750,11 @@ public final class MongodbatlasFunctions {
      *             .secretExpiresAfterHours(2160)
      *             .build());
      * 
-     *         final var this = Output.tuple(thisServiceAccount.clientId(), thisServiceAccountSecret.secretId()).applyValue(values -> {
-     *             var clientId = values.t1;
-     *             var secretId = values.t2;
-     *             return MongodbatlasFunctions.getServiceAccountSecret(GetServiceAccountSecretArgs.builder()
-     *                 .orgId(orgId)
-     *                 .clientId(clientId)
-     *                 .secretId(secretId)
-     *                 .build());
-     *         });
+     *         final var this = MongodbatlasFunctions.getServiceAccountSecret(GetServiceAccountSecretArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .secretId(thisServiceAccountSecret.secretId())
+     *             .build());
      * 
      *         ctx.export("secretId", thisServiceAccountSecret.secretId());
      *         ctx.export("secret", thisServiceAccountSecret.secret());
@@ -33871,15 +33815,11 @@ public final class MongodbatlasFunctions {
      *             .secretExpiresAfterHours(2160)
      *             .build());
      * 
-     *         final var this = Output.tuple(thisServiceAccount.clientId(), thisServiceAccountSecret.secretId()).applyValue(values -> {
-     *             var clientId = values.t1;
-     *             var secretId = values.t2;
-     *             return MongodbatlasFunctions.getServiceAccountSecret(GetServiceAccountSecretArgs.builder()
-     *                 .orgId(orgId)
-     *                 .clientId(clientId)
-     *                 .secretId(secretId)
-     *                 .build());
-     *         });
+     *         final var this = MongodbatlasFunctions.getServiceAccountSecret(GetServiceAccountSecretArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisServiceAccount.clientId())
+     *             .secretId(thisServiceAccountSecret.secretId())
+     *             .build());
      * 
      *         ctx.export("secretId", thisServiceAccountSecret.secretId());
      *         ctx.export("secret", thisServiceAccountSecret.secret());
@@ -35771,10 +35711,10 @@ public final class MongodbatlasFunctions {
      *             .dnsSubDomains(privateLink.zonalSubdomains())
      *             .build());
      * 
-     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(test.id())
+     *             .build());
      * 
      *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
      *             .projectId(projectId)
@@ -35884,10 +35824,10 @@ public final class MongodbatlasFunctions {
      *                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2")
      *             .build());
      * 
-     *         final var gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpConfluent = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpConfluentStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpConfluent.applyValue(_gcpConfluent -> _gcpConfluent.state()));
@@ -35952,10 +35892,10 @@ public final class MongodbatlasFunctions {
      *                 .dependsOn(cluster)
      *                 .build());
      * 
-     *         final var gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpPubsub = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpPubsubStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
@@ -36118,10 +36058,10 @@ public final class MongodbatlasFunctions {
      *             .dnsSubDomains(privateLink.zonalSubdomains())
      *             .build());
      * 
-     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(test.id())
+     *             .build());
      * 
      *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
      *             .projectId(projectId)
@@ -36231,10 +36171,10 @@ public final class MongodbatlasFunctions {
      *                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2")
      *             .build());
      * 
-     *         final var gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpConfluent = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpConfluentStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpConfluent.applyValue(_gcpConfluent -> _gcpConfluent.state()));
@@ -36299,10 +36239,10 @@ public final class MongodbatlasFunctions {
      *                 .dependsOn(cluster)
      *                 .build());
      * 
-     *         final var gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpPubsub = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpPubsubStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
@@ -36465,10 +36405,10 @@ public final class MongodbatlasFunctions {
      *             .dnsSubDomains(privateLink.zonalSubdomains())
      *             .build());
      * 
-     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(test.id())
+     *             .build());
      * 
      *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
      *             .projectId(projectId)
@@ -36578,10 +36518,10 @@ public final class MongodbatlasFunctions {
      *                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2")
      *             .build());
      * 
-     *         final var gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpConfluent = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpConfluentStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpConfluent.applyValue(_gcpConfluent -> _gcpConfluent.state()));
@@ -36646,10 +36586,10 @@ public final class MongodbatlasFunctions {
      *                 .dependsOn(cluster)
      *                 .build());
      * 
-     *         final var gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpPubsub = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpPubsubStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
@@ -36812,10 +36752,10 @@ public final class MongodbatlasFunctions {
      *             .dnsSubDomains(privateLink.zonalSubdomains())
      *             .build());
      * 
-     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(test.id())
+     *             .build());
      * 
      *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
      *             .projectId(projectId)
@@ -36925,10 +36865,10 @@ public final class MongodbatlasFunctions {
      *                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2")
      *             .build());
      * 
-     *         final var gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpConfluent = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpConfluentStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpConfluent.applyValue(_gcpConfluent -> _gcpConfluent.state()));
@@ -36993,10 +36933,10 @@ public final class MongodbatlasFunctions {
      *                 .dependsOn(cluster)
      *                 .build());
      * 
-     *         final var gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpPubsub = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpPubsubStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
@@ -37159,10 +37099,10 @@ public final class MongodbatlasFunctions {
      *             .dnsSubDomains(privateLink.zonalSubdomains())
      *             .build());
      * 
-     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(test.id())
+     *             .build());
      * 
      *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
      *             .projectId(projectId)
@@ -37272,10 +37212,10 @@ public final class MongodbatlasFunctions {
      *                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2")
      *             .build());
      * 
-     *         final var gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpConfluent = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpConfluentStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpConfluent.applyValue(_gcpConfluent -> _gcpConfluent.state()));
@@ -37340,10 +37280,10 @@ public final class MongodbatlasFunctions {
      *                 .dependsOn(cluster)
      *                 .build());
      * 
-     *         final var gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpPubsub = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpPubsubStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
@@ -37506,10 +37446,10 @@ public final class MongodbatlasFunctions {
      *             .dnsSubDomains(privateLink.zonalSubdomains())
      *             .build());
      * 
-     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(test.id())
+     *             .build());
      * 
      *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
      *             .projectId(projectId)
@@ -37619,10 +37559,10 @@ public final class MongodbatlasFunctions {
      *                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2")
      *             .build());
      * 
-     *         final var gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpConfluent = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpConfluentStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpConfluent.applyValue(_gcpConfluent -> _gcpConfluent.state()));
@@ -37687,10 +37627,10 @@ public final class MongodbatlasFunctions {
      *                 .dependsOn(cluster)
      *                 .build());
      * 
-     *         final var gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpPubsub = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpPubsubStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
@@ -37853,10 +37793,10 @@ public final class MongodbatlasFunctions {
      *             .dnsSubDomains(privateLink.zonalSubdomains())
      *             .build());
      * 
-     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(test.id())
+     *             .build());
      * 
      *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
      *             .projectId(projectId)
@@ -37966,10 +37906,10 @@ public final class MongodbatlasFunctions {
      *                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2")
      *             .build());
      * 
-     *         final var gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpConfluent = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpConfluentStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpConfluent.applyValue(_gcpConfluent -> _gcpConfluent.state()));
@@ -38034,10 +37974,10 @@ public final class MongodbatlasFunctions {
      *                 .dependsOn(cluster)
      *                 .build());
      * 
-     *         final var gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpPubsub = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpPubsubStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
@@ -38200,10 +38140,10 @@ public final class MongodbatlasFunctions {
      *             .dnsSubDomains(privateLink.zonalSubdomains())
      *             .build());
      * 
-     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(test.id())
+     *             .build());
      * 
      *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
      *             .projectId(projectId)
@@ -38313,10 +38253,10 @@ public final class MongodbatlasFunctions {
      *                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2")
      *             .build());
      * 
-     *         final var gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpConfluent = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpConfluentStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpConfluent.applyValue(_gcpConfluent -> _gcpConfluent.state()));
@@ -38381,10 +38321,10 @@ public final class MongodbatlasFunctions {
      *                 .dependsOn(cluster)
      *                 .build());
      * 
-     *         final var gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpPubsub = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpPubsubStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
@@ -38547,10 +38487,10 @@ public final class MongodbatlasFunctions {
      *             .dnsSubDomains(privateLink.zonalSubdomains())
      *             .build());
      * 
-     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(test.id())
+     *             .build());
      * 
      *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
      *             .projectId(projectId)
@@ -38660,10 +38600,10 @@ public final class MongodbatlasFunctions {
      *                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2")
      *             .build());
      * 
-     *         final var gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpConfluent = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpConfluentStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpConfluent.applyValue(_gcpConfluent -> _gcpConfluent.state()));
@@ -38728,10 +38668,10 @@ public final class MongodbatlasFunctions {
      *                 .dependsOn(cluster)
      *                 .build());
      * 
-     *         final var gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpPubsub = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpPubsubStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
@@ -38894,10 +38834,10 @@ public final class MongodbatlasFunctions {
      *             .dnsSubDomains(privateLink.zonalSubdomains())
      *             .build());
      * 
-     *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(test.id())
+     *             .build());
      * 
      *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
      *             .projectId(projectId)
@@ -39007,10 +38947,10 @@ public final class MongodbatlasFunctions {
      *                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2")
      *             .build());
      * 
-     *         final var gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpConfluent = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpConfluentStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpConfluent.applyValue(_gcpConfluent -> _gcpConfluent.state()));
@@ -39075,10 +39015,10 @@ public final class MongodbatlasFunctions {
      *                 .dependsOn(cluster)
      *                 .build());
      * 
-     *         final var gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+     *         final var gcpPubsub = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
      *             .projectId(projectId)
-     *             .id(_id)
-     *             .build()));
+     *             .id(gcpPubsubStreamPrivatelinkEndpoint.id())
+     *             .build());
      * 
      *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
      *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));
@@ -39325,20 +39265,16 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var example-stream-processors = example.instanceName().applyValue(_instanceName -> MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
      *             .projectId(projectId)
-     *             .workspaceName(_instanceName)
-     *             .build()));
+     *             .workspaceName(example.instanceName())
+     *             .build());
      * 
-     *         final var example-stream-processor = Output.tuple(example.instanceName(), stream_processor_sample_example.processorName()).applyValue(values -> {
-     *             var instanceName = values.t1;
-     *             var processorName = values.t2;
-     *             return MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
-     *                 .projectId(projectId)
-     *                 .workspaceName(instanceName)
-     *                 .processorName(processorName)
-     *                 .build());
-     *         });
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .workspaceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
@@ -39518,20 +39454,16 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var example-stream-processors = example.instanceName().applyValue(_instanceName -> MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
      *             .projectId(projectId)
-     *             .workspaceName(_instanceName)
-     *             .build()));
+     *             .workspaceName(example.instanceName())
+     *             .build());
      * 
-     *         final var example-stream-processor = Output.tuple(example.instanceName(), stream_processor_sample_example.processorName()).applyValue(values -> {
-     *             var instanceName = values.t1;
-     *             var processorName = values.t2;
-     *             return MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
-     *                 .projectId(projectId)
-     *                 .workspaceName(instanceName)
-     *                 .processorName(processorName)
-     *                 .build());
-     *         });
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .workspaceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
@@ -39711,20 +39643,16 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var example-stream-processors = example.instanceName().applyValue(_instanceName -> MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
      *             .projectId(projectId)
-     *             .workspaceName(_instanceName)
-     *             .build()));
+     *             .workspaceName(example.instanceName())
+     *             .build());
      * 
-     *         final var example-stream-processor = Output.tuple(example.instanceName(), stream_processor_sample_example.processorName()).applyValue(values -> {
-     *             var instanceName = values.t1;
-     *             var processorName = values.t2;
-     *             return MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
-     *                 .projectId(projectId)
-     *                 .workspaceName(instanceName)
-     *                 .processorName(processorName)
-     *                 .build());
-     *         });
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .workspaceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
@@ -39904,20 +39832,16 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var example-stream-processors = example.instanceName().applyValue(_instanceName -> MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
      *             .projectId(projectId)
-     *             .workspaceName(_instanceName)
-     *             .build()));
+     *             .workspaceName(example.instanceName())
+     *             .build());
      * 
-     *         final var example-stream-processor = Output.tuple(example.instanceName(), stream_processor_sample_example.processorName()).applyValue(values -> {
-     *             var instanceName = values.t1;
-     *             var processorName = values.t2;
-     *             return MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
-     *                 .projectId(projectId)
-     *                 .workspaceName(instanceName)
-     *                 .processorName(processorName)
-     *                 .build());
-     *         });
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .workspaceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
@@ -40097,20 +40021,16 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var example-stream-processors = example.instanceName().applyValue(_instanceName -> MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
      *             .projectId(projectId)
-     *             .workspaceName(_instanceName)
-     *             .build()));
+     *             .workspaceName(example.instanceName())
+     *             .build());
      * 
-     *         final var example-stream-processor = Output.tuple(example.instanceName(), stream_processor_sample_example.processorName()).applyValue(values -> {
-     *             var instanceName = values.t1;
-     *             var processorName = values.t2;
-     *             return MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
-     *                 .projectId(projectId)
-     *                 .workspaceName(instanceName)
-     *                 .processorName(processorName)
-     *                 .build());
-     *         });
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .workspaceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
@@ -40290,20 +40210,16 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var example-stream-processors = example.instanceName().applyValue(_instanceName -> MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
      *             .projectId(projectId)
-     *             .workspaceName(_instanceName)
-     *             .build()));
+     *             .workspaceName(example.instanceName())
+     *             .build());
      * 
-     *         final var example-stream-processor = Output.tuple(example.instanceName(), stream_processor_sample_example.processorName()).applyValue(values -> {
-     *             var instanceName = values.t1;
-     *             var processorName = values.t2;
-     *             return MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
-     *                 .projectId(projectId)
-     *                 .workspaceName(instanceName)
-     *                 .processorName(processorName)
-     *                 .build());
-     *         });
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .workspaceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
@@ -40483,20 +40399,16 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var example-stream-processors = example.instanceName().applyValue(_instanceName -> MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
      *             .projectId(projectId)
-     *             .workspaceName(_instanceName)
-     *             .build()));
+     *             .workspaceName(example.instanceName())
+     *             .build());
      * 
-     *         final var example-stream-processor = Output.tuple(example.instanceName(), stream_processor_sample_example.processorName()).applyValue(values -> {
-     *             var instanceName = values.t1;
-     *             var processorName = values.t2;
-     *             return MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
-     *                 .projectId(projectId)
-     *                 .workspaceName(instanceName)
-     *                 .processorName(processorName)
-     *                 .build());
-     *         });
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .workspaceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
@@ -40676,20 +40588,16 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var example-stream-processors = example.instanceName().applyValue(_instanceName -> MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
      *             .projectId(projectId)
-     *             .workspaceName(_instanceName)
-     *             .build()));
+     *             .workspaceName(example.instanceName())
+     *             .build());
      * 
-     *         final var example-stream-processor = Output.tuple(example.instanceName(), stream_processor_sample_example.processorName()).applyValue(values -> {
-     *             var instanceName = values.t1;
-     *             var processorName = values.t2;
-     *             return MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
-     *                 .projectId(projectId)
-     *                 .workspaceName(instanceName)
-     *                 .processorName(processorName)
-     *                 .build());
-     *         });
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .workspaceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
@@ -40869,20 +40777,16 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var example-stream-processors = example.instanceName().applyValue(_instanceName -> MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
      *             .projectId(projectId)
-     *             .workspaceName(_instanceName)
-     *             .build()));
+     *             .workspaceName(example.instanceName())
+     *             .build());
      * 
-     *         final var example-stream-processor = Output.tuple(example.instanceName(), stream_processor_sample_example.processorName()).applyValue(values -> {
-     *             var instanceName = values.t1;
-     *             var processorName = values.t2;
-     *             return MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
-     *                 .projectId(projectId)
-     *                 .workspaceName(instanceName)
-     *                 .processorName(processorName)
-     *                 .build());
-     *         });
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .workspaceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
@@ -41062,20 +40966,16 @@ public final class MongodbatlasFunctions {
      *                 .build())
      *             .build());
      * 
-     *         final var example-stream-processors = example.instanceName().applyValue(_instanceName -> MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+     *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
      *             .projectId(projectId)
-     *             .workspaceName(_instanceName)
-     *             .build()));
+     *             .workspaceName(example.instanceName())
+     *             .build());
      * 
-     *         final var example-stream-processor = Output.tuple(example.instanceName(), stream_processor_sample_example.processorName()).applyValue(values -> {
-     *             var instanceName = values.t1;
-     *             var processorName = values.t2;
-     *             return MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
-     *                 .projectId(projectId)
-     *                 .workspaceName(instanceName)
-     *                 .processorName(processorName)
-     *                 .build());
-     *         });
+     *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+     *             .projectId(projectId)
+     *             .workspaceName(example.instanceName())
+     *             .processorName(stream_processor_sample_example.processorName())
+     *             .build());
      * 
      *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
      *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));
@@ -42880,14 +42780,10 @@ public final class MongodbatlasFunctions {
      *             .monthsUntilExpiration(2)
      *             .build());
      * 
-     *         final var test = Output.tuple(testX509AuthenticationDatabaseUser.projectId(), testX509AuthenticationDatabaseUser.username()).applyValue(values -> {
-     *             var projectId = values.t1;
-     *             var username = values.t2;
-     *             return MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
-     *                 .projectId(projectId)
-     *                 .username(username)
-     *                 .build());
-     *         });
+     *         final var test = MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
+     *             .username(testX509AuthenticationDatabaseUser.username())
+     *             .build());
      * 
      *     }
      * }
@@ -43011,14 +42907,10 @@ public final class MongodbatlasFunctions {
      *             .monthsUntilExpiration(2)
      *             .build());
      * 
-     *         final var test = Output.tuple(testX509AuthenticationDatabaseUser.projectId(), testX509AuthenticationDatabaseUser.username()).applyValue(values -> {
-     *             var projectId = values.t1;
-     *             var username = values.t2;
-     *             return MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
-     *                 .projectId(projectId)
-     *                 .username(username)
-     *                 .build());
-     *         });
+     *         final var test = MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
+     *             .username(testX509AuthenticationDatabaseUser.username())
+     *             .build());
      * 
      *     }
      * }
@@ -43142,14 +43034,10 @@ public final class MongodbatlasFunctions {
      *             .monthsUntilExpiration(2)
      *             .build());
      * 
-     *         final var test = Output.tuple(testX509AuthenticationDatabaseUser.projectId(), testX509AuthenticationDatabaseUser.username()).applyValue(values -> {
-     *             var projectId = values.t1;
-     *             var username = values.t2;
-     *             return MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
-     *                 .projectId(projectId)
-     *                 .username(username)
-     *                 .build());
-     *         });
+     *         final var test = MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
+     *             .username(testX509AuthenticationDatabaseUser.username())
+     *             .build());
      * 
      *     }
      * }
@@ -43273,14 +43161,10 @@ public final class MongodbatlasFunctions {
      *             .monthsUntilExpiration(2)
      *             .build());
      * 
-     *         final var test = Output.tuple(testX509AuthenticationDatabaseUser.projectId(), testX509AuthenticationDatabaseUser.username()).applyValue(values -> {
-     *             var projectId = values.t1;
-     *             var username = values.t2;
-     *             return MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
-     *                 .projectId(projectId)
-     *                 .username(username)
-     *                 .build());
-     *         });
+     *         final var test = MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
+     *             .username(testX509AuthenticationDatabaseUser.username())
+     *             .build());
      * 
      *     }
      * }
@@ -43404,14 +43288,10 @@ public final class MongodbatlasFunctions {
      *             .monthsUntilExpiration(2)
      *             .build());
      * 
-     *         final var test = Output.tuple(testX509AuthenticationDatabaseUser.projectId(), testX509AuthenticationDatabaseUser.username()).applyValue(values -> {
-     *             var projectId = values.t1;
-     *             var username = values.t2;
-     *             return MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
-     *                 .projectId(projectId)
-     *                 .username(username)
-     *                 .build());
-     *         });
+     *         final var test = MongodbatlasFunctions.getX509AuthenticationDatabaseUser(GetX509AuthenticationDatabaseUserArgs.builder()
+     *             .projectId(testX509AuthenticationDatabaseUser.projectId())
+     *             .username(testX509AuthenticationDatabaseUser.username())
+     *             .build());
      * 
      *     }
      * }

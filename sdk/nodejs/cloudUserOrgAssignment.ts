@@ -28,14 +28,14 @@ import * as utilities from "./utilities";
  *         orgRoles: ["ORG_MEMBER"],
  *     },
  * });
- * const exampleUsername = example.username.apply(username => mongodbatlas.getCloudUserOrgAssignmentOutput({
+ * const exampleUsername = mongodbatlas.getCloudUserOrgAssignmentOutput({
  *     orgId: orgId,
- *     username: username,
- * }));
- * const exampleUserId = example.userId.apply(userId => mongodbatlas.getCloudUserOrgAssignmentOutput({
+ *     username: example.username,
+ * });
+ * const exampleUserId = mongodbatlas.getCloudUserOrgAssignmentOutput({
  *     orgId: orgId,
- *     userId: userId,
- * }));
+ *     userId: example.userId,
+ * });
  * ```
  *
  * ### Further Examples

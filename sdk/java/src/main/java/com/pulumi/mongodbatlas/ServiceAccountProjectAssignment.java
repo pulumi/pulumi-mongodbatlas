@@ -69,10 +69,10 @@ import javax.annotation.Nullable;
  *             .clientId(thisServiceAccountProjectAssignment.clientId())
  *             .build());
  * 
- *         final var thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId().applyValue(_clientId -> MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
+ *         final var thisGetServiceAccountProjectAssignments = MongodbatlasFunctions.getServiceAccountProjectAssignments(GetServiceAccountProjectAssignmentsArgs.builder()
  *             .orgId(orgId)
- *             .clientId(_clientId)
- *             .build()));
+ *             .clientId(thisServiceAccount.clientId())
+ *             .build());
  * 
  *         ctx.export("serviceAccountProjectRoles", this_.applyValue(_this_ -> _this_.roles()));
  *         ctx.export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.applyValue(_thisGetServiceAccountProjectAssignments -> _thisGetServiceAccountProjectAssignments.results()));

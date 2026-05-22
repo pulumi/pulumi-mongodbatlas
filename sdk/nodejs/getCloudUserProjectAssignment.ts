@@ -27,14 +27,14 @@ import * as utilities from "./utilities";
  *         "GROUP_DATA_ACCESS_ADMIN",
  *     ],
  * });
- * const exampleUsername = example.username.apply(username => mongodbatlas.getCloudUserProjectAssignmentOutput({
+ * const exampleUsername = mongodbatlas.getCloudUserProjectAssignmentOutput({
  *     projectId: projectId,
- *     username: username,
- * }));
- * const exampleUserId = example.userId.apply(userId => mongodbatlas.getCloudUserProjectAssignmentOutput({
+ *     username: example.username,
+ * });
+ * const exampleUserId = mongodbatlas.getCloudUserProjectAssignmentOutput({
  *     projectId: projectId,
- *     userId: userId,
- * }));
+ *     userId: example.userId,
+ * });
  * ```
  */
 export function getCloudUserProjectAssignment(args: GetCloudUserProjectAssignmentArgs, opts?: pulumi.InvokeOptions): Promise<GetCloudUserProjectAssignmentResult> {
@@ -152,14 +152,14 @@ export interface GetCloudUserProjectAssignmentResult {
  *         "GROUP_DATA_ACCESS_ADMIN",
  *     ],
  * });
- * const exampleUsername = example.username.apply(username => mongodbatlas.getCloudUserProjectAssignmentOutput({
+ * const exampleUsername = mongodbatlas.getCloudUserProjectAssignmentOutput({
  *     projectId: projectId,
- *     username: username,
- * }));
- * const exampleUserId = example.userId.apply(userId => mongodbatlas.getCloudUserProjectAssignmentOutput({
+ *     username: example.username,
+ * });
+ * const exampleUserId = mongodbatlas.getCloudUserProjectAssignmentOutput({
  *     projectId: projectId,
- *     userId: userId,
- * }));
+ *     userId: example.userId,
+ * });
  * ```
  */
 export function getCloudUserProjectAssignmentOutput(args: GetCloudUserProjectAssignmentOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetCloudUserProjectAssignmentResult> {

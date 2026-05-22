@@ -695,7 +695,7 @@ class AdvancedClusterConnectionStringsArgsDict(TypedDict):
     """
     [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
     """
-    private_endpoints: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgs']]]]]
+    private_endpoints: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointArgsDict']]]]]
     """
     Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
     - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -828,7 +828,7 @@ class AdvancedClusterConnectionStringsPrivateEndpointArgsDict(TypedDict):
     """
     Private endpoint-aware connection string that uses the `mongodb://` protocol to connect to MongoDB Cloud through a private endpoint.
     """
-    endpoints: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgs']]]]]
+    endpoints: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['AdvancedClusterConnectionStringsPrivateEndpointEndpointArgsDict']]]]]
     """
     List that contains the private endpoints through which you connect to MongoDB Cloud when you use **connectionStrings.privateEndpoint[n].connectionString** or **connectionStrings.privateEndpoint[n].srvConnectionString**.
     """
@@ -1178,15 +1178,15 @@ class AdvancedClusterReplicationSpecRegionConfigArgsDict(TypedDict):
     """
     Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
     """
-    analytics_auto_scaling: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs']]]
+    analytics_auto_scaling: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgsDict']]]
     """
     Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
     """
-    analytics_specs: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs']]]
+    analytics_specs: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgsDict']]]
     """
     Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
     """
-    auto_scaling: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs']]]
+    auto_scaling: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgsDict']]]
     """
     Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
     """
@@ -1194,11 +1194,11 @@ class AdvancedClusterReplicationSpecRegionConfigArgsDict(TypedDict):
     """
     Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `provider_name` is `TENANT` and `instance_size` is `M0`, or when the `provider_name` is `FLEX`.
     """
-    electable_specs: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs']]]
+    electable_specs: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgsDict']]]
     """
     Hardware specifications for electable nodes in the region. All `electable_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
     """
-    read_only_specs: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs']]]
+    read_only_specs: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgsDict']]]
     """
     Hardware specifications for read-only nodes in the region. All `read_only_specs` in the `region_configs` of a `replication_specs` must have the same `instance_size` as `electable_specs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
     """
@@ -4841,7 +4841,7 @@ class CloudUserOrgAssignmentRolesArgsDict(TypedDict):
     """
     One or more organization level roles to assign the MongoDB Cloud user.
     """
-    project_role_assignments: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgs']]]]]
+    project_role_assignments: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['CloudUserOrgAssignmentRolesProjectRoleAssignmentArgsDict']]]]]
     """
     List of project level role assignments to assign the MongoDB Cloud user.
     """
@@ -4939,7 +4939,7 @@ class CloudUserTeamAssignmentRolesArgsDict(TypedDict):
     """
     One or more organization level roles to assign the MongoDB Cloud user.
     """
-    project_role_assignments: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgs']]]]]
+    project_role_assignments: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['CloudUserTeamAssignmentRolesProjectRoleAssignmentArgsDict']]]]]
     """
     List of project level role assignments to assign the MongoDB Cloud user.
     """
@@ -5429,7 +5429,7 @@ class ClusterBiConnectorConfigArgs:
 
 class ClusterConnectionStringArgsDict(TypedDict):
     private: NotRequired[pulumi.Input[Optional[_builtins.str]]]
-    private_endpoints: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgs']]]]]
+    private_endpoints: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointArgsDict']]]]]
     private_srv: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     standard: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     standard_srv: NotRequired[pulumi.Input[Optional[_builtins.str]]]
@@ -5501,7 +5501,7 @@ class ClusterConnectionStringArgs:
 
 class ClusterConnectionStringPrivateEndpointArgsDict(TypedDict):
     connection_string: NotRequired[pulumi.Input[Optional[_builtins.str]]]
-    endpoints: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointEndpointArgs']]]]]
+    endpoints: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterConnectionStringPrivateEndpointEndpointArgsDict']]]]]
     srv_connection_string: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     srv_shard_optimized_connection_string: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
@@ -5838,7 +5838,7 @@ class ClusterReplicationSpecArgsDict(TypedDict):
     """
     The Terraform's unique identifier used internally for state management.
     """
-    regions_configs: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgs']]]]]
+    regions_configs: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterReplicationSpecRegionsConfigArgsDict']]]]]
     """
     Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
     """
@@ -6059,7 +6059,7 @@ class ClusterSnapshotBackupPolicyArgsDict(TypedDict):
     """
     cluster_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     next_snapshot: NotRequired[pulumi.Input[Optional[_builtins.str]]]
-    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyArgs']]]]]
+    policies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyArgsDict']]]]]
     reference_hour_of_day: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     reference_minute_of_hour: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     restore_window_days: NotRequired[pulumi.Input[Optional[_builtins.int]]]
@@ -6177,7 +6177,7 @@ class ClusterSnapshotBackupPolicyPolicyArgsDict(TypedDict):
     """
     The Terraform's unique identifier used internally for state management.
     """
-    policy_items: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyPolicyItemArgs']]]]]
+    policy_items: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ClusterSnapshotBackupPolicyPolicyPolicyItemArgsDict']]]]]
 
 @pulumi.input_type
 class ClusterSnapshotBackupPolicyPolicyArgs:
@@ -7296,7 +7296,7 @@ class EncryptionAtRestPrivateEndpointTimeoutsArgs:
 
 
 class EventTriggerEventProcessorsArgsDict(TypedDict):
-    aws_eventbridge: NotRequired[pulumi.Input[Optional['EventTriggerEventProcessorsAwsEventbridgeArgs']]]
+    aws_eventbridge: NotRequired[pulumi.Input[Optional['EventTriggerEventProcessorsAwsEventbridgeArgsDict']]]
 
 @pulumi.input_type
 class EventTriggerEventProcessorsArgs:
@@ -7349,11 +7349,11 @@ class EventTriggerEventProcessorsAwsEventbridgeArgs:
 
 
 class FederatedDatabaseInstanceCloudProviderConfigArgsDict(TypedDict):
-    aws: NotRequired[pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']]]
+    aws: NotRequired[pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAwsArgsDict']]]
     """
     Name of the cloud service that hosts the Atlas Data Federation data stores.
     """
-    azure: NotRequired[pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAzureArgs']]]
+    azure: NotRequired[pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAzureArgsDict']]]
     """
     Microsoft Azure cloud service configuration.
     """
@@ -7638,13 +7638,13 @@ class FederatedDatabaseInstancePrivateEndpointHostnameArgs:
 
 
 class FederatedDatabaseInstanceStorageDatabaseArgsDict(TypedDict):
-    collections: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionArgs']]]]]
+    collections: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionArgsDict']]]]]
     max_wildcard_collections: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the Atlas Federated Database Instance.
     """
-    views: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgs']]]]]
+    views: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseViewArgsDict']]]]]
 
 @pulumi.input_type
 class FederatedDatabaseInstanceStorageDatabaseArgs:
@@ -7706,7 +7706,7 @@ class FederatedDatabaseInstanceStorageDatabaseArgs:
 
 
 class FederatedDatabaseInstanceStorageDatabaseCollectionArgsDict(TypedDict):
-    data_sources: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgs']]]]]
+    data_sources: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseCollectionDataSourceArgsDict']]]]]
     name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Name of the Atlas Federated Database Instance.
@@ -7971,7 +7971,7 @@ class FederatedDatabaseInstanceStorageStoreArgsDict(TypedDict):
     """
     provider: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     public: NotRequired[pulumi.Input[Optional[_builtins.str]]]
-    read_preference: NotRequired[pulumi.Input[Optional['FederatedDatabaseInstanceStorageStoreReadPreferenceArgs']]]
+    read_preference: NotRequired[pulumi.Input[Optional['FederatedDatabaseInstanceStorageStoreReadPreferenceArgsDict']]]
     region: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     urls: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
 
@@ -8173,7 +8173,7 @@ class FederatedDatabaseInstanceStorageStoreArgs:
 class FederatedDatabaseInstanceStorageStoreReadPreferenceArgsDict(TypedDict):
     max_staleness_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     mode: NotRequired[pulumi.Input[Optional[_builtins.str]]]
-    tag_sets: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgs']]]]]
+    tag_sets: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreReadPreferenceTagSetArgsDict']]]]]
 
 @pulumi.input_type
 class FederatedDatabaseInstanceStorageStoreReadPreferenceArgs:
@@ -9507,7 +9507,7 @@ class OrganizationServiceAccountArgsDict(TypedDict):
     """
     The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
     """
-    secrets: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationServiceAccountSecretArgs']]]]]
+    secrets: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['OrganizationServiceAccountSecretArgsDict']]]]]
     """
     A list of secrets associated with the specified Service Account. See Secrets.
     """
@@ -9955,7 +9955,7 @@ class ProjectIpAccessListTimeoutsArgs:
 
 
 class ProjectIpAddressesArgsDict(TypedDict):
-    services: NotRequired[pulumi.Input[Optional['ProjectIpAddressesServicesArgs']]]
+    services: NotRequired[pulumi.Input[Optional['ProjectIpAddressesServicesArgsDict']]]
 
 @pulumi.input_type
 class ProjectIpAddressesArgs:
@@ -9975,7 +9975,7 @@ class ProjectIpAddressesArgs:
 
 
 class ProjectIpAddressesServicesArgsDict(TypedDict):
-    clusters: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ProjectIpAddressesServicesClusterArgs']]]]]
+    clusters: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['ProjectIpAddressesServicesClusterArgsDict']]]]]
 
 @pulumi.input_type
 class ProjectIpAddressesServicesArgs:

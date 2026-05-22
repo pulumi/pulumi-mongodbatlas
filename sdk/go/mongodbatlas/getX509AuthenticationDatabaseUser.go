@@ -59,14 +59,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = pulumi.All(testX509AuthenticationDatabaseUser.ProjectId, testX509AuthenticationDatabaseUser.Username).ApplyT(func(_args []interface{}) (mongodbatlas.GetX509AuthenticationDatabaseUserResult, error) {
-//				projectId := _args[0].(string)
-//				username := _args[1].(*string)
-//				return mongodbatlas.GetX509AuthenticationDatabaseUserResult(interface{}(mongodbatlas.GetX509AuthenticationDatabaseUser(ctx, &mongodbatlas.LookupX509AuthenticationDatabaseUserArgs{
-//					ProjectId: projectId,
-//					Username:  pulumi.StringRef(pulumi.StringRef(pulumi.String(username))),
-//				}, nil))), nil
-//			}).(mongodbatlas.GetX509AuthenticationDatabaseUserResultOutput)
+//			_ = mongodbatlas.GetX509AuthenticationDatabaseUserOutput(ctx, mongodbatlas.GetX509AuthenticationDatabaseUserOutputArgs{
+//				ProjectId: testX509AuthenticationDatabaseUser.ProjectId,
+//				Username:  testX509AuthenticationDatabaseUser.Username,
+//			}, nil)
 //			return nil
 //		})
 //	}

@@ -133,15 +133,15 @@ import * as utilities from "./utilities";
  *         },
  *     },
  * });
- * const example_stream_processors = example.instanceName.apply(instanceName => mongodbatlas.getStreamProcessorsOutput({
+ * const example_stream_processors = mongodbatlas.getStreamProcessorsOutput({
  *     projectId: projectId,
- *     workspaceName: instanceName,
- * }));
- * const example_stream_processor = pulumi.all([example.instanceName, stream_processor_sample_example.processorName]).apply(([instanceName, processorName]) => mongodbatlas.getStreamProcessorOutput({
+ *     workspaceName: example.instanceName,
+ * });
+ * const example_stream_processor = mongodbatlas.getStreamProcessorOutput({
  *     projectId: projectId,
- *     workspaceName: instanceName,
- *     processorName: processorName,
- * }));
+ *     workspaceName: example.instanceName,
+ *     processorName: stream_processor_sample_example.processorName,
+ * });
  * export const streamProcessorsState = example_stream_processor.apply(example_stream_processor => example_stream_processor.state);
  * export const streamProcessorsResults = example_stream_processors.apply(example_stream_processors => example_stream_processors.results);
  * ```
@@ -329,15 +329,15 @@ export interface GetStreamProcessorsResult {
  *         },
  *     },
  * });
- * const example_stream_processors = example.instanceName.apply(instanceName => mongodbatlas.getStreamProcessorsOutput({
+ * const example_stream_processors = mongodbatlas.getStreamProcessorsOutput({
  *     projectId: projectId,
- *     workspaceName: instanceName,
- * }));
- * const example_stream_processor = pulumi.all([example.instanceName, stream_processor_sample_example.processorName]).apply(([instanceName, processorName]) => mongodbatlas.getStreamProcessorOutput({
+ *     workspaceName: example.instanceName,
+ * });
+ * const example_stream_processor = mongodbatlas.getStreamProcessorOutput({
  *     projectId: projectId,
- *     workspaceName: instanceName,
- *     processorName: processorName,
- * }));
+ *     workspaceName: example.instanceName,
+ *     processorName: stream_processor_sample_example.processorName,
+ * });
  * export const streamProcessorsState = example_stream_processor.apply(example_stream_processor => example_stream_processor.state);
  * export const streamProcessorsResults = example_stream_processors.apply(example_stream_processors => example_stream_processors.results);
  * ```

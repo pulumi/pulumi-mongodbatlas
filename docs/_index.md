@@ -22,7 +22,7 @@ The MongoDB Atlas provider is used to interact with the resources supported by [
 
 This example shows how to set up the MongoDB Atlas provider and create a cluster:
 
-{{< chooser language "typescript,python,go,csharp,java,yaml" >}}
+{{< chooser language "typescript,python,go,csharp,java,yaml,hcl" >}}
 {{% choosable language typescript %}}
 ```yaml
 # Pulumi.yaml provider configuration file
@@ -329,6 +329,41 @@ public class App {
             .build());
 
     }
+}
+```
+
+{{% /choosable %}}
+{{% choosable language hcl %}}
+```hcl
+pulumi {
+  required_providers {
+    mongodbatlas = {
+      source = "pulumi/mongodbatlas"
+    }
+  }
+}
+
+# Create a project
+resource "mongodbatlas_project" "this" {
+  name   = "my-project"
+  org_id = orgId
+}
+# Create a cluster
+resource "mongodbatlas_advancedcluster" "this" {
+  project_id   = mongodbatlas_project.this.id
+  name         = "my-cluster"
+  cluster_type = "REPLICASET"
+  replication_specs {
+    region_configs {
+      region_name   = "US_EAST_1"
+      priority      = 7
+      provider_name = "AWS"
+      electable_specs = {
+        instance_size = "M10"
+        node_count    = 3
+      }
+    }
+  }
 }
 ```
 

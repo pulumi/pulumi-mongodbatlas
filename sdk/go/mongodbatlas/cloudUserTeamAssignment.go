@@ -42,20 +42,16 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = example.UserId.ApplyT(func(userId string) (mongodbatlas.GetCloudUserTeamAssignmentResult, error) {
-//				return mongodbatlas.GetCloudUserTeamAssignmentResult(interface{}(mongodbatlas.GetCloudUserTeamAssignment(ctx, &mongodbatlas.LookupCloudUserTeamAssignmentArgs{
-//					OrgId:  orgId,
-//					TeamId: teamId,
-//					UserId: pulumi.StringRef(pulumi.StringRef(userId)),
-//				}, nil))), nil
-//			}).(mongodbatlas.GetCloudUserTeamAssignmentResultOutput)
-//			_ = example.Username.ApplyT(func(username string) (mongodbatlas.GetCloudUserTeamAssignmentResult, error) {
-//				return mongodbatlas.GetCloudUserTeamAssignmentResult(interface{}(mongodbatlas.GetCloudUserTeamAssignment(ctx, &mongodbatlas.LookupCloudUserTeamAssignmentArgs{
-//					OrgId:    orgId,
-//					TeamId:   teamId,
-//					Username: pulumi.StringRef(pulumi.StringRef(username)),
-//				}, nil))), nil
-//			}).(mongodbatlas.GetCloudUserTeamAssignmentResultOutput)
+//			_ = mongodbatlas.GetCloudUserTeamAssignmentOutput(ctx, mongodbatlas.GetCloudUserTeamAssignmentOutputArgs{
+//				OrgId:  pulumi.Any(orgId),
+//				TeamId: pulumi.Any(teamId),
+//				UserId: example.UserId,
+//			}, nil)
+//			_ = mongodbatlas.GetCloudUserTeamAssignmentOutput(ctx, mongodbatlas.GetCloudUserTeamAssignmentOutputArgs{
+//				OrgId:    pulumi.Any(orgId),
+//				TeamId:   pulumi.Any(teamId),
+//				Username: example.Username,
+//			}, nil)
 //			return nil
 //		})
 //	}

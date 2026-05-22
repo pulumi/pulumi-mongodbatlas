@@ -531,8 +531,8 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
             vendor="CONFLUENT",
             service_endpoint_id=private_link["aws"][0]["privateLinkEndpointService"],
             dns_sub_domains=private_link["zonalSubdomains"])
-        singular_datasource = test.id.apply(lambda id: mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
-            id=id))
+        singular_datasource = mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
+            id=test.id)
         plural_datasource = mongodbatlas.get_stream_privatelink_endpoints(project_id=project_id)
         pulumi.export("interfaceEndpointId", singular_datasource.interface_endpoint_id)
         pulumi.export("interfaceEndpointIds", [__item.interface_endpoint_id for __item in plural_datasource.results])
@@ -586,8 +586,8 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-1",
                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2",
             ])
-        gcp_confluent = gcp_confluent_stream_privatelink_endpoint.id.apply(lambda id: mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
-            id=id))
+        gcp_confluent = mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
+            id=gcp_confluent_stream_privatelink_endpoint.id)
         pulumi.export("privatelinkEndpointId", gcp_confluent_stream_privatelink_endpoint.id)
         pulumi.export("privatelinkEndpointState", gcp_confluent.state)
         pulumi.export("serviceAttachmentUris", gcp_confluent_stream_privatelink_endpoint.service_attachment_uris)
@@ -622,8 +622,8 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
             vendor="PUBSUB",
             region=gcp_region,
             opts = pulumi.ResourceOptions(depends_on=[cluster]))
-        gcp_pubsub = gcp_pubsub_stream_privatelink_endpoint.id.apply(lambda id: mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
-            id=id))
+        gcp_pubsub = mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
+            id=gcp_pubsub_stream_privatelink_endpoint.id)
         pulumi.export("privatelinkEndpointId", gcp_pubsub_stream_privatelink_endpoint.id)
         pulumi.export("privatelinkEndpointState", gcp_pubsub.state)
         pulumi.export("dnsDomain", gcp_pubsub_stream_privatelink_endpoint.dns_domain)
@@ -769,8 +769,8 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
             vendor="CONFLUENT",
             service_endpoint_id=private_link["aws"][0]["privateLinkEndpointService"],
             dns_sub_domains=private_link["zonalSubdomains"])
-        singular_datasource = test.id.apply(lambda id: mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
-            id=id))
+        singular_datasource = mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
+            id=test.id)
         plural_datasource = mongodbatlas.get_stream_privatelink_endpoints(project_id=project_id)
         pulumi.export("interfaceEndpointId", singular_datasource.interface_endpoint_id)
         pulumi.export("interfaceEndpointIds", [__item.interface_endpoint_id for __item in plural_datasource.results])
@@ -824,8 +824,8 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-1",
                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2",
             ])
-        gcp_confluent = gcp_confluent_stream_privatelink_endpoint.id.apply(lambda id: mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
-            id=id))
+        gcp_confluent = mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
+            id=gcp_confluent_stream_privatelink_endpoint.id)
         pulumi.export("privatelinkEndpointId", gcp_confluent_stream_privatelink_endpoint.id)
         pulumi.export("privatelinkEndpointState", gcp_confluent.state)
         pulumi.export("serviceAttachmentUris", gcp_confluent_stream_privatelink_endpoint.service_attachment_uris)
@@ -860,8 +860,8 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
             vendor="PUBSUB",
             region=gcp_region,
             opts = pulumi.ResourceOptions(depends_on=[cluster]))
-        gcp_pubsub = gcp_pubsub_stream_privatelink_endpoint.id.apply(lambda id: mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
-            id=id))
+        gcp_pubsub = mongodbatlas.get_stream_privatelink_endpoint_output(project_id=project_id,
+            id=gcp_pubsub_stream_privatelink_endpoint.id)
         pulumi.export("privatelinkEndpointId", gcp_pubsub_stream_privatelink_endpoint.id)
         pulumi.export("privatelinkEndpointState", gcp_pubsub.state)
         pulumi.export("dnsDomain", gcp_pubsub_stream_privatelink_endpoint.dns_domain)

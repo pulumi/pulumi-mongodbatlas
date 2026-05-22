@@ -266,12 +266,12 @@ def get_cloud_user_team_assignment(org_id: Optional[_builtins.str] = None,
         org_id=org_id,
         team_id=team_id,
         user_id=user_id)
-    example_user_id = example.user_id.apply(lambda user_id: mongodbatlas.get_cloud_user_team_assignment_output(org_id=org_id,
+    example_user_id = mongodbatlas.get_cloud_user_team_assignment_output(org_id=org_id,
         team_id=team_id,
-        user_id=user_id))
-    example_username = example.username.apply(lambda username: mongodbatlas.get_cloud_user_team_assignment_output(org_id=org_id,
+        user_id=example.user_id)
+    example_username = mongodbatlas.get_cloud_user_team_assignment_output(org_id=org_id,
         team_id=team_id,
-        username=username))
+        username=example.username)
     ```
 
 
@@ -330,12 +330,12 @@ def get_cloud_user_team_assignment_output(org_id: pulumi.Input[Optional[_builtin
         org_id=org_id,
         team_id=team_id,
         user_id=user_id)
-    example_user_id = example.user_id.apply(lambda user_id: mongodbatlas.get_cloud_user_team_assignment_output(org_id=org_id,
+    example_user_id = mongodbatlas.get_cloud_user_team_assignment_output(org_id=org_id,
         team_id=team_id,
-        user_id=user_id))
-    example_username = example.username.apply(lambda username: mongodbatlas.get_cloud_user_team_assignment_output(org_id=org_id,
+        user_id=example.user_id)
+    example_username = mongodbatlas.get_cloud_user_team_assignment_output(org_id=org_id,
         team_id=team_id,
-        username=username))
+        username=example.username)
     ```
 
 

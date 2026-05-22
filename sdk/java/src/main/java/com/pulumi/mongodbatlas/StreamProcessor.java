@@ -190,20 +190,16 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         final var example-stream-processors = example.instanceName().applyValue(_instanceName -> MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
+ *         final var example-stream-processors = MongodbatlasFunctions.getStreamProcessors(GetStreamProcessorsArgs.builder()
  *             .projectId(projectId)
- *             .workspaceName(_instanceName)
- *             .build()));
+ *             .workspaceName(example.instanceName())
+ *             .build());
  * 
- *         final var example-stream-processor = Output.tuple(example.instanceName(), stream_processor_sample_example.processorName()).applyValue(values -> {
- *             var instanceName = values.t1;
- *             var processorName = values.t2;
- *             return MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
- *                 .projectId(projectId)
- *                 .workspaceName(instanceName)
- *                 .processorName(processorName)
- *                 .build());
- *         });
+ *         final var example-stream-processor = MongodbatlasFunctions.getStreamProcessor(GetStreamProcessorArgs.builder()
+ *             .projectId(projectId)
+ *             .workspaceName(example.instanceName())
+ *             .processorName(stream_processor_sample_example.processorName())
+ *             .build());
  * 
  *         ctx.export("streamProcessorsState", example_stream_processor.applyValue(_example_stream_processor -> _example_stream_processor.state()));
  *         ctx.export("streamProcessorsResults", example_stream_processors.applyValue(_example_stream_processors -> _example_stream_processors.results()));

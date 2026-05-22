@@ -340,10 +340,10 @@ class CloudUserProjectAssignment(pulumi.CustomResource):
                 "GROUP_OWNER",
                 "GROUP_DATA_ACCESS_ADMIN",
             ])
-        example_username = example.username.apply(lambda username: mongodbatlas.get_cloud_user_project_assignment_output(project_id=project_id,
-            username=username))
-        example_user_id = example.user_id.apply(lambda user_id: mongodbatlas.get_cloud_user_project_assignment_output(project_id=project_id,
-            user_id=user_id))
+        example_username = mongodbatlas.get_cloud_user_project_assignment_output(project_id=project_id,
+            username=example.username)
+        example_user_id = mongodbatlas.get_cloud_user_project_assignment_output(project_id=project_id,
+            user_id=example.user_id)
         ```
 
         ### Further Examples
@@ -401,10 +401,10 @@ class CloudUserProjectAssignment(pulumi.CustomResource):
                 "GROUP_OWNER",
                 "GROUP_DATA_ACCESS_ADMIN",
             ])
-        example_username = example.username.apply(lambda username: mongodbatlas.get_cloud_user_project_assignment_output(project_id=project_id,
-            username=username))
-        example_user_id = example.user_id.apply(lambda user_id: mongodbatlas.get_cloud_user_project_assignment_output(project_id=project_id,
-            user_id=user_id))
+        example_username = mongodbatlas.get_cloud_user_project_assignment_output(project_id=project_id,
+            username=example.username)
+        example_user_id = mongodbatlas.get_cloud_user_project_assignment_output(project_id=project_id,
+            user_id=example.user_id)
         ```
 
         ### Further Examples

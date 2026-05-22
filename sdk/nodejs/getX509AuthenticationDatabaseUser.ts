@@ -37,10 +37,10 @@ import * as utilities from "./utilities";
  *     username: user.username,
  *     monthsUntilExpiration: 2,
  * });
- * const test = pulumi.all([testX509AuthenticationDatabaseUser.projectId, testX509AuthenticationDatabaseUser.username]).apply(([projectId, username]) => mongodbatlas.getX509AuthenticationDatabaseUserOutput({
- *     projectId: projectId,
- *     username: username,
- * }));
+ * const test = mongodbatlas.getX509AuthenticationDatabaseUserOutput({
+ *     projectId: testX509AuthenticationDatabaseUser.projectId,
+ *     username: testX509AuthenticationDatabaseUser.username,
+ * });
  * ```
  *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project
@@ -142,10 +142,10 @@ export interface GetX509AuthenticationDatabaseUserResult {
  *     username: user.username,
  *     monthsUntilExpiration: 2,
  * });
- * const test = pulumi.all([testX509AuthenticationDatabaseUser.projectId, testX509AuthenticationDatabaseUser.username]).apply(([projectId, username]) => mongodbatlas.getX509AuthenticationDatabaseUserOutput({
- *     projectId: projectId,
- *     username: username,
- * }));
+ * const test = mongodbatlas.getX509AuthenticationDatabaseUserOutput({
+ *     projectId: testX509AuthenticationDatabaseUser.projectId,
+ *     username: testX509AuthenticationDatabaseUser.username,
+ * });
  * ```
  *
  * ### Example Usage: Save a customer-managed X.509 configuration for an Atlas project

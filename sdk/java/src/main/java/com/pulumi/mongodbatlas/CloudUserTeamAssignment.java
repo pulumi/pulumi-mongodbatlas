@@ -56,17 +56,17 @@ import javax.annotation.Nullable;
  *             .userId(userId)
  *             .build());
  * 
- *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
+ *         final var exampleUserId = MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
  *             .orgId(orgId)
  *             .teamId(teamId)
- *             .userId(_userId)
- *             .build()));
+ *             .userId(example.userId())
+ *             .build());
  * 
- *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
+ *         final var exampleUsername = MongodbatlasFunctions.getCloudUserTeamAssignment(GetCloudUserTeamAssignmentArgs.builder()
  *             .orgId(orgId)
  *             .teamId(teamId)
- *             .username(_username)
- *             .build()));
+ *             .username(example.username())
+ *             .build());
  * 
  *     }
  * }

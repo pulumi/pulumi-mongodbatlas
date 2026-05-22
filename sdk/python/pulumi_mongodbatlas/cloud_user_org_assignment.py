@@ -352,10 +352,10 @@ class CloudUserOrgAssignment(pulumi.CustomResource):
             roles={
                 "org_roles": ["ORG_MEMBER"],
             })
-        example_username = example.username.apply(lambda username: mongodbatlas.get_cloud_user_org_assignment_output(org_id=org_id,
-            username=username))
-        example_user_id = example.user_id.apply(lambda user_id: mongodbatlas.get_cloud_user_org_assignment_output(org_id=org_id,
-            user_id=user_id))
+        example_username = mongodbatlas.get_cloud_user_org_assignment_output(org_id=org_id,
+            username=example.username)
+        example_user_id = mongodbatlas.get_cloud_user_org_assignment_output(org_id=org_id,
+            user_id=example.user_id)
         ```
 
         ### Further Examples
@@ -407,10 +407,10 @@ class CloudUserOrgAssignment(pulumi.CustomResource):
             roles={
                 "org_roles": ["ORG_MEMBER"],
             })
-        example_username = example.username.apply(lambda username: mongodbatlas.get_cloud_user_org_assignment_output(org_id=org_id,
-            username=username))
-        example_user_id = example.user_id.apply(lambda user_id: mongodbatlas.get_cloud_user_org_assignment_output(org_id=org_id,
-            user_id=user_id))
+        example_username = mongodbatlas.get_cloud_user_org_assignment_output(org_id=org_id,
+            username=example.username)
+        example_user_id = mongodbatlas.get_cloud_user_org_assignment_output(org_id=org_id,
+            user_id=example.user_id)
         ```
 
         ### Further Examples
