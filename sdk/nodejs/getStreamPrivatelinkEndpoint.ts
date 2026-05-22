@@ -70,10 +70,10 @@ import * as utilities from "./utilities";
  *     serviceEndpointId: privateLink.aws[0].privateLinkEndpointService,
  *     dnsSubDomains: privateLink.zonalSubdomains,
  * });
- * const singularDatasource = test.id.apply(id => mongodbatlas.getStreamPrivatelinkEndpointOutput({
+ * const singularDatasource = mongodbatlas.getStreamPrivatelinkEndpointOutput({
  *     projectId: projectId,
- *     id: id,
- * }));
+ *     id: test.id,
+ * });
  * const pluralDatasource = mongodbatlas.getStreamPrivatelinkEndpoints({
  *     projectId: projectId,
  * });
@@ -134,10 +134,10 @@ import * as utilities from "./utilities";
  *         "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2",
  *     ],
  * });
- * const gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id.apply(id => mongodbatlas.getStreamPrivatelinkEndpointOutput({
+ * const gcpConfluent = mongodbatlas.getStreamPrivatelinkEndpointOutput({
  *     projectId: projectId,
- *     id: id,
- * }));
+ *     id: gcpConfluentStreamPrivatelinkEndpoint.id,
+ * });
  * export const privatelinkEndpointId = gcpConfluentStreamPrivatelinkEndpoint.id;
  * export const privatelinkEndpointState = gcpConfluent.apply(gcpConfluent => gcpConfluent.state);
  * export const serviceAttachmentUris = gcpConfluentStreamPrivatelinkEndpoint.serviceAttachmentUris;
@@ -172,10 +172,10 @@ import * as utilities from "./utilities";
  * }, {
  *     dependsOn: [cluster],
  * });
- * const gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id.apply(id => mongodbatlas.getStreamPrivatelinkEndpointOutput({
+ * const gcpPubsub = mongodbatlas.getStreamPrivatelinkEndpointOutput({
  *     projectId: projectId,
- *     id: id,
- * }));
+ *     id: gcpPubsubStreamPrivatelinkEndpoint.id,
+ * });
  * export const privatelinkEndpointId = gcpPubsubStreamPrivatelinkEndpoint.id;
  * export const privatelinkEndpointState = gcpPubsub.apply(gcpPubsub => gcpPubsub.state);
  * export const dnsDomain = gcpPubsubStreamPrivatelinkEndpoint.dnsDomain;
@@ -323,10 +323,10 @@ export interface GetStreamPrivatelinkEndpointResult {
  *     serviceEndpointId: privateLink.aws[0].privateLinkEndpointService,
  *     dnsSubDomains: privateLink.zonalSubdomains,
  * });
- * const singularDatasource = test.id.apply(id => mongodbatlas.getStreamPrivatelinkEndpointOutput({
+ * const singularDatasource = mongodbatlas.getStreamPrivatelinkEndpointOutput({
  *     projectId: projectId,
- *     id: id,
- * }));
+ *     id: test.id,
+ * });
  * const pluralDatasource = mongodbatlas.getStreamPrivatelinkEndpoints({
  *     projectId: projectId,
  * });
@@ -387,10 +387,10 @@ export interface GetStreamPrivatelinkEndpointResult {
  *         "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2",
  *     ],
  * });
- * const gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id.apply(id => mongodbatlas.getStreamPrivatelinkEndpointOutput({
+ * const gcpConfluent = mongodbatlas.getStreamPrivatelinkEndpointOutput({
  *     projectId: projectId,
- *     id: id,
- * }));
+ *     id: gcpConfluentStreamPrivatelinkEndpoint.id,
+ * });
  * export const privatelinkEndpointId = gcpConfluentStreamPrivatelinkEndpoint.id;
  * export const privatelinkEndpointState = gcpConfluent.apply(gcpConfluent => gcpConfluent.state);
  * export const serviceAttachmentUris = gcpConfluentStreamPrivatelinkEndpoint.serviceAttachmentUris;
@@ -425,10 +425,10 @@ export interface GetStreamPrivatelinkEndpointResult {
  * }, {
  *     dependsOn: [cluster],
  * });
- * const gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id.apply(id => mongodbatlas.getStreamPrivatelinkEndpointOutput({
+ * const gcpPubsub = mongodbatlas.getStreamPrivatelinkEndpointOutput({
  *     projectId: projectId,
- *     id: id,
- * }));
+ *     id: gcpPubsubStreamPrivatelinkEndpoint.id,
+ * });
  * export const privatelinkEndpointId = gcpPubsubStreamPrivatelinkEndpoint.id;
  * export const privatelinkEndpointState = gcpPubsub.apply(gcpPubsub => gcpPubsub.state);
  * export const dnsDomain = gcpPubsubStreamPrivatelinkEndpoint.dnsDomain;

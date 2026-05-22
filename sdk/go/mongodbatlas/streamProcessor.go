@@ -190,21 +190,15 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			example_stream_processors := example.InstanceName.ApplyT(func(instanceName string) (mongodbatlas.GetStreamProcessorsResult, error) {
-//				return mongodbatlas.GetStreamProcessorsResult(interface{}(mongodbatlas.GetStreamProcessors(ctx, &mongodbatlas.LookupStreamProcessorsArgs{
-//					ProjectId:     projectId,
-//					WorkspaceName: pulumi.StringRef(pulumi.StringRef(instanceName)),
-//				}, nil))), nil
-//			}).(mongodbatlas.GetStreamProcessorsResultOutput)
-//			example_stream_processor := pulumi.All(example.InstanceName, stream_processor_sample_example.ProcessorName).ApplyT(func(_args []interface{}) (mongodbatlas.GetStreamProcessorResult, error) {
-//				instanceName := _args[0].(string)
-//				processorName := _args[1].(string)
-//				return mongodbatlas.GetStreamProcessorResult(interface{}(mongodbatlas.GetStreamProcessor(ctx, &mongodbatlas.LookupStreamProcessorArgs{
-//					ProjectId:     projectId,
-//					WorkspaceName: pulumi.StringRef(pulumi.StringRef(instanceName)),
-//					ProcessorName: processorName,
-//				}, nil))), nil
-//			}).(mongodbatlas.GetStreamProcessorResultOutput)
+//			example_stream_processors := mongodbatlas.GetStreamProcessorsOutput(ctx, mongodbatlas.GetStreamProcessorsOutputArgs{
+//				ProjectId:     pulumi.Any(projectId),
+//				WorkspaceName: example.InstanceName,
+//			}, nil)
+//			example_stream_processor := mongodbatlas.GetStreamProcessorOutput(ctx, mongodbatlas.GetStreamProcessorOutputArgs{
+//				ProjectId:     pulumi.Any(projectId),
+//				WorkspaceName: example.InstanceName,
+//				ProcessorName: stream_processor_sample_example.ProcessorName,
+//			}, nil)
 //			ctx.Export("streamProcessorsState", example_stream_processor.ApplyT(func(example_stream_processor mongodbatlas.GetStreamProcessorResult) (*string, error) {
 //				return &example_stream_processor.State, nil
 //			}).(pulumi.StringPtrOutput))

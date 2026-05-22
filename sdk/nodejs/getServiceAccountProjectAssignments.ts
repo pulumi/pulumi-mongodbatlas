@@ -35,10 +35,10 @@ import * as utilities from "./utilities";
  *     projectId: thisServiceAccountProjectAssignment.projectId,
  *     clientId: thisServiceAccountProjectAssignment.clientId,
  * });
- * const thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId.apply(clientId => mongodbatlas.getServiceAccountProjectAssignmentsOutput({
+ * const thisGetServiceAccountProjectAssignments = mongodbatlas.getServiceAccountProjectAssignmentsOutput({
  *     orgId: orgId,
- *     clientId: clientId,
- * }));
+ *     clientId: thisServiceAccount.clientId,
+ * });
  * export const serviceAccountProjectRoles = _this.apply(_this => _this.roles);
  * export const serviceAccountAssignedProjects = thisGetServiceAccountProjectAssignments.apply(thisGetServiceAccountProjectAssignments => thisGetServiceAccountProjectAssignments.results);
  * ```
@@ -115,10 +115,10 @@ export interface GetServiceAccountProjectAssignmentsResult {
  *     projectId: thisServiceAccountProjectAssignment.projectId,
  *     clientId: thisServiceAccountProjectAssignment.clientId,
  * });
- * const thisGetServiceAccountProjectAssignments = thisServiceAccount.clientId.apply(clientId => mongodbatlas.getServiceAccountProjectAssignmentsOutput({
+ * const thisGetServiceAccountProjectAssignments = mongodbatlas.getServiceAccountProjectAssignmentsOutput({
  *     orgId: orgId,
- *     clientId: clientId,
- * }));
+ *     clientId: thisServiceAccount.clientId,
+ * });
  * export const serviceAccountProjectRoles = _this.apply(_this => _this.roles);
  * export const serviceAccountAssignedProjects = thisGetServiceAccountProjectAssignments.apply(thisGetServiceAccountProjectAssignments => thisGetServiceAccountProjectAssignments.results);
  * ```

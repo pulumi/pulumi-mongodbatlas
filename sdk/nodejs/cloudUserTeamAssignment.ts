@@ -26,16 +26,16 @@ import * as utilities from "./utilities";
  *     teamId: teamId,
  *     userId: userId,
  * });
- * const exampleUserId = example.userId.apply(userId => mongodbatlas.getCloudUserTeamAssignmentOutput({
+ * const exampleUserId = mongodbatlas.getCloudUserTeamAssignmentOutput({
  *     orgId: orgId,
  *     teamId: teamId,
- *     userId: userId,
- * }));
- * const exampleUsername = example.username.apply(username => mongodbatlas.getCloudUserTeamAssignmentOutput({
+ *     userId: example.userId,
+ * });
+ * const exampleUsername = mongodbatlas.getCloudUserTeamAssignmentOutput({
  *     orgId: orgId,
  *     teamId: teamId,
- *     username: username,
- * }));
+ *     username: example.username,
+ * });
  * ```
  *
  * ### Further Examples

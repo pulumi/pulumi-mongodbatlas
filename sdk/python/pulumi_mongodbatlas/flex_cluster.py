@@ -397,8 +397,8 @@ class FlexCluster(pulumi.CustomResource):
                 "region_name": "US_EAST_1",
             },
             termination_protection_enabled=True)
-        example_cluster = example_cluster_flex_cluster.name.apply(lambda name: mongodbatlas.get_flex_cluster_output(project_id=project_id,
-            name=name))
+        example_cluster = mongodbatlas.get_flex_cluster_output(project_id=project_id,
+            name=example_cluster_flex_cluster.name)
         example_clusters = mongodbatlas.get_flex_clusters(project_id=project_id)
         pulumi.export("mongodbatlasFlexCluster", example_cluster.name)
         pulumi.export("mongodbatlasFlexClustersNames", [cluster.name for cluster in example_clusters.results])
@@ -450,8 +450,8 @@ class FlexCluster(pulumi.CustomResource):
                 "region_name": "US_EAST_1",
             },
             termination_protection_enabled=True)
-        example_cluster = example_cluster_flex_cluster.name.apply(lambda name: mongodbatlas.get_flex_cluster_output(project_id=project_id,
-            name=name))
+        example_cluster = mongodbatlas.get_flex_cluster_output(project_id=project_id,
+            name=example_cluster_flex_cluster.name)
         example_clusters = mongodbatlas.get_flex_clusters(project_id=project_id)
         pulumi.export("mongodbatlasFlexCluster", example_cluster.name)
         pulumi.export("mongodbatlasFlexClustersNames", [cluster.name for cluster in example_clusters.results])

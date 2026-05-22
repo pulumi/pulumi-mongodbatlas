@@ -59,15 +59,15 @@ import javax.annotation.Nullable;
  *                 .build())
  *             .build());
  * 
- *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
+ *         final var exampleUsername = MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
  *             .orgId(orgId)
- *             .username(_username)
- *             .build()));
+ *             .username(example.username())
+ *             .build());
  * 
- *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
+ *         final var exampleUserId = MongodbatlasFunctions.getCloudUserOrgAssignment(GetCloudUserOrgAssignmentArgs.builder()
  *             .orgId(orgId)
- *             .userId(_userId)
- *             .build()));
+ *             .userId(example.userId())
+ *             .build());
  * 
  *     }
  * }

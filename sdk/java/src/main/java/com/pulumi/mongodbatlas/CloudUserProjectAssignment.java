@@ -62,15 +62,15 @@ import javax.annotation.Nullable;
  *                 "GROUP_DATA_ACCESS_ADMIN")
  *             .build());
  * 
- *         final var exampleUsername = example.username().applyValue(_username -> MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
+ *         final var exampleUsername = MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
  *             .projectId(projectId)
- *             .username(_username)
- *             .build()));
+ *             .username(example.username())
+ *             .build());
  * 
- *         final var exampleUserId = example.userId().applyValue(_userId -> MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
+ *         final var exampleUserId = MongodbatlasFunctions.getCloudUserProjectAssignment(GetCloudUserProjectAssignmentArgs.builder()
  *             .projectId(projectId)
- *             .userId(_userId)
- *             .build()));
+ *             .userId(example.userId())
+ *             .build());
  * 
  *     }
  * }

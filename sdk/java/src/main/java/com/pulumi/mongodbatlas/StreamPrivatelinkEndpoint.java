@@ -98,10 +98,10 @@ import javax.annotation.Nullable;
  *             .dnsSubDomains(privateLink.zonalSubdomains())
  *             .build());
  * 
- *         final var singularDatasource = test.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+ *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
  *             .projectId(projectId)
- *             .id(_id)
- *             .build()));
+ *             .id(test.id())
+ *             .build());
  * 
  *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
  *             .projectId(projectId)
@@ -211,10 +211,10 @@ import javax.annotation.Nullable;
  *                 "projects/my-project/regions/us-west1/serviceAttachments/confluent-attachment-2")
  *             .build());
  * 
- *         final var gcpConfluent = gcpConfluentStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+ *         final var gcpConfluent = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
  *             .projectId(projectId)
- *             .id(_id)
- *             .build()));
+ *             .id(gcpConfluentStreamPrivatelinkEndpoint.id())
+ *             .build());
  * 
  *         ctx.export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.id());
  *         ctx.export("privatelinkEndpointState", gcpConfluent.applyValue(_gcpConfluent -> _gcpConfluent.state()));
@@ -282,10 +282,10 @@ import javax.annotation.Nullable;
  *                 .dependsOn(cluster)
  *                 .build());
  * 
- *         final var gcpPubsub = gcpPubsubStreamPrivatelinkEndpoint.id().applyValue(_id -> MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
+ *         final var gcpPubsub = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
  *             .projectId(projectId)
- *             .id(_id)
- *             .build()));
+ *             .id(gcpPubsubStreamPrivatelinkEndpoint.id())
+ *             .build());
  * 
  *         ctx.export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.id());
  *         ctx.export("privatelinkEndpointState", gcpPubsub.applyValue(_gcpPubsub -> _gcpPubsub.state()));

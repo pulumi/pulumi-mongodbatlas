@@ -67,15 +67,11 @@ import javax.annotation.Nullable;
  *             .secretExpiresAfterHours(2160)
  *             .build());
  * 
- *         final var this = Output.tuple(thisProjectServiceAccount.clientId(), thisProjectServiceAccountSecret.secretId()).applyValue(values -> {
- *             var clientId = values.t1;
- *             var secretId = values.t2;
- *             return MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
- *                 .projectId(projectId)
- *                 .clientId(clientId)
- *                 .secretId(secretId)
- *                 .build());
- *         });
+ *         final var this = MongodbatlasFunctions.getProjectServiceAccountSecret(GetProjectServiceAccountSecretArgs.builder()
+ *             .projectId(projectId)
+ *             .clientId(thisProjectServiceAccount.clientId())
+ *             .secretId(thisProjectServiceAccountSecret.secretId())
+ *             .build());
  * 
  *         ctx.export("secretId", thisProjectServiceAccountSecret.secretId());
  *         ctx.export("secret", thisProjectServiceAccountSecret.secret());

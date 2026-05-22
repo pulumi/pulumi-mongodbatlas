@@ -27,10 +27,10 @@ import * as utilities from "./utilities";
  *     },
  *     terminationProtectionEnabled: true,
  * });
- * const example_cluster = example_clusterFlexCluster.name.apply(name => mongodbatlas.getFlexClusterOutput({
+ * const example_cluster = mongodbatlas.getFlexClusterOutput({
  *     projectId: projectId,
- *     name: name,
- * }));
+ *     name: example_clusterFlexCluster.name,
+ * });
  * const example_clusters = mongodbatlas.getFlexClusters({
  *     projectId: projectId,
  * });
@@ -93,10 +93,10 @@ export interface GetFlexClustersResult {
  *     },
  *     terminationProtectionEnabled: true,
  * });
- * const example_cluster = example_clusterFlexCluster.name.apply(name => mongodbatlas.getFlexClusterOutput({
+ * const example_cluster = mongodbatlas.getFlexClusterOutput({
  *     projectId: projectId,
- *     name: name,
- * }));
+ *     name: example_clusterFlexCluster.name,
+ * });
  * const example_clusters = mongodbatlas.getFlexClusters({
  *     projectId: projectId,
  * });

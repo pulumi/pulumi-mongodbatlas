@@ -279,15 +279,11 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
                 "db": "exampleDb",
             },
         })
-    example_stream_processors = example.instance_name.apply(lambda instance_name: mongodbatlas.get_stream_processors_output(project_id=project_id,
-        workspace_name=instance_name))
-    example_stream_processor = pulumi.Output.all(
-        instance_name=example.instance_name,
-        processor_name=stream_processor_sample_example.processor_name
-    ).apply(lambda resolved_outputs: mongodbatlas.get_stream_processor_output(project_id=project_id,
-        workspace_name=resolved_outputs['instance_name'],
-        processor_name=resolved_outputs['processor_name']))
-
+    example_stream_processors = mongodbatlas.get_stream_processors_output(project_id=project_id,
+        workspace_name=example.instance_name)
+    example_stream_processor = mongodbatlas.get_stream_processor_output(project_id=project_id,
+        workspace_name=example.instance_name,
+        processor_name=stream_processor_sample_example.processor_name)
     pulumi.export("streamProcessorsState", example_stream_processor.state)
     pulumi.export("streamProcessorsResults", example_stream_processors.results)
     ```
@@ -443,15 +439,11 @@ def get_stream_processor_output(instance_name: pulumi.Input[Optional[Optional[_b
                 "db": "exampleDb",
             },
         })
-    example_stream_processors = example.instance_name.apply(lambda instance_name: mongodbatlas.get_stream_processors_output(project_id=project_id,
-        workspace_name=instance_name))
-    example_stream_processor = pulumi.Output.all(
-        instance_name=example.instance_name,
-        processor_name=stream_processor_sample_example.processor_name
-    ).apply(lambda resolved_outputs: mongodbatlas.get_stream_processor_output(project_id=project_id,
-        workspace_name=resolved_outputs['instance_name'],
-        processor_name=resolved_outputs['processor_name']))
-
+    example_stream_processors = mongodbatlas.get_stream_processors_output(project_id=project_id,
+        workspace_name=example.instance_name)
+    example_stream_processor = mongodbatlas.get_stream_processor_output(project_id=project_id,
+        workspace_name=example.instance_name,
+        processor_name=stream_processor_sample_example.processor_name)
     pulumi.export("streamProcessorsState", example_stream_processor.state)
     pulumi.export("streamProcessorsResults", example_stream_processors.results)
     ```

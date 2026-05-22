@@ -50,18 +50,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = example.Username.ApplyT(func(username string) (mongodbatlas.GetCloudUserProjectAssignmentResult, error) {
-//				return mongodbatlas.GetCloudUserProjectAssignmentResult(interface{}(mongodbatlas.GetCloudUserProjectAssignment(ctx, &mongodbatlas.LookupCloudUserProjectAssignmentArgs{
-//					ProjectId: projectId,
-//					Username:  pulumi.StringRef(pulumi.StringRef(username)),
-//				}, nil))), nil
-//			}).(mongodbatlas.GetCloudUserProjectAssignmentResultOutput)
-//			_ = example.UserId.ApplyT(func(userId string) (mongodbatlas.GetCloudUserProjectAssignmentResult, error) {
-//				return mongodbatlas.GetCloudUserProjectAssignmentResult(interface{}(mongodbatlas.GetCloudUserProjectAssignment(ctx, &mongodbatlas.LookupCloudUserProjectAssignmentArgs{
-//					ProjectId: projectId,
-//					UserId:    pulumi.StringRef(pulumi.StringRef(userId)),
-//				}, nil))), nil
-//			}).(mongodbatlas.GetCloudUserProjectAssignmentResultOutput)
+//			_ = mongodbatlas.GetCloudUserProjectAssignmentOutput(ctx, mongodbatlas.GetCloudUserProjectAssignmentOutputArgs{
+//				ProjectId: pulumi.Any(projectId),
+//				Username:  example.Username,
+//			}, nil)
+//			_ = mongodbatlas.GetCloudUserProjectAssignmentOutput(ctx, mongodbatlas.GetCloudUserProjectAssignmentOutputArgs{
+//				ProjectId: pulumi.Any(projectId),
+//				UserId:    example.UserId,
+//			}, nil)
 //			return nil
 //		})
 //	}

@@ -23,10 +23,10 @@ import * as utilities from "./utilities";
  *     providerName: "AWS",
  *     regionName: "US_EAST_1",
  * });
- * const test = pulumi.all([testNetworkContainer.projectId, testNetworkContainer.providerName]).apply(([projectId, providerName]) => mongodbatlas.getNetworkContainersOutput({
- *     projectId: projectId,
- *     providerName: providerName,
- * }));
+ * const test = mongodbatlas.getNetworkContainersOutput({
+ *     projectId: testNetworkContainer.projectId,
+ *     providerName: testNetworkContainer.providerName,
+ * });
  * ```
  */
 export function getNetworkContainers(args: GetNetworkContainersArgs, opts?: pulumi.InvokeOptions): Promise<GetNetworkContainersResult> {
@@ -86,10 +86,10 @@ export interface GetNetworkContainersResult {
  *     providerName: "AWS",
  *     regionName: "US_EAST_1",
  * });
- * const test = pulumi.all([testNetworkContainer.projectId, testNetworkContainer.providerName]).apply(([projectId, providerName]) => mongodbatlas.getNetworkContainersOutput({
- *     projectId: projectId,
- *     providerName: providerName,
- * }));
+ * const test = mongodbatlas.getNetworkContainersOutput({
+ *     projectId: testNetworkContainer.projectId,
+ *     providerName: testNetworkContainer.providerName,
+ * });
  * ```
  */
 export function getNetworkContainersOutput(args: GetNetworkContainersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetNetworkContainersResult> {

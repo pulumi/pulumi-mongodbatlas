@@ -57,12 +57,10 @@ import (
 //				ProjectId: thisServiceAccountProjectAssignment.ProjectId,
 //				ClientId:  thisServiceAccountProjectAssignment.ClientId,
 //			}, nil)
-//			thisGetServiceAccountProjectAssignments := thisServiceAccount.ClientId.ApplyT(func(clientId string) (mongodbatlas.GetServiceAccountProjectAssignmentsResult, error) {
-//				return mongodbatlas.GetServiceAccountProjectAssignmentsResult(interface{}(mongodbatlas.GetServiceAccountProjectAssignments(ctx, &mongodbatlas.LookupServiceAccountProjectAssignmentsArgs{
-//					OrgId:    orgId,
-//					ClientId: clientId,
-//				}, nil))), nil
-//			}).(mongodbatlas.GetServiceAccountProjectAssignmentsResultOutput)
+//			thisGetServiceAccountProjectAssignments := mongodbatlas.GetServiceAccountProjectAssignmentsOutput(ctx, mongodbatlas.GetServiceAccountProjectAssignmentsOutputArgs{
+//				OrgId:    pulumi.Any(orgId),
+//				ClientId: thisServiceAccount.ClientId,
+//			}, nil)
 //			ctx.Export("serviceAccountProjectRoles", this.ApplyT(func(this mongodbatlas.GetServiceAccountProjectAssignmentResult) ([]string, error) {
 //				return this.Roles, nil
 //			}).(pulumi.StringArrayOutput))

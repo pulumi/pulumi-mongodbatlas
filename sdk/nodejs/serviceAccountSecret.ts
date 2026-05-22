@@ -31,11 +31,11 @@ import * as utilities from "./utilities";
  *     clientId: thisServiceAccount.clientId,
  *     secretExpiresAfterHours: 2160,
  * });
- * const _this = pulumi.all([thisServiceAccount.clientId, thisServiceAccountSecret.secretId]).apply(([clientId, secretId]) => mongodbatlas.getServiceAccountSecretOutput({
+ * const _this = mongodbatlas.getServiceAccountSecretOutput({
  *     orgId: orgId,
- *     clientId: clientId,
- *     secretId: secretId,
- * }));
+ *     clientId: thisServiceAccount.clientId,
+ *     secretId: thisServiceAccountSecret.secretId,
+ * });
  * export const secretId = thisServiceAccountSecret.secretId;
  * export const secret = thisServiceAccountSecret.secret;
  * export const secretExpiresAt = _this.apply(_this => _this.expiresAt);

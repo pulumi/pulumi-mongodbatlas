@@ -54,15 +54,11 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			this := pulumi.All(thisProjectServiceAccount.ClientId, thisProjectServiceAccountSecret.SecretId).ApplyT(func(_args []interface{}) (mongodbatlas.GetProjectServiceAccountSecretResult, error) {
-//				clientId := _args[0].(string)
-//				secretId := _args[1].(string)
-//				return mongodbatlas.GetProjectServiceAccountSecretResult(interface{}(mongodbatlas.GetProjectServiceAccountSecret(ctx, &mongodbatlas.LookupProjectServiceAccountSecretArgs{
-//					ProjectId: projectId,
-//					ClientId:  clientId,
-//					SecretId:  secretId,
-//				}, nil))), nil
-//			}).(mongodbatlas.GetProjectServiceAccountSecretResultOutput)
+//			this := mongodbatlas.GetProjectServiceAccountSecretOutput(ctx, mongodbatlas.GetProjectServiceAccountSecretOutputArgs{
+//				ProjectId: pulumi.Any(projectId),
+//				ClientId:  thisProjectServiceAccount.ClientId,
+//				SecretId:  thisProjectServiceAccountSecret.SecretId,
+//			}, nil)
 //			ctx.Export("secretId", thisProjectServiceAccountSecret.SecretId)
 //			ctx.Export("secret", thisProjectServiceAccountSecret.Secret)
 //			ctx.Export("secretExpiresAt", this.ApplyT(func(this mongodbatlas.GetProjectServiceAccountSecretResult) (*string, error) {

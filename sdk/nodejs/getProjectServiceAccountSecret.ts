@@ -28,11 +28,11 @@ import * as utilities from "./utilities";
  *     clientId: thisProjectServiceAccount.clientId,
  *     secretExpiresAfterHours: 2160,
  * });
- * const _this = pulumi.all([thisProjectServiceAccount.clientId, thisProjectServiceAccountSecret.secretId]).apply(([clientId, secretId]) => mongodbatlas.getProjectServiceAccountSecretOutput({
+ * const _this = mongodbatlas.getProjectServiceAccountSecretOutput({
  *     projectId: projectId,
- *     clientId: clientId,
- *     secretId: secretId,
- * }));
+ *     clientId: thisProjectServiceAccount.clientId,
+ *     secretId: thisProjectServiceAccountSecret.secretId,
+ * });
  * export const secretId = thisProjectServiceAccountSecret.secretId;
  * export const secret = thisProjectServiceAccountSecret.secret;
  * export const secretExpiresAt = _this.apply(_this => _this.expiresAt);
@@ -126,11 +126,11 @@ export interface GetProjectServiceAccountSecretResult {
  *     clientId: thisProjectServiceAccount.clientId,
  *     secretExpiresAfterHours: 2160,
  * });
- * const _this = pulumi.all([thisProjectServiceAccount.clientId, thisProjectServiceAccountSecret.secretId]).apply(([clientId, secretId]) => mongodbatlas.getProjectServiceAccountSecretOutput({
+ * const _this = mongodbatlas.getProjectServiceAccountSecretOutput({
  *     projectId: projectId,
- *     clientId: clientId,
- *     secretId: secretId,
- * }));
+ *     clientId: thisProjectServiceAccount.clientId,
+ *     secretId: thisProjectServiceAccountSecret.secretId,
+ * });
  * export const secretId = thisProjectServiceAccountSecret.secretId;
  * export const secret = thisProjectServiceAccountSecret.secret;
  * export const secretExpiresAt = _this.apply(_this => _this.expiresAt);

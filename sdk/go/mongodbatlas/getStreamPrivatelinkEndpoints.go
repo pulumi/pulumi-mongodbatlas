@@ -118,12 +118,10 @@ import (
 // if err != nil {
 // return err
 // }
-// singularDatasource := test.ID().ApplyT(func(id string) (mongodbatlas.GetStreamPrivatelinkEndpointResult, error) {
-// return mongodbatlas.GetStreamPrivatelinkEndpointResult(interface{}(mongodbatlas.GetStreamPrivatelinkEndpoint(ctx, &mongodbatlas.LookupStreamPrivatelinkEndpointArgs{
-// ProjectId: projectId,
-// Id: id,
-// }, nil))), nil
-// }).(mongodbatlas.GetStreamPrivatelinkEndpointResultOutput)
+// singularDatasource := mongodbatlas.GetStreamPrivatelinkEndpointOutput(ctx, mongodbatlas.GetStreamPrivatelinkEndpointOutputArgs{
+// ProjectId: pulumi.Any(projectId),
+// Id: test.ID(),
+// }, nil);
 // pluralDatasource, err := mongodbatlas.GetStreamPrivatelinkEndpoints(ctx, &mongodbatlas.LookupStreamPrivatelinkEndpointsArgs{
 // ProjectId: projectId,
 // }, nil);
@@ -233,12 +231,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			gcpConfluent := gcpConfluentStreamPrivatelinkEndpoint.ID().ApplyT(func(id string) (mongodbatlas.GetStreamPrivatelinkEndpointResult, error) {
-//				return mongodbatlas.GetStreamPrivatelinkEndpointResult(interface{}(mongodbatlas.GetStreamPrivatelinkEndpoint(ctx, &mongodbatlas.LookupStreamPrivatelinkEndpointArgs{
-//					ProjectId: projectId,
-//					Id:        id,
-//				}, nil))), nil
-//			}).(mongodbatlas.GetStreamPrivatelinkEndpointResultOutput)
+//			gcpConfluent := mongodbatlas.GetStreamPrivatelinkEndpointOutput(ctx, mongodbatlas.GetStreamPrivatelinkEndpointOutputArgs{
+//				ProjectId: pulumi.Any(projectId),
+//				Id:        gcpConfluentStreamPrivatelinkEndpoint.ID(),
+//			}, nil)
 //			ctx.Export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.ID())
 //			ctx.Export("privatelinkEndpointState", gcpConfluent.ApplyT(func(gcpConfluent mongodbatlas.GetStreamPrivatelinkEndpointResult) (*string, error) {
 //				return &gcpConfluent.State, nil
@@ -297,12 +293,10 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			gcpPubsub := gcpPubsubStreamPrivatelinkEndpoint.ID().ApplyT(func(id string) (mongodbatlas.GetStreamPrivatelinkEndpointResult, error) {
-//				return mongodbatlas.GetStreamPrivatelinkEndpointResult(interface{}(mongodbatlas.GetStreamPrivatelinkEndpoint(ctx, &mongodbatlas.LookupStreamPrivatelinkEndpointArgs{
-//					ProjectId: projectId,
-//					Id:        id,
-//				}, nil))), nil
-//			}).(mongodbatlas.GetStreamPrivatelinkEndpointResultOutput)
+//			gcpPubsub := mongodbatlas.GetStreamPrivatelinkEndpointOutput(ctx, mongodbatlas.GetStreamPrivatelinkEndpointOutputArgs{
+//				ProjectId: pulumi.Any(projectId),
+//				Id:        gcpPubsubStreamPrivatelinkEndpoint.ID(),
+//			}, nil)
 //			ctx.Export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.ID())
 //			ctx.Export("privatelinkEndpointState", gcpPubsub.ApplyT(func(gcpPubsub mongodbatlas.GetStreamPrivatelinkEndpointResult) (*string, error) {
 //				return &gcpPubsub.State, nil

@@ -46,18 +46,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_ = example.Username.ApplyT(func(username string) (mongodbatlas.GetCloudUserOrgAssignmentResult, error) {
-//				return mongodbatlas.GetCloudUserOrgAssignmentResult(interface{}(mongodbatlas.GetCloudUserOrgAssignment(ctx, &mongodbatlas.LookupCloudUserOrgAssignmentArgs{
-//					OrgId:    orgId,
-//					Username: pulumi.StringRef(pulumi.StringRef(username)),
-//				}, nil))), nil
-//			}).(mongodbatlas.GetCloudUserOrgAssignmentResultOutput)
-//			_ = example.UserId.ApplyT(func(userId string) (mongodbatlas.GetCloudUserOrgAssignmentResult, error) {
-//				return mongodbatlas.GetCloudUserOrgAssignmentResult(interface{}(mongodbatlas.GetCloudUserOrgAssignment(ctx, &mongodbatlas.LookupCloudUserOrgAssignmentArgs{
-//					OrgId:  orgId,
-//					UserId: pulumi.StringRef(pulumi.StringRef(userId)),
-//				}, nil))), nil
-//			}).(mongodbatlas.GetCloudUserOrgAssignmentResultOutput)
+//			_ = mongodbatlas.GetCloudUserOrgAssignmentOutput(ctx, mongodbatlas.GetCloudUserOrgAssignmentOutputArgs{
+//				OrgId:    pulumi.Any(orgId),
+//				Username: example.Username,
+//			}, nil)
+//			_ = mongodbatlas.GetCloudUserOrgAssignmentOutput(ctx, mongodbatlas.GetCloudUserOrgAssignmentOutputArgs{
+//				OrgId:  pulumi.Any(orgId),
+//				UserId: example.UserId,
+//			}, nil)
 //			return nil
 //		})
 //	}
