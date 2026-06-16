@@ -3270,6 +3270,93 @@
         }
     },
     "auto-settings": {},
+    "default-resource-schema-fixups": {
+        "resources": {
+            "mongodbatlas_advanced_cluster": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_alert_configuration": {},
+            "mongodbatlas_api_key_project_assignment": {},
+            "mongodbatlas_cloud_user_org_assignment": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_cloud_user_project_assignment": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_cloud_user_team_assignment": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_database_user": {},
+            "mongodbatlas_encryption_at_rest": {},
+            "mongodbatlas_encryption_at_rest_private_endpoint": {},
+            "mongodbatlas_flex_cluster": {},
+            "mongodbatlas_log_integration": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_mongodb_employee_access_grant": {},
+            "mongodbatlas_privatelink_endpoint_service_data_federation_online_archive": {},
+            "mongodbatlas_project": {},
+            "mongodbatlas_project_ip_access_list": {},
+            "mongodbatlas_project_service_account": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_project_service_account_access_list_entry": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_project_service_account_secret": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_push_based_log_export": {},
+            "mongodbatlas_resource_policy": {},
+            "mongodbatlas_search_deployment": {},
+            "mongodbatlas_service_account": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_service_account_access_list_entry": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_service_account_project_assignment": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_service_account_secret": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_stream_connection": {},
+            "mongodbatlas_stream_instance": {},
+            "mongodbatlas_stream_privatelink_endpoint": {},
+            "mongodbatlas_stream_processor": {},
+            "mongodbatlas_stream_workspace": {},
+            "mongodbatlas_team_project_assignment": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            }
+        }
+    },
     "mux": {
         "resources": {
             "mongodbatlas:index/accessListApiKey:AccessListApiKey": 0,
