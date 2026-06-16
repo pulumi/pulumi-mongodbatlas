@@ -34,6 +34,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.AdvancedCluster;
  * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
  * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
  * import com.pulumi.mongodbatlas.LdapVerify;
  * import com.pulumi.mongodbatlas.LdapVerifyArgs;
  * import com.pulumi.resources.CustomResourceOptions;

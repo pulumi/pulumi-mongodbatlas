@@ -291,6 +291,8 @@ import com.pulumi.mongodbatlas.ProjectArgs;
 import com.pulumi.mongodbatlas.AdvancedCluster;
 import com.pulumi.mongodbatlas.AdvancedClusterArgs;
 import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;

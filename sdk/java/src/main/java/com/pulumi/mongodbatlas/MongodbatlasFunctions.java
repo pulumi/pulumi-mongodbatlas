@@ -956,6 +956,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1010,6 +1012,9 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1075,6 +1080,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1144,6 +1151,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1202,6 +1210,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1256,6 +1266,9 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1321,6 +1334,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1390,6 +1405,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1448,6 +1464,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1502,6 +1520,9 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1567,6 +1588,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1636,6 +1659,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1694,6 +1718,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1748,6 +1774,9 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1813,6 +1842,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1882,6 +1913,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1940,6 +1972,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -1994,6 +2028,9 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -2059,6 +2096,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -2128,6 +2167,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -2186,6 +2226,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
      * import java.util.ArrayList;
@@ -2241,6 +2283,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -2310,6 +2354,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
      * import java.util.ArrayList;
@@ -2367,6 +2412,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
      * import java.util.ArrayList;
@@ -2422,6 +2469,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -2491,6 +2540,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
      * import java.util.ArrayList;
@@ -2548,6 +2598,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
      * import java.util.ArrayList;
@@ -2603,6 +2655,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -2672,6 +2726,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
      * import java.util.ArrayList;
@@ -2729,6 +2784,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
      * import java.util.ArrayList;
@@ -2784,6 +2841,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -2853,6 +2912,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
      * import java.util.ArrayList;
@@ -2910,6 +2970,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
      * import java.util.ArrayList;
@@ -2965,6 +3027,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
      * import java.util.ArrayList;
@@ -3034,6 +3098,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
      * import java.util.ArrayList;
@@ -5616,6 +5681,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.CloudBackupSchedule;
      * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemHourlyArgs;
@@ -5776,6 +5843,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.CloudBackupSchedule;
      * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemHourlyArgs;
@@ -5936,6 +6005,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.CloudBackupSchedule;
      * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemHourlyArgs;
@@ -6096,6 +6167,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.CloudBackupSchedule;
      * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemHourlyArgs;
@@ -6256,6 +6329,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.CloudBackupSchedule;
      * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemHourlyArgs;
@@ -6414,6 +6489,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.CloudBackupSchedule;
      * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
@@ -6508,6 +6585,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.CloudBackupSchedule;
      * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
@@ -6602,6 +6681,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.CloudBackupSchedule;
      * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
@@ -6696,6 +6777,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.CloudBackupSchedule;
      * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
@@ -6790,6 +6873,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.CloudBackupSchedule;
      * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
@@ -10846,6 +10931,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Cluster;
      * import com.pulumi.mongodbatlas.ClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecRegionsConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClusterArgs;
      * import java.util.ArrayList;
@@ -10918,6 +11004,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Cluster;
      * import com.pulumi.mongodbatlas.ClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecRegionsConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClusterArgs;
      * import java.util.ArrayList;
@@ -10990,6 +11077,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Cluster;
      * import com.pulumi.mongodbatlas.ClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecRegionsConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClusterArgs;
      * import java.util.ArrayList;
@@ -11062,6 +11150,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Cluster;
      * import com.pulumi.mongodbatlas.ClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecRegionsConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClusterArgs;
      * import java.util.ArrayList;
@@ -11134,6 +11223,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Cluster;
      * import com.pulumi.mongodbatlas.ClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecRegionsConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClusterArgs;
      * import java.util.ArrayList;
@@ -11439,6 +11529,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Cluster;
      * import com.pulumi.mongodbatlas.ClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecRegionsConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClustersArgs;
      * import java.util.ArrayList;
@@ -11508,6 +11599,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Cluster;
      * import com.pulumi.mongodbatlas.ClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecRegionsConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClustersArgs;
      * import java.util.ArrayList;
@@ -11577,6 +11669,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Cluster;
      * import com.pulumi.mongodbatlas.ClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecRegionsConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClustersArgs;
      * import java.util.ArrayList;
@@ -11646,6 +11739,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Cluster;
      * import com.pulumi.mongodbatlas.ClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecRegionsConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClustersArgs;
      * import java.util.ArrayList;
@@ -11715,6 +11809,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.Cluster;
      * import com.pulumi.mongodbatlas.ClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.ClusterReplicationSpecRegionsConfigArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetClustersArgs;
      * import java.util.ArrayList;
@@ -12050,6 +12145,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CustomDbRole;
      * import com.pulumi.mongodbatlas.CustomDbRoleArgs;
      * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionArgs;
+     * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionResourceArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDbRoleArgs;
      * import java.util.ArrayList;
@@ -12114,6 +12210,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CustomDbRole;
      * import com.pulumi.mongodbatlas.CustomDbRoleArgs;
      * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionArgs;
+     * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionResourceArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDbRoleArgs;
      * import java.util.ArrayList;
@@ -12178,6 +12275,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CustomDbRole;
      * import com.pulumi.mongodbatlas.CustomDbRoleArgs;
      * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionArgs;
+     * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionResourceArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDbRoleArgs;
      * import java.util.ArrayList;
@@ -12242,6 +12340,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CustomDbRole;
      * import com.pulumi.mongodbatlas.CustomDbRoleArgs;
      * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionArgs;
+     * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionResourceArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDbRoleArgs;
      * import java.util.ArrayList;
@@ -12306,6 +12405,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CustomDbRole;
      * import com.pulumi.mongodbatlas.CustomDbRoleArgs;
      * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionArgs;
+     * import com.pulumi.mongodbatlas.inputs.CustomDbRoleActionResourceArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCustomDbRoleArgs;
      * import java.util.ArrayList;
@@ -14119,6 +14219,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
      * import java.util.ArrayList;
@@ -14323,6 +14425,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
      * import java.util.ArrayList;
@@ -14527,6 +14631,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
      * import java.util.ArrayList;
@@ -14731,6 +14837,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
      * import java.util.ArrayList;
@@ -14935,6 +15043,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetEncryptionAtRestArgs;
      * import java.util.ArrayList;
@@ -15569,7 +15679,7 @@ public final class MongodbatlasFunctions {
      *             .cloudProvider("AZURE")
      *             .build());
      * 
-     *         ctx.export("numberOfEndpoints", plural.results().length());
+     *         ctx.export("numberOfEndpoints", plural.results().size());
      *     }
      * }
      * }
@@ -15603,7 +15713,7 @@ public final class MongodbatlasFunctions {
      *             .cloudProvider("AWS")
      *             .build());
      * 
-     *         ctx.export("numberOfEndpoints", plural.results().length());
+     *         ctx.export("numberOfEndpoints", plural.results().size());
      *     }
      * }
      * }
@@ -15652,7 +15762,7 @@ public final class MongodbatlasFunctions {
      *             .cloudProvider("AZURE")
      *             .build());
      * 
-     *         ctx.export("numberOfEndpoints", plural.results().length());
+     *         ctx.export("numberOfEndpoints", plural.results().size());
      *     }
      * }
      * }
@@ -15686,7 +15796,7 @@ public final class MongodbatlasFunctions {
      *             .cloudProvider("AWS")
      *             .build());
      * 
-     *         ctx.export("numberOfEndpoints", plural.results().length());
+     *         ctx.export("numberOfEndpoints", plural.results().size());
      *     }
      * }
      * }
@@ -15735,7 +15845,7 @@ public final class MongodbatlasFunctions {
      *             .cloudProvider("AZURE")
      *             .build());
      * 
-     *         ctx.export("numberOfEndpoints", plural.results().length());
+     *         ctx.export("numberOfEndpoints", plural.results().size());
      *     }
      * }
      * }
@@ -15769,7 +15879,7 @@ public final class MongodbatlasFunctions {
      *             .cloudProvider("AWS")
      *             .build());
      * 
-     *         ctx.export("numberOfEndpoints", plural.results().length());
+     *         ctx.export("numberOfEndpoints", plural.results().size());
      *     }
      * }
      * }
@@ -15818,7 +15928,7 @@ public final class MongodbatlasFunctions {
      *             .cloudProvider("AZURE")
      *             .build());
      * 
-     *         ctx.export("numberOfEndpoints", plural.results().length());
+     *         ctx.export("numberOfEndpoints", plural.results().size());
      *     }
      * }
      * }
@@ -15852,7 +15962,7 @@ public final class MongodbatlasFunctions {
      *             .cloudProvider("AWS")
      *             .build());
      * 
-     *         ctx.export("numberOfEndpoints", plural.results().length());
+     *         ctx.export("numberOfEndpoints", plural.results().size());
      *     }
      * }
      * }
@@ -15901,7 +16011,7 @@ public final class MongodbatlasFunctions {
      *             .cloudProvider("AZURE")
      *             .build());
      * 
-     *         ctx.export("numberOfEndpoints", plural.results().length());
+     *         ctx.export("numberOfEndpoints", plural.results().size());
      *     }
      * }
      * }
@@ -15935,7 +16045,7 @@ public final class MongodbatlasFunctions {
      *             .cloudProvider("AWS")
      *             .build());
      * 
-     *         ctx.export("numberOfEndpoints", plural.results().length());
+     *         ctx.export("numberOfEndpoints", plural.results().size());
      *     }
      * }
      * }
@@ -16067,6 +16177,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -16106,6 +16218,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -16190,6 +16304,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -16229,6 +16345,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -16313,6 +16431,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -16352,6 +16472,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -16436,6 +16558,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -16475,6 +16599,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -16559,6 +16685,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -16598,6 +16726,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -19250,6 +19380,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.GlobalClusterConfig;
      * import com.pulumi.mongodbatlas.GlobalClusterConfigArgs;
      * import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigManagedNamespaceArgs;
@@ -19368,6 +19500,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.GlobalClusterConfig;
      * import com.pulumi.mongodbatlas.GlobalClusterConfigArgs;
      * import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigManagedNamespaceArgs;
@@ -19486,6 +19620,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.GlobalClusterConfig;
      * import com.pulumi.mongodbatlas.GlobalClusterConfigArgs;
      * import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigManagedNamespaceArgs;
@@ -19604,6 +19740,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.GlobalClusterConfig;
      * import com.pulumi.mongodbatlas.GlobalClusterConfigArgs;
      * import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigManagedNamespaceArgs;
@@ -19722,6 +19860,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.GlobalClusterConfig;
      * import com.pulumi.mongodbatlas.GlobalClusterConfigArgs;
      * import com.pulumi.mongodbatlas.inputs.GlobalClusterConfigManagedNamespaceArgs;
@@ -20132,6 +20272,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.LdapVerify;
      * import com.pulumi.mongodbatlas.LdapVerifyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -20214,6 +20356,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.LdapVerify;
      * import com.pulumi.mongodbatlas.LdapVerifyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -20296,6 +20440,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.LdapVerify;
      * import com.pulumi.mongodbatlas.LdapVerifyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -20378,6 +20524,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.LdapVerify;
      * import com.pulumi.mongodbatlas.LdapVerifyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -20460,6 +20608,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.LdapVerify;
      * import com.pulumi.mongodbatlas.LdapVerifyArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -30796,6 +30946,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.SearchDeployment;
      * import com.pulumi.mongodbatlas.SearchDeploymentArgs;
      * import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
@@ -30879,6 +31031,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.SearchDeployment;
      * import com.pulumi.mongodbatlas.SearchDeploymentArgs;
      * import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
@@ -30962,6 +31116,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.SearchDeployment;
      * import com.pulumi.mongodbatlas.SearchDeploymentArgs;
      * import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
@@ -31045,6 +31201,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.SearchDeployment;
      * import com.pulumi.mongodbatlas.SearchDeploymentArgs;
      * import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
@@ -31128,6 +31286,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.SearchDeployment;
      * import com.pulumi.mongodbatlas.SearchDeploymentArgs;
      * import com.pulumi.mongodbatlas.inputs.SearchDeploymentSpecArgs;
@@ -35848,6 +36008,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -35919,6 +36081,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
@@ -36195,6 +36359,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -36266,6 +36432,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
@@ -36542,6 +36710,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -36613,6 +36783,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
@@ -36889,6 +37061,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -36960,6 +37134,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
@@ -37236,6 +37412,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -37307,6 +37485,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
@@ -37583,6 +37763,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -37654,6 +37836,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
@@ -37930,6 +38114,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -38001,6 +38187,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
@@ -38277,6 +38465,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -38348,6 +38538,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
@@ -38624,6 +38816,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -38695,6 +38889,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;
@@ -38971,6 +39167,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
@@ -39042,6 +39240,8 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.AdvancedCluster;
      * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
      * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
      * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
      * import com.pulumi.resources.CustomResourceOptions;

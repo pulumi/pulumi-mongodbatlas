@@ -58,7 +58,7 @@ import (
 //			ctx.Export("secretId", thisProjectServiceAccountSecret.SecretId)
 //			ctx.Export("secret", thisProjectServiceAccountSecret.Secret)
 //			ctx.Export("secretExpiresAt", this.ApplyT(func(this mongodbatlas.GetProjectServiceAccountSecretResult) (*string, error) {
-//				return &this.ExpiresAt, nil
+//				return this.ExpiresAt, nil
 //			}).(pulumi.StringPtrOutput))
 //			return nil
 //		})

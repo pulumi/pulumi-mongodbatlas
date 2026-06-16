@@ -126,10 +126,10 @@ import (
 //				UseEffectiveFields: pulumi.Bool(true),
 //			}, nil)
 //			ctx.Export("configuredInstanceSize", this.ApplyT(func(this mongodbatlas.GetAdvancedClusterResult) (*string, error) {
-//				return &this.ReplicationSpecs[0].RegionConfigs[0].ElectableSpecs.InstanceSize, nil
+//				return this.ReplicationSpecs[0].RegionConfigs[0].ElectableSpecs.InstanceSize, nil
 //			}).(pulumi.StringPtrOutput))
 //			ctx.Export("actualInstanceSize", this.ApplyT(func(this mongodbatlas.GetAdvancedClusterResult) (*string, error) {
-//				return &this.ReplicationSpecs[0].RegionConfigs[0].EffectiveElectableSpecs.InstanceSize, nil
+//				return this.ReplicationSpecs[0].RegionConfigs[0].EffectiveElectableSpecs.InstanceSize, nil
 //			}).(pulumi.StringPtrOutput))
 //			return nil
 //		})

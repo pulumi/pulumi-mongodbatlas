@@ -117,7 +117,7 @@ import (
 //				ProjectId:     pulumi.Any(projectId),
 //				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("sampleProcessorName"),
-//				Pipeline:      pulumi.String(pulumi.String(json0)),
+//				Pipeline:      pulumi.String(json0),
 //				State:         pulumi.String("STARTED"),
 //				Tier:          pulumi.String("SP30"),
 //			})
@@ -145,7 +145,7 @@ import (
 //				ProjectId:     pulumi.Any(projectId),
 //				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("clusterProcessorName"),
-//				Pipeline:      pulumi.String(pulumi.String(json1)),
+//				Pipeline:      pulumi.String(json1),
 //				State:         pulumi.String("CREATED"),
 //			})
 //			if err != nil {
@@ -177,7 +177,7 @@ import (
 //				ProjectId:     pulumi.Any(projectId),
 //				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("kafkaProcessorName"),
-//				Pipeline:      pulumi.String(pulumi.String(json2)),
+//				Pipeline:      pulumi.String(json2),
 //				State:         pulumi.String("CREATED"),
 //				Options: &mongodbatlas.StreamProcessorOptionsArgs{
 //					Dlq: &mongodbatlas.StreamProcessorOptionsDlqArgs{
@@ -200,11 +200,11 @@ import (
 //				ProcessorName: stream_processor_sample_example.ProcessorName,
 //			}, nil)
 //			ctx.Export("streamProcessorsState", example_stream_processor.ApplyT(func(example_stream_processor mongodbatlas.GetStreamProcessorResult) (*string, error) {
-//				return &example_stream_processor.State, nil
+//				return example_stream_processor.State, nil
 //			}).(pulumi.StringPtrOutput))
 //			ctx.Export("streamProcessorsResults", example_stream_processors.ApplyT(func(example_stream_processors mongodbatlas.GetStreamProcessorsResult) ([]mongodbatlas.GetStreamProcessorsResult, error) {
 //				return []mongodbatlas.GetStreamProcessorsResult(example_stream_processors.Results), nil
-//			}).([]mongodbatlas.GetStreamProcessorsResultOutput))
+//			}).(pulumi.ArrayOutput))
 //			return nil
 //		})
 //	}

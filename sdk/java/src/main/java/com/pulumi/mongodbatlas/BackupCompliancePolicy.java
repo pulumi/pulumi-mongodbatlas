@@ -46,6 +46,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.AdvancedCluster;
  * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
  * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+ * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
  * import com.pulumi.mongodbatlas.CloudBackupSchedule;
  * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
  * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemHourlyArgs;

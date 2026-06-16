@@ -245,72 +245,74 @@ import (
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
-// func main() {
-// pulumi.Run(func(ctx *pulumi.Context) error {
-// myCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "my_cluster", &mongodbatlas.AdvancedClusterArgs{
-// ProjectId: pulumi.String("<PROJECT-ID>"),
-// Name: pulumi.String("clusterTest"),
-// ClusterType: pulumi.String("REPLICASET"),
-// BackupEnabled: pulumi.Bool(true),
-// ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
-// &mongodbatlas.AdvancedClusterReplicationSpecArgs{
-// RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
-// &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
-// Priority: pulumi.Int(7),
-// ProviderName: pulumi.String("AWS"),
-// RegionName: pulumi.String("EU_CENTRAL_1"),
-// ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
-// InstanceSize: pulumi.String("M10"),
-// NodeCount: pulumi.Int(3),
-// },
-// },
-// },
-// },
-// },
-// })
-// if err != nil {
-// return err
-// }
-// _, err = mongodbatlas.NewCloudBackupSchedule(ctx, "test", &mongodbatlas.CloudBackupScheduleArgs{
-// ProjectId: myCluster.ProjectId,
-// ClusterName: myCluster.Name,
-// ReferenceHourOfDay: pulumi.Int(3),
-// ReferenceMinuteOfHour: pulumi.Int(45),
-// RestoreWindowDays: pulumi.Int(4),
-// PolicyItemDaily: &mongodbatlas.CloudBackupSchedulePolicyItemDailyArgs{
-// FrequencyInterval: pulumi.Int(1),
-// RetentionUnit: pulumi.String("days"),
-// RetentionValue: pulumi.Int(14),
-// },
-// CopySettings: mongodbatlas.CloudBackupScheduleCopySettingArray{
-// &mongodbatlas.CloudBackupScheduleCopySettingArgs{
-// CloudProvider: pulumi.String("AWS"),
-// Frequencies: pulumi.StringArray{
-// pulumi.String("HOURLY"),
-// pulumi.String("DAILY"),
-// pulumi.String("WEEKLY"),
-// pulumi.String("MONTHLY"),
-// pulumi.String("YEARLY"),
-// pulumi.String("ON_DEMAND"),
-// },
-// RegionName: pulumi.String("US_EAST_1"),
-// ZoneId: pulumi.String(myCluster.ReplicationSpecs.ApplyT(func(replicationSpecs []mongodbatlas.AdvancedClusterReplicationSpec) ([]interface{}, error) {
-// var splat0 []interface{}
-// for _, val0 := range replicationSpecs {
-// splat0 = append(splat0, val0.ZoneId[0])
-// }
-// return splat0, nil
-// }).(pulumi._[]interface{}Output)),
-// ShouldCopyOplogs: pulumi.Bool(false),
-// },
-// },
-// })
-// if err != nil {
-// return err
-// }
-// return nil
-// })
-// }
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			myCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "my_cluster", &mongodbatlas.AdvancedClusterArgs{
+//				ProjectId:     pulumi.String("<PROJECT-ID>"),
+//				Name:          pulumi.String("clusterTest"),
+//				ClusterType:   pulumi.String("REPLICASET"),
+//				BackupEnabled: pulumi.Bool(true),
+//				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
+//					&mongodbatlas.AdvancedClusterReplicationSpecArgs{
+//						RegionConfigs: mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArray{
+//							&mongodbatlas.AdvancedClusterReplicationSpecRegionConfigArgs{
+//								Priority:     pulumi.Int(7),
+//								ProviderName: pulumi.String("AWS"),
+//								RegionName:   pulumi.String("EU_CENTRAL_1"),
+//								ElectableSpecs: &mongodbatlas.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{
+//									InstanceSize: pulumi.String("M10"),
+//									NodeCount:    pulumi.Int(3),
+//								},
+//							},
+//						},
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewCloudBackupSchedule(ctx, "test", &mongodbatlas.CloudBackupScheduleArgs{
+//				ProjectId:             myCluster.ProjectId,
+//				ClusterName:           myCluster.Name,
+//				ReferenceHourOfDay:    pulumi.Int(3),
+//				ReferenceMinuteOfHour: pulumi.Int(45),
+//				RestoreWindowDays:     pulumi.Int(4),
+//				PolicyItemDaily: &mongodbatlas.CloudBackupSchedulePolicyItemDailyArgs{
+//					FrequencyInterval: pulumi.Int(1),
+//					RetentionUnit:     pulumi.String("days"),
+//					RetentionValue:    pulumi.Int(14),
+//				},
+//				CopySettings: mongodbatlas.CloudBackupScheduleCopySettingArray{
+//					&mongodbatlas.CloudBackupScheduleCopySettingArgs{
+//						CloudProvider: pulumi.String("AWS"),
+//						Frequencies: pulumi.StringArray{
+//							pulumi.String("HOURLY"),
+//							pulumi.String("DAILY"),
+//							pulumi.String("WEEKLY"),
+//							pulumi.String("MONTHLY"),
+//							pulumi.String("YEARLY"),
+//							pulumi.String("ON_DEMAND"),
+//						},
+//						RegionName: pulumi.String("US_EAST_1"),
+//						ZoneId: pulumi.String(myCluster.ReplicationSpecs.ApplyT(func(replicationSpecs []mongodbatlas.AdvancedClusterReplicationSpec) ([]interface{}, error) {
+//							var splat0 []interface{}
+//							for _, val0 := range replicationSpecs {
+//								splat0 = append(splat0, val0.ZoneId[0])
+//							}
+//							return splat0, nil
+//						}).(pulumi.ArrayOutput)),
+//						ShouldCopyOplogs: pulumi.Bool(false),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
 // ```
 //
 // ### Further Examples

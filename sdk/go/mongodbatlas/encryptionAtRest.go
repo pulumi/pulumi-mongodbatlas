@@ -113,7 +113,7 @@ import (
 //				ProjectId: testEncryptionAtRest.ProjectId,
 //			}, nil)
 //			ctx.Export("isAwsKmsEncryptionAtRestValid", test.ApplyT(func(test mongodbatlas.GetEncryptionAtRestResult) (*bool, error) {
-//				return &test.AwsKmsConfig.Valid, nil
+//				return test.AwsKmsConfig.Valid, nil
 //			}).(pulumi.BoolPtrOutput))
 //			return nil
 //		})
@@ -155,7 +155,7 @@ import (
 //				ProjectId: testEncryptionAtRest.ProjectId,
 //			}, nil)
 //			ctx.Export("isAzureEncryptionAtRestValid", test.ApplyT(func(test mongodbatlas.GetEncryptionAtRestResult) (*bool, error) {
-//				return &test.AzureKeyVaultConfig.Valid, nil
+//				return test.AzureKeyVaultConfig.Valid, nil
 //			}).(pulumi.BoolPtrOutput))
 //			return nil
 //		})
