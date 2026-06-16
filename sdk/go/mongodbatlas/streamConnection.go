@@ -321,7 +321,7 @@ import (
 //				Type:           pulumi.String("GCPPubSub"),
 //				Gcp: &mongodbatlas.StreamConnectionGcpArgs{
 //					ServiceAccountId: gcpSetup.GcpConfigs.ApplyT(func(gcpConfigs []mongodbatlas.CloudProviderAccessSetupGcpConfig) (*string, error) {
-//						return &gcpConfigs[0].ServiceAccountForAtlas, nil
+//						return gcpConfigs[0].ServiceAccountForAtlas, nil
 //					}).(pulumi.StringPtrOutput),
 //				},
 //			}, pulumi.DependsOn([]pulumi.Resource{
@@ -371,7 +371,7 @@ import (
 //				Type:           pulumi.String("GCPPubSub"),
 //				Gcp: &mongodbatlas.StreamConnectionGcpArgs{
 //					ServiceAccountId: gcpSetup.GcpConfigs.ApplyT(func(gcpConfigs []mongodbatlas.CloudProviderAccessSetupGcpConfig) (*string, error) {
-//						return &gcpConfigs[0].ServiceAccountForAtlas, nil
+//						return gcpConfigs[0].ServiceAccountForAtlas, nil
 //					}).(pulumi.StringPtrOutput),
 //				},
 //				Networking: &mongodbatlas.StreamConnectionNetworkingArgs{

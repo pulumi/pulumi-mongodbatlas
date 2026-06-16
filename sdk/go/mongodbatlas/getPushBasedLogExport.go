@@ -69,7 +69,7 @@ import (
 //				ProjectId: testPushBasedLogExport.ProjectId,
 //			}, nil)
 //			ctx.Export("test", test.ApplyT(func(test mongodbatlas.GetPushBasedLogExportResult) (*string, error) {
-//				return &test.PrefixPath, nil
+//				return test.PrefixPath, nil
 //			}).(pulumi.StringPtrOutput))
 //			return nil
 //		})

@@ -76,10 +76,10 @@ import (
 //				ClusterName: exampleSearchDeployment.ClusterName,
 //			}, nil)
 //			ctx.Export("mongodbatlasSearchDeploymentId", example.ApplyT(func(example mongodbatlas.GetSearchDeploymentResult) (*string, error) {
-//				return &example.Id, nil
+//				return example.Id, nil
 //			}).(pulumi.StringPtrOutput))
 //			ctx.Export("mongodbatlasSearchDeploymentEncryptionAtRestProvider", example.ApplyT(func(example mongodbatlas.GetSearchDeploymentResult) (*string, error) {
-//				return &example.EncryptionAtRestProvider, nil
+//				return example.EncryptionAtRestProvider, nil
 //			}).(pulumi.StringPtrOutput))
 //			return nil
 //		})

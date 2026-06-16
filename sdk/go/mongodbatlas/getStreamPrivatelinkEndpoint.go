@@ -129,7 +129,7 @@ import (
 // return err
 // }
 // ctx.Export("interfaceEndpointId", singularDatasource.ApplyT(func(singularDatasource mongodbatlas.GetStreamPrivatelinkEndpointResult) (*string, error) {
-// return &singularDatasource.InterfaceEndpointId, nil
+// return singularDatasource.InterfaceEndpointId, nil
 // }).(pulumi.StringPtrOutput))
 // ctx.Export("interfaceEndpointIds", pulumi.StringArray(%!v(PANIC=Format method: fatal: A failure has occurred: unlowered splat expression @ example.pp:74,11-58)))
 // return nil
@@ -237,7 +237,7 @@ import (
 //			}, nil)
 //			ctx.Export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.ID())
 //			ctx.Export("privatelinkEndpointState", gcpConfluent.ApplyT(func(gcpConfluent mongodbatlas.GetStreamPrivatelinkEndpointResult) (*string, error) {
-//				return &gcpConfluent.State, nil
+//				return gcpConfluent.State, nil
 //			}).(pulumi.StringPtrOutput))
 //			ctx.Export("serviceAttachmentUris", gcpConfluentStreamPrivatelinkEndpoint.ServiceAttachmentUris)
 //			return nil
@@ -299,7 +299,7 @@ import (
 //			}, nil)
 //			ctx.Export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.ID())
 //			ctx.Export("privatelinkEndpointState", gcpPubsub.ApplyT(func(gcpPubsub mongodbatlas.GetStreamPrivatelinkEndpointResult) (*string, error) {
-//				return &gcpPubsub.State, nil
+//				return gcpPubsub.State, nil
 //			}).(pulumi.StringPtrOutput))
 //			ctx.Export("dnsDomain", gcpPubsubStreamPrivatelinkEndpoint.DnsDomain)
 //			return nil
