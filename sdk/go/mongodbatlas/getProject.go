@@ -115,7 +115,6 @@ type LookupProjectResult struct {
 	// The ISO-8601-formatted timestamp of when Atlas created the project.
 	Created string `pulumi:"created"`
 	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-	// * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
 	Id string `pulumi:"id"`
 	// IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `getProjectIpAddresses` data source instead.
 	//
@@ -205,7 +204,6 @@ func (o LookupProjectResultOutput) Created() pulumi.StringOutput {
 }
 
 // Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-// * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
 func (o LookupProjectResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.Id }).(pulumi.StringOutput)
 }

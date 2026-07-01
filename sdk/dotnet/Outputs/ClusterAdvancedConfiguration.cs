@@ -23,11 +23,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly ImmutableArray<string> CustomOpensslCipherConfigTls12s;
         public readonly int? DefaultMaxTimeMs;
         /// <summary>
-        /// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `Local`. To use a custom read concern level, please refer to your driver documentation.
+        /// [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `Local`. To use a custom read concern level, please refer to your driver documentation.
         /// </summary>
         public readonly string? DefaultReadConcern;
         /// <summary>
-        /// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+        /// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
         /// </summary>
         public readonly string? DefaultWriteConcern;
         /// <summary>

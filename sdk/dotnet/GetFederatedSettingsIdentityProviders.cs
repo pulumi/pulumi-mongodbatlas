@@ -17,6 +17,34 @@ namespace Pulumi.Mongodbatlas
         /// Note: This implementation returns a maximum of 100 results.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", new()
+        ///     {
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f",
+        ///         Name = "mongodb_federation_test",
+        ///         AssociatedDomains = new[]
+        ///         {
+        ///             "yourdomain.com",
+        ///         },
+        ///         SsoDebugEnabled = true,
+        ///         Status = "ACTIVE",
+        ///     });
+        /// 
+        ///     var identittyProvider = Mongodbatlas.GetFederatedSettingsIdentityProviders.Invoke(new()
+        ///     {
+        ///         FederationSettingsId = identityProvider.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetFederatedSettingsIdentityProvidersResult> InvokeAsync(GetFederatedSettingsIdentityProvidersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedSettingsIdentityProvidersResult>("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", args ?? new GetFederatedSettingsIdentityProvidersArgs(), options.WithDefaults());
@@ -27,6 +55,34 @@ namespace Pulumi.Mongodbatlas
         /// Note: This implementation returns a maximum of 100 results.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", new()
+        ///     {
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f",
+        ///         Name = "mongodb_federation_test",
+        ///         AssociatedDomains = new[]
+        ///         {
+        ///             "yourdomain.com",
+        ///         },
+        ///         SsoDebugEnabled = true,
+        ///         Status = "ACTIVE",
+        ///     });
+        /// 
+        ///     var identittyProvider = Mongodbatlas.GetFederatedSettingsIdentityProviders.Invoke(new()
+        ///     {
+        ///         FederationSettingsId = identityProvider.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetFederatedSettingsIdentityProvidersResult> Invoke(GetFederatedSettingsIdentityProvidersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsIdentityProvidersResult>("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", args ?? new GetFederatedSettingsIdentityProvidersInvokeArgs(), options.WithDefaults());
@@ -37,6 +93,34 @@ namespace Pulumi.Mongodbatlas
         /// Note: This implementation returns a maximum of 100 results.
         /// 
         /// ## Example Usage
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var identityProvider = new Mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", new()
+        ///     {
+        ///         FederationSettingsId = "627a9687f7f7f7f774de306f",
+        ///         Name = "mongodb_federation_test",
+        ///         AssociatedDomains = new[]
+        ///         {
+        ///             "yourdomain.com",
+        ///         },
+        ///         SsoDebugEnabled = true,
+        ///         Status = "ACTIVE",
+        ///     });
+        /// 
+        ///     var identittyProvider = Mongodbatlas.GetFederatedSettingsIdentityProviders.Invoke(new()
+        ///     {
+        ///         FederationSettingsId = identityProvider.Id,
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetFederatedSettingsIdentityProvidersResult> Invoke(GetFederatedSettingsIdentityProvidersInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedSettingsIdentityProvidersResult>("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", args ?? new GetFederatedSettingsIdentityProvidersInvokeArgs(), options.WithDefaults());
@@ -135,7 +219,6 @@ namespace Pulumi.Mongodbatlas
         public readonly ImmutableArray<string> Protocols;
         /// <summary>
         /// Includes cloudProviderSnapshot object for each item detailed in the results array section.
-        /// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetFederatedSettingsIdentityProvidersResultResult> Results;
 

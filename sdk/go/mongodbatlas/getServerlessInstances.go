@@ -16,7 +16,7 @@ import (
 // `getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
 //
 // > **NOTE:**  Serverless instances do not support some Atlas features at this time.
-// For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+// For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
 //
 // ## Example Usage
 //
@@ -55,7 +55,7 @@ func LookupServerlessInstances(ctx *pulumi.Context, args *LookupServerlessInstan
 
 // A collection of arguments for invoking getServerlessInstances.
 type LookupServerlessInstancesArgs struct {
-	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+	// Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -79,7 +79,7 @@ func LookupServerlessInstancesOutput(ctx *pulumi.Context, args LookupServerlessI
 
 // A collection of arguments for invoking getServerlessInstances.
 type LookupServerlessInstancesOutputArgs struct {
-	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+	// Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

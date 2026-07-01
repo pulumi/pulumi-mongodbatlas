@@ -70,7 +70,7 @@ class GetGlobalClusterConfigResult:
     @pulumi.getter(name="managedNamespaces")
     def managed_namespaces(self) -> Sequence['outputs.GetGlobalClusterConfigManagedNamespaceResult']:
         """
-        Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+        Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
         """
         return pulumi.get(self, "managed_namespaces")
 
@@ -179,7 +179,7 @@ def get_global_cluster_config(cluster_name: Optional[_builtins.str] = None,
 
 
     :param _builtins.str cluster_name: The name of the Global Cluster.
-    :param Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+    :param Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
     :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
@@ -281,7 +281,7 @@ def get_global_cluster_config_output(cluster_name: pulumi.Input[Optional[_builti
 
 
     :param _builtins.str cluster_name: The name of the Global Cluster.
-    :param Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+    :param Sequence[Union['GetGlobalClusterConfigManagedNamespaceArgs', 'GetGlobalClusterConfigManagedNamespaceArgsDict']] managed_namespaces: Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
     :param _builtins.str project_id: The unique ID for the project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()

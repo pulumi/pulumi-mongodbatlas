@@ -13,7 +13,14 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `InstanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `EbsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
+        /// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+        /// 
+        /// For AWS, valid configurations are:
+        /// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `EbsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+        /// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `EbsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+        /// * For M30 or greater (not including `Mxx_NVME` tiers) with `EbsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+        /// 
+        /// For Azure, `InstanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
         /// </summary>
         [Input("diskIops")]
         public Input<int>? DiskIops { get; set; }
@@ -26,8 +33,9 @@ namespace Pulumi.Mongodbatlas.Inputs
 
         /// <summary>
         /// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-        /// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-        /// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        /// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `DiskIops`.
+        /// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+        /// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
         /// </summary>
         [Input("ebsVolumeType")]
         public Input<string>? EbsVolumeType { get; set; }
@@ -35,7 +43,9 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
         /// 
-        /// &gt; **NOTE:** Cluster tier names in the `InstanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+        /// Cluster tier names in the `InstanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+        /// 
+        /// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
         /// </summary>
         [Input("instanceSize")]
         public Input<string>? InstanceSize { get; set; }

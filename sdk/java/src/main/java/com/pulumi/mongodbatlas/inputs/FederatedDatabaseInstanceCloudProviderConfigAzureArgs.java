@@ -16,9 +16,17 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAzureArgs extends
 
     public static final FederatedDatabaseInstanceCloudProviderConfigAzureArgs Empty = new FederatedDatabaseInstanceCloudProviderConfigAzureArgs();
 
+    /**
+     * Unique identifier of the Azure Active Directory application associated with the service principal.
+     * 
+     */
     @Import(name="atlasAppId")
     private @Nullable Output<String> atlasAppId;
 
+    /**
+     * @return Unique identifier of the Azure Active Directory application associated with the service principal.
+     * 
+     */
     public Optional<Output<String>> atlasAppId() {
         return Optional.ofNullable(this.atlasAppId);
     }
@@ -87,11 +95,23 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAzureArgs extends
             $ = new FederatedDatabaseInstanceCloudProviderConfigAzureArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param atlasAppId Unique identifier of the Azure Active Directory application associated with the service principal.
+         * 
+         * @return builder
+         * 
+         */
         public Builder atlasAppId(@Nullable Output<String> atlasAppId) {
             $.atlasAppId = atlasAppId;
             return this;
         }
 
+        /**
+         * @param atlasAppId Unique identifier of the Azure Active Directory application associated with the service principal.
+         * 
+         * @return builder
+         * 
+         */
         public Builder atlasAppId(String atlasAppId) {
             return atlasAppId(Output.of(atlasAppId));
         }

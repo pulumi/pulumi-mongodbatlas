@@ -45,7 +45,7 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
- * > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+ * > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -136,6 +136,9 @@ export interface GetAlertConfigurationResult {
      * The threshold that causes an alert to be triggered. Required if `eventTypeName` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
      */
     readonly metricThresholdConfigs: outputs.GetAlertConfigurationMetricThresholdConfig[];
+    /**
+     * List of notifications to send when an alert condition is detected. See notification.
+     */
     readonly notifications: outputs.GetAlertConfigurationNotification[];
     readonly outputs?: outputs.GetAlertConfigurationOutput[];
     readonly projectId: string;
@@ -191,7 +194,7 @@ export interface GetAlertConfigurationResult {
  * });
  * ```
  *
- * > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+ * > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";

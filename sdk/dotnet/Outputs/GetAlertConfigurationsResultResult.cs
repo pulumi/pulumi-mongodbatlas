@@ -38,6 +38,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// The threshold that causes an alert to be triggered. Required if `EventTypeName` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationsResultMetricThresholdConfigResult> MetricThresholdConfigs;
+        /// <summary>
+        /// List of notifications to send when an alert condition is detected. See notification.
+        /// </summary>
         public readonly ImmutableArray<Outputs.GetAlertConfigurationsResultNotificationResult> Notifications;
         /// <summary>
         /// Requested output string format for the alert configuration

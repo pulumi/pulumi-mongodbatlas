@@ -29,7 +29,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// To:
     /// 
-    /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).\
+    /// &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).\
     /// &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
     /// 
     /// ## Example Usage
@@ -359,10 +359,6 @@ namespace Pulumi.Mongodbatlas
     /// * AWS, Private Endpoint
     /// * AWS, Regionalized Private Endpoints
     /// 
-    /// ### Further Examples
-    /// - NVMe Upgrade (Dedicated Cluster)
-    /// - Tenant to Dedicated Upgrade (Cluster)
-    /// 
     /// ## Import
     /// 
     /// Clusters can be imported using project ID and cluster name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -371,13 +367,13 @@ namespace Pulumi.Mongodbatlas
     /// $ pulumi import mongodbatlas:index/cluster:Cluster my_cluster 1112222b3bf99403840e8934-Cluster0
     /// ```
     /// 
-    /// See detailed information for arguments and attributes: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
+    /// See detailed information for arguments and attributes: [MongoDB API Clusters](https://www.mongodb.com/docs/atlas/reference/api/clusters-create-one/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/cluster:Cluster")]
     public partial class Cluster : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `AcceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `AcceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://www.mongodb.com/docs/atlas/reconfigure-replica-set-during-regional-outage/).
         /// </summary>
         [Output("acceptDataRisksAndForceReplicaSetReconfig")]
         public Output<string> AcceptDataRisksAndForceReplicaSetReconfig { get; private set; } = null!;
@@ -442,7 +438,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
-        /// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
+        /// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/overview/).
         /// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `CloudBackup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `BackupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         /// * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
         /// ```
@@ -493,7 +489,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ClusterType { get; private set; } = null!;
 
         /// <summary>
-        /// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        /// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         /// </summary>
         [Output("connectionStrings")]
         public Output<ImmutableArray<Outputs.ClusterConnectionString>> ConnectionStrings { get; private set; } = null!;
@@ -515,7 +511,7 @@ namespace Pulumi.Mongodbatlas
         public Output<double> DiskSizeGb { get; private set; } = null!;
 
         /// <summary>
-        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
+        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://www.mongodb.com/docs/atlas/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         /// </summary>
         [Output("encryptionAtRestProvider")]
         public Output<string> EncryptionAtRestProvider { get; private set; } = null!;
@@ -569,7 +565,7 @@ namespace Pulumi.Mongodbatlas
         public Output<int> NumShards { get; private set; } = null!;
 
         /// <summary>
-        /// Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters)  
+        /// Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters)  
         /// **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
         /// `lifecycle {
         /// IgnoreChanges = [paused]
@@ -609,14 +605,14 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProviderAutoScalingComputeMinInstanceSize { get; private set; } = null!;
 
         /// <summary>
-        /// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `ProviderInstanceSizeName` and `DiskSizeGb`.  This setting requires that `ProviderInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `ProviderDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
+        /// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `ProviderInstanceSizeName` and `DiskSizeGb`.  This setting requires that `ProviderInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `ProviderDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://www.mongodb.com/docs/atlas/reference/api/clusters-create-one/)
         /// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
         /// </summary>
         [Output("providerDiskIops")]
         public Output<int> ProviderDiskIops { get; private set; } = null!;
 
         /// <summary>
-        /// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+        /// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://www.mongodb.com/docs/atlas/reference/api/clusters-create-one/.
         /// </summary>
         [Output("providerDiskTypeName")]
         public Output<string> ProviderDiskTypeName { get; private set; } = null!;
@@ -631,7 +627,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> ProviderEncryptEbsVolumeFlag { get; private set; } = null!;
 
         /// <summary>
-        /// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
+        /// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://www.mongodb.com/docs/atlas/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         /// </summary>
         [Output("providerInstanceSizeName")]
         public Output<string> ProviderInstanceSizeName { get; private set; } = null!;
@@ -650,7 +646,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProviderName { get; private set; } = null!;
 
         /// <summary>
-        /// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        /// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
         /// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
         /// </summary>
         [Output("providerRegionName")]
@@ -676,7 +672,7 @@ namespace Pulumi.Mongodbatlas
         public Output<int> ReplicationFactor { get; private set; } = null!;
 
         /// <summary>
-        /// Configuration for cluster regions.  See Replication Spec below for more details.
+        /// Configuration for cluster regions.  See the Replication Spec section below for more details.
         /// </summary>
         [Output("replicationSpecs")]
         public Output<ImmutableArray<Outputs.ClusterReplicationSpec>> ReplicationSpecs { get; private set; } = null!;
@@ -778,7 +774,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class ClusterArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `AcceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `AcceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://www.mongodb.com/docs/atlas/reconfigure-replica-set-during-regional-outage/).
         /// </summary>
         [Input("acceptDataRisksAndForceReplicaSetReconfig")]
         public Input<string>? AcceptDataRisksAndForceReplicaSetReconfig { get; set; }
@@ -843,7 +839,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
-        /// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
+        /// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/overview/).
         /// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `CloudBackup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `BackupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         /// * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
         /// ```
@@ -898,7 +894,7 @@ namespace Pulumi.Mongodbatlas
         public Input<double>? DiskSizeGb { get; set; }
 
         /// <summary>
-        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
+        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://www.mongodb.com/docs/atlas/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         /// </summary>
         [Input("encryptionAtRestProvider")]
         public Input<string>? EncryptionAtRestProvider { get; set; }
@@ -934,7 +930,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? NumShards { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters)  
+        /// Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters)  
         /// **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
         /// `lifecycle {
         /// IgnoreChanges = [paused]
@@ -974,14 +970,14 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProviderAutoScalingComputeMinInstanceSize { get; set; }
 
         /// <summary>
-        /// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `ProviderInstanceSizeName` and `DiskSizeGb`.  This setting requires that `ProviderInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `ProviderDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
+        /// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `ProviderInstanceSizeName` and `DiskSizeGb`.  This setting requires that `ProviderInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `ProviderDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://www.mongodb.com/docs/atlas/reference/api/clusters-create-one/)
         /// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
         /// </summary>
         [Input("providerDiskIops")]
         public Input<int>? ProviderDiskIops { get; set; }
 
         /// <summary>
-        /// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+        /// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://www.mongodb.com/docs/atlas/reference/api/clusters-create-one/.
         /// </summary>
         [Input("providerDiskTypeName")]
         public Input<string>? ProviderDiskTypeName { get; set; }
@@ -993,7 +989,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? ProviderEncryptEbsVolume { get; set; }
 
         /// <summary>
-        /// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
+        /// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://www.mongodb.com/docs/atlas/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         /// </summary>
         [Input("providerInstanceSizeName", required: true)]
         public Input<string> ProviderInstanceSizeName { get; set; } = null!;
@@ -1012,7 +1008,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProviderName { get; set; } = null!;
 
         /// <summary>
-        /// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        /// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
         /// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
         /// </summary>
         [Input("providerRegionName")]
@@ -1041,7 +1037,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.ClusterReplicationSpecArgs>? _replicationSpecs;
 
         /// <summary>
-        /// Configuration for cluster regions.  See Replication Spec below for more details.
+        /// Configuration for cluster regions.  See the Replication Spec section below for more details.
         /// </summary>
         public InputList<Inputs.ClusterReplicationSpecArgs> ReplicationSpecs
         {
@@ -1090,7 +1086,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class ClusterState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `AcceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+        /// If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `AcceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://www.mongodb.com/docs/atlas/reconfigure-replica-set-during-regional-outage/).
         /// </summary>
         [Input("acceptDataRisksAndForceReplicaSetReconfig")]
         public Input<string>? AcceptDataRisksAndForceReplicaSetReconfig { get; set; }
@@ -1155,7 +1151,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Legacy Backup - Set to true to enable Atlas legacy backups for the cluster.
-        /// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/).
+        /// **Important** - MongoDB deprecated the Legacy Backup feature. Clusters that use Legacy Backup can continue to use it. MongoDB recommends using [Cloud Backups](https://www.mongodb.com/docs/atlas/backup/cloud-backup/overview/).
         /// * New Atlas clusters of any type do not support this parameter. These clusters must use Cloud Backup, `CloudBackup`, to enable Cloud Backup.  If you create a new Atlas cluster and set `BackupEnabled` to true, the Provider will respond with an error.  This change doesn’t affect existing clusters that use legacy backups.
         /// * Setting this value to false to disable legacy backups for the cluster will let Atlas delete any stored snapshots. In order to preserve the legacy backups snapshots, disable the legacy backups and enable the cloud backups in the single **pulumi up** action.
         /// ```
@@ -1209,7 +1205,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.ClusterConnectionStringGetArgs>? _connectionStrings;
 
         /// <summary>
-        /// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        /// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         /// </summary>
         public InputList<Inputs.ClusterConnectionStringGetArgs> ConnectionStrings
         {
@@ -1234,7 +1230,7 @@ namespace Pulumi.Mongodbatlas
         public Input<double>? DiskSizeGb { get; set; }
 
         /// <summary>
-        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
+        /// Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://www.mongodb.com/docs/atlas/security-aws-kms/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For complete documentation on configuring Encryption at Rest, see Encryption at Rest using Customer Key Management. Requires M10 or greater. and for legacy backups, backup_enabled, to be false or omitted. **Note: Atlas encrypts all cluster storage and snapshot volumes, securing all cluster data on disk: a concept known as encryption at rest, by default**.
         /// </summary>
         [Input("encryptionAtRestProvider")]
         public Input<string>? EncryptionAtRestProvider { get; set; }
@@ -1294,7 +1290,7 @@ namespace Pulumi.Mongodbatlas
         public Input<int>? NumShards { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters)  
+        /// Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster.  See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters)  
         /// **NOTE** Pause lasts for up to 30 days. If you don't resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
         /// `lifecycle {
         /// IgnoreChanges = [paused]
@@ -1334,14 +1330,14 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProviderAutoScalingComputeMinInstanceSize { get; set; }
 
         /// <summary>
-        /// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `ProviderInstanceSizeName` and `DiskSizeGb`.  This setting requires that `ProviderInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `ProviderDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/)
+        /// The maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected `ProviderInstanceSizeName` and `DiskSizeGb`.  This setting requires that `ProviderInstanceSizeName` to be M30 or greater and cannot be used with clusters with local NVMe SSDs.  The default value for `ProviderDiskIops` is the same as the cluster tier's Standard IOPS value, as viewable in the Atlas console.  It is used in cases where a higher number of IOPS is needed and possible.  If a value is submitted that is lower or equal to the default IOPS value for the cluster tier Atlas ignores the requested value and uses the default.  More details available under the providerSettings.diskIOPS parameter: [MongoDB API Clusters](https://www.mongodb.com/docs/atlas/reference/api/clusters-create-one/)
         /// * You do not need to configure IOPS for a STANDARD disk configuration but only for a PROVISIONED configuration.
         /// </summary>
         [Input("providerDiskIops")]
         public Input<int>? ProviderDiskIops { get; set; }
 
         /// <summary>
-        /// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://docs.atlas.mongodb.com/reference/api/clusters-create-one/.
+        /// Azure disk type of the server’s root volume. If omitted, Atlas uses the default disk type for the selected providerSettings.instanceSizeName.  Example disk types and associated storage sizes: P4 - 32GB, P6 - 64GB, P10 - 128GB, P15 - 256GB, P20 - 512GB, P30 - 1024GB, P40 - 2048GB, P50 - 4095GB.  More information and the most update to date disk types/storage sizes can be located at https://www.mongodb.com/docs/atlas/reference/api/clusters-create-one/.
         /// </summary>
         [Input("providerDiskTypeName")]
         public Input<string>? ProviderDiskTypeName { get; set; }
@@ -1356,7 +1352,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? ProviderEncryptEbsVolumeFlag { get; set; }
 
         /// <summary>
-        /// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://docs.atlas.mongodb.com/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
+        /// Atlas provides different instance sizes, each with a default storage capacity and RAM size. The instance size you select is used for all the data-bearing servers in your cluster. See [Create a Cluster](https://www.mongodb.com/docs/atlas/reference/api/clusters-create-one/) `providerSettings.instanceSizeName` for valid values and default resources.
         /// </summary>
         [Input("providerInstanceSizeName")]
         public Input<string>? ProviderInstanceSizeName { get; set; }
@@ -1375,7 +1371,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProviderName { get; set; }
 
         /// <summary>
-        /// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        /// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
         /// Do not specify this field when creating a multi-region cluster using the replicationSpec document or a Global Cluster with the replicationSpecs array.
         /// </summary>
         [Input("providerRegionName")]
@@ -1404,7 +1400,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.ClusterReplicationSpecGetArgs>? _replicationSpecs;
 
         /// <summary>
-        /// Configuration for cluster regions.  See Replication Spec below for more details.
+        /// Configuration for cluster regions.  See the Replication Spec section below for more details.
         /// </summary>
         public InputList<Inputs.ClusterReplicationSpecGetArgs> ReplicationSpecs
         {

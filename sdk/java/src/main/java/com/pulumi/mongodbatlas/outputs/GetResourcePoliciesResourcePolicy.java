@@ -50,7 +50,7 @@ public final class GetResourcePoliciesResourcePolicy {
      */
     private String name;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
      * 
      */
     private String orgId;
@@ -116,7 +116,7 @@ public final class GetResourcePoliciesResourcePolicy {
         return this.name;
     }
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
      * 
      */
     public String orgId() {

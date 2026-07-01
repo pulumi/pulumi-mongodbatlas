@@ -77,14 +77,14 @@ public final class NetworkContainerArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * @return Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
      * 
      */
     public Optional<Output<String>> region() {
@@ -92,14 +92,14 @@ public final class NetworkContainerArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+     * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
      * 
      */
     @Import(name="regionName")
     private @Nullable Output<String> regionName;
 
     /**
-     * @return The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+     * @return The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
      * 
      */
     public Optional<Output<String>> regionName() {
@@ -107,14 +107,14 @@ public final class NetworkContainerArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+     * Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
      * 
      */
     @Import(name="regions")
     private @Nullable Output<List<String>> regions;
 
     /**
-     * @return Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+     * @return Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
      * 
      */
     public Optional<Output<List<String>>> regions() {
@@ -228,7 +228,7 @@ public final class NetworkContainerArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param region Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+         * @param region Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
          * 
          * @return builder
          * 
@@ -239,7 +239,7 @@ public final class NetworkContainerArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param region Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+         * @param region Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
          * 
          * @return builder
          * 
@@ -249,7 +249,7 @@ public final class NetworkContainerArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param regionName The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+         * @param regionName The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
          * 
          * @return builder
          * 
@@ -260,7 +260,7 @@ public final class NetworkContainerArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param regionName The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+         * @param regionName The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
          * 
          * @return builder
          * 
@@ -270,7 +270,7 @@ public final class NetworkContainerArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param regions Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+         * @param regions Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
          * 
          * @return builder
          * 
@@ -281,7 +281,7 @@ public final class NetworkContainerArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param regions Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+         * @param regions Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
          * 
          * @return builder
          * 
@@ -291,7 +291,7 @@ public final class NetworkContainerArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param regions Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+         * @param regions Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
          * 
          * @return builder
          * 

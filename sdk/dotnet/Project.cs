@@ -66,7 +66,7 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     /// $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
     /// ```
-    /// For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
+    /// For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://www.mongodb.com/docs/atlas/reference/api/teams/) Documentation for more information.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/project:Project")]
     public partial class Project : global::Pulumi.CustomResource
@@ -147,7 +147,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> OrgId { get; private set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        /// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
         /// </summary>
         [Output("projectOwnerId")]
         public Output<string?> ProjectOwnerId { get; private set; } = null!;
@@ -282,7 +282,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> OrgId { get; set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        /// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
         /// </summary>
         [Input("projectOwnerId")]
         public Input<string>? ProjectOwnerId { get; set; }
@@ -409,7 +409,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? OrgId { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+        /// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
         /// </summary>
         [Input("projectOwnerId")]
         public Input<string>? ProjectOwnerId { get; set; }

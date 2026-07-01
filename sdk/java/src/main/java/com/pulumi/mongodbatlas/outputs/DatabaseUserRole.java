@@ -23,7 +23,7 @@ public final class DatabaseUserRole {
      */
     private String databaseName;
     /**
-     * @return Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
+     * @return Name of the role to grant. See [Create a Database User](https://www.mongodb.com/docs/atlas/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
      * 
      */
     private String roleName;
@@ -44,7 +44,7 @@ public final class DatabaseUserRole {
         return this.databaseName;
     }
     /**
-     * @return Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
+     * @return Name of the role to grant. See [Create a Database User](https://www.mongodb.com/docs/atlas/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
      * 
      */
     public String roleName() {

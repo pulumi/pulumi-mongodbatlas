@@ -123,7 +123,7 @@ import (
 // $ pulumi import mongodbatlas:index/networkContainer:NetworkContainer my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a
 // ```
 //
-// See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
+// See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/)
 type NetworkContainer struct {
 	pulumi.CustomResourceState
 
@@ -150,11 +150,11 @@ type NetworkContainer struct {
 	ProviderName pulumi.StringPtrOutput `pulumi:"providerName"`
 	// Indicates whether the project has Network Peering connections deployed in the container.
 	Provisioned pulumi.BoolOutput `pulumi:"provisioned"`
-	// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 	RegionName pulumi.StringOutput `pulumi:"regionName"`
-	// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+	// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
 	Regions pulumi.StringArrayOutput `pulumi:"regions"`
 	// The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
 	VnetName pulumi.StringOutput `pulumi:"vnetName"`
@@ -221,11 +221,11 @@ type networkContainerState struct {
 	ProviderName *string `pulumi:"providerName"`
 	// Indicates whether the project has Network Peering connections deployed in the container.
 	Provisioned *bool `pulumi:"provisioned"`
-	// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	Region *string `pulumi:"region"`
-	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 	RegionName *string `pulumi:"regionName"`
-	// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+	// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
 	Regions []string `pulumi:"regions"`
 	// The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
 	VnetName *string `pulumi:"vnetName"`
@@ -257,11 +257,11 @@ type NetworkContainerState struct {
 	ProviderName pulumi.StringPtrInput
 	// Indicates whether the project has Network Peering connections deployed in the container.
 	Provisioned pulumi.BoolPtrInput
-	// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	Region pulumi.StringPtrInput
-	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 	RegionName pulumi.StringPtrInput
-	// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+	// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
 	Regions pulumi.StringArrayInput
 	// The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
 	VnetName pulumi.StringPtrInput
@@ -287,11 +287,11 @@ type networkContainerArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
 	ProviderName *string `pulumi:"providerName"`
-	// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	Region *string `pulumi:"region"`
-	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 	RegionName *string `pulumi:"regionName"`
-	// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+	// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
 	Regions []string `pulumi:"regions"`
 }
 
@@ -310,11 +310,11 @@ type NetworkContainerArgs struct {
 	ProjectId pulumi.StringInput
 	// Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
 	ProviderName pulumi.StringPtrInput
-	// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	Region pulumi.StringPtrInput
-	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 	RegionName pulumi.StringPtrInput
-	// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+	// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
 	Regions pulumi.StringArrayInput
 }
 
@@ -452,17 +452,17 @@ func (o NetworkContainerOutput) Provisioned() pulumi.BoolOutput {
 	return o.ApplyT(func(v *NetworkContainer) pulumi.BoolOutput { return v.Provisioned }).(pulumi.BoolOutput)
 }
 
-// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 func (o NetworkContainerOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkContainer) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 func (o NetworkContainerOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkContainer) pulumi.StringOutput { return v.RegionName }).(pulumi.StringOutput)
 }
 
-// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+// Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
 func (o NetworkContainerOutput) Regions() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *NetworkContainer) pulumi.StringArrayOutput { return v.Regions }).(pulumi.StringArrayOutput)
 }

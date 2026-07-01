@@ -24,41 +24,49 @@ public final class GetEventTriggersResult {
      */
     private String configDatabase;
     /**
-     * @return If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+     * @return If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
      * 
      */
     private Boolean configFullDocument;
+    /**
+     * @return If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
+     * 
+     */
     private Boolean configFullDocumentBefore;
     /**
-     * @return A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+     * @return A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
      * 
      */
     private String configMatch;
     /**
-     * @return The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+     * @return The [authentication operation type](https://www.mongodb.com/docs/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
      * 
      */
     private String configOperationType;
     /**
-     * @return The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+     * @return The [database event operation types](https://www.mongodb.com/docs/realm/triggers/database-triggers/#std-label-database-events) to listen for.
      * 
      */
     private List<String> configOperationTypes;
     /**
-     * @return A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+     * @return A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
      * 
      */
     private String configProject;
     /**
-     * @return A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+     * @return A list of one or more [authentication provider](https://www.mongodb.com/docs/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
      * 
      */
     private List<String> configProviders;
     /**
-     * @return A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+     * @return A [cron expression](https://www.mongodb.com/docs/realm/triggers/cron-expressions/) that defines the trigger schedule.
      * 
      */
     private String configSchedule;
+    /**
+     * @return The type of the scheduled trigger.
+     * 
+     */
     private String configScheduleType;
     /**
      * @return The ID of the MongoDB Service associated with the trigger.
@@ -90,6 +98,10 @@ public final class GetEventTriggersResult {
      * 
      */
     private String name;
+    /**
+     * @return The unique ID of the trigger.
+     * 
+     */
     private String triggerId;
     /**
      * @return The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
@@ -118,57 +130,65 @@ public final class GetEventTriggersResult {
         return this.configDatabase;
     }
     /**
-     * @return If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+     * @return If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
      * 
      */
     public Boolean configFullDocument() {
         return this.configFullDocument;
     }
+    /**
+     * @return If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
+     * 
+     */
     public Boolean configFullDocumentBefore() {
         return this.configFullDocumentBefore;
     }
     /**
-     * @return A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+     * @return A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
      * 
      */
     public String configMatch() {
         return this.configMatch;
     }
     /**
-     * @return The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+     * @return The [authentication operation type](https://www.mongodb.com/docs/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
      * 
      */
     public String configOperationType() {
         return this.configOperationType;
     }
     /**
-     * @return The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+     * @return The [database event operation types](https://www.mongodb.com/docs/realm/triggers/database-triggers/#std-label-database-events) to listen for.
      * 
      */
     public List<String> configOperationTypes() {
         return this.configOperationTypes;
     }
     /**
-     * @return A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+     * @return A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
      * 
      */
     public String configProject() {
         return this.configProject;
     }
     /**
-     * @return A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+     * @return A list of one or more [authentication provider](https://www.mongodb.com/docs/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
      * 
      */
     public List<String> configProviders() {
         return this.configProviders;
     }
     /**
-     * @return A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+     * @return A [cron expression](https://www.mongodb.com/docs/realm/triggers/cron-expressions/) that defines the trigger schedule.
      * 
      */
     public String configSchedule() {
         return this.configSchedule;
     }
+    /**
+     * @return The type of the scheduled trigger.
+     * 
+     */
     public String configScheduleType() {
         return this.configScheduleType;
     }
@@ -214,6 +234,10 @@ public final class GetEventTriggersResult {
     public String name() {
         return this.name;
     }
+    /**
+     * @return The unique ID of the trigger.
+     * 
+     */
     public String triggerId() {
         return this.triggerId;
     }

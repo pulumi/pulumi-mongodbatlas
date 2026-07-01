@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? ClientSecret;
         /// <summary>
-        /// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+        /// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
         /// </summary>
         public readonly string? Mechanism;
         /// <summary>

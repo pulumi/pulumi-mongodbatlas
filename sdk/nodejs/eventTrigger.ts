@@ -173,12 +173,15 @@ export class EventTrigger extends pulumi.CustomResource {
      */
     declare public readonly configDatabase: pulumi.Output<string>;
     /**
-     * Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+     * Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
      */
     declare public readonly configFullDocument: pulumi.Output<boolean>;
+    /**
+     * If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
+     */
     declare public readonly configFullDocumentBefore: pulumi.Output<boolean>;
     /**
-     * Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
+     * Optional for `DATABASE` type. A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
      */
     declare public readonly configMatch: pulumi.Output<string>;
     /**
@@ -190,7 +193,7 @@ export class EventTrigger extends pulumi.CustomResource {
      */
     declare public readonly configOperationTypes: pulumi.Output<string[]>;
     /**
-     * Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+     * Optional for `DATABASE` type. A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
      */
     declare public readonly configProject: pulumi.Output<string>;
     /**
@@ -201,6 +204,9 @@ export class EventTrigger extends pulumi.CustomResource {
      * Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
      */
     declare public readonly configSchedule: pulumi.Output<string>;
+    /**
+     * The type of the scheduled trigger.
+     */
     declare public /*out*/ readonly configScheduleType: pulumi.Output<string>;
     /**
      * Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
@@ -337,12 +343,15 @@ export interface EventTriggerState {
      */
     configDatabase?: pulumi.Input<string | undefined>;
     /**
-     * Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+     * Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
      */
     configFullDocument?: pulumi.Input<boolean | undefined>;
+    /**
+     * If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
+     */
     configFullDocumentBefore?: pulumi.Input<boolean | undefined>;
     /**
-     * Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
+     * Optional for `DATABASE` type. A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
      */
     configMatch?: pulumi.Input<string | undefined>;
     /**
@@ -354,7 +363,7 @@ export interface EventTriggerState {
      */
     configOperationTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+     * Optional for `DATABASE` type. A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
      */
     configProject?: pulumi.Input<string | undefined>;
     /**
@@ -365,6 +374,9 @@ export interface EventTriggerState {
      * Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
      */
     configSchedule?: pulumi.Input<string | undefined>;
+    /**
+     * The type of the scheduled trigger.
+     */
     configScheduleType?: pulumi.Input<string | undefined>;
     /**
      * Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
@@ -428,12 +440,15 @@ export interface EventTriggerArgs {
      */
     configDatabase?: pulumi.Input<string | undefined>;
     /**
-     * Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+     * Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
      */
     configFullDocument?: pulumi.Input<boolean | undefined>;
+    /**
+     * If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
+     */
     configFullDocumentBefore?: pulumi.Input<boolean | undefined>;
     /**
-     * Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
+     * Optional for `DATABASE` type. A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
      */
     configMatch?: pulumi.Input<string | undefined>;
     /**
@@ -445,7 +460,7 @@ export interface EventTriggerArgs {
      */
     configOperationTypes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+     * Optional for `DATABASE` type. A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
      */
     configProject?: pulumi.Input<string | undefined>;
     /**

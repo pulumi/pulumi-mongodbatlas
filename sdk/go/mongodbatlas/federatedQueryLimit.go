@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+// `FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
 //
 // ## Example Usage
 //
@@ -65,16 +65,16 @@ type FederatedQueryLimit struct {
 	// Amount that indicates the current usage of the limit.
 	CurrentUsage pulumi.IntOutput `pulumi:"currentUsage"`
 	// Default value of the limit.
-	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-	// * `maximumLimit` - Maximum value of the limit.
-	DefaultLimit     pulumi.IntPtrOutput `pulumi:"defaultLimit"`
+	DefaultLimit pulumi.IntPtrOutput `pulumi:"defaultLimit"`
+	// Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
 	LastModifiedDate pulumi.StringOutput `pulumi:"lastModifiedDate"`
 	// String enum that indicates whether the identity provider is active or not. Accepted values are:
 	// * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
 	// * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
 	// * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
 	// * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
-	LimitName    pulumi.StringOutput `pulumi:"limitName"`
+	LimitName pulumi.StringOutput `pulumi:"limitName"`
+	// Maximum value of the limit.
 	MaximumLimit pulumi.IntPtrOutput `pulumi:"maximumLimit"`
 	// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
 	OverrunPolicy pulumi.StringOutput `pulumi:"overrunPolicy"`
@@ -134,17 +134,17 @@ type federatedQueryLimitState struct {
 	// Amount that indicates the current usage of the limit.
 	CurrentUsage *int `pulumi:"currentUsage"`
 	// Default value of the limit.
-	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-	// * `maximumLimit` - Maximum value of the limit.
-	DefaultLimit     *int    `pulumi:"defaultLimit"`
+	DefaultLimit *int `pulumi:"defaultLimit"`
+	// Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
 	LastModifiedDate *string `pulumi:"lastModifiedDate"`
 	// String enum that indicates whether the identity provider is active or not. Accepted values are:
 	// * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
 	// * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
 	// * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
 	// * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
-	LimitName    *string `pulumi:"limitName"`
-	MaximumLimit *int    `pulumi:"maximumLimit"`
+	LimitName *string `pulumi:"limitName"`
+	// Maximum value of the limit.
+	MaximumLimit *int `pulumi:"maximumLimit"`
 	// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
 	OverrunPolicy *string `pulumi:"overrunPolicy"`
 	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
@@ -159,16 +159,16 @@ type FederatedQueryLimitState struct {
 	// Amount that indicates the current usage of the limit.
 	CurrentUsage pulumi.IntPtrInput
 	// Default value of the limit.
-	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-	// * `maximumLimit` - Maximum value of the limit.
-	DefaultLimit     pulumi.IntPtrInput
+	DefaultLimit pulumi.IntPtrInput
+	// Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
 	LastModifiedDate pulumi.StringPtrInput
 	// String enum that indicates whether the identity provider is active or not. Accepted values are:
 	// * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
 	// * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
 	// * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
 	// * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
-	LimitName    pulumi.StringPtrInput
+	LimitName pulumi.StringPtrInput
+	// Maximum value of the limit.
 	MaximumLimit pulumi.IntPtrInput
 	// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
 	OverrunPolicy pulumi.StringPtrInput
@@ -186,16 +186,15 @@ func (FederatedQueryLimitState) ElementType() reflect.Type {
 
 type federatedQueryLimitArgs struct {
 	// Default value of the limit.
-	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-	// * `maximumLimit` - Maximum value of the limit.
 	DefaultLimit *int `pulumi:"defaultLimit"`
 	// String enum that indicates whether the identity provider is active or not. Accepted values are:
 	// * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
 	// * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
 	// * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
 	// * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
-	LimitName    string `pulumi:"limitName"`
-	MaximumLimit *int   `pulumi:"maximumLimit"`
+	LimitName string `pulumi:"limitName"`
+	// Maximum value of the limit.
+	MaximumLimit *int `pulumi:"maximumLimit"`
 	// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
 	OverrunPolicy string `pulumi:"overrunPolicy"`
 	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
@@ -209,15 +208,14 @@ type federatedQueryLimitArgs struct {
 // The set of arguments for constructing a FederatedQueryLimit resource.
 type FederatedQueryLimitArgs struct {
 	// Default value of the limit.
-	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-	// * `maximumLimit` - Maximum value of the limit.
 	DefaultLimit pulumi.IntPtrInput
 	// String enum that indicates whether the identity provider is active or not. Accepted values are:
 	// * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
 	// * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
 	// * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
 	// * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
-	LimitName    pulumi.StringInput
+	LimitName pulumi.StringInput
+	// Maximum value of the limit.
 	MaximumLimit pulumi.IntPtrInput
 	// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
 	OverrunPolicy pulumi.StringInput
@@ -322,12 +320,11 @@ func (o FederatedQueryLimitOutput) CurrentUsage() pulumi.IntOutput {
 }
 
 // Default value of the limit.
-// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-// * `maximumLimit` - Maximum value of the limit.
 func (o FederatedQueryLimitOutput) DefaultLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *FederatedQueryLimit) pulumi.IntPtrOutput { return v.DefaultLimit }).(pulumi.IntPtrOutput)
 }
 
+// Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
 func (o FederatedQueryLimitOutput) LastModifiedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedQueryLimit) pulumi.StringOutput { return v.LastModifiedDate }).(pulumi.StringOutput)
 }
@@ -341,6 +338,7 @@ func (o FederatedQueryLimitOutput) LimitName() pulumi.StringOutput {
 	return o.ApplyT(func(v *FederatedQueryLimit) pulumi.StringOutput { return v.LimitName }).(pulumi.StringOutput)
 }
 
+// Maximum value of the limit.
 func (o FederatedQueryLimitOutput) MaximumLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *FederatedQueryLimit) pulumi.IntPtrOutput { return v.MaximumLimit }).(pulumi.IntPtrOutput)
 }

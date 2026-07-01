@@ -233,7 +233,7 @@ def get_serverless_instance(auto_indexing: Optional[_builtins.bool] = None,
 
     `ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
     > **NOTE:**  Serverless instances do not support some Atlas features at this time.
-    For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+    For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
 
     ## Example Usage
 
@@ -292,7 +292,7 @@ def get_serverless_instance_output(auto_indexing: pulumi.Input[Optional[Optional
 
     `ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
     > **NOTE:**  Serverless instances do not support some Atlas features at this time.
-    For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+    For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
 
     ## Example Usage
 

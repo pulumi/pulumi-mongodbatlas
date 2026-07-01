@@ -22,7 +22,7 @@ public final class StreamConnectionAuthentication {
      */
     private @Nullable String clientSecret;
     /**
-     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
      * 
      */
     private @Nullable String mechanism;
@@ -73,7 +73,7 @@ public final class StreamConnectionAuthentication {
         return Optional.ofNullable(this.clientSecret);
     }
     /**
-     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
      * 
      */
     public Optional<String> mechanism() {

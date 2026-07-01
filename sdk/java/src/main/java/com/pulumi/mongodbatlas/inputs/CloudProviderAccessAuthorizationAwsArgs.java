@@ -15,14 +15,14 @@ public final class CloudProviderAccessAuthorizationAwsArgs extends com.pulumi.re
     public static final CloudProviderAccessAuthorizationAwsArgs Empty = new CloudProviderAccessAuthorizationAwsArgs();
 
     /**
-     * ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+     * ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://www.mongodb.com/docs/atlas/security/set-up-unified-aws-access/#set-up-unified-aws-access).
      * 
      */
     @Import(name="iamAssumedRoleArn", required=true)
     private Output<String> iamAssumedRoleArn;
 
     /**
-     * @return ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+     * @return ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://www.mongodb.com/docs/atlas/security/set-up-unified-aws-access/#set-up-unified-aws-access).
      * 
      */
     public Output<String> iamAssumedRoleArn() {
@@ -54,7 +54,7 @@ public final class CloudProviderAccessAuthorizationAwsArgs extends com.pulumi.re
         }
 
         /**
-         * @param iamAssumedRoleArn ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+         * @param iamAssumedRoleArn ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://www.mongodb.com/docs/atlas/security/set-up-unified-aws-access/#set-up-unified-aws-access).
          * 
          * @return builder
          * 
@@ -65,7 +65,7 @@ public final class CloudProviderAccessAuthorizationAwsArgs extends com.pulumi.re
         }
 
         /**
-         * @param iamAssumedRoleArn ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+         * @param iamAssumedRoleArn ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://www.mongodb.com/docs/atlas/security/set-up-unified-aws-access/#set-up-unified-aws-access).
          * 
          * @return builder
          * 

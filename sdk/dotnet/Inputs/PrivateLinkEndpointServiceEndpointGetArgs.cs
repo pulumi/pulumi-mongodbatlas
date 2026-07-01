@@ -25,7 +25,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? IpAddress { get; set; }
 
         /// <summary>
-        /// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+        /// Status of the endpoint. Atlas returns one of the [values shown above](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }

@@ -28,7 +28,7 @@ public final class GetStreamConnectionResult {
      */
     private GetStreamConnectionAuthentication authentication;
     /**
-     * @return The configuration for AWS Lambda connection. See AWS
+     * @return The configuration for S3 connection. See AWS.
      * 
      */
     private GetStreamConnectionAws aws;
@@ -64,7 +64,7 @@ public final class GetStreamConnectionResult {
      */
     private GetStreamConnectionDbRoleToExecute dbRoleToExecute;
     /**
-     * @return The configuration for GCP Pub/Sub connection. See GCP
+     * @return The configuration for GCP Pub/Sub connection. See GCP.
      * 
      */
     private GetStreamConnectionGcp gcp;
@@ -82,7 +82,7 @@ public final class GetStreamConnectionResult {
     @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
     private @Nullable String instanceName;
     /**
-     * @return Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
+     * @return Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
      * 
      */
     private GetStreamConnectionNetworking networking;
@@ -130,7 +130,7 @@ public final class GetStreamConnectionResult {
         return this.authentication;
     }
     /**
-     * @return The configuration for AWS Lambda connection. See AWS
+     * @return The configuration for S3 connection. See AWS.
      * 
      */
     public GetStreamConnectionAws aws() {
@@ -182,7 +182,7 @@ public final class GetStreamConnectionResult {
         return this.dbRoleToExecute;
     }
     /**
-     * @return The configuration for GCP Pub/Sub connection. See GCP
+     * @return The configuration for GCP Pub/Sub connection. See GCP.
      * 
      */
     public GetStreamConnectionGcp gcp() {
@@ -208,7 +208,7 @@ public final class GetStreamConnectionResult {
         return Optional.ofNullable(this.instanceName);
     }
     /**
-     * @return Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
+     * @return Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
      * 
      */
     public GetStreamConnectionNetworking networking() {

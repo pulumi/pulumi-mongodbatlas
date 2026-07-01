@@ -50,14 +50,14 @@ public final class GlobalClusterConfigArgs extends com.pulumi.resources.Resource
     }
 
     /**
-     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
      * 
      */
     @Import(name="managedNamespaces")
     private @Nullable Output<List<GlobalClusterConfigManagedNamespaceArgs>> managedNamespaces;
 
     /**
-     * @return Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+     * @return Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
      * 
      */
     public Optional<Output<List<GlobalClusterConfigManagedNamespaceArgs>>> managedNamespaces() {
@@ -159,7 +159,7 @@ public final class GlobalClusterConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param managedNamespaces Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+         * @param managedNamespaces Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
          * 
          * @return builder
          * 
@@ -170,7 +170,7 @@ public final class GlobalClusterConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param managedNamespaces Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+         * @param managedNamespaces Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
          * 
          * @return builder
          * 
@@ -180,7 +180,7 @@ public final class GlobalClusterConfigArgs extends com.pulumi.resources.Resource
         }
 
         /**
-         * @param managedNamespaces Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+         * @param managedNamespaces Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
          * 
          * @return builder
          * 

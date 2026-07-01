@@ -12,6 +12,9 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class StreamInstanceStreamConfigArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Maximum tier size for the Stream Instance.
+        /// </summary>
         [Input("maxTierSize")]
         public Input<string>? MaxTierSize { get; set; }
 

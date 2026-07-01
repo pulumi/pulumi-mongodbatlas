@@ -45,14 +45,14 @@ public final class GetSearchIndexesArgs extends com.pulumi.resources.InvokeArgs 
     }
 
     /**
-     * (Required) Name of the database the collection is in.
+     * Name of the database containing the collection with one or more Atlas Search indexes.
      * 
      */
     @Import(name="database", required=true)
     private Output<String> database;
 
     /**
-     * @return (Required) Name of the database the collection is in.
+     * @return Name of the database containing the collection with one or more Atlas Search indexes.
      * 
      */
     public Output<String> database() {
@@ -60,14 +60,14 @@ public final class GetSearchIndexesArgs extends com.pulumi.resources.InvokeArgs 
     }
 
     /**
-     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+     * Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      * 
      */
     @Import(name="projectId", required=true)
     private Output<String> projectId;
 
     /**
-     * @return Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+     * @return Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      * 
      */
     public Output<String> projectId() {
@@ -144,7 +144,7 @@ public final class GetSearchIndexesArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param database (Required) Name of the database the collection is in.
+         * @param database Name of the database containing the collection with one or more Atlas Search indexes.
          * 
          * @return builder
          * 
@@ -155,7 +155,7 @@ public final class GetSearchIndexesArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param database (Required) Name of the database the collection is in.
+         * @param database Name of the database containing the collection with one or more Atlas Search indexes.
          * 
          * @return builder
          * 
@@ -165,7 +165,7 @@ public final class GetSearchIndexesArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param projectId Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+         * @param projectId Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 
@@ -176,7 +176,7 @@ public final class GetSearchIndexesArgs extends com.pulumi.resources.InvokeArgs 
         }
 
         /**
-         * @param projectId Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+         * @param projectId Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
          * 
          * @return builder
          * 

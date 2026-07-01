@@ -33,14 +33,14 @@ public final class OnlineArchiveCriteriaArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
      * 
      */
     @Import(name="dateFormat")
     private @Nullable Output<String> dateFormat;
 
     /**
-     * @return Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * @return Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
      * 
      */
     public Optional<Output<String>> dateFormat() {
@@ -154,7 +154,7 @@ public final class OnlineArchiveCriteriaArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param dateFormat Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+         * @param dateFormat Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
          * 
          * @return builder
          * 
@@ -165,7 +165,7 @@ public final class OnlineArchiveCriteriaArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param dateFormat Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+         * @param dateFormat Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
          * 
          * @return builder
          * 

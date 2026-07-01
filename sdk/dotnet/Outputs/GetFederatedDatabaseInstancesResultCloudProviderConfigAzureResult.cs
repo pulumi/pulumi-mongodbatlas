@@ -13,6 +13,9 @@ namespace Pulumi.Mongodbatlas.Outputs
     [OutputType]
     public sealed class GetFederatedDatabaseInstancesResultCloudProviderConfigAzureResult
     {
+        /// <summary>
+        /// Unique identifier of the Azure Active Directory application associated with the service principal.
+        /// </summary>
         public readonly string AtlasAppId;
         /// <summary>
         /// Unique identifier of the role that the Federated Database Instance can use to access the data stores.

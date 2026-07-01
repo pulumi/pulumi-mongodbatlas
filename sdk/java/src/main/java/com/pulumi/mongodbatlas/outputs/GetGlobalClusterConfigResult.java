@@ -25,7 +25,7 @@ public final class GetGlobalClusterConfigResult {
      */
     private String id;
     /**
-     * @return Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+     * @return Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
      * 
      */
     private List<GetGlobalClusterConfigManagedNamespace> managedNamespaces;
@@ -50,7 +50,7 @@ public final class GetGlobalClusterConfigResult {
         return this.id;
     }
     /**
-     * @return Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+     * @return Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
      * 
      */
     public List<GetGlobalClusterConfigManagedNamespace> managedNamespaces() {

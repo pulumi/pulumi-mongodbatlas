@@ -83,13 +83,15 @@ class GetCloudBackupSnapshotRestoreJobsResult:
     def results(self) -> Sequence['outputs.GetCloudBackupSnapshotRestoreJobsResultResult']:
         """
         Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.
-        * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
         """
         return pulumi.get(self, "results")
 
     @_builtins.property
     @pulumi.getter(name="totalCount")
     def total_count(self) -> _builtins.int:
+        """
+        Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
+        """
         return pulumi.get(self, "total_count")
 
 

@@ -46,14 +46,14 @@ public final class StreamConnectionAuthenticationArgs extends com.pulumi.resourc
     }
 
     /**
-     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
      * 
      */
     @Import(name="mechanism")
     private @Nullable Output<String> mechanism;
 
     /**
-     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
      * 
      */
     public Optional<Output<String>> mechanism() {
@@ -225,7 +225,7 @@ public final class StreamConnectionAuthenticationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param mechanism Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+         * @param mechanism Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
          * 
          * @return builder
          * 
@@ -236,7 +236,7 @@ public final class StreamConnectionAuthenticationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param mechanism Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+         * @param mechanism Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
          * 
          * @return builder
          * 

@@ -9,14 +9,14 @@ import * as utilities from "./utilities";
  *
  * Ensure you have first created a network container if it is required for your configuration.  See the networkContainer resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
  *
- * > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See [disable Peering Only mode](https://docs.atlas.mongodb.com/reference/faq/connection-changes/#disable-peering-mode) for details
+ * > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See [disable Peering Only mode](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/#disable-peering-mode) for details
  *
  * > **AZURE ONLY:** To create the peering request with an Azure VNET, you must grant Atlas the following permissions on the virtual network.
  *     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
  *     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
  *     Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
  *     Microsoft.Network/virtualNetworks/peer/action
- * For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+ * For more information see https://www.mongodb.com/docs/atlas/security-vpc-peering/ and https://www.mongodb.com/docs/atlas/reference/api/vpc-create-peering-connection/
  *
  * > **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the projectIpWhitelist resource.
  *
@@ -118,7 +118,7 @@ import * as utilities from "./utilities";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
  * // Ensure you have created the required Azure service principal first, see
- * // see https://docs.atlas.mongodb.com/security-vpc-peering/
+ * // see https://www.mongodb.com/docs/atlas/security-vpc-peering/
  * // Container example provided but not always required, 
  * // see network_container documentation for details. 
  * const test = new mongodbatlas.NetworkContainer("test", {
@@ -176,7 +176,7 @@ import * as utilities from "./utilities";
  * atlas projects list
  * atlas networking peering list --projectId <projectId> --provider <AZURE|GCP|AWS>
  * ```
- * See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)
+ * See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-peering-connection/)
  */
 export class NetworkPeering extends pulumi.CustomResource {
     /**
@@ -207,7 +207,7 @@ export class NetworkPeering extends pulumi.CustomResource {
     }
 
     /**
-     * Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+     * Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
      */
     declare public readonly accepterRegionName: pulumi.Output<string>;
     declare public readonly atlasCidrBlock: pulumi.Output<string>;
@@ -392,7 +392,7 @@ export class NetworkPeering extends pulumi.CustomResource {
  */
 export interface NetworkPeeringState {
     /**
-     * Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+     * Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
      */
     accepterRegionName?: pulumi.Input<string | undefined>;
     atlasCidrBlock?: pulumi.Input<string | undefined>;
@@ -498,7 +498,7 @@ export interface NetworkPeeringState {
  */
 export interface NetworkPeeringArgs {
     /**
-     * Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+     * Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
      */
     accepterRegionName?: pulumi.Input<string | undefined>;
     atlasCidrBlock?: pulumi.Input<string | undefined>;

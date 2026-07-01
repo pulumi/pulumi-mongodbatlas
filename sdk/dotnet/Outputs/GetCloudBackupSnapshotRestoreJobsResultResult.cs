@@ -45,8 +45,17 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// The unique identifier of the restore job.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Oplog operation number from which to you want to restore this snapshot.
+        /// </summary>
         public readonly int OplogInc;
+        /// <summary>
+        /// Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+        /// </summary>
         public readonly int OplogTs;
+        /// <summary>
+        /// Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+        /// </summary>
         public readonly int PointInTimeUtcSeconds;
         /// <summary>
         /// Unique identifier of the source snapshot ID of the restore job.
@@ -62,9 +71,6 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string TargetProjectId;
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
-        /// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
-        /// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
-        /// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
         /// </summary>
         public readonly string Timestamp;
 

@@ -21,6 +21,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Database on which the user has the specified role. A role on the `Admin` database can include privileges that apply to the other databases.
         /// </summary>
         public readonly string DatabaseName;
+        /// <summary>
+        /// Name of the role to grant.
+        /// </summary>
         public readonly string RoleName;
 
         [OutputConstructor]

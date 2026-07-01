@@ -17,14 +17,14 @@ public final class NetworkPeeringState extends com.pulumi.resources.ResourceArgs
     public static final NetworkPeeringState Empty = new NetworkPeeringState();
 
     /**
-     * Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+     * Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
      * 
      */
     @Import(name="accepterRegionName")
     private @Nullable Output<String> accepterRegionName;
 
     /**
-     * @return Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+     * @return Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
      * 
      */
     public Optional<Output<String>> accepterRegionName() {
@@ -436,7 +436,7 @@ public final class NetworkPeeringState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param accepterRegionName Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+         * @param accepterRegionName Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
          * 
          * @return builder
          * 
@@ -447,7 +447,7 @@ public final class NetworkPeeringState extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param accepterRegionName Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+         * @param accepterRegionName Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
          * 
          * @return builder
          * 

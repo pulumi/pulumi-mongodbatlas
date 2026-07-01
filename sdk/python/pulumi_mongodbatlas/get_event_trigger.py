@@ -123,20 +123,23 @@ class GetEventTriggerResult:
     @pulumi.getter(name="configFullDocument")
     def config_full_document(self) -> _builtins.bool:
         """
-        If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+        If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
         """
         return pulumi.get(self, "config_full_document")
 
     @_builtins.property
     @pulumi.getter(name="configFullDocumentBefore")
     def config_full_document_before(self) -> _builtins.bool:
+        """
+        If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
+        """
         return pulumi.get(self, "config_full_document_before")
 
     @_builtins.property
     @pulumi.getter(name="configMatch")
     def config_match(self) -> _builtins.str:
         """
-        A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+        A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
         """
         return pulumi.get(self, "config_match")
 
@@ -144,7 +147,7 @@ class GetEventTriggerResult:
     @pulumi.getter(name="configOperationType")
     def config_operation_type(self) -> _builtins.str:
         """
-        The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+        The [authentication operation type](https://www.mongodb.com/docs/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
         """
         return pulumi.get(self, "config_operation_type")
 
@@ -152,7 +155,7 @@ class GetEventTriggerResult:
     @pulumi.getter(name="configOperationTypes")
     def config_operation_types(self) -> Sequence[_builtins.str]:
         """
-        The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+        The [database event operation types](https://www.mongodb.com/docs/realm/triggers/database-triggers/#std-label-database-events) to listen for.
         """
         return pulumi.get(self, "config_operation_types")
 
@@ -160,7 +163,7 @@ class GetEventTriggerResult:
     @pulumi.getter(name="configProject")
     def config_project(self) -> _builtins.str:
         """
-        A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+        A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
         """
         return pulumi.get(self, "config_project")
 
@@ -168,7 +171,7 @@ class GetEventTriggerResult:
     @pulumi.getter(name="configProviders")
     def config_providers(self) -> Sequence[_builtins.str]:
         """
-        A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+        A list of one or more [authentication provider](https://www.mongodb.com/docs/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
         """
         return pulumi.get(self, "config_providers")
 
@@ -176,13 +179,16 @@ class GetEventTriggerResult:
     @pulumi.getter(name="configSchedule")
     def config_schedule(self) -> _builtins.str:
         """
-        A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+        A [cron expression](https://www.mongodb.com/docs/realm/triggers/cron-expressions/) that defines the trigger schedule.
         """
         return pulumi.get(self, "config_schedule")
 
     @_builtins.property
     @pulumi.getter(name="configScheduleType")
     def config_schedule_type(self) -> _builtins.str:
+        """
+        The type of the scheduled trigger.
+        """
         return pulumi.get(self, "config_schedule_type")
 
     @_builtins.property

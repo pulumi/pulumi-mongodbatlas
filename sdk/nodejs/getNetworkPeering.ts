@@ -57,7 +57,7 @@ export interface GetNetworkPeeringArgs {
  */
 export interface GetNetworkPeeringResult {
     /**
-     * Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+     * Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
      */
     readonly accepterRegionName: string;
     readonly atlasCidrBlock: string;

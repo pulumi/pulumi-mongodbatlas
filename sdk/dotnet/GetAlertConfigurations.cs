@@ -66,7 +66,7 @@ namespace Pulumi.Mongodbatlas
         /// ```
         /// 
         /// Refer to the following for a full example on using this DataSource as a tool to import all resources:
-        /// * atlas-alert-configurations
+        /// * mongodbatlas.AlertConfiguration
         /// </summary>
         public static Task<GetAlertConfigurationsResult> InvokeAsync(GetAlertConfigurationsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetAlertConfigurationsResult>("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", args ?? new GetAlertConfigurationsArgs(), options.WithDefaults());
@@ -126,7 +126,7 @@ namespace Pulumi.Mongodbatlas
         /// ```
         /// 
         /// Refer to the following for a full example on using this DataSource as a tool to import all resources:
-        /// * atlas-alert-configurations
+        /// * mongodbatlas.AlertConfiguration
         /// </summary>
         public static Output<GetAlertConfigurationsResult> Invoke(GetAlertConfigurationsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetAlertConfigurationsResult>("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", args ?? new GetAlertConfigurationsInvokeArgs(), options.WithDefaults());
@@ -186,7 +186,7 @@ namespace Pulumi.Mongodbatlas
         /// ```
         /// 
         /// Refer to the following for a full example on using this DataSource as a tool to import all resources:
-        /// * atlas-alert-configurations
+        /// * mongodbatlas.AlertConfiguration
         /// </summary>
         public static Output<GetAlertConfigurationsResult> Invoke(GetAlertConfigurationsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetAlertConfigurationsResult>("mongodbatlas:index/getAlertConfigurations:getAlertConfigurations", args ?? new GetAlertConfigurationsInvokeArgs(), options.WithDefaults());

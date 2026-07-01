@@ -140,7 +140,7 @@ export class PrivateLinkEndpoint extends pulumi.CustomResource {
     declare public readonly providerName: pulumi.Output<string>;
     /**
      * Cloud provider region in which you want to create the private endpoint connection.
-     * Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+     * Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
      */
     declare public readonly region: pulumi.Output<string>;
     /**
@@ -282,7 +282,7 @@ export interface PrivateLinkEndpointState {
     providerName?: pulumi.Input<string | undefined>;
     /**
      * Cloud provider region in which you want to create the private endpoint connection.
-     * Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+     * Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
      */
     region?: pulumi.Input<string | undefined>;
     /**
@@ -329,7 +329,7 @@ export interface PrivateLinkEndpointArgs {
     providerName: pulumi.Input<string>;
     /**
      * Cloud provider region in which you want to create the private endpoint connection.
-     * Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+     * Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
      */
     region: pulumi.Input<string>;
     /**

@@ -12,6 +12,22 @@ import * as utilities from "./utilities";
  * Note: This implementation returns a maximum of 100 results.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", {
+ *     federationSettingsId: "627a9687f7f7f7f774de306f",
+ *     name: "mongodb_federation_test",
+ *     associatedDomains: ["yourdomain.com"],
+ *     ssoDebugEnabled: true,
+ *     status: "ACTIVE",
+ * });
+ * const identittyProvider = mongodbatlas.getFederatedSettingsIdentityProvidersOutput({
+ *     federationSettingsId: identityProvider.id,
+ * });
+ * ```
  */
 export function getFederatedSettingsIdentityProviders(args: GetFederatedSettingsIdentityProvidersArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedSettingsIdentityProvidersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -56,7 +72,6 @@ export interface GetFederatedSettingsIdentityProvidersResult {
     readonly protocols?: string[];
     /**
      * Includes cloudProviderSnapshot object for each item detailed in the results array section.
-     * * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
      */
     readonly results: outputs.GetFederatedSettingsIdentityProvidersResult[];
 }
@@ -66,6 +81,22 @@ export interface GetFederatedSettingsIdentityProvidersResult {
  * Note: This implementation returns a maximum of 100 results.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const identityProvider = new mongodbatlas.FederatedSettingsIdentityProvider("identity_provider", {
+ *     federationSettingsId: "627a9687f7f7f7f774de306f",
+ *     name: "mongodb_federation_test",
+ *     associatedDomains: ["yourdomain.com"],
+ *     ssoDebugEnabled: true,
+ *     status: "ACTIVE",
+ * });
+ * const identittyProvider = mongodbatlas.getFederatedSettingsIdentityProvidersOutput({
+ *     federationSettingsId: identityProvider.id,
+ * });
+ * ```
  */
 export function getFederatedSettingsIdentityProvidersOutput(args: GetFederatedSettingsIdentityProvidersOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedSettingsIdentityProvidersResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

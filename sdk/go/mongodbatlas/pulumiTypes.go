@@ -405,7 +405,7 @@ type AdvancedClusterBiConnectorConfig struct {
 	// - Set to `true` to enable BI Connector for Atlas.
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled *bool `pulumi:"enabled"`
-	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 	//
 	// - Set to "primary" to have BI Connector for Atlas read from the primary.
 	//
@@ -432,7 +432,7 @@ type AdvancedClusterBiConnectorConfigArgs struct {
 	// - Set to `true` to enable BI Connector for Atlas.
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 	//
 	// - Set to "primary" to have BI Connector for Atlas read from the primary.
 	//
@@ -527,7 +527,7 @@ func (o AdvancedClusterBiConnectorConfigOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterBiConnectorConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 //
 // - Set to "primary" to have BI Connector for Atlas read from the primary.
 //
@@ -575,7 +575,7 @@ func (o AdvancedClusterBiConnectorConfigPtrOutput) Enabled() pulumi.BoolPtrOutpu
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 //
 // - Set to "primary" to have BI Connector for Atlas read from the primary.
 //
@@ -592,7 +592,7 @@ func (o AdvancedClusterBiConnectorConfigPtrOutput) ReadPreference() pulumi.Strin
 }
 
 type AdvancedClusterConnectionStrings struct {
-	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	Private *string `pulumi:"private"`
 	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 	// - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -604,7 +604,7 @@ type AdvancedClusterConnectionStrings struct {
 	// - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints []AdvancedClusterConnectionStringsPrivateEndpoint `pulumi:"privateEndpoints"`
-	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	PrivateSrv *string `pulumi:"privateSrv"`
 	// Public mongodb:// connection string for this cluster.
 	Standard *string `pulumi:"standard"`
@@ -624,7 +624,7 @@ type AdvancedClusterConnectionStringsInput interface {
 }
 
 type AdvancedClusterConnectionStringsArgs struct {
-	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	Private pulumi.StringPtrInput `pulumi:"private"`
 	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 	// - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -636,7 +636,7 @@ type AdvancedClusterConnectionStringsArgs struct {
 	// - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints AdvancedClusterConnectionStringsPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	PrivateSrv pulumi.StringPtrInput `pulumi:"privateSrv"`
 	// Public mongodb:// connection string for this cluster.
 	Standard pulumi.StringPtrInput `pulumi:"standard"`
@@ -721,7 +721,7 @@ func (o AdvancedClusterConnectionStringsOutput) ToAdvancedClusterConnectionStrin
 	}).(AdvancedClusterConnectionStringsPtrOutput)
 }
 
-// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o AdvancedClusterConnectionStringsOutput) Private() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionStrings) *string { return v.Private }).(pulumi.StringPtrOutput)
 }
@@ -741,7 +741,7 @@ func (o AdvancedClusterConnectionStringsOutput) PrivateEndpoints() AdvancedClust
 	}).(AdvancedClusterConnectionStringsPrivateEndpointArrayOutput)
 }
 
-// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o AdvancedClusterConnectionStringsOutput) PrivateSrv() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterConnectionStrings) *string { return v.PrivateSrv }).(pulumi.StringPtrOutput)
 }
@@ -780,7 +780,7 @@ func (o AdvancedClusterConnectionStringsPtrOutput) Elem() AdvancedClusterConnect
 	}).(AdvancedClusterConnectionStringsOutput)
 }
 
-// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o AdvancedClusterConnectionStringsPtrOutput) Private() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterConnectionStrings) *string {
 		if v == nil {
@@ -808,7 +808,7 @@ func (o AdvancedClusterConnectionStringsPtrOutput) PrivateEndpoints() AdvancedCl
 	}).(AdvancedClusterConnectionStringsPrivateEndpointArrayOutput)
 }
 
-// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o AdvancedClusterConnectionStringsPtrOutput) PrivateSrv() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterConnectionStrings) *string {
 		if v == nil {
@@ -1251,7 +1251,7 @@ type AdvancedClusterReplicationSpec struct {
 	ContainerId map[string]string `pulumi:"containerId"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
 	ExternalId *string `pulumi:"externalId"`
-	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
+	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See region_configs.
 	RegionConfigs []AdvancedClusterReplicationSpecRegionConfig `pulumi:"regionConfigs"`
 	// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
 	ZoneId *string `pulumi:"zoneId"`
@@ -1275,7 +1275,7 @@ type AdvancedClusterReplicationSpecArgs struct {
 	ContainerId pulumi.StringMapInput `pulumi:"containerId"`
 	// Unique 24-hexadecimal digit string that identifies the replication object for a shard in a Cluster. This value corresponds to Shard ID displayed in the UI.
 	ExternalId pulumi.StringPtrInput `pulumi:"externalId"`
-	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
+	// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See region_configs.
 	RegionConfigs AdvancedClusterReplicationSpecRegionConfigArrayInput `pulumi:"regionConfigs"`
 	// Unique 24-hexadecimal digit string that identifies the zone in a Global Cluster. If clusterType is GEOSHARDED, this value indicates the zone that the given shard belongs to and can be used to configure Global Cluster backup policies.
 	ZoneId pulumi.StringPtrInput `pulumi:"zoneId"`
@@ -1344,7 +1344,7 @@ func (o AdvancedClusterReplicationSpecOutput) ExternalId() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) *string { return v.ExternalId }).(pulumi.StringPtrOutput)
 }
 
-// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
+// Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See region_configs.
 func (o AdvancedClusterReplicationSpecOutput) RegionConfigs() AdvancedClusterReplicationSpecRegionConfigArrayOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpec) []AdvancedClusterReplicationSpecRegionConfig {
 		return v.RegionConfigs
@@ -1384,13 +1384,13 @@ func (o AdvancedClusterReplicationSpecArrayOutput) Index(i pulumi.IntInput) Adva
 type AdvancedClusterReplicationSpecRegionConfig struct {
 	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
 	AnalyticsAutoScaling *AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling `pulumi:"analyticsAutoScaling"`
-	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
+	// Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
 	AnalyticsSpecs *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
 	// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
 	AutoScaling *AdvancedClusterReplicationSpecRegionConfigAutoScaling `pulumi:"autoScaling"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `providerName` is `TENANT` and `instanceSize` is `M0`, or when the `providerName` is `FLEX`.
 	BackingProviderName *string `pulumi:"backingProviderName"`
-	// Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+	// Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
 	ElectableSpecs *AdvancedClusterReplicationSpecRegionConfigElectableSpecs `pulumi:"electableSpecs"`
 	// Election priority of the region. For regions with only read-only nodes, set this value to 0.
 	// * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
@@ -1404,9 +1404,11 @@ type AdvancedClusterReplicationSpecRegionConfig struct {
 	// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
 	// - `FLEX` - Flex cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
-	// Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+	// Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
 	ReadOnlySpecs *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
-	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
+	//
+	// For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes, see [Supported Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions).
 	RegionName string `pulumi:"regionName"`
 }
 
@@ -1424,13 +1426,13 @@ type AdvancedClusterReplicationSpecRegionConfigInput interface {
 type AdvancedClusterReplicationSpecRegionConfigArgs struct {
 	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analyticsAutoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
 	AnalyticsAutoScaling AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrInput `pulumi:"analyticsAutoScaling"`
-	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
+	// Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
 	AnalyticsSpecs AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput `pulumi:"analyticsSpecs"`
 	// Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `autoScaling` attribute must be the same for all `regionConfigs` of a cluster. See below.
 	AutoScaling AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput `pulumi:"autoScaling"`
 	// Cloud service provider on which you provision the host for a multi-tenant cluster. Use this only when the `providerName` is `TENANT` and `instanceSize` is `M0`, or when the `providerName` is `FLEX`.
 	BackingProviderName pulumi.StringPtrInput `pulumi:"backingProviderName"`
-	// Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+	// Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
 	ElectableSpecs AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput `pulumi:"electableSpecs"`
 	// Election priority of the region. For regions with only read-only nodes, set this value to 0.
 	// * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
@@ -1444,9 +1446,11 @@ type AdvancedClusterReplicationSpecRegionConfigArgs struct {
 	// - `TENANT` - M0 multi-tenant cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
 	// - `FLEX` - Flex cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
-	// Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+	// Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
 	ReadOnlySpecs AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput `pulumi:"readOnlySpecs"`
-	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
+	//
+	// For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes, see [Supported Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions).
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 }
 
@@ -1508,7 +1512,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsAutoScaling()
 	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput)
 }
 
-// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
+// Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsSpecs() AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
 		return v.AnalyticsSpecs
@@ -1527,7 +1531,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) BackingProviderName() 
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *string { return v.BackingProviderName }).(pulumi.StringPtrOutput)
 }
 
-// Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+// Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) ElectableSpecs() AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
 		return v.ElectableSpecs
@@ -1552,14 +1556,16 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) ProviderName() pulumi.
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) string { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-// Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+// Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) ReadOnlySpecs() AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
 		return v.ReadOnlySpecs
 	}).(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
 }
 
-// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
+//
+// For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes, see [Supported Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions).
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) string { return v.RegionName }).(pulumi.StringOutput)
 }
@@ -1824,17 +1830,26 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput)
 }
 
 type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+	//
+	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+	// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+	//
+	// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	//
-	// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+	// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+	//
+	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
 	InstanceSize *string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount *int `pulumi:"nodeCount"`
@@ -1852,17 +1867,26 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput interface {
 }
 
 type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+	//
+	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+	// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+	//
+	// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
 	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	//
-	// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+	// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+	//
+	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
 	InstanceSize pulumi.StringPtrInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
@@ -1945,7 +1969,13 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToAdvanc
 	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+//
+// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+//
+// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
 }
@@ -1956,15 +1986,18 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskSize
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
 
 // Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 //
-// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+//
+// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string { return v.InstanceSize }).(pulumi.StringPtrOutput)
 }
@@ -1998,7 +2031,13 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) Elem(
 	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput)
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+//
+// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+//
+// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int {
 		if v == nil {
@@ -2019,8 +2058,9 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskS
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		if v == nil {
@@ -2032,7 +2072,9 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVo
 
 // Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 //
-// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+//
+// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		if v == nil {
@@ -2326,17 +2368,27 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) DiskGbEn
 }
 
 type AdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+	//
+	// For AWS, valid configurations are:
+	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+	// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+	//
+	// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 	DiskIops *int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	//
-	// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+	// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+	//
+	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
 	InstanceSize *string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount *int `pulumi:"nodeCount"`
@@ -2354,17 +2406,27 @@ type AdvancedClusterReplicationSpecRegionConfigElectableSpecsInput interface {
 }
 
 type AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+	//
+	// For AWS, valid configurations are:
+	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+	// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+	//
+	// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
 	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	//
-	// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+	// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+	//
+	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
 	InstanceSize pulumi.StringPtrInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
@@ -2447,7 +2509,14 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToAdvanc
 	}).(AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput)
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+//
+// For AWS, valid configurations are:
+// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+//
+// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
 }
@@ -2458,15 +2527,18 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskSize
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
 
 // Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 //
-// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+//
+// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string { return v.InstanceSize }).(pulumi.StringPtrOutput)
 }
@@ -2500,7 +2572,14 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) Elem(
 	}).(AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput)
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+//
+// For AWS, valid configurations are:
+// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+//
+// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int {
 		if v == nil {
@@ -2521,8 +2600,9 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskS
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
 		if v == nil {
@@ -2534,7 +2614,9 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVo
 
 // Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 //
-// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+//
+// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
 		if v == nil {
@@ -2555,17 +2637,26 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) NodeC
 }
 
 type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+	//
+	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+	// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+	//
+	// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops *int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	//
-	// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+	// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+	//
+	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
 	InstanceSize *string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount *int `pulumi:"nodeCount"`
@@ -2583,17 +2674,26 @@ type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput interface {
 }
 
 type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+	//
+	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+	// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+	//
+	// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
 	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
 	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	//
-	// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+	// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+	//
+	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
 	InstanceSize pulumi.StringPtrInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
@@ -2676,7 +2776,13 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToAdvance
 	}).(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+//
+// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+//
+// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
 }
@@ -2687,15 +2793,18 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskSizeG
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
 
 // Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 //
-// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+//
+// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string { return v.InstanceSize }).(pulumi.StringPtrOutput)
 }
@@ -2729,7 +2838,13 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) Elem()
 	}).(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput)
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+//
+// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+//
+// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int {
 		if v == nil {
@@ -2750,8 +2865,9 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskSi
 }
 
 // Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
 		if v == nil {
@@ -2763,7 +2879,9 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVol
 
 // Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 //
-// > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+//
+// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
 		if v == nil {
@@ -3116,7 +3234,7 @@ func (o AlertConfigurationMatcherArrayOutput) Index(i pulumi.IntInput) AlertConf
 }
 
 type AlertConfigurationMetricThresholdConfig struct {
-	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 	MetricName string `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode      *string  `pulumi:"mode"`
@@ -3137,7 +3255,7 @@ type AlertConfigurationMetricThresholdConfigInput interface {
 }
 
 type AlertConfigurationMetricThresholdConfigArgs struct {
-	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 	MetricName pulumi.StringInput `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode      pulumi.StringPtrInput  `pulumi:"mode"`
@@ -3223,7 +3341,7 @@ func (o AlertConfigurationMetricThresholdConfigOutput) ToAlertConfigurationMetri
 	}).(AlertConfigurationMetricThresholdConfigPtrOutput)
 }
 
-// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 func (o AlertConfigurationMetricThresholdConfigOutput) MetricName() pulumi.StringOutput {
 	return o.ApplyT(func(v AlertConfigurationMetricThresholdConfig) string { return v.MetricName }).(pulumi.StringOutput)
 }
@@ -3269,7 +3387,7 @@ func (o AlertConfigurationMetricThresholdConfigPtrOutput) Elem() AlertConfigurat
 	}).(AlertConfigurationMetricThresholdConfigOutput)
 }
 
-// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 func (o AlertConfigurationMetricThresholdConfigPtrOutput) MetricName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AlertConfigurationMetricThresholdConfig) *string {
 		if v == nil {
@@ -4911,7 +5029,7 @@ type CloudBackupScheduleCopySetting struct {
 	RegionName *string `pulumi:"regionName"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 	ShouldCopyOplogs *bool `pulumi:"shouldCopyOplogs"`
-	// Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zoneId`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
+	// Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zoneId`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array [Return One Cluster From One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
 	ZoneId *string `pulumi:"zoneId"`
 }
 
@@ -4935,7 +5053,7 @@ type CloudBackupScheduleCopySettingArgs struct {
 	RegionName pulumi.StringPtrInput `pulumi:"regionName"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
 	ShouldCopyOplogs pulumi.BoolPtrInput `pulumi:"shouldCopyOplogs"`
-	// Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zoneId`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
+	// Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zoneId`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array [Return One Cluster From One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
 	ZoneId pulumi.StringPtrInput `pulumi:"zoneId"`
 }
 
@@ -5010,7 +5128,7 @@ func (o CloudBackupScheduleCopySettingOutput) ShouldCopyOplogs() pulumi.BoolPtrO
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *bool { return v.ShouldCopyOplogs }).(pulumi.BoolPtrOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zoneId`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
+// Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zoneId`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array [Return One Cluster From One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
 func (o CloudBackupScheduleCopySettingOutput) ZoneId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *string { return v.ZoneId }).(pulumi.StringPtrOutput)
 }
@@ -6590,7 +6708,7 @@ func (o CloudBackupSnapshotRestoreJobDeliveryTypeConfigPtrOutput) TargetProjectI
 }
 
 type CloudProviderAccessAuthorizationAws struct {
-	// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+	// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://www.mongodb.com/docs/atlas/security/set-up-unified-aws-access/#set-up-unified-aws-access).
 	IamAssumedRoleArn string `pulumi:"iamAssumedRoleArn"`
 }
 
@@ -6606,7 +6724,7 @@ type CloudProviderAccessAuthorizationAwsInput interface {
 }
 
 type CloudProviderAccessAuthorizationAwsArgs struct {
-	// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+	// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://www.mongodb.com/docs/atlas/security/set-up-unified-aws-access/#set-up-unified-aws-access).
 	IamAssumedRoleArn pulumi.StringInput `pulumi:"iamAssumedRoleArn"`
 }
 
@@ -6687,7 +6805,7 @@ func (o CloudProviderAccessAuthorizationAwsOutput) ToCloudProviderAccessAuthoriz
 	}).(CloudProviderAccessAuthorizationAwsPtrOutput)
 }
 
-// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://www.mongodb.com/docs/atlas/security/set-up-unified-aws-access/#set-up-unified-aws-access).
 func (o CloudProviderAccessAuthorizationAwsOutput) IamAssumedRoleArn() pulumi.StringOutput {
 	return o.ApplyT(func(v CloudProviderAccessAuthorizationAws) string { return v.IamAssumedRoleArn }).(pulumi.StringOutput)
 }
@@ -6716,7 +6834,7 @@ func (o CloudProviderAccessAuthorizationAwsPtrOutput) Elem() CloudProviderAccess
 	}).(CloudProviderAccessAuthorizationAwsOutput)
 }
 
-// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+// ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://www.mongodb.com/docs/atlas/security/set-up-unified-aws-access/#set-up-unified-aws-access).
 func (o CloudProviderAccessAuthorizationAwsPtrOutput) IamAssumedRoleArn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *CloudProviderAccessAuthorizationAws) *string {
 		if v == nil {
@@ -7959,11 +8077,11 @@ type ClusterAdvancedConfiguration struct {
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
 	DefaultMaxTimeMs                *int     `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern *string `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 	DefaultWriteConcern *string `pulumi:"defaultWriteConcern"`
 	// **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
@@ -8009,11 +8127,11 @@ type ClusterAdvancedConfigurationArgs struct {
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
 	DefaultMaxTimeMs                pulumi.IntPtrInput      `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern pulumi.StringPtrInput `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringPtrInput `pulumi:"defaultWriteConcern"`
 	// **(DEPRECATED)** (Optional) When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
@@ -8135,14 +8253,14 @@ func (o ClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntPtrOutp
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *int { return v.DefaultMaxTimeMs }).(pulumi.IntPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+// [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o ClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *string { return v.DefaultReadConcern }).(pulumi.StringPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 func (o ClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterAdvancedConfiguration) *string { return v.DefaultWriteConcern }).(pulumi.StringPtrOutput)
 }
@@ -8255,7 +8373,7 @@ func (o ClusterAdvancedConfigurationPtrOutput) DefaultMaxTimeMs() pulumi.IntPtrO
 	}).(pulumi.IntPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+// [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o ClusterAdvancedConfigurationPtrOutput) DefaultReadConcern() pulumi.StringPtrOutput {
@@ -8267,7 +8385,7 @@ func (o ClusterAdvancedConfigurationPtrOutput) DefaultReadConcern() pulumi.Strin
 	}).(pulumi.StringPtrOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 func (o ClusterAdvancedConfigurationPtrOutput) DefaultWriteConcern() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ClusterAdvancedConfiguration) *string {
 		if v == nil {
@@ -8388,7 +8506,7 @@ type ClusterBiConnectorConfig struct {
 	// - Set to `true` to enable BI Connector for Atlas.
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled *bool `pulumi:"enabled"`
-	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 	//
 	// - Set to "primary" to have BI Connector for Atlas read from the primary.
 	//
@@ -8415,7 +8533,7 @@ type ClusterBiConnectorConfigArgs struct {
 	// - Set to `true` to enable BI Connector for Atlas.
 	// - Set to `false` to disable BI Connector for Atlas.
 	Enabled pulumi.BoolPtrInput `pulumi:"enabled"`
-	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 	//
 	// - Set to "primary" to have BI Connector for Atlas read from the primary.
 	//
@@ -8510,7 +8628,7 @@ func (o ClusterBiConnectorConfigOutput) Enabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v ClusterBiConnectorConfig) *bool { return v.Enabled }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 //
 // - Set to "primary" to have BI Connector for Atlas read from the primary.
 //
@@ -8558,7 +8676,7 @@ func (o ClusterBiConnectorConfigPtrOutput) Enabled() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
-// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 //
 // - Set to "primary" to have BI Connector for Atlas read from the primary.
 //
@@ -9342,11 +9460,9 @@ type ClusterReplicationSpec struct {
 	Id *string `pulumi:"id"`
 	// Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
 	NumShards int `pulumi:"numShards"`
-	// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+	// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See the Region Config section below for more details.
 	RegionsConfigs []ClusterReplicationSpecRegionsConfig `pulumi:"regionsConfigs"`
 	// Name for the zone in a Global Cluster.
-	//
-	// **Region Config**
 	ZoneName *string `pulumi:"zoneName"`
 }
 
@@ -9366,11 +9482,9 @@ type ClusterReplicationSpecArgs struct {
 	Id pulumi.StringPtrInput `pulumi:"id"`
 	// Selects whether the cluster is a replica set or a sharded cluster. If you use the replicationSpecs parameter, you must set num_shards.
 	NumShards pulumi.IntInput `pulumi:"numShards"`
-	// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+	// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See the Region Config section below for more details.
 	RegionsConfigs ClusterReplicationSpecRegionsConfigArrayInput `pulumi:"regionsConfigs"`
 	// Name for the zone in a Global Cluster.
-	//
-	// **Region Config**
 	ZoneName pulumi.StringPtrInput `pulumi:"zoneName"`
 }
 
@@ -9435,14 +9549,12 @@ func (o ClusterReplicationSpecOutput) NumShards() pulumi.IntOutput {
 	return o.ApplyT(func(v ClusterReplicationSpec) int { return v.NumShards }).(pulumi.IntOutput)
 }
 
-// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See the Region Config section below for more details.
 func (o ClusterReplicationSpecOutput) RegionsConfigs() ClusterReplicationSpecRegionsConfigArrayOutput {
 	return o.ApplyT(func(v ClusterReplicationSpec) []ClusterReplicationSpecRegionsConfig { return v.RegionsConfigs }).(ClusterReplicationSpecRegionsConfigArrayOutput)
 }
 
 // Name for the zone in a Global Cluster.
-//
-// **Region Config**
 func (o ClusterReplicationSpecOutput) ZoneName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ClusterReplicationSpec) *string { return v.ZoneName }).(pulumi.StringPtrOutput)
 }
@@ -9482,7 +9594,7 @@ type ClusterReplicationSpecRegionsConfig struct {
 	Priority *int `pulumi:"priority"`
 	// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
 	ReadOnlyNodes *int `pulumi:"readOnlyNodes"`
-	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	RegionName string `pulumi:"regionName"`
 }
 
@@ -9512,7 +9624,7 @@ type ClusterReplicationSpecRegionsConfigArgs struct {
 	Priority pulumi.IntPtrInput `pulumi:"priority"`
 	// Number of read-only nodes for Atlas to deploy to the region. Read-only nodes can never become the primary, but can facilitate local-reads. Specify 0 if you do not want any read-only nodes in the region.
 	ReadOnlyNodes pulumi.IntPtrInput `pulumi:"readOnlyNodes"`
-	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 }
 
@@ -9593,7 +9705,7 @@ func (o ClusterReplicationSpecRegionsConfigOutput) ReadOnlyNodes() pulumi.IntPtr
 	return o.ApplyT(func(v ClusterReplicationSpecRegionsConfig) *int { return v.ReadOnlyNodes }).(pulumi.IntPtrOutput)
 }
 
-// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 func (o ClusterReplicationSpecRegionsConfigOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterReplicationSpecRegionsConfig) string { return v.RegionName }).(pulumi.StringOutput)
 }
@@ -9988,7 +10100,7 @@ type ClusterTag struct {
 	Key string `pulumi:"key"`
 	// Variable that belongs to the set of the tag.
 	//
-	// To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+	// To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
 	Value string `pulumi:"value"`
 }
 
@@ -10008,7 +10120,7 @@ type ClusterTagArgs struct {
 	Key pulumi.StringInput `pulumi:"key"`
 	// Variable that belongs to the set of the tag.
 	//
-	// To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+	// To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -10070,7 +10182,7 @@ func (o ClusterTagOutput) Key() pulumi.StringOutput {
 
 // Variable that belongs to the set of the tag.
 //
-// To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+// To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
 func (o ClusterTagOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v ClusterTag) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -10096,7 +10208,7 @@ func (o ClusterTagArrayOutput) Index(i pulumi.IntInput) ClusterTagOutput {
 }
 
 type CustomDbRoleAction struct {
-	// Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions)
+	// Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://www.mongodb.com/docs/atlas/reference/api/custom-role-actions)
 	// > **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
 	Action string `pulumi:"action"`
 	// Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
@@ -10127,7 +10239,7 @@ type CustomDbRoleActionInput interface {
 }
 
 type CustomDbRoleActionArgs struct {
-	// Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions)
+	// Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://www.mongodb.com/docs/atlas/reference/api/custom-role-actions)
 	// > **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
 	Action pulumi.StringInput `pulumi:"action"`
 	// Contains information on where the action is granted. Each object in the array either indicates a database and collection on which the action is granted, or indicates that the action is granted on the cluster resource.
@@ -10197,7 +10309,7 @@ func (o CustomDbRoleActionOutput) ToCustomDbRoleActionOutputWithContext(ctx cont
 	return o
 }
 
-// Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions)
+// Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://www.mongodb.com/docs/atlas/reference/api/custom-role-actions)
 // > **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
 func (o CustomDbRoleActionOutput) Action() pulumi.StringOutput {
 	return o.ApplyT(func(v CustomDbRoleAction) string { return v.Action }).(pulumi.StringOutput)
@@ -10584,7 +10696,7 @@ type DatabaseUserRole struct {
 	CollectionName *string `pulumi:"collectionName"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
 	DatabaseName string `pulumi:"databaseName"`
-	// Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
+	// Name of the role to grant. See [Create a Database User](https://www.mongodb.com/docs/atlas/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
 	RoleName string `pulumi:"roleName"`
 }
 
@@ -10604,7 +10716,7 @@ type DatabaseUserRoleArgs struct {
 	CollectionName pulumi.StringPtrInput `pulumi:"collectionName"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases. This field should be set to `admin` for a custom MongoDB role.
 	DatabaseName pulumi.StringInput `pulumi:"databaseName"`
-	// Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
+	// Name of the role to grant. See [Create a Database User](https://www.mongodb.com/docs/atlas/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
 	RoleName pulumi.StringInput `pulumi:"roleName"`
 }
 
@@ -10669,7 +10781,7 @@ func (o DatabaseUserRoleOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v DatabaseUserRole) string { return v.DatabaseName }).(pulumi.StringOutput)
 }
 
-// Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
+// Name of the role to grant. See [Create a Database User](https://www.mongodb.com/docs/atlas/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
 func (o DatabaseUserRoleOutput) RoleName() pulumi.StringOutput {
 	return o.ApplyT(func(v DatabaseUserRole) string { return v.RoleName }).(pulumi.StringOutput)
 }
@@ -12446,6 +12558,7 @@ func (o FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput) TestS3Bucket()
 }
 
 type FederatedDatabaseInstanceCloudProviderConfigAzure struct {
+	// Unique identifier of the Azure Active Directory application associated with the service principal.
 	AtlasAppId *string `pulumi:"atlasAppId"`
 	RoleId     string  `pulumi:"roleId"`
 	// Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
@@ -12466,6 +12579,7 @@ type FederatedDatabaseInstanceCloudProviderConfigAzureInput interface {
 }
 
 type FederatedDatabaseInstanceCloudProviderConfigAzureArgs struct {
+	// Unique identifier of the Azure Active Directory application associated with the service principal.
 	AtlasAppId pulumi.StringPtrInput `pulumi:"atlasAppId"`
 	RoleId     pulumi.StringInput    `pulumi:"roleId"`
 	// Unique identifier of the Azure service principal that the Federated Database instance uses to access Azure Blob Storage.
@@ -12551,6 +12665,7 @@ func (o FederatedDatabaseInstanceCloudProviderConfigAzureOutput) ToFederatedData
 	}).(FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput)
 }
 
+// Unique identifier of the Azure Active Directory application associated with the service principal.
 func (o FederatedDatabaseInstanceCloudProviderConfigAzureOutput) AtlasAppId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfigAzure) *string { return v.AtlasAppId }).(pulumi.StringPtrOutput)
 }
@@ -12593,6 +12708,7 @@ func (o FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput) Elem() Feder
 	}).(FederatedDatabaseInstanceCloudProviderConfigAzureOutput)
 }
 
+// Unique identifier of the Azure Active Directory application associated with the service principal.
 func (o FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput) AtlasAppId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfigAzure) *string {
 		if v == nil {
@@ -14469,7 +14585,7 @@ type FlexClusterProviderSettings struct {
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName *string `pulumi:"providerName"`
-	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), and [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	RegionName string `pulumi:"regionName"`
 }
 
@@ -14491,7 +14607,7 @@ type FlexClusterProviderSettingsArgs struct {
 	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName pulumi.StringPtrInput `pulumi:"providerName"`
-	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), and [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 }
 
@@ -14587,7 +14703,7 @@ func (o FlexClusterProviderSettingsOutput) ProviderName() pulumi.StringPtrOutput
 	return o.ApplyT(func(v FlexClusterProviderSettings) *string { return v.ProviderName }).(pulumi.StringPtrOutput)
 }
 
-// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), and [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 func (o FlexClusterProviderSettingsOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v FlexClusterProviderSettings) string { return v.RegionName }).(pulumi.StringOutput)
 }
@@ -14646,7 +14762,7 @@ func (o FlexClusterProviderSettingsPtrOutput) ProviderName() pulumi.StringPtrOut
 	}).(pulumi.StringPtrOutput)
 }
 
-// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), and [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 func (o FlexClusterProviderSettingsPtrOutput) RegionName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *FlexClusterProviderSettings) *string {
 		if v == nil {
@@ -14944,9 +15060,9 @@ type GlobalClusterConfigManagedNamespace struct {
 	CustomShardKey string `pulumi:"customShardKey"`
 	// The name of the database containing the collection.
 	Db string `pulumi:"db"`
-	// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+	// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
 	IsCustomShardKeyHashed *bool `pulumi:"isCustomShardKeyHashed"`
-	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
 	IsShardKeyUnique *bool `pulumi:"isShardKeyUnique"`
 }
 
@@ -14968,9 +15084,9 @@ type GlobalClusterConfigManagedNamespaceArgs struct {
 	CustomShardKey pulumi.StringInput `pulumi:"customShardKey"`
 	// The name of the database containing the collection.
 	Db pulumi.StringInput `pulumi:"db"`
-	// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+	// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
 	IsCustomShardKeyHashed pulumi.BoolPtrInput `pulumi:"isCustomShardKeyHashed"`
-	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
 	IsShardKeyUnique pulumi.BoolPtrInput `pulumi:"isShardKeyUnique"`
 }
 
@@ -15040,12 +15156,12 @@ func (o GlobalClusterConfigManagedNamespaceOutput) Db() pulumi.StringOutput {
 	return o.ApplyT(func(v GlobalClusterConfigManagedNamespace) string { return v.Db }).(pulumi.StringOutput)
 }
 
-// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
 func (o GlobalClusterConfigManagedNamespaceOutput) IsCustomShardKeyHashed() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GlobalClusterConfigManagedNamespace) *bool { return v.IsCustomShardKeyHashed }).(pulumi.BoolPtrOutput)
 }
 
-// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
 func (o GlobalClusterConfigManagedNamespaceOutput) IsShardKeyUnique() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GlobalClusterConfigManagedNamespace) *bool { return v.IsShardKeyUnique }).(pulumi.BoolPtrOutput)
 }
@@ -15644,7 +15760,7 @@ func (o MaintenanceWindowProtectedHoursPtrOutput) StartHourOfDay() pulumi.IntPtr
 type OnlineArchiveCriteria struct {
 	// Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
 	DateField *string `pulumi:"dateField"`
-	// Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+	// Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
 	DateFormat *string `pulumi:"dateFormat"`
 	// Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
 	//
@@ -15674,7 +15790,7 @@ type OnlineArchiveCriteriaInput interface {
 type OnlineArchiveCriteriaArgs struct {
 	// Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
 	DateField pulumi.StringPtrInput `pulumi:"dateField"`
-	// Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+	// Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
 	DateFormat pulumi.StringPtrInput `pulumi:"dateFormat"`
 	// Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster.
 	//
@@ -15772,7 +15888,7 @@ func (o OnlineArchiveCriteriaOutput) DateField() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OnlineArchiveCriteria) *string { return v.DateField }).(pulumi.StringPtrOutput)
 }
 
-// Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+// Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
 func (o OnlineArchiveCriteriaOutput) DateFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v OnlineArchiveCriteria) *string { return v.DateFormat }).(pulumi.StringPtrOutput)
 }
@@ -15832,7 +15948,7 @@ func (o OnlineArchiveCriteriaPtrOutput) DateField() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+// Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
 func (o OnlineArchiveCriteriaPtrOutput) DateFormat() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *OnlineArchiveCriteria) *string {
 		if v == nil {
@@ -16925,7 +17041,7 @@ type PrivateLinkEndpointServiceEndpoint struct {
 	EndpointName *string `pulumi:"endpointName"`
 	// Private IP address of the endpoint you created.
 	IpAddress *string `pulumi:"ipAddress"`
-	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+	// Status of the endpoint. Atlas returns one of the [values shown above](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status *string `pulumi:"status"`
 }
 
@@ -16945,7 +17061,7 @@ type PrivateLinkEndpointServiceEndpointArgs struct {
 	EndpointName pulumi.StringPtrInput `pulumi:"endpointName"`
 	// Private IP address of the endpoint you created.
 	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
-	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+	// Status of the endpoint. Atlas returns one of the [values shown above](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status pulumi.StringPtrInput `pulumi:"status"`
 }
 
@@ -17010,7 +17126,7 @@ func (o PrivateLinkEndpointServiceEndpointOutput) IpAddress() pulumi.StringPtrOu
 	return o.ApplyT(func(v PrivateLinkEndpointServiceEndpoint) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
 }
 
-// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+// Status of the endpoint. Atlas returns one of the [values shown above](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 func (o PrivateLinkEndpointServiceEndpointOutput) Status() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v PrivateLinkEndpointServiceEndpoint) *string { return v.Status }).(pulumi.StringPtrOutput)
 }
@@ -17317,9 +17433,9 @@ func (o ProjectApiKeyProjectAssignmentArrayOutput) Index(i pulumi.IntInput) Proj
 }
 
 type ProjectIpAccessListTimeouts struct {
-	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
 	Delete *string `pulumi:"delete"`
-	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled. Default: `2m`.
 	Read *string `pulumi:"read"`
 }
 
@@ -17335,9 +17451,9 @@ type ProjectIpAccessListTimeoutsInput interface {
 }
 
 type ProjectIpAccessListTimeoutsArgs struct {
-	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
 	Delete pulumi.StringPtrInput `pulumi:"delete"`
-	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled. Default: `2m`.
 	Read pulumi.StringPtrInput `pulumi:"read"`
 }
 
@@ -17418,12 +17534,12 @@ func (o ProjectIpAccessListTimeoutsOutput) ToProjectIpAccessListTimeoutsPtrOutpu
 	}).(ProjectIpAccessListTimeoutsPtrOutput)
 }
 
-// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
 func (o ProjectIpAccessListTimeoutsOutput) Delete() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProjectIpAccessListTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
 }
 
-// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled. Default: `2m`.
 func (o ProjectIpAccessListTimeoutsOutput) Read() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProjectIpAccessListTimeouts) *string { return v.Read }).(pulumi.StringPtrOutput)
 }
@@ -17452,7 +17568,7 @@ func (o ProjectIpAccessListTimeoutsPtrOutput) Elem() ProjectIpAccessListTimeouts
 	}).(ProjectIpAccessListTimeoutsOutput)
 }
 
-// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
 func (o ProjectIpAccessListTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProjectIpAccessListTimeouts) *string {
 		if v == nil {
@@ -17462,7 +17578,7 @@ func (o ProjectIpAccessListTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled. Default: `2m`.
 func (o ProjectIpAccessListTimeoutsPtrOutput) Read() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ProjectIpAccessListTimeouts) *string {
 		if v == nil {
@@ -19234,11 +19350,11 @@ func (o SearchDeploymentTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
 }
 
 type SearchIndexSynonym struct {
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	Analyzer string `pulumi:"analyzer"`
 	// The name of the search index you want to create.
 	Name string `pulumi:"name"`
-	// (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+	// (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
 	SourceCollection string `pulumi:"sourceCollection"`
 }
 
@@ -19254,11 +19370,11 @@ type SearchIndexSynonymInput interface {
 }
 
 type SearchIndexSynonymArgs struct {
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	Analyzer pulumi.StringInput `pulumi:"analyzer"`
 	// The name of the search index you want to create.
 	Name pulumi.StringInput `pulumi:"name"`
-	// (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+	// (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
 	SourceCollection pulumi.StringInput `pulumi:"sourceCollection"`
 }
 
@@ -19313,7 +19429,7 @@ func (o SearchIndexSynonymOutput) ToSearchIndexSynonymOutputWithContext(ctx cont
 	return o
 }
 
-// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 func (o SearchIndexSynonymOutput) Analyzer() pulumi.StringOutput {
 	return o.ApplyT(func(v SearchIndexSynonym) string { return v.Analyzer }).(pulumi.StringOutput)
 }
@@ -19323,7 +19439,7 @@ func (o SearchIndexSynonymOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SearchIndexSynonym) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+// (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
 func (o SearchIndexSynonymOutput) SourceCollection() pulumi.StringOutput {
 	return o.ApplyT(func(v SearchIndexSynonym) string { return v.SourceCollection }).(pulumi.StringOutput)
 }
@@ -19559,7 +19675,7 @@ type ServerlessInstanceTag struct {
 	Key string `pulumi:"key"`
 	// Variable that belongs to the set of the tag.
 	//
-	// To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+	// To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
 	Value string `pulumi:"value"`
 }
 
@@ -19579,7 +19695,7 @@ type ServerlessInstanceTagArgs struct {
 	Key pulumi.StringInput `pulumi:"key"`
 	// Variable that belongs to the set of the tag.
 	//
-	// To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+	// To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
 	Value pulumi.StringInput `pulumi:"value"`
 }
 
@@ -19641,7 +19757,7 @@ func (o ServerlessInstanceTagOutput) Key() pulumi.StringOutput {
 
 // Variable that belongs to the set of the tag.
 //
-// To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+// To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
 func (o ServerlessInstanceTagOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v ServerlessInstanceTag) string { return v.Value }).(pulumi.StringOutput)
 }
@@ -19813,7 +19929,7 @@ type StreamConnectionAuthentication struct {
 	ClientId *string `pulumi:"clientId"`
 	// Secret known only to the Kafka client and the authorization server.
 	ClientSecret *string `pulumi:"clientSecret"`
-	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
 	Mechanism *string `pulumi:"mechanism"`
 	// SASL OAUTHBEARER authentication method. Value must be OIDC.
 	Method *string `pulumi:"method"`
@@ -19845,7 +19961,7 @@ type StreamConnectionAuthenticationArgs struct {
 	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
 	// Secret known only to the Kafka client and the authorization server.
 	ClientSecret pulumi.StringPtrInput `pulumi:"clientSecret"`
-	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
 	Mechanism pulumi.StringPtrInput `pulumi:"mechanism"`
 	// SASL OAUTHBEARER authentication method. Value must be OIDC.
 	Method pulumi.StringPtrInput `pulumi:"method"`
@@ -19948,7 +20064,7 @@ func (o StreamConnectionAuthenticationOutput) ClientSecret() pulumi.StringPtrOut
 	return o.ApplyT(func(v StreamConnectionAuthentication) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
 }
 
-// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
 func (o StreamConnectionAuthenticationOutput) Mechanism() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StreamConnectionAuthentication) *string { return v.Mechanism }).(pulumi.StringPtrOutput)
 }
@@ -20027,7 +20143,7 @@ func (o StreamConnectionAuthenticationPtrOutput) ClientSecret() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
 func (o StreamConnectionAuthenticationPtrOutput) Mechanism() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionAuthentication) *string {
 		if v == nil {
@@ -20412,7 +20528,7 @@ func (o StreamConnectionAzurePtrOutput) StorageAccountName() pulumi.StringPtrOut
 type StreamConnectionDbRoleToExecute struct {
 	// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 	Role string `pulumi:"role"`
-	// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+	// Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
 	Type string `pulumi:"type"`
 }
 
@@ -20430,7 +20546,7 @@ type StreamConnectionDbRoleToExecuteInput interface {
 type StreamConnectionDbRoleToExecuteArgs struct {
 	// The name of the role to use. Value can be  `atlasAdmin`, `readWriteAnyDatabase`, or `readAnyDatabase` if `type` is set to `BUILT_IN`, or the name of a user-defined role if `type` is set to `CUSTOM`.
 	Role pulumi.StringInput `pulumi:"role"`
-	// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+	// Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -20516,7 +20632,7 @@ func (o StreamConnectionDbRoleToExecuteOutput) Role() pulumi.StringOutput {
 	return o.ApplyT(func(v StreamConnectionDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
 }
 
-// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+// Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
 func (o StreamConnectionDbRoleToExecuteOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v StreamConnectionDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -20555,7 +20671,7 @@ func (o StreamConnectionDbRoleToExecutePtrOutput) Role() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
-// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+// Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
 func (o StreamConnectionDbRoleToExecutePtrOutput) Type() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionDbRoleToExecute) *string {
 		if v == nil {
@@ -21335,11 +21451,11 @@ func (o StreamConnectionSecurityPtrOutput) Protocol() pulumi.StringPtrOutput {
 }
 
 type StreamConnectionTimeouts struct {
-	// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+	// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `40m` (40 minutes).
 	Create *string `pulumi:"create"`
-	// The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
+	// The maximum time to wait for the stream connection to be fully deleted. Defaults to `40m` (40 minutes).
 	Delete *string `pulumi:"delete"`
-	// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+	// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `40m` (40 minutes).
 	Update *string `pulumi:"update"`
 }
 
@@ -21355,11 +21471,11 @@ type StreamConnectionTimeoutsInput interface {
 }
 
 type StreamConnectionTimeoutsArgs struct {
-	// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+	// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `40m` (40 minutes).
 	Create pulumi.StringPtrInput `pulumi:"create"`
-	// The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
+	// The maximum time to wait for the stream connection to be fully deleted. Defaults to `40m` (40 minutes).
 	Delete pulumi.StringPtrInput `pulumi:"delete"`
-	// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+	// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `40m` (40 minutes).
 	Update pulumi.StringPtrInput `pulumi:"update"`
 }
 
@@ -21440,17 +21556,17 @@ func (o StreamConnectionTimeoutsOutput) ToStreamConnectionTimeoutsPtrOutputWithC
 	}).(StreamConnectionTimeoutsPtrOutput)
 }
 
-// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `40m` (40 minutes).
 func (o StreamConnectionTimeoutsOutput) Create() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StreamConnectionTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
 }
 
-// The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
+// The maximum time to wait for the stream connection to be fully deleted. Defaults to `40m` (40 minutes).
 func (o StreamConnectionTimeoutsOutput) Delete() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StreamConnectionTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
 }
 
-// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `40m` (40 minutes).
 func (o StreamConnectionTimeoutsOutput) Update() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StreamConnectionTimeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
 }
@@ -21479,7 +21595,7 @@ func (o StreamConnectionTimeoutsPtrOutput) Elem() StreamConnectionTimeoutsOutput
 	}).(StreamConnectionTimeoutsOutput)
 }
 
-// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `40m` (40 minutes).
 func (o StreamConnectionTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionTimeouts) *string {
 		if v == nil {
@@ -21489,7 +21605,7 @@ func (o StreamConnectionTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
+// The maximum time to wait for the stream connection to be fully deleted. Defaults to `40m` (40 minutes).
 func (o StreamConnectionTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionTimeouts) *string {
 		if v == nil {
@@ -21499,7 +21615,7 @@ func (o StreamConnectionTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
-// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `40m` (40 minutes).
 func (o StreamConnectionTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionTimeouts) *string {
 		if v == nil {
@@ -21666,6 +21782,7 @@ func (o StreamInstanceDataProcessRegionPtrOutput) Region() pulumi.StringPtrOutpu
 }
 
 type StreamInstanceStreamConfig struct {
+	// Maximum tier size for the Stream Instance.
 	MaxTierSize *string `pulumi:"maxTierSize"`
 	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
 	Tier *string `pulumi:"tier"`
@@ -21683,6 +21800,7 @@ type StreamInstanceStreamConfigInput interface {
 }
 
 type StreamInstanceStreamConfigArgs struct {
+	// Maximum tier size for the Stream Instance.
 	MaxTierSize pulumi.StringPtrInput `pulumi:"maxTierSize"`
 	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
 	Tier pulumi.StringPtrInput `pulumi:"tier"`
@@ -21765,6 +21883,7 @@ func (o StreamInstanceStreamConfigOutput) ToStreamInstanceStreamConfigPtrOutputW
 	}).(StreamInstanceStreamConfigPtrOutput)
 }
 
+// Maximum tier size for the Stream Instance.
 func (o StreamInstanceStreamConfigOutput) MaxTierSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StreamInstanceStreamConfig) *string { return v.MaxTierSize }).(pulumi.StringPtrOutput)
 }
@@ -21798,6 +21917,7 @@ func (o StreamInstanceStreamConfigPtrOutput) Elem() StreamInstanceStreamConfigOu
 	}).(StreamInstanceStreamConfigOutput)
 }
 
+// Maximum tier size for the Stream Instance.
 func (o StreamInstanceStreamConfigPtrOutput) MaxTierSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamInstanceStreamConfig) *string {
 		if v == nil {
@@ -22847,7 +22967,7 @@ type GetAdvancedClusterAdvancedConfiguration struct {
 	CustomOpensslCipherConfigTls13s []string `pulumi:"customOpensslCipherConfigTls13s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs int `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
@@ -22891,7 +23011,7 @@ type GetAdvancedClusterAdvancedConfigurationArgs struct {
 	CustomOpensslCipherConfigTls13s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls13s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
@@ -22963,7 +23083,7 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
 }
@@ -23018,7 +23138,7 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) TransactionLifetimeLimitS
 type GetAdvancedClusterBiConnectorConfig struct {
 	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 	Enabled bool `pulumi:"enabled"`
-	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 	ReadPreference string `pulumi:"readPreference"`
 }
 
@@ -23036,7 +23156,7 @@ type GetAdvancedClusterBiConnectorConfigInput interface {
 type GetAdvancedClusterBiConnectorConfigArgs struct {
 	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 	ReadPreference pulumi.StringInput `pulumi:"readPreference"`
 }
 
@@ -23071,13 +23191,13 @@ func (o GetAdvancedClusterBiConnectorConfigOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClusterBiConnectorConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 func (o GetAdvancedClusterBiConnectorConfigOutput) ReadPreference() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterBiConnectorConfig) string { return v.ReadPreference }).(pulumi.StringOutput)
 }
 
 type GetAdvancedClusterConnectionStrings struct {
-	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	Private string `pulumi:"private"`
 	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 	// - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -23089,7 +23209,7 @@ type GetAdvancedClusterConnectionStrings struct {
 	// - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints []GetAdvancedClusterConnectionStringsPrivateEndpoint `pulumi:"privateEndpoints"`
-	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	PrivateSrv string `pulumi:"privateSrv"`
 	// Public mongodb:// connection string for this cluster.
 	Standard string `pulumi:"standard"`
@@ -23109,7 +23229,7 @@ type GetAdvancedClusterConnectionStringsInput interface {
 }
 
 type GetAdvancedClusterConnectionStringsArgs struct {
-	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	Private pulumi.StringInput `pulumi:"private"`
 	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 	// - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -23121,7 +23241,7 @@ type GetAdvancedClusterConnectionStringsArgs struct {
 	// - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints GetAdvancedClusterConnectionStringsPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	PrivateSrv pulumi.StringInput `pulumi:"privateSrv"`
 	// Public mongodb:// connection string for this cluster.
 	Standard pulumi.StringInput `pulumi:"standard"`
@@ -23155,7 +23275,7 @@ func (o GetAdvancedClusterConnectionStringsOutput) ToGetAdvancedClusterConnectio
 	return o
 }
 
-// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetAdvancedClusterConnectionStringsOutput) Private() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterConnectionStrings) string { return v.Private }).(pulumi.StringOutput)
 }
@@ -23175,7 +23295,7 @@ func (o GetAdvancedClusterConnectionStringsOutput) PrivateEndpoints() GetAdvance
 	}).(GetAdvancedClusterConnectionStringsPrivateEndpointArrayOutput)
 }
 
-// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetAdvancedClusterConnectionStringsOutput) PrivateSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterConnectionStrings) string { return v.PrivateSrv }).(pulumi.StringOutput)
 }
@@ -23641,7 +23761,7 @@ func (o GetAdvancedClusterReplicationSpecArrayOutput) Index(i pulumi.IntInput) G
 type GetAdvancedClusterReplicationSpecRegionConfig struct {
 	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below.
 	AnalyticsAutoScaling GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling `pulumi:"analyticsAutoScaling"`
-	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
+	// Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
 	AnalyticsSpecs GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
 	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
 	AutoScaling GetAdvancedClusterReplicationSpecRegionConfigAutoScaling `pulumi:"autoScaling"`
@@ -23679,7 +23799,7 @@ type GetAdvancedClusterReplicationSpecRegionConfigInput interface {
 type GetAdvancedClusterReplicationSpecRegionConfigArgs struct {
 	// Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. See below.
 	AnalyticsAutoScaling GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingInput `pulumi:"analyticsAutoScaling"`
-	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
+	// Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
 	AnalyticsSpecs GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput `pulumi:"analyticsSpecs"`
 	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
 	AutoScaling GetAdvancedClusterReplicationSpecRegionConfigAutoScalingInput `pulumi:"autoScaling"`
@@ -23761,7 +23881,7 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsAutoScalin
 	}).(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput)
 }
 
-// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
+// Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
 func (o GetAdvancedClusterReplicationSpecRegionConfigOutput) AnalyticsSpecs() GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfig) GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
 		return v.AnalyticsSpecs
@@ -23950,13 +24070,13 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput)
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput int `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -23976,13 +24096,13 @@ type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput interface 
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -24016,7 +24136,7 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToGet
 	return o
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) int { return v.DiskIops }).(pulumi.IntOutput)
 }
@@ -24026,9 +24146,12 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskS
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskThroughput() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) int { return v.DiskThroughput }).(pulumi.IntOutput)
+}
+
+// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) string { return v.EbsVolumeType }).(pulumi.StringOutput)
 }
@@ -24141,13 +24264,13 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) DiskGbEn
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput int `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -24167,13 +24290,13 @@ type GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsInput i
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -24207,7 +24330,7 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutp
 	return o
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecs) int { return v.DiskIops }).(pulumi.IntOutput)
 }
@@ -24219,9 +24342,14 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutp
 	}).(pulumi.Float64Output)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutput) DiskThroughput() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecs) int {
+		return v.DiskThroughput
+	}).(pulumi.IntOutput)
+}
+
+// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecs) string {
 		return v.EbsVolumeType
@@ -24241,13 +24369,13 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutp
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput int `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -24267,13 +24395,13 @@ type GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsInput i
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -24307,7 +24435,7 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsOutp
 	return o
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecs) int { return v.DiskIops }).(pulumi.IntOutput)
 }
@@ -24319,9 +24447,14 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsOutp
 	}).(pulumi.Float64Output)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsOutput) DiskThroughput() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecs) int {
+		return v.DiskThroughput
+	}).(pulumi.IntOutput)
+}
+
+// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecs) string {
 		return v.EbsVolumeType
@@ -24341,13 +24474,13 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsOutp
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput int `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -24367,13 +24500,13 @@ type GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsInput in
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -24407,7 +24540,7 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsOutpu
 	return o
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecs) int { return v.DiskIops }).(pulumi.IntOutput)
 }
@@ -24419,9 +24552,14 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsOutpu
 	}).(pulumi.Float64Output)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsOutput) DiskThroughput() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecs) int {
+		return v.DiskThroughput
+	}).(pulumi.IntOutput)
+}
+
+// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecs) string {
 		return v.EbsVolumeType
@@ -24441,13 +24579,13 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsOutpu
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput int `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -24467,13 +24605,13 @@ type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsInput interface 
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -24507,7 +24645,7 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToGet
 	return o
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) int { return v.DiskIops }).(pulumi.IntOutput)
 }
@@ -24517,9 +24655,12 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskS
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskThroughput() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) int { return v.DiskThroughput }).(pulumi.IntOutput)
+}
+
+// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) string { return v.EbsVolumeType }).(pulumi.StringOutput)
 }
@@ -24535,13 +24676,13 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) NodeC
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput int `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -24561,13 +24702,13 @@ type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput interface {
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -24601,7 +24742,7 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToGetA
 	return o
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) int { return v.DiskIops }).(pulumi.IntOutput)
 }
@@ -24611,9 +24752,12 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskSi
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskThroughput() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) int { return v.DiskThroughput }).(pulumi.IntOutput)
+}
+
+// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) string { return v.EbsVolumeType }).(pulumi.StringOutput)
 }
@@ -24629,6 +24773,8 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) NodeCo
 }
 
 type GetAdvancedClustersResult struct {
+	// Governs adaptive capacity behavior of Azure nodes in single-cloud Azure clusters or multi-cloud clusters that include Azure nodes. Adaptive capacity enables fallback hardware selection when the primary instance family is unavailable. `ENABLED` means the cluster explicitly opts in to adaptive capacity. `DISABLED` means the cluster explicitly opts out; the cluster receives capacity errors instead of being placed on fallback hardware. `null` means the field is unset; Azure clusters use adaptive capacity by default when the feature is enabled at the group level. Setting this field for single-cloud AWS or GCP clusters is a no-op.
+	AdaptiveCapacity string `pulumi:"adaptiveCapacity"`
 	// Get the advanced configuration options. See Advanced Configuration below for more details.
 	AdvancedConfiguration GetAdvancedClustersResultAdvancedConfiguration `pulumi:"advancedConfiguration"`
 	// Flag that indicates whether the cluster can perform backups. If set to `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters. Backup uses [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/) for dedicated clusters and [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/) for tenant clusters. If set to `false`, the cluster doesn't use backups.
@@ -24639,11 +24785,11 @@ type GetAdvancedClustersResult struct {
 	ClusterId string `pulumi:"clusterId"`
 	// Type of the cluster that you want to create.
 	ClusterType string `pulumi:"clusterType"`
-	// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+	// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
 	ConfigServerManagementMode string `pulumi:"configServerManagementMode"`
-	// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+	// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
 	ConfigServerType string `pulumi:"configServerType"`
-	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings GetAdvancedClustersResultConnectionStrings `pulumi:"connectionStrings"`
 	// Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
 	CreateDate string `pulumi:"createDate"`
@@ -24701,6 +24847,8 @@ type GetAdvancedClustersResultInput interface {
 }
 
 type GetAdvancedClustersResultArgs struct {
+	// Governs adaptive capacity behavior of Azure nodes in single-cloud Azure clusters or multi-cloud clusters that include Azure nodes. Adaptive capacity enables fallback hardware selection when the primary instance family is unavailable. `ENABLED` means the cluster explicitly opts in to adaptive capacity. `DISABLED` means the cluster explicitly opts out; the cluster receives capacity errors instead of being placed on fallback hardware. `null` means the field is unset; Azure clusters use adaptive capacity by default when the feature is enabled at the group level. Setting this field for single-cloud AWS or GCP clusters is a no-op.
+	AdaptiveCapacity pulumi.StringInput `pulumi:"adaptiveCapacity"`
 	// Get the advanced configuration options. See Advanced Configuration below for more details.
 	AdvancedConfiguration GetAdvancedClustersResultAdvancedConfigurationInput `pulumi:"advancedConfiguration"`
 	// Flag that indicates whether the cluster can perform backups. If set to `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters. Backup uses [Cloud Backups](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/) for dedicated clusters and [Shared Cluster Backups](https://docs.atlas.mongodb.com/backup/shared-tier/overview/) for tenant clusters. If set to `false`, the cluster doesn't use backups.
@@ -24711,11 +24859,11 @@ type GetAdvancedClustersResultArgs struct {
 	ClusterId pulumi.StringInput `pulumi:"clusterId"`
 	// Type of the cluster that you want to create.
 	ClusterType pulumi.StringInput `pulumi:"clusterType"`
-	// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+	// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
 	ConfigServerManagementMode pulumi.StringInput `pulumi:"configServerManagementMode"`
-	// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+	// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
 	ConfigServerType pulumi.StringInput `pulumi:"configServerType"`
-	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings GetAdvancedClustersResultConnectionStringsInput `pulumi:"connectionStrings"`
 	// Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
 	CreateDate pulumi.StringInput `pulumi:"createDate"`
@@ -24812,6 +24960,11 @@ func (o GetAdvancedClustersResultOutput) ToGetAdvancedClustersResultOutputWithCo
 	return o
 }
 
+// Governs adaptive capacity behavior of Azure nodes in single-cloud Azure clusters or multi-cloud clusters that include Azure nodes. Adaptive capacity enables fallback hardware selection when the primary instance family is unavailable. `ENABLED` means the cluster explicitly opts in to adaptive capacity. `DISABLED` means the cluster explicitly opts out; the cluster receives capacity errors instead of being placed on fallback hardware. `null` means the field is unset; Azure clusters use adaptive capacity by default when the feature is enabled at the group level. Setting this field for single-cloud AWS or GCP clusters is a no-op.
+func (o GetAdvancedClustersResultOutput) AdaptiveCapacity() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.AdaptiveCapacity }).(pulumi.StringOutput)
+}
+
 // Get the advanced configuration options. See Advanced Configuration below for more details.
 func (o GetAdvancedClustersResultOutput) AdvancedConfiguration() GetAdvancedClustersResultAdvancedConfigurationOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) GetAdvancedClustersResultAdvancedConfiguration {
@@ -24841,17 +24994,17 @@ func (o GetAdvancedClustersResultOutput) ClusterType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.ClusterType }).(pulumi.StringOutput)
 }
 
-// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
 func (o GetAdvancedClustersResultOutput) ConfigServerManagementMode() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.ConfigServerManagementMode }).(pulumi.StringOutput)
 }
 
-// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
 func (o GetAdvancedClustersResultOutput) ConfigServerType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.ConfigServerType }).(pulumi.StringOutput)
 }
 
-// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 func (o GetAdvancedClustersResultOutput) ConnectionStrings() GetAdvancedClustersResultConnectionStringsOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) GetAdvancedClustersResultConnectionStrings {
 		return v.ConnectionStrings
@@ -24994,7 +25147,7 @@ type GetAdvancedClustersResultAdvancedConfiguration struct {
 	CustomOpensslCipherConfigTls13s []string `pulumi:"customOpensslCipherConfigTls13s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs int `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
@@ -25038,7 +25191,7 @@ type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
 	CustomOpensslCipherConfigTls13s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls13s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
@@ -25114,7 +25267,7 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultMaxTimeMs()
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
 }
@@ -25169,7 +25322,7 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) TransactionLifetim
 type GetAdvancedClustersResultBiConnectorConfig struct {
 	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 	Enabled bool `pulumi:"enabled"`
-	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 	ReadPreference string `pulumi:"readPreference"`
 }
 
@@ -25187,7 +25340,7 @@ type GetAdvancedClustersResultBiConnectorConfigInput interface {
 type GetAdvancedClustersResultBiConnectorConfigArgs struct {
 	// Specifies whether or not BI Connector for Atlas is enabled on the cluster.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 	ReadPreference pulumi.StringInput `pulumi:"readPreference"`
 }
 
@@ -25222,13 +25375,13 @@ func (o GetAdvancedClustersResultBiConnectorConfigOutput) Enabled() pulumi.BoolO
 	return o.ApplyT(func(v GetAdvancedClustersResultBiConnectorConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+// Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 func (o GetAdvancedClustersResultBiConnectorConfigOutput) ReadPreference() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultBiConnectorConfig) string { return v.ReadPreference }).(pulumi.StringOutput)
 }
 
 type GetAdvancedClustersResultConnectionStrings struct {
-	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	Private string `pulumi:"private"`
 	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 	// - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -25240,7 +25393,7 @@ type GetAdvancedClustersResultConnectionStrings struct {
 	// - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints []GetAdvancedClustersResultConnectionStringsPrivateEndpoint `pulumi:"privateEndpoints"`
-	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	PrivateSrv string `pulumi:"privateSrv"`
 	// Public mongodb:// connection string for this cluster.
 	Standard string `pulumi:"standard"`
@@ -25260,7 +25413,7 @@ type GetAdvancedClustersResultConnectionStringsInput interface {
 }
 
 type GetAdvancedClustersResultConnectionStringsArgs struct {
-	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	Private pulumi.StringInput `pulumi:"private"`
 	// Private endpoint connection strings. Each object describes the connection strings you can use to connect to this cluster through a private endpoint. Atlas returns this parameter only if you deployed a private endpoint to all regions to which you deployed this cluster's nodes.
 	// - `connection_strings.private_endpoint[#].connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
@@ -25272,7 +25425,7 @@ type GetAdvancedClustersResultConnectionStringsArgs struct {
 	// - `connection_strings.private_endpoint[#].endpoints[#].provider_name` - Cloud provider to which you deployed the private endpoint. Atlas returns `AWS` or `AZURE`.
 	// - `connection_strings.private_endpoint[#].endpoints[#].region` - Region to which you deployed the private endpoint.
 	PrivateEndpoints GetAdvancedClustersResultConnectionStringsPrivateEndpointArrayInput `pulumi:"privateEndpoints"`
-	// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	PrivateSrv pulumi.StringInput `pulumi:"privateSrv"`
 	// Public mongodb:// connection string for this cluster.
 	Standard pulumi.StringInput `pulumi:"standard"`
@@ -25306,7 +25459,7 @@ func (o GetAdvancedClustersResultConnectionStringsOutput) ToGetAdvancedClustersR
 	return o
 }
 
-// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetAdvancedClustersResultConnectionStringsOutput) Private() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultConnectionStrings) string { return v.Private }).(pulumi.StringOutput)
 }
@@ -25326,7 +25479,7 @@ func (o GetAdvancedClustersResultConnectionStringsOutput) PrivateEndpoints() Get
 	}).(GetAdvancedClustersResultConnectionStringsPrivateEndpointArrayOutput)
 }
 
-// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 func (o GetAdvancedClustersResultConnectionStringsOutput) PrivateSrv() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultConnectionStrings) string { return v.PrivateSrv }).(pulumi.StringOutput)
 }
@@ -25794,7 +25947,7 @@ func (o GetAdvancedClustersResultReplicationSpecArrayOutput) Index(i pulumi.IntI
 type GetAdvancedClustersResultReplicationSpecRegionConfig struct {
 	// Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below.
 	AnalyticsAutoScaling GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling `pulumi:"analyticsAutoScaling"`
-	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
+	// Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
 	AnalyticsSpecs GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs `pulumi:"analyticsSpecs"`
 	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
 	AutoScaling GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling `pulumi:"autoScaling"`
@@ -25832,7 +25985,7 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigInput interface {
 type GetAdvancedClustersResultReplicationSpecRegionConfigArgs struct {
 	// Configuration for the Collection of settings that configures analytis-auto-scaling information for the cluster. See below.
 	AnalyticsAutoScaling GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingInput `pulumi:"analyticsAutoScaling"`
-	// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
+	// Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
 	AnalyticsSpecs GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsInput `pulumi:"analyticsSpecs"`
 	// Configuration for the Collection of settings that configures auto-scaling information for the cluster. See below.
 	AutoScaling GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingInput `pulumi:"autoScaling"`
@@ -25914,7 +26067,7 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) AnalyticsAut
 	}).(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingOutput)
 }
 
-// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
+// Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigOutput) AnalyticsSpecs() GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfig) GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs {
 		return v.AnalyticsSpecs
@@ -26102,13 +26255,13 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput int `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -26128,13 +26281,13 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsInput int
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -26168,7 +26321,7 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput
 	return o
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) int { return v.DiskIops }).(pulumi.IntOutput)
 }
@@ -26180,9 +26333,14 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput
 	}).(pulumi.Float64Output)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskThroughput() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) int {
+		return v.DiskThroughput
+	}).(pulumi.IntOutput)
+}
+
+// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) string {
 		return v.EbsVolumeType
@@ -26296,13 +26454,13 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput) D
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput int `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -26322,13 +26480,13 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -26362,7 +26520,7 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSp
 	return o
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs) int {
 		return v.DiskIops
@@ -26376,9 +26534,14 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSp
 	}).(pulumi.Float64Output)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutput) DiskThroughput() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs) int {
+		return v.DiskThroughput
+	}).(pulumi.IntOutput)
+}
+
+// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs) string {
 		return v.EbsVolumeType
@@ -26400,13 +26563,13 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSp
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput int `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -26426,13 +26589,13 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -26466,7 +26629,7 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSp
 	return o
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs) int {
 		return v.DiskIops
@@ -26480,9 +26643,14 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSp
 	}).(pulumi.Float64Output)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsOutput) DiskThroughput() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs) int {
+		return v.DiskThroughput
+	}).(pulumi.IntOutput)
+}
+
+// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs) string {
 		return v.EbsVolumeType
@@ -26504,13 +26672,13 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSp
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput int `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -26530,13 +26698,13 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsI
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -26570,7 +26738,7 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpe
 	return o
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs) int {
 		return v.DiskIops
@@ -26584,9 +26752,14 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpe
 	}).(pulumi.Float64Output)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsOutput) DiskThroughput() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs) int {
+		return v.DiskThroughput
+	}).(pulumi.IntOutput)
+}
+
+// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs) string {
 		return v.EbsVolumeType
@@ -26608,13 +26781,13 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpe
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput int `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -26634,13 +26807,13 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsInput int
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -26674,7 +26847,7 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput
 	return o
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) int { return v.DiskIops }).(pulumi.IntOutput)
 }
@@ -26686,9 +26859,14 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput
 	}).(pulumi.Float64Output)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) DiskThroughput() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) int {
+		return v.DiskThroughput
+	}).(pulumi.IntOutput)
+}
+
+// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) string {
 		return v.EbsVolumeType
@@ -26708,13 +26886,13 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput int `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -26734,13 +26912,13 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsInput inte
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster.
-	// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-	// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
+	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -26774,7 +26952,7 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput)
 	return o
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) int { return v.DiskIops }).(pulumi.IntOutput)
 }
@@ -26784,9 +26962,12 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput)
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster.
-// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) DiskThroughput() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) int { return v.DiskThroughput }).(pulumi.IntOutput)
+}
+
+// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) string {
 		return v.EbsVolumeType
@@ -26945,7 +27126,7 @@ func (o GetAlertConfigurationMatcherArrayOutput) Index(i pulumi.IntInput) GetAle
 }
 
 type GetAlertConfigurationMetricThresholdConfig struct {
-	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 	MetricName string `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode string `pulumi:"mode"`
@@ -26973,7 +27154,7 @@ type GetAlertConfigurationMetricThresholdConfigInput interface {
 }
 
 type GetAlertConfigurationMetricThresholdConfigArgs struct {
-	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 	MetricName pulumi.StringInput `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode pulumi.StringInput `pulumi:"mode"`
@@ -27040,7 +27221,7 @@ func (o GetAlertConfigurationMetricThresholdConfigOutput) ToGetAlertConfiguratio
 	return o
 }
 
-// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 func (o GetAlertConfigurationMetricThresholdConfigOutput) MetricName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationMetricThresholdConfig) string { return v.MetricName }).(pulumi.StringOutput)
 }
@@ -27815,7 +27996,8 @@ type GetAlertConfigurationsResult struct {
 	Matchers []GetAlertConfigurationsResultMatcher `pulumi:"matchers"`
 	// The threshold that causes an alert to be triggered. Required if `eventTypeName` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
 	MetricThresholdConfigs []GetAlertConfigurationsResultMetricThresholdConfig `pulumi:"metricThresholdConfigs"`
-	Notifications          []GetAlertConfigurationsResultNotification          `pulumi:"notifications"`
+	// List of notifications to send when an alert condition is detected. See notification.
+	Notifications []GetAlertConfigurationsResultNotification `pulumi:"notifications"`
 	// Requested output string format for the alert configuration
 	Outputs []GetAlertConfigurationsResultOutputType `pulumi:"outputs"`
 	// The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
@@ -27853,7 +28035,8 @@ type GetAlertConfigurationsResultArgs struct {
 	Matchers GetAlertConfigurationsResultMatcherArrayInput `pulumi:"matchers"`
 	// The threshold that causes an alert to be triggered. Required if `eventTypeName` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
 	MetricThresholdConfigs GetAlertConfigurationsResultMetricThresholdConfigArrayInput `pulumi:"metricThresholdConfigs"`
-	Notifications          GetAlertConfigurationsResultNotificationArrayInput          `pulumi:"notifications"`
+	// List of notifications to send when an alert condition is detected. See notification.
+	Notifications GetAlertConfigurationsResultNotificationArrayInput `pulumi:"notifications"`
 	// Requested output string format for the alert configuration
 	Outputs GetAlertConfigurationsResultOutputTypeArrayInput `pulumi:"outputs"`
 	// The unique ID for the project to get the alert configurations, also known as `groupId` in the official documentation.
@@ -27953,6 +28136,7 @@ func (o GetAlertConfigurationsResultOutput) MetricThresholdConfigs() GetAlertCon
 	}).(GetAlertConfigurationsResultMetricThresholdConfigArrayOutput)
 }
 
+// List of notifications to send when an alert condition is detected. See notification.
 func (o GetAlertConfigurationsResultOutput) Notifications() GetAlertConfigurationsResultNotificationArrayOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResult) []GetAlertConfigurationsResultNotification {
 		return v.Notifications
@@ -28146,7 +28330,7 @@ func (o GetAlertConfigurationsResultMatcherArrayOutput) Index(i pulumi.IntInput)
 }
 
 type GetAlertConfigurationsResultMetricThresholdConfig struct {
-	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 	MetricName string `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode string `pulumi:"mode"`
@@ -28174,7 +28358,7 @@ type GetAlertConfigurationsResultMetricThresholdConfigInput interface {
 }
 
 type GetAlertConfigurationsResultMetricThresholdConfigArgs struct {
-	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+	// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 	MetricName pulumi.StringInput `pulumi:"metricName"`
 	// This must be set to AVERAGE. Atlas computes the current metric value as an average.
 	Mode pulumi.StringInput `pulumi:"mode"`
@@ -28241,7 +28425,7 @@ func (o GetAlertConfigurationsResultMetricThresholdConfigOutput) ToGetAlertConfi
 	return o
 }
 
-// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+// Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
 func (o GetAlertConfigurationsResultMetricThresholdConfigOutput) MetricName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultMetricThresholdConfig) string { return v.MetricName }).(pulumi.StringOutput)
 }
@@ -32405,10 +32589,13 @@ type GetCloudBackupSnapshotRestoreJobsResult struct {
 	// UTC ISO 8601 formatted point in time when the restore job completed.
 	FinishedAt string `pulumi:"finishedAt"`
 	// The unique identifier of the restore job.
-	Id                    string `pulumi:"id"`
-	OplogInc              int    `pulumi:"oplogInc"`
-	OplogTs               int    `pulumi:"oplogTs"`
-	PointInTimeUtcSeconds int    `pulumi:"pointInTimeUtcSeconds"`
+	Id string `pulumi:"id"`
+	// Oplog operation number from which to you want to restore this snapshot.
+	OplogInc int `pulumi:"oplogInc"`
+	// Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+	OplogTs int `pulumi:"oplogTs"`
+	// Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+	PointInTimeUtcSeconds int `pulumi:"pointInTimeUtcSeconds"`
 	// Unique identifier of the source snapshot ID of the restore job.
 	SnapshotId string `pulumi:"snapshotId"`
 	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
@@ -32416,9 +32603,6 @@ type GetCloudBackupSnapshotRestoreJobsResult struct {
 	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
 	TargetProjectId string `pulumi:"targetProjectId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
-	// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
-	// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
-	// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 	Timestamp string `pulumi:"timestamp"`
 }
 
@@ -32449,10 +32633,13 @@ type GetCloudBackupSnapshotRestoreJobsResultArgs struct {
 	// UTC ISO 8601 formatted point in time when the restore job completed.
 	FinishedAt pulumi.StringInput `pulumi:"finishedAt"`
 	// The unique identifier of the restore job.
-	Id                    pulumi.StringInput `pulumi:"id"`
-	OplogInc              pulumi.IntInput    `pulumi:"oplogInc"`
-	OplogTs               pulumi.IntInput    `pulumi:"oplogTs"`
-	PointInTimeUtcSeconds pulumi.IntInput    `pulumi:"pointInTimeUtcSeconds"`
+	Id pulumi.StringInput `pulumi:"id"`
+	// Oplog operation number from which to you want to restore this snapshot.
+	OplogInc pulumi.IntInput `pulumi:"oplogInc"`
+	// Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+	OplogTs pulumi.IntInput `pulumi:"oplogTs"`
+	// Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+	PointInTimeUtcSeconds pulumi.IntInput `pulumi:"pointInTimeUtcSeconds"`
 	// Unique identifier of the source snapshot ID of the restore job.
 	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
 	// Name of the target Atlas cluster to which the restore job restores the snapshot. Only visible if deliveryType is automated.
@@ -32460,9 +32647,6 @@ type GetCloudBackupSnapshotRestoreJobsResultArgs struct {
 	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
 	TargetProjectId pulumi.StringInput `pulumi:"targetProjectId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
-	// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
-	// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
-	// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 	Timestamp pulumi.StringInput `pulumi:"timestamp"`
 }
 
@@ -32557,14 +32741,17 @@ func (o GetCloudBackupSnapshotRestoreJobsResultOutput) Id() pulumi.StringOutput 
 	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Oplog operation number from which to you want to restore this snapshot.
 func (o GetCloudBackupSnapshotRestoreJobsResultOutput) OplogInc() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) int { return v.OplogInc }).(pulumi.IntOutput)
 }
 
+// Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 func (o GetCloudBackupSnapshotRestoreJobsResultOutput) OplogTs() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) int { return v.OplogTs }).(pulumi.IntOutput)
 }
 
+// Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 func (o GetCloudBackupSnapshotRestoreJobsResultOutput) PointInTimeUtcSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) int { return v.PointInTimeUtcSeconds }).(pulumi.IntOutput)
 }
@@ -32585,9 +32772,6 @@ func (o GetCloudBackupSnapshotRestoreJobsResultOutput) TargetProjectId() pulumi.
 }
 
 // Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
-// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
-// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
-// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 func (o GetCloudBackupSnapshotRestoreJobsResultOutput) Timestamp() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSnapshotRestoreJobsResult) string { return v.Timestamp }).(pulumi.StringOutput)
 }
@@ -33612,11 +33796,11 @@ type GetClusterAdvancedConfiguration struct {
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
 	DefaultMaxTimeMs                int      `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern string `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
 	// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
@@ -33661,11 +33845,11 @@ type GetClusterAdvancedConfigurationArgs struct {
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
 	DefaultMaxTimeMs                pulumi.IntInput         `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
 	// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
@@ -33760,14 +33944,14 @@ func (o GetClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.IntOutp
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+// [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetClusterAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) string { return v.DefaultReadConcern }).(pulumi.StringOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 func (o GetClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
 }
@@ -33849,7 +34033,7 @@ func (o GetClusterAdvancedConfigurationArrayOutput) Index(i pulumi.IntInput) Get
 type GetClusterBiConnectorConfig struct {
 	// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
 	Enabled bool `pulumi:"enabled"`
-	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 	ReadPreference string `pulumi:"readPreference"`
 }
 
@@ -33867,7 +34051,7 @@ type GetClusterBiConnectorConfigInput interface {
 type GetClusterBiConnectorConfigArgs struct {
 	// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 	ReadPreference pulumi.StringInput `pulumi:"readPreference"`
 }
 
@@ -33927,7 +34111,7 @@ func (o GetClusterBiConnectorConfigOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClusterBiConnectorConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 func (o GetClusterBiConnectorConfigOutput) ReadPreference() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClusterBiConnectorConfig) string { return v.ReadPreference }).(pulumi.StringOutput)
 }
@@ -35394,11 +35578,11 @@ type GetClustersResult struct {
 	BiConnectorConfigs []GetClustersResultBiConnectorConfig `pulumi:"biConnectorConfigs"`
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType string `pulumi:"clusterType"`
-	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	// - `connection_strings.#.standard` -   Public mongodb:// connection string for this cluster.
 	// - `connection_strings.#.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-	// - `connection_strings.#.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-	// - `connection_strings.#.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// - `connection_strings.#.private` -   [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// - `connection_strings.#.private_srv` -  [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	// - `connection_strings.#.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
 	// - `connection_strings.#.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
 	// - `connection_strings.#.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
@@ -35440,7 +35624,7 @@ type GetClustersResult struct {
 	ProviderAutoScalingComputeMaxInstanceSize string `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
 	// Minimum instance size to which your cluster can automatically scale.
 	ProviderAutoScalingComputeMinInstanceSize string `pulumi:"providerAutoScalingComputeMinInstanceSize"`
-	// Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloudBackup` instead.
+	// Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED**
 	ProviderBackupEnabled bool `pulumi:"providerBackupEnabled"`
 	// Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
 	ProviderDiskIops int `pulumi:"providerDiskIops"`
@@ -35452,7 +35636,7 @@ type GetClustersResult struct {
 	ProviderInstanceSizeName string `pulumi:"providerInstanceSizeName"`
 	// Indicates the cloud service provider on which the servers are provisioned.
 	ProviderName string `pulumi:"providerName"`
-	// Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	ProviderRegionName string `pulumi:"providerRegionName"`
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
@@ -35511,11 +35695,11 @@ type GetClustersResultArgs struct {
 	BiConnectorConfigs GetClustersResultBiConnectorConfigArrayInput `pulumi:"biConnectorConfigs"`
 	// Indicates the type of the cluster that you want to modify. You cannot convert a sharded cluster deployment to a replica set deployment.
 	ClusterType pulumi.StringInput `pulumi:"clusterType"`
-	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	// - `connection_strings.#.standard` -   Public mongodb:// connection string for this cluster.
 	// - `connection_strings.#.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-	// - `connection_strings.#.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-	// - `connection_strings.#.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// - `connection_strings.#.private` -   [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+	// - `connection_strings.#.private_srv` -  [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 	// - `connection_strings.#.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
 	// - `connection_strings.#.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
 	// - `connection_strings.#.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
@@ -35557,7 +35741,7 @@ type GetClustersResultArgs struct {
 	ProviderAutoScalingComputeMaxInstanceSize pulumi.StringInput `pulumi:"providerAutoScalingComputeMaxInstanceSize"`
 	// Minimum instance size to which your cluster can automatically scale.
 	ProviderAutoScalingComputeMinInstanceSize pulumi.StringInput `pulumi:"providerAutoScalingComputeMinInstanceSize"`
-	// Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloudBackup` instead.
+	// Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED**
 	ProviderBackupEnabled pulumi.BoolInput `pulumi:"providerBackupEnabled"`
 	// Indicates the maximum input/output operations per second (IOPS) the system can perform. The possible values depend on the selected providerSettings.instanceSizeName and diskSizeGB.
 	ProviderDiskIops pulumi.IntInput `pulumi:"providerDiskIops"`
@@ -35569,7 +35753,7 @@ type GetClustersResultArgs struct {
 	ProviderInstanceSizeName pulumi.StringInput `pulumi:"providerInstanceSizeName"`
 	// Indicates the cloud service provider on which the servers are provisioned.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
-	// Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	ProviderRegionName pulumi.StringInput `pulumi:"providerRegionName"`
 	// Indicates the type of the volume. The possible values are: `STANDARD` and `PROVISIONED`.
 	// > **NOTE:** `STANDARD` is not available for NVME clusters.
@@ -35691,11 +35875,11 @@ func (o GetClustersResultOutput) ClusterType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResult) string { return v.ClusterType }).(pulumi.StringOutput)
 }
 
-// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 // - `connection_strings.#.standard` -   Public mongodb:// connection string for this cluster.
 // - `connection_strings.#.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-// - `connection_strings.#.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-// - `connection_strings.#.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+// - `connection_strings.#.private` -   [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+// - `connection_strings.#.private_srv` -  [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
 // - `connection_strings.#.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
 // - `connection_strings.#.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
 // - `connection_strings.#.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
@@ -35788,7 +35972,7 @@ func (o GetClustersResultOutput) ProviderAutoScalingComputeMinInstanceSize() pul
 	return o.ApplyT(func(v GetClustersResult) string { return v.ProviderAutoScalingComputeMinInstanceSize }).(pulumi.StringOutput)
 }
 
-// Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloudBackup` instead.
+// Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED**
 func (o GetClustersResultOutput) ProviderBackupEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResult) bool { return v.ProviderBackupEnabled }).(pulumi.BoolOutput)
 }
@@ -35818,7 +36002,7 @@ func (o GetClustersResultOutput) ProviderName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResult) string { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-// Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+// Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 func (o GetClustersResultOutput) ProviderRegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResult) string { return v.ProviderRegionName }).(pulumi.StringOutput)
 }
@@ -35906,11 +36090,11 @@ type GetClustersResultAdvancedConfiguration struct {
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
 	DefaultMaxTimeMs                int      `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern string `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
 	// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
@@ -35954,11 +36138,11 @@ type GetClustersResultAdvancedConfigurationArgs struct {
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
 	DefaultMaxTimeMs                pulumi.IntInput         `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+	// [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 	//
 	// Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 	DefaultReadConcern pulumi.StringInput `pulumi:"defaultReadConcern"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
 	// **(DEPRECATED)** When true, documents can only be updated or inserted if, for all indexed fields on the target collection, the corresponding index entries do not exceed 1024 bytes. When false, mongod writes documents that exceed the limit but does not index them.
 	//
@@ -36052,14 +36236,14 @@ func (o GetClustersResultAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi.
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+// [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
 //
 // Deprecated: This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
 func (o GetClustersResultAdvancedConfigurationOutput) DefaultReadConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) string { return v.DefaultReadConcern }).(pulumi.StringOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
 func (o GetClustersResultAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
 }
@@ -36140,7 +36324,7 @@ func (o GetClustersResultAdvancedConfigurationArrayOutput) Index(i pulumi.IntInp
 type GetClustersResultBiConnectorConfig struct {
 	// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
 	Enabled bool `pulumi:"enabled"`
-	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 	ReadPreference string `pulumi:"readPreference"`
 }
 
@@ -36158,7 +36342,7 @@ type GetClustersResultBiConnectorConfigInput interface {
 type GetClustersResultBiConnectorConfigArgs struct {
 	// Indicates whether or not BI Connector for Atlas is enabled on the cluster.
 	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+	// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 	ReadPreference pulumi.StringInput `pulumi:"readPreference"`
 }
 
@@ -36218,7 +36402,7 @@ func (o GetClustersResultBiConnectorConfigOutput) Enabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetClustersResultBiConnectorConfig) bool { return v.Enabled }).(pulumi.BoolOutput)
 }
 
-// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+// Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
 func (o GetClustersResultBiConnectorConfigOutput) ReadPreference() pulumi.StringOutput {
 	return o.ApplyT(func(v GetClustersResultBiConnectorConfig) string { return v.ReadPreference }).(pulumi.StringOutput)
 }
@@ -39078,7 +39262,8 @@ type GetDatabaseUsersResultRole struct {
 	CollectionName string `pulumi:"collectionName"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
 	DatabaseName string `pulumi:"databaseName"`
-	RoleName     string `pulumi:"roleName"`
+	// Name of the role to grant.
+	RoleName string `pulumi:"roleName"`
 }
 
 // GetDatabaseUsersResultRoleInput is an input type that accepts GetDatabaseUsersResultRoleArgs and GetDatabaseUsersResultRoleOutput values.
@@ -39097,7 +39282,8 @@ type GetDatabaseUsersResultRoleArgs struct {
 	CollectionName pulumi.StringInput `pulumi:"collectionName"`
 	// Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
 	DatabaseName pulumi.StringInput `pulumi:"databaseName"`
-	RoleName     pulumi.StringInput `pulumi:"roleName"`
+	// Name of the role to grant.
+	RoleName pulumi.StringInput `pulumi:"roleName"`
 }
 
 func (GetDatabaseUsersResultRoleArgs) ElementType() reflect.Type {
@@ -39161,6 +39347,7 @@ func (o GetDatabaseUsersResultRoleOutput) DatabaseName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResultRole) string { return v.DatabaseName }).(pulumi.StringOutput)
 }
 
+// Name of the role to grant.
 func (o GetDatabaseUsersResultRoleOutput) RoleName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResultRole) string { return v.RoleName }).(pulumi.StringOutput)
 }
@@ -39186,7 +39373,7 @@ func (o GetDatabaseUsersResultRoleArrayOutput) Index(i pulumi.IntInput) GetDatab
 }
 
 type GetDatabaseUsersResultScope struct {
-	// Name of the role to grant.
+	// Name of the cluster or Atlas Data Federation that the user has access to.
 	Name string `pulumi:"name"`
 	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 	Type string `pulumi:"type"`
@@ -39204,7 +39391,7 @@ type GetDatabaseUsersResultScopeInput interface {
 }
 
 type GetDatabaseUsersResultScopeArgs struct {
-	// Name of the role to grant.
+	// Name of the cluster or Atlas Data Federation that the user has access to.
 	Name pulumi.StringInput `pulumi:"name"`
 	// Type of resource that the user has access to. See [Database User API](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createdatabaseuser) for the list of valid values.
 	Type pulumi.StringInput `pulumi:"type"`
@@ -39261,7 +39448,7 @@ func (o GetDatabaseUsersResultScopeOutput) ToGetDatabaseUsersResultScopeOutputWi
 	return o
 }
 
-// Name of the role to grant.
+// Name of the cluster or Atlas Data Federation that the user has access to.
 func (o GetDatabaseUsersResultScopeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseUsersResultScope) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -40003,21 +40190,23 @@ type GetEventTriggersResult struct {
 	ConfigCollection string `pulumi:"configCollection"`
 	// The name of the MongoDB database to watch.
 	ConfigDatabase string `pulumi:"configDatabase"`
-	// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
-	ConfigFullDocument       bool `pulumi:"configFullDocument"`
+	// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+	ConfigFullDocument bool `pulumi:"configFullDocument"`
+	// If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
 	ConfigFullDocumentBefore bool `pulumi:"configFullDocumentBefore"`
-	// A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+	// A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
 	ConfigMatch string `pulumi:"configMatch"`
-	// The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+	// The [authentication operation type](https://www.mongodb.com/docs/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
 	ConfigOperationType string `pulumi:"configOperationType"`
-	// The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+	// The [database event operation types](https://www.mongodb.com/docs/realm/triggers/database-triggers/#std-label-database-events) to listen for.
 	ConfigOperationTypes []string `pulumi:"configOperationTypes"`
-	// A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+	// A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 	ConfigProject string `pulumi:"configProject"`
-	// A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+	// A list of one or more [authentication provider](https://www.mongodb.com/docs/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
 	ConfigProviders []string `pulumi:"configProviders"`
-	// A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
-	ConfigSchedule     string `pulumi:"configSchedule"`
+	// A [cron expression](https://www.mongodb.com/docs/realm/triggers/cron-expressions/) that defines the trigger schedule.
+	ConfigSchedule string `pulumi:"configSchedule"`
+	// The type of the scheduled trigger.
 	ConfigScheduleType string `pulumi:"configScheduleType"`
 	// The ID of the MongoDB Service associated with the trigger.
 	ConfigServiceId string `pulumi:"configServiceId"`
@@ -40030,7 +40219,8 @@ type GetEventTriggersResult struct {
 	// The name of the function associated with the trigger.
 	FunctionName string `pulumi:"functionName"`
 	// The name of the trigger.
-	Name      string `pulumi:"name"`
+	Name string `pulumi:"name"`
+	// The unique ID of the trigger.
 	TriggerId string `pulumi:"triggerId"`
 	// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
 	Type string `pulumi:"type"`
@@ -40054,21 +40244,23 @@ type GetEventTriggersResultArgs struct {
 	ConfigCollection pulumi.StringInput `pulumi:"configCollection"`
 	// The name of the MongoDB database to watch.
 	ConfigDatabase pulumi.StringInput `pulumi:"configDatabase"`
-	// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
-	ConfigFullDocument       pulumi.BoolInput `pulumi:"configFullDocument"`
+	// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+	ConfigFullDocument pulumi.BoolInput `pulumi:"configFullDocument"`
+	// If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
 	ConfigFullDocumentBefore pulumi.BoolInput `pulumi:"configFullDocumentBefore"`
-	// A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+	// A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
 	ConfigMatch pulumi.StringInput `pulumi:"configMatch"`
-	// The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+	// The [authentication operation type](https://www.mongodb.com/docs/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
 	ConfigOperationType pulumi.StringInput `pulumi:"configOperationType"`
-	// The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+	// The [database event operation types](https://www.mongodb.com/docs/realm/triggers/database-triggers/#std-label-database-events) to listen for.
 	ConfigOperationTypes pulumi.StringArrayInput `pulumi:"configOperationTypes"`
-	// A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+	// A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 	ConfigProject pulumi.StringInput `pulumi:"configProject"`
-	// A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+	// A list of one or more [authentication provider](https://www.mongodb.com/docs/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
 	ConfigProviders pulumi.StringArrayInput `pulumi:"configProviders"`
-	// A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
-	ConfigSchedule     pulumi.StringInput `pulumi:"configSchedule"`
+	// A [cron expression](https://www.mongodb.com/docs/realm/triggers/cron-expressions/) that defines the trigger schedule.
+	ConfigSchedule pulumi.StringInput `pulumi:"configSchedule"`
+	// The type of the scheduled trigger.
 	ConfigScheduleType pulumi.StringInput `pulumi:"configScheduleType"`
 	// The ID of the MongoDB Service associated with the trigger.
 	ConfigServiceId pulumi.StringInput `pulumi:"configServiceId"`
@@ -40081,7 +40273,8 @@ type GetEventTriggersResultArgs struct {
 	// The name of the function associated with the trigger.
 	FunctionName pulumi.StringInput `pulumi:"functionName"`
 	// The name of the trigger.
-	Name      pulumi.StringInput `pulumi:"name"`
+	Name pulumi.StringInput `pulumi:"name"`
+	// The unique ID of the trigger.
 	TriggerId pulumi.StringInput `pulumi:"triggerId"`
 	// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
 	Type pulumi.StringInput `pulumi:"type"`
@@ -40150,45 +40343,47 @@ func (o GetEventTriggersResultOutput) ConfigDatabase() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) string { return v.ConfigDatabase }).(pulumi.StringOutput)
 }
 
-// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
 func (o GetEventTriggersResultOutput) ConfigFullDocument() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) bool { return v.ConfigFullDocument }).(pulumi.BoolOutput)
 }
 
+// If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
 func (o GetEventTriggersResultOutput) ConfigFullDocumentBefore() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) bool { return v.ConfigFullDocumentBefore }).(pulumi.BoolOutput)
 }
 
-// A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+// A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
 func (o GetEventTriggersResultOutput) ConfigMatch() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) string { return v.ConfigMatch }).(pulumi.StringOutput)
 }
 
-// The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+// The [authentication operation type](https://www.mongodb.com/docs/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
 func (o GetEventTriggersResultOutput) ConfigOperationType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) string { return v.ConfigOperationType }).(pulumi.StringOutput)
 }
 
-// The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+// The [database event operation types](https://www.mongodb.com/docs/realm/triggers/database-triggers/#std-label-database-events) to listen for.
 func (o GetEventTriggersResultOutput) ConfigOperationTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) []string { return v.ConfigOperationTypes }).(pulumi.StringArrayOutput)
 }
 
-// A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+// A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 func (o GetEventTriggersResultOutput) ConfigProject() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) string { return v.ConfigProject }).(pulumi.StringOutput)
 }
 
-// A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+// A list of one or more [authentication provider](https://www.mongodb.com/docs/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
 func (o GetEventTriggersResultOutput) ConfigProviders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) []string { return v.ConfigProviders }).(pulumi.StringArrayOutput)
 }
 
-// A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+// A [cron expression](https://www.mongodb.com/docs/realm/triggers/cron-expressions/) that defines the trigger schedule.
 func (o GetEventTriggersResultOutput) ConfigSchedule() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) string { return v.ConfigSchedule }).(pulumi.StringOutput)
 }
 
+// The type of the scheduled trigger.
 func (o GetEventTriggersResultOutput) ConfigScheduleType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) string { return v.ConfigScheduleType }).(pulumi.StringOutput)
 }
@@ -40223,6 +40418,7 @@ func (o GetEventTriggersResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// The unique ID of the trigger.
 func (o GetEventTriggersResultOutput) TriggerId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetEventTriggersResult) string { return v.TriggerId }).(pulumi.StringOutput)
 }
@@ -42032,9 +42228,9 @@ type GetFederatedDatabaseInstancesResult struct {
 	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
 	// * `DELETED` - The Federated Database Instance was deleted.
 	State string `pulumi:"state"`
-	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
+	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/) data store.
 	// * `storage_databases.#.collections.#.name` - Name of the collection.
 	// * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
 	// * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
@@ -42047,14 +42243,14 @@ type GetFederatedDatabaseInstancesResult struct {
 	// * `storage_databases.#.collections.#.data_sources.#.collection` - Human-readable label that identifies the collection in the database.
 	// * `storage_databases.#.collections.#.data_sources.#.collection_regex` - Regex pattern to use for creating the wildcard (*) collection.
 	// * `storage_databases.#.collections.#.data_sources.#.provenance_field_name` - Name for the field that includes the provenance of the documents in the results.
-	// * `storage_databases.#.collections.#.data_sources.#.storeName` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
+	// * `storage_databases.#.collections.#.data_sources.#.store_name` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
 	// * `storage_databases.#.collections.#.data_sources.#.urls` - URLs of the publicly accessible data files. You can't specify URLs that require authentication.
-	// * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://docs.mongodb.com/manual/core/views/).
+	// * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://www.mongodb.com/docs/manual/core/views/).
 	// * `storage_databases.#.views.#.name` - Name of the view.
 	// * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
 	// * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
 	StorageDatabases []GetFederatedDatabaseInstancesResultStorageDatabase `pulumi:"storageDatabases"`
-	// Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
+	// Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
 	// * `storage_stores.#.name` - Name of the data store.
 	// * `storage_stores.#.provider` - Defines where the data is stored.
 	// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -42068,7 +42264,7 @@ type GetFederatedDatabaseInstancesResult struct {
 	// * `storage_stores.#.default_format` - Default format that Atlas Data Federation assumes if it encounters a file without an extension while searching the storeName.
 	// * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
 	// * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
-	// * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
+	// * `storage_stores.#.read_preference.max_staleness_seconds` - Maximum replication lag, or staleness, for reads from secondaries.
 	// * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
 	// * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
 	// * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
@@ -42104,9 +42300,9 @@ type GetFederatedDatabaseInstancesResultArgs struct {
 	// * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
 	// * `DELETED` - The Federated Database Instance was deleted.
 	State pulumi.StringInput `pulumi:"state"`
-	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+	// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 	// * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
+	// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/) data store.
 	// * `storage_databases.#.collections.#.name` - Name of the collection.
 	// * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
 	// * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
@@ -42119,14 +42315,14 @@ type GetFederatedDatabaseInstancesResultArgs struct {
 	// * `storage_databases.#.collections.#.data_sources.#.collection` - Human-readable label that identifies the collection in the database.
 	// * `storage_databases.#.collections.#.data_sources.#.collection_regex` - Regex pattern to use for creating the wildcard (*) collection.
 	// * `storage_databases.#.collections.#.data_sources.#.provenance_field_name` - Name for the field that includes the provenance of the documents in the results.
-	// * `storage_databases.#.collections.#.data_sources.#.storeName` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
+	// * `storage_databases.#.collections.#.data_sources.#.store_name` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
 	// * `storage_databases.#.collections.#.data_sources.#.urls` - URLs of the publicly accessible data files. You can't specify URLs that require authentication.
-	// * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://docs.mongodb.com/manual/core/views/).
+	// * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://www.mongodb.com/docs/manual/core/views/).
 	// * `storage_databases.#.views.#.name` - Name of the view.
 	// * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
 	// * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
 	StorageDatabases GetFederatedDatabaseInstancesResultStorageDatabaseArrayInput `pulumi:"storageDatabases"`
-	// Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
+	// Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
 	// * `storage_stores.#.name` - Name of the data store.
 	// * `storage_stores.#.provider` - Defines where the data is stored.
 	// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -42140,7 +42336,7 @@ type GetFederatedDatabaseInstancesResultArgs struct {
 	// * `storage_stores.#.default_format` - Default format that Atlas Data Federation assumes if it encounters a file without an extension while searching the storeName.
 	// * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
 	// * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
-	// * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
+	// * `storage_stores.#.read_preference.max_staleness_seconds` - Maximum replication lag, or staleness, for reads from secondaries.
 	// * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
 	// * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
 	// * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
@@ -42242,9 +42438,9 @@ func (o GetFederatedDatabaseInstancesResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResult) string { return v.State }).(pulumi.StringOutput)
 }
 
-// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+// Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
 // * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
+// * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/) data store.
 // * `storage_databases.#.collections.#.name` - Name of the collection.
 // * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
 // * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
@@ -42257,9 +42453,9 @@ func (o GetFederatedDatabaseInstancesResultOutput) State() pulumi.StringOutput {
 // * `storage_databases.#.collections.#.data_sources.#.collection` - Human-readable label that identifies the collection in the database.
 // * `storage_databases.#.collections.#.data_sources.#.collection_regex` - Regex pattern to use for creating the wildcard (*) collection.
 // * `storage_databases.#.collections.#.data_sources.#.provenance_field_name` - Name for the field that includes the provenance of the documents in the results.
-// * `storage_databases.#.collections.#.data_sources.#.storeName` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
+// * `storage_databases.#.collections.#.data_sources.#.store_name` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
 // * `storage_databases.#.collections.#.data_sources.#.urls` - URLs of the publicly accessible data files. You can't specify URLs that require authentication.
-// * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://docs.mongodb.com/manual/core/views/).
+// * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://www.mongodb.com/docs/manual/core/views/).
 // * `storage_databases.#.views.#.name` - Name of the view.
 // * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
 // * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
@@ -42269,7 +42465,7 @@ func (o GetFederatedDatabaseInstancesResultOutput) StorageDatabases() GetFederat
 	}).(GetFederatedDatabaseInstancesResultStorageDatabaseArrayOutput)
 }
 
-// Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
+// Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
 // * `storage_stores.#.name` - Name of the data store.
 // * `storage_stores.#.provider` - Defines where the data is stored.
 // * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -42283,7 +42479,7 @@ func (o GetFederatedDatabaseInstancesResultOutput) StorageDatabases() GetFederat
 // * `storage_stores.#.default_format` - Default format that Atlas Data Federation assumes if it encounters a file without an extension while searching the storeName.
 // * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
 // * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
-// * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
+// * `storage_stores.#.read_preference.max_staleness_seconds` - Maximum replication lag, or staleness, for reads from secondaries.
 // * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
 // * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
 // * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
@@ -42559,6 +42755,7 @@ func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAwArrayOutput) Ind
 }
 
 type GetFederatedDatabaseInstancesResultCloudProviderConfigAzure struct {
+	// Unique identifier of the Azure Active Directory application associated with the service principal.
 	AtlasAppId string `pulumi:"atlasAppId"`
 	// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
 	RoleId string `pulumi:"roleId"`
@@ -42580,6 +42777,7 @@ type GetFederatedDatabaseInstancesResultCloudProviderConfigAzureInput interface 
 }
 
 type GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArgs struct {
+	// Unique identifier of the Azure Active Directory application associated with the service principal.
 	AtlasAppId pulumi.StringInput `pulumi:"atlasAppId"`
 	// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
 	RoleId pulumi.StringInput `pulumi:"roleId"`
@@ -42640,6 +42838,7 @@ func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput) ToGet
 	return o
 }
 
+// Unique identifier of the Azure Active Directory application associated with the service principal.
 func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput) AtlasAppId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultCloudProviderConfigAzure) string { return v.AtlasAppId }).(pulumi.StringOutput)
 }
@@ -43879,18 +44078,20 @@ type GetFederatedQueryLimitsResult struct {
 	// Amount that indicates the current usage of the limit.
 	CurrentUsage int `pulumi:"currentUsage"`
 	// Default value of the limit.
-	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-	// * `maximumLimit` - Maximum value of the limit.
-	DefaultLimit     int    `pulumi:"defaultLimit"`
+	DefaultLimit int `pulumi:"defaultLimit"`
+	// Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
 	LastModifiedDate string `pulumi:"lastModifiedDate"`
 	LimitName        string `pulumi:"limitName"`
-	MaximumLimit     int    `pulumi:"maximumLimit"`
-	OverrunPolicy    string `pulumi:"overrunPolicy"`
+	// Maximum value of the limit.
+	MaximumLimit int `pulumi:"maximumLimit"`
+	// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit.
+	OverrunPolicy string `pulumi:"overrunPolicy"`
 	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Name of the Atlas Federated Database Instance.
 	TenantName string `pulumi:"tenantName"`
-	Value      int    `pulumi:"value"`
+	// Amount to set the limit to.
+	Value int `pulumi:"value"`
 }
 
 // GetFederatedQueryLimitsResultInput is an input type that accepts GetFederatedQueryLimitsResultArgs and GetFederatedQueryLimitsResultOutput values.
@@ -43908,18 +44109,20 @@ type GetFederatedQueryLimitsResultArgs struct {
 	// Amount that indicates the current usage of the limit.
 	CurrentUsage pulumi.IntInput `pulumi:"currentUsage"`
 	// Default value of the limit.
-	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-	// * `maximumLimit` - Maximum value of the limit.
-	DefaultLimit     pulumi.IntInput    `pulumi:"defaultLimit"`
+	DefaultLimit pulumi.IntInput `pulumi:"defaultLimit"`
+	// Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
 	LastModifiedDate pulumi.StringInput `pulumi:"lastModifiedDate"`
 	LimitName        pulumi.StringInput `pulumi:"limitName"`
-	MaximumLimit     pulumi.IntInput    `pulumi:"maximumLimit"`
-	OverrunPolicy    pulumi.StringInput `pulumi:"overrunPolicy"`
+	// Maximum value of the limit.
+	MaximumLimit pulumi.IntInput `pulumi:"maximumLimit"`
+	// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit.
+	OverrunPolicy pulumi.StringInput `pulumi:"overrunPolicy"`
 	// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Name of the Atlas Federated Database Instance.
 	TenantName pulumi.StringInput `pulumi:"tenantName"`
-	Value      pulumi.IntInput    `pulumi:"value"`
+	// Amount to set the limit to.
+	Value pulumi.IntInput `pulumi:"value"`
 }
 
 func (GetFederatedQueryLimitsResultArgs) ElementType() reflect.Type {
@@ -43979,12 +44182,11 @@ func (o GetFederatedQueryLimitsResultOutput) CurrentUsage() pulumi.IntOutput {
 }
 
 // Default value of the limit.
-// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-// * `maximumLimit` - Maximum value of the limit.
 func (o GetFederatedQueryLimitsResultOutput) DefaultLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v GetFederatedQueryLimitsResult) int { return v.DefaultLimit }).(pulumi.IntOutput)
 }
 
+// Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
 func (o GetFederatedQueryLimitsResultOutput) LastModifiedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedQueryLimitsResult) string { return v.LastModifiedDate }).(pulumi.StringOutput)
 }
@@ -43993,10 +44195,12 @@ func (o GetFederatedQueryLimitsResultOutput) LimitName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedQueryLimitsResult) string { return v.LimitName }).(pulumi.StringOutput)
 }
 
+// Maximum value of the limit.
 func (o GetFederatedQueryLimitsResultOutput) MaximumLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v GetFederatedQueryLimitsResult) int { return v.MaximumLimit }).(pulumi.IntOutput)
 }
 
+// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit.
 func (o GetFederatedQueryLimitsResultOutput) OverrunPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedQueryLimitsResult) string { return v.OverrunPolicy }).(pulumi.StringOutput)
 }
@@ -44011,6 +44215,7 @@ func (o GetFederatedQueryLimitsResultOutput) TenantName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedQueryLimitsResult) string { return v.TenantName }).(pulumi.StringOutput)
 }
 
+// Amount to set the limit to.
 func (o GetFederatedQueryLimitsResultOutput) Value() pulumi.IntOutput {
 	return o.ApplyT(func(v GetFederatedQueryLimitsResult) int { return v.Value }).(pulumi.IntOutput)
 }
@@ -47183,7 +47388,7 @@ type GetFlexClusterProviderSettings struct {
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
-	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), and [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	RegionName string `pulumi:"regionName"`
 }
 
@@ -47205,7 +47410,7 @@ type GetFlexClusterProviderSettingsArgs struct {
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
-	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), and [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 }
 
@@ -47250,7 +47455,7 @@ func (o GetFlexClusterProviderSettingsOutput) ProviderName() pulumi.StringOutput
 	return o.ApplyT(func(v GetFlexClusterProviderSettings) string { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), and [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 func (o GetFlexClusterProviderSettingsOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexClusterProviderSettings) string { return v.RegionName }).(pulumi.StringOutput)
 }
@@ -47580,7 +47785,7 @@ type GetFlexClustersResultProviderSettings struct {
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
-	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), and [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	RegionName string `pulumi:"regionName"`
 }
 
@@ -47602,7 +47807,7 @@ type GetFlexClustersResultProviderSettingsArgs struct {
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
-	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), and [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 }
 
@@ -47647,7 +47852,7 @@ func (o GetFlexClustersResultProviderSettingsOutput) ProviderName() pulumi.Strin
 	return o.ApplyT(func(v GetFlexClustersResultProviderSettings) string { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+// Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), and [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 func (o GetFlexClustersResultProviderSettingsOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexClustersResultProviderSettings) string { return v.RegionName }).(pulumi.StringOutput)
 }
@@ -48033,9 +48238,9 @@ type GetGlobalClusterConfigManagedNamespace struct {
 	CustomShardKey string `pulumi:"customShardKey"`
 	// (Required) The name of the database containing the collection.
 	Db string `pulumi:"db"`
-	// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+	// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
 	IsCustomShardKeyHashed bool `pulumi:"isCustomShardKeyHashed"`
-	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
 	IsShardKeyUnique bool `pulumi:"isShardKeyUnique"`
 }
 
@@ -48057,9 +48262,9 @@ type GetGlobalClusterConfigManagedNamespaceArgs struct {
 	CustomShardKey pulumi.StringInput `pulumi:"customShardKey"`
 	// (Required) The name of the database containing the collection.
 	Db pulumi.StringInput `pulumi:"db"`
-	// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+	// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
 	IsCustomShardKeyHashed pulumi.BoolInput `pulumi:"isCustomShardKeyHashed"`
-	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
 	IsShardKeyUnique pulumi.BoolInput `pulumi:"isShardKeyUnique"`
 }
 
@@ -48129,12 +48334,12 @@ func (o GetGlobalClusterConfigManagedNamespaceOutput) Db() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGlobalClusterConfigManagedNamespace) string { return v.Db }).(pulumi.StringOutput)
 }
 
-// Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
 func (o GetGlobalClusterConfigManagedNamespaceOutput) IsCustomShardKeyHashed() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetGlobalClusterConfigManagedNamespace) bool { return v.IsCustomShardKeyHashed }).(pulumi.BoolOutput)
 }
 
-// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
 func (o GetGlobalClusterConfigManagedNamespaceOutput) IsShardKeyUnique() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetGlobalClusterConfigManagedNamespace) bool { return v.IsShardKeyUnique }).(pulumi.BoolOutput)
 }
@@ -49235,7 +49440,7 @@ func (o GetNetworkContainersResultArrayOutput) Index(i pulumi.IntInput) GetNetwo
 }
 
 type GetNetworkPeeringsResult struct {
-	// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 	AccepterRegionName string `pulumi:"accepterRegionName"`
 	AtlasCidrBlock     string `pulumi:"atlasCidrBlock"`
 	// Account ID of the owner of the peer VPC.
@@ -49287,7 +49492,7 @@ type GetNetworkPeeringsResultInput interface {
 }
 
 type GetNetworkPeeringsResultArgs struct {
-	// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 	AccepterRegionName pulumi.StringInput `pulumi:"accepterRegionName"`
 	AtlasCidrBlock     pulumi.StringInput `pulumi:"atlasCidrBlock"`
 	// Account ID of the owner of the peer VPC.
@@ -49378,7 +49583,7 @@ func (o GetNetworkPeeringsResultOutput) ToGetNetworkPeeringsResultOutputWithCont
 	return o
 }
 
-// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 func (o GetNetworkPeeringsResultOutput) AccepterRegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNetworkPeeringsResult) string { return v.AccepterRegionName }).(pulumi.StringOutput)
 }
@@ -51611,9 +51816,9 @@ type GetOrganizationsResultUser struct {
 	// String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
 	OrgMembershipStatus string `pulumi:"orgMembershipStatus"`
 	// Organization- and project-level roles assigned to one MongoDB Cloud user within one organization.
-	// * `teamIds` - List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
-	Roles   []GetOrganizationsResultUserRole `pulumi:"roles"`
-	TeamIds []string                         `pulumi:"teamIds"`
+	Roles []GetOrganizationsResultUserRole `pulumi:"roles"`
+	// List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
+	TeamIds []string `pulumi:"teamIds"`
 	// Email address that represents the username of the MongoDB Cloud user.
 	Username string `pulumi:"username"`
 }
@@ -51660,9 +51865,9 @@ type GetOrganizationsResultUserArgs struct {
 	// String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
 	OrgMembershipStatus pulumi.StringInput `pulumi:"orgMembershipStatus"`
 	// Organization- and project-level roles assigned to one MongoDB Cloud user within one organization.
-	// * `teamIds` - List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
-	Roles   GetOrganizationsResultUserRoleArrayInput `pulumi:"roles"`
-	TeamIds pulumi.StringArrayInput                  `pulumi:"teamIds"`
+	Roles GetOrganizationsResultUserRoleArrayInput `pulumi:"roles"`
+	// List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
+	TeamIds pulumi.StringArrayInput `pulumi:"teamIds"`
 	// Email address that represents the username of the MongoDB Cloud user.
 	Username pulumi.StringInput `pulumi:"username"`
 }
@@ -51781,11 +51986,11 @@ func (o GetOrganizationsResultUserOutput) OrgMembershipStatus() pulumi.StringOut
 }
 
 // Organization- and project-level roles assigned to one MongoDB Cloud user within one organization.
-// * `teamIds` - List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
 func (o GetOrganizationsResultUserOutput) Roles() GetOrganizationsResultUserRoleArrayOutput {
 	return o.ApplyT(func(v GetOrganizationsResultUser) []GetOrganizationsResultUserRole { return v.Roles }).(GetOrganizationsResultUserRoleArrayOutput)
 }
 
+// List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
 func (o GetOrganizationsResultUserOutput) TeamIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetOrganizationsResultUser) []string { return v.TeamIds }).(pulumi.StringArrayOutput)
 }
@@ -52022,7 +52227,7 @@ type GetPrivateLinkEndpointServiceEndpoint struct {
 	EndpointName string `pulumi:"endpointName"`
 	// Private IP address of the network endpoint group you created.
 	IpAddress string `pulumi:"ipAddress"`
-	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+	// Status of the endpoint. Atlas returns one of the [values shown above](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status string `pulumi:"status"`
 }
 
@@ -52042,7 +52247,7 @@ type GetPrivateLinkEndpointServiceEndpointArgs struct {
 	EndpointName pulumi.StringInput `pulumi:"endpointName"`
 	// Private IP address of the network endpoint group you created.
 	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
-	// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+	// Status of the endpoint. Atlas returns one of the [values shown above](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 	Status pulumi.StringInput `pulumi:"status"`
 }
 
@@ -52107,7 +52312,7 @@ func (o GetPrivateLinkEndpointServiceEndpointOutput) IpAddress() pulumi.StringOu
 	return o.ApplyT(func(v GetPrivateLinkEndpointServiceEndpoint) string { return v.IpAddress }).(pulumi.StringOutput)
 }
 
-// Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+// Status of the endpoint. Atlas returns one of the [values shown above](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
 func (o GetPrivateLinkEndpointServiceEndpointOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivateLinkEndpointServiceEndpoint) string { return v.Status }).(pulumi.StringOutput)
 }
@@ -52141,7 +52346,7 @@ type GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult struct {
 	EndpointId string `pulumi:"endpointId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
-	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	Region string `pulumi:"region"`
 	// Human-readable label that identifies the resource type associated with this private endpoint.
 	Type string `pulumi:"type"`
@@ -52167,7 +52372,7 @@ type GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultArgs struct 
 	EndpointId pulumi.StringInput `pulumi:"endpointId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName pulumi.StringInput `pulumi:"providerName"`
-	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	Region pulumi.StringInput `pulumi:"region"`
 	// Human-readable label that identifies the resource type associated with this private endpoint.
 	Type pulumi.StringInput `pulumi:"type"`
@@ -52246,7 +52451,7 @@ func (o GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput) P
 	return o.ApplyT(func(v GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult) string { return v.ProviderName }).(pulumi.StringOutput)
 }
 
-// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 func (o GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult) string { return v.Region }).(pulumi.StringOutput)
 }
@@ -54010,23 +54215,26 @@ func (o GetProjectTeamArrayOutput) Index(i pulumi.IntInput) GetProjectTeamOutput
 
 type GetProjectUser struct {
 	// Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
-	// * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
-	// * `firstName`- First or given name that belongs to the MongoDB Cloud user.
-	// * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
-	// * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
-	// * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
-	Country   string `pulumi:"country"`
+	Country string `pulumi:"country"`
+	// Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
 	CreatedAt string `pulumi:"createdAt"`
+	// First or given name that belongs to the MongoDB Cloud user.
 	FirstName string `pulumi:"firstName"`
 	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-	// * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
-	Id                  string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
 	InvitationCreatedAt string `pulumi:"invitationCreatedAt"`
+	// Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
 	InvitationExpiresAt string `pulumi:"invitationExpiresAt"`
-	InviterUsername     string `pulumi:"inviterUsername"`
-	LastAuth            string `pulumi:"lastAuth"`
-	LastName            string `pulumi:"lastName"`
-	MobileNumber        string `pulumi:"mobileNumber"`
+	// Username of the MongoDB Cloud user who sent the invitation to join the organization.
+	InviterUsername string `pulumi:"inviterUsername"`
+	// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+	LastAuth string `pulumi:"lastAuth"`
+	// Last name, family name, or surname that belongs to the MongoDB Cloud user.
+	LastName string `pulumi:"lastName"`
+	// Mobile phone number that belongs to the MongoDB Cloud user.
+	MobileNumber string `pulumi:"mobileNumber"`
+	// String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
 	OrgMembershipStatus string `pulumi:"orgMembershipStatus"`
 	// One or more project-level roles assigned to the MongoDB Cloud user.
 	Roles []string `pulumi:"roles"`
@@ -54047,23 +54255,26 @@ type GetProjectUserInput interface {
 
 type GetProjectUserArgs struct {
 	// Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
-	// * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
-	// * `firstName`- First or given name that belongs to the MongoDB Cloud user.
-	// * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
-	// * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
-	// * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
-	Country   pulumi.StringInput `pulumi:"country"`
+	Country pulumi.StringInput `pulumi:"country"`
+	// Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
 	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// First or given name that belongs to the MongoDB Cloud user.
 	FirstName pulumi.StringInput `pulumi:"firstName"`
 	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-	// * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
-	Id                  pulumi.StringInput `pulumi:"id"`
+	Id pulumi.StringInput `pulumi:"id"`
+	// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
 	InvitationCreatedAt pulumi.StringInput `pulumi:"invitationCreatedAt"`
+	// Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
 	InvitationExpiresAt pulumi.StringInput `pulumi:"invitationExpiresAt"`
-	InviterUsername     pulumi.StringInput `pulumi:"inviterUsername"`
-	LastAuth            pulumi.StringInput `pulumi:"lastAuth"`
-	LastName            pulumi.StringInput `pulumi:"lastName"`
-	MobileNumber        pulumi.StringInput `pulumi:"mobileNumber"`
+	// Username of the MongoDB Cloud user who sent the invitation to join the organization.
+	InviterUsername pulumi.StringInput `pulumi:"inviterUsername"`
+	// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+	LastAuth pulumi.StringInput `pulumi:"lastAuth"`
+	// Last name, family name, or surname that belongs to the MongoDB Cloud user.
+	LastName pulumi.StringInput `pulumi:"lastName"`
+	// Mobile phone number that belongs to the MongoDB Cloud user.
+	MobileNumber pulumi.StringInput `pulumi:"mobileNumber"`
+	// String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
 	OrgMembershipStatus pulumi.StringInput `pulumi:"orgMembershipStatus"`
 	// One or more project-level roles assigned to the MongoDB Cloud user.
 	Roles pulumi.StringArrayInput `pulumi:"roles"`
@@ -54123,53 +54334,56 @@ func (o GetProjectUserOutput) ToGetProjectUserOutputWithContext(ctx context.Cont
 }
 
 // Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
-// * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
-// * `firstName`- First or given name that belongs to the MongoDB Cloud user.
-// * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
-// * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
-// * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
 func (o GetProjectUserOutput) Country() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectUser) string { return v.Country }).(pulumi.StringOutput)
 }
 
+// Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
 func (o GetProjectUserOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectUser) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// First or given name that belongs to the MongoDB Cloud user.
 func (o GetProjectUserOutput) FirstName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectUser) string { return v.FirstName }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-// * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
 func (o GetProjectUserOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectUser) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
 func (o GetProjectUserOutput) InvitationCreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectUser) string { return v.InvitationCreatedAt }).(pulumi.StringOutput)
 }
 
+// Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
 func (o GetProjectUserOutput) InvitationExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectUser) string { return v.InvitationExpiresAt }).(pulumi.StringOutput)
 }
 
+// Username of the MongoDB Cloud user who sent the invitation to join the organization.
 func (o GetProjectUserOutput) InviterUsername() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectUser) string { return v.InviterUsername }).(pulumi.StringOutput)
 }
 
+// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
 func (o GetProjectUserOutput) LastAuth() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectUser) string { return v.LastAuth }).(pulumi.StringOutput)
 }
 
+// Last name, family name, or surname that belongs to the MongoDB Cloud user.
 func (o GetProjectUserOutput) LastName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectUser) string { return v.LastName }).(pulumi.StringOutput)
 }
 
+// Mobile phone number that belongs to the MongoDB Cloud user.
 func (o GetProjectUserOutput) MobileNumber() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectUser) string { return v.MobileNumber }).(pulumi.StringOutput)
 }
 
+// String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
 func (o GetProjectUserOutput) OrgMembershipStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectUser) string { return v.OrgMembershipStatus }).(pulumi.StringOutput)
 }
@@ -54925,27 +55139,30 @@ func (o GetProjectsResultTeamArrayOutput) Index(i pulumi.IntInput) GetProjectsRe
 
 type GetProjectsResultUser struct {
 	// Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
-	// * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
-	// * `firstName`- First or given name that belongs to the MongoDB Cloud user.
-	// * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
-	// * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
-	// * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
+	Country string `pulumi:"country"`
+	// Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// First or given name that belongs to the MongoDB Cloud user.
+	FirstName string `pulumi:"firstName"`
+	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+	Id string `pulumi:"id"`
+	// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+	InvitationCreatedAt string `pulumi:"invitationCreatedAt"`
+	// Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+	InvitationExpiresAt string `pulumi:"invitationExpiresAt"`
+	// Username of the MongoDB Cloud user who sent the invitation to join the organization.
 	//
 	// > **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `ProjectInvitation` resource.
 	//
 	// See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
-	Country   string `pulumi:"country"`
-	CreatedAt string `pulumi:"createdAt"`
-	FirstName string `pulumi:"firstName"`
-	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-	// * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
-	Id                  string `pulumi:"id"`
-	InvitationCreatedAt string `pulumi:"invitationCreatedAt"`
-	InvitationExpiresAt string `pulumi:"invitationExpiresAt"`
-	InviterUsername     string `pulumi:"inviterUsername"`
-	LastAuth            string `pulumi:"lastAuth"`
-	LastName            string `pulumi:"lastName"`
-	MobileNumber        string `pulumi:"mobileNumber"`
+	InviterUsername string `pulumi:"inviterUsername"`
+	// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+	LastAuth string `pulumi:"lastAuth"`
+	// Last name, family name, or surname that belongs to the MongoDB Cloud user.
+	LastName string `pulumi:"lastName"`
+	// Mobile phone number that belongs to the MongoDB Cloud user.
+	MobileNumber string `pulumi:"mobileNumber"`
+	// String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
 	OrgMembershipStatus string `pulumi:"orgMembershipStatus"`
 	// One or more project-level roles assigned to the MongoDB Cloud user.
 	Roles []string `pulumi:"roles"`
@@ -54966,27 +55183,30 @@ type GetProjectsResultUserInput interface {
 
 type GetProjectsResultUserArgs struct {
 	// Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
-	// * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
-	// * `firstName`- First or given name that belongs to the MongoDB Cloud user.
-	// * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
-	// * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
-	// * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
+	Country pulumi.StringInput `pulumi:"country"`
+	// Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// First or given name that belongs to the MongoDB Cloud user.
+	FirstName pulumi.StringInput `pulumi:"firstName"`
+	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+	InvitationCreatedAt pulumi.StringInput `pulumi:"invitationCreatedAt"`
+	// Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+	InvitationExpiresAt pulumi.StringInput `pulumi:"invitationExpiresAt"`
+	// Username of the MongoDB Cloud user who sent the invitation to join the organization.
 	//
 	// > **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `ProjectInvitation` resource.
 	//
 	// See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
-	Country   pulumi.StringInput `pulumi:"country"`
-	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
-	FirstName pulumi.StringInput `pulumi:"firstName"`
-	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-	// * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
-	Id                  pulumi.StringInput `pulumi:"id"`
-	InvitationCreatedAt pulumi.StringInput `pulumi:"invitationCreatedAt"`
-	InvitationExpiresAt pulumi.StringInput `pulumi:"invitationExpiresAt"`
-	InviterUsername     pulumi.StringInput `pulumi:"inviterUsername"`
-	LastAuth            pulumi.StringInput `pulumi:"lastAuth"`
-	LastName            pulumi.StringInput `pulumi:"lastName"`
-	MobileNumber        pulumi.StringInput `pulumi:"mobileNumber"`
+	InviterUsername pulumi.StringInput `pulumi:"inviterUsername"`
+	// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+	LastAuth pulumi.StringInput `pulumi:"lastAuth"`
+	// Last name, family name, or surname that belongs to the MongoDB Cloud user.
+	LastName pulumi.StringInput `pulumi:"lastName"`
+	// Mobile phone number that belongs to the MongoDB Cloud user.
+	MobileNumber pulumi.StringInput `pulumi:"mobileNumber"`
+	// String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
 	OrgMembershipStatus pulumi.StringInput `pulumi:"orgMembershipStatus"`
 	// One or more project-level roles assigned to the MongoDB Cloud user.
 	Roles pulumi.StringArrayInput `pulumi:"roles"`
@@ -55046,57 +55266,60 @@ func (o GetProjectsResultUserOutput) ToGetProjectsResultUserOutputWithContext(ct
 }
 
 // Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
-// * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
-// * `firstName`- First or given name that belongs to the MongoDB Cloud user.
-// * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
-// * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
-// * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
-//
-// > **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `ProjectInvitation` resource.
-//
-// See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
 func (o GetProjectsResultUserOutput) Country() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResultUser) string { return v.Country }).(pulumi.StringOutput)
 }
 
+// Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
 func (o GetProjectsResultUserOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResultUser) string { return v.CreatedAt }).(pulumi.StringOutput)
 }
 
+// First or given name that belongs to the MongoDB Cloud user.
 func (o GetProjectsResultUserOutput) FirstName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResultUser) string { return v.FirstName }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-// * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
 func (o GetProjectsResultUserOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResultUser) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
 func (o GetProjectsResultUserOutput) InvitationCreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResultUser) string { return v.InvitationCreatedAt }).(pulumi.StringOutput)
 }
 
+// Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
 func (o GetProjectsResultUserOutput) InvitationExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResultUser) string { return v.InvitationExpiresAt }).(pulumi.StringOutput)
 }
 
+// Username of the MongoDB Cloud user who sent the invitation to join the organization.
+//
+// > **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `ProjectInvitation` resource.
+//
+// See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
 func (o GetProjectsResultUserOutput) InviterUsername() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResultUser) string { return v.InviterUsername }).(pulumi.StringOutput)
 }
 
+// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
 func (o GetProjectsResultUserOutput) LastAuth() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResultUser) string { return v.LastAuth }).(pulumi.StringOutput)
 }
 
+// Last name, family name, or surname that belongs to the MongoDB Cloud user.
 func (o GetProjectsResultUserOutput) LastName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResultUser) string { return v.LastName }).(pulumi.StringOutput)
 }
 
+// Mobile phone number that belongs to the MongoDB Cloud user.
 func (o GetProjectsResultUserOutput) MobileNumber() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResultUser) string { return v.MobileNumber }).(pulumi.StringOutput)
 }
 
+// String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
 func (o GetProjectsResultUserOutput) OrgMembershipStatus() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResultUser) string { return v.OrgMembershipStatus }).(pulumi.StringOutput)
 }
@@ -55146,7 +55369,7 @@ type GetResourcePoliciesResourcePolicy struct {
 	LastUpdatedDate string `pulumi:"lastUpdatedDate"`
 	// Human-readable label that describes the Atlas resource policy.
 	Name string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	OrgId string `pulumi:"orgId"`
 	// List of policies that make up the Atlas resource policy.
 	Policies []GetResourcePoliciesResourcePolicyPolicy `pulumi:"policies"`
@@ -55180,7 +55403,7 @@ type GetResourcePoliciesResourcePolicyArgs struct {
 	LastUpdatedDate pulumi.StringInput `pulumi:"lastUpdatedDate"`
 	// Human-readable label that describes the Atlas resource policy.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	OrgId pulumi.StringInput `pulumi:"orgId"`
 	// List of policies that make up the Atlas resource policy.
 	Policies GetResourcePoliciesResourcePolicyPolicyArrayInput `pulumi:"policies"`
@@ -55278,7 +55501,7 @@ func (o GetResourcePoliciesResourcePolicyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 func (o GetResourcePoliciesResourcePolicyOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetResourcePoliciesResourcePolicy) string { return v.OrgId }).(pulumi.StringOutput)
 }
@@ -55556,7 +55779,7 @@ type GetResourcePoliciesResult struct {
 	LastUpdatedDate string `pulumi:"lastUpdatedDate"`
 	// Human-readable label that describes the Atlas resource policy.
 	Name string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	OrgId string `pulumi:"orgId"`
 	// List of policies that make up the Atlas resource policy.
 	Policies []GetResourcePoliciesResultPolicy `pulumi:"policies"`
@@ -55590,7 +55813,7 @@ type GetResourcePoliciesResultArgs struct {
 	LastUpdatedDate pulumi.StringInput `pulumi:"lastUpdatedDate"`
 	// Human-readable label that describes the Atlas resource policy.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	OrgId pulumi.StringInput `pulumi:"orgId"`
 	// List of policies that make up the Atlas resource policy.
 	Policies GetResourcePoliciesResultPolicyArrayInput `pulumi:"policies"`
@@ -55686,7 +55909,7 @@ func (o GetResourcePoliciesResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 func (o GetResourcePoliciesResultOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetResourcePoliciesResult) string { return v.OrgId }).(pulumi.StringOutput)
 }
@@ -56284,7 +56507,7 @@ func (o GetSearchDeploymentSpecArrayOutput) Index(i pulumi.IntInput) GetSearchDe
 }
 
 type GetSearchIndexSynonym struct {
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
 	Analyzer string `pulumi:"analyzer"`
 	// Type set name.
 	Name             string `pulumi:"name"`
@@ -56303,7 +56526,7 @@ type GetSearchIndexSynonymInput interface {
 }
 
 type GetSearchIndexSynonymArgs struct {
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
 	Analyzer pulumi.StringInput `pulumi:"analyzer"`
 	// Type set name.
 	Name             pulumi.StringInput `pulumi:"name"`
@@ -56361,7 +56584,7 @@ func (o GetSearchIndexSynonymOutput) ToGetSearchIndexSynonymOutputWithContext(ct
 	return o
 }
 
-// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
 func (o GetSearchIndexSynonymOutput) Analyzer() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSearchIndexSynonym) string { return v.Analyzer }).(pulumi.StringOutput)
 }
@@ -56502,17 +56725,18 @@ func (o GetSearchIndexTypeSetArrayOutput) Index(i pulumi.IntInput) GetSearchInde
 }
 
 type GetSearchIndexesResult struct {
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
 	Analyzer string `pulumi:"analyzer"`
-	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+	// [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
 	Analyzers string `pulumi:"analyzers"`
 	// Name of the cluster containing the collection with one or more Atlas Search indexes.
 	ClusterName string `pulumi:"clusterName"`
 	// Name of the collection with one or more Atlas Search indexes.
 	CollectionName string `pulumi:"collectionName"`
-	// (Required) Name of the database the collection is in.
+	// Name of the database containing the collection with one or more Atlas Search indexes.
 	Database string `pulumi:"database"`
-	Fields   string `pulumi:"fields"`
+	// JSON string containing the index field definitions for vector search indexes.
+	Fields string `pulumi:"fields"`
 	// The unique identifier of the Atlas Search index.
 	IndexId string `pulumi:"indexId"`
 	// Flag indicating whether the index uses dynamic or static mappings. Mutually exclusive with `mappingsDynamicConfig`.
@@ -56525,20 +56749,21 @@ type GetSearchIndexesResult struct {
 	Name string `pulumi:"name"`
 	// Number of index partitions.
 	NumPartitions int `pulumi:"numPartitions"`
-	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+	// Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
 	SearchAnalyzer string `pulumi:"searchAnalyzer"`
 	// Current status of the index.
 	Status string `pulumi:"status"`
 	// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
 	StoredSource string `pulumi:"storedSource"`
 	// Synonyms mapping definition to use in this index.
-	// * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+	// * `synonyms.#.name` - Name of the [synonym mapping definition](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-ref).
 	// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
-	// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+	// * `synonyms.#.analyzer` - Name of the [analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
 	Synonyms []GetSearchIndexesResultSynonym `pulumi:"synonyms"`
-	Type     string                          `pulumi:"type"`
+	// Type of the index. Can be `search` or `vectorSearch`.
+	Type string `pulumi:"type"`
 	// Set of type set definitions (when present). Each item includes:
 	TypeSets []GetSearchIndexesResultTypeSet `pulumi:"typeSets"`
 }
@@ -56555,17 +56780,18 @@ type GetSearchIndexesResultInput interface {
 }
 
 type GetSearchIndexesResultArgs struct {
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
 	Analyzer pulumi.StringInput `pulumi:"analyzer"`
-	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+	// [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
 	Analyzers pulumi.StringInput `pulumi:"analyzers"`
 	// Name of the cluster containing the collection with one or more Atlas Search indexes.
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
 	// Name of the collection with one or more Atlas Search indexes.
 	CollectionName pulumi.StringInput `pulumi:"collectionName"`
-	// (Required) Name of the database the collection is in.
+	// Name of the database containing the collection with one or more Atlas Search indexes.
 	Database pulumi.StringInput `pulumi:"database"`
-	Fields   pulumi.StringInput `pulumi:"fields"`
+	// JSON string containing the index field definitions for vector search indexes.
+	Fields pulumi.StringInput `pulumi:"fields"`
 	// The unique identifier of the Atlas Search index.
 	IndexId pulumi.StringInput `pulumi:"indexId"`
 	// Flag indicating whether the index uses dynamic or static mappings. Mutually exclusive with `mappingsDynamicConfig`.
@@ -56578,20 +56804,21 @@ type GetSearchIndexesResultArgs struct {
 	Name pulumi.StringInput `pulumi:"name"`
 	// Number of index partitions.
 	NumPartitions pulumi.IntInput `pulumi:"numPartitions"`
-	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+	// Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
 	SearchAnalyzer pulumi.StringInput `pulumi:"searchAnalyzer"`
 	// Current status of the index.
 	Status pulumi.StringInput `pulumi:"status"`
 	// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
 	StoredSource pulumi.StringInput `pulumi:"storedSource"`
 	// Synonyms mapping definition to use in this index.
-	// * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+	// * `synonyms.#.name` - Name of the [synonym mapping definition](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-ref).
 	// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
-	// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+	// * `synonyms.#.analyzer` - Name of the [analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
 	Synonyms GetSearchIndexesResultSynonymArrayInput `pulumi:"synonyms"`
-	Type     pulumi.StringInput                      `pulumi:"type"`
+	// Type of the index. Can be `search` or `vectorSearch`.
+	Type pulumi.StringInput `pulumi:"type"`
 	// Set of type set definitions (when present). Each item includes:
 	TypeSets GetSearchIndexesResultTypeSetArrayInput `pulumi:"typeSets"`
 }
@@ -56647,12 +56874,12 @@ func (o GetSearchIndexesResultOutput) ToGetSearchIndexesResultOutputWithContext(
 	return o
 }
 
-// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
 func (o GetSearchIndexesResultOutput) Analyzer() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) string { return v.Analyzer }).(pulumi.StringOutput)
 }
 
-// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+// [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
 func (o GetSearchIndexesResultOutput) Analyzers() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) string { return v.Analyzers }).(pulumi.StringOutput)
 }
@@ -56667,11 +56894,12 @@ func (o GetSearchIndexesResultOutput) CollectionName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) string { return v.CollectionName }).(pulumi.StringOutput)
 }
 
-// (Required) Name of the database the collection is in.
+// Name of the database containing the collection with one or more Atlas Search indexes.
 func (o GetSearchIndexesResultOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) string { return v.Database }).(pulumi.StringOutput)
 }
 
+// JSON string containing the index field definitions for vector search indexes.
 func (o GetSearchIndexesResultOutput) Fields() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) string { return v.Fields }).(pulumi.StringOutput)
 }
@@ -56706,12 +56934,12 @@ func (o GetSearchIndexesResultOutput) NumPartitions() pulumi.IntOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) int { return v.NumPartitions }).(pulumi.IntOutput)
 }
 
-// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+// Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 func (o GetSearchIndexesResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
 func (o GetSearchIndexesResultOutput) SearchAnalyzer() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) string { return v.SearchAnalyzer }).(pulumi.StringOutput)
 }
@@ -56727,13 +56955,14 @@ func (o GetSearchIndexesResultOutput) StoredSource() pulumi.StringOutput {
 }
 
 // Synonyms mapping definition to use in this index.
-// * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+// * `synonyms.#.name` - Name of the [synonym mapping definition](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-ref).
 // * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
-// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+// * `synonyms.#.analyzer` - Name of the [analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
 func (o GetSearchIndexesResultOutput) Synonyms() GetSearchIndexesResultSynonymArrayOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) []GetSearchIndexesResultSynonym { return v.Synonyms }).(GetSearchIndexesResultSynonymArrayOutput)
 }
 
+// Type of the index. Can be `search` or `vectorSearch`.
 func (o GetSearchIndexesResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSearchIndexesResult) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -56764,7 +56993,7 @@ func (o GetSearchIndexesResultArrayOutput) Index(i pulumi.IntInput) GetSearchInd
 }
 
 type GetSearchIndexesResultSynonym struct {
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
 	Analyzer string `pulumi:"analyzer"`
 	// Type set name.
 	Name             string `pulumi:"name"`
@@ -56783,7 +57012,7 @@ type GetSearchIndexesResultSynonymInput interface {
 }
 
 type GetSearchIndexesResultSynonymArgs struct {
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
 	Analyzer pulumi.StringInput `pulumi:"analyzer"`
 	// Type set name.
 	Name             pulumi.StringInput `pulumi:"name"`
@@ -56841,7 +57070,7 @@ func (o GetSearchIndexesResultSynonymOutput) ToGetSearchIndexesResultSynonymOutp
 	return o
 }
 
-// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
 func (o GetSearchIndexesResultSynonymOutput) Analyzer() pulumi.StringOutput {
 	return o.ApplyT(func(v GetSearchIndexesResultSynonym) string { return v.Analyzer }).(pulumi.StringOutput)
 }
@@ -57198,8 +57427,9 @@ type GetServerlessInstancesResult struct {
 	// (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
 	//
 	// Deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
-	ContinuousBackupEnabled bool   `pulumi:"continuousBackupEnabled"`
-	CreateDate              string `pulumi:"createDate"`
+	ContinuousBackupEnabled bool `pulumi:"continuousBackupEnabled"`
+	// Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
+	CreateDate string `pulumi:"createDate"`
 	// Unique 24-hexadecimal digit string that identifies the serverless instance.
 	Id    string                             `pulumi:"id"`
 	Links []GetServerlessInstancesResultLink `pulumi:"links"`
@@ -57207,7 +57437,7 @@ type GetServerlessInstancesResult struct {
 	MongoDbVersion string `pulumi:"mongoDbVersion"`
 	// (Required) Human-readable label that identifies your serverless instance.
 	Name string `pulumi:"name"`
-	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+	// Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
 	ProviderSettingsBackingProviderName string `pulumi:"providerSettingsBackingProviderName"`
@@ -57245,8 +57475,9 @@ type GetServerlessInstancesResultArgs struct {
 	// (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
 	//
 	// Deprecated: This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
-	ContinuousBackupEnabled pulumi.BoolInput   `pulumi:"continuousBackupEnabled"`
-	CreateDate              pulumi.StringInput `pulumi:"createDate"`
+	ContinuousBackupEnabled pulumi.BoolInput `pulumi:"continuousBackupEnabled"`
+	// Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
+	CreateDate pulumi.StringInput `pulumi:"createDate"`
 	// Unique 24-hexadecimal digit string that identifies the serverless instance.
 	Id    pulumi.StringInput                         `pulumi:"id"`
 	Links GetServerlessInstancesResultLinkArrayInput `pulumi:"links"`
@@ -57254,7 +57485,7 @@ type GetServerlessInstancesResultArgs struct {
 	MongoDbVersion pulumi.StringInput `pulumi:"mongoDbVersion"`
 	// (Required) Human-readable label that identifies your serverless instance.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+	// Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 	// Cloud service provider on which MongoDB Cloud provisioned the serverless instance.
 	ProviderSettingsBackingProviderName pulumi.StringInput `pulumi:"providerSettingsBackingProviderName"`
@@ -57344,6 +57575,7 @@ func (o GetServerlessInstancesResultOutput) ContinuousBackupEnabled() pulumi.Boo
 	return o.ApplyT(func(v GetServerlessInstancesResult) bool { return v.ContinuousBackupEnabled }).(pulumi.BoolOutput)
 }
 
+// Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
 func (o GetServerlessInstancesResultOutput) CreateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.CreateDate }).(pulumi.StringOutput)
 }
@@ -57367,7 +57599,7 @@ func (o GetServerlessInstancesResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+// Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 func (o GetServerlessInstancesResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerlessInstancesResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
@@ -57791,6 +58023,8 @@ func (o GetServiceAccountAccessListEntriesResultArrayOutput) Index(i pulumi.IntI
 type GetServiceAccountProjectAssignmentsResult struct {
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
+	// A list of project roles assigned to the Service Account in this project.
+	Roles []string `pulumi:"roles"`
 }
 
 // GetServiceAccountProjectAssignmentsResultInput is an input type that accepts GetServiceAccountProjectAssignmentsResultArgs and GetServiceAccountProjectAssignmentsResultOutput values.
@@ -57807,6 +58041,8 @@ type GetServiceAccountProjectAssignmentsResultInput interface {
 type GetServiceAccountProjectAssignmentsResultArgs struct {
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// A list of project roles assigned to the Service Account in this project.
+	Roles pulumi.StringArrayInput `pulumi:"roles"`
 }
 
 func (GetServiceAccountProjectAssignmentsResultArgs) ElementType() reflect.Type {
@@ -57863,6 +58099,11 @@ func (o GetServiceAccountProjectAssignmentsResultOutput) ToGetServiceAccountProj
 // Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 func (o GetServiceAccountProjectAssignmentsResultOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServiceAccountProjectAssignmentsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// A list of project roles assigned to the Service Account in this project.
+func (o GetServiceAccountProjectAssignmentsResultOutput) Roles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetServiceAccountProjectAssignmentsResult) []string { return v.Roles }).(pulumi.StringArrayOutput)
 }
 
 type GetServiceAccountProjectAssignmentsResultArrayOutput struct{ *pulumi.OutputState }
@@ -59201,14 +59442,15 @@ func (o GetStreamConnectionSecurityOutput) Protocol() pulumi.StringOutput {
 type GetStreamConnectionsResult struct {
 	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
 	Authentication GetStreamConnectionsResultAuthentication `pulumi:"authentication"`
-	// The configuration for AWS Lambda connection. See AWS
+	// The configuration for S3 connection. See AWS.
 	Aws GetStreamConnectionsResultAws `pulumi:"aws"`
 	// The configuration for Azure Blob Storage connection. See Azure.
 	Azure GetStreamConnectionsResultAzure `pulumi:"azure"`
 	// Comma separated list of server addresses.
 	BootstrapServers string `pulumi:"bootstrapServers"`
 	// Name of the cluster configured for this connection.
-	ClusterName      string `pulumi:"clusterName"`
+	ClusterName string `pulumi:"clusterName"`
+	// Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
 	ClusterProjectId string `pulumi:"clusterProjectId"`
 	// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
 	Config map[string]string `pulumi:"config"`
@@ -59216,7 +59458,7 @@ type GetStreamConnectionsResult struct {
 	ConnectionName string `pulumi:"connectionName"`
 	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
 	DbRoleToExecute GetStreamConnectionsResultDbRoleToExecute `pulumi:"dbRoleToExecute"`
-	// The configuration for GCP Pub/Sub connection. See GCP
+	// The configuration for GCP Pub/Sub connection. See GCP.
 	Gcp GetStreamConnectionsResultGcp `pulumi:"gcp"`
 	// A map of key-value pairs for optional headers.
 	Headers map[string]string `pulumi:"headers"`
@@ -59225,7 +59467,7 @@ type GetStreamConnectionsResult struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName string `pulumi:"instanceName"`
-	// Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
+	// Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
 	Networking GetStreamConnectionsResultNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
@@ -59263,14 +59505,15 @@ type GetStreamConnectionsResultInput interface {
 type GetStreamConnectionsResultArgs struct {
 	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
 	Authentication GetStreamConnectionsResultAuthenticationInput `pulumi:"authentication"`
-	// The configuration for AWS Lambda connection. See AWS
+	// The configuration for S3 connection. See AWS.
 	Aws GetStreamConnectionsResultAwsInput `pulumi:"aws"`
 	// The configuration for Azure Blob Storage connection. See Azure.
 	Azure GetStreamConnectionsResultAzureInput `pulumi:"azure"`
 	// Comma separated list of server addresses.
 	BootstrapServers pulumi.StringInput `pulumi:"bootstrapServers"`
 	// Name of the cluster configured for this connection.
-	ClusterName      pulumi.StringInput `pulumi:"clusterName"`
+	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	// Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
 	ClusterProjectId pulumi.StringInput `pulumi:"clusterProjectId"`
 	// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
 	Config pulumi.StringMapInput `pulumi:"config"`
@@ -59278,7 +59521,7 @@ type GetStreamConnectionsResultArgs struct {
 	ConnectionName pulumi.StringInput `pulumi:"connectionName"`
 	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
 	DbRoleToExecute GetStreamConnectionsResultDbRoleToExecuteInput `pulumi:"dbRoleToExecute"`
-	// The configuration for GCP Pub/Sub connection. See GCP
+	// The configuration for GCP Pub/Sub connection. See GCP.
 	Gcp GetStreamConnectionsResultGcpInput `pulumi:"gcp"`
 	// A map of key-value pairs for optional headers.
 	Headers pulumi.StringMapInput `pulumi:"headers"`
@@ -59287,7 +59530,7 @@ type GetStreamConnectionsResultArgs struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
-	// Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
+	// Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
 	Networking GetStreamConnectionsResultNetworkingInput `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -59367,7 +59610,7 @@ func (o GetStreamConnectionsResultOutput) Authentication() GetStreamConnectionsR
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAuthentication { return v.Authentication }).(GetStreamConnectionsResultAuthenticationOutput)
 }
 
-// The configuration for AWS Lambda connection. See AWS
+// The configuration for S3 connection. See AWS.
 func (o GetStreamConnectionsResultOutput) Aws() GetStreamConnectionsResultAwsOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAws { return v.Aws }).(GetStreamConnectionsResultAwsOutput)
 }
@@ -59387,6 +59630,7 @@ func (o GetStreamConnectionsResultOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ClusterName }).(pulumi.StringOutput)
 }
 
+// Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
 func (o GetStreamConnectionsResultOutput) ClusterProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ClusterProjectId }).(pulumi.StringOutput)
 }
@@ -59406,7 +59650,7 @@ func (o GetStreamConnectionsResultOutput) DbRoleToExecute() GetStreamConnections
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultDbRoleToExecute { return v.DbRoleToExecute }).(GetStreamConnectionsResultDbRoleToExecuteOutput)
 }
 
-// The configuration for GCP Pub/Sub connection. See GCP
+// The configuration for GCP Pub/Sub connection. See GCP.
 func (o GetStreamConnectionsResultOutput) Gcp() GetStreamConnectionsResultGcpOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultGcp { return v.Gcp }).(GetStreamConnectionsResultGcpOutput)
 }
@@ -59427,7 +59671,7 @@ func (o GetStreamConnectionsResultOutput) InstanceName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.InstanceName }).(pulumi.StringOutput)
 }
 
-// Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
+// Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
 func (o GetStreamConnectionsResultOutput) Networking() GetStreamConnectionsResultNetworkingOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultNetworking { return v.Networking }).(GetStreamConnectionsResultNetworkingOutput)
 }

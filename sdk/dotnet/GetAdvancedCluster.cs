@@ -733,6 +733,10 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetAdvancedClusterResult
     {
         /// <summary>
+        /// Governs adaptive capacity behavior of Azure nodes in single-cloud Azure clusters or multi-cloud clusters that include Azure nodes. Adaptive capacity enables fallback hardware selection when the primary instance family is unavailable. `ENABLED` means the cluster explicitly opts in to adaptive capacity. `DISABLED` means the cluster explicitly opts out; the cluster receives capacity errors instead of being placed on fallback hardware. `Null` means the field is unset; Azure clusters use adaptive capacity by default when the feature is enabled at the group level. Setting this field for single-cloud AWS or GCP clusters is a no-op.
+        /// </summary>
+        public readonly string AdaptiveCapacity;
+        /// <summary>
         /// Get the advanced configuration options. See Advanced Configuration below for more details.
         /// </summary>
         public readonly Outputs.GetAdvancedClusterAdvancedConfigurationResult AdvancedConfiguration;
@@ -750,15 +754,15 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ClusterType;
         /// <summary>
-        /// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        /// Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
         /// </summary>
         public readonly string ConfigServerManagementMode;
         /// <summary>
-        /// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        /// Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
         /// </summary>
         public readonly string ConfigServerType;
         /// <summary>
-        /// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        /// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         /// </summary>
         public readonly Outputs.GetAdvancedClusterConnectionStringsResult ConnectionStrings;
         public readonly string CreateDate;
@@ -840,6 +844,8 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetAdvancedClusterResult(
+            string adaptiveCapacity,
+
             Outputs.GetAdvancedClusterAdvancedConfigurationResult advancedConfiguration,
 
             bool backupEnabled,
@@ -900,6 +906,7 @@ namespace Pulumi.Mongodbatlas
 
             string versionReleaseSystem)
         {
+            AdaptiveCapacity = adaptiveCapacity;
             AdvancedConfiguration = advancedConfiguration;
             BackupEnabled = backupEnabled;
             BiConnectorConfig = biConnectorConfig;

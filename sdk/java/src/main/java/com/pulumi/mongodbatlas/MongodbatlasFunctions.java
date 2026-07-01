@@ -3208,7 +3208,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+     * &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/
      * 
      * <pre>
      * {@code
@@ -3344,7 +3344,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+     * &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/
      * 
      * <pre>
      * {@code
@@ -3480,7 +3480,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+     * &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/
      * 
      * <pre>
      * {@code
@@ -3616,7 +3616,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+     * &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/
      * 
      * <pre>
      * {@code
@@ -3752,7 +3752,7 @@ public final class MongodbatlasFunctions {
      * }
      * </pre>
      * 
-     * &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+     * &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/
      * 
      * <pre>
      * {@code
@@ -3827,7 +3827,7 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * Refer to the following for a full example on using this dataSource as a tool to import all resources:
-     * * atlas-alert-configurations
+     * * mongodbatlas.AlertConfiguration
      * 
      */
     public static Output<GetAlertConfigurationsInvokeResult> getAlertConfigurations(GetAlertConfigurationsArgs args) {
@@ -3839,7 +3839,7 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * Refer to the following for a full example on using this dataSource as a tool to import all resources:
-     * * atlas-alert-configurations
+     * * mongodbatlas.AlertConfiguration
      * 
      */
     public static CompletableFuture<GetAlertConfigurationsInvokeResult> getAlertConfigurationsPlain(GetAlertConfigurationsPlainArgs args) {
@@ -3851,7 +3851,7 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * Refer to the following for a full example on using this dataSource as a tool to import all resources:
-     * * atlas-alert-configurations
+     * * mongodbatlas.AlertConfiguration
      * 
      */
     public static Output<GetAlertConfigurationsInvokeResult> getAlertConfigurations(GetAlertConfigurationsArgs args, InvokeOptions options) {
@@ -3863,7 +3863,7 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * Refer to the following for a full example on using this dataSource as a tool to import all resources:
-     * * atlas-alert-configurations
+     * * mongodbatlas.AlertConfiguration
      * 
      */
     public static Output<GetAlertConfigurationsInvokeResult> getAlertConfigurations(GetAlertConfigurationsArgs args, InvokeOutputOptions options) {
@@ -3875,7 +3875,7 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * Refer to the following for a full example on using this dataSource as a tool to import all resources:
-     * * atlas-alert-configurations
+     * * mongodbatlas.AlertConfiguration
      * 
      */
     public static CompletableFuture<GetAlertConfigurationsInvokeResult> getAlertConfigurationsPlain(GetAlertConfigurationsPlainArgs args, InvokeOptions options) {
@@ -10914,7 +10914,7 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
@@ -10987,7 +10987,7 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
@@ -11060,7 +11060,7 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
@@ -11133,7 +11133,7 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
@@ -11206,7 +11206,7 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
@@ -11514,7 +11514,7 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * ## Example Usage
@@ -11584,7 +11584,7 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * ## Example Usage
@@ -11654,7 +11654,7 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * ## Example Usage
@@ -11724,7 +11724,7 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * ## Example Usage
@@ -11794,7 +11794,7 @@ public final class MongodbatlasFunctions {
      * 
      * &gt; **IMPORTANT:**
      * &lt;br&gt; &amp;#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn&#39;t return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
-     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+     * &lt;br&gt; &amp;#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).
      * &lt;br&gt; &amp;#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
      * 
      * ## Example Usage
@@ -14188,9 +14188,9 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
      * 
-     * [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
-     * [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
-     * [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+     * [Amazon Web Services Key Management Service](https://www.mongodb.com/docs/atlas/security-aws-kms/#security-aws-kms)
+     * [Azure Key Vault](https://www.mongodb.com/docs/atlas/security-azure-kms/#security-azure-kms)
+     * [Google Cloud KMS](https://www.mongodb.com/docs/atlas/security-gcp-kms/#security-gcp-kms)
      * 
      * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
      * 
@@ -14394,9 +14394,9 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
      * 
-     * [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
-     * [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
-     * [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+     * [Amazon Web Services Key Management Service](https://www.mongodb.com/docs/atlas/security-aws-kms/#security-aws-kms)
+     * [Azure Key Vault](https://www.mongodb.com/docs/atlas/security-azure-kms/#security-azure-kms)
+     * [Google Cloud KMS](https://www.mongodb.com/docs/atlas/security-gcp-kms/#security-gcp-kms)
      * 
      * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
      * 
@@ -14600,9 +14600,9 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
      * 
-     * [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
-     * [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
-     * [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+     * [Amazon Web Services Key Management Service](https://www.mongodb.com/docs/atlas/security-aws-kms/#security-aws-kms)
+     * [Azure Key Vault](https://www.mongodb.com/docs/atlas/security-azure-kms/#security-azure-kms)
+     * [Google Cloud KMS](https://www.mongodb.com/docs/atlas/security-gcp-kms/#security-gcp-kms)
      * 
      * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
      * 
@@ -14806,9 +14806,9 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
      * 
-     * [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
-     * [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
-     * [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+     * [Amazon Web Services Key Management Service](https://www.mongodb.com/docs/atlas/security-aws-kms/#security-aws-kms)
+     * [Azure Key Vault](https://www.mongodb.com/docs/atlas/security-azure-kms/#security-azure-kms)
+     * [Google Cloud KMS](https://www.mongodb.com/docs/atlas/security-gcp-kms/#security-gcp-kms)
      * 
      * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
      * 
@@ -15012,9 +15012,9 @@ public final class MongodbatlasFunctions {
     /**
      * `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
      * 
-     * [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
-     * [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
-     * [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+     * [Amazon Web Services Key Management Service](https://www.mongodb.com/docs/atlas/security-aws-kms/#security-aws-kms)
+     * [Azure Key Vault](https://www.mongodb.com/docs/atlas/security-azure-kms/#security-azure-kms)
+     * [Google Cloud KMS](https://www.mongodb.com/docs/atlas/security-gcp-kms/#security-gcp-kms)
      * 
      * &gt; **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
      * 
@@ -16826,7 +16826,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", TypeShape.of(GetFederatedDatabaseInstancesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+     * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
      * 
      * ## Example Usage
      * 
@@ -16868,7 +16868,7 @@ public final class MongodbatlasFunctions {
         return getFederatedQueryLimit(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+     * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
      * 
      * ## Example Usage
      * 
@@ -16910,7 +16910,7 @@ public final class MongodbatlasFunctions {
         return getFederatedQueryLimitPlain(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+     * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
      * 
      * ## Example Usage
      * 
@@ -16952,7 +16952,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit", TypeShape.of(GetFederatedQueryLimitResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+     * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
      * 
      * ## Example Usage
      * 
@@ -16994,7 +16994,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit", TypeShape.of(GetFederatedQueryLimitResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+     * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
      * 
      * ## Example Usage
      * 
@@ -17036,7 +17036,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit", TypeShape.of(GetFederatedQueryLimitResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+     * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
      * 
      * ## Example Usage
      * 
@@ -17079,7 +17079,7 @@ public final class MongodbatlasFunctions {
         return getFederatedQueryLimits(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+     * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
      * 
      * ## Example Usage
      * 
@@ -17122,7 +17122,7 @@ public final class MongodbatlasFunctions {
         return getFederatedQueryLimitsPlain(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+     * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
      * 
      * ## Example Usage
      * 
@@ -17165,7 +17165,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedQueryLimits:getFederatedQueryLimits", TypeShape.of(GetFederatedQueryLimitsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+     * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
      * 
      * ## Example Usage
      * 
@@ -17208,7 +17208,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedQueryLimits:getFederatedQueryLimits", TypeShape.of(GetFederatedQueryLimitsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+     * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
      * 
      * ## Example Usage
      * 
@@ -17732,6 +17732,47 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProvider;
+     * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProviderArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsIdentityProvidersArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
+     *             .federationSettingsId("627a9687f7f7f7f774de306f")
+     *             .name("mongodb_federation_test")
+     *             .associatedDomains("yourdomain.com")
+     *             .ssoDebugEnabled(true)
+     *             .status("ACTIVE")
+     *             .build());
+     * 
+     *         final var identittyProvider = MongodbatlasFunctions.getFederatedSettingsIdentityProviders(GetFederatedSettingsIdentityProvidersArgs.builder()
+     *             .federationSettingsId(identityProvider.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProviders(GetFederatedSettingsIdentityProvidersArgs args) {
         return getFederatedSettingsIdentityProviders(args, InvokeOptions.Empty);
@@ -17742,6 +17783,47 @@ public final class MongodbatlasFunctions {
      * Note: This implementation returns a maximum of 100 results.
      * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProvider;
+     * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProviderArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsIdentityProvidersArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
+     *             .federationSettingsId("627a9687f7f7f7f774de306f")
+     *             .name("mongodb_federation_test")
+     *             .associatedDomains("yourdomain.com")
+     *             .ssoDebugEnabled(true)
+     *             .status("ACTIVE")
+     *             .build());
+     * 
+     *         final var identittyProvider = MongodbatlasFunctions.getFederatedSettingsIdentityProviders(GetFederatedSettingsIdentityProvidersArgs.builder()
+     *             .federationSettingsId(identityProvider.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProvidersPlain(GetFederatedSettingsIdentityProvidersPlainArgs args) {
@@ -17754,6 +17836,47 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProvider;
+     * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProviderArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsIdentityProvidersArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
+     *             .federationSettingsId("627a9687f7f7f7f774de306f")
+     *             .name("mongodb_federation_test")
+     *             .associatedDomains("yourdomain.com")
+     *             .ssoDebugEnabled(true)
+     *             .status("ACTIVE")
+     *             .build());
+     * 
+     *         final var identittyProvider = MongodbatlasFunctions.getFederatedSettingsIdentityProviders(GetFederatedSettingsIdentityProvidersArgs.builder()
+     *             .federationSettingsId(identityProvider.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProviders(GetFederatedSettingsIdentityProvidersArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", TypeShape.of(GetFederatedSettingsIdentityProvidersInvokeResult.class), args, Utilities.withVersion(options));
@@ -17765,6 +17888,47 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProvider;
+     * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProviderArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsIdentityProvidersArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
+     *             .federationSettingsId("627a9687f7f7f7f774de306f")
+     *             .name("mongodb_federation_test")
+     *             .associatedDomains("yourdomain.com")
+     *             .ssoDebugEnabled(true)
+     *             .status("ACTIVE")
+     *             .build());
+     * 
+     *         final var identittyProvider = MongodbatlasFunctions.getFederatedSettingsIdentityProviders(GetFederatedSettingsIdentityProvidersArgs.builder()
+     *             .federationSettingsId(identityProvider.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProviders(GetFederatedSettingsIdentityProvidersArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedSettingsIdentityProviders:getFederatedSettingsIdentityProviders", TypeShape.of(GetFederatedSettingsIdentityProvidersInvokeResult.class), args, Utilities.withVersion(options));
@@ -17775,6 +17939,47 @@ public final class MongodbatlasFunctions {
      * Note: This implementation returns a maximum of 100 results.
      * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProvider;
+     * import com.pulumi.mongodbatlas.FederatedSettingsIdentityProviderArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedSettingsIdentityProvidersArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var identityProvider = new FederatedSettingsIdentityProvider("identityProvider", FederatedSettingsIdentityProviderArgs.builder()
+     *             .federationSettingsId("627a9687f7f7f7f774de306f")
+     *             .name("mongodb_federation_test")
+     *             .associatedDomains("yourdomain.com")
+     *             .ssoDebugEnabled(true)
+     *             .status("ACTIVE")
+     *             .build());
+     * 
+     *         final var identittyProvider = MongodbatlasFunctions.getFederatedSettingsIdentityProviders(GetFederatedSettingsIdentityProvidersArgs.builder()
+     *             .federationSettingsId(identityProvider.id())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetFederatedSettingsIdentityProvidersInvokeResult> getFederatedSettingsIdentityProvidersPlain(GetFederatedSettingsIdentityProvidersPlainArgs args, InvokeOptions options) {
@@ -22819,7 +23024,7 @@ public final class MongodbatlasFunctions {
      * ### Criteria
      * * `type`          - Type of criteria (DATE, CUSTOM)
      * * `dateField`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
      * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
@@ -22828,7 +23033,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
      * 
      * ### Schedule
      * 
@@ -22845,7 +23050,7 @@ public final class MongodbatlasFunctions {
      * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
      * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
-     * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
+     * See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api/online-archive-get-one/) Documentation for more information.
      * 
      */
     public static Output<GetOnlineArchiveResult> getOnlineArchive(GetOnlineArchiveArgs args) {
@@ -22905,7 +23110,7 @@ public final class MongodbatlasFunctions {
      * ### Criteria
      * * `type`          - Type of criteria (DATE, CUSTOM)
      * * `dateField`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
      * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
@@ -22914,7 +23119,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
      * 
      * ### Schedule
      * 
@@ -22931,7 +23136,7 @@ public final class MongodbatlasFunctions {
      * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
      * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
-     * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
+     * See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api/online-archive-get-one/) Documentation for more information.
      * 
      */
     public static CompletableFuture<GetOnlineArchiveResult> getOnlineArchivePlain(GetOnlineArchivePlainArgs args) {
@@ -22991,7 +23196,7 @@ public final class MongodbatlasFunctions {
      * ### Criteria
      * * `type`          - Type of criteria (DATE, CUSTOM)
      * * `dateField`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
      * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
@@ -23000,7 +23205,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
      * 
      * ### Schedule
      * 
@@ -23017,7 +23222,7 @@ public final class MongodbatlasFunctions {
      * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
      * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
-     * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
+     * See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api/online-archive-get-one/) Documentation for more information.
      * 
      */
     public static Output<GetOnlineArchiveResult> getOnlineArchive(GetOnlineArchiveArgs args, InvokeOptions options) {
@@ -23077,7 +23282,7 @@ public final class MongodbatlasFunctions {
      * ### Criteria
      * * `type`          - Type of criteria (DATE, CUSTOM)
      * * `dateField`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
      * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
@@ -23086,7 +23291,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
      * 
      * ### Schedule
      * 
@@ -23103,7 +23308,7 @@ public final class MongodbatlasFunctions {
      * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
      * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
-     * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
+     * See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api/online-archive-get-one/) Documentation for more information.
      * 
      */
     public static Output<GetOnlineArchiveResult> getOnlineArchive(GetOnlineArchiveArgs args, InvokeOutputOptions options) {
@@ -23163,7 +23368,7 @@ public final class MongodbatlasFunctions {
      * ### Criteria
      * * `type`          - Type of criteria (DATE, CUSTOM)
      * * `dateField`   - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `dateFormat`   - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
      * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
@@ -23172,7 +23377,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
      * 
      * ### Schedule
      * 
@@ -23189,14 +23394,14 @@ public final class MongodbatlasFunctions {
      * * `order` - Sequence in which MongoDB Cloud slices the collection data to create partitions. The resource expresses this sequence starting with zero. The value of the `criteria.dateField` parameter defaults as the first item in the partition sequence.
      * * `fieldType` - Data type of the parameter that that MongoDB Cloud uses to partition data. Partition parameters of type UUID must be of binary subtype 4. MongoDB Cloud skips partition parameters of type UUID with subtype 3. Valid values: `date`, `int`, `long`, `objectId`, `string`, `uuid`.
      * 
-     * See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-get-one/) Documentation for more information.
+     * See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api/online-archive-get-one/) Documentation for more information.
      * 
      */
     public static CompletableFuture<GetOnlineArchiveResult> getOnlineArchivePlain(GetOnlineArchivePlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getOnlineArchive:getOnlineArchive", TypeShape.of(GetOnlineArchiveResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
+     * `mongodbatlas.getOnlineArchives` Describes the list of all the online archives for a cluster
      * 
      * ## Example Usage
      * 
@@ -23248,7 +23453,7 @@ public final class MongodbatlasFunctions {
      * ### Criteria
      * * `type` - Type of criteria (DATE, CUSTOM)
      * * `dateField` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
      * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
@@ -23257,7 +23462,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
      * 
      * ### Schedule
      * 
@@ -23279,7 +23484,7 @@ public final class MongodbatlasFunctions {
         return getOnlineArchives(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
+     * `mongodbatlas.getOnlineArchives` Describes the list of all the online archives for a cluster
      * 
      * ## Example Usage
      * 
@@ -23331,7 +23536,7 @@ public final class MongodbatlasFunctions {
      * ### Criteria
      * * `type` - Type of criteria (DATE, CUSTOM)
      * * `dateField` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
      * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
@@ -23340,7 +23545,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
      * 
      * ### Schedule
      * 
@@ -23362,7 +23567,7 @@ public final class MongodbatlasFunctions {
         return getOnlineArchivesPlain(args, InvokeOptions.Empty);
     }
     /**
-     * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
+     * `mongodbatlas.getOnlineArchives` Describes the list of all the online archives for a cluster
      * 
      * ## Example Usage
      * 
@@ -23414,7 +23619,7 @@ public final class MongodbatlasFunctions {
      * ### Criteria
      * * `type` - Type of criteria (DATE, CUSTOM)
      * * `dateField` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
      * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
@@ -23423,7 +23628,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
      * 
      * ### Schedule
      * 
@@ -23445,7 +23650,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getOnlineArchives:getOnlineArchives", TypeShape.of(GetOnlineArchivesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
+     * `mongodbatlas.getOnlineArchives` Describes the list of all the online archives for a cluster
      * 
      * ## Example Usage
      * 
@@ -23497,7 +23702,7 @@ public final class MongodbatlasFunctions {
      * ### Criteria
      * * `type` - Type of criteria (DATE, CUSTOM)
      * * `dateField` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
      * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
@@ -23506,7 +23711,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
      * 
      * ### Schedule
      * 
@@ -23528,7 +23733,7 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invoke("mongodbatlas:index/getOnlineArchives:getOnlineArchives", TypeShape.of(GetOnlineArchivesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
+     * `mongodbatlas.getOnlineArchives` Describes the list of all the online archives for a cluster
      * 
      * ## Example Usage
      * 
@@ -23580,7 +23785,7 @@ public final class MongodbatlasFunctions {
      * ### Criteria
      * * `type` - Type of criteria (DATE, CUSTOM)
      * * `dateField` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `type` is `DATE`.
-     * * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * * `dateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `type` is `DATE`. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
      * * `expireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `type` is `DATE`.
      * * `query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `type` is `CUSTOM`.
      * 
@@ -23589,7 +23794,7 @@ public final class MongodbatlasFunctions {
      * 
      * ### Data Process Region
      * * `cloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
+     * * `region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
      * 
      * ### Schedule
      * 
@@ -31568,6 +31773,40 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchIndexesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getSearchIndexes(GetSearchIndexesArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .clusterName("<CLUSTER_NAME>")
+     *             .database("<DATABASE_NAME>")
+     *             .collectionName("<COLLECTION_NAME>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetSearchIndexesInvokeResult> getSearchIndexes(GetSearchIndexesArgs args) {
         return getSearchIndexes(args, InvokeOptions.Empty);
@@ -31576,6 +31815,40 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
      * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchIndexesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getSearchIndexes(GetSearchIndexesArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .clusterName("<CLUSTER_NAME>")
+     *             .database("<DATABASE_NAME>")
+     *             .collectionName("<COLLECTION_NAME>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetSearchIndexesInvokeResult> getSearchIndexesPlain(GetSearchIndexesPlainArgs args) {
@@ -31586,6 +31859,40 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchIndexesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getSearchIndexes(GetSearchIndexesArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .clusterName("<CLUSTER_NAME>")
+     *             .database("<DATABASE_NAME>")
+     *             .collectionName("<COLLECTION_NAME>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetSearchIndexesInvokeResult> getSearchIndexes(GetSearchIndexesArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getSearchIndexes:getSearchIndexes", TypeShape.of(GetSearchIndexesInvokeResult.class), args, Utilities.withVersion(options));
@@ -31594,6 +31901,40 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
      * 
      * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchIndexesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getSearchIndexes(GetSearchIndexesArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .clusterName("<CLUSTER_NAME>")
+     *             .database("<DATABASE_NAME>")
+     *             .collectionName("<COLLECTION_NAME>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static Output<GetSearchIndexesInvokeResult> getSearchIndexes(GetSearchIndexesArgs args, InvokeOutputOptions options) {
@@ -31604,6 +31945,40 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetSearchIndexesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getSearchIndexes(GetSearchIndexesArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .clusterName("<CLUSTER_NAME>")
+     *             .database("<DATABASE_NAME>")
+     *             .collectionName("<COLLECTION_NAME>")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static CompletableFuture<GetSearchIndexesInvokeResult> getSearchIndexesPlain(GetSearchIndexesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getSearchIndexes:getSearchIndexes", TypeShape.of(GetSearchIndexesInvokeResult.class), args, Utilities.withVersion(options));
@@ -31613,7 +31988,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
-     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
      * 
      * ## Example Usage
      * 
@@ -31659,7 +32034,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
-     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
      * 
      * ## Example Usage
      * 
@@ -31705,7 +32080,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
-     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
      * 
      * ## Example Usage
      * 
@@ -31751,7 +32126,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
-     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
      * 
      * ## Example Usage
      * 
@@ -31797,7 +32172,7 @@ public final class MongodbatlasFunctions {
      * 
      * `mongodbatlas.ServerlessInstance` describes a single serverless instance. This represents a single serverless instance that have been created.
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
-     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
      * 
      * ## Example Usage
      * 
@@ -31844,7 +32219,7 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
      * 
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
-     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
      * 
      * ## Example Usage
      * 
@@ -31889,7 +32264,7 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
      * 
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
-     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
      * 
      * ## Example Usage
      * 
@@ -31934,7 +32309,7 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
      * 
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
-     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
      * 
      * ## Example Usage
      * 
@@ -31979,7 +32354,7 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
      * 
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
-     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
      * 
      * ## Example Usage
      * 
@@ -32024,7 +32399,7 @@ public final class MongodbatlasFunctions {
      * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
      * 
      * &gt; **NOTE:**  Serverless instances do not support some Atlas features at this time.
-     * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+     * For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
      * 
      * ## Example Usage
      * 
@@ -35795,98 +36170,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
-     * ### AWS Confluent Privatelink
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.confluent.Environment;
-     * import com.pulumi.confluent.EnvironmentArgs;
-     * import com.pulumi.confluent.Network;
-     * import com.pulumi.confluent.NetworkArgs;
-     * import com.pulumi.std.StdFunctions;
-     * import com.pulumi.confluent.PrivateLinkAccess;
-     * import com.pulumi.confluent.PrivateLinkAccessArgs;
-     * import com.pulumi.confluent.KafkaCluster;
-     * import com.pulumi.confluent.KafkaClusterArgs;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.ArrayList;
-     * import java.util.Arrays;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var staging = new Environment("staging", EnvironmentArgs.builder()
-     *             .displayName("Staging")
-     *             .build());
-     * 
-     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
-     *             .displayName("terraform-test-private-link-network-manual")
-     *             .cloud("AWS")
-     *             .region(awsRegion)
-     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
-     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
-     *             .build());
-     * 
-     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
-     *             .displayName("example-private-link-access")
-     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
-     *             .displayName("example-dedicated-cluster")
-     *             .availability("MULTI_ZONE")
-     *             .cloud(privateLink.cloud())
-     *             .region(privateLink.region())
-     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .dnsDomain(privateLink.dnsDomain())
-     *             .providerName("AWS")
-     *             .region(awsRegion)
-     *             .vendor("CONFLUENT")
-     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
-     *             .dnsSubDomains(privateLink.zonalSubdomains())
-     *             .build());
-     * 
-     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .id(test.id())
-     *             .build());
-     * 
-     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
-     *             .projectId(projectId)
-     *             .build());
-     * 
-     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
-     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
      * ### AWS S3 Privatelink
      * <pre>
      * {@code
@@ -36145,98 +36428,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
-     * 
-     * ### AWS Confluent Privatelink
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.confluent.Environment;
-     * import com.pulumi.confluent.EnvironmentArgs;
-     * import com.pulumi.confluent.Network;
-     * import com.pulumi.confluent.NetworkArgs;
-     * import com.pulumi.std.StdFunctions;
-     * import com.pulumi.confluent.PrivateLinkAccess;
-     * import com.pulumi.confluent.PrivateLinkAccessArgs;
-     * import com.pulumi.confluent.KafkaCluster;
-     * import com.pulumi.confluent.KafkaClusterArgs;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.ArrayList;
-     * import java.util.Arrays;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var staging = new Environment("staging", EnvironmentArgs.builder()
-     *             .displayName("Staging")
-     *             .build());
-     * 
-     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
-     *             .displayName("terraform-test-private-link-network-manual")
-     *             .cloud("AWS")
-     *             .region(awsRegion)
-     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
-     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
-     *             .build());
-     * 
-     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
-     *             .displayName("example-private-link-access")
-     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
-     *             .displayName("example-dedicated-cluster")
-     *             .availability("MULTI_ZONE")
-     *             .cloud(privateLink.cloud())
-     *             .region(privateLink.region())
-     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .dnsDomain(privateLink.dnsDomain())
-     *             .providerName("AWS")
-     *             .region(awsRegion)
-     *             .vendor("CONFLUENT")
-     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
-     *             .dnsSubDomains(privateLink.zonalSubdomains())
-     *             .build());
-     * 
-     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .id(test.id())
-     *             .build());
-     * 
-     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
-     *             .projectId(projectId)
-     *             .build());
-     * 
-     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
-     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
-     *     }
-     * }
-     * }
-     * </pre>
      * 
      * ### AWS S3 Privatelink
      * <pre>
@@ -36497,98 +36688,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
-     * ### AWS Confluent Privatelink
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.confluent.Environment;
-     * import com.pulumi.confluent.EnvironmentArgs;
-     * import com.pulumi.confluent.Network;
-     * import com.pulumi.confluent.NetworkArgs;
-     * import com.pulumi.std.StdFunctions;
-     * import com.pulumi.confluent.PrivateLinkAccess;
-     * import com.pulumi.confluent.PrivateLinkAccessArgs;
-     * import com.pulumi.confluent.KafkaCluster;
-     * import com.pulumi.confluent.KafkaClusterArgs;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.ArrayList;
-     * import java.util.Arrays;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var staging = new Environment("staging", EnvironmentArgs.builder()
-     *             .displayName("Staging")
-     *             .build());
-     * 
-     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
-     *             .displayName("terraform-test-private-link-network-manual")
-     *             .cloud("AWS")
-     *             .region(awsRegion)
-     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
-     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
-     *             .build());
-     * 
-     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
-     *             .displayName("example-private-link-access")
-     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
-     *             .displayName("example-dedicated-cluster")
-     *             .availability("MULTI_ZONE")
-     *             .cloud(privateLink.cloud())
-     *             .region(privateLink.region())
-     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .dnsDomain(privateLink.dnsDomain())
-     *             .providerName("AWS")
-     *             .region(awsRegion)
-     *             .vendor("CONFLUENT")
-     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
-     *             .dnsSubDomains(privateLink.zonalSubdomains())
-     *             .build());
-     * 
-     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .id(test.id())
-     *             .build());
-     * 
-     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
-     *             .projectId(projectId)
-     *             .build());
-     * 
-     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
-     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
      * ### AWS S3 Privatelink
      * <pre>
      * {@code
@@ -36847,98 +36946,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
-     * 
-     * ### AWS Confluent Privatelink
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.confluent.Environment;
-     * import com.pulumi.confluent.EnvironmentArgs;
-     * import com.pulumi.confluent.Network;
-     * import com.pulumi.confluent.NetworkArgs;
-     * import com.pulumi.std.StdFunctions;
-     * import com.pulumi.confluent.PrivateLinkAccess;
-     * import com.pulumi.confluent.PrivateLinkAccessArgs;
-     * import com.pulumi.confluent.KafkaCluster;
-     * import com.pulumi.confluent.KafkaClusterArgs;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.ArrayList;
-     * import java.util.Arrays;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var staging = new Environment("staging", EnvironmentArgs.builder()
-     *             .displayName("Staging")
-     *             .build());
-     * 
-     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
-     *             .displayName("terraform-test-private-link-network-manual")
-     *             .cloud("AWS")
-     *             .region(awsRegion)
-     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
-     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
-     *             .build());
-     * 
-     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
-     *             .displayName("example-private-link-access")
-     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
-     *             .displayName("example-dedicated-cluster")
-     *             .availability("MULTI_ZONE")
-     *             .cloud(privateLink.cloud())
-     *             .region(privateLink.region())
-     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .dnsDomain(privateLink.dnsDomain())
-     *             .providerName("AWS")
-     *             .region(awsRegion)
-     *             .vendor("CONFLUENT")
-     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
-     *             .dnsSubDomains(privateLink.zonalSubdomains())
-     *             .build());
-     * 
-     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .id(test.id())
-     *             .build());
-     * 
-     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
-     *             .projectId(projectId)
-     *             .build());
-     * 
-     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
-     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
-     *     }
-     * }
-     * }
-     * </pre>
      * 
      * ### AWS S3 Privatelink
      * <pre>
@@ -37199,98 +37206,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
-     * ### AWS Confluent Privatelink
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.confluent.Environment;
-     * import com.pulumi.confluent.EnvironmentArgs;
-     * import com.pulumi.confluent.Network;
-     * import com.pulumi.confluent.NetworkArgs;
-     * import com.pulumi.std.StdFunctions;
-     * import com.pulumi.confluent.PrivateLinkAccess;
-     * import com.pulumi.confluent.PrivateLinkAccessArgs;
-     * import com.pulumi.confluent.KafkaCluster;
-     * import com.pulumi.confluent.KafkaClusterArgs;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.ArrayList;
-     * import java.util.Arrays;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var staging = new Environment("staging", EnvironmentArgs.builder()
-     *             .displayName("Staging")
-     *             .build());
-     * 
-     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
-     *             .displayName("terraform-test-private-link-network-manual")
-     *             .cloud("AWS")
-     *             .region(awsRegion)
-     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
-     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
-     *             .build());
-     * 
-     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
-     *             .displayName("example-private-link-access")
-     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
-     *             .displayName("example-dedicated-cluster")
-     *             .availability("MULTI_ZONE")
-     *             .cloud(privateLink.cloud())
-     *             .region(privateLink.region())
-     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .dnsDomain(privateLink.dnsDomain())
-     *             .providerName("AWS")
-     *             .region(awsRegion)
-     *             .vendor("CONFLUENT")
-     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
-     *             .dnsSubDomains(privateLink.zonalSubdomains())
-     *             .build());
-     * 
-     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .id(test.id())
-     *             .build());
-     * 
-     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
-     *             .projectId(projectId)
-     *             .build());
-     * 
-     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
-     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
      * ### AWS S3 Privatelink
      * <pre>
      * {@code
@@ -37549,98 +37464,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
-     * 
-     * ### AWS Confluent Privatelink
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.confluent.Environment;
-     * import com.pulumi.confluent.EnvironmentArgs;
-     * import com.pulumi.confluent.Network;
-     * import com.pulumi.confluent.NetworkArgs;
-     * import com.pulumi.std.StdFunctions;
-     * import com.pulumi.confluent.PrivateLinkAccess;
-     * import com.pulumi.confluent.PrivateLinkAccessArgs;
-     * import com.pulumi.confluent.KafkaCluster;
-     * import com.pulumi.confluent.KafkaClusterArgs;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.ArrayList;
-     * import java.util.Arrays;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var staging = new Environment("staging", EnvironmentArgs.builder()
-     *             .displayName("Staging")
-     *             .build());
-     * 
-     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
-     *             .displayName("terraform-test-private-link-network-manual")
-     *             .cloud("AWS")
-     *             .region(awsRegion)
-     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
-     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
-     *             .build());
-     * 
-     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
-     *             .displayName("example-private-link-access")
-     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
-     *             .displayName("example-dedicated-cluster")
-     *             .availability("MULTI_ZONE")
-     *             .cloud(privateLink.cloud())
-     *             .region(privateLink.region())
-     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .dnsDomain(privateLink.dnsDomain())
-     *             .providerName("AWS")
-     *             .region(awsRegion)
-     *             .vendor("CONFLUENT")
-     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
-     *             .dnsSubDomains(privateLink.zonalSubdomains())
-     *             .build());
-     * 
-     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .id(test.id())
-     *             .build());
-     * 
-     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
-     *             .projectId(projectId)
-     *             .build());
-     * 
-     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
-     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
-     *     }
-     * }
-     * }
-     * </pre>
      * 
      * ### AWS S3 Privatelink
      * <pre>
@@ -37901,98 +37724,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
-     * ### AWS Confluent Privatelink
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.confluent.Environment;
-     * import com.pulumi.confluent.EnvironmentArgs;
-     * import com.pulumi.confluent.Network;
-     * import com.pulumi.confluent.NetworkArgs;
-     * import com.pulumi.std.StdFunctions;
-     * import com.pulumi.confluent.PrivateLinkAccess;
-     * import com.pulumi.confluent.PrivateLinkAccessArgs;
-     * import com.pulumi.confluent.KafkaCluster;
-     * import com.pulumi.confluent.KafkaClusterArgs;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.ArrayList;
-     * import java.util.Arrays;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var staging = new Environment("staging", EnvironmentArgs.builder()
-     *             .displayName("Staging")
-     *             .build());
-     * 
-     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
-     *             .displayName("terraform-test-private-link-network-manual")
-     *             .cloud("AWS")
-     *             .region(awsRegion)
-     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
-     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
-     *             .build());
-     * 
-     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
-     *             .displayName("example-private-link-access")
-     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
-     *             .displayName("example-dedicated-cluster")
-     *             .availability("MULTI_ZONE")
-     *             .cloud(privateLink.cloud())
-     *             .region(privateLink.region())
-     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .dnsDomain(privateLink.dnsDomain())
-     *             .providerName("AWS")
-     *             .region(awsRegion)
-     *             .vendor("CONFLUENT")
-     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
-     *             .dnsSubDomains(privateLink.zonalSubdomains())
-     *             .build());
-     * 
-     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .id(test.id())
-     *             .build());
-     * 
-     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
-     *             .projectId(projectId)
-     *             .build());
-     * 
-     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
-     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
      * ### AWS S3 Privatelink
      * <pre>
      * {@code
@@ -38251,98 +37982,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
-     * 
-     * ### AWS Confluent Privatelink
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.confluent.Environment;
-     * import com.pulumi.confluent.EnvironmentArgs;
-     * import com.pulumi.confluent.Network;
-     * import com.pulumi.confluent.NetworkArgs;
-     * import com.pulumi.std.StdFunctions;
-     * import com.pulumi.confluent.PrivateLinkAccess;
-     * import com.pulumi.confluent.PrivateLinkAccessArgs;
-     * import com.pulumi.confluent.KafkaCluster;
-     * import com.pulumi.confluent.KafkaClusterArgs;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.ArrayList;
-     * import java.util.Arrays;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var staging = new Environment("staging", EnvironmentArgs.builder()
-     *             .displayName("Staging")
-     *             .build());
-     * 
-     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
-     *             .displayName("terraform-test-private-link-network-manual")
-     *             .cloud("AWS")
-     *             .region(awsRegion)
-     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
-     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
-     *             .build());
-     * 
-     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
-     *             .displayName("example-private-link-access")
-     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
-     *             .displayName("example-dedicated-cluster")
-     *             .availability("MULTI_ZONE")
-     *             .cloud(privateLink.cloud())
-     *             .region(privateLink.region())
-     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .dnsDomain(privateLink.dnsDomain())
-     *             .providerName("AWS")
-     *             .region(awsRegion)
-     *             .vendor("CONFLUENT")
-     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
-     *             .dnsSubDomains(privateLink.zonalSubdomains())
-     *             .build());
-     * 
-     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .id(test.id())
-     *             .build());
-     * 
-     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
-     *             .projectId(projectId)
-     *             .build());
-     * 
-     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
-     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
-     *     }
-     * }
-     * }
-     * </pre>
      * 
      * ### AWS S3 Privatelink
      * <pre>
@@ -38603,98 +38242,6 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
-     * ### AWS Confluent Privatelink
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.confluent.Environment;
-     * import com.pulumi.confluent.EnvironmentArgs;
-     * import com.pulumi.confluent.Network;
-     * import com.pulumi.confluent.NetworkArgs;
-     * import com.pulumi.std.StdFunctions;
-     * import com.pulumi.confluent.PrivateLinkAccess;
-     * import com.pulumi.confluent.PrivateLinkAccessArgs;
-     * import com.pulumi.confluent.KafkaCluster;
-     * import com.pulumi.confluent.KafkaClusterArgs;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.ArrayList;
-     * import java.util.Arrays;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var staging = new Environment("staging", EnvironmentArgs.builder()
-     *             .displayName("Staging")
-     *             .build());
-     * 
-     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
-     *             .displayName("terraform-test-private-link-network-manual")
-     *             .cloud("AWS")
-     *             .region(awsRegion)
-     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
-     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
-     *             .build());
-     * 
-     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
-     *             .displayName("example-private-link-access")
-     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
-     *             .displayName("example-dedicated-cluster")
-     *             .availability("MULTI_ZONE")
-     *             .cloud(privateLink.cloud())
-     *             .region(privateLink.region())
-     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .dnsDomain(privateLink.dnsDomain())
-     *             .providerName("AWS")
-     *             .region(awsRegion)
-     *             .vendor("CONFLUENT")
-     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
-     *             .dnsSubDomains(privateLink.zonalSubdomains())
-     *             .build());
-     * 
-     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .id(test.id())
-     *             .build());
-     * 
-     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
-     *             .projectId(projectId)
-     *             .build());
-     * 
-     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
-     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
-     *     }
-     * }
-     * }
-     * </pre>
-     * 
      * ### AWS S3 Privatelink
      * <pre>
      * {@code
@@ -38953,98 +38500,6 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
-     * 
-     * ### AWS Confluent Privatelink
-     * <pre>
-     * {@code
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.confluent.Environment;
-     * import com.pulumi.confluent.EnvironmentArgs;
-     * import com.pulumi.confluent.Network;
-     * import com.pulumi.confluent.NetworkArgs;
-     * import com.pulumi.std.StdFunctions;
-     * import com.pulumi.confluent.PrivateLinkAccess;
-     * import com.pulumi.confluent.PrivateLinkAccessArgs;
-     * import com.pulumi.confluent.KafkaCluster;
-     * import com.pulumi.confluent.KafkaClusterArgs;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
-     * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetStreamPrivatelinkEndpointsArgs;
-     * import java.util.ArrayList;
-     * import java.util.Arrays;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         var staging = new Environment("staging", EnvironmentArgs.builder()
-     *             .displayName("Staging")
-     *             .build());
-     * 
-     *         var privateLink = new Network("privateLink", NetworkArgs.builder()
-     *             .displayName("terraform-test-private-link-network-manual")
-     *             .cloud("AWS")
-     *             .region(awsRegion)
-     *             .connectionTypes(Arrays.asList("PRIVATELINK"))
-     *             .zones(StdFunctions.keys(Map.of("input", subnetsToPrivatelink)).result())
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .dnsConfig(Arrays.asList(Map.of("resolution", "PRIVATE")))
-     *             .build());
-     * 
-     *         var aws = new PrivateLinkAccess("aws", PrivateLinkAccessArgs.builder()
-     *             .displayName("example-private-link-access")
-     *             .aws(Arrays.asList(Map.of("account", awsAccountId)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var dedicated = new KafkaCluster("dedicated", KafkaClusterArgs.builder()
-     *             .displayName("example-dedicated-cluster")
-     *             .availability("MULTI_ZONE")
-     *             .cloud(privateLink.cloud())
-     *             .region(privateLink.region())
-     *             .dedicated(Arrays.asList(Map.of("cku", 2)))
-     *             .environment(Arrays.asList(Map.of("id", staging.id())))
-     *             .network(Arrays.asList(Map.of("id", privateLink.id())))
-     *             .build());
-     * 
-     *         var test = new StreamPrivatelinkEndpoint("test", StreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .dnsDomain(privateLink.dnsDomain())
-     *             .providerName("AWS")
-     *             .region(awsRegion)
-     *             .vendor("CONFLUENT")
-     *             .serviceEndpointId(privateLink.aws()[0].privateLinkEndpointService())
-     *             .dnsSubDomains(privateLink.zonalSubdomains())
-     *             .build());
-     * 
-     *         final var singularDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoint(GetStreamPrivatelinkEndpointArgs.builder()
-     *             .projectId(projectId)
-     *             .id(test.id())
-     *             .build());
-     * 
-     *         final var pluralDatasource = MongodbatlasFunctions.getStreamPrivatelinkEndpoints(GetStreamPrivatelinkEndpointsArgs.builder()
-     *             .projectId(projectId)
-     *             .build());
-     * 
-     *         ctx.export("interfaceEndpointId", singularDatasource.applyValue(_singularDatasource -> _singularDatasource.interfaceEndpointId()));
-     *         ctx.export("interfaceEndpointIds", pluralDatasource.results().stream().map(element -> element.interfaceEndpointId()).collect(toList()));
-     *     }
-     * }
-     * }
-     * </pre>
      * 
      * ### AWS S3 Privatelink
      * <pre>

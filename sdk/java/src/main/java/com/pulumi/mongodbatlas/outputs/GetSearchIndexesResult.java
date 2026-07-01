@@ -16,12 +16,12 @@ import java.util.Objects;
 @CustomType
 public final class GetSearchIndexesResult {
     /**
-     * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+     * @return [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      * 
      */
     private String analyzer;
     /**
-     * @return [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+     * @return [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
      * 
      */
     private String analyzers;
@@ -36,10 +36,14 @@ public final class GetSearchIndexesResult {
      */
     private String collectionName;
     /**
-     * @return (Required) Name of the database the collection is in.
+     * @return Name of the database containing the collection with one or more Atlas Search indexes.
      * 
      */
     private String database;
+    /**
+     * @return JSON string containing the index field definitions for vector search indexes.
+     * 
+     */
     private String fields;
     /**
      * @return The unique identifier of the Atlas Search index.
@@ -72,12 +76,12 @@ public final class GetSearchIndexesResult {
      */
     private Integer numPartitions;
     /**
-     * @return Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+     * @return Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
     /**
-     * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+     * @return [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
      * 
      */
     private String searchAnalyzer;
@@ -93,12 +97,16 @@ public final class GetSearchIndexesResult {
     private String storedSource;
     /**
      * @return Synonyms mapping definition to use in this index.
-     * * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+     * * `synonyms.#.name` - Name of the [synonym mapping definition](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-ref).
      * * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
-     * * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+     * * `synonyms.#.analyzer` - Name of the [analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
      * 
      */
     private List<GetSearchIndexesResultSynonym> synonyms;
+    /**
+     * @return Type of the index. Can be `search` or `vectorSearch`.
+     * 
+     */
     private String type;
     /**
      * @return Set of type set definitions (when present). Each item includes:
@@ -108,14 +116,14 @@ public final class GetSearchIndexesResult {
 
     private GetSearchIndexesResult() {}
     /**
-     * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+     * @return [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      * 
      */
     public String analyzer() {
         return this.analyzer;
     }
     /**
-     * @return [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+     * @return [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
      * 
      */
     public String analyzers() {
@@ -136,12 +144,16 @@ public final class GetSearchIndexesResult {
         return this.collectionName;
     }
     /**
-     * @return (Required) Name of the database the collection is in.
+     * @return Name of the database containing the collection with one or more Atlas Search indexes.
      * 
      */
     public String database() {
         return this.database;
     }
+    /**
+     * @return JSON string containing the index field definitions for vector search indexes.
+     * 
+     */
     public String fields() {
         return this.fields;
     }
@@ -188,14 +200,14 @@ public final class GetSearchIndexesResult {
         return this.numPartitions;
     }
     /**
-     * @return Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+     * @return Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {
         return this.projectId;
     }
     /**
-     * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+     * @return [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
      * 
      */
     public String searchAnalyzer() {
@@ -217,14 +229,18 @@ public final class GetSearchIndexesResult {
     }
     /**
      * @return Synonyms mapping definition to use in this index.
-     * * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+     * * `synonyms.#.name` - Name of the [synonym mapping definition](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-ref).
      * * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
-     * * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+     * * `synonyms.#.analyzer` - Name of the [analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
      * 
      */
     public List<GetSearchIndexesResultSynonym> synonyms() {
         return this.synonyms;
     }
+    /**
+     * @return Type of the index. Can be `search` or `vectorSearch`.
+     * 
+     */
     public String type() {
         return this.type;
     }

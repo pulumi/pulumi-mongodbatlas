@@ -98,7 +98,7 @@ type LookupStreamConnectionArgs struct {
 type LookupStreamConnectionResult struct {
 	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
 	Authentication GetStreamConnectionAuthentication `pulumi:"authentication"`
-	// The configuration for AWS Lambda connection. See AWS
+	// The configuration for S3 connection. See AWS.
 	Aws GetStreamConnectionAws `pulumi:"aws"`
 	// The configuration for Azure Blob Storage connection. See Azure.
 	Azure GetStreamConnectionAzure `pulumi:"azure"`
@@ -113,14 +113,14 @@ type LookupStreamConnectionResult struct {
 	ConnectionName string            `pulumi:"connectionName"`
 	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
 	DbRoleToExecute GetStreamConnectionDbRoleToExecute `pulumi:"dbRoleToExecute"`
-	// The configuration for GCP Pub/Sub connection. See GCP
+	// The configuration for GCP Pub/Sub connection. See GCP.
 	Gcp GetStreamConnectionGcp `pulumi:"gcp"`
 	// A map of key-value pairs for optional headers.
 	Headers map[string]string `pulumi:"headers"`
 	Id      string            `pulumi:"id"`
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName *string `pulumi:"instanceName"`
-	// Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
+	// Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
 	Networking GetStreamConnectionNetworking `pulumi:"networking"`
 	ProjectId  string                        `pulumi:"projectId"`
 	// Authentication configuration for Schema Registry. See Schema Registry Authentication.
@@ -189,7 +189,7 @@ func (o LookupStreamConnectionResultOutput) Authentication() GetStreamConnection
 	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionAuthentication { return v.Authentication }).(GetStreamConnectionAuthenticationOutput)
 }
 
-// The configuration for AWS Lambda connection. See AWS
+// The configuration for S3 connection. See AWS.
 func (o LookupStreamConnectionResultOutput) Aws() GetStreamConnectionAwsOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionAws { return v.Aws }).(GetStreamConnectionAwsOutput)
 }
@@ -228,7 +228,7 @@ func (o LookupStreamConnectionResultOutput) DbRoleToExecute() GetStreamConnectio
 	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionDbRoleToExecute { return v.DbRoleToExecute }).(GetStreamConnectionDbRoleToExecuteOutput)
 }
 
-// The configuration for GCP Pub/Sub connection. See GCP
+// The configuration for GCP Pub/Sub connection. See GCP.
 func (o LookupStreamConnectionResultOutput) Gcp() GetStreamConnectionGcpOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionGcp { return v.Gcp }).(GetStreamConnectionGcpOutput)
 }
@@ -247,7 +247,7 @@ func (o LookupStreamConnectionResultOutput) InstanceName() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v LookupStreamConnectionResult) *string { return v.InstanceName }).(pulumi.StringPtrOutput)
 }
 
-// Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
+// Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
 func (o LookupStreamConnectionResultOutput) Networking() GetStreamConnectionNetworkingOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionNetworking { return v.Networking }).(GetStreamConnectionNetworkingOutput)
 }

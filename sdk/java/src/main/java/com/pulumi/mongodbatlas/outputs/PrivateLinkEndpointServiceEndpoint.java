@@ -22,7 +22,7 @@ public final class PrivateLinkEndpointServiceEndpoint {
      */
     private @Nullable String ipAddress;
     /**
-     * @return Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+     * @return Status of the endpoint. Atlas returns one of the [values shown above](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
      * 
      */
     private @Nullable String status;
@@ -43,7 +43,7 @@ public final class PrivateLinkEndpointServiceEndpoint {
         return Optional.ofNullable(this.ipAddress);
     }
     /**
-     * @return Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+     * @return Status of the endpoint. Atlas returns one of the [values shown above](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
      * 
      */
     public Optional<String> status() {

@@ -17,14 +17,14 @@ public final class AuditingState extends com.pulumi.resources.ResourceArgs {
     public static final AuditingState Empty = new AuditingState();
 
     /**
-     * Indicates whether the auditing system captures successful authentication attempts for audit filters using the &#34;atype&#34; : &#34;authCheck&#34; auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+     * Indicates whether the auditing system captures successful authentication attempts for audit filters using the &#34;atype&#34; : &#34;authCheck&#34; auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
      * 
      */
     @Import(name="auditAuthorizationSuccess")
     private @Nullable Output<Boolean> auditAuthorizationSuccess;
 
     /**
-     * @return Indicates whether the auditing system captures successful authentication attempts for audit filters using the &#34;atype&#34; : &#34;authCheck&#34; auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+     * @return Indicates whether the auditing system captures successful authentication attempts for audit filters using the &#34;atype&#34; : &#34;authCheck&#34; auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
      * 
      */
     public Optional<Output<Boolean>> auditAuthorizationSuccess() {
@@ -32,14 +32,14 @@ public final class AuditingState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+     * JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://www.mongodb.com/docs/manual/tutorial/configure-audit-filters/).
      * 
      */
     @Import(name="auditFilter")
     private @Nullable Output<String> auditFilter;
 
     /**
-     * @return JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+     * @return JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://www.mongodb.com/docs/manual/tutorial/configure-audit-filters/).
      * 
      */
     public Optional<Output<String>> auditFilter() {
@@ -130,7 +130,7 @@ public final class AuditingState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param auditAuthorizationSuccess Indicates whether the auditing system captures successful authentication attempts for audit filters using the &#34;atype&#34; : &#34;authCheck&#34; auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+         * @param auditAuthorizationSuccess Indicates whether the auditing system captures successful authentication attempts for audit filters using the &#34;atype&#34; : &#34;authCheck&#34; auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class AuditingState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param auditAuthorizationSuccess Indicates whether the auditing system captures successful authentication attempts for audit filters using the &#34;atype&#34; : &#34;authCheck&#34; auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+         * @param auditAuthorizationSuccess Indicates whether the auditing system captures successful authentication attempts for audit filters using the &#34;atype&#34; : &#34;authCheck&#34; auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
          * 
          * @return builder
          * 
@@ -151,7 +151,7 @@ public final class AuditingState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param auditFilter JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+         * @param auditFilter JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://www.mongodb.com/docs/manual/tutorial/configure-audit-filters/).
          * 
          * @return builder
          * 
@@ -162,7 +162,7 @@ public final class AuditingState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param auditFilter JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+         * @param auditFilter JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://www.mongodb.com/docs/manual/tutorial/configure-audit-filters/).
          * 
          * @return builder
          * 

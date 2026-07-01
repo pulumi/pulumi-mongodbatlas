@@ -71,8 +71,6 @@ class GetFederatedQueryLimitResult:
     def default_limit(self) -> _builtins.int:
         """
         Default value of the limit.
-        * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-        * `maximumLimit` - Maximum value of the limit.
         """
         return pulumi.get(self, "default_limit")
 
@@ -87,6 +85,9 @@ class GetFederatedQueryLimitResult:
     @_builtins.property
     @pulumi.getter(name="lastModifiedDate")
     def last_modified_date(self) -> _builtins.str:
+        """
+        Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+        """
         return pulumi.get(self, "last_modified_date")
 
     @_builtins.property
@@ -97,11 +98,17 @@ class GetFederatedQueryLimitResult:
     @_builtins.property
     @pulumi.getter(name="maximumLimit")
     def maximum_limit(self) -> _builtins.int:
+        """
+        Maximum value of the limit.
+        """
         return pulumi.get(self, "maximum_limit")
 
     @_builtins.property
     @pulumi.getter(name="overrunPolicy")
     def overrun_policy(self) -> _builtins.str:
+        """
+        String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit.
+        """
         return pulumi.get(self, "overrun_policy")
 
     @_builtins.property
@@ -117,6 +124,9 @@ class GetFederatedQueryLimitResult:
     @_builtins.property
     @pulumi.getter
     def value(self) -> _builtins.int:
+        """
+        Amount to set the limit to.
+        """
         return pulumi.get(self, "value")
 
 
@@ -143,7 +153,7 @@ def get_federated_query_limit(limit_name: Optional[_builtins.str] = None,
                               tenant_name: Optional[_builtins.str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFederatedQueryLimitResult:
     """
-    `FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+    `FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
 
     ## Example Usage
 
@@ -188,7 +198,7 @@ def get_federated_query_limit_output(limit_name: pulumi.Input[Optional[_builtins
                                      tenant_name: pulumi.Input[Optional[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedQueryLimitResult]:
     """
-    `FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+    `FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
 
     ## Example Usage
 

@@ -154,16 +154,25 @@ class GetCloudBackupSnapshotRestoreJobResult:
     @_builtins.property
     @pulumi.getter(name="oplogInc")
     def oplog_inc(self) -> _builtins.int:
+        """
+        Oplog operation number from which to you want to restore this snapshot.
+        """
         return pulumi.get(self, "oplog_inc")
 
     @_builtins.property
     @pulumi.getter(name="oplogTs")
     def oplog_ts(self) -> _builtins.int:
+        """
+        Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+        """
         return pulumi.get(self, "oplog_ts")
 
     @_builtins.property
     @pulumi.getter(name="pointInTimeUtcSeconds")
     def point_in_time_utc_seconds(self) -> _builtins.int:
+        """
+        Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+        """
         return pulumi.get(self, "point_in_time_utc_seconds")
 
     @_builtins.property
@@ -205,9 +214,6 @@ class GetCloudBackupSnapshotRestoreJobResult:
     def timestamp(self) -> _builtins.str:
         """
         Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
-        * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
-        * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
-        * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
         """
         return pulumi.get(self, "timestamp")
 

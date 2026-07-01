@@ -21,7 +21,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         /// <summary>
         /// Variable that belongs to the set of the tag.
         /// 
-        /// To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        /// To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
         /// </summary>
         [Input("value", required: true)]
         public Input<string> Value { get; set; } = null!;

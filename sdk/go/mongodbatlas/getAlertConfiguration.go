@@ -68,7 +68,7 @@ import (
 //
 // ```
 //
-// > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+// > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/
 //
 // ```go
 // package main
@@ -160,9 +160,10 @@ type LookupAlertConfigurationResult struct {
 	Matchers []GetAlertConfigurationMatcher `pulumi:"matchers"`
 	// The threshold that causes an alert to be triggered. Required if `eventTypeName` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
 	MetricThresholdConfigs []GetAlertConfigurationMetricThresholdConfig `pulumi:"metricThresholdConfigs"`
-	Notifications          []GetAlertConfigurationNotification          `pulumi:"notifications"`
-	Outputs                []GetAlertConfigurationOutput                `pulumi:"outputs"`
-	ProjectId              string                                       `pulumi:"projectId"`
+	// List of notifications to send when an alert condition is detected. See notification.
+	Notifications []GetAlertConfigurationNotification `pulumi:"notifications"`
+	Outputs       []GetAlertConfigurationOutput       `pulumi:"outputs"`
+	ProjectId     string                              `pulumi:"projectId"`
 	// Severity of the event.
 	SeverityOverride string `pulumi:"severityOverride"`
 	// Threshold that triggers an alert. Required if `eventTypeName` is any value other than `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See threshold config.
@@ -245,6 +246,7 @@ func (o LookupAlertConfigurationResultOutput) MetricThresholdConfigs() GetAlertC
 	}).(GetAlertConfigurationMetricThresholdConfigArrayOutput)
 }
 
+// List of notifications to send when an alert condition is detected. See notification.
 func (o LookupAlertConfigurationResultOutput) Notifications() GetAlertConfigurationNotificationArrayOutput {
 	return o.ApplyT(func(v LookupAlertConfigurationResult) []GetAlertConfigurationNotification { return v.Notifications }).(GetAlertConfigurationNotificationArrayOutput)
 }

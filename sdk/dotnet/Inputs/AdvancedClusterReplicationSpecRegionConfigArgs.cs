@@ -19,7 +19,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs>? AnalyticsAutoScaling { get; set; }
 
         /// <summary>
-        /// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
+        /// Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
         /// </summary>
         [Input("analyticsSpecs")]
         public Input<Inputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs>? AnalyticsSpecs { get; set; }
@@ -37,7 +37,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? BackingProviderName { get; set; }
 
         /// <summary>
-        /// Hardware specifications for electable nodes in the region. All `ElectableSpecs` in the `RegionConfigs` of a `ReplicationSpecs` must have the same `InstanceSize`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+        /// Hardware specifications for electable nodes in the region. All `ElectableSpecs` in the `RegionConfigs` of a `ReplicationSpecs` must have the same `InstanceSize`. Electable nodes can become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
         /// </summary>
         [Input("electableSpecs")]
         public Input<Inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs>? ElectableSpecs { get; set; }
@@ -63,13 +63,15 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string> ProviderName { get; set; } = null!;
 
         /// <summary>
-        /// Hardware specifications for read-only nodes in the region. All `ReadOnlySpecs` in the `RegionConfigs` of a `ReplicationSpecs` must have the same `InstanceSize` as `ElectableSpecs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+        /// Hardware specifications for read-only nodes in the region. All `ReadOnlySpecs` in the `RegionConfigs` of a `ReplicationSpecs` must have the same `InstanceSize` as `ElectableSpecs`. Read-only nodes can become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
         /// </summary>
         [Input("readOnlySpecs")]
         public Input<Inputs.AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs>? ReadOnlySpecs { get; set; }
 
         /// <summary>
-        /// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        /// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
+        /// 
+        /// For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes, see [Supported Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions).
         /// </summary>
         [Input("regionName", required: true)]
         public Input<string> RegionName { get; set; } = null!;

@@ -80,14 +80,14 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
     }
 
     /**
-     * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
+     * Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
      * 
      */
     @Import(name="exportBucketId")
     private @Nullable Output<String> exportBucketId;
 
     /**
-     * @return Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
+     * @return Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
      * 
      */
     public Optional<Output<String>> exportBucketId() {
@@ -111,16 +111,32 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
         return Optional.ofNullable(this.exportJobId);
     }
 
+    /**
+     * _Returned for replica set only._ Number of collections that have been exported.
+     * 
+     */
     @Import(name="exportStatusExportedCollections")
     private @Nullable Output<Integer> exportStatusExportedCollections;
 
+    /**
+     * @return _Returned for replica set only._ Number of collections that have been exported.
+     * 
+     */
     public Optional<Output<Integer>> exportStatusExportedCollections() {
         return Optional.ofNullable(this.exportStatusExportedCollections);
     }
 
+    /**
+     * _Returned for replica set only._ Total number of collections to export.
+     * 
+     */
     @Import(name="exportStatusTotalCollections")
     private @Nullable Output<Integer> exportStatusTotalCollections;
 
+    /**
+     * @return _Returned for replica set only._ Total number of collections to export.
+     * 
+     */
     public Optional<Output<Integer>> exportStatusTotalCollections() {
         return Optional.ofNullable(this.exportStatusTotalCollections);
     }
@@ -163,14 +179,14 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
     }
 
     /**
-     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
+     * Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
      * 
      */
     @Import(name="snapshotId")
     private @Nullable Output<String> snapshotId;
 
     /**
-     * @return Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
+     * @return Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
      * 
      */
     public Optional<Output<String>> snapshotId() {
@@ -343,7 +359,7 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
         }
 
         /**
-         * @param exportBucketId Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
+         * @param exportBucketId Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
          * 
          * @return builder
          * 
@@ -354,7 +370,7 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
         }
 
         /**
-         * @param exportBucketId Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://docs.atlas.mongodb.com/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
+         * @param exportBucketId Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
          * 
          * @return builder
          * 
@@ -386,20 +402,44 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
             return exportJobId(Output.of(exportJobId));
         }
 
+        /**
+         * @param exportStatusExportedCollections _Returned for replica set only._ Number of collections that have been exported.
+         * 
+         * @return builder
+         * 
+         */
         public Builder exportStatusExportedCollections(@Nullable Output<Integer> exportStatusExportedCollections) {
             $.exportStatusExportedCollections = exportStatusExportedCollections;
             return this;
         }
 
+        /**
+         * @param exportStatusExportedCollections _Returned for replica set only._ Number of collections that have been exported.
+         * 
+         * @return builder
+         * 
+         */
         public Builder exportStatusExportedCollections(Integer exportStatusExportedCollections) {
             return exportStatusExportedCollections(Output.of(exportStatusExportedCollections));
         }
 
+        /**
+         * @param exportStatusTotalCollections _Returned for replica set only._ Total number of collections to export.
+         * 
+         * @return builder
+         * 
+         */
         public Builder exportStatusTotalCollections(@Nullable Output<Integer> exportStatusTotalCollections) {
             $.exportStatusTotalCollections = exportStatusTotalCollections;
             return this;
         }
 
+        /**
+         * @param exportStatusTotalCollections _Returned for replica set only._ Total number of collections to export.
+         * 
+         * @return builder
+         * 
+         */
         public Builder exportStatusTotalCollections(Integer exportStatusTotalCollections) {
             return exportStatusTotalCollections(Output.of(exportStatusTotalCollections));
         }
@@ -456,7 +496,7 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
         }
 
         /**
-         * @param snapshotId Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
+         * @param snapshotId Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
          * 
          * @return builder
          * 
@@ -467,7 +507,7 @@ public final class CloudBackupSnapshotExportJobState extends com.pulumi.resource
         }
 
         /**
-         * @param snapshotId Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://docs.atlas.mongodb.com/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
+         * @param snapshotId Unique identifier of the Cloud Backup snapshot to export. If necessary, use the [Get All Cloud Backups](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/backup/get-all-backups/) API to retrieve the list of snapshot IDs for a cluster or use the data source mongodbatlas_cloud_cloud_backup_snapshots
          * 
          * @return builder
          * 

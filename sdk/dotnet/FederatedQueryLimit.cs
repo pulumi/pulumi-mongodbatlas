@@ -10,7 +10,7 @@ using Pulumi.Serialization;
 namespace Pulumi.Mongodbatlas
 {
     /// <summary>
-    /// `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+    /// `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
     /// 
     /// ## Example Usage
     /// 
@@ -61,12 +61,13 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Default value of the limit.
-        /// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-        /// * `maximumLimit` - Maximum value of the limit.
         /// </summary>
         [Output("defaultLimit")]
         public Output<int?> DefaultLimit { get; private set; } = null!;
 
+        /// <summary>
+        /// Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+        /// </summary>
         [Output("lastModifiedDate")]
         public Output<string> LastModifiedDate { get; private set; } = null!;
 
@@ -80,6 +81,9 @@ namespace Pulumi.Mongodbatlas
         [Output("limitName")]
         public Output<string> LimitName { get; private set; } = null!;
 
+        /// <summary>
+        /// Maximum value of the limit.
+        /// </summary>
         [Output("maximumLimit")]
         public Output<int?> MaximumLimit { get; private set; } = null!;
 
@@ -155,8 +159,6 @@ namespace Pulumi.Mongodbatlas
     {
         /// <summary>
         /// Default value of the limit.
-        /// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-        /// * `maximumLimit` - Maximum value of the limit.
         /// </summary>
         [Input("defaultLimit")]
         public Input<int>? DefaultLimit { get; set; }
@@ -171,6 +173,9 @@ namespace Pulumi.Mongodbatlas
         [Input("limitName", required: true)]
         public Input<string> LimitName { get; set; } = null!;
 
+        /// <summary>
+        /// Maximum value of the limit.
+        /// </summary>
         [Input("maximumLimit")]
         public Input<int>? MaximumLimit { get; set; }
 
@@ -214,12 +219,13 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Default value of the limit.
-        /// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-        /// * `maximumLimit` - Maximum value of the limit.
         /// </summary>
         [Input("defaultLimit")]
         public Input<int>? DefaultLimit { get; set; }
 
+        /// <summary>
+        /// Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+        /// </summary>
         [Input("lastModifiedDate")]
         public Input<string>? LastModifiedDate { get; set; }
 
@@ -233,6 +239,9 @@ namespace Pulumi.Mongodbatlas
         [Input("limitName")]
         public Input<string>? LimitName { get; set; }
 
+        /// <summary>
+        /// Maximum value of the limit.
+        /// </summary>
         [Input("maximumLimit")]
         public Input<int>? MaximumLimit { get; set; }
 

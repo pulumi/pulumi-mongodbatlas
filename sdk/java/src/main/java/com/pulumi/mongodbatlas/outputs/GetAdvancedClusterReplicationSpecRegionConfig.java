@@ -25,7 +25,7 @@ public final class GetAdvancedClusterReplicationSpecRegionConfig {
      */
     private GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling analyticsAutoScaling;
     /**
-     * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
+     * @return Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
      * 
      */
     private GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs;
@@ -89,7 +89,7 @@ public final class GetAdvancedClusterReplicationSpecRegionConfig {
         return this.analyticsAutoScaling;
     }
     /**
-     * @return Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
+     * @return Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
      * 
      */
     public GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs analyticsSpecs() {

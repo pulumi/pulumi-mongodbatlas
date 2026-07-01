@@ -53,8 +53,20 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
      * 
      */
     private String id;
+    /**
+     * @return Oplog operation number from which to you want to restore this snapshot.
+     * 
+     */
     private Integer oplogInc;
+    /**
+     * @return Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+     * 
+     */
     private Integer oplogTs;
+    /**
+     * @return Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+     * 
+     */
     private Integer pointInTimeUtcSeconds;
     /**
      * @return Unique identifier of the source snapshot ID of the restore job.
@@ -73,9 +85,6 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
     private String targetProjectId;
     /**
      * @return Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
-     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
-     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
-     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
      * 
      */
     private String timestamp;
@@ -137,12 +146,24 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return Oplog operation number from which to you want to restore this snapshot.
+     * 
+     */
     public Integer oplogInc() {
         return this.oplogInc;
     }
+    /**
+     * @return Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+     * 
+     */
     public Integer oplogTs() {
         return this.oplogTs;
     }
+    /**
+     * @return Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+     * 
+     */
     public Integer pointInTimeUtcSeconds() {
         return this.pointInTimeUtcSeconds;
     }
@@ -169,9 +190,6 @@ public final class GetCloudBackupSnapshotRestoreJobsResult {
     }
     /**
      * @return Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
-     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
-     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
-     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
      * 
      */
     public String timestamp() {

@@ -16,14 +16,14 @@ public final class StreamConnectionTimeoutsArgs extends com.pulumi.resources.Res
     public static final StreamConnectionTimeoutsArgs Empty = new StreamConnectionTimeoutsArgs();
 
     /**
-     * The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+     * The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `40m` (40 minutes).
      * 
      */
     @Import(name="create")
     private @Nullable Output<String> create;
 
     /**
-     * @return The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+     * @return The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `40m` (40 minutes).
      * 
      */
     public Optional<Output<String>> create() {
@@ -31,14 +31,14 @@ public final class StreamConnectionTimeoutsArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
+     * The maximum time to wait for the stream connection to be fully deleted. Defaults to `40m` (40 minutes).
      * 
      */
     @Import(name="delete")
     private @Nullable Output<String> delete;
 
     /**
-     * @return The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
+     * @return The maximum time to wait for the stream connection to be fully deleted. Defaults to `40m` (40 minutes).
      * 
      */
     public Optional<Output<String>> delete() {
@@ -46,14 +46,14 @@ public final class StreamConnectionTimeoutsArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+     * The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `40m` (40 minutes).
      * 
      */
     @Import(name="update")
     private @Nullable Output<String> update;
 
     /**
-     * @return The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+     * @return The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `40m` (40 minutes).
      * 
      */
     public Optional<Output<String>> update() {
@@ -87,7 +87,7 @@ public final class StreamConnectionTimeoutsArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param create The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+         * @param create The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `40m` (40 minutes).
          * 
          * @return builder
          * 
@@ -98,7 +98,7 @@ public final class StreamConnectionTimeoutsArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param create The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+         * @param create The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `40m` (40 minutes).
          * 
          * @return builder
          * 
@@ -108,7 +108,7 @@ public final class StreamConnectionTimeoutsArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param delete The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
+         * @param delete The maximum time to wait for the stream connection to be fully deleted. Defaults to `40m` (40 minutes).
          * 
          * @return builder
          * 
@@ -119,7 +119,7 @@ public final class StreamConnectionTimeoutsArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param delete The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
+         * @param delete The maximum time to wait for the stream connection to be fully deleted. Defaults to `40m` (40 minutes).
          * 
          * @return builder
          * 
@@ -129,7 +129,7 @@ public final class StreamConnectionTimeoutsArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param update The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+         * @param update The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `40m` (40 minutes).
          * 
          * @return builder
          * 
@@ -140,7 +140,7 @@ public final class StreamConnectionTimeoutsArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param update The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+         * @param update The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `40m` (40 minutes).
          * 
          * @return builder
          * 

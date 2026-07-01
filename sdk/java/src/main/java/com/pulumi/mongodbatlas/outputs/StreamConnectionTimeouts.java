@@ -12,38 +12,38 @@ import javax.annotation.Nullable;
 @CustomType
 public final class StreamConnectionTimeouts {
     /**
-     * @return The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+     * @return The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `40m` (40 minutes).
      * 
      */
     private @Nullable String create;
     /**
-     * @return The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
+     * @return The maximum time to wait for the stream connection to be fully deleted. Defaults to `40m` (40 minutes).
      * 
      */
     private @Nullable String delete;
     /**
-     * @return The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+     * @return The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `40m` (40 minutes).
      * 
      */
     private @Nullable String update;
 
     private StreamConnectionTimeouts() {}
     /**
-     * @return The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+     * @return The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `40m` (40 minutes).
      * 
      */
     public Optional<String> create() {
         return Optional.ofNullable(this.create);
     }
     /**
-     * @return The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
+     * @return The maximum time to wait for the stream connection to be fully deleted. Defaults to `40m` (40 minutes).
      * 
      */
     public Optional<String> delete() {
         return Optional.ofNullable(this.delete);
     }
     /**
-     * @return The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+     * @return The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `40m` (40 minutes).
      * 
      */
     public Optional<String> update() {

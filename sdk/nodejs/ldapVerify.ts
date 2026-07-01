@@ -55,7 +55,7 @@ import * as utilities from "./utilities";
  * $ pulumi import mongodbatlas:index/ldapVerify:LdapVerify test 5d09d6a59ccf6445652a444a-5d09d6a59ccf6445652a444a
  * ```
  *
- * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
+ * For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/ldaps-configuration-request-verification)
  */
 export class LdapVerify extends pulumi.CustomResource {
     /**
@@ -126,7 +126,7 @@ export class LdapVerify extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly status: pulumi.Output<string>;
     /**
-     * Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
+     * Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://www.mongodb.com/docs/atlas/reference/api/ldaps-configuration-request-verification)
      */
     declare public /*out*/ readonly validations: pulumi.Output<outputs.LdapVerifyValidation[]>;
 
@@ -235,7 +235,7 @@ export interface LdapVerifyState {
      */
     status?: pulumi.Input<string | undefined>;
     /**
-     * Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
+     * Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://www.mongodb.com/docs/atlas/reference/api/ldaps-configuration-request-verification)
      */
     validations?: pulumi.Input<pulumi.Input<inputs.LdapVerifyValidation>[] | undefined>;
 }

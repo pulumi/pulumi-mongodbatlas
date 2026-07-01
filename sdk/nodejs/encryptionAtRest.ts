@@ -8,15 +8,15 @@ import * as utilities from "./utilities";
 
 /**
  * `mongodbatlas.EncryptionAtRest` allows management of Encryption at Rest for an Atlas project using Customer Key Management configuration. The following providers are supported:
- * - [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
- * - [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
- * - [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+ * - [Amazon Web Services Key Management Service](https://www.mongodb.com/docs/atlas/security-aws-kms/#security-aws-kms)
+ * - [Azure Key Vault](https://www.mongodb.com/docs/atlas/security-azure-kms/#security-azure-kms)
+ * - [Google Cloud KMS](https://www.mongodb.com/docs/atlas/security-gcp-kms/#security-gcp-kms)
  *
  * The encryption at rest Terraform module makes use of this resource and simplifies its use. It is currently limited to AWS KMS.
  *
  * Atlas does not automatically rotate user-managed encryption keys. Defer to your preferred Encryption at Rest provider’s documentation and guidance for best practices on key rotation. Atlas automatically creates a 90-day key rotation alert when you configure Encryption at Rest using your Key Management in an Atlas project.
  *
- * See [Encryption at Rest](https://docs.atlas.mongodb.com/security-kms-encryption/index.html) for more information, including prerequisites and restrictions.
+ * See [Encryption at Rest](https://www.mongodb.com/docs/atlas/security-kms-encryption/) for more information, including prerequisites and restrictions.
  *
  * > **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
  *
@@ -89,6 +89,10 @@ import * as utilities from "./utilities";
  * **NOTE**  If using the two resources path for cloud provider access, `cloudProviderAccessSetup` and `cloudProviderAccessAuthorization`, you may need to define a `dependsOn` statement for these two resources, because terraform is not able to infer the dependency.
  *
  * ### Configuring encryption at rest using customer key management in Azure
+ * For Azure environments using static credentials (`clientId`, `tenantId`, and `secret`), we recommend migrating to role-based authentication. For more details see our Migration Guide: Encryption at Rest (Azure) Client Credentials to Role-based Auth.
+ *
+ * The following example shows how to configure role-based authentication for Azure Key Vault by obtaining an Atlas-managed role through Cloud Provider Access and passing the resulting `roleId` to the encryption at rest configuration.
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";

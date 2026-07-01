@@ -11,7 +11,7 @@ import java.util.Objects;
 @CustomType
 public final class GetSearchIndexSynonym {
     /**
-     * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+     * @return [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      * 
      */
     private String analyzer;
@@ -24,7 +24,7 @@ public final class GetSearchIndexSynonym {
 
     private GetSearchIndexSynonym() {}
     /**
-     * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+     * @return [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      * 
      */
     public String analyzer() {

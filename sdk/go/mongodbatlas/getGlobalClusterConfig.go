@@ -137,7 +137,7 @@ func LookupGlobalClusterConfig(ctx *pulumi.Context, args *LookupGlobalClusterCon
 type LookupGlobalClusterConfigArgs struct {
 	// The name of the Global Cluster.
 	ClusterName string `pulumi:"clusterName"`
-	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces []GetGlobalClusterConfigManagedNamespace `pulumi:"managedNamespaces"`
 	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
@@ -150,7 +150,7 @@ type LookupGlobalClusterConfigResult struct {
 	CustomZoneMappingZoneId map[string]string `pulumi:"customZoneMappingZoneId"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces []GetGlobalClusterConfigManagedNamespace `pulumi:"managedNamespaces"`
 	ProjectId         string                                   `pulumi:"projectId"`
 }
@@ -168,7 +168,7 @@ func LookupGlobalClusterConfigOutput(ctx *pulumi.Context, args LookupGlobalClust
 type LookupGlobalClusterConfigOutputArgs struct {
 	// The name of the Global Cluster.
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
-	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces GetGlobalClusterConfigManagedNamespaceArrayInput `pulumi:"managedNamespaces"`
 	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
@@ -207,7 +207,7 @@ func (o LookupGlobalClusterConfigResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupGlobalClusterConfigResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
 func (o LookupGlobalClusterConfigResultOutput) ManagedNamespaces() GetGlobalClusterConfigManagedNamespaceArrayOutput {
 	return o.ApplyT(func(v LookupGlobalClusterConfigResult) []GetGlobalClusterConfigManagedNamespace {
 		return v.ManagedNamespaces

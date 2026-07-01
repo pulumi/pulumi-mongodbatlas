@@ -26,7 +26,7 @@ public final class AdvancedClusterReplicationSpec {
      */
     private @Nullable String externalId;
     /**
-     * @return Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
+     * @return Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See region_configs.
      * 
      */
     private List<AdvancedClusterReplicationSpecRegionConfig> regionConfigs;
@@ -57,7 +57,7 @@ public final class AdvancedClusterReplicationSpec {
         return Optional.ofNullable(this.externalId);
     }
     /**
-     * @return Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
+     * @return Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region&#39;s priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See region_configs.
      * 
      */
     public List<AdvancedClusterReplicationSpecRegionConfig> regionConfigs() {

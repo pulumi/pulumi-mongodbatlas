@@ -12,7 +12,7 @@ namespace Pulumi.Mongodbatlas
     public static class GetOnlineArchives
     {
         /// <summary>
-        /// `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
+        /// `mongodbatlas.getOnlineArchives` Describes the list of all the online archives for a cluster
         /// 
         /// 
         /// ## Example Usage
@@ -50,7 +50,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Criteria
         /// * `Type` - Type of criteria (DATE, CUSTOM)
         /// * `DateField` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `Type` is `DATE`.
-        /// * `DateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `Type` is `DATE`. You must set `Type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+        /// * `DateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `Type` is `DATE`. You must set `Type` to `DATE` if `CollectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
         /// * `ExpireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `Type` is `DATE`.
         /// * `Query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `Type` is `CUSTOM`.
         /// 
@@ -59,7 +59,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### Data Process Region
         /// * `CloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-        /// * `Region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
+        /// * `Region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
         /// 
         /// ### Schedule
         /// 
@@ -80,7 +80,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetOnlineArchivesResult>("mongodbatlas:index/getOnlineArchives:getOnlineArchives", args ?? new GetOnlineArchivesArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
+        /// `mongodbatlas.getOnlineArchives` Describes the list of all the online archives for a cluster
         /// 
         /// 
         /// ## Example Usage
@@ -118,7 +118,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Criteria
         /// * `Type` - Type of criteria (DATE, CUSTOM)
         /// * `DateField` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `Type` is `DATE`.
-        /// * `DateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `Type` is `DATE`. You must set `Type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+        /// * `DateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `Type` is `DATE`. You must set `Type` to `DATE` if `CollectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
         /// * `ExpireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `Type` is `DATE`.
         /// * `Query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `Type` is `CUSTOM`.
         /// 
@@ -127,7 +127,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### Data Process Region
         /// * `CloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-        /// * `Region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
+        /// * `Region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
         /// 
         /// ### Schedule
         /// 
@@ -148,7 +148,7 @@ namespace Pulumi.Mongodbatlas
             => global::Pulumi.Deployment.Instance.Invoke<GetOnlineArchivesResult>("mongodbatlas:index/getOnlineArchives:getOnlineArchives", args ?? new GetOnlineArchivesInvokeArgs(), options.WithDefaults());
 
         /// <summary>
-        /// `mongodbatlas.OnlineArchive` Describes the list of all the online archives for a cluster
+        /// `mongodbatlas.getOnlineArchives` Describes the list of all the online archives for a cluster
         /// 
         /// 
         /// ## Example Usage
@@ -186,7 +186,7 @@ namespace Pulumi.Mongodbatlas
         /// ### Criteria
         /// * `Type` - Type of criteria (DATE, CUSTOM)
         /// * `DateField` - Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter. Set this parameter when `Type` is `DATE`.
-        /// * `DateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `Type` is `DATE`. You must set `Type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+        /// * `DateFormat` - Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. Set this parameter when `Type` is `DATE`. You must set `Type` to `DATE` if `CollectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
         /// * `ExpireAfterDays` - Number of days after the value in the criteria.dateField when MongoDB Cloud archives data in the specified cluster. Set this parameter when `Type` is `DATE`.
         /// * `Query` - JSON query to use to select documents for archiving. Atlas uses the specified query with the db.collection.find(query) command. The empty document {} to return all documents is not supported. Set this parameter when `Type` is `CUSTOM`.
         /// 
@@ -195,7 +195,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// ### Data Process Region
         /// * `CloudProvider` - Human-readable label that identifies the Cloud service provider where you wish to store your archived data.
-        /// * `Region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive
+        /// * `Region` - Human-readable label that identifies the geographic location of the region where you wish to store your archived data. For allowed values, see [MongoDB Atlas API documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createonlinearchive)
         /// 
         /// ### Schedule
         /// 

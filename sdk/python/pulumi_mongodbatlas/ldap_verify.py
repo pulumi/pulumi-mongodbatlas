@@ -161,7 +161,7 @@ class _LdapVerifyState:
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] request_id: The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
         :param pulumi.Input[_builtins.str] status: The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
-        :param pulumi.Input[Sequence[pulumi.Input['LdapVerifyValidationArgs']]] validations: Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
+        :param pulumi.Input[Sequence[pulumi.Input['LdapVerifyValidationArgs']]] validations: Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://www.mongodb.com/docs/atlas/reference/api/ldaps-configuration-request-verification)
         """
         if authz_query_template is not None:
             pulumi.set(__self__, "authz_query_template", authz_query_template)
@@ -310,7 +310,7 @@ class _LdapVerifyState:
     @pulumi.getter
     def validations(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['LdapVerifyValidationArgs']]]]:
         """
-        Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
+        Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://www.mongodb.com/docs/atlas/reference/api/ldaps-configuration-request-verification)
         """
         return pulumi.get(self, "validations")
 
@@ -378,7 +378,7 @@ class LdapVerify(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/ldapVerify:LdapVerify test 5d09d6a59ccf6445652a444a-5d09d6a59ccf6445652a444a
         ```
 
-        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
+        For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/ldaps-configuration-request-verification)
 
 
         :param str resource_name: The name of the resource.
@@ -442,7 +442,7 @@ class LdapVerify(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/ldapVerify:LdapVerify test 5d09d6a59ccf6445652a444a-5d09d6a59ccf6445652a444a
         ```
 
-        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
+        For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/ldaps-configuration-request-verification)
 
 
         :param str resource_name: The name of the resource.
@@ -537,7 +537,7 @@ class LdapVerify(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] request_id: The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
         :param pulumi.Input[_builtins.str] status: The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LdapVerifyValidationArgs', 'LdapVerifyValidationArgsDict']]]] validations: Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LdapVerifyValidationArgs', 'LdapVerifyValidationArgsDict']]]] validations: Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://www.mongodb.com/docs/atlas/reference/api/ldaps-configuration-request-verification)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -640,7 +640,7 @@ class LdapVerify(pulumi.CustomResource):
     @pulumi.getter
     def validations(self) -> pulumi.Output[Sequence['outputs.LdapVerifyValidation']]:
         """
-        Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://docs.atlas.mongodb.com/reference/api/ldaps-configuration-request-verification)
+        Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://www.mongodb.com/docs/atlas/reference/api/ldaps-configuration-request-verification)
         """
         return pulumi.get(self, "validations")
 

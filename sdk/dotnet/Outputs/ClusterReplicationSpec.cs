@@ -22,14 +22,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly int NumShards;
         /// <summary>
-        /// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+        /// Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See the Region Config section below for more details.
         /// </summary>
         public readonly ImmutableArray<Outputs.ClusterReplicationSpecRegionsConfig> RegionsConfigs;
         /// <summary>
         /// Name for the zone in a Global Cluster.
-        /// 
-        /// 
-        /// **Region Config**
         /// </summary>
         public readonly string? ZoneName;
 

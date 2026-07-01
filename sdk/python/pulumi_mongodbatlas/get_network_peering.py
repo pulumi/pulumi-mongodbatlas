@@ -101,7 +101,7 @@ class GetNetworkPeeringResult:
     @pulumi.getter(name="accepterRegionName")
     def accepter_region_name(self) -> _builtins.str:
         """
-        Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
         """
         return pulumi.get(self, "accepter_region_name")
 

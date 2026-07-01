@@ -31,7 +31,7 @@ class PrivateLinkEndpointArgs:
         :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
-               Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+               Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.bool] port_mapping_enabled: Flag that indicates whether this resource uses GCP port-mapping. When `true`, the resource uses port-mapped architecture. When `false` or unset, the resource uses GCP legacy private endpoint architecture. Only applicable for GCP provider.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] supported_remote_regions: List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `region_name` is supported by default and must not be included.
@@ -75,7 +75,7 @@ class PrivateLinkEndpointArgs:
     def region(self) -> pulumi.Input[_builtins.str]:
         """
         Cloud provider region in which you want to create the private endpoint connection.
-        Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+        Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
         """
         return pulumi.get(self, "region")
 
@@ -156,7 +156,7 @@ class _PrivateLinkEndpointState:
         :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
-               Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+               Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
         :param pulumi.Input[_builtins.str] region_name: Region for the Private Service Connect endpoint service.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] service_attachment_names: List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
         :param pulumi.Input[_builtins.str] status: values:
@@ -350,7 +350,7 @@ class _PrivateLinkEndpointState:
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Cloud provider region in which you want to create the private endpoint connection.
-        Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+        Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
         """
         return pulumi.get(self, "region")
 
@@ -488,7 +488,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
-               Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+               Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] supported_remote_regions: List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `region_name` is supported by default and must not be included.
         """
         ...
@@ -654,7 +654,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: Unique identifier for the project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
         :param pulumi.Input[_builtins.str] region: Cloud provider region in which you want to create the private endpoint connection.
-               Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+               Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
         :param pulumi.Input[_builtins.str] region_name: Region for the Private Service Connect endpoint service.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] service_attachment_names: List containing one service attachment connected to the private endpoint service for port-mapped architecture. For GCP legacy private endpoint architecture, this is a list of service attachments connected to the private endpoint service (one per Atlas node). Returns an empty list while Atlas creates the service attachments.
         :param pulumi.Input[_builtins.str] status: values:
@@ -788,7 +788,7 @@ class PrivateLinkEndpoint(pulumi.CustomResource):
     def region(self) -> pulumi.Output[_builtins.str]:
         """
         Cloud provider region in which you want to create the private endpoint connection.
-        Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+        Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
         """
         return pulumi.get(self, "region")
 

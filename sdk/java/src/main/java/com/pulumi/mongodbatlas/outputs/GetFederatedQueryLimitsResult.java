@@ -18,14 +18,24 @@ public final class GetFederatedQueryLimitsResult {
     private Integer currentUsage;
     /**
      * @return Default value of the limit.
-     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-     * * `maximumLimit` - Maximum value of the limit.
      * 
      */
     private Integer defaultLimit;
+    /**
+     * @return Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     * 
+     */
     private String lastModifiedDate;
     private String limitName;
+    /**
+     * @return Maximum value of the limit.
+     * 
+     */
     private Integer maximumLimit;
+    /**
+     * @return String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit.
+     * 
+     */
     private String overrunPolicy;
     /**
      * @return The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
@@ -37,6 +47,10 @@ public final class GetFederatedQueryLimitsResult {
      * 
      */
     private String tenantName;
+    /**
+     * @return Amount to set the limit to.
+     * 
+     */
     private Integer value;
 
     private GetFederatedQueryLimitsResult() {}
@@ -49,22 +63,32 @@ public final class GetFederatedQueryLimitsResult {
     }
     /**
      * @return Default value of the limit.
-     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-     * * `maximumLimit` - Maximum value of the limit.
      * 
      */
     public Integer defaultLimit() {
         return this.defaultLimit;
     }
+    /**
+     * @return Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public String lastModifiedDate() {
         return this.lastModifiedDate;
     }
     public String limitName() {
         return this.limitName;
     }
+    /**
+     * @return Maximum value of the limit.
+     * 
+     */
     public Integer maximumLimit() {
         return this.maximumLimit;
     }
+    /**
+     * @return String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit.
+     * 
+     */
     public String overrunPolicy() {
         return this.overrunPolicy;
     }
@@ -82,6 +106,10 @@ public final class GetFederatedQueryLimitsResult {
     public String tenantName() {
         return this.tenantName;
     }
+    /**
+     * @return Amount to set the limit to.
+     * 
+     */
     public Integer value() {
         return this.value;
     }

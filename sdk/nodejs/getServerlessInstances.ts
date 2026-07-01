@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
  *
  * > **NOTE:**  Serverless instances do not support some Atlas features at this time.
- * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+ * For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
  *
  * ## Example Usage
  *
@@ -37,7 +37,7 @@ export function getServerlessInstances(args: GetServerlessInstancesArgs, opts?: 
  */
 export interface GetServerlessInstancesArgs {
     /**
-     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+     * Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -62,7 +62,7 @@ export interface GetServerlessInstancesResult {
  * `mongodbatlas.getServerlessInstances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
  *
  * > **NOTE:**  Serverless instances do not support some Atlas features at this time.
- * For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+ * For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
  *
  * ## Example Usage
  *
@@ -87,7 +87,7 @@ export function getServerlessInstancesOutput(args: GetServerlessInstancesOutputA
  */
 export interface GetServerlessInstancesOutputArgs {
     /**
-     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+     * Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

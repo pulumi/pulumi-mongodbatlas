@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+ * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
  *
  * ## Example Usage
  *
@@ -72,10 +72,11 @@ export class FederatedQueryLimit extends pulumi.CustomResource {
     declare public /*out*/ readonly currentUsage: pulumi.Output<number>;
     /**
      * Default value of the limit.
-     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-     * * `maximumLimit` - Maximum value of the limit.
      */
     declare public readonly defaultLimit: pulumi.Output<number | undefined>;
+    /**
+     * Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     */
     declare public /*out*/ readonly lastModifiedDate: pulumi.Output<string>;
     /**
      * String enum that indicates whether the identity provider is active or not. Accepted values are:
@@ -85,6 +86,9 @@ export class FederatedQueryLimit extends pulumi.CustomResource {
      * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
      */
     declare public readonly limitName: pulumi.Output<string>;
+    /**
+     * Maximum value of the limit.
+     */
     declare public readonly maximumLimit: pulumi.Output<number | undefined>;
     /**
      * String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
@@ -167,10 +171,11 @@ export interface FederatedQueryLimitState {
     currentUsage?: pulumi.Input<number | undefined>;
     /**
      * Default value of the limit.
-     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-     * * `maximumLimit` - Maximum value of the limit.
      */
     defaultLimit?: pulumi.Input<number | undefined>;
+    /**
+     * Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     */
     lastModifiedDate?: pulumi.Input<string | undefined>;
     /**
      * String enum that indicates whether the identity provider is active or not. Accepted values are:
@@ -180,6 +185,9 @@ export interface FederatedQueryLimitState {
      * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
      */
     limitName?: pulumi.Input<string | undefined>;
+    /**
+     * Maximum value of the limit.
+     */
     maximumLimit?: pulumi.Input<number | undefined>;
     /**
      * String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
@@ -205,8 +213,6 @@ export interface FederatedQueryLimitState {
 export interface FederatedQueryLimitArgs {
     /**
      * Default value of the limit.
-     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-     * * `maximumLimit` - Maximum value of the limit.
      */
     defaultLimit?: pulumi.Input<number | undefined>;
     /**
@@ -217,6 +223,9 @@ export interface FederatedQueryLimitArgs {
      * * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
      */
     limitName: pulumi.Input<string>;
+    /**
+     * Maximum value of the limit.
+     */
     maximumLimit?: pulumi.Input<number | undefined>;
     /**
      * String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"

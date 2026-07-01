@@ -126,7 +126,7 @@ type PrivateLinkEndpoint struct {
 	// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
 	// Cloud provider region in which you want to create the private endpoint connection.
-	// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+	// Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Region for the Private Service Connect endpoint service.
 	RegionName pulumi.StringOutput `pulumi:"regionName"`
@@ -206,7 +206,7 @@ type privateLinkEndpointState struct {
 	// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
 	ProviderName *string `pulumi:"providerName"`
 	// Cloud provider region in which you want to create the private endpoint connection.
-	// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+	// Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
 	Region *string `pulumi:"region"`
 	// Region for the Private Service Connect endpoint service.
 	RegionName *string `pulumi:"regionName"`
@@ -248,7 +248,7 @@ type PrivateLinkEndpointState struct {
 	// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
 	ProviderName pulumi.StringPtrInput
 	// Cloud provider region in which you want to create the private endpoint connection.
-	// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+	// Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
 	Region pulumi.StringPtrInput
 	// Region for the Private Service Connect endpoint service.
 	RegionName pulumi.StringPtrInput
@@ -278,7 +278,7 @@ type privateLinkEndpointArgs struct {
 	// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
 	ProviderName string `pulumi:"providerName"`
 	// Cloud provider region in which you want to create the private endpoint connection.
-	// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+	// Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
 	Region string `pulumi:"region"`
 	// List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
 	SupportedRemoteRegions []string `pulumi:"supportedRemoteRegions"`
@@ -295,7 +295,7 @@ type PrivateLinkEndpointArgs struct {
 	// Name of the cloud provider for which you want to create the private endpoint service. Atlas accepts `AWS`, `AZURE`, `GCP`.
 	ProviderName pulumi.StringInput
 	// Cloud provider region in which you want to create the private endpoint connection.
-	// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+	// Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
 	Region pulumi.StringInput
 	// List of additional AWS regions that can connect to the endpoint service. Regions must be specified in Atlas format (e.g., `US_EAST_1`). Only applicable for AWS provider. The `regionName` is supported by default and must not be included.
 	SupportedRemoteRegions pulumi.StringArrayInput
@@ -449,7 +449,7 @@ func (o PrivateLinkEndpointOutput) ProviderName() pulumi.StringOutput {
 }
 
 // Cloud provider region in which you want to create the private endpoint connection.
-// Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+// Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
 func (o PrivateLinkEndpointOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateLinkEndpoint) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

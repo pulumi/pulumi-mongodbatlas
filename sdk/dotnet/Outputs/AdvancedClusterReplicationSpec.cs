@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? ExternalId;
         /// <summary>
-        /// Configuration for the hardware specifications for nodes set for a given region. Each `RegionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `RegionConfigs` object must have either an `AnalyticsSpecs` object, `ElectableSpecs` object, or `ReadOnlySpecs` object. See below.
+        /// Configuration for the hardware specifications for nodes set for a given region. Each `RegionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `RegionConfigs` object must have either an `AnalyticsSpecs` object, `ElectableSpecs` object, or `ReadOnlySpecs` object. See region_configs.
         /// </summary>
         public readonly ImmutableArray<Outputs.AdvancedClusterReplicationSpecRegionConfig> RegionConfigs;
         /// <summary>

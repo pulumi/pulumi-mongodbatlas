@@ -291,7 +291,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934-myUsername
         ```
 
-        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)
+        For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/x509-configuration-get-certificates/)
 
         Current X.509 Configuration can be imported using project ID, in the format `project_id`, e.g.
 
@@ -299,7 +299,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934
         ```
 
-        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)
+        For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/x509-configuration-get-certificates/)
 
 
         :param str resource_name: The name of the resource.
@@ -400,7 +400,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934-myUsername
         ```
 
-        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)
+        For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/x509-configuration-get-certificates/)
 
         Current X.509 Configuration can be imported using project ID, in the format `project_id`, e.g.
 
@@ -408,7 +408,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/x509AuthenticationDatabaseUser:X509AuthenticationDatabaseUser test 1112222b3bf99403840e8934
         ```
 
-        For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/x509-configuration-get-certificates/)
+        For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/x509-configuration-get-certificates/)
 
 
         :param str resource_name: The name of the resource.

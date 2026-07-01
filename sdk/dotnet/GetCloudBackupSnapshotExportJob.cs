@@ -244,7 +244,13 @@ namespace Pulumi.Mongodbatlas
         /// * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
         /// </summary>
         public readonly string ExportJobId;
+        /// <summary>
+        /// _Returned for replica set only._ Number of collections that have been exported.
+        /// </summary>
         public readonly int ExportStatusExportedCollections;
+        /// <summary>
+        /// _Returned for replica set only._ Total number of collections to export.
+        /// </summary>
         public readonly int ExportStatusTotalCollections;
         /// <summary>
         /// Timestamp in ISO 8601 date and time format in UTC when the export job completes.

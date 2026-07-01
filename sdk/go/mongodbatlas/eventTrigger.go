@@ -211,21 +211,23 @@ type EventTrigger struct {
 	ConfigCollection pulumi.StringOutput `pulumi:"configCollection"`
 	// Required for `DATABASE` type. The name of the MongoDB database to watch.
 	ConfigDatabase pulumi.StringOutput `pulumi:"configDatabase"`
-	// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
-	ConfigFullDocument       pulumi.BoolOutput `pulumi:"configFullDocument"`
+	// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+	ConfigFullDocument pulumi.BoolOutput `pulumi:"configFullDocument"`
+	// If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
 	ConfigFullDocumentBefore pulumi.BoolOutput `pulumi:"configFullDocumentBefore"`
-	// Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
+	// Optional for `DATABASE` type. A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
 	ConfigMatch pulumi.StringOutput `pulumi:"configMatch"`
 	// Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
 	ConfigOperationType pulumi.StringOutput `pulumi:"configOperationType"`
 	// Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
 	ConfigOperationTypes pulumi.StringArrayOutput `pulumi:"configOperationTypes"`
-	// Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+	// Optional for `DATABASE` type. A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 	ConfigProject pulumi.StringOutput `pulumi:"configProject"`
 	// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
 	ConfigProviders pulumi.StringArrayOutput `pulumi:"configProviders"`
 	// Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
-	ConfigSchedule     pulumi.StringOutput `pulumi:"configSchedule"`
+	ConfigSchedule pulumi.StringOutput `pulumi:"configSchedule"`
+	// The type of the scheduled trigger.
 	ConfigScheduleType pulumi.StringOutput `pulumi:"configScheduleType"`
 	// Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
 	ConfigServiceId pulumi.StringOutput `pulumi:"configServiceId"`
@@ -297,21 +299,23 @@ type eventTriggerState struct {
 	ConfigCollection *string `pulumi:"configCollection"`
 	// Required for `DATABASE` type. The name of the MongoDB database to watch.
 	ConfigDatabase *string `pulumi:"configDatabase"`
-	// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
-	ConfigFullDocument       *bool `pulumi:"configFullDocument"`
+	// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+	ConfigFullDocument *bool `pulumi:"configFullDocument"`
+	// If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
 	ConfigFullDocumentBefore *bool `pulumi:"configFullDocumentBefore"`
-	// Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
+	// Optional for `DATABASE` type. A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
 	ConfigMatch *string `pulumi:"configMatch"`
 	// Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
 	ConfigOperationType *string `pulumi:"configOperationType"`
 	// Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
 	ConfigOperationTypes []string `pulumi:"configOperationTypes"`
-	// Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+	// Optional for `DATABASE` type. A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 	ConfigProject *string `pulumi:"configProject"`
 	// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
 	ConfigProviders []string `pulumi:"configProviders"`
 	// Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
-	ConfigSchedule     *string `pulumi:"configSchedule"`
+	ConfigSchedule *string `pulumi:"configSchedule"`
+	// The type of the scheduled trigger.
 	ConfigScheduleType *string `pulumi:"configScheduleType"`
 	// Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
 	ConfigServiceId *string `pulumi:"configServiceId"`
@@ -345,21 +349,23 @@ type EventTriggerState struct {
 	ConfigCollection pulumi.StringPtrInput
 	// Required for `DATABASE` type. The name of the MongoDB database to watch.
 	ConfigDatabase pulumi.StringPtrInput
-	// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
-	ConfigFullDocument       pulumi.BoolPtrInput
+	// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+	ConfigFullDocument pulumi.BoolPtrInput
+	// If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
 	ConfigFullDocumentBefore pulumi.BoolPtrInput
-	// Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
+	// Optional for `DATABASE` type. A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
 	ConfigMatch pulumi.StringPtrInput
 	// Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
 	ConfigOperationType pulumi.StringPtrInput
 	// Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
 	ConfigOperationTypes pulumi.StringArrayInput
-	// Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+	// Optional for `DATABASE` type. A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 	ConfigProject pulumi.StringPtrInput
 	// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
 	ConfigProviders pulumi.StringArrayInput
 	// Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
-	ConfigSchedule     pulumi.StringPtrInput
+	ConfigSchedule pulumi.StringPtrInput
+	// The type of the scheduled trigger.
 	ConfigScheduleType pulumi.StringPtrInput
 	// Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
 	ConfigServiceId pulumi.StringPtrInput
@@ -397,16 +403,17 @@ type eventTriggerArgs struct {
 	ConfigCollection *string `pulumi:"configCollection"`
 	// Required for `DATABASE` type. The name of the MongoDB database to watch.
 	ConfigDatabase *string `pulumi:"configDatabase"`
-	// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
-	ConfigFullDocument       *bool `pulumi:"configFullDocument"`
+	// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+	ConfigFullDocument *bool `pulumi:"configFullDocument"`
+	// If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
 	ConfigFullDocumentBefore *bool `pulumi:"configFullDocumentBefore"`
-	// Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
+	// Optional for `DATABASE` type. A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
 	ConfigMatch *string `pulumi:"configMatch"`
 	// Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
 	ConfigOperationType *string `pulumi:"configOperationType"`
 	// Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
 	ConfigOperationTypes []string `pulumi:"configOperationTypes"`
-	// Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+	// Optional for `DATABASE` type. A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 	ConfigProject *string `pulumi:"configProject"`
 	// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
 	ConfigProviders []string `pulumi:"configProviders"`
@@ -441,16 +448,17 @@ type EventTriggerArgs struct {
 	ConfigCollection pulumi.StringPtrInput
 	// Required for `DATABASE` type. The name of the MongoDB database to watch.
 	ConfigDatabase pulumi.StringPtrInput
-	// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
-	ConfigFullDocument       pulumi.BoolPtrInput
+	// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+	ConfigFullDocument pulumi.BoolPtrInput
+	// If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
 	ConfigFullDocumentBefore pulumi.BoolPtrInput
-	// Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
+	// Optional for `DATABASE` type. A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
 	ConfigMatch pulumi.StringPtrInput
 	// Required for `AUTHENTICATION` type. The [authentication operation type](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/authentication-triggers/#authentication-events) to listen for. Possible Values: `LOGIN`, `CREATE`, `DELETE`
 	ConfigOperationType pulumi.StringPtrInput
 	// Required for `DATABASE` type. The [database event operation types](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/database-triggers/#std-label-atlas-database-event-operation-types) to listen for. This must contain at least one value. Possible Values: `INSERT`, `UPDATE`, `REPLACE`, `DELETE`
 	ConfigOperationTypes pulumi.StringArrayInput
-	// Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+	// Optional for `DATABASE` type. A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 	ConfigProject pulumi.StringPtrInput
 	// Required for `AUTHENTICATION` type. A list of one or more [authentication provider](https://www.mongodb.com/docs/atlas/app-services/authentication/#authentication-providers-1) id values. The trigger will only listen for authentication events produced by these providers.
 	ConfigProviders pulumi.StringArrayInput
@@ -579,16 +587,17 @@ func (o EventTriggerOutput) ConfigDatabase() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigDatabase }).(pulumi.StringOutput)
 }
 
-// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
 func (o EventTriggerOutput) ConfigFullDocument() pulumi.BoolOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.BoolOutput { return v.ConfigFullDocument }).(pulumi.BoolOutput)
 }
 
+// If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
 func (o EventTriggerOutput) ConfigFullDocumentBefore() pulumi.BoolOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.BoolOutput { return v.ConfigFullDocumentBefore }).(pulumi.BoolOutput)
 }
 
-// Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
+// Optional for `DATABASE` type. A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
 func (o EventTriggerOutput) ConfigMatch() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigMatch }).(pulumi.StringOutput)
 }
@@ -603,7 +612,7 @@ func (o EventTriggerOutput) ConfigOperationTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringArrayOutput { return v.ConfigOperationTypes }).(pulumi.StringArrayOutput)
 }
 
-// Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+// Optional for `DATABASE` type. A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 func (o EventTriggerOutput) ConfigProject() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigProject }).(pulumi.StringOutput)
 }
@@ -618,6 +627,7 @@ func (o EventTriggerOutput) ConfigSchedule() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigSchedule }).(pulumi.StringOutput)
 }
 
+// The type of the scheduled trigger.
 func (o EventTriggerOutput) ConfigScheduleType() pulumi.StringOutput {
 	return o.ApplyT(func(v *EventTrigger) pulumi.StringOutput { return v.ConfigScheduleType }).(pulumi.StringOutput)
 }

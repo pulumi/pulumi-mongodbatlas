@@ -109,7 +109,7 @@ import (
 // $ pulumi import mongodbatlas:index/globalClusterConfig:GlobalClusterConfig config 1112222b3bf99403840e8934-Cluster0
 // ```
 //
-// See detailed information for arguments and attributes: [MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)
+// See detailed information for arguments and attributes: [MongoDB API Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/)
 type GlobalClusterConfig struct {
 	pulumi.CustomResourceState
 
@@ -119,7 +119,7 @@ type GlobalClusterConfig struct {
 	CustomZoneMappingZoneId pulumi.StringMapOutput `pulumi:"customZoneMappingZoneId"`
 	// Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
 	CustomZoneMappings GlobalClusterConfigCustomZoneMappingArrayOutput `pulumi:"customZoneMappings"`
-	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces GlobalClusterConfigManagedNamespaceArrayOutput `pulumi:"managedNamespaces"`
 	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -167,7 +167,7 @@ type globalClusterConfigState struct {
 	CustomZoneMappingZoneId map[string]string `pulumi:"customZoneMappingZoneId"`
 	// Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
 	CustomZoneMappings []GlobalClusterConfigCustomZoneMapping `pulumi:"customZoneMappings"`
-	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces []GlobalClusterConfigManagedNamespace `pulumi:"managedNamespaces"`
 	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
@@ -180,7 +180,7 @@ type GlobalClusterConfigState struct {
 	CustomZoneMappingZoneId pulumi.StringMapInput
 	// Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
 	CustomZoneMappings GlobalClusterConfigCustomZoneMappingArrayInput
-	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces GlobalClusterConfigManagedNamespaceArrayInput
 	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
@@ -195,7 +195,7 @@ type globalClusterConfigArgs struct {
 	ClusterName string `pulumi:"clusterName"`
 	// Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
 	CustomZoneMappings []GlobalClusterConfigCustomZoneMapping `pulumi:"customZoneMappings"`
-	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces []GlobalClusterConfigManagedNamespace `pulumi:"managedNamespaces"`
 	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
@@ -207,7 +207,7 @@ type GlobalClusterConfigArgs struct {
 	ClusterName pulumi.StringInput
 	// Each element in the list maps one ISO location code to a zone in your Global Cluster. See Custom Zone Mapping below for more details.
 	CustomZoneMappings GlobalClusterConfigCustomZoneMappingArrayInput
-	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+	// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
 	ManagedNamespaces GlobalClusterConfigManagedNamespaceArrayInput
 	// The unique ID for the project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
@@ -317,7 +317,7 @@ func (o GlobalClusterConfigOutput) CustomZoneMappings() GlobalClusterConfigCusto
 	}).(GlobalClusterConfigCustomZoneMappingArrayOutput)
 }
 
-// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
 func (o GlobalClusterConfigOutput) ManagedNamespaces() GlobalClusterConfigManagedNamespaceArrayOutput {
 	return o.ApplyT(func(v *GlobalClusterConfig) GlobalClusterConfigManagedNamespaceArrayOutput {
 		return v.ManagedNamespaces

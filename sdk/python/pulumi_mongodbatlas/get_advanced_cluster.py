@@ -27,7 +27,10 @@ class GetAdvancedClusterResult:
     """
     A collection of values returned by getAdvancedCluster.
     """
-    def __init__(__self__, advanced_configuration=None, backup_enabled=None, bi_connector_config=None, cluster_id=None, cluster_type=None, config_server_management_mode=None, config_server_type=None, connection_strings=None, create_date=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pinned_fcv=None, pit_enabled=None, project_id=None, redact_client_log_data=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_aws_time_based_snapshot_copy_for_fast_initial_sync=None, use_effective_fields=None, version_release_system=None):
+    def __init__(__self__, adaptive_capacity=None, advanced_configuration=None, backup_enabled=None, bi_connector_config=None, cluster_id=None, cluster_type=None, config_server_management_mode=None, config_server_type=None, connection_strings=None, create_date=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pinned_fcv=None, pit_enabled=None, project_id=None, redact_client_log_data=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_aws_time_based_snapshot_copy_for_fast_initial_sync=None, use_effective_fields=None, version_release_system=None):
+        if adaptive_capacity and not isinstance(adaptive_capacity, str):
+            raise TypeError("Expected argument 'adaptive_capacity' to be a str")
+        pulumi.set(__self__, "adaptive_capacity", adaptive_capacity)
         if advanced_configuration and not isinstance(advanced_configuration, dict):
             raise TypeError("Expected argument 'advanced_configuration' to be a dict")
         pulumi.set(__self__, "advanced_configuration", advanced_configuration)
@@ -120,6 +123,14 @@ class GetAdvancedClusterResult:
         pulumi.set(__self__, "version_release_system", version_release_system)
 
     @_builtins.property
+    @pulumi.getter(name="adaptiveCapacity")
+    def adaptive_capacity(self) -> _builtins.str:
+        """
+        Governs adaptive capacity behavior of Azure nodes in single-cloud Azure clusters or multi-cloud clusters that include Azure nodes. Adaptive capacity enables fallback hardware selection when the primary instance family is unavailable. `ENABLED` means the cluster explicitly opts in to adaptive capacity. `DISABLED` means the cluster explicitly opts out; the cluster receives capacity errors instead of being placed on fallback hardware. `null` means the field is unset; Azure clusters use adaptive capacity by default when the feature is enabled at the group level. Setting this field for single-cloud AWS or GCP clusters is a no-op.
+        """
+        return pulumi.get(self, "adaptive_capacity")
+
+    @_builtins.property
     @pulumi.getter(name="advancedConfiguration")
     def advanced_configuration(self) -> 'outputs.GetAdvancedClusterAdvancedConfigurationResult':
         """
@@ -160,7 +171,7 @@ class GetAdvancedClusterResult:
     @pulumi.getter(name="configServerManagementMode")
     def config_server_management_mode(self) -> _builtins.str:
         """
-        Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
         """
         return pulumi.get(self, "config_server_management_mode")
 
@@ -168,7 +179,7 @@ class GetAdvancedClusterResult:
     @pulumi.getter(name="configServerType")
     def config_server_type(self) -> _builtins.str:
         """
-        Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+        Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
         """
         return pulumi.get(self, "config_server_type")
 
@@ -176,7 +187,7 @@ class GetAdvancedClusterResult:
     @pulumi.getter(name="connectionStrings")
     def connection_strings(self) -> 'outputs.GetAdvancedClusterConnectionStringsResult':
         """
-        Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+        Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         """
         return pulumi.get(self, "connection_strings")
 
@@ -351,6 +362,7 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
         if False:
             yield self
         return GetAdvancedClusterResult(
+            adaptive_capacity=self.adaptive_capacity,
             advanced_configuration=self.advanced_configuration,
             backup_enabled=self.backup_enabled,
             bi_connector_config=self.bi_connector_config,
@@ -527,6 +539,7 @@ def get_advanced_cluster(name: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getAdvancedCluster:getAdvancedCluster', __args__, opts=opts, typ=GetAdvancedClusterResult).value
 
     return AwaitableGetAdvancedClusterResult(
+        adaptive_capacity=pulumi.get(__ret__, 'adaptive_capacity'),
         advanced_configuration=pulumi.get(__ret__, 'advanced_configuration'),
         backup_enabled=pulumi.get(__ret__, 'backup_enabled'),
         bi_connector_config=pulumi.get(__ret__, 'bi_connector_config'),
@@ -700,6 +713,7 @@ def get_advanced_cluster_output(name: pulumi.Input[Optional[_builtins.str]] = No
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getAdvancedCluster:getAdvancedCluster', __args__, opts=opts, typ=GetAdvancedClusterResult)
     return __ret__.apply(lambda __response__: GetAdvancedClusterResult(
+        adaptive_capacity=pulumi.get(__response__, 'adaptive_capacity'),
         advanced_configuration=pulumi.get(__response__, 'advanced_configuration'),
         backup_enabled=pulumi.get(__response__, 'backup_enabled'),
         bi_connector_config=pulumi.get(__response__, 'bi_connector_config'),

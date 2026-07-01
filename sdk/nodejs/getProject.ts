@@ -87,7 +87,6 @@ export interface GetProjectResult {
     readonly created: string;
     /**
      * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-     * * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
      */
     readonly id: string;
     /**

@@ -101,9 +101,12 @@ type LookupCloudBackupSnapshotRestoreJobResult struct {
 	// UTC ISO 8601 formatted point in time when the restore job completed.
 	FinishedAt string `pulumi:"finishedAt"`
 	// The provider-assigned unique ID for this managed resource.
-	Id                    string `pulumi:"id"`
-	OplogInc              int    `pulumi:"oplogInc"`
-	OplogTs               int    `pulumi:"oplogTs"`
+	Id string `pulumi:"id"`
+	// Oplog operation number from which to you want to restore this snapshot.
+	OplogInc int `pulumi:"oplogInc"`
+	// Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+	OplogTs int `pulumi:"oplogTs"`
+	// Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 	PointInTimeUtcSeconds int    `pulumi:"pointInTimeUtcSeconds"`
 	ProjectId             string `pulumi:"projectId"`
 	// Unique identifier of the source snapshot ID of the restore job.
@@ -114,9 +117,6 @@ type LookupCloudBackupSnapshotRestoreJobResult struct {
 	// Name of the target Atlas project of the restore job. Only visible if deliveryType is automated.
 	TargetProjectId string `pulumi:"targetProjectId"`
 	// Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
-	// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
-	// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
-	// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 	Timestamp string `pulumi:"timestamp"`
 }
 
@@ -202,14 +202,17 @@ func (o LookupCloudBackupSnapshotRestoreJobResultOutput) Id() pulumi.StringOutpu
 	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Oplog operation number from which to you want to restore this snapshot.
 func (o LookupCloudBackupSnapshotRestoreJobResultOutput) OplogInc() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobResult) int { return v.OplogInc }).(pulumi.IntOutput)
 }
 
+// Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 func (o LookupCloudBackupSnapshotRestoreJobResultOutput) OplogTs() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobResult) int { return v.OplogTs }).(pulumi.IntOutput)
 }
 
+// Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 func (o LookupCloudBackupSnapshotRestoreJobResultOutput) PointInTimeUtcSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobResult) int { return v.PointInTimeUtcSeconds }).(pulumi.IntOutput)
 }
@@ -238,9 +241,6 @@ func (o LookupCloudBackupSnapshotRestoreJobResultOutput) TargetProjectId() pulum
 }
 
 // Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
-// * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
-// * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
-// * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
 func (o LookupCloudBackupSnapshotRestoreJobResultOutput) Timestamp() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotRestoreJobResult) string { return v.Timestamp }).(pulumi.StringOutput)
 }

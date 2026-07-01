@@ -36,7 +36,7 @@ type ResourcePolicy struct {
 	LastUpdatedDate pulumi.StringOutput `pulumi:"lastUpdatedDate"`
 	// Human-readable label that describes the Atlas resource policy.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// List of policies that make up the Atlas resource policy.
 	Policies ResourcePolicyPolicyArrayOutput `pulumi:"policies"`
@@ -92,7 +92,7 @@ type resourcePolicyState struct {
 	LastUpdatedDate *string `pulumi:"lastUpdatedDate"`
 	// Human-readable label that describes the Atlas resource policy.
 	Name *string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	OrgId *string `pulumi:"orgId"`
 	// List of policies that make up the Atlas resource policy.
 	Policies []ResourcePolicyPolicy `pulumi:"policies"`
@@ -113,7 +113,7 @@ type ResourcePolicyState struct {
 	LastUpdatedDate pulumi.StringPtrInput
 	// Human-readable label that describes the Atlas resource policy.
 	Name pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	OrgId pulumi.StringPtrInput
 	// List of policies that make up the Atlas resource policy.
 	Policies ResourcePolicyPolicyArrayInput
@@ -130,7 +130,7 @@ type resourcePolicyArgs struct {
 	Description *string `pulumi:"description"`
 	// Human-readable label that describes the Atlas resource policy.
 	Name *string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	OrgId string `pulumi:"orgId"`
 	// List of policies that make up the Atlas resource policy.
 	Policies []ResourcePolicyPolicy `pulumi:"policies"`
@@ -142,7 +142,7 @@ type ResourcePolicyArgs struct {
 	Description pulumi.StringPtrInput
 	// Human-readable label that describes the Atlas resource policy.
 	Name pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	OrgId pulumi.StringInput
 	// List of policies that make up the Atlas resource policy.
 	Policies ResourcePolicyPolicyArrayInput
@@ -265,7 +265,7 @@ func (o ResourcePolicyOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResourcePolicy) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 func (o ResourcePolicyOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v *ResourcePolicy) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }

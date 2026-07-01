@@ -228,7 +228,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly Outputs.GetStreamConnectionAuthenticationResult Authentication;
         /// <summary>
-        /// The configuration for AWS Lambda connection. See AWS
+        /// The configuration for S3 connection. See AWS.
         /// </summary>
         public readonly Outputs.GetStreamConnectionAwsResult Aws;
         /// <summary>
@@ -257,7 +257,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly Outputs.GetStreamConnectionDbRoleToExecuteResult DbRoleToExecute;
         /// <summary>
-        /// The configuration for GCP Pub/Sub connection. See GCP
+        /// The configuration for GCP Pub/Sub connection. See GCP.
         /// </summary>
         public readonly Outputs.GetStreamConnectionGcpResult Gcp;
         /// <summary>
@@ -267,7 +267,7 @@ namespace Pulumi.Mongodbatlas
         public readonly string Id;
         public readonly string? InstanceName;
         /// <summary>
-        /// Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
+        /// Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
         /// </summary>
         public readonly Outputs.GetStreamConnectionNetworkingResult Networking;
         public readonly string ProjectId;

@@ -13,7 +13,7 @@ import java.util.Objects;
 @CustomType
 public final class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     /**
-     * @return Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier&#39;s standard IOPS value.
+     * @return Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
      * 
      */
     private Integer diskIops;
@@ -23,9 +23,12 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
      */
     private Double diskSizeGb;
     /**
-     * @return Type of storage you want to attach to your AWS-provisioned cluster.
-     * * `STANDARD` volume types can&#39;t exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * @return Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * 
+     */
+    private Integer diskThroughput;
+    /**
+     * @return Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      * 
      */
     private String ebsVolumeType;
@@ -42,7 +45,7 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
 
     private GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs() {}
     /**
-     * @return Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier&#39;s standard IOPS value.
+     * @return Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
      * 
      */
     public Integer diskIops() {
@@ -56,9 +59,14 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
         return this.diskSizeGb;
     }
     /**
-     * @return Type of storage you want to attach to your AWS-provisioned cluster.
-     * * `STANDARD` volume types can&#39;t exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * @return Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * 
+     */
+    public Integer diskThroughput() {
+        return this.diskThroughput;
+    }
+    /**
+     * @return Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      * 
      */
     public String ebsVolumeType() {
@@ -90,6 +98,7 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     public static final class Builder {
         private Integer diskIops;
         private Double diskSizeGb;
+        private Integer diskThroughput;
         private String ebsVolumeType;
         private String instanceSize;
         private Integer nodeCount;
@@ -98,6 +107,7 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     	      Objects.requireNonNull(defaults);
     	      this.diskIops = defaults.diskIops;
     	      this.diskSizeGb = defaults.diskSizeGb;
+    	      this.diskThroughput = defaults.diskThroughput;
     	      this.ebsVolumeType = defaults.ebsVolumeType;
     	      this.instanceSize = defaults.instanceSize;
     	      this.nodeCount = defaults.nodeCount;
@@ -117,6 +127,14 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
               throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs", "diskSizeGb");
             }
             this.diskSizeGb = diskSizeGb;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder diskThroughput(Integer diskThroughput) {
+            if (diskThroughput == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs", "diskThroughput");
+            }
+            this.diskThroughput = diskThroughput;
             return this;
         }
         @CustomType.Setter
@@ -147,6 +165,7 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
             final var _resultValue = new GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs();
             _resultValue.diskIops = diskIops;
             _resultValue.diskSizeGb = diskSizeGb;
+            _resultValue.diskThroughput = diskThroughput;
             _resultValue.ebsVolumeType = ebsVolumeType;
             _resultValue.instanceSize = instanceSize;
             _resultValue.nodeCount = nodeCount;

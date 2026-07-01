@@ -388,7 +388,7 @@ import * as utilities from "./utilities";
  * $ pulumi import mongodbatlas:index/streamConnection:StreamConnection test "DefaultInstance-12251446ae5f3f6ec7968b13-NewConnection"
  * ```
  *
- * To learn more, see: [MongoDB Atlas API - Stream Connection](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamConnection) Documentation.
+ * To learn more, see: [MongoDB Atlas API - Stream Connection](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createstreamconnection) Documentation.
  * The Terraform Provider Examples Section also contains details on the overall support for Atlas Streams Processing in Terraform.
  */
 export class StreamConnection extends pulumi.CustomResource {
@@ -450,7 +450,7 @@ export class StreamConnection extends pulumi.CustomResource {
     declare public readonly security: pulumi.Output<outputs.StreamConnectionSecurity | undefined>;
     declare public readonly timeouts: pulumi.Output<outputs.StreamConnectionTimeouts | undefined>;
     /**
-     * Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+     * Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
      */
     declare public readonly type: pulumi.Output<string>;
     declare public readonly url: pulumi.Output<string | undefined>;
@@ -568,7 +568,7 @@ export interface StreamConnectionState {
     security?: pulumi.Input<inputs.StreamConnectionSecurity | undefined>;
     timeouts?: pulumi.Input<inputs.StreamConnectionTimeouts | undefined>;
     /**
-     * Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+     * Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
      */
     type?: pulumi.Input<string | undefined>;
     url?: pulumi.Input<string | undefined>;
@@ -613,7 +613,7 @@ export interface StreamConnectionArgs {
     security?: pulumi.Input<inputs.StreamConnectionSecurity | undefined>;
     timeouts?: pulumi.Input<inputs.StreamConnectionTimeouts | undefined>;
     /**
-     * Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+     * Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
      */
     type: pulumi.Input<string>;
     url?: pulumi.Input<string | undefined>;

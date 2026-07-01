@@ -22,34 +22,40 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ConfigDatabase;
         /// <summary>
-        /// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+        /// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
         /// </summary>
         public readonly bool ConfigFullDocument;
+        /// <summary>
+        /// If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
+        /// </summary>
         public readonly bool ConfigFullDocumentBefore;
         /// <summary>
-        /// A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+        /// A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
         /// </summary>
         public readonly string ConfigMatch;
         /// <summary>
-        /// The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+        /// The [authentication operation type](https://www.mongodb.com/docs/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
         /// </summary>
         public readonly string ConfigOperationType;
         /// <summary>
-        /// The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+        /// The [database event operation types](https://www.mongodb.com/docs/realm/triggers/database-triggers/#std-label-database-events) to listen for.
         /// </summary>
         public readonly ImmutableArray<string> ConfigOperationTypes;
         /// <summary>
-        /// A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+        /// A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
         /// </summary>
         public readonly string ConfigProject;
         /// <summary>
-        /// A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+        /// A list of one or more [authentication provider](https://www.mongodb.com/docs/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
         /// </summary>
         public readonly ImmutableArray<string> ConfigProviders;
         /// <summary>
-        /// A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+        /// A [cron expression](https://www.mongodb.com/docs/realm/triggers/cron-expressions/) that defines the trigger schedule.
         /// </summary>
         public readonly string ConfigSchedule;
+        /// <summary>
+        /// The type of the scheduled trigger.
+        /// </summary>
         public readonly string ConfigScheduleType;
         /// <summary>
         /// The ID of the MongoDB Service associated with the trigger.
@@ -75,6 +81,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// The name of the trigger.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// The unique ID of the trigger.
+        /// </summary>
         public readonly string TriggerId;
         /// <summary>
         /// The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`

@@ -111,7 +111,7 @@ namespace Pulumi.Mongodbatlas
     /// $ pulumi import mongodbatlas:index/globalClusterConfig:GlobalClusterConfig config 1112222b3bf99403840e8934-Cluster0
     /// ```
     /// 
-    /// See detailed information for arguments and attributes: [MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)
+    /// See detailed information for arguments and attributes: [MongoDB API Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/globalClusterConfig:GlobalClusterConfig")]
     public partial class GlobalClusterConfig : global::Pulumi.CustomResource
@@ -135,7 +135,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<Outputs.GlobalClusterConfigCustomZoneMapping>> CustomZoneMappings { get; private set; } = null!;
 
         /// <summary>
-        /// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+        /// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
         /// </summary>
         [Output("managedNamespaces")]
         public Output<ImmutableArray<Outputs.GlobalClusterConfigManagedNamespace>> ManagedNamespaces { get; private set; } = null!;
@@ -214,7 +214,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.GlobalClusterConfigManagedNamespaceArgs>? _managedNamespaces;
 
         /// <summary>
-        /// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+        /// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
         /// </summary>
         public InputList<Inputs.GlobalClusterConfigManagedNamespaceArgs> ManagedNamespaces
         {
@@ -270,7 +270,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.GlobalClusterConfigManagedNamespaceGetArgs>? _managedNamespaces;
 
         /// <summary>
-        /// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+        /// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
         /// </summary>
         public InputList<Inputs.GlobalClusterConfigManagedNamespaceGetArgs> ManagedNamespaces
         {

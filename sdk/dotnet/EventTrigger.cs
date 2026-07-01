@@ -197,16 +197,19 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ConfigDatabase { get; private set; } = null!;
 
         /// <summary>
-        /// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+        /// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
         /// </summary>
         [Output("configFullDocument")]
         public Output<bool> ConfigFullDocument { get; private set; } = null!;
 
+        /// <summary>
+        /// If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
+        /// </summary>
         [Output("configFullDocumentBefore")]
         public Output<bool> ConfigFullDocumentBefore { get; private set; } = null!;
 
         /// <summary>
-        /// Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
+        /// Optional for `DATABASE` type. A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
         /// </summary>
         [Output("configMatch")]
         public Output<string> ConfigMatch { get; private set; } = null!;
@@ -224,7 +227,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<string>> ConfigOperationTypes { get; private set; } = null!;
 
         /// <summary>
-        /// Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+        /// Optional for `DATABASE` type. A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
         /// </summary>
         [Output("configProject")]
         public Output<string> ConfigProject { get; private set; } = null!;
@@ -241,6 +244,9 @@ namespace Pulumi.Mongodbatlas
         [Output("configSchedule")]
         public Output<string> ConfigSchedule { get; private set; } = null!;
 
+        /// <summary>
+        /// The type of the scheduled trigger.
+        /// </summary>
         [Output("configScheduleType")]
         public Output<string> ConfigScheduleType { get; private set; } = null!;
 
@@ -372,16 +378,19 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ConfigDatabase { get; set; }
 
         /// <summary>
-        /// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+        /// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
         /// </summary>
         [Input("configFullDocument")]
         public Input<bool>? ConfigFullDocument { get; set; }
 
+        /// <summary>
+        /// If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
+        /// </summary>
         [Input("configFullDocumentBefore")]
         public Input<bool>? ConfigFullDocumentBefore { get; set; }
 
         /// <summary>
-        /// Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
+        /// Optional for `DATABASE` type. A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
         /// </summary>
         [Input("configMatch")]
         public Input<string>? ConfigMatch { get; set; }
@@ -405,7 +414,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+        /// Optional for `DATABASE` type. A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
         /// </summary>
         [Input("configProject")]
         public Input<string>? ConfigProject { get; set; }
@@ -506,16 +515,19 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ConfigDatabase { get; set; }
 
         /// <summary>
-        /// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+        /// Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
         /// </summary>
         [Input("configFullDocument")]
         public Input<bool>? ConfigFullDocument { get; set; }
 
+        /// <summary>
+        /// If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
+        /// </summary>
         [Input("configFullDocumentBefore")]
         public Input<bool>? ConfigFullDocumentBefore { get; set; }
 
         /// <summary>
-        /// Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
+        /// Optional for `DATABASE` type. A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
         /// </summary>
         [Input("configMatch")]
         public Input<string>? ConfigMatch { get; set; }
@@ -539,7 +551,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+        /// Optional for `DATABASE` type. A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
         /// </summary>
         [Input("configProject")]
         public Input<string>? ConfigProject { get; set; }
@@ -562,6 +574,9 @@ namespace Pulumi.Mongodbatlas
         [Input("configSchedule")]
         public Input<string>? ConfigSchedule { get; set; }
 
+        /// <summary>
+        /// The type of the scheduled trigger.
+        /// </summary>
         [Input("configScheduleType")]
         public Input<string>? ConfigScheduleType { get; set; }
 

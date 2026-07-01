@@ -424,7 +424,7 @@ namespace Pulumi.Mongodbatlas
         private List<Inputs.GetGlobalClusterConfigManagedNamespaceArgs>? _managedNamespaces;
 
         /// <summary>
-        /// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+        /// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
         /// </summary>
         public List<Inputs.GetGlobalClusterConfigManagedNamespaceArgs> ManagedNamespaces
         {
@@ -456,7 +456,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.GetGlobalClusterConfigManagedNamespaceInputArgs>? _managedNamespaces;
 
         /// <summary>
-        /// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+        /// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
         /// </summary>
         public InputList<Inputs.GetGlobalClusterConfigManagedNamespaceInputArgs> ManagedNamespaces
         {
@@ -490,7 +490,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+        /// Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetGlobalClusterConfigManagedNamespaceResult> ManagedNamespaces;
         public readonly string ProjectId;

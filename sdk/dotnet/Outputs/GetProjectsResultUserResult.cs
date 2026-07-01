@@ -15,30 +15,51 @@ namespace Pulumi.Mongodbatlas.Outputs
     {
         /// <summary>
         /// Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
-        /// * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
-        /// * `firstName`- First or given name that belongs to the MongoDB Cloud user.
-        /// * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
-        /// * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
-        /// * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
+        /// </summary>
+        public readonly string Country;
+        /// <summary>
+        /// Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+        /// </summary>
+        public readonly string CreatedAt;
+        /// <summary>
+        /// First or given name that belongs to the MongoDB Cloud user.
+        /// </summary>
+        public readonly string FirstName;
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+        /// </summary>
+        public readonly string Id;
+        /// <summary>
+        /// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        /// </summary>
+        public readonly string InvitationCreatedAt;
+        /// <summary>
+        /// Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+        /// </summary>
+        public readonly string InvitationExpiresAt;
+        /// <summary>
+        /// Username of the MongoDB Cloud user who sent the invitation to join the organization.
         /// 
         /// &gt; **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `mongodbatlas.ProjectInvitation` resource.
         /// 
         /// See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
         /// </summary>
-        public readonly string Country;
-        public readonly string CreatedAt;
-        public readonly string FirstName;
-        /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-        /// * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
-        /// </summary>
-        public readonly string Id;
-        public readonly string InvitationCreatedAt;
-        public readonly string InvitationExpiresAt;
         public readonly string InviterUsername;
+        /// <summary>
+        /// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+        /// </summary>
         public readonly string LastAuth;
+        /// <summary>
+        /// Last name, family name, or surname that belongs to the MongoDB Cloud user.
+        /// </summary>
         public readonly string LastName;
+        /// <summary>
+        /// Mobile phone number that belongs to the MongoDB Cloud user.
+        /// </summary>
         public readonly string MobileNumber;
+        /// <summary>
+        /// String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+        /// </summary>
         public readonly string OrgMembershipStatus;
         /// <summary>
         /// One or more project-level roles assigned to the MongoDB Cloud user.

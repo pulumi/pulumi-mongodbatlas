@@ -281,34 +281,42 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
         return this.configDatabase;
     }
     /**
-     * Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+     * Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
      * 
      */
     @Export(name="configFullDocument", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> configFullDocument;
 
     /**
-     * @return Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+     * @return Optional for `DATABASE` type. If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
      * 
      */
     public Output<Boolean> configFullDocument() {
         return this.configFullDocument;
     }
+    /**
+     * If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
+     * 
+     */
     @Export(name="configFullDocumentBefore", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> configFullDocumentBefore;
 
+    /**
+     * @return If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
+     * 
+     */
     public Output<Boolean> configFullDocumentBefore() {
         return this.configFullDocumentBefore;
     }
     /**
-     * Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
+     * Optional for `DATABASE` type. A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
      * 
      */
     @Export(name="configMatch", refs={String.class}, tree="[0]")
     private Output<String> configMatch;
 
     /**
-     * @return Optional for `DATABASE` type. A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
+     * @return Optional for `DATABASE` type. A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger. This is useful when you want to filter change events beyond their operation type. The trigger will only fire if the expression evaluates to true for a given change event.
      * 
      */
     public Output<String> configMatch() {
@@ -343,14 +351,14 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
         return this.configOperationTypes;
     }
     /**
-     * Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+     * Optional for `DATABASE` type. A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
      * 
      */
     @Export(name="configProject", refs={String.class}, tree="[0]")
     private Output<String> configProject;
 
     /**
-     * @return Optional for `DATABASE` type. A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+     * @return Optional for `DATABASE` type. A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
      * 
      */
     public Output<String> configProject() {
@@ -384,9 +392,17 @@ public class EventTrigger extends com.pulumi.resources.CustomResource {
     public Output<String> configSchedule() {
         return this.configSchedule;
     }
+    /**
+     * The type of the scheduled trigger.
+     * 
+     */
     @Export(name="configScheduleType", refs={String.class}, tree="[0]")
     private Output<String> configScheduleType;
 
+    /**
+     * @return The type of the scheduled trigger.
+     * 
+     */
     public Output<String> configScheduleType() {
         return this.configScheduleType;
     }

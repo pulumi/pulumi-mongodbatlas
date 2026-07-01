@@ -94,9 +94,11 @@ type LookupCloudBackupSnapshotExportJobResult struct {
 	ExportBucketId string `pulumi:"exportBucketId"`
 	// Unique identifier of the export job.
 	// * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
-	ExportJobId                     string `pulumi:"exportJobId"`
-	ExportStatusExportedCollections int    `pulumi:"exportStatusExportedCollections"`
-	ExportStatusTotalCollections    int    `pulumi:"exportStatusTotalCollections"`
+	ExportJobId string `pulumi:"exportJobId"`
+	// _Returned for replica set only._ Number of collections that have been exported.
+	ExportStatusExportedCollections int `pulumi:"exportStatusExportedCollections"`
+	// _Returned for replica set only._ Total number of collections to export.
+	ExportStatusTotalCollections int `pulumi:"exportStatusTotalCollections"`
 	// Timestamp in ISO 8601 date and time format in UTC when the export job completes.
 	FinishedAt string `pulumi:"finishedAt"`
 	Id         string `pulumi:"id"`
@@ -185,10 +187,12 @@ func (o LookupCloudBackupSnapshotExportJobResultOutput) ExportJobId() pulumi.Str
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportJobResult) string { return v.ExportJobId }).(pulumi.StringOutput)
 }
 
+// _Returned for replica set only._ Number of collections that have been exported.
 func (o LookupCloudBackupSnapshotExportJobResultOutput) ExportStatusExportedCollections() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportJobResult) int { return v.ExportStatusExportedCollections }).(pulumi.IntOutput)
 }
 
+// _Returned for replica set only._ Total number of collections to export.
 func (o LookupCloudBackupSnapshotExportJobResultOutput) ExportStatusTotalCollections() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportJobResult) int { return v.ExportStatusTotalCollections }).(pulumi.IntOutput)
 }

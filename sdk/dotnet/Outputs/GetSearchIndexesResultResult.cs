@@ -14,11 +14,11 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetSearchIndexesResultResult
     {
         /// <summary>
-        /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+        /// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
         /// </summary>
         public readonly string Analyzer;
         /// <summary>
-        /// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+        /// [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
         /// </summary>
         public readonly string Analyzers;
         /// <summary>
@@ -30,9 +30,12 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string CollectionName;
         /// <summary>
-        /// (Required) Name of the database the collection is in.
+        /// Name of the database containing the collection with one or more Atlas Search indexes.
         /// </summary>
         public readonly string Database;
+        /// <summary>
+        /// JSON string containing the index field definitions for vector search indexes.
+        /// </summary>
         public readonly string Fields;
         /// <summary>
         /// The unique identifier of the Atlas Search index.
@@ -59,11 +62,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly int NumPartitions;
         /// <summary>
-        /// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+        /// Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+        /// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
         /// </summary>
         public readonly string SearchAnalyzer;
         /// <summary>
@@ -76,11 +79,14 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string StoredSource;
         /// <summary>
         /// Synonyms mapping definition to use in this index.
-        /// * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+        /// * `synonyms.#.name` - Name of the [synonym mapping definition](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-ref).
         /// * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
-        /// * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+        /// * `synonyms.#.analyzer` - Name of the [analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetSearchIndexesResultSynonymResult> Synonyms;
+        /// <summary>
+        /// Type of the index. Can be `Search` or `vectorSearch`.
+        /// </summary>
         public readonly string Type;
         /// <summary>
         /// Set of type set definitions (when present). Each item includes:

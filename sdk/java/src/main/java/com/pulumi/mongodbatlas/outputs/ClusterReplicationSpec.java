@@ -26,14 +26,12 @@ public final class ClusterReplicationSpec {
      */
     private Integer numShards;
     /**
-     * @return Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+     * @return Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See the Region Config section below for more details.
      * 
      */
     private @Nullable List<ClusterReplicationSpecRegionsConfig> regionsConfigs;
     /**
      * @return Name for the zone in a Global Cluster.
-     * 
-     * **Region Config**
      * 
      */
     private @Nullable String zoneName;
@@ -54,7 +52,7 @@ public final class ClusterReplicationSpec {
         return this.numShards;
     }
     /**
-     * @return Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+     * @return Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See the Region Config section below for more details.
      * 
      */
     public List<ClusterReplicationSpecRegionsConfig> regionsConfigs() {
@@ -62,8 +60,6 @@ public final class ClusterReplicationSpec {
     }
     /**
      * @return Name for the zone in a Global Cluster.
-     * 
-     * **Region Config**
      * 
      */
     public Optional<String> zoneName() {

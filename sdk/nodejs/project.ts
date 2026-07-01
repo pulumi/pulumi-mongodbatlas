@@ -52,7 +52,7 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
  * ```
- * For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
+ * For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://www.mongodb.com/docs/atlas/reference/api/teams/) Documentation for more information.
  */
 export class Project extends pulumi.CustomResource {
     /**
@@ -136,7 +136,7 @@ export class Project extends pulumi.CustomResource {
      */
     declare public readonly orgId: pulumi.Output<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+     * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
      */
     declare public readonly projectOwnerId: pulumi.Output<string | undefined>;
     /**
@@ -274,7 +274,7 @@ export interface ProjectState {
      */
     orgId?: pulumi.Input<string | undefined>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+     * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
      */
     projectOwnerId?: pulumi.Input<string | undefined>;
     /**
@@ -339,7 +339,7 @@ export interface ProjectArgs {
      */
     orgId: pulumi.Input<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+     * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
      */
     projectOwnerId?: pulumi.Input<string | undefined>;
     /**

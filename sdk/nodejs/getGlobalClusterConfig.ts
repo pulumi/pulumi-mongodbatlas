@@ -108,7 +108,7 @@ export interface GetGlobalClusterConfigArgs {
      */
     clusterName: string;
     /**
-     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
      */
     managedNamespaces?: inputs.GetGlobalClusterConfigManagedNamespace[];
     /**
@@ -131,7 +131,7 @@ export interface GetGlobalClusterConfigResult {
      */
     readonly id: string;
     /**
-     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
      */
     readonly managedNamespaces: outputs.GetGlobalClusterConfigManagedNamespace[];
     readonly projectId: string;
@@ -238,7 +238,7 @@ export interface GetGlobalClusterConfigOutputArgs {
      */
     clusterName: pulumi.Input<string>;
     /**
-     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
      */
     managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GetGlobalClusterConfigManagedNamespaceArgs>[] | undefined>;
     /**
