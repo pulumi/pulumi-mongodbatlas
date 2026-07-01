@@ -1,3 +1,0 @@
-name: mongodbatlas
-description: A Pulumi resource provider for mongodbatlas.
-language: schema
