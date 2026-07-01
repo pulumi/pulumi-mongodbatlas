@@ -25,18 +25,33 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     public static final AdvancedClusterArgs Empty = new AdvancedClusterArgs();
 
     /**
-     * If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+     * If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://www.mongodb.com/docs/atlas/reconfigure-replica-set-during-regional-outage/).
      * 
      */
     @Import(name="acceptDataRisksAndForceReplicaSetReconfig")
     private @Nullable Output<String> acceptDataRisksAndForceReplicaSetReconfig;
 
     /**
-     * @return If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+     * @return If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://www.mongodb.com/docs/atlas/reconfigure-replica-set-during-regional-outage/).
      * 
      */
     public Optional<Output<String>> acceptDataRisksAndForceReplicaSetReconfig() {
         return Optional.ofNullable(this.acceptDataRisksAndForceReplicaSetReconfig);
+    }
+
+    /**
+     * Governs adaptive capacity behavior of Azure nodes in single-cloud Azure clusters or multi-cloud clusters that include Azure nodes. Adaptive capacity enables fallback hardware selection when the primary instance family is unavailable. `ENABLED` means the cluster explicitly opts in to adaptive capacity. `DISABLED` means the cluster explicitly opts out; the cluster receives capacity errors instead of being placed on fallback hardware. `null` means the field is unset; Azure clusters use adaptive capacity by default when the feature is enabled at the group level. Setting this field for single-cloud AWS or GCP clusters is a no-op.
+     * 
+     */
+    @Import(name="adaptiveCapacity")
+    private @Nullable Output<String> adaptiveCapacity;
+
+    /**
+     * @return Governs adaptive capacity behavior of Azure nodes in single-cloud Azure clusters or multi-cloud clusters that include Azure nodes. Adaptive capacity enables fallback hardware selection when the primary instance family is unavailable. `ENABLED` means the cluster explicitly opts in to adaptive capacity. `DISABLED` means the cluster explicitly opts out; the cluster receives capacity errors instead of being placed on fallback hardware. `null` means the field is unset; Azure clusters use adaptive capacity by default when the feature is enabled at the group level. Setting this field for single-cloud AWS or GCP clusters is a no-op.
+     * 
+     */
+    public Optional<Output<String>> adaptiveCapacity() {
+        return Optional.ofNullable(this.adaptiveCapacity);
     }
 
     /**
@@ -59,7 +74,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
      * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
      * 
      * Backup uses:
-     * [Cloud Backup](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+     * [Cloud Backup](https://www.mongodb.com/docs/atlas/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
      * [Flex Cluster Backup](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
      * If &#34;`backupEnabled`&#34;  is `false` (default), the cluster doesn&#39;t use Atlas backups.
      * 
@@ -74,7 +89,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
      * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
      * 
      * Backup uses:
-     * [Cloud Backup](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+     * [Cloud Backup](https://www.mongodb.com/docs/atlas/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
      * [Flex Cluster Backup](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
      * If &#34;`backupEnabled`&#34;  is `false` (default), the cluster doesn&#39;t use Atlas backups.
      * 
@@ -124,14 +139,14 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     * Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
      * 
      */
     @Import(name="configServerManagementMode")
     private @Nullable Output<String> configServerManagementMode;
 
     /**
-     * @return Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     * @return Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
      * 
      */
     public Optional<Output<String>> configServerManagementMode() {
@@ -154,14 +169,14 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
+     * Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://www.mongodb.com/docs/atlas/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://www.mongodb.com/docs/atlas/security-aws-kms/), [GCP](https://www.mongodb.com/docs/atlas/security-kms-encryption/) and [Azure](https://www.mongodb.com/docs/atlas/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
      * 
      */
     @Import(name="encryptionAtRestProvider")
     private @Nullable Output<String> encryptionAtRestProvider;
 
     /**
-     * @return Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
+     * @return Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://www.mongodb.com/docs/atlas/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://www.mongodb.com/docs/atlas/security-aws-kms/), [GCP](https://www.mongodb.com/docs/atlas/security-kms-encryption/) and [Azure](https://www.mongodb.com/docs/atlas/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
      * 
      */
     public Optional<Output<String>> encryptionAtRestProvider() {
@@ -233,7 +248,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+     * Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters).
      * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
      * `lifecycle {
      * ignoreChanges = [paused]
@@ -244,7 +259,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     private @Nullable Output<Boolean> paused;
 
     /**
-     * @return Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+     * @return Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters).
      * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
      * `lifecycle {
      * ignoreChanges = [paused]
@@ -316,14 +331,14 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+     * Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#configure-replica-set-scaling-mode)
      * 
      */
     @Import(name="replicaSetScalingStrategy")
     private @Nullable Output<String> replicaSetScalingStrategy;
 
     /**
-     * @return Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+     * @return Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#configure-replica-set-scaling-mode)
      * 
      */
     public Optional<Output<String>> replicaSetScalingStrategy() {
@@ -331,14 +346,14 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. See below.
      * 
      */
     @Import(name="replicationSpecs", required=true)
     private Output<List<AdvancedClusterReplicationSpecArgs>> replicationSpecs;
 
     /**
-     * @return List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+     * @return List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. See below.
      * 
      */
     public Output<List<AdvancedClusterReplicationSpecArgs>> replicationSpecs() {
@@ -479,6 +494,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
 
     private AdvancedClusterArgs(AdvancedClusterArgs $) {
         this.acceptDataRisksAndForceReplicaSetReconfig = $.acceptDataRisksAndForceReplicaSetReconfig;
+        this.adaptiveCapacity = $.adaptiveCapacity;
         this.advancedConfiguration = $.advancedConfiguration;
         this.backupEnabled = $.backupEnabled;
         this.biConnectorConfig = $.biConnectorConfig;
@@ -526,7 +542,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param acceptDataRisksAndForceReplicaSetReconfig If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+         * @param acceptDataRisksAndForceReplicaSetReconfig If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://www.mongodb.com/docs/atlas/reconfigure-replica-set-during-regional-outage/).
          * 
          * @return builder
          * 
@@ -537,13 +553,34 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param acceptDataRisksAndForceReplicaSetReconfig If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://dochub.mongodb.org/core/regional-outage-reconfigure-replica-set).
+         * @param acceptDataRisksAndForceReplicaSetReconfig If reconfiguration is necessary to regain a primary due to a regional outage, submit this field alongside your topology reconfiguration to request a new regional outage resistant topology. Forced reconfigurations during an outage of the majority of electable nodes carry a risk of data loss if replicated writes (even majority committed writes) have not been replicated to the new primary node. MongoDB Atlas docs contain more information. To proceed with an operation which carries that risk, set `acceptDataRisksAndForceReplicaSetReconfig` to the current date. Learn more about Reconfiguring a Replica Set during a regional outage [here](https://www.mongodb.com/docs/atlas/reconfigure-replica-set-during-regional-outage/).
          * 
          * @return builder
          * 
          */
         public Builder acceptDataRisksAndForceReplicaSetReconfig(String acceptDataRisksAndForceReplicaSetReconfig) {
             return acceptDataRisksAndForceReplicaSetReconfig(Output.of(acceptDataRisksAndForceReplicaSetReconfig));
+        }
+
+        /**
+         * @param adaptiveCapacity Governs adaptive capacity behavior of Azure nodes in single-cloud Azure clusters or multi-cloud clusters that include Azure nodes. Adaptive capacity enables fallback hardware selection when the primary instance family is unavailable. `ENABLED` means the cluster explicitly opts in to adaptive capacity. `DISABLED` means the cluster explicitly opts out; the cluster receives capacity errors instead of being placed on fallback hardware. `null` means the field is unset; Azure clusters use adaptive capacity by default when the feature is enabled at the group level. Setting this field for single-cloud AWS or GCP clusters is a no-op.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder adaptiveCapacity(@Nullable Output<String> adaptiveCapacity) {
+            $.adaptiveCapacity = adaptiveCapacity;
+            return this;
+        }
+
+        /**
+         * @param adaptiveCapacity Governs adaptive capacity behavior of Azure nodes in single-cloud Azure clusters or multi-cloud clusters that include Azure nodes. Adaptive capacity enables fallback hardware selection when the primary instance family is unavailable. `ENABLED` means the cluster explicitly opts in to adaptive capacity. `DISABLED` means the cluster explicitly opts out; the cluster receives capacity errors instead of being placed on fallback hardware. `null` means the field is unset; Azure clusters use adaptive capacity by default when the feature is enabled at the group level. Setting this field for single-cloud AWS or GCP clusters is a no-op.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder adaptiveCapacity(String adaptiveCapacity) {
+            return adaptiveCapacity(Output.of(adaptiveCapacity));
         }
 
         /**
@@ -572,7 +609,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
          * 
          * Backup uses:
-         * [Cloud Backup](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+         * [Cloud Backup](https://www.mongodb.com/docs/atlas/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
          * [Flex Cluster Backup](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
          * If &#34;`backupEnabled`&#34;  is `false` (default), the cluster doesn&#39;t use Atlas backups.
          * 
@@ -591,7 +628,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
          * If `true`, the cluster can perform backups. You must set this value to `true` for NVMe clusters.
          * 
          * Backup uses:
-         * [Cloud Backup](https://docs.atlas.mongodb.com/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
+         * [Cloud Backup](https://www.mongodb.com/docs/atlas/backup/cloud-backup/overview/#std-label-backup-cloud-provider) for dedicated clusters.
          * [Flex Cluster Backup](https://www.mongodb.com/docs/atlas/backup/cloud-backup/flex-cluster-backup/) for flex clusters.
          * If &#34;`backupEnabled`&#34;  is `false` (default), the cluster doesn&#39;t use Atlas backups.
          * 
@@ -655,7 +692,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param configServerManagementMode Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+         * @param configServerManagementMode Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
          * 
          * @return builder
          * 
@@ -666,7 +703,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param configServerManagementMode Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+         * @param configServerManagementMode Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster&#39;s config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
          * 
          * @return builder
          * 
@@ -697,7 +734,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param encryptionAtRestProvider Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
+         * @param encryptionAtRestProvider Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://www.mongodb.com/docs/atlas/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://www.mongodb.com/docs/atlas/security-aws-kms/), [GCP](https://www.mongodb.com/docs/atlas/security-kms-encryption/) and [Azure](https://www.mongodb.com/docs/atlas/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
          * 
          * @return builder
          * 
@@ -708,7 +745,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param encryptionAtRestProvider Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://docs.atlas.mongodb.com/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://docs.atlas.mongodb.com/security-aws-kms/), [GCP](https://docs.atlas.mongodb.com/security-kms-encryption/) and [Azure](https://docs.atlas.mongodb.com/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
+         * @param encryptionAtRestProvider Possible values are AWS, GCP, AZURE or NONE.  Only needed if you desire to manage the keys, see [Encryption at Rest using Customer Key Management](https://www.mongodb.com/docs/atlas/security-kms-encryption/) for complete documentation.  You must configure encryption at rest for the Atlas project before enabling it on any cluster in the project. For Documentation, see [AWS](https://www.mongodb.com/docs/atlas/security-aws-kms/), [GCP](https://www.mongodb.com/docs/atlas/security-kms-encryption/) and [Azure](https://www.mongodb.com/docs/atlas/security-azure-kms/#std-label-security-azure-kms). Requirements are if `replication_specs[#].region_configs[#].&lt;type&gt;Specs.instance_size` is M10 or greater and `backupEnabled` is false or omitted.
          * 
          * @return builder
          * 
@@ -806,7 +843,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param paused Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+         * @param paused Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters).
          * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
          * `lifecycle {
          * ignoreChanges = [paused]
@@ -821,7 +858,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param paused Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://docs.atlas.mongodb.com/pause-terminate-cluster/#considerations-for-paused-clusters).
+         * @param paused Flag that indicates whether the cluster is paused or not. You can pause M10 or larger clusters.  You cannot initiate pausing for a shared/tenant tier cluster. If you try to update a `paused` cluster you will get a `CANNOT_UPDATE_PAUSED_CLUSTER` error. See [Considerations for Paused Clusters](https://www.mongodb.com/docs/atlas/pause-terminate-cluster/#considerations-for-paused-clusters).
          * **NOTE** Pause lasts for up to 30 days. If you don&#39;t resume the cluster within 30 days, Atlas resumes the cluster.  When the cluster resumption happens Terraform will flag the changed state.  If you wish to keep the cluster paused, reapply your Terraform configuration.   If you prefer to allow the automated change of state to unpaused use:
          * `lifecycle {
          * ignoreChanges = [paused]
@@ -919,7 +956,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param replicaSetScalingStrategy Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+         * @param replicaSetScalingStrategy Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#configure-replica-set-scaling-mode)
          * 
          * @return builder
          * 
@@ -930,7 +967,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param replicaSetScalingStrategy Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://dochub.mongodb.org/core/scale-nodes)
+         * @param replicaSetScalingStrategy Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#configure-replica-set-scaling-mode)
          * 
          * @return builder
          * 
@@ -940,7 +977,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. See below.
          * 
          * @return builder
          * 
@@ -951,7 +988,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. See below.
          * 
          * @return builder
          * 
@@ -961,7 +998,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are only supported for AWS provisioned IOPS, or Azure regions that support Extended IOPS. See below.
+         * @param replicationSpecs List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. See below.
          * 
          * @return builder
          * 

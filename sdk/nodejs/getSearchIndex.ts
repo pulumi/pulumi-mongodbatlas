@@ -44,7 +44,7 @@ export interface GetSearchIndexArgs {
      */
     indexId: string;
     /**
-     * The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+     * The unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -54,11 +54,11 @@ export interface GetSearchIndexArgs {
  */
 export interface GetSearchIndexResult {
     /**
-     * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+     * [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      */
     readonly analyzer: string;
     /**
-     * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+     * [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
      */
     readonly analyzers: string;
     readonly clusterName: string;
@@ -98,7 +98,7 @@ export interface GetSearchIndexResult {
     readonly numPartitions: number;
     readonly projectId: string;
     /**
-     * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+     * [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
      */
     readonly searchAnalyzer: string;
     /**
@@ -111,9 +111,9 @@ export interface GetSearchIndexResult {
     readonly storedSource: string;
     /**
      * Synonyms mapping definition to use in this index.
-     * * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+     * * `synonyms.#.name` - Name of the [synonym mapping definition](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-ref).
      * * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
-     * * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+     * * `synonyms.#.analyzer` - Name of the [analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
      */
     readonly synonyms: outputs.GetSearchIndexSynonym[];
     readonly type: string;
@@ -160,7 +160,7 @@ export interface GetSearchIndexOutputArgs {
      */
     indexId: pulumi.Input<string>;
     /**
-     * The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+     * The unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

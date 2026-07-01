@@ -19,8 +19,6 @@ public final class FederatedQueryLimitArgs extends com.pulumi.resources.Resource
 
     /**
      * Default value of the limit.
-     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-     * * `maximumLimit` - Maximum value of the limit.
      * 
      */
     @Import(name="defaultLimit")
@@ -28,8 +26,6 @@ public final class FederatedQueryLimitArgs extends com.pulumi.resources.Resource
 
     /**
      * @return Default value of the limit.
-     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-     * * `maximumLimit` - Maximum value of the limit.
      * 
      */
     public Optional<Output<Integer>> defaultLimit() {
@@ -59,9 +55,17 @@ public final class FederatedQueryLimitArgs extends com.pulumi.resources.Resource
         return this.limitName;
     }
 
+    /**
+     * Maximum value of the limit.
+     * 
+     */
     @Import(name="maximumLimit")
     private @Nullable Output<Integer> maximumLimit;
 
+    /**
+     * @return Maximum value of the limit.
+     * 
+     */
     public Optional<Output<Integer>> maximumLimit() {
         return Optional.ofNullable(this.maximumLimit);
     }
@@ -158,8 +162,6 @@ public final class FederatedQueryLimitArgs extends com.pulumi.resources.Resource
 
         /**
          * @param defaultLimit Default value of the limit.
-         * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-         * * `maximumLimit` - Maximum value of the limit.
          * 
          * @return builder
          * 
@@ -171,8 +173,6 @@ public final class FederatedQueryLimitArgs extends com.pulumi.resources.Resource
 
         /**
          * @param defaultLimit Default value of the limit.
-         * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-         * * `maximumLimit` - Maximum value of the limit.
          * 
          * @return builder
          * 
@@ -210,11 +210,23 @@ public final class FederatedQueryLimitArgs extends com.pulumi.resources.Resource
             return limitName(Output.of(limitName));
         }
 
+        /**
+         * @param maximumLimit Maximum value of the limit.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maximumLimit(@Nullable Output<Integer> maximumLimit) {
             $.maximumLimit = maximumLimit;
             return this;
         }
 
+        /**
+         * @param maximumLimit Maximum value of the limit.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maximumLimit(Integer maximumLimit) {
             return maximumLimit(Output.of(maximumLimit));
         }

@@ -192,14 +192,14 @@ public final class StreamConnectionState extends com.pulumi.resources.ResourceAr
     }
 
     /**
-     * Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+     * Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+     * @return Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
      * 
      */
     public Optional<Output<String>> type() {
@@ -493,7 +493,7 @@ public final class StreamConnectionState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param type Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+         * @param type Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
          * 
          * @return builder
          * 
@@ -504,7 +504,7 @@ public final class StreamConnectionState extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param type Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+         * @param type Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
          * 
          * @return builder
          * 

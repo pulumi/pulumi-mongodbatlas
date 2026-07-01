@@ -12,6 +12,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class FederatedDatabaseInstanceCloudProviderConfigAzure {
+    /**
+     * @return Unique identifier of the Azure Active Directory application associated with the service principal.
+     * 
+     */
     private @Nullable String atlasAppId;
     private String roleId;
     /**
@@ -26,6 +30,10 @@ public final class FederatedDatabaseInstanceCloudProviderConfigAzure {
     private @Nullable String tenantId;
 
     private FederatedDatabaseInstanceCloudProviderConfigAzure() {}
+    /**
+     * @return Unique identifier of the Azure Active Directory application associated with the service principal.
+     * 
+     */
     public Optional<String> atlasAppId() {
         return Optional.ofNullable(this.atlasAppId);
     }

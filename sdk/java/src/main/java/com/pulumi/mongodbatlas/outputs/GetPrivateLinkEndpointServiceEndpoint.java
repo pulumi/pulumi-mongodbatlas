@@ -21,7 +21,7 @@ public final class GetPrivateLinkEndpointServiceEndpoint {
      */
     private String ipAddress;
     /**
-     * @return Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+     * @return Status of the endpoint. Atlas returns one of the [values shown above](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
      * 
      */
     private String status;
@@ -42,7 +42,7 @@ public final class GetPrivateLinkEndpointServiceEndpoint {
         return this.ipAddress;
     }
     /**
-     * @return Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+     * @return Status of the endpoint. Atlas returns one of the [values shown above](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
      * 
      */
     public String status() {

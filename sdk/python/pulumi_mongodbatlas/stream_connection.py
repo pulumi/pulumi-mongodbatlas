@@ -48,7 +48,7 @@ class StreamConnectionArgs:
 
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
@@ -125,7 +125,7 @@ class StreamConnectionArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
         """
         return pulumi.get(self, "type")
 
@@ -343,7 +343,7 @@ class _StreamConnectionState:
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
         if authentication is not None:
@@ -579,7 +579,7 @@ class _StreamConnectionState:
     @pulumi.getter
     def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
         """
         return pulumi.get(self, "type")
 
@@ -998,7 +998,7 @@ class StreamConnection(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/streamConnection:StreamConnection test "DefaultInstance-12251446ae5f3f6ec7968b13-NewConnection"
         ```
 
-        To learn more, see: [MongoDB Atlas API - Stream Connection](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamConnection) Documentation.
+        To learn more, see: [MongoDB Atlas API - Stream Connection](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createstreamconnection) Documentation.
         The Terraform Provider Examples Section also contains details on the overall support for Atlas Streams Processing in Terraform.
 
 
@@ -1007,7 +1007,7 @@ class StreamConnection(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
         ...
@@ -1376,7 +1376,7 @@ class StreamConnection(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/streamConnection:StreamConnection test "DefaultInstance-12251446ae5f3f6ec7968b13-NewConnection"
         ```
 
-        To learn more, see: [MongoDB Atlas API - Stream Connection](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamConnection) Documentation.
+        To learn more, see: [MongoDB Atlas API - Stream Connection](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createstreamconnection) Documentation.
         The Terraform Provider Examples Section also contains details on the overall support for Atlas Streams Processing in Terraform.
 
 
@@ -1496,7 +1496,7 @@ class StreamConnection(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace. Use `workspace_name` instead; this attribute will be removed in a future major version.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        :param pulumi.Input[_builtins.str] type: Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream processing workspace.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -1636,7 +1636,7 @@ class StreamConnection(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
         """
         return pulumi.get(self, "type")
 

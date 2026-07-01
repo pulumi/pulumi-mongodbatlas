@@ -60,7 +60,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
         /// </summary>
         [Output("orgId")]
         public Output<string> OrgId { get; private set; } = null!;
@@ -136,7 +136,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
         /// </summary>
         [Input("orgId", required: true)]
         public Input<string> OrgId { get; set; } = null!;
@@ -198,7 +198,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+        /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
         /// </summary>
         [Input("orgId")]
         public Input<string>? OrgId { get; set; }

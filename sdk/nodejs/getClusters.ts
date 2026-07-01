@@ -13,7 +13,7 @@ import * as utilities from "./utilities";
  *
  * > **IMPORTANT:**
  * <br> &#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn't return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
- * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+ * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
  *
  * ## Example Usage
@@ -83,7 +83,7 @@ export interface GetClustersResult {
  *
  * > **IMPORTANT:**
  * <br> &#8226; Multi Region Cluster: The `mongodbatlas.Cluster` data source doesn't return the `containerId` for each region utilized by the cluster. For retrieving the `containerId`, we recommend the `mongodbatlas.AdvancedCluster` data source instead.
- * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+ * <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).
  * <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
  *
  * ## Example Usage

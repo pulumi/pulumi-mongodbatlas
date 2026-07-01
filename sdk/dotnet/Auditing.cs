@@ -41,19 +41,19 @@ namespace Pulumi.Mongodbatlas
     /// $ pulumi import mongodbatlas:index/auditing:Auditing my_auditing 5d09d6a59ccf6445652a444a
     /// ```
     /// 
-    /// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/auditing/)
+    /// For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/auditing/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/auditing:Auditing")]
     public partial class Auditing : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+        /// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         /// </summary>
         [Output("auditAuthorizationSuccess")]
         public Output<bool> AuditAuthorizationSuccess { get; private set; } = null!;
 
         /// <summary>
-        /// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+        /// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://www.mongodb.com/docs/manual/tutorial/configure-audit-filters/).
         /// </summary>
         [Output("auditFilter")]
         public Output<string> AuditFilter { get; private set; } = null!;
@@ -128,13 +128,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class AuditingArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+        /// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         /// </summary>
         [Input("auditAuthorizationSuccess")]
         public Input<bool>? AuditAuthorizationSuccess { get; set; }
 
         /// <summary>
-        /// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+        /// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://www.mongodb.com/docs/manual/tutorial/configure-audit-filters/).
         /// </summary>
         [Input("auditFilter")]
         public Input<string>? AuditFilter { get; set; }
@@ -162,13 +162,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class AuditingState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+        /// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
         /// </summary>
         [Input("auditAuthorizationSuccess")]
         public Input<bool>? AuditAuthorizationSuccess { get; set; }
 
         /// <summary>
-        /// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+        /// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://www.mongodb.com/docs/manual/tutorial/configure-audit-filters/).
         /// </summary>
         [Input("auditFilter")]
         public Input<string>? AuditFilter { get; set; }

@@ -41,7 +41,15 @@ public final class GetCloudBackupSnapshotExportJobResult {
      * 
      */
     private String exportJobId;
+    /**
+     * @return _Returned for replica set only._ Number of collections that have been exported.
+     * 
+     */
     private Integer exportStatusExportedCollections;
+    /**
+     * @return _Returned for replica set only._ Total number of collections to export.
+     * 
+     */
     private Integer exportStatusTotalCollections;
     /**
      * @return Timestamp in ISO 8601 date and time format in UTC when the export job completes.
@@ -107,9 +115,17 @@ public final class GetCloudBackupSnapshotExportJobResult {
     public String exportJobId() {
         return this.exportJobId;
     }
+    /**
+     * @return _Returned for replica set only._ Number of collections that have been exported.
+     * 
+     */
     public Integer exportStatusExportedCollections() {
         return this.exportStatusExportedCollections;
     }
+    /**
+     * @return _Returned for replica set only._ Total number of collections to export.
+     * 
+     */
     public Integer exportStatusTotalCollections() {
         return this.exportStatusTotalCollections;
     }

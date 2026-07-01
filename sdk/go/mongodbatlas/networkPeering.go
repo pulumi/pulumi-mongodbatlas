@@ -16,7 +16,7 @@ import (
 //
 // Ensure you have first created a network container if it is required for your configuration.  See the networkContainer resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
 //
-// > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See [disable Peering Only mode](https://docs.atlas.mongodb.com/reference/faq/connection-changes/#disable-peering-mode) for details
+// > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See [disable Peering Only mode](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/#disable-peering-mode) for details
 //
 // > **AZURE ONLY:** To create the peering request with an Azure VNET, you must grant Atlas the following permissions on the virtual network.
 //
@@ -25,7 +25,7 @@ import (
 //	Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
 //	Microsoft.Network/virtualNetworks/peer/action
 //
-// For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+// For more information see https://www.mongodb.com/docs/atlas/security-vpc-peering/ and https://www.mongodb.com/docs/atlas/reference/api/vpc-create-peering-connection/
 //
 // > **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the projectIpWhitelist resource.
 //
@@ -187,7 +187,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			// Ensure you have created the required Azure service principal first, see
-//			// see https://docs.atlas.mongodb.com/security-vpc-peering/
+//			// see https://www.mongodb.com/docs/atlas/security-vpc-peering/
 //			// Container example provided but not always required,
 //			// see network_container documentation for details.
 //			test, err := mongodbatlas.NewNetworkContainer(ctx, "test", &mongodbatlas.NetworkContainerArgs{
@@ -262,11 +262,11 @@ import (
 // atlas projects list
 // atlas networking peering list --projectId <projectId> --provider <AZURE|GCP|AWS>
 // ```
-// See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)
+// See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-peering-connection/)
 type NetworkPeering struct {
 	pulumi.CustomResourceState
 
-	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 	AccepterRegionName pulumi.StringOutput `pulumi:"accepterRegionName"`
 	AtlasCidrBlock     pulumi.StringOutput `pulumi:"atlasCidrBlock"`
 	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
@@ -361,7 +361,7 @@ func GetNetworkPeering(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering NetworkPeering resources.
 type networkPeeringState struct {
-	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 	AccepterRegionName *string `pulumi:"accepterRegionName"`
 	AtlasCidrBlock     *string `pulumi:"atlasCidrBlock"`
 	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
@@ -418,7 +418,7 @@ type networkPeeringState struct {
 }
 
 type NetworkPeeringState struct {
-	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 	AccepterRegionName pulumi.StringPtrInput
 	AtlasCidrBlock     pulumi.StringPtrInput
 	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
@@ -479,7 +479,7 @@ func (NetworkPeeringState) ElementType() reflect.Type {
 }
 
 type networkPeeringArgs struct {
-	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 	AccepterRegionName *string `pulumi:"accepterRegionName"`
 	AtlasCidrBlock     *string `pulumi:"atlasCidrBlock"`
 	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
@@ -522,7 +522,7 @@ type networkPeeringArgs struct {
 
 // The set of arguments for constructing a NetworkPeering resource.
 type NetworkPeeringArgs struct {
-	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 	AccepterRegionName pulumi.StringPtrInput
 	AtlasCidrBlock     pulumi.StringPtrInput
 	// The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
@@ -650,7 +650,7 @@ func (o NetworkPeeringOutput) ToNetworkPeeringOutputWithContext(ctx context.Cont
 	return o
 }
 
-// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+// Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 func (o NetworkPeeringOutput) AccepterRegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v *NetworkPeering) pulumi.StringOutput { return v.AccepterRegionName }).(pulumi.StringOutput)
 }

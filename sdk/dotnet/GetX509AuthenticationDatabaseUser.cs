@@ -355,6 +355,9 @@ namespace Pulumi.Mongodbatlas
         /// Array of objects where each details one unexpired database user certificate.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetX509AuthenticationDatabaseUserCertificateResult> Certificates;
+        /// <summary>
+        /// PEM string of the customer-managed X.509 Certificate Authority (CA).
+        /// </summary>
         public readonly string CustomerX509Cas;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.

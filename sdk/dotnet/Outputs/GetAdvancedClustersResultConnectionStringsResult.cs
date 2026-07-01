@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetAdvancedClustersResultConnectionStringsResult
     {
         /// <summary>
-        /// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+        /// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         /// </summary>
         public readonly string Private;
         /// <summary>
@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableArray<Outputs.GetAdvancedClustersResultConnectionStringsPrivateEndpointResult> PrivateEndpoints;
         /// <summary>
-        /// [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+        /// [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
         /// </summary>
         public readonly string PrivateSrv;
         /// <summary>

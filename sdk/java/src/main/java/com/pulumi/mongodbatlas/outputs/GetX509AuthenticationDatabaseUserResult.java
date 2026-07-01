@@ -19,6 +19,10 @@ public final class GetX509AuthenticationDatabaseUserResult {
      * 
      */
     private List<GetX509AuthenticationDatabaseUserCertificate> certificates;
+    /**
+     * @return PEM string of the customer-managed X.509 Certificate Authority (CA).
+     * 
+     */
     private String customerX509Cas;
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -36,6 +40,10 @@ public final class GetX509AuthenticationDatabaseUserResult {
     public List<GetX509AuthenticationDatabaseUserCertificate> certificates() {
         return this.certificates;
     }
+    /**
+     * @return PEM string of the customer-managed X.509 Certificate Authority (CA).
+     * 
+     */
     public String customerX509Cas() {
         return this.customerX509Cas;
     }

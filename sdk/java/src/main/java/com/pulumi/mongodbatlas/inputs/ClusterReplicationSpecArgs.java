@@ -50,14 +50,14 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
     }
 
     /**
-     * Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+     * Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See the Region Config section below for more details.
      * 
      */
     @Import(name="regionsConfigs")
     private @Nullable Output<List<ClusterReplicationSpecRegionsConfigArgs>> regionsConfigs;
 
     /**
-     * @return Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+     * @return Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See the Region Config section below for more details.
      * 
      */
     public Optional<Output<List<ClusterReplicationSpecRegionsConfigArgs>>> regionsConfigs() {
@@ -67,16 +67,12 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
     /**
      * Name for the zone in a Global Cluster.
      * 
-     * **Region Config**
-     * 
      */
     @Import(name="zoneName")
     private @Nullable Output<String> zoneName;
 
     /**
      * @return Name for the zone in a Global Cluster.
-     * 
-     * **Region Config**
      * 
      */
     public Optional<Output<String>> zoneName() {
@@ -153,7 +149,7 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param regionsConfigs Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+         * @param regionsConfigs Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See the Region Config section below for more details.
          * 
          * @return builder
          * 
@@ -164,7 +160,7 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param regionsConfigs Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+         * @param regionsConfigs Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See the Region Config section below for more details.
          * 
          * @return builder
          * 
@@ -174,7 +170,7 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
         }
 
         /**
-         * @param regionsConfigs Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+         * @param regionsConfigs Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See the Region Config section below for more details.
          * 
          * @return builder
          * 
@@ -186,8 +182,6 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
         /**
          * @param zoneName Name for the zone in a Global Cluster.
          * 
-         * **Region Config**
-         * 
          * @return builder
          * 
          */
@@ -198,8 +192,6 @@ public final class ClusterReplicationSpecArgs extends com.pulumi.resources.Resou
 
         /**
          * @param zoneName Name for the zone in a Global Cluster.
-         * 
-         * **Region Config**
          * 
          * @return builder
          * 

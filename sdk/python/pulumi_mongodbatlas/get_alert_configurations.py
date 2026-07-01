@@ -129,7 +129,7 @@ def get_alert_configurations(list_options: Optional[Sequence[Union['GetAlertConf
     ```
 
     Refer to the following for a full example on using this data_source as a tool to import all resources:
-    * atlas-alert-configurations
+    * AlertConfiguration
 
 
     :param Sequence[Union['GetAlertConfigurationsListOptionArgs', 'GetAlertConfigurationsListOptionArgsDict']] list_options: Arguments that dictate how many and which results are returned by the data source
@@ -180,7 +180,7 @@ def get_alert_configurations_output(list_options: pulumi.Input[Optional[Optional
     ```
 
     Refer to the following for a full example on using this data_source as a tool to import all resources:
-    * atlas-alert-configurations
+    * AlertConfiguration
 
 
     :param Sequence[Union['GetAlertConfigurationsListOptionArgs', 'GetAlertConfigurationsListOptionArgsDict']] list_options: Arguments that dictate how many and which results are returned by the data source

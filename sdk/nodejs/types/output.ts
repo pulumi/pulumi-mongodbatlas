@@ -73,7 +73,7 @@ export interface AdvancedClusterBiConnectorConfig {
      */
     enabled: boolean;
     /**
-     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
      *
      * - Set to "primary" to have BI Connector for Atlas read from the primary.
      *
@@ -86,7 +86,7 @@ export interface AdvancedClusterBiConnectorConfig {
 
 export interface AdvancedClusterConnectionStrings {
     /**
-     * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
     private: string;
     /**
@@ -102,7 +102,7 @@ export interface AdvancedClusterConnectionStrings {
      */
     privateEndpoints: outputs.AdvancedClusterConnectionStringsPrivateEndpoint[];
     /**
-     * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
     privateSrv: string;
     /**
@@ -174,7 +174,7 @@ export interface AdvancedClusterReplicationSpec {
      */
     externalId: string;
     /**
-     * Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See below.
+     * Configuration for the hardware specifications for nodes set for a given region. Each `regionConfigs` object describes the region's priority in elections and the number and type of MongoDB nodes that Atlas deploys to the region. Each `regionConfigs` object must have either an `analyticsSpecs` object, `electableSpecs` object, or `readOnlySpecs` object. See region_configs.
      */
     regionConfigs: outputs.AdvancedClusterReplicationSpecRegionConfig[];
     /**
@@ -193,7 +193,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      */
     analyticsAutoScaling: outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling;
     /**
-     * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
+     * Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
      */
     analyticsSpecs: outputs.AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs;
     /**
@@ -205,7 +205,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      */
     backingProviderName?: string;
     /**
-     * Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
+     * Hardware specifications for electable nodes in the region. All `electableSpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize`. Electable nodes can become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary) and can enable local reads. If you do not specify this option, no electable nodes are deployed to the region. See below.
      */
     electableSpecs: outputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecs;
     /**
@@ -225,11 +225,13 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      */
     providerName: string;
     /**
-     * Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://docs.atlas.mongodb.com/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
+     * Hardware specifications for read-only nodes in the region. All `readOnlySpecs` in the `regionConfigs` of a `replicationSpecs` must have the same `instanceSize` as `electableSpecs`. Read-only nodes can become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary) and can enable local reads. If you don't specify this parameter, no read-only nodes are deployed to the region. See below.
      */
     readOnlySpecs: outputs.AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs;
     /**
-     * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
+     *
+     * For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes, see [Supported Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions).
      */
     regionName: string;
 }
@@ -264,7 +266,13 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling 
 
 export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+     *
+     * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+     * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+     * * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+     *
+     * For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
      */
     diskIops: number;
     /**
@@ -273,14 +281,17 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
     diskSizeGb: number;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+     * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+     * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType: string;
     /**
      * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
      *
-     * > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+     * Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+     *
+     * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
      */
     instanceSize: string;
     /**
@@ -329,7 +340,14 @@ export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
 
 export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+     *
+     * For AWS, valid configurations are:
+     * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+     * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+     * * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+     *
+     * For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
      */
     diskIops: number;
     /**
@@ -338,14 +356,17 @@ export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     diskSizeGb: number;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+     * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+     * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType: string;
     /**
      * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
      *
-     * > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+     * Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+     *
+     * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
      */
     instanceSize: string;
     /**
@@ -356,7 +377,13 @@ export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
 
 export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. Define this attribute only if you selected AWS as your cloud service provider, `instanceSize` is set to "M30" or greater (not including "Mxx_NVME" tiers), and `ebsVolumeType` is "PROVISIONED". You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+     *
+     * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
+     * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
+     * * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+     *
+     * For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
      */
     diskIops: number;
     /**
@@ -365,14 +392,17 @@ export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     diskSizeGb: number;
     /**
      * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+     * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+     * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
      */
     ebsVolumeType: string;
     /**
      * Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
      *
-     * > **NOTE:** Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+     * Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
+     *
+     * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
      */
     instanceSize: string;
     /**
@@ -427,7 +457,7 @@ export interface AlertConfigurationMatcher {
 
 export interface AlertConfigurationMetricThresholdConfig {
     /**
-     * Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+     * Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
      */
     metricName: string;
     /**
@@ -728,7 +758,7 @@ export interface CloudBackupScheduleCopySetting {
      */
     shouldCopyOplogs: boolean;
     /**
-     * Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zoneId`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array Return One Cluster From One Project. Alternately, use `mongodbatlas.AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
+     * Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zoneId`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array [Return One Cluster From One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). Alternately, use `mongodbatlas.AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
      */
     zoneId: string;
 }
@@ -915,7 +945,7 @@ export interface CloudBackupSnapshotRestoreJobDeliveryTypeConfig {
 
 export interface CloudProviderAccessAuthorizationAws {
     /**
-     * ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://docs.atlas.mongodb.com/security/set-up-unified-aws-access/#set-up-unified-aws-access).
+     * ARN of the IAM Role that Atlas assumes when accessing resources in your AWS account. This value is required after the creation (register of the role) as part of [Set Up Unified AWS Access](https://www.mongodb.com/docs/atlas/security/set-up-unified-aws-access/#set-up-unified-aws-access).
      */
     iamAssumedRoleArn: string;
 }
@@ -1039,13 +1069,13 @@ export interface ClusterAdvancedConfiguration {
     customOpensslCipherConfigTls12s?: string[];
     defaultMaxTimeMs?: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+     * [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     defaultReadConcern: string;
     /**
-     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
      */
     defaultWriteConcern: string;
     /**
@@ -1104,7 +1134,7 @@ export interface ClusterBiConnectorConfig {
      */
     enabled: boolean;
     /**
-     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
      *
      * - Set to "primary" to have BI Connector for Atlas read from the primary.
      *
@@ -1200,14 +1230,11 @@ export interface ClusterReplicationSpec {
      */
     numShards: number;
     /**
-     * Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See Region Config below for more details.
+     * Physical location of the region. Each regionsConfig document describes the region’s priority in elections and the number and type of MongoDB nodes Atlas deploys to the region. You must order each regionsConfigs document by regionsConfig.priority, descending. See the Region Config section below for more details.
      */
     regionsConfigs: outputs.ClusterReplicationSpecRegionsConfig[];
     /**
      * Name for the zone in a Global Cluster.
-     *
-     *
-     * **Region Config**
      */
     zoneName?: string;
 }
@@ -1236,7 +1263,7 @@ export interface ClusterReplicationSpecRegionsConfig {
      */
     readOnlyNodes?: number;
     /**
-     * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
      */
     regionName: string;
 }
@@ -1282,14 +1309,14 @@ export interface ClusterTag {
     /**
      * Variable that belongs to the set of the tag.
      *
-     * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+     * To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
      */
     value: string;
 }
 
 export interface CustomDbRoleAction {
     /**
-     * Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions)
+     * Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://www.mongodb.com/docs/atlas/reference/api/custom-role-actions)
      * > **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
      */
     action: string;
@@ -1358,7 +1385,7 @@ export interface DatabaseUserRole {
      */
     databaseName: string;
     /**
-     * Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
+     * Name of the role to grant. See [Create a Database User](https://www.mongodb.com/docs/atlas/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
      */
     roleName: string;
 }
@@ -1535,6 +1562,9 @@ export interface FederatedDatabaseInstanceCloudProviderConfigAws {
 }
 
 export interface FederatedDatabaseInstanceCloudProviderConfigAzure {
+    /**
+     * Unique identifier of the Azure Active Directory application associated with the service principal.
+     */
     atlasAppId: string;
     roleId: string;
     /**
@@ -1711,7 +1741,7 @@ export interface FlexClusterProviderSettings {
      */
     providerName: string;
     /**
-     * Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), and [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
      */
     regionName: string;
 }
@@ -1776,7 +1806,7 @@ export interface GetAdvancedClusterAdvancedConfiguration {
      */
     defaultMaxTimeMs: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
      */
     defaultWriteConcern: string;
     /**
@@ -1825,14 +1855,14 @@ export interface GetAdvancedClusterBiConnectorConfig {
      */
     enabled: boolean;
     /**
-     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
      */
     readPreference: string;
 }
 
 export interface GetAdvancedClusterConnectionStrings {
     /**
-     * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
     private: string;
     /**
@@ -1848,7 +1878,7 @@ export interface GetAdvancedClusterConnectionStrings {
      */
     privateEndpoints: outputs.GetAdvancedClusterConnectionStringsPrivateEndpoint[];
     /**
-     * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
     privateSrv: string;
     /**
@@ -1939,7 +1969,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfig {
      */
     analyticsAutoScaling: outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling;
     /**
-     * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
+     * Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
      */
     analyticsSpecs: outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs;
     /**
@@ -2010,7 +2040,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScali
 
 export interface GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
      */
     diskIops: number;
     /**
@@ -2018,9 +2048,11 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. 
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     */
+    diskThroughput: number;
+    /**
+     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2059,7 +2091,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAutoScaling {
 
 export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
      */
     diskIops: number;
     /**
@@ -2067,9 +2099,11 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalytics
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. 
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     */
+    diskThroughput: number;
+    /**
+     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2084,7 +2118,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalytics
 
 export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
      */
     diskIops: number;
     /**
@@ -2092,9 +2126,11 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectable
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. 
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     */
+    diskThroughput: number;
+    /**
+     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2109,7 +2145,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectable
 
 export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
      */
     diskIops: number;
     /**
@@ -2117,9 +2153,11 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlyS
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. 
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     */
+    diskThroughput: number;
+    /**
+     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2134,7 +2172,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlyS
 
 export interface GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
      */
     diskIops: number;
     /**
@@ -2142,9 +2180,11 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. 
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     */
+    diskThroughput: number;
+    /**
+     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2159,7 +2199,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
 
 export interface GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
      */
     diskIops: number;
     /**
@@ -2167,9 +2207,11 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. 
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     */
+    diskThroughput: number;
+    /**
+     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2183,6 +2225,10 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
 }
 
 export interface GetAdvancedClustersResult {
+    /**
+     * Governs adaptive capacity behavior of Azure nodes in single-cloud Azure clusters or multi-cloud clusters that include Azure nodes. Adaptive capacity enables fallback hardware selection when the primary instance family is unavailable. `ENABLED` means the cluster explicitly opts in to adaptive capacity. `DISABLED` means the cluster explicitly opts out; the cluster receives capacity errors instead of being placed on fallback hardware. `null` means the field is unset; Azure clusters use adaptive capacity by default when the feature is enabled at the group level. Setting this field for single-cloud AWS or GCP clusters is a no-op.
+     */
+    adaptiveCapacity: string;
     /**
      * Get the advanced configuration options. See Advanced Configuration below for more details.
      */
@@ -2204,15 +2250,15 @@ export interface GetAdvancedClustersResult {
      */
     clusterType: string;
     /**
-     * Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     * Config Server Management Mode for creating or updating a sharded cluster. Valid values are `ATLAS_MANAGED` (default) and `FIXED_TO_DEDICATED`. When configured as `ATLAS_MANAGED`, Atlas may automatically switch the cluster's config server type for optimal performance and savings. When configured as `FIXED_TO_DEDICATED`, the cluster will always use a dedicated config server. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
      */
     configServerManagementMode: string;
     /**
-     * Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://dochub.mongodb.org/docs/manual/core/sharded-cluster-config-servers/).
+     * Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
      */
     configServerType: string;
     /**
-     * Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+     * Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      */
     connectionStrings: outputs.GetAdvancedClustersResultConnectionStrings;
     /**
@@ -2319,7 +2365,7 @@ export interface GetAdvancedClustersResultAdvancedConfiguration {
      */
     defaultMaxTimeMs: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
      */
     defaultWriteConcern: string;
     /**
@@ -2368,14 +2414,14 @@ export interface GetAdvancedClustersResultBiConnectorConfig {
      */
     enabled: boolean;
     /**
-     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
      */
     readPreference: string;
 }
 
 export interface GetAdvancedClustersResultConnectionStrings {
     /**
-     * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
     private: string;
     /**
@@ -2391,7 +2437,7 @@ export interface GetAdvancedClustersResultConnectionStrings {
      */
     privateEndpoints: outputs.GetAdvancedClustersResultConnectionStringsPrivateEndpoint[];
     /**
-     * [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      */
     privateSrv: string;
     /**
@@ -2482,7 +2528,7 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfig {
      */
     analyticsAutoScaling: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScaling;
     /**
-     * Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
+     * Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
      */
     analyticsSpecs: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs;
     /**
@@ -2552,7 +2598,7 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAu
 
 export interface GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
      */
     diskIops: number;
     /**
@@ -2560,9 +2606,11 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSp
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster.
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     */
+    diskThroughput: number;
+    /**
+     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2600,7 +2648,7 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling
 
 export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
      */
     diskIops: number;
     /**
@@ -2608,9 +2656,11 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAn
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster.
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     */
+    diskThroughput: number;
+    /**
+     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2625,7 +2675,7 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAn
 
 export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
      */
     diskIops: number;
     /**
@@ -2633,9 +2683,11 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveEl
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster.
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     */
+    diskThroughput: number;
+    /**
+     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2650,7 +2702,7 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveEl
 
 export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
      */
     diskIops: number;
     /**
@@ -2658,9 +2710,11 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveRe
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster.
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     */
+    diskThroughput: number;
+    /**
+     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2675,7 +2729,7 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveRe
 
 export interface GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
      */
     diskIops: number;
     /**
@@ -2683,9 +2737,11 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigElectableSp
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster.
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     */
+    diskThroughput: number;
+    /**
+     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2700,7 +2756,7 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigElectableSp
 
 export interface GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electableSpecs` for additional `diskIops` configuration details.
      */
     diskIops: number;
     /**
@@ -2708,9 +2764,11 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpe
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster.
-     * * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-     * * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     */
+    diskThroughput: number;
+    /**
+     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2748,7 +2806,7 @@ export interface GetAlertConfigurationMatcher {
 
 export interface GetAlertConfigurationMetricThresholdConfig {
     /**
-     * Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+     * Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
      */
     metricName: string;
     /**
@@ -2955,6 +3013,9 @@ export interface GetAlertConfigurationsResult {
      * The threshold that causes an alert to be triggered. Required if `eventTypeName` : `OUTSIDE_METRIC_THRESHOLD` or `OUTSIDE_SERVERLESS_METRIC_THRESHOLD`. See metric threshold config.
      */
     metricThresholdConfigs: outputs.GetAlertConfigurationsResultMetricThresholdConfig[];
+    /**
+     * List of notifications to send when an alert condition is detected. See notification.
+     */
     notifications: outputs.GetAlertConfigurationsResultNotification[];
     /**
      * Requested output string format for the alert configuration
@@ -3003,7 +3064,7 @@ export interface GetAlertConfigurationsResultMatcher {
 
 export interface GetAlertConfigurationsResultMetricThresholdConfig {
     /**
-     * Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://docs.atlas.mongodb.com/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
+     * Name of the metric to check. The full list being quite large, please refer to atlas docs [here for general metrics](https://www.mongodb.com/docs/atlas/reference/alert-host-metrics/#measurement-types) and [here for serverless metrics](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/#serverless-measurements)
      */
     metricName: string;
     /**
@@ -3752,8 +3813,17 @@ export interface GetCloudBackupSnapshotRestoreJobsResult {
      * The unique identifier of the restore job.
      */
     id: string;
+    /**
+     * Oplog operation number from which to you want to restore this snapshot.
+     */
     oplogInc: number;
+    /**
+     * Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+     */
     oplogTs: number;
+    /**
+     * Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+     */
     pointInTimeUtcSeconds: number;
     /**
      * Unique identifier of the source snapshot ID of the restore job.
@@ -3769,9 +3839,6 @@ export interface GetCloudBackupSnapshotRestoreJobsResult {
     targetProjectId: string;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
-     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
-     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
-     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
      */
     timestamp: string;
 }
@@ -3942,13 +4009,13 @@ export interface GetClusterAdvancedConfiguration {
     customOpensslCipherConfigTls12s: string[];
     defaultMaxTimeMs: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+     * [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     defaultReadConcern: string;
     /**
-     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
      */
     defaultWriteConcern: string;
     /**
@@ -4003,7 +4070,7 @@ export interface GetClusterBiConnectorConfig {
      */
     enabled: boolean;
     /**
-     * Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     * Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
      */
     readPreference: string;
 }
@@ -4193,11 +4260,11 @@ export interface GetClustersResult {
      */
     clusterType: string;
     /**
-     * Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
+     * Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
      * - `connection_strings.#.standard` -   Public mongodb:// connection string for this cluster.
      * - `connection_strings.#.standard_srv` - Public mongodb+srv:// connection string for this cluster. The mongodb+srv protocol tells the driver to look up the seed list of hosts in DNS. Atlas synchronizes this list with the nodes in a cluster. If the connection string uses this URI format, you don’t need to append the seed list or change the URI if the nodes change. Use this URI format if your driver supports it. If it doesn’t, use connectionStrings.standard.
-     * - `connection_strings.#.private` -   [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
-     * - `connection_strings.#.private_srv` -  [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * - `connection_strings.#.private` -   [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * - `connection_strings.#.private_srv` -  [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      * - `connection_strings.#.private_endpoint.#.connection_string` - Private-endpoint-aware `mongodb://`connection string for this private endpoint.
      * - `connection_strings.#.private_endpoint.#.srv_connection_string` - Private-endpoint-aware `mongodb+srv://` connection string for this private endpoint.
      * - `connection_strings.#.private_endpoint.#.srv_shard_optimized_connection_string` - Private endpoint-aware connection string optimized for sharded clusters that uses the `mongodb+srv://` protocol to connect to MongoDB Cloud through a private endpoint.
@@ -4273,7 +4340,7 @@ export interface GetClustersResult {
      */
     providerAutoScalingComputeMinInstanceSize: string;
     /**
-     * Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED** Use `cloudBackup` instead.
+     * Flag indicating if the cluster uses Cloud Backup Snapshots for backups. **DEPRECATED**
      */
     providerBackupEnabled: boolean;
     /**
@@ -4297,7 +4364,7 @@ export interface GetClustersResult {
      */
     providerName: string;
     /**
-     * Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases. Requires the Atlas Region name, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
      */
     providerRegionName: string;
     /**
@@ -4360,13 +4427,13 @@ export interface GetClustersResultAdvancedConfiguration {
     customOpensslCipherConfigTls12s: string[];
     defaultMaxTimeMs: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+     * [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      *
      * @deprecated This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
      */
     defaultReadConcern: string;
     /**
-     * [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
      */
     defaultWriteConcern: string;
     /**
@@ -4418,7 +4485,7 @@ export interface GetClustersResultBiConnectorConfig {
      */
     enabled: boolean;
     /**
-     * Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     * Indicates the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
      */
     readPreference: string;
 }
@@ -4762,12 +4829,15 @@ export interface GetDatabaseUsersResultRole {
      * Database on which the user has the specified role. A role on the `admin` database can include privileges that apply to the other databases.
      */
     databaseName: string;
+    /**
+     * Name of the role to grant.
+     */
     roleName: string;
 }
 
 export interface GetDatabaseUsersResultScope {
     /**
-     * Name of the role to grant.
+     * Name of the cluster or Atlas Data Federation that the user has access to.
      */
     name: string;
     /**
@@ -4941,34 +5011,40 @@ export interface GetEventTriggersResult {
      */
     configDatabase: string;
     /**
-     * If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+     * If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
      */
     configFullDocument: boolean;
+    /**
+     * If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
+     */
     configFullDocumentBefore: boolean;
     /**
-     * A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+     * A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
      */
     configMatch: string;
     /**
-     * The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+     * The [authentication operation type](https://www.mongodb.com/docs/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
      */
     configOperationType: string;
     /**
-     * The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+     * The [database event operation types](https://www.mongodb.com/docs/realm/triggers/database-triggers/#std-label-database-events) to listen for.
      */
     configOperationTypes: string[];
     /**
-     * A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+     * A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
      */
     configProject: string;
     /**
-     * A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+     * A list of one or more [authentication provider](https://www.mongodb.com/docs/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
      */
     configProviders: string[];
     /**
-     * A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+     * A [cron expression](https://www.mongodb.com/docs/realm/triggers/cron-expressions/) that defines the trigger schedule.
      */
     configSchedule: string;
+    /**
+     * The type of the scheduled trigger.
+     */
     configScheduleType: string;
     /**
      * The ID of the MongoDB Service associated with the trigger.
@@ -4994,6 +5070,9 @@ export interface GetEventTriggersResult {
      * The name of the trigger.
      */
     name: string;
+    /**
+     * The unique ID of the trigger.
+     */
     triggerId: string;
     /**
      * The type of the trigger. Possible Values: `DATABASE`, `AUTHENTICATION`
@@ -5191,9 +5270,9 @@ export interface GetFederatedDatabaseInstancesResult {
      */
     state: string;
     /**
-     * Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+     * Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
      * * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-     * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
+     * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/) data store.
      * * `storage_databases.#.collections.#.name` - Name of the collection.
      * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
      * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `<collection>`. Must match the name of an object in the stores array.
@@ -5206,16 +5285,16 @@ export interface GetFederatedDatabaseInstancesResult {
      * * `storage_databases.#.collections.#.data_sources.#.collection` - Human-readable label that identifies the collection in the database.
      * * `storage_databases.#.collections.#.data_sources.#.collection_regex` - Regex pattern to use for creating the wildcard (*) collection.
      * * `storage_databases.#.collections.#.data_sources.#.provenance_field_name` - Name for the field that includes the provenance of the documents in the results.
-     * * `storage_databases.#.collections.#.data_sources.#.storeName` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
+     * * `storage_databases.#.collections.#.data_sources.#.store_name` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
      * * `storage_databases.#.collections.#.data_sources.#.urls` - URLs of the publicly accessible data files. You can't specify URLs that require authentication.
-     * * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://docs.mongodb.com/manual/core/views/).
+     * * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://www.mongodb.com/docs/manual/core/views/).
      * * `storage_databases.#.views.#.name` - Name of the view.
      * * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
      * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
      */
     storageDatabases: outputs.GetFederatedDatabaseInstancesResultStorageDatabase[];
     /**
-     * Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
+     * Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
      * * `storage_stores.#.name` - Name of the data store.
      * * `storage_stores.#.provider` - Defines where the data is stored.
      * * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -5229,7 +5308,7 @@ export interface GetFederatedDatabaseInstancesResult {
      * * `storage_stores.#.default_format` - Default format that Atlas Data Federation assumes if it encounters a file without an extension while searching the storeName.
      * * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
      * * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
-     * * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
+     * * `storage_stores.#.read_preference.max_staleness_seconds` - Maximum replication lag, or staleness, for reads from secondaries.
      * * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
      * * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
      * * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
@@ -5268,6 +5347,9 @@ export interface GetFederatedDatabaseInstancesResultCloudProviderConfigAw {
 }
 
 export interface GetFederatedDatabaseInstancesResultCloudProviderConfigAzure {
+    /**
+     * Unique identifier of the Azure Active Directory application associated with the service principal.
+     */
     atlasAppId: string;
     /**
      * Unique identifier of the role that the Federated Database Instance can use to access the data stores.
@@ -5377,13 +5459,20 @@ export interface GetFederatedQueryLimitsResult {
     currentUsage: number;
     /**
      * Default value of the limit.
-     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-     * * `maximumLimit` - Maximum value of the limit.
      */
     defaultLimit: number;
+    /**
+     * Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     */
     lastModifiedDate: string;
     limitName: string;
+    /**
+     * Maximum value of the limit.
+     */
     maximumLimit: number;
+    /**
+     * String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit.
+     */
     overrunPolicy: string;
     /**
      * The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
@@ -5393,6 +5482,9 @@ export interface GetFederatedQueryLimitsResult {
      * Name of the Atlas Federated Database Instance.
      */
     tenantName: string;
+    /**
+     * Amount to set the limit to.
+     */
     value: number;
 }
 
@@ -5903,7 +5995,7 @@ export interface GetFlexClusterProviderSettings {
      */
     providerName: string;
     /**
-     * Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), and [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
      */
     regionName: string;
 }
@@ -5995,7 +6087,7 @@ export interface GetFlexClustersResultProviderSettings {
      */
     providerName: string;
     /**
-     * Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/#std-label-amazon-aws), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), and [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Human-readable label that identifies the geographic location of your MongoDB flex cluster. The region you choose can affect network latency for clients accessing your databases. For a complete list of region names, see [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), and [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
      */
     regionName: string;
 }
@@ -6108,11 +6200,11 @@ export interface GetGlobalClusterConfigManagedNamespace {
      */
     db: string;
     /**
-     * Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+     * Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
      */
     isCustomShardKeyHashed: boolean;
     /**
-     * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+     * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
      */
     isShardKeyUnique: boolean;
 }
@@ -6302,7 +6394,7 @@ export interface GetNetworkContainersResult {
 
 export interface GetNetworkPeeringsResult {
     /**
-     * Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+     * Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
      */
     accepterRegionName: string;
     atlasCidrBlock: string;
@@ -6649,9 +6741,11 @@ export interface GetOrganizationsResultUser {
     orgMembershipStatus: string;
     /**
      * Organization- and project-level roles assigned to one MongoDB Cloud user within one organization.
-     * * `teamIds` - List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
      */
     roles: outputs.GetOrganizationsResultUserRole[];
+    /**
+     * List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
+     */
     teamIds: string[];
     /**
      * Email address that represents the username of the MongoDB Cloud user.
@@ -6679,7 +6773,7 @@ export interface GetPrivateLinkEndpointServiceEndpoint {
      */
     ipAddress: string;
     /**
-     * Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+     * Status of the endpoint. Atlas returns one of the [values shown above](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
      */
     status: string;
 }
@@ -6702,7 +6796,7 @@ export interface GetPrivatelinkEndpointServiceDataFederationOnlineArchivesResult
      */
     providerName: string;
     /**
-     * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
      */
     region: string;
     /**
@@ -7008,26 +7102,47 @@ export interface GetProjectTeam {
 export interface GetProjectUser {
     /**
      * Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
-     * * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
-     * * `firstName`- First or given name that belongs to the MongoDB Cloud user.
-     * * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
-     * * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
-     * * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
      */
     country: string;
+    /**
+     * Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+     */
     createdAt: string;
+    /**
+     * First or given name that belongs to the MongoDB Cloud user.
+     */
     firstName: string;
     /**
      * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-     * * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
      */
     id: string;
+    /**
+     * Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     */
     invitationCreatedAt: string;
+    /**
+     * Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     */
     invitationExpiresAt: string;
+    /**
+     * Username of the MongoDB Cloud user who sent the invitation to join the organization.
+     */
     inviterUsername: string;
+    /**
+     * Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+     */
     lastAuth: string;
+    /**
+     * Last name, family name, or surname that belongs to the MongoDB Cloud user.
+     */
     lastName: string;
+    /**
+     * Mobile phone number that belongs to the MongoDB Cloud user.
+     */
     mobileNumber: string;
+    /**
+     * String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+     */
     orgMembershipStatus: string;
     /**
      * One or more project-level roles assigned to the MongoDB Cloud user.
@@ -7172,30 +7287,51 @@ export interface GetProjectsResultTeam {
 export interface GetProjectsResultUser {
     /**
      * Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
-     * * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
-     * * `firstName`- First or given name that belongs to the MongoDB Cloud user.
-     * * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
-     * * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
-     * * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
+     */
+    country: string;
+    /**
+     * Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * First or given name that belongs to the MongoDB Cloud user.
+     */
+    firstName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     */
+    id: string;
+    /**
+     * Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     */
+    invitationCreatedAt: string;
+    /**
+     * Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     */
+    invitationExpiresAt: string;
+    /**
+     * Username of the MongoDB Cloud user who sent the invitation to join the organization.
      *
      * > **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `mongodbatlas.ProjectInvitation` resource.
      *
      * See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
      */
-    country: string;
-    createdAt: string;
-    firstName: string;
-    /**
-     * Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-     * * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
-     */
-    id: string;
-    invitationCreatedAt: string;
-    invitationExpiresAt: string;
     inviterUsername: string;
+    /**
+     * Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+     */
     lastAuth: string;
+    /**
+     * Last name, family name, or surname that belongs to the MongoDB Cloud user.
+     */
     lastName: string;
+    /**
+     * Mobile phone number that belongs to the MongoDB Cloud user.
+     */
     mobileNumber: string;
+    /**
+     * String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+     */
     orgMembershipStatus: string;
     /**
      * One or more project-level roles assigned to the MongoDB Cloud user.
@@ -7237,7 +7373,7 @@ export interface GetResourcePoliciesResourcePolicy {
      */
     name: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
      */
     orgId: string;
     /**
@@ -7313,7 +7449,7 @@ export interface GetResourcePoliciesResult {
      */
     name: string;
     /**
-     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
      */
     orgId: string;
     /**
@@ -7405,7 +7541,7 @@ export interface GetSearchDeploymentSpec {
 
 export interface GetSearchIndexSynonym {
     /**
-     * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+     * [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      */
     analyzer: string;
     /**
@@ -7428,11 +7564,11 @@ export interface GetSearchIndexTypeSet {
 
 export interface GetSearchIndexesResult {
     /**
-     * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+     * [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      */
     analyzer: string;
     /**
-     * [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+     * [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
      */
     analyzers: string;
     /**
@@ -7444,9 +7580,12 @@ export interface GetSearchIndexesResult {
      */
     collectionName: string;
     /**
-     * (Required) Name of the database the collection is in.
+     * Name of the database containing the collection with one or more Atlas Search indexes.
      */
     database: string;
+    /**
+     * JSON string containing the index field definitions for vector search indexes.
+     */
     fields: string;
     /**
      * The unique identifier of the Atlas Search index.
@@ -7473,11 +7612,11 @@ export interface GetSearchIndexesResult {
      */
     numPartitions: number;
     /**
-     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+     * Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
-     * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+     * [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
      */
     searchAnalyzer: string;
     /**
@@ -7490,11 +7629,14 @@ export interface GetSearchIndexesResult {
     storedSource: string;
     /**
      * Synonyms mapping definition to use in this index.
-     * * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+     * * `synonyms.#.name` - Name of the [synonym mapping definition](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-ref).
      * * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
-     * * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+     * * `synonyms.#.analyzer` - Name of the [analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
      */
     synonyms: outputs.GetSearchIndexesResultSynonym[];
+    /**
+     * Type of the index. Can be `search` or `vectorSearch`.
+     */
     type: string;
     /**
      * Set of type set definitions (when present). Each item includes:
@@ -7504,7 +7646,7 @@ export interface GetSearchIndexesResult {
 
 export interface GetSearchIndexesResultSynonym {
     /**
-     * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+     * [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      */
     analyzer: string;
     /**
@@ -7559,6 +7701,9 @@ export interface GetServerlessInstancesResult {
      * @deprecated This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide.
      */
     continuousBackupEnabled: boolean;
+    /**
+     * Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
+     */
     createDate: string;
     /**
      * Unique 24-hexadecimal digit string that identifies the serverless instance.
@@ -7574,7 +7719,7 @@ export interface GetServerlessInstancesResult {
      */
     name: string;
     /**
-     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+     * Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      */
     projectId: string;
     /**
@@ -7659,6 +7804,10 @@ export interface GetServiceAccountProjectAssignmentsResult {
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: string;
+    /**
+     * A list of project roles assigned to the Service Account in this project.
+     */
+    roles: string[];
 }
 
 export interface GetServiceAccountSecret {
@@ -7893,7 +8042,7 @@ export interface GetStreamConnectionsResult {
      */
     authentication: outputs.GetStreamConnectionsResultAuthentication;
     /**
-     * The configuration for AWS Lambda connection. See AWS
+     * The configuration for S3 connection. See AWS.
      */
     aws: outputs.GetStreamConnectionsResultAws;
     /**
@@ -7908,6 +8057,9 @@ export interface GetStreamConnectionsResult {
      * Name of the cluster configured for this connection.
      */
     clusterName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
+     */
     clusterProjectId: string;
     /**
      * A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
@@ -7922,7 +8074,7 @@ export interface GetStreamConnectionsResult {
      */
     dbRoleToExecute: outputs.GetStreamConnectionsResultDbRoleToExecute;
     /**
-     * The configuration for GCP Pub/Sub connection. See GCP
+     * The configuration for GCP Pub/Sub connection. See GCP.
      */
     gcp: outputs.GetStreamConnectionsResultGcp;
     /**
@@ -7937,7 +8089,7 @@ export interface GetStreamConnectionsResult {
      */
     instanceName: string;
     /**
-     * Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
+     * Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
      */
     networking: outputs.GetStreamConnectionsResultNetworking;
     /**
@@ -8579,11 +8731,11 @@ export interface GlobalClusterConfigManagedNamespace {
      */
     db: string;
     /**
-     * Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+     * Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
      */
     isCustomShardKeyHashed: boolean;
     /**
-     * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+     * Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
      */
     isShardKeyUnique: boolean;
 }
@@ -8635,7 +8787,7 @@ export interface OnlineArchiveCriteria {
      */
     dateField?: string;
     /**
-     * Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601 or Epoch timestamps. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values:  ISODATE (default), EPOCH_SECONDS, EPOCH_MILLIS, EPOCH_NANOSECONDS.
+     * Syntax used to write the date after which data moves to the online archive. Date can be expressed as ISO 8601, Epoch timestamps, or ObjectId. The Epoch timestamp can be expressed as nanoseconds, milliseconds, or seconds. You must set `type` to `DATE` if `collectionType` is `TIMESERIES`. Valid values: `ISODATE`, `EPOCH_SECONDS`, `EPOCH_MILLIS`, `EPOCH_NANOSECONDS`, or `OBJECT_ID`. Default is `ISODATE`. See [dateFormat](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupclusteronlinearchive#operation-creategroupclusteronlinearchive-body-application-vnd-atlas-2023-01-01-json-date-criteria-object-dateformat) in the Atlas Admin API reference.
      */
     dateFormat: string;
     /**
@@ -8784,7 +8936,7 @@ export interface PrivateLinkEndpointServiceEndpoint {
      */
     ipAddress?: string;
     /**
-     * Status of the endpoint. Atlas returns one of the [values shown above](https://docs.atlas.mongodb.com/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
+     * Status of the endpoint. Atlas returns one of the [values shown above](https://www.mongodb.com/docs/atlas/reference/api/private-endpoints-endpoint-create-one/#std-label-ref-status-field).
      */
     status: string;
 }
@@ -8817,11 +8969,11 @@ export interface ProjectApiKeyProjectAssignment {
 
 export interface ProjectIpAccessListTimeouts {
     /**
-     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs. Default: `45m`.
      */
     delete?: string;
     /**
-     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled.
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), and "h" (hours). Read operations occur during any refresh or planning operation when refresh is enabled. Default: `2m`.
      */
     read?: string;
 }
@@ -8970,7 +9122,7 @@ export interface SearchDeploymentTimeouts {
 
 export interface SearchIndexSynonym {
     /**
-     * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+     * [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      */
     analyzer: string;
     /**
@@ -8978,7 +9130,7 @@ export interface SearchIndexSynonym {
      */
     name: string;
     /**
-     * (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+     * (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
      */
     sourceCollection: string;
 }
@@ -9007,7 +9159,7 @@ export interface ServerlessInstanceTag {
     /**
      * Variable that belongs to the set of the tag.
      *
-     * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+     * To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
      */
     value: string;
 }
@@ -9049,7 +9201,7 @@ export interface StreamConnectionAuthentication {
      */
     clientSecret?: string;
     /**
-     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, or `SCRAM-512`.
+     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
      */
     mechanism?: string;
     /**
@@ -9106,7 +9258,7 @@ export interface StreamConnectionDbRoleToExecute {
      */
     role: string;
     /**
-     * Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+     * Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
      */
     type: string;
 }
@@ -9166,15 +9318,15 @@ export interface StreamConnectionSecurity {
 
 export interface StreamConnectionTimeouts {
     /**
-     * The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+     * The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `40m` (40 minutes).
      */
     create?: string;
     /**
-     * The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
+     * The maximum time to wait for the stream connection to be fully deleted. Defaults to `40m` (40 minutes).
      */
     delete?: string;
     /**
-     * The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+     * The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `40m` (40 minutes).
      */
     update?: string;
 }
@@ -9191,6 +9343,9 @@ export interface StreamInstanceDataProcessRegion {
 }
 
 export interface StreamInstanceStreamConfig {
+    /**
+     * Maximum tier size for the Stream Instance.
+     */
     maxTierSize: string;
     /**
      * Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.

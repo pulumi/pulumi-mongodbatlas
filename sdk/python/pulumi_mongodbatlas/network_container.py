@@ -38,9 +38,9 @@ class NetworkContainerArgs:
                **Important**: Atlas limits the number of MongoDB nodes per Network Peering connection based on the CIDR block and the region selected for the project. Contact [MongoDB Support](https://www.mongodb.com/contact?tck=docs_atlas) for any questions on Atlas limits of MongoDB nodes per Network Peering connection.
         :param pulumi.Input[_builtins.str] project_id: Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
-        :param pulumi.Input[_builtins.str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
-        :param pulumi.Input[_builtins.str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions: Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        :param pulumi.Input[_builtins.str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
+        :param pulumi.Input[_builtins.str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions: Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
         """
         pulumi.set(__self__, "atlas_cidr_block", atlas_cidr_block)
         pulumi.set(__self__, "project_id", project_id)
@@ -100,7 +100,7 @@ class NetworkContainerArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
         """
         return pulumi.get(self, "region")
 
@@ -112,7 +112,7 @@ class NetworkContainerArgs:
     @pulumi.getter(name="regionName")
     def region_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
         """
         return pulumi.get(self, "region_name")
 
@@ -124,7 +124,7 @@ class NetworkContainerArgs:
     @pulumi.getter
     def regions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
         """
         return pulumi.get(self, "regions")
 
@@ -167,9 +167,9 @@ class _NetworkContainerState:
         :param pulumi.Input[_builtins.str] project_id: Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
         :param pulumi.Input[_builtins.bool] provisioned: Indicates whether the project has Network Peering connections deployed in the container.
-        :param pulumi.Input[_builtins.str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
-        :param pulumi.Input[_builtins.str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions: Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        :param pulumi.Input[_builtins.str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
+        :param pulumi.Input[_builtins.str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions: Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
         :param pulumi.Input[_builtins.str] vnet_name: The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         :param pulumi.Input[_builtins.str] vpc_id: Unique identifier of Atlas' AWS VPC.
         """
@@ -307,7 +307,7 @@ class _NetworkContainerState:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
         """
         return pulumi.get(self, "region")
 
@@ -319,7 +319,7 @@ class _NetworkContainerState:
     @pulumi.getter(name="regionName")
     def region_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
         """
         return pulumi.get(self, "region_name")
 
@@ -331,7 +331,7 @@ class _NetworkContainerState:
     @pulumi.getter
     def regions(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
         """
         return pulumi.get(self, "regions")
 
@@ -441,7 +441,7 @@ class NetworkContainer(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/networkContainer:NetworkContainer my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a
         ```
 
-        See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
+        See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/)
 
 
         :param str resource_name: The name of the resource.
@@ -456,9 +456,9 @@ class NetworkContainer(pulumi.CustomResource):
                **Important**: Atlas limits the number of MongoDB nodes per Network Peering connection based on the CIDR block and the region selected for the project. Contact [MongoDB Support](https://www.mongodb.com/contact?tck=docs_atlas) for any questions on Atlas limits of MongoDB nodes per Network Peering connection.
         :param pulumi.Input[_builtins.str] project_id: Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
-        :param pulumi.Input[_builtins.str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
-        :param pulumi.Input[_builtins.str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions: Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        :param pulumi.Input[_builtins.str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
+        :param pulumi.Input[_builtins.str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions: Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
         """
         ...
     @overload
@@ -530,7 +530,7 @@ class NetworkContainer(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/networkContainer:NetworkContainer my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a
         ```
 
-        See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
+        See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/)
 
 
         :param str resource_name: The name of the resource.
@@ -625,9 +625,9 @@ class NetworkContainer(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: Unique identifier for the Atlas project for this Network Peering Container, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider for this Network Peering connection.  Accepted values are GCP, AWS, AZURE. If omitted, Atlas sets this parameter to AWS.
         :param pulumi.Input[_builtins.bool] provisioned: Indicates whether the project has Network Peering connections deployed in the container.
-        :param pulumi.Input[_builtins.str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
-        :param pulumi.Input[_builtins.str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions: Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        :param pulumi.Input[_builtins.str] region: Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
+        :param pulumi.Input[_builtins.str] region_name: The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] regions: Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
         :param pulumi.Input[_builtins.str] vnet_name: The name of the Azure VNet. Returns null. This value is populated once you create a new network peering connection with the network peering resource.
         :param pulumi.Input[_builtins.str] vpc_id: Unique identifier of Atlas' AWS VPC.
         """
@@ -725,7 +725,7 @@ class NetworkContainer(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
         """
-        Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
         """
         return pulumi.get(self, "region")
 
@@ -733,7 +733,7 @@ class NetworkContainer(pulumi.CustomResource):
     @pulumi.getter(name="regionName")
     def region_name(self) -> pulumi.Output[_builtins.str]:
         """
-        The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
         """
         return pulumi.get(self, "region_name")
 
@@ -741,7 +741,7 @@ class NetworkContainer(pulumi.CustomResource):
     @pulumi.getter
     def regions(self) -> pulumi.Output[Sequence[_builtins.str]]:
         """
-        Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        Atlas regions where the container resides. Provide this field only if you provide an `atlas_cidr_block` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
         """
         return pulumi.get(self, "regions")
 

@@ -17,11 +17,19 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
+        /// <summary>
+        /// A list of project roles assigned to the Service Account in this project.
+        /// </summary>
+        public readonly ImmutableArray<string> Roles;
 
         [OutputConstructor]
-        private GetServiceAccountProjectAssignmentsResultResult(string projectId)
+        private GetServiceAccountProjectAssignmentsResultResult(
+            string projectId,
+
+            ImmutableArray<string> roles)
         {
             ProjectId = projectId;
+            Roles = roles;
         }
     }
 }

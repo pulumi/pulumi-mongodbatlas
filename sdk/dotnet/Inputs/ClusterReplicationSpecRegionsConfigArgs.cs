@@ -43,7 +43,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<int>? ReadOnlyNodes { get; set; }
 
         /// <summary>
-        /// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        /// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
         /// </summary>
         [Input("regionName", required: true)]
         public Input<string> RegionName { get; set; } = null!;

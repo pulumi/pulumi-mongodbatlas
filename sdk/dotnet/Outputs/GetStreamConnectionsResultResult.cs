@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly Outputs.GetStreamConnectionsResultAuthenticationResult Authentication;
         /// <summary>
-        /// The configuration for AWS Lambda connection. See AWS
+        /// The configuration for S3 connection. See AWS.
         /// </summary>
         public readonly Outputs.GetStreamConnectionsResultAwsResult Aws;
         /// <summary>
@@ -33,6 +33,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Name of the cluster configured for this connection.
         /// </summary>
         public readonly string ClusterName;
+        /// <summary>
+        /// Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
+        /// </summary>
         public readonly string ClusterProjectId;
         /// <summary>
         /// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
@@ -47,7 +50,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly Outputs.GetStreamConnectionsResultDbRoleToExecuteResult DbRoleToExecute;
         /// <summary>
-        /// The configuration for GCP Pub/Sub connection. See GCP
+        /// The configuration for GCP Pub/Sub connection. See GCP.
         /// </summary>
         public readonly Outputs.GetStreamConnectionsResultGcpResult Gcp;
         /// <summary>
@@ -60,7 +63,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string InstanceName;
         /// <summary>
-        /// Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
+        /// Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
         /// </summary>
         public readonly Outputs.GetStreamConnectionsResultNetworkingResult Networking;
         /// <summary>

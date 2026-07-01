@@ -119,7 +119,7 @@ import javax.annotation.Nullable;
  * $ pulumi import mongodbatlas:index/globalClusterConfig:GlobalClusterConfig config 1112222b3bf99403840e8934-Cluster0
  * ```
  * 
- * See detailed information for arguments and attributes: [MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)
+ * See detailed information for arguments and attributes: [MongoDB API Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/)
  * 
  */
 @ResourceType(type="mongodbatlas:index/globalClusterConfig:GlobalClusterConfig")
@@ -167,14 +167,14 @@ public class GlobalClusterConfig extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.customZoneMappings);
     }
     /**
-     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
      * 
      */
     @Export(name="managedNamespaces", refs={List.class,GlobalClusterConfigManagedNamespace.class}, tree="[0,1]")
     private Output<List<GlobalClusterConfigManagedNamespace>> managedNamespaces;
 
     /**
-     * @return Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+     * @return Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
      * 
      */
     public Output<List<GlobalClusterConfigManagedNamespace>> managedNamespaces() {

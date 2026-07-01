@@ -82,9 +82,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
-     * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+     * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://www.mongodb.com/docs/manual/core/security-scram/), not LDAP.
      * * `USER` - LDAP server authenticates this user through the user&#39;s LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
-     * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+     * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://www.mongodb.com/docs/atlas/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
      * 
      */
     @Import(name="ldapAuthType")
@@ -92,9 +92,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
-     * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+     * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://www.mongodb.com/docs/manual/core/security-scram/), not LDAP.
      * * `USER` - LDAP server authenticates this user through the user&#39;s LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
-     * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+     * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://www.mongodb.com/docs/atlas/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
      * 
      */
     public Optional<Output<String>> ldapAuthType() {
@@ -123,14 +123,14 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * User&#39;s initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+     * User&#39;s initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return User&#39;s initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+     * @return User&#39;s initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
      * 
      */
     public Optional<Output<String>> password() {
@@ -331,9 +331,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param ldapAuthType Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
-         * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+         * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://www.mongodb.com/docs/manual/core/security-scram/), not LDAP.
          * * `USER` - LDAP server authenticates this user through the user&#39;s LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
-         * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+         * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://www.mongodb.com/docs/atlas/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
          * 
          * @return builder
          * 
@@ -345,9 +345,9 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param ldapAuthType Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
-         * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+         * * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://www.mongodb.com/docs/manual/core/security-scram/), not LDAP.
          * * `USER` - LDAP server authenticates this user through the user&#39;s LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
-         * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+         * * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://www.mongodb.com/docs/atlas/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
          * 
          * @return builder
          * 
@@ -384,7 +384,7 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param password User&#39;s initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+         * @param password User&#39;s initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
          * 
          * @return builder
          * 
@@ -395,7 +395,7 @@ public final class DatabaseUserArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param password User&#39;s initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+         * @param password User&#39;s initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
          * 
          * @return builder
          * 

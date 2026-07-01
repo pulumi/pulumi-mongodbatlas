@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetDatabaseUsersResultScopeResult
     {
         /// <summary>
-        /// Name of the role to grant.
+        /// Name of the cluster or Atlas Data Federation that the user has access to.
         /// </summary>
         public readonly string Name;
         /// <summary>

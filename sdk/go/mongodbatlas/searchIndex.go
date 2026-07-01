@@ -231,9 +231,9 @@ import (
 type SearchIndex struct {
 	pulumi.CustomResourceState
 
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	Analyzer pulumi.StringPtrOutput `pulumi:"analyzer"`
-	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+	// [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
 	Analyzers pulumi.StringPtrOutput `pulumi:"analyzers"`
 	// The name of the cluster where you want to create the search index within.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
@@ -257,7 +257,7 @@ type SearchIndex struct {
 	NumPartitions pulumi.IntPtrOutput `pulumi:"numPartitions"`
 	// The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	SearchAnalyzer pulumi.StringPtrOutput `pulumi:"searchAnalyzer"`
 	// Current status of the index.
 	Status pulumi.StringOutput `pulumi:"status"`
@@ -315,9 +315,9 @@ func GetSearchIndex(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering SearchIndex resources.
 type searchIndexState struct {
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	Analyzer *string `pulumi:"analyzer"`
-	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+	// [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
 	Analyzers *string `pulumi:"analyzers"`
 	// The name of the cluster where you want to create the search index within.
 	ClusterName *string `pulumi:"clusterName"`
@@ -341,7 +341,7 @@ type searchIndexState struct {
 	NumPartitions *int `pulumi:"numPartitions"`
 	// The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
 	// Current status of the index.
 	Status *string `pulumi:"status"`
@@ -358,9 +358,9 @@ type searchIndexState struct {
 }
 
 type SearchIndexState struct {
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	Analyzer pulumi.StringPtrInput
-	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+	// [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
 	Analyzers pulumi.StringPtrInput
 	// The name of the cluster where you want to create the search index within.
 	ClusterName pulumi.StringPtrInput
@@ -384,7 +384,7 @@ type SearchIndexState struct {
 	NumPartitions pulumi.IntPtrInput
 	// The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	SearchAnalyzer pulumi.StringPtrInput
 	// Current status of the index.
 	Status pulumi.StringPtrInput
@@ -405,9 +405,9 @@ func (SearchIndexState) ElementType() reflect.Type {
 }
 
 type searchIndexArgs struct {
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	Analyzer *string `pulumi:"analyzer"`
-	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+	// [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
 	Analyzers *string `pulumi:"analyzers"`
 	// The name of the cluster where you want to create the search index within.
 	ClusterName string `pulumi:"clusterName"`
@@ -429,7 +429,7 @@ type searchIndexArgs struct {
 	NumPartitions *int `pulumi:"numPartitions"`
 	// The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	SearchAnalyzer *string `pulumi:"searchAnalyzer"`
 	// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
 	StoredSource *string `pulumi:"storedSource"`
@@ -445,9 +445,9 @@ type searchIndexArgs struct {
 
 // The set of arguments for constructing a SearchIndex resource.
 type SearchIndexArgs struct {
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	Analyzer pulumi.StringPtrInput
-	// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+	// [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
 	Analyzers pulumi.StringPtrInput
 	// The name of the cluster where you want to create the search index within.
 	ClusterName pulumi.StringInput
@@ -469,7 +469,7 @@ type SearchIndexArgs struct {
 	NumPartitions pulumi.IntPtrInput
 	// The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
-	// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+	// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 	SearchAnalyzer pulumi.StringPtrInput
 	// String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
 	StoredSource pulumi.StringPtrInput
@@ -570,12 +570,12 @@ func (o SearchIndexOutput) ToSearchIndexOutputWithContext(ctx context.Context) S
 	return o
 }
 
-// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 func (o SearchIndexOutput) Analyzer() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringPtrOutput { return v.Analyzer }).(pulumi.StringPtrOutput)
 }
 
-// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+// [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
 func (o SearchIndexOutput) Analyzers() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringPtrOutput { return v.Analyzers }).(pulumi.StringPtrOutput)
 }
@@ -635,7 +635,7 @@ func (o SearchIndexOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
 func (o SearchIndexOutput) SearchAnalyzer() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringPtrOutput { return v.SearchAnalyzer }).(pulumi.StringPtrOutput)
 }

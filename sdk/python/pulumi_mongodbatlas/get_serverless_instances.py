@@ -79,7 +79,7 @@ def get_serverless_instances(project_id: Optional[_builtins.str] = None,
     `get_serverless_instances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
 
     > **NOTE:**  Serverless instances do not support some Atlas features at this time.
-    For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+    For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
 
     ## Example Usage
 
@@ -91,7 +91,7 @@ def get_serverless_instances(project_id: Optional[_builtins.str] = None,
     ```
 
 
-    :param _builtins.str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+    :param _builtins.str project_id: Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id
@@ -110,7 +110,7 @@ def get_serverless_instances_output(project_id: pulumi.Input[Optional[_builtins.
     `get_serverless_instances` describes all serverless instances. This represents serverless instances that have been created for the specified group id.
 
     > **NOTE:**  Serverless instances do not support some Atlas features at this time.
-    For a full list of unsupported features, see [Serverless Instance Limitations](https://docs.atlas.mongodb.com/reference/serverless-instance-limitations/).
+    For a full list of unsupported features, see [Serverless Instance Limitations](https://www.mongodb.com/docs/atlas/reference/serverless-instance-limitations/).
 
     ## Example Usage
 
@@ -122,7 +122,7 @@ def get_serverless_instances_output(project_id: pulumi.Input[Optional[_builtins.
     ```
 
 
-    :param _builtins.str project_id: Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+    :param _builtins.str project_id: Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['projectId'] = project_id

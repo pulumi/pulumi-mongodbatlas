@@ -27,7 +27,7 @@ public final class ClusterAdvancedConfiguration {
     private @Nullable List<String> customOpensslCipherConfigTls12s;
     private @Nullable Integer defaultMaxTimeMs;
     /**
-     * @return [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+     * @return [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      * 
      * @deprecated
      * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
@@ -36,7 +36,7 @@ public final class ClusterAdvancedConfiguration {
     @Deprecated /* This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide */
     private @Nullable String defaultReadConcern;
     /**
-     * @return [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+     * @return [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
      * 
      */
     private @Nullable String defaultWriteConcern;
@@ -117,7 +117,7 @@ public final class ClusterAdvancedConfiguration {
         return Optional.ofNullable(this.defaultMaxTimeMs);
     }
     /**
-     * @return [Default level of acknowledgment requested from MongoDB for read operations](https://docs.mongodb.com/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
+     * @return [Default level of acknowledgment requested from MongoDB for read operations](https://www.mongodb.com/docs/manual/reference/read-concern/) set for this cluster. **(DEPRECATED)** MongoDB 6.0 and later clusters default to `local`. To use a custom read concern level, please refer to your driver documentation.
      * 
      * @deprecated
      * This parameter is deprecated. Please refer to our examples, documentation, and 1.18.0 migration guide for more details at https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/1.18.0-upgrade-guide
@@ -128,7 +128,7 @@ public final class ClusterAdvancedConfiguration {
         return Optional.ofNullable(this.defaultReadConcern);
     }
     /**
-     * @return [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+     * @return [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
      * 
      */
     public Optional<String> defaultWriteConcern() {

@@ -14,6 +14,33 @@ import (
 // `getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
 //
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.GetSearchIndexes(ctx, &mongodbatlas.LookupSearchIndexesArgs{
+//				ProjectId:      "<PROJECT_ID>",
+//				ClusterName:    "<CLUSTER_NAME>",
+//				Database:       "<DATABASE_NAME>",
+//				CollectionName: "<COLLECTION_NAME>",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupSearchIndexes(ctx *pulumi.Context, args *LookupSearchIndexesArgs, opts ...pulumi.InvokeOption) (*LookupSearchIndexesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupSearchIndexesResult
@@ -30,9 +57,9 @@ type LookupSearchIndexesArgs struct {
 	ClusterName string `pulumi:"clusterName"`
 	// Name of the collection with one or more Atlas Search indexes.
 	CollectionName string `pulumi:"collectionName"`
-	// (Required) Name of the database the collection is in.
+	// Name of the database containing the collection with one or more Atlas Search indexes.
 	Database string `pulumi:"database"`
-	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+	// Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
@@ -67,9 +94,9 @@ type LookupSearchIndexesOutputArgs struct {
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
 	// Name of the collection with one or more Atlas Search indexes.
 	CollectionName pulumi.StringInput `pulumi:"collectionName"`
-	// (Required) Name of the database the collection is in.
+	// Name of the database containing the collection with one or more Atlas Search indexes.
 	Database pulumi.StringInput `pulumi:"database"`
-	// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+	// Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
 

@@ -219,7 +219,7 @@ import * as utilities from "./utilities";
  * $ pulumi import mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule test 5d0f1f73cf09a29120e173cf-MyClusterTest
  * ```
  *
- * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/cloud-backup/schedule/modify-one-schedule/)
+ * For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/schedule/modify-one-schedule/)
  */
 export class CloudBackupSchedule extends pulumi.CustomResource {
     /**

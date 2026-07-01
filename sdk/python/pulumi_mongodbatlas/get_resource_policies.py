@@ -53,7 +53,7 @@ class GetResourcePoliciesResult:
     @pulumi.getter(name="orgId")
     def org_id(self) -> _builtins.str:
         """
-        Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
         """
         return pulumi.get(self, "org_id")
 
@@ -92,7 +92,7 @@ def get_resource_policies(org_id: Optional[_builtins.str] = None,
     ## Example Usage
 
 
-    :param _builtins.str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+    :param _builtins.str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
     """
     __args__ = dict()
     __args__['orgId'] = org_id
@@ -112,7 +112,7 @@ def get_resource_policies_output(org_id: pulumi.Input[Optional[_builtins.str]] =
     ## Example Usage
 
 
-    :param _builtins.str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+    :param _builtins.str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
     """
     __args__ = dict()
     __args__['orgId'] = org_id

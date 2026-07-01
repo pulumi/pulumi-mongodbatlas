@@ -20,7 +20,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// <summary>
         /// Variable that belongs to the set of the tag.
         /// 
-        /// To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+        /// To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
         /// </summary>
         public readonly string Value;
 

@@ -63,7 +63,7 @@ public final class GetClusterResult {
      */
     private String clusterType;
     /**
-     * @return Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/).
+     * @return Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/).
      * 
      */
     private List<GetClusterConnectionString> connectionStrings;
@@ -181,7 +181,7 @@ public final class GetClusterResult {
      */
     private String providerName;
     /**
-     * @return Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * @return Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the Atlas Region name, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
      * 
      */
     private String providerRegionName;
@@ -301,7 +301,7 @@ public final class GetClusterResult {
         return this.clusterType;
     }
     /**
-     * @return Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/).
+     * @return Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/).
      * 
      */
     public List<GetClusterConnectionString> connectionStrings() {
@@ -471,7 +471,7 @@ public final class GetClusterResult {
         return this.providerName;
     }
     /**
-     * @return Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * @return Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the Atlas Region name, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
      * 
      */
     public String providerRegionName() {

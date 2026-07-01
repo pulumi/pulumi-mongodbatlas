@@ -16,7 +16,7 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+ * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
  * 
  * ## Example Usage
  * 
@@ -90,8 +90,6 @@ public class FederatedQueryLimit extends com.pulumi.resources.CustomResource {
     }
     /**
      * Default value of the limit.
-     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-     * * `maximumLimit` - Maximum value of the limit.
      * 
      */
     @Export(name="defaultLimit", refs={Integer.class}, tree="[0]")
@@ -99,16 +97,22 @@ public class FederatedQueryLimit extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Default value of the limit.
-     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-     * * `maximumLimit` - Maximum value of the limit.
      * 
      */
     public Output<Optional<Integer>> defaultLimit() {
         return Codegen.optional(this.defaultLimit);
     }
+    /**
+     * Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     * 
+     */
     @Export(name="lastModifiedDate", refs={String.class}, tree="[0]")
     private Output<String> lastModifiedDate;
 
+    /**
+     * @return Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public Output<String> lastModifiedDate() {
         return this.lastModifiedDate;
     }
@@ -134,9 +138,17 @@ public class FederatedQueryLimit extends com.pulumi.resources.CustomResource {
     public Output<String> limitName() {
         return this.limitName;
     }
+    /**
+     * Maximum value of the limit.
+     * 
+     */
     @Export(name="maximumLimit", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maximumLimit;
 
+    /**
+     * @return Maximum value of the limit.
+     * 
+     */
     public Output<Optional<Integer>> maximumLimit() {
         return Codegen.optional(this.maximumLimit);
     }

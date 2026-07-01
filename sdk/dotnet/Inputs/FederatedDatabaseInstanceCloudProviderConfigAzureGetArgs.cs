@@ -12,6 +12,9 @@ namespace Pulumi.Mongodbatlas.Inputs
 
     public sealed class FederatedDatabaseInstanceCloudProviderConfigAzureGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Unique identifier of the Azure Active Directory application associated with the service principal.
+        /// </summary>
         [Input("atlasAppId")]
         public Input<string>? AtlasAppId { get; set; }
 

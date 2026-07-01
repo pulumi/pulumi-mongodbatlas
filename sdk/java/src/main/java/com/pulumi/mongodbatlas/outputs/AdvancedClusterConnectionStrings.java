@@ -14,7 +14,7 @@ import javax.annotation.Nullable;
 @CustomType
 public final class AdvancedClusterConnectionStrings {
     /**
-     * @return [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * @return [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      * 
      */
     private @Nullable String private_;
@@ -32,7 +32,7 @@ public final class AdvancedClusterConnectionStrings {
      */
     private @Nullable List<AdvancedClusterConnectionStringsPrivateEndpoint> privateEndpoints;
     /**
-     * @return [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * @return [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      * 
      */
     private @Nullable String privateSrv;
@@ -49,7 +49,7 @@ public final class AdvancedClusterConnectionStrings {
 
     private AdvancedClusterConnectionStrings() {}
     /**
-     * @return [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * @return [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      * 
      */
     public Optional<String> private_() {
@@ -71,7 +71,7 @@ public final class AdvancedClusterConnectionStrings {
         return this.privateEndpoints == null ? List.of() : this.privateEndpoints;
     }
     /**
-     * @return [Network-peering-endpoint-aware](https://docs.atlas.mongodb.com/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
+     * @return [Network-peering-endpoint-aware](https://www.mongodb.com/docs/atlas/security-vpc-peering/#vpc-peering) mongodb+srv://connection strings for each interface VPC endpoint you configured to connect to this cluster. Returned only if you created a network peering connection to this cluster.
      * 
      */
     public Optional<String> privateSrv() {

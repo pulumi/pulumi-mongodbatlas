@@ -91,7 +91,13 @@ export interface GetCloudBackupSnapshotExportJobResult {
      * * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
      */
     readonly exportJobId: string;
+    /**
+     * _Returned for replica set only._ Number of collections that have been exported.
+     */
     readonly exportStatusExportedCollections: number;
+    /**
+     * _Returned for replica set only._ Total number of collections to export.
+     */
     readonly exportStatusTotalCollections: number;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the export job completes.

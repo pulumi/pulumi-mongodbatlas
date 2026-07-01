@@ -10,6 +10,18 @@ import * as utilities from "./utilities";
  * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getSearchIndexes({
+ *     projectId: "<PROJECT_ID>",
+ *     clusterName: "<CLUSTER_NAME>",
+ *     database: "<DATABASE_NAME>",
+ *     collectionName: "<COLLECTION_NAME>",
+ * });
+ * ```
  */
 export function getSearchIndexes(args: GetSearchIndexesArgs, opts?: pulumi.InvokeOptions): Promise<GetSearchIndexesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -34,11 +46,11 @@ export interface GetSearchIndexesArgs {
      */
     collectionName: string;
     /**
-     * (Required) Name of the database the collection is in.
+     * Name of the database containing the collection with one or more Atlas Search indexes.
      */
     database: string;
     /**
-     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+     * Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      */
     projectId: string;
 }
@@ -74,6 +86,18 @@ export interface GetSearchIndexesResult {
  * `mongodbatlas.getSearchIndexes` describes all search indexes. This represents search indexes that have been created.
  *
  * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getSearchIndexes({
+ *     projectId: "<PROJECT_ID>",
+ *     clusterName: "<CLUSTER_NAME>",
+ *     database: "<DATABASE_NAME>",
+ *     collectionName: "<COLLECTION_NAME>",
+ * });
+ * ```
  */
 export function getSearchIndexesOutput(args: GetSearchIndexesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSearchIndexesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -98,11 +122,11 @@ export interface GetSearchIndexesOutputArgs {
      */
     collectionName: pulumi.Input<string>;
     /**
-     * (Required) Name of the database the collection is in.
+     * Name of the database containing the collection with one or more Atlas Search indexes.
      */
     database: pulumi.Input<string>;
     /**
-     * Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+     * Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
 }

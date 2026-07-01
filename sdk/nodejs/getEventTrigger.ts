@@ -51,34 +51,40 @@ export interface GetEventTriggerResult {
      */
     readonly configDatabase: string;
     /**
-     * If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+     * If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
      */
     readonly configFullDocument: boolean;
+    /**
+     * If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
+     */
     readonly configFullDocumentBefore: boolean;
     /**
-     * A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+     * A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
      */
     readonly configMatch: string;
     /**
-     * The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+     * The [authentication operation type](https://www.mongodb.com/docs/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
      */
     readonly configOperationType: string;
     /**
-     * The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+     * The [database event operation types](https://www.mongodb.com/docs/realm/triggers/database-triggers/#std-label-database-events) to listen for.
      */
     readonly configOperationTypes: string[];
     /**
-     * A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+     * A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
      */
     readonly configProject: string;
     /**
-     * A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+     * A list of one or more [authentication provider](https://www.mongodb.com/docs/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
      */
     readonly configProviders: string[];
     /**
-     * A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+     * A [cron expression](https://www.mongodb.com/docs/realm/triggers/cron-expressions/) that defines the trigger schedule.
      */
     readonly configSchedule: string;
+    /**
+     * The type of the scheduled trigger.
+     */
     readonly configScheduleType: string;
     /**
      * The ID of the MongoDB Service associated with the trigger.

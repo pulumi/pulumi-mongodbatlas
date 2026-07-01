@@ -9,9 +9,9 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
  *
- * [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
- * [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
- * [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+ * [Amazon Web Services Key Management Service](https://www.mongodb.com/docs/atlas/security-aws-kms/#security-aws-kms)
+ * [Azure Key Vault](https://www.mongodb.com/docs/atlas/security-azure-kms/#security-azure-kms)
+ * [Google Cloud KMS](https://www.mongodb.com/docs/atlas/security-gcp-kms/#security-gcp-kms)
  *
  * > **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
  *
@@ -166,9 +166,9 @@ export interface GetEncryptionAtRestResult {
 /**
  * `mongodbatlas.EncryptionAtRest` describes encryption at rest configuration for an Atlas project with one of the following providers:
  *
- * [Amazon Web Services Key Management Service](https://docs.atlas.mongodb.com/security-aws-kms/#security-aws-kms)
- * [Azure Key Vault](https://docs.atlas.mongodb.com/security-azure-kms/#security-azure-kms)
- * [Google Cloud KMS](https://docs.atlas.mongodb.com/security-gcp-kms/#security-gcp-kms)
+ * [Amazon Web Services Key Management Service](https://www.mongodb.com/docs/atlas/security-aws-kms/#security-aws-kms)
+ * [Azure Key Vault](https://www.mongodb.com/docs/atlas/security-azure-kms/#security-azure-kms)
+ * [Google Cloud KMS](https://www.mongodb.com/docs/atlas/security-gcp-kms/#security-gcp-kms)
  *
  * > **IMPORTANT** By default, Atlas enables encryption at rest for all cluster storage and snapshot volumes.
  *

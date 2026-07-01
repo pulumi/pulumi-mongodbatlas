@@ -39,8 +39,7 @@ class FederatedQueryLimitArgs:
         :param pulumi.Input[_builtins.str] tenant_name: Name of the Atlas Federated Database Instance.
         :param pulumi.Input[_builtins.int] value: Amount to set the limit to.
         :param pulumi.Input[_builtins.int] default_limit: Default value of the limit.
-               * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-               * `maximumLimit` - Maximum value of the limit.
+        :param pulumi.Input[_builtins.int] maximum_limit: Maximum value of the limit.
         """
         pulumi.set(__self__, "limit_name", limit_name)
         pulumi.set(__self__, "overrun_policy", overrun_policy)
@@ -121,8 +120,6 @@ class FederatedQueryLimitArgs:
     def default_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Default value of the limit.
-        * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-        * `maximumLimit` - Maximum value of the limit.
         """
         return pulumi.get(self, "default_limit")
 
@@ -133,6 +130,9 @@ class FederatedQueryLimitArgs:
     @_builtins.property
     @pulumi.getter(name="maximumLimit")
     def maximum_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Maximum value of the limit.
+        """
         return pulumi.get(self, "maximum_limit")
 
     @maximum_limit.setter
@@ -157,13 +157,13 @@ class _FederatedQueryLimitState:
 
         :param pulumi.Input[_builtins.int] current_usage: Amount that indicates the current usage of the limit.
         :param pulumi.Input[_builtins.int] default_limit: Default value of the limit.
-               * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-               * `maximumLimit` - Maximum value of the limit.
+        :param pulumi.Input[_builtins.str] last_modified_date: Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
         :param pulumi.Input[_builtins.str] limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
                * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
                * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
                * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
                * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
+        :param pulumi.Input[_builtins.int] maximum_limit: Maximum value of the limit.
         :param pulumi.Input[_builtins.str] overrun_policy: String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] tenant_name: Name of the Atlas Federated Database Instance.
@@ -205,8 +205,6 @@ class _FederatedQueryLimitState:
     def default_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
         Default value of the limit.
-        * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-        * `maximumLimit` - Maximum value of the limit.
         """
         return pulumi.get(self, "default_limit")
 
@@ -217,6 +215,9 @@ class _FederatedQueryLimitState:
     @_builtins.property
     @pulumi.getter(name="lastModifiedDate")
     def last_modified_date(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+        """
         return pulumi.get(self, "last_modified_date")
 
     @last_modified_date.setter
@@ -242,6 +243,9 @@ class _FederatedQueryLimitState:
     @_builtins.property
     @pulumi.getter(name="maximumLimit")
     def maximum_limit(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Maximum value of the limit.
+        """
         return pulumi.get(self, "maximum_limit")
 
     @maximum_limit.setter
@@ -312,7 +316,7 @@ class FederatedQueryLimit(pulumi.CustomResource):
                  value: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
-        `FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+        `FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
 
         ## Example Usage
 
@@ -348,13 +352,12 @@ class FederatedQueryLimit(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] default_limit: Default value of the limit.
-               * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-               * `maximumLimit` - Maximum value of the limit.
         :param pulumi.Input[_builtins.str] limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
                * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
                * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
                * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
                * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
+        :param pulumi.Input[_builtins.int] maximum_limit: Maximum value of the limit.
         :param pulumi.Input[_builtins.str] overrun_policy: String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] tenant_name: Name of the Atlas Federated Database Instance.
@@ -367,7 +370,7 @@ class FederatedQueryLimit(pulumi.CustomResource):
                  args: FederatedQueryLimitArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        `FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+        `FederatedQueryLimit` provides a Federated Database Instance Query Limits resource. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
 
         ## Example Usage
 
@@ -478,13 +481,13 @@ class FederatedQueryLimit(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] current_usage: Amount that indicates the current usage of the limit.
         :param pulumi.Input[_builtins.int] default_limit: Default value of the limit.
-               * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-               * `maximumLimit` - Maximum value of the limit.
+        :param pulumi.Input[_builtins.str] last_modified_date: Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
         :param pulumi.Input[_builtins.str] limit_name: String enum that indicates whether the identity provider is active or not. Accepted values are:
                * `bytesProcessed.query`: Limit on the number of bytes processed during a single data federation query.
                * `bytesProcessed.daily`: Limit on the number of bytes processed for the data federation instance for the current day.
                * `bytesProcessed.weekly`: Limit on the number of bytes processed for the data federation instance for the current week.
                * `bytesProcessed.monthly`: Limit on the number of bytes processed for the data federation instance for the current month.
+        :param pulumi.Input[_builtins.int] maximum_limit: Maximum value of the limit.
         :param pulumi.Input[_builtins.str] overrun_policy: String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit. Accepted values are "BLOCK" OR "BLOCK_AND_KILL"
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] tenant_name: Name of the Atlas Federated Database Instance.
@@ -518,14 +521,15 @@ class FederatedQueryLimit(pulumi.CustomResource):
     def default_limit(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
         Default value of the limit.
-        * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-        * `maximumLimit` - Maximum value of the limit.
         """
         return pulumi.get(self, "default_limit")
 
     @_builtins.property
     @pulumi.getter(name="lastModifiedDate")
     def last_modified_date(self) -> pulumi.Output[_builtins.str]:
+        """
+        Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+        """
         return pulumi.get(self, "last_modified_date")
 
     @_builtins.property
@@ -543,6 +547,9 @@ class FederatedQueryLimit(pulumi.CustomResource):
     @_builtins.property
     @pulumi.getter(name="maximumLimit")
     def maximum_limit(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Maximum value of the limit.
+        """
         return pulumi.get(self, "maximum_limit")
 
     @_builtins.property

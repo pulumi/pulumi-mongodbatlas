@@ -16,9 +16,7 @@ import (
 //
 // Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 //
-// > **WARNING:** The password argument is required for creation but should be removed after creation if it will be managed externally. More details can be found in the password argument documentation.
-//
-// > **IMPORTANT:** All arguments including the password will be stored in the raw state as plain-text. Read more about sensitive data in state.
+// > **IMPORTANT WARNING:** Managing passwords with Terraform exposes sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices.
 //
 // ## Example Usage
 //
@@ -236,16 +234,16 @@ type DatabaseUser struct {
 	Description pulumi.StringPtrOutput       `pulumi:"description"`
 	Labels      DatabaseUserLabelArrayOutput `pulumi:"labels"`
 	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
-	// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+	// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://www.mongodb.com/docs/manual/core/security-scram/), not LDAP.
 	// * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
-	// * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+	// * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://www.mongodb.com/docs/atlas/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
 	LdapAuthType pulumi.StringOutput `pulumi:"ldapAuthType"`
 	// Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
 	// * `NONE` -	The user does not use OIDC federated authentication.
 	// * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	// * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType pulumi.StringOutput `pulumi:"oidcAuthType"`
-	// User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+	// User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
 	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
@@ -322,16 +320,16 @@ type databaseUserState struct {
 	Description *string             `pulumi:"description"`
 	Labels      []DatabaseUserLabel `pulumi:"labels"`
 	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
-	// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+	// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://www.mongodb.com/docs/manual/core/security-scram/), not LDAP.
 	// * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
-	// * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+	// * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://www.mongodb.com/docs/atlas/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
 	LdapAuthType *string `pulumi:"ldapAuthType"`
 	// Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
 	// * `NONE` -	The user does not use OIDC federated authentication.
 	// * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	// * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType *string `pulumi:"oidcAuthType"`
-	// User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+	// User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
 	Password *string `pulumi:"password"`
 	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
@@ -360,16 +358,16 @@ type DatabaseUserState struct {
 	Description pulumi.StringPtrInput
 	Labels      DatabaseUserLabelArrayInput
 	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
-	// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+	// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://www.mongodb.com/docs/manual/core/security-scram/), not LDAP.
 	// * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
-	// * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+	// * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://www.mongodb.com/docs/atlas/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
 	LdapAuthType pulumi.StringPtrInput
 	// Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
 	// * `NONE` -	The user does not use OIDC federated authentication.
 	// * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	// * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType pulumi.StringPtrInput
-	// User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+	// User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
 	Password pulumi.StringPtrInput
 	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
@@ -402,16 +400,16 @@ type databaseUserArgs struct {
 	Description *string             `pulumi:"description"`
 	Labels      []DatabaseUserLabel `pulumi:"labels"`
 	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
-	// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+	// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://www.mongodb.com/docs/manual/core/security-scram/), not LDAP.
 	// * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
-	// * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+	// * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://www.mongodb.com/docs/atlas/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
 	LdapAuthType *string `pulumi:"ldapAuthType"`
 	// Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
 	// * `NONE` -	The user does not use OIDC federated authentication.
 	// * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	// * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType *string `pulumi:"oidcAuthType"`
-	// User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+	// User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
 	Password *string `pulumi:"password"`
 	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
@@ -441,16 +439,16 @@ type DatabaseUserArgs struct {
 	Description pulumi.StringPtrInput
 	Labels      DatabaseUserLabelArrayInput
 	// Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
-	// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+	// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://www.mongodb.com/docs/manual/core/security-scram/), not LDAP.
 	// * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
-	// * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+	// * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://www.mongodb.com/docs/atlas/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
 	LdapAuthType pulumi.StringPtrInput
 	// Human-readable label that indicates whether the new database user authenticates with OIDC (OpenID Connect) federated authentication. If no value is given, Atlas uses the default value of `NONE`. The accepted types are:
 	// * `NONE` -	The user does not use OIDC federated authentication.
 	// * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	// * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType pulumi.StringPtrInput
-	// User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+	// User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
 	Password pulumi.StringPtrInput
 	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
@@ -577,9 +575,9 @@ func (o DatabaseUserOutput) Labels() DatabaseUserLabelArrayOutput {
 }
 
 // Method by which the provided `username` is authenticated. If no value is given, Atlas uses the default value of `NONE`.
-// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://docs.mongodb.com/manual/core/security-scram/), not LDAP.
+// * `NONE` -	Atlas authenticates this user through [SCRAM-SHA](https://www.mongodb.com/docs/manual/core/security-scram/), not LDAP.
 // * `USER` - LDAP server authenticates this user through the user's LDAP user. `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
-// * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://docs.atlas.mongodb.com/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
+// * `GROUP` - LDAP server authenticates this user using their LDAP user and authorizes this user using their LDAP group. To learn more about LDAP security, see [Set up User Authentication and Authorization with LDAP](https://www.mongodb.com/docs/atlas/security-ldaps). `username` must also be a fully qualified distinguished name, as defined in [RFC-2253](https://tools.ietf.org/html/rfc2253).
 func (o DatabaseUserOutput) LdapAuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.LdapAuthType }).(pulumi.StringOutput)
 }
@@ -592,7 +590,7 @@ func (o DatabaseUserOutput) OidcAuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.OidcAuthType }).(pulumi.StringOutput)
 }
 
-// User's initial password. A value is required to create the database user, however the argument may be removed from your Terraform configuration after user creation without impacting the user, password or Terraform management. If you do change management of the password to outside of Terraform it is advised to remove the argument from the Terraform configuration. IMPORTANT --- Passwords may show up in Terraform related logs and it will be stored in the Terraform state file as plain-text. Password can be changed after creation using your preferred method, e.g. via the MongoDB Atlas UI, to ensure security.
+// User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
 func (o DatabaseUserOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
 }

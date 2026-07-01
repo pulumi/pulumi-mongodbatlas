@@ -69,9 +69,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly string OrgMembershipStatus;
         /// <summary>
         /// Organization- and project-level roles assigned to one MongoDB Cloud user within one organization.
-        /// * `teamIds` - List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetOrganizationsResultUserRoleResult> Roles;
+        /// <summary>
+        /// List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
+        /// </summary>
         public readonly ImmutableArray<string> TeamIds;
         /// <summary>
         /// Email address that represents the username of the MongoDB Cloud user.

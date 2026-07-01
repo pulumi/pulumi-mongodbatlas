@@ -195,13 +195,13 @@ namespace Pulumi.Mongodbatlas
     public partial class SearchIndex : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        /// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         /// </summary>
         [Output("analyzer")]
         public Output<string?> Analyzer { get; private set; } = null!;
 
         /// <summary>
-        /// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+        /// [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
         /// ```
         /// analyzers = &lt;&lt;-EOF
         /// [{
@@ -294,7 +294,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        /// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         /// </summary>
         [Output("searchAnalyzer")]
         public Output<string?> SearchAnalyzer { get; private set; } = null!;
@@ -382,13 +382,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class SearchIndexArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        /// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         /// </summary>
         [Input("analyzer")]
         public Input<string>? Analyzer { get; set; }
 
         /// <summary>
-        /// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+        /// [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
         /// ```
         /// analyzers = &lt;&lt;-EOF
         /// [{
@@ -475,7 +475,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        /// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         /// </summary>
         [Input("searchAnalyzer")]
         public Input<string>? SearchAnalyzer { get; set; }
@@ -531,13 +531,13 @@ namespace Pulumi.Mongodbatlas
     public sealed class SearchIndexState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        /// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         /// </summary>
         [Input("analyzer")]
         public Input<string>? Analyzer { get; set; }
 
         /// <summary>
-        /// [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+        /// [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
         /// ```
         /// analyzers = &lt;&lt;-EOF
         /// [{
@@ -630,7 +630,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        /// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         /// </summary>
         [Input("searchAnalyzer")]
         public Input<string>? SearchAnalyzer { get; set; }

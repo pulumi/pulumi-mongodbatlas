@@ -93,7 +93,7 @@ class GetSearchIndexResult:
     @pulumi.getter
     def analyzer(self) -> _builtins.str:
         """
-        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+        [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
         """
         return pulumi.get(self, "analyzer")
 
@@ -101,7 +101,7 @@ class GetSearchIndexResult:
     @pulumi.getter
     def analyzers(self) -> _builtins.str:
         """
-        [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+        [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
         """
         return pulumi.get(self, "analyzers")
 
@@ -193,7 +193,7 @@ class GetSearchIndexResult:
     @pulumi.getter(name="searchAnalyzer")
     def search_analyzer(self) -> _builtins.str:
         """
-        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+        [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
         """
         return pulumi.get(self, "search_analyzer")
 
@@ -218,9 +218,9 @@ class GetSearchIndexResult:
     def synonyms(self) -> Sequence['outputs.GetSearchIndexSynonymResult']:
         """
         Synonyms mapping definition to use in this index.
-        * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+        * `synonyms.#.name` - Name of the [synonym mapping definition](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-ref).
         * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
-        * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+        * `synonyms.#.analyzer` - Name of the [analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
         """
         return pulumi.get(self, "synonyms")
 
@@ -287,7 +287,7 @@ def get_search_index(cluster_name: Optional[_builtins.str] = None,
 
     :param _builtins.str cluster_name: The name of the cluster containing the collection with one or more Atlas Search indexes.
     :param _builtins.str index_id: The unique identifier of the Atlas Search index. Use the `get_search_indexes`datasource to find the IDs of all Atlas Search indexes.
-    :param _builtins.str project_id: The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+    :param _builtins.str project_id: The unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name
@@ -338,7 +338,7 @@ def get_search_index_output(cluster_name: pulumi.Input[Optional[_builtins.str]] 
 
     :param _builtins.str cluster_name: The name of the cluster containing the collection with one or more Atlas Search indexes.
     :param _builtins.str index_id: The unique identifier of the Atlas Search index. Use the `get_search_indexes`datasource to find the IDs of all Atlas Search indexes.
-    :param _builtins.str project_id: The unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+    :param _builtins.str project_id: The unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
     __args__['clusterName'] = cluster_name

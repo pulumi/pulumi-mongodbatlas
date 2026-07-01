@@ -48,6 +48,10 @@ public final class GetAlertConfigurationsResult {
      * 
      */
     private List<GetAlertConfigurationsResultMetricThresholdConfig> metricThresholdConfigs;
+    /**
+     * @return List of notifications to send when an alert condition is detected. See notification.
+     * 
+     */
     private List<GetAlertConfigurationsResultNotification> notifications;
     /**
      * @return Requested output string format for the alert configuration
@@ -121,6 +125,10 @@ public final class GetAlertConfigurationsResult {
     public List<GetAlertConfigurationsResultMetricThresholdConfig> metricThresholdConfigs() {
         return this.metricThresholdConfigs;
     }
+    /**
+     * @return List of notifications to send when an alert condition is detected. See notification.
+     * 
+     */
     public List<GetAlertConfigurationsResultNotification> notifications() {
         return this.notifications;
     }

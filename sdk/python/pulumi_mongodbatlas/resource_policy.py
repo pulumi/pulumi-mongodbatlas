@@ -28,7 +28,7 @@ class ResourcePolicyArgs:
         """
         The set of arguments for constructing a ResourcePolicy resource.
 
-        :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+        :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input['ResourcePolicyPolicyArgs']]] policies: List of policies that make up the Atlas resource policy.
         :param pulumi.Input[_builtins.str] description: Description of the Atlas resource policy.
         :param pulumi.Input[_builtins.str] name: Human-readable label that describes the Atlas resource policy.
@@ -44,7 +44,7 @@ class ResourcePolicyArgs:
     @pulumi.getter(name="orgId")
     def org_id(self) -> pulumi.Input[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
         """
         return pulumi.get(self, "org_id")
 
@@ -110,7 +110,7 @@ class _ResourcePolicyState:
         :param pulumi.Input['ResourcePolicyLastUpdatedByUserArgs'] last_updated_by_user: The user that last updated the Atlas resource policy.
         :param pulumi.Input[_builtins.str] last_updated_date: Date and time in UTC when the Atlas resource policy was last updated.
         :param pulumi.Input[_builtins.str] name: Human-readable label that describes the Atlas resource policy.
-        :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+        :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input['ResourcePolicyPolicyArgs']]] policies: List of policies that make up the Atlas resource policy.
         :param pulumi.Input[_builtins.str] version: A string that identifies the version of the Atlas resource policy.
         """
@@ -209,7 +209,7 @@ class _ResourcePolicyState:
     @pulumi.getter(name="orgId")
     def org_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
         """
         return pulumi.get(self, "org_id")
 
@@ -269,7 +269,7 @@ class ResourcePolicy(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] description: Description of the Atlas resource policy.
         :param pulumi.Input[_builtins.str] name: Human-readable label that describes the Atlas resource policy.
-        :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+        :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict']]]] policies: List of policies that make up the Atlas resource policy.
         """
         ...
@@ -363,7 +363,7 @@ class ResourcePolicy(pulumi.CustomResource):
         :param pulumi.Input[Union['ResourcePolicyLastUpdatedByUserArgs', 'ResourcePolicyLastUpdatedByUserArgsDict']] last_updated_by_user: The user that last updated the Atlas resource policy.
         :param pulumi.Input[_builtins.str] last_updated_date: Date and time in UTC when the Atlas resource policy was last updated.
         :param pulumi.Input[_builtins.str] name: Human-readable label that describes the Atlas resource policy.
-        :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+        :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict']]]] policies: List of policies that make up the Atlas resource policy.
         :param pulumi.Input[_builtins.str] version: A string that identifies the version of the Atlas resource policy.
         """
@@ -434,7 +434,7 @@ class ResourcePolicy(pulumi.CustomResource):
     @pulumi.getter(name="orgId")
     def org_id(self) -> pulumi.Output[_builtins.str]:
         """
-        Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+        Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
         """
         return pulumi.get(self, "org_id")
 

@@ -70,7 +70,7 @@ export class ResourcePolicy extends pulumi.CustomResource {
      */
     declare public readonly name: pulumi.Output<string>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
      */
     declare public readonly orgId: pulumi.Output<string>;
     /**
@@ -156,7 +156,7 @@ export interface ResourcePolicyState {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
      */
     orgId?: pulumi.Input<string | undefined>;
     /**
@@ -182,7 +182,7 @@ export interface ResourcePolicyArgs {
      */
     name?: pulumi.Input<string | undefined>;
     /**
-     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
      */
     orgId: pulumi.Input<string>;
     /**

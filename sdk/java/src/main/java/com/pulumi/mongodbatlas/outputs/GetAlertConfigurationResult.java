@@ -45,6 +45,10 @@ public final class GetAlertConfigurationResult {
      * 
      */
     private List<GetAlertConfigurationMetricThresholdConfig> metricThresholdConfigs;
+    /**
+     * @return List of notifications to send when an alert condition is detected. See notification.
+     * 
+     */
     private List<GetAlertConfigurationNotification> notifications;
     private @Nullable List<GetAlertConfigurationOutput> outputs;
     private String projectId;
@@ -106,6 +110,10 @@ public final class GetAlertConfigurationResult {
     public List<GetAlertConfigurationMetricThresholdConfig> metricThresholdConfigs() {
         return this.metricThresholdConfigs;
     }
+    /**
+     * @return List of notifications to send when an alert condition is detected. See notification.
+     * 
+     */
     public List<GetAlertConfigurationNotification> notifications() {
         return this.notifications;
     }

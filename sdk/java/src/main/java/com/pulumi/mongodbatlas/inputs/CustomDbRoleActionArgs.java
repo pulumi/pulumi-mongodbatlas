@@ -17,7 +17,7 @@ public final class CustomDbRoleActionArgs extends com.pulumi.resources.ResourceA
     public static final CustomDbRoleActionArgs Empty = new CustomDbRoleActionArgs();
 
     /**
-     * Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions)
+     * Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://www.mongodb.com/docs/atlas/reference/api/custom-role-actions)
      * &gt; **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
      * 
      */
@@ -25,7 +25,7 @@ public final class CustomDbRoleActionArgs extends com.pulumi.resources.ResourceA
     private Output<String> action;
 
     /**
-     * @return Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions)
+     * @return Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://www.mongodb.com/docs/atlas/reference/api/custom-role-actions)
      * &gt; **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
      * 
      */
@@ -98,7 +98,7 @@ public final class CustomDbRoleActionArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param action Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions)
+         * @param action Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://www.mongodb.com/docs/atlas/reference/api/custom-role-actions)
          * &gt; **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
          * 
          * @return builder
@@ -110,7 +110,7 @@ public final class CustomDbRoleActionArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param action Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions)
+         * @param action Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://www.mongodb.com/docs/atlas/reference/api/custom-role-actions)
          * &gt; **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
          * 
          * @return builder

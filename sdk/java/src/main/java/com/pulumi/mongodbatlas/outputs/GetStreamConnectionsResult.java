@@ -26,7 +26,7 @@ public final class GetStreamConnectionsResult {
      */
     private GetStreamConnectionsResultAuthentication authentication;
     /**
-     * @return The configuration for AWS Lambda connection. See AWS
+     * @return The configuration for S3 connection. See AWS.
      * 
      */
     private GetStreamConnectionsResultAws aws;
@@ -45,6 +45,10 @@ public final class GetStreamConnectionsResult {
      * 
      */
     private String clusterName;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
+     * 
+     */
     private String clusterProjectId;
     /**
      * @return A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have &#39;.&#39; characters.
@@ -62,7 +66,7 @@ public final class GetStreamConnectionsResult {
      */
     private GetStreamConnectionsResultDbRoleToExecute dbRoleToExecute;
     /**
-     * @return The configuration for GCP Pub/Sub connection. See GCP
+     * @return The configuration for GCP Pub/Sub connection. See GCP.
      * 
      */
     private GetStreamConnectionsResultGcp gcp;
@@ -82,7 +86,7 @@ public final class GetStreamConnectionsResult {
     @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
     private String instanceName;
     /**
-     * @return Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
+     * @return Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
      * 
      */
     private GetStreamConnectionsResultNetworking networking;
@@ -140,7 +144,7 @@ public final class GetStreamConnectionsResult {
         return this.authentication;
     }
     /**
-     * @return The configuration for AWS Lambda connection. See AWS
+     * @return The configuration for S3 connection. See AWS.
      * 
      */
     public GetStreamConnectionsResultAws aws() {
@@ -167,6 +171,10 @@ public final class GetStreamConnectionsResult {
     public String clusterName() {
         return this.clusterName;
     }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
+     * 
+     */
     public String clusterProjectId() {
         return this.clusterProjectId;
     }
@@ -192,7 +200,7 @@ public final class GetStreamConnectionsResult {
         return this.dbRoleToExecute;
     }
     /**
-     * @return The configuration for GCP Pub/Sub connection. See GCP
+     * @return The configuration for GCP Pub/Sub connection. See GCP.
      * 
      */
     public GetStreamConnectionsResultGcp gcp() {
@@ -220,7 +228,7 @@ public final class GetStreamConnectionsResult {
         return this.instanceName;
     }
     /**
-     * @return Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
+     * @return Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
      * 
      */
     public GetStreamConnectionsResultNetworking networking() {

@@ -172,7 +172,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetNetworkPeeringResult
     {
         /// <summary>
-        /// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        /// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
         /// </summary>
         public readonly string AccepterRegionName;
         public readonly string AtlasCidrBlock;

@@ -15,9 +15,17 @@ public final class StreamInstanceStreamConfigArgs extends com.pulumi.resources.R
 
     public static final StreamInstanceStreamConfigArgs Empty = new StreamInstanceStreamConfigArgs();
 
+    /**
+     * Maximum tier size for the Stream Instance.
+     * 
+     */
     @Import(name="maxTierSize")
     private @Nullable Output<String> maxTierSize;
 
+    /**
+     * @return Maximum tier size for the Stream Instance.
+     * 
+     */
     public Optional<Output<String>> maxTierSize() {
         return Optional.ofNullable(this.maxTierSize);
     }
@@ -62,11 +70,23 @@ public final class StreamInstanceStreamConfigArgs extends com.pulumi.resources.R
             $ = new StreamInstanceStreamConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param maxTierSize Maximum tier size for the Stream Instance.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxTierSize(@Nullable Output<String> maxTierSize) {
             $.maxTierSize = maxTierSize;
             return this;
         }
 
+        /**
+         * @param maxTierSize Maximum tier size for the Stream Instance.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maxTierSize(String maxTierSize) {
             return maxTierSize(Output.of(maxTierSize));
         }

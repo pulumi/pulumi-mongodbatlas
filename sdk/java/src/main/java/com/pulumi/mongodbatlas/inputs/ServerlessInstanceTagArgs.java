@@ -32,7 +32,7 @@ public final class ServerlessInstanceTagArgs extends com.pulumi.resources.Resour
     /**
      * Variable that belongs to the set of the tag.
      * 
-     * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+     * To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
      * 
      */
     @Import(name="value", required=true)
@@ -41,7 +41,7 @@ public final class ServerlessInstanceTagArgs extends com.pulumi.resources.Resour
     /**
      * @return Variable that belongs to the set of the tag.
      * 
-     * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+     * To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
      * 
      */
     public Output<String> value() {
@@ -97,7 +97,7 @@ public final class ServerlessInstanceTagArgs extends com.pulumi.resources.Resour
         /**
          * @param value Variable that belongs to the set of the tag.
          * 
-         * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+         * To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
          * 
          * @return builder
          * 
@@ -110,7 +110,7 @@ public final class ServerlessInstanceTagArgs extends com.pulumi.resources.Resour
         /**
          * @param value Variable that belongs to the set of the tag.
          * 
-         * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+         * To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
          * 
          * @return builder
          * 

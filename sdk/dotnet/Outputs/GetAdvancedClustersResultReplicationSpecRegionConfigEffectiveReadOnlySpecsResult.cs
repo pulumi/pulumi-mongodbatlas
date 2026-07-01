@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsResult
     {
         /// <summary>
-        /// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value.
+        /// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `ElectableSpecs` for additional `DiskIops` configuration details.
         /// </summary>
         public readonly int DiskIops;
         /// <summary>
@@ -22,9 +22,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly double DiskSizeGb;
         /// <summary>
-        /// Type of storage you want to attach to your AWS-provisioned cluster.
-        /// * `STANDARD` volume types can't exceed the default IOPS rate for the selected volume size.
-        /// * `PROVISIONED` volume types must fall within the allowable IOPS range for the selected volume size.
+        /// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+        /// </summary>
+        public readonly int DiskThroughput;
+        /// <summary>
+        /// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `ElectableSpecs` for additional `EbsVolumeType` configuration details.
         /// </summary>
         public readonly string EbsVolumeType;
         /// <summary>
@@ -42,6 +44,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             double diskSizeGb,
 
+            int diskThroughput,
+
             string ebsVolumeType,
 
             string instanceSize,
@@ -50,6 +54,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         {
             DiskIops = diskIops;
             DiskSizeGb = diskSizeGb;
+            DiskThroughput = diskThroughput;
             EbsVolumeType = ebsVolumeType;
             InstanceSize = instanceSize;
             NodeCount = nodeCount;

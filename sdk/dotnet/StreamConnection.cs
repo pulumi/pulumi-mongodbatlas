@@ -550,7 +550,7 @@ namespace Pulumi.Mongodbatlas
     /// $ pulumi import mongodbatlas:index/streamConnection:StreamConnection test "DefaultInstance-12251446ae5f3f6ec7968b13-NewConnection"
     /// ```
     /// 
-    /// To learn more, see: [MongoDB Atlas API - Stream Connection](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamConnection) Documentation.
+    /// To learn more, see: [MongoDB Atlas API - Stream Connection](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createstreamconnection) Documentation.
     /// The Terraform Provider Examples Section also contains details on the overall support for Atlas Streams Processing in Terraform.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/streamConnection:StreamConnection")]
@@ -623,7 +623,7 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.StreamConnectionTimeouts?> Timeouts { get; private set; } = null!;
 
         /// <summary>
-        /// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        /// Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -765,7 +765,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamConnectionTimeoutsArgs>? Timeouts { get; set; }
 
         /// <summary>
-        /// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        /// Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -869,7 +869,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamConnectionTimeoutsGetArgs>? Timeouts { get; set; }
 
         /// <summary>
-        /// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        /// Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

@@ -75,7 +75,7 @@ import (
 // ```sh
 // $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
 // ```
-// For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://docs.atlas.mongodb.com/reference/api/teams/) Documentation for more information.
+// For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://www.mongodb.com/docs/atlas/reference/api/teams/) Documentation for more information.
 type Project struct {
 	pulumi.CustomResourceState
 
@@ -108,7 +108,7 @@ type Project struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
-	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
 	ProjectOwnerId pulumi.StringPtrOutput `pulumi:"projectOwnerId"`
 	// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 	RegionUsageRestrictions pulumi.StringOutput `pulumi:"regionUsageRestrictions"`
@@ -182,7 +182,7 @@ type projectState struct {
 	Name *string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
 	OrgId *string `pulumi:"orgId"`
-	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
 	ProjectOwnerId *string `pulumi:"projectOwnerId"`
 	// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 	RegionUsageRestrictions *string `pulumi:"regionUsageRestrictions"`
@@ -224,7 +224,7 @@ type ProjectState struct {
 	Name pulumi.StringPtrInput
 	// The ID of the organization you want to create the project within.
 	OrgId pulumi.StringPtrInput
-	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
 	ProjectOwnerId pulumi.StringPtrInput
 	// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 	RegionUsageRestrictions pulumi.StringPtrInput
@@ -262,7 +262,7 @@ type projectArgs struct {
 	Name *string `pulumi:"name"`
 	// The ID of the organization you want to create the project within.
 	OrgId string `pulumi:"orgId"`
-	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
 	ProjectOwnerId *string `pulumi:"projectOwnerId"`
 	// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 	RegionUsageRestrictions *string `pulumi:"regionUsageRestrictions"`
@@ -297,7 +297,7 @@ type ProjectArgs struct {
 	Name pulumi.StringPtrInput
 	// The ID of the organization you want to create the project within.
 	OrgId pulumi.StringInput
-	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+	// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
 	ProjectOwnerId pulumi.StringPtrInput
 	// Designates that this project can be used for government regions only.  If not set the project will default to standard regions.   You cannot deploy clusters across government and standard regions in the same project. AWS is the only cloud provider for AtlasGov.  For more information see [MongoDB Atlas for Government](https://www.mongodb.com/docs/atlas/government/api/#creating-a-project).
 	RegionUsageRestrictions pulumi.StringPtrInput
@@ -464,7 +464,7 @@ func (o ProjectOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.OrgId }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+// Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
 func (o ProjectOutput) ProjectOwnerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringPtrOutput { return v.ProjectOwnerId }).(pulumi.StringPtrOutput)
 }

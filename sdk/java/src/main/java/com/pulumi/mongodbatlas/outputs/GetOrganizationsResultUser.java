@@ -76,10 +76,13 @@ public final class GetOrganizationsResultUser {
     private String orgMembershipStatus;
     /**
      * @return Organization- and project-level roles assigned to one MongoDB Cloud user within one organization.
-     * * `teamIds` - List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
      * 
      */
     private List<GetOrganizationsResultUserRole> roles;
+    /**
+     * @return List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
+     * 
+     */
     private List<String> teamIds;
     /**
      * @return Email address that represents the username of the MongoDB Cloud user.
@@ -174,12 +177,15 @@ public final class GetOrganizationsResultUser {
     }
     /**
      * @return Organization- and project-level roles assigned to one MongoDB Cloud user within one organization.
-     * * `teamIds` - List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
      * 
      */
     public List<GetOrganizationsResultUserRole> roles() {
         return this.roles;
     }
+    /**
+     * @return List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
+     * 
+     */
     public List<String> teamIds() {
         return this.teamIds;
     }

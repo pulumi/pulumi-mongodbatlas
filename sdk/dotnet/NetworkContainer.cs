@@ -98,7 +98,7 @@ namespace Pulumi.Mongodbatlas
     /// $ pulumi import mongodbatlas:index/networkContainer:NetworkContainer my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a
     /// ```
     /// 
-    /// See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
+    /// See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/networkContainer:NetworkContainer")]
     public partial class NetworkContainer : global::Pulumi.CustomResource
@@ -159,19 +159,19 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> Provisioned { get; private set; } = null!;
 
         /// <summary>
-        /// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        /// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        /// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
         /// </summary>
         [Output("regionName")]
         public Output<string> RegionName { get; private set; } = null!;
 
         /// <summary>
-        /// Atlas regions where the container resides. Provide this field only if you provide an `AtlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        /// Atlas regions where the container resides. Provide this field only if you provide an `AtlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
         /// </summary>
         [Output("regions")]
         public Output<ImmutableArray<string>> Regions { get; private set; } = null!;
@@ -260,13 +260,13 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProviderName { get; set; }
 
         /// <summary>
-        /// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        /// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        /// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
         /// </summary>
         [Input("regionName")]
         public Input<string>? RegionName { get; set; }
@@ -275,7 +275,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _regions;
 
         /// <summary>
-        /// Atlas regions where the container resides. Provide this field only if you provide an `AtlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        /// Atlas regions where the container resides. Provide this field only if you provide an `AtlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
         /// </summary>
         public InputList<string> Regions
         {
@@ -347,13 +347,13 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Provisioned { get; set; }
 
         /// <summary>
-        /// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        /// Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        /// The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
         /// </summary>
         [Input("regionName")]
         public Input<string>? RegionName { get; set; }
@@ -362,7 +362,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<string>? _regions;
 
         /// <summary>
-        /// Atlas regions where the container resides. Provide this field only if you provide an `AtlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+        /// Atlas regions where the container resides. Provide this field only if you provide an `AtlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
         /// </summary>
         public InputList<string> Regions
         {

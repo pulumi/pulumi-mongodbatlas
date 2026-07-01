@@ -16,12 +16,12 @@ import java.util.Objects;
 @CustomType
 public final class GetSearchIndexResult {
     /**
-     * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+     * @return [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      * 
      */
     private String analyzer;
     /**
-     * @return [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+     * @return [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
      * 
      */
     private String analyzers;
@@ -70,7 +70,7 @@ public final class GetSearchIndexResult {
     private Integer numPartitions;
     private String projectId;
     /**
-     * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+     * @return [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
      * 
      */
     private String searchAnalyzer;
@@ -86,9 +86,9 @@ public final class GetSearchIndexResult {
     private String storedSource;
     /**
      * @return Synonyms mapping definition to use in this index.
-     * * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+     * * `synonyms.#.name` - Name of the [synonym mapping definition](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-ref).
      * * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
-     * * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+     * * `synonyms.#.analyzer` - Name of the [analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
      * 
      */
     private List<GetSearchIndexSynonym> synonyms;
@@ -101,14 +101,14 @@ public final class GetSearchIndexResult {
 
     private GetSearchIndexResult() {}
     /**
-     * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
+     * @return [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index.
      * 
      */
     public String analyzer() {
         return this.analyzer;
     }
     /**
-     * @return [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
+     * @return [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index (this is an array of objects).
      * 
      */
     public String analyzers() {
@@ -183,7 +183,7 @@ public final class GetSearchIndexResult {
         return this.projectId;
     }
     /**
-     * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
+     * @return [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index.
      * 
      */
     public String searchAnalyzer() {
@@ -205,9 +205,9 @@ public final class GetSearchIndexResult {
     }
     /**
      * @return Synonyms mapping definition to use in this index.
-     * * `synonyms.#.name` - Name of the [synonym mapping definition](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-ref).
+     * * `synonyms.#.name` - Name of the [synonym mapping definition](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-ref).
      * * `synonyms.#.source_collection` - Name of the source MongoDB collection for the synonyms.
-     * * `synonyms.#.analyzer` - Name of the [analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
+     * * `synonyms.#.analyzer` - Name of the [analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use with this synonym mapping.
      * 
      */
     public List<GetSearchIndexSynonym> synonyms() {

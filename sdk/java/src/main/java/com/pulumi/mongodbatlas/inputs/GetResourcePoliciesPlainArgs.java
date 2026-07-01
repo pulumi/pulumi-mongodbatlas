@@ -14,14 +14,14 @@ public final class GetResourcePoliciesPlainArgs extends com.pulumi.resources.Inv
     public static final GetResourcePoliciesPlainArgs Empty = new GetResourcePoliciesPlainArgs();
 
     /**
-     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+     * Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
      * 
      */
     @Import(name="orgId", required=true)
     private String orgId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+     * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
      * 
      */
     public String orgId() {
@@ -53,7 +53,7 @@ public final class GetResourcePoliciesPlainArgs extends com.pulumi.resources.Inv
         }
 
         /**
-         * @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+         * @param orgId Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
          * 
          * @return builder
          * 

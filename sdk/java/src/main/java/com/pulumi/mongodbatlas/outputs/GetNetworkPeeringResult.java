@@ -11,7 +11,7 @@ import java.util.Objects;
 @CustomType
 public final class GetNetworkPeeringResult {
     /**
-     * @return Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+     * @return Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
      * 
      */
     private String accepterRegionName;
@@ -108,7 +108,7 @@ public final class GetNetworkPeeringResult {
 
     private GetNetworkPeeringResult() {}
     /**
-     * @return Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+     * @return Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
      * 
      */
     public String accepterRegionName() {

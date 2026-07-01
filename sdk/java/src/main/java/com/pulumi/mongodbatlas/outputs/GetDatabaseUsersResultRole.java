@@ -20,6 +20,10 @@ public final class GetDatabaseUsersResultRole {
      * 
      */
     private String databaseName;
+    /**
+     * @return Name of the role to grant.
+     * 
+     */
     private String roleName;
 
     private GetDatabaseUsersResultRole() {}
@@ -37,6 +41,10 @@ public final class GetDatabaseUsersResultRole {
     public String databaseName() {
         return this.databaseName;
     }
+    /**
+     * @return Name of the role to grant.
+     * 
+     */
     public String roleName() {
         return this.roleName;
     }

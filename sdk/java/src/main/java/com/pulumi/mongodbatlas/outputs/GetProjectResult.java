@@ -32,7 +32,6 @@ public final class GetProjectResult {
     private String created;
     /**
      * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-     * * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
      * 
      */
     private String id;
@@ -142,7 +141,6 @@ public final class GetProjectResult {
     }
     /**
      * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-     * * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
      * 
      */
     public String id() {

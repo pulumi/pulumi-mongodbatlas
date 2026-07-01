@@ -51,7 +51,7 @@ namespace Pulumi.Mongodbatlas
     /// $ pulumi import mongodbatlas:index/team:Team my_team 1112222b3bf99403840e8934-1112222b3bf99403840e8935
     /// ```
     /// 
-    /// See detailed information for arguments and attributes: [MongoDB API Teams](https://docs.atlas.mongodb.com/reference/api/teams-create-one/)
+    /// See detailed information for arguments and attributes: [MongoDB API Teams](https://www.mongodb.com/docs/atlas/reference/api/teams-create-one/)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/team:Team")]
     public partial class Team : global::Pulumi.CustomResource

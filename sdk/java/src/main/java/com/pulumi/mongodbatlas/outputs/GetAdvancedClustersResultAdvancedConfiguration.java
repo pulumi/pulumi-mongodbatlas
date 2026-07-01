@@ -35,7 +35,7 @@ public final class GetAdvancedClustersResultAdvancedConfiguration {
      */
     private Integer defaultMaxTimeMs;
     /**
-     * @return [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+     * @return [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
      * 
      */
     private String defaultWriteConcern;
@@ -117,7 +117,7 @@ public final class GetAdvancedClustersResultAdvancedConfiguration {
         return this.defaultMaxTimeMs;
     }
     /**
-     * @return [Default level of acknowledgment requested from MongoDB for write operations](https://docs.mongodb.com/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://docs.mongodb.com/manual/reference/write-concern/).
+     * @return [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
      * 
      */
     public String defaultWriteConcern() {

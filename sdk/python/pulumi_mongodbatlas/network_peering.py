@@ -42,7 +42,7 @@ class NetworkPeeringArgs:
         :param pulumi.Input[_builtins.str] container_id: Unique identifier of the MongoDB Atlas container for the provider (GCP) or provider/region (AWS, AZURE). You can create an MongoDB Atlas container using the network_container resource or it can be obtained from the cluster returned values if a cluster has been created before the first container.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the MongoDB Atlas project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Cloud provider to whom the peering connection is being made. (Possible Values `AWS`, `AZURE`, `GCP`).
-        :param pulumi.Input[_builtins.str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        :param pulumi.Input[_builtins.str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
         :param pulumi.Input[_builtins.str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         :param pulumi.Input[_builtins.str] atlas_vpc_name: Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         :param pulumi.Input[_builtins.str] aws_account_id: AWS Account ID of the owner of the peer VPC.
@@ -134,7 +134,7 @@ class NetworkPeeringArgs:
     @pulumi.getter(name="accepterRegionName")
     def accepter_region_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
         """
         return pulumi.get(self, "accepter_region_name")
 
@@ -333,7 +333,7 @@ class _NetworkPeeringState:
         """
         Input properties used for looking up and filtering NetworkPeering resources.
 
-        :param pulumi.Input[_builtins.str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        :param pulumi.Input[_builtins.str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
         :param pulumi.Input[_builtins.str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         :param pulumi.Input[_builtins.str] atlas_vpc_name: Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         :param pulumi.Input[_builtins.str] aws_account_id: AWS Account ID of the owner of the peer VPC.
@@ -418,7 +418,7 @@ class _NetworkPeeringState:
     @pulumi.getter(name="accepterRegionName")
     def accepter_region_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
         """
         return pulumi.get(self, "accepter_region_name")
 
@@ -744,14 +744,14 @@ class NetworkPeering(pulumi.CustomResource):
 
         Ensure you have first created a network container if it is required for your configuration.  See the network_container resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
 
-        > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See [disable Peering Only mode](https://docs.atlas.mongodb.com/reference/faq/connection-changes/#disable-peering-mode) for details
+        > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See [disable Peering Only mode](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/#disable-peering-mode) for details
 
         > **AZURE ONLY:** To create the peering request with an Azure VNET, you must grant Atlas the following permissions on the virtual network.
             Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
             Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
             Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
             Microsoft.Network/virtualNetworks/peer/action
-        For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+        For more information see https://www.mongodb.com/docs/atlas/security-vpc-peering/ and https://www.mongodb.com/docs/atlas/reference/api/vpc-create-peering-connection/
 
         > **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the project_ip_whitelist resource.
 
@@ -843,7 +843,7 @@ class NetworkPeering(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         # Ensure you have created the required Azure service principal first, see
-        # see https://docs.atlas.mongodb.com/security-vpc-peering/
+        # see https://www.mongodb.com/docs/atlas/security-vpc-peering/
         # Container example provided but not always required, 
         # see network_container documentation for details. 
         test = mongodbatlas.NetworkContainer("test",
@@ -897,12 +897,12 @@ class NetworkPeering(pulumi.CustomResource):
         atlas projects list
         atlas networking peering list --projectId <projectId> --provider <AZURE|GCP|AWS>
         ```
-        See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)
+        See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-peering-connection/)
 
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        :param pulumi.Input[_builtins.str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
         :param pulumi.Input[_builtins.str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         :param pulumi.Input[_builtins.str] atlas_vpc_name: Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         :param pulumi.Input[_builtins.str] aws_account_id: AWS Account ID of the owner of the peer VPC.
@@ -936,14 +936,14 @@ class NetworkPeering(pulumi.CustomResource):
 
         Ensure you have first created a network container if it is required for your configuration.  See the network_container resource documentation to determine if you need a network container first.  Examples for creating both container and peering resource are shown below as well as examples for creating the peering connection only.
 
-        > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See [disable Peering Only mode](https://docs.atlas.mongodb.com/reference/faq/connection-changes/#disable-peering-mode) for details
+        > **GCP AND AZURE ONLY:** Connect via Peering Only mode is deprecated, so no longer needed.  See [disable Peering Only mode](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/#disable-peering-mode) for details
 
         > **AZURE ONLY:** To create the peering request with an Azure VNET, you must grant Atlas the following permissions on the virtual network.
             Microsoft.Network/virtualNetworks/virtualNetworkPeerings/read
             Microsoft.Network/virtualNetworks/virtualNetworkPeerings/write
             Microsoft.Network/virtualNetworks/virtualNetworkPeerings/delete
             Microsoft.Network/virtualNetworks/peer/action
-        For more information see https://docs.atlas.mongodb.com/security-vpc-peering/ and https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/
+        For more information see https://www.mongodb.com/docs/atlas/security-vpc-peering/ and https://www.mongodb.com/docs/atlas/reference/api/vpc-create-peering-connection/
 
         > **Create a Whitelist:** Ensure you whitelist the private IP ranges of the subnets in which your application is hosted in order to connect to your Atlas cluster.  See the project_ip_whitelist resource.
 
@@ -1035,7 +1035,7 @@ class NetworkPeering(pulumi.CustomResource):
         import pulumi_mongodbatlas as mongodbatlas
 
         # Ensure you have created the required Azure service principal first, see
-        # see https://docs.atlas.mongodb.com/security-vpc-peering/
+        # see https://www.mongodb.com/docs/atlas/security-vpc-peering/
         # Container example provided but not always required, 
         # see network_container documentation for details. 
         test = mongodbatlas.NetworkContainer("test",
@@ -1089,7 +1089,7 @@ class NetworkPeering(pulumi.CustomResource):
         atlas projects list
         atlas networking peering list --projectId <projectId> --provider <AZURE|GCP|AWS>
         ```
-        See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://docs.atlas.mongodb.com/reference/api/vpc-create-peering-connection/)
+        See detailed information for arguments and attributes: [MongoDB API Network Peering Connection](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-peering-connection/)
 
 
         :param str resource_name: The name of the resource.
@@ -1206,7 +1206,7 @@ class NetworkPeering(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        :param pulumi.Input[_builtins.str] accepter_region_name: Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
         :param pulumi.Input[_builtins.str] atlas_gcp_project_id: The Atlas GCP Project ID for the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         :param pulumi.Input[_builtins.str] atlas_vpc_name: Name of the GCP VPC used by your atlas cluster that is needed to set up the reciprocal connection.
         :param pulumi.Input[_builtins.str] aws_account_id: AWS Account ID of the owner of the peer VPC.
@@ -1271,7 +1271,7 @@ class NetworkPeering(pulumi.CustomResource):
     @pulumi.getter(name="accepterRegionName")
     def accepter_region_name(self) -> pulumi.Output[_builtins.str]:
         """
-        Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+        Specifies the AWS region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
         """
         return pulumi.get(self, "accepter_region_name")
 

@@ -107,7 +107,7 @@ class GetStreamConnectionResult:
     @pulumi.getter
     def aws(self) -> 'outputs.GetStreamConnectionAwsResult':
         """
-        The configuration for AWS Lambda connection. See AWS
+        The configuration for S3 connection. See AWS.
         """
         return pulumi.get(self, "aws")
 
@@ -168,7 +168,7 @@ class GetStreamConnectionResult:
     @pulumi.getter
     def gcp(self) -> 'outputs.GetStreamConnectionGcpResult':
         """
-        The configuration for GCP Pub/Sub connection. See GCP
+        The configuration for GCP Pub/Sub connection. See GCP.
         """
         return pulumi.get(self, "gcp")
 
@@ -195,7 +195,7 @@ class GetStreamConnectionResult:
     @pulumi.getter
     def networking(self) -> 'outputs.GetStreamConnectionNetworkingResult':
         """
-        Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
+        Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
         """
         return pulumi.get(self, "networking")
 

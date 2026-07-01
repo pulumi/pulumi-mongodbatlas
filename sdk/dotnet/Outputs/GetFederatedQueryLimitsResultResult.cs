@@ -19,13 +19,20 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly int CurrentUsage;
         /// <summary>
         /// Default value of the limit.
-        /// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-        /// * `maximumLimit` - Maximum value of the limit.
         /// </summary>
         public readonly int DefaultLimit;
+        /// <summary>
+        /// Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+        /// </summary>
         public readonly string LastModifiedDate;
         public readonly string LimitName;
+        /// <summary>
+        /// Maximum value of the limit.
+        /// </summary>
         public readonly int MaximumLimit;
+        /// <summary>
+        /// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit.
+        /// </summary>
         public readonly string OverrunPolicy;
         /// <summary>
         /// The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
@@ -35,6 +42,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Name of the Atlas Federated Database Instance.
         /// </summary>
         public readonly string TenantName;
+        /// <summary>
+        /// Amount to set the limit to.
+        /// </summary>
         public readonly int Value;
 
         [OutputConstructor]

@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class CustomDbRoleAction
     {
         /// <summary>
-        /// Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://docs.atlas.mongodb.com/reference/api/custom-role-actions)
+        /// Name of the privilege action. For a complete list of actions available in the Atlas API, see [Custom Role Actions](https://www.mongodb.com/docs/atlas/reference/api/custom-role-actions)
         /// &gt; **Note**: The privilege actions available to the Custom Roles API resource represent a subset of the privilege actions available in the Atlas Custom Roles UI.
         /// </summary>
         public readonly string Action;

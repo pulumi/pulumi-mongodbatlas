@@ -16,6 +16,39 @@ import (
 // Note: This implementation returns a maximum of 100 results.
 //
 // ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			identityProvider, err := mongodbatlas.NewFederatedSettingsIdentityProvider(ctx, "identity_provider", &mongodbatlas.FederatedSettingsIdentityProviderArgs{
+//				FederationSettingsId: pulumi.String("627a9687f7f7f7f774de306f"),
+//				Name:                 pulumi.String("mongodb_federation_test"),
+//				AssociatedDomains: pulumi.StringArray{
+//					pulumi.String("yourdomain.com"),
+//				},
+//				SsoDebugEnabled: pulumi.Bool(true),
+//				Status:          pulumi.String("ACTIVE"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_ = mongodbatlas.GetFederatedSettingsIdentityProvidersOutput(ctx, mongodbatlas.GetFederatedSettingsIdentityProvidersOutputArgs{
+//				FederationSettingsId: identityProvider.ID(),
+//			}, nil)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupFederatedSettingsIdentityProviders(ctx *pulumi.Context, args *LookupFederatedSettingsIdentityProvidersArgs, opts ...pulumi.InvokeOption) (*LookupFederatedSettingsIdentityProvidersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedSettingsIdentityProvidersResult
@@ -45,7 +78,6 @@ type LookupFederatedSettingsIdentityProvidersResult struct {
 	IdpTypes  []string `pulumi:"idpTypes"`
 	Protocols []string `pulumi:"protocols"`
 	// Includes cloudProviderSnapshot object for each item detailed in the results array section.
-	// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 	Results []GetFederatedSettingsIdentityProvidersResult `pulumi:"results"`
 }
 
@@ -106,7 +138,6 @@ func (o LookupFederatedSettingsIdentityProvidersResultOutput) Protocols() pulumi
 }
 
 // Includes cloudProviderSnapshot object for each item detailed in the results array section.
-// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 func (o LookupFederatedSettingsIdentityProvidersResultOutput) Results() GetFederatedSettingsIdentityProvidersResultArrayOutput {
 	return o.ApplyT(func(v LookupFederatedSettingsIdentityProvidersResult) []GetFederatedSettingsIdentityProvidersResult {
 		return v.Results

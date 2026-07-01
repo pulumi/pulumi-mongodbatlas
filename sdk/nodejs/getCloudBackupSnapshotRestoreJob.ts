@@ -102,8 +102,17 @@ export interface GetCloudBackupSnapshotRestoreJobResult {
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Oplog operation number from which to you want to restore this snapshot.
+     */
     readonly oplogInc: number;
+    /**
+     * Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+     */
     readonly oplogTs: number;
+    /**
+     * Timestamp in the number of seconds that have elapsed since the UNIX epoch.
+     */
     readonly pointInTimeUtcSeconds: number;
     readonly projectId: string;
     /**
@@ -121,9 +130,6 @@ export interface GetCloudBackupSnapshotRestoreJobResult {
     readonly targetProjectId: string;
     /**
      * Timestamp in ISO 8601 date and time format in UTC when the snapshot associated to snapshotId was taken.
-     * * `oplogTs` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
-     * * `oplogInc` - Oplog operation number from which to you want to restore this snapshot.
-     * * `pointInTimeUTCSeconds` - Timestamp in the number of seconds that have elapsed since the UNIX epoch.
      */
     readonly timestamp: string;
 }

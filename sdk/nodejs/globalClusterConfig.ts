@@ -78,7 +78,7 @@ import * as utilities from "./utilities";
  * $ pulumi import mongodbatlas:index/globalClusterConfig:GlobalClusterConfig config 1112222b3bf99403840e8934-Cluster0
  * ```
  *
- * See detailed information for arguments and attributes: [MongoDB API Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/)
+ * See detailed information for arguments and attributes: [MongoDB API Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/)
  */
 export class GlobalClusterConfig extends pulumi.CustomResource {
     /**
@@ -121,7 +121,7 @@ export class GlobalClusterConfig extends pulumi.CustomResource {
      */
     declare public readonly customZoneMappings: pulumi.Output<outputs.GlobalClusterConfigCustomZoneMapping[] | undefined>;
     /**
-     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
      */
     declare public readonly managedNamespaces: pulumi.Output<outputs.GlobalClusterConfigManagedNamespace[]>;
     /**
@@ -183,7 +183,7 @@ export interface GlobalClusterConfigState {
      */
     customZoneMappings?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigCustomZoneMapping>[] | undefined>;
     /**
-     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
      */
     managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigManagedNamespace>[] | undefined>;
     /**
@@ -205,7 +205,7 @@ export interface GlobalClusterConfigArgs {
      */
     customZoneMappings?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigCustomZoneMapping>[] | undefined>;
     /**
-     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://docs.atlas.mongodb.com/reference/api/global-clusters/). See Managed Namespace below for more details.
+     * Add a managed namespaces to a Global Cluster. For more information about managed namespaces, see [Global Clusters](https://www.mongodb.com/docs/atlas/reference/api/global-clusters/). See Managed Namespace below for more details.
      */
     managedNamespaces?: pulumi.Input<pulumi.Input<inputs.GlobalClusterConfigManagedNamespace>[] | undefined>;
     /**

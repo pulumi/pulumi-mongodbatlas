@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 
 @CustomType
@@ -15,6 +16,11 @@ public final class GetServiceAccountProjectAssignmentsResult {
      * 
      */
     private String projectId;
+    /**
+     * @return A list of project roles assigned to the Service Account in this project.
+     * 
+     */
+    private List<String> roles;
 
     private GetServiceAccountProjectAssignmentsResult() {}
     /**
@@ -23,6 +29,13 @@ public final class GetServiceAccountProjectAssignmentsResult {
      */
     public String projectId() {
         return this.projectId;
+    }
+    /**
+     * @return A list of project roles assigned to the Service Account in this project.
+     * 
+     */
+    public List<String> roles() {
+        return this.roles;
     }
 
     public static Builder builder() {
@@ -35,10 +48,12 @@ public final class GetServiceAccountProjectAssignmentsResult {
     @CustomType.Builder
     public static final class Builder {
         private String projectId;
+        private List<String> roles;
         public Builder() {}
         public Builder(GetServiceAccountProjectAssignmentsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.projectId = defaults.projectId;
+    	      this.roles = defaults.roles;
         }
 
         @CustomType.Setter
@@ -49,9 +64,21 @@ public final class GetServiceAccountProjectAssignmentsResult {
             this.projectId = projectId;
             return this;
         }
+        @CustomType.Setter
+        public Builder roles(List<String> roles) {
+            if (roles == null) {
+              throw new MissingRequiredPropertyException("GetServiceAccountProjectAssignmentsResult", "roles");
+            }
+            this.roles = roles;
+            return this;
+        }
+        public Builder roles(String... roles) {
+            return roles(List.of(roles));
+        }
         public GetServiceAccountProjectAssignmentsResult build() {
             final var _resultValue = new GetServiceAccountProjectAssignmentsResult();
             _resultValue.projectId = projectId;
+            _resultValue.roles = roles;
             return _resultValue;
         }
     }

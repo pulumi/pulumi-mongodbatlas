@@ -103,7 +103,7 @@ type PrivatelinkEndpointServiceDataFederationOnlineArchive struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName pulumi.StringOutput `pulumi:"providerName"`
-	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
 	Timeouts PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrOutput `pulumi:"timeouts"`
@@ -162,7 +162,7 @@ type privatelinkEndpointServiceDataFederationOnlineArchiveState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName *string `pulumi:"providerName"`
-	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 	Region *string `pulumi:"region"`
 	// The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
 	Timeouts *PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts `pulumi:"timeouts"`
@@ -183,7 +183,7 @@ type PrivatelinkEndpointServiceDataFederationOnlineArchiveState struct {
 	ProjectId pulumi.StringPtrInput
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName pulumi.StringPtrInput
-	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 	Region pulumi.StringPtrInput
 	// The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
 	Timeouts PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrInput
@@ -208,7 +208,7 @@ type privatelinkEndpointServiceDataFederationOnlineArchiveArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
-	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 	Region *string `pulumi:"region"`
 	// The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
 	Timeouts *PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts `pulumi:"timeouts"`
@@ -228,7 +228,7 @@ type PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs struct {
 	ProjectId pulumi.StringInput
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName pulumi.StringInput
-	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 	Region pulumi.StringPtrInput
 	// The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
 	Timeouts PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsPtrInput
@@ -359,7 +359,7 @@ func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) ProviderNam
 	}).(pulumi.StringOutput)
 }
 
-// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
+// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/). If defined, you must also specify a value for `customerEndpointDnsName`.
 func (o PrivatelinkEndpointServiceDataFederationOnlineArchiveOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivatelinkEndpointServiceDataFederationOnlineArchive) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }

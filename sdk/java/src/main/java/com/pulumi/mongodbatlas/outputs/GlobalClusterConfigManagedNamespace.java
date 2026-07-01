@@ -29,12 +29,12 @@ public final class GlobalClusterConfigManagedNamespace {
      */
     private String db;
     /**
-     * @return Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+     * @return Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
      * 
      */
     private @Nullable Boolean isCustomShardKeyHashed;
     /**
-     * @return Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+     * @return Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
      * 
      */
     private @Nullable Boolean isShardKeyUnique;
@@ -62,14 +62,14 @@ public final class GlobalClusterConfigManagedNamespace {
         return this.db;
     }
     /**
-     * @return Specifies whether the custom shard key for the collection is [hashed](https://docs.mongodb.com/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://docs.mongodb.com/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+     * @return Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
      * 
      */
     public Optional<Boolean> isCustomShardKeyHashed() {
         return Optional.ofNullable(this.isCustomShardKeyHashed);
     }
     /**
-     * @return Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://docs.mongodb.com/manual/core/hashed-sharding/#std-label-sharding-hashed).
+     * @return Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
      * 
      */
     public Optional<Boolean> isShardKeyUnique() {

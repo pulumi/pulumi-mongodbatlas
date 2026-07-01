@@ -11,6 +11,10 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class StreamInstanceStreamConfig {
+    /**
+     * @return Maximum tier size for the Stream Instance.
+     * 
+     */
     private @Nullable String maxTierSize;
     /**
      * @return Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
@@ -19,6 +23,10 @@ public final class StreamInstanceStreamConfig {
     private @Nullable String tier;
 
     private StreamInstanceStreamConfig() {}
+    /**
+     * @return Maximum tier size for the Stream Instance.
+     * 
+     */
     public Optional<String> maxTierSize() {
         return Optional.ofNullable(this.maxTierSize);
     }

@@ -75,7 +75,6 @@ class GetFederatedSettingsIdentityProvidersResult:
     def results(self) -> Sequence['outputs.GetFederatedSettingsIdentityProvidersResultResult']:
         """
         Includes cloudProviderSnapshot object for each item detailed in the results array section.
-        * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
         """
         return pulumi.get(self, "results")
 
@@ -103,6 +102,19 @@ def get_federated_settings_identity_providers(federation_settings_id: Optional[_
     Note: This implementation returns a maximum of 100 results.
 
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identity_provider",
+        federation_settings_id="627a9687f7f7f7f774de306f",
+        name="mongodb_federation_test",
+        associated_domains=["yourdomain.com"],
+        sso_debug_enabled=True,
+        status="ACTIVE")
+    identitty_provider = mongodbatlas.get_federated_settings_identity_providers_output(federation_settings_id=identity_provider.id)
+    ```
 
 
     :param _builtins.str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
@@ -132,6 +144,19 @@ def get_federated_settings_identity_providers_output(federation_settings_id: pul
     Note: This implementation returns a maximum of 100 results.
 
     ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    identity_provider = mongodbatlas.FederatedSettingsIdentityProvider("identity_provider",
+        federation_settings_id="627a9687f7f7f7f774de306f",
+        name="mongodb_federation_test",
+        associated_domains=["yourdomain.com"],
+        sso_debug_enabled=True,
+        status="ACTIVE")
+    identitty_provider = mongodbatlas.get_federated_settings_identity_providers_output(federation_settings_id=identity_provider.id)
+    ```
 
 
     :param _builtins.str federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.

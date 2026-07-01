@@ -290,7 +290,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
     }
     /**
      * Cloud provider region in which you want to create the private endpoint connection.
-     * Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+     * Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
@@ -298,7 +298,7 @@ public class PrivateLinkEndpoint extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Cloud provider region in which you want to create the private endpoint connection.
-     * Accepted values are: [AWS regions](https://docs.atlas.mongodb.com/reference/amazon-aws/#amazon-aws), [AZURE regions](https://docs.atlas.mongodb.com/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://docs.atlas.mongodb.com/reference/google-gcp/#std-label-google-gcp)
+     * Accepted values are: [AWS regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#amazon-aws), [AZURE regions](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#microsoft-azure) and [GCP regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#std-label-google-gcp)
      * 
      */
     public Output<String> region() {

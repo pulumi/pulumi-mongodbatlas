@@ -83,7 +83,7 @@ type LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult struct {
 	ProjectId               string `pulumi:"projectId"`
 	// Human-readable label that identifies the cloud service provider.
 	ProviderName string `pulumi:"providerName"`
-	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+	// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	Region string `pulumi:"region"`
 	// Human-readable label that identifies the resource type associated with this private endpoint.
 	Type string `pulumi:"type"`
@@ -156,7 +156,7 @@ func (o LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput)
 	}).(pulumi.StringOutput)
 }
 
-// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+// Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 func (o LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult) string { return v.Region }).(pulumi.StringOutput)
 }

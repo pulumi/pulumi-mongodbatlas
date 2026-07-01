@@ -11,7 +11,7 @@ import java.util.Objects;
 @CustomType
 public final class GetDatabaseUsersResultScope {
     /**
-     * @return Name of the role to grant.
+     * @return Name of the cluster or Atlas Data Federation that the user has access to.
      * 
      */
     private String name;
@@ -23,7 +23,7 @@ public final class GetDatabaseUsersResultScope {
 
     private GetDatabaseUsersResultScope() {}
     /**
-     * @return Name of the role to grant.
+     * @return Name of the cluster or Atlas Data Federation that the user has access to.
      * 
      */
     public String name() {

@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Role;
         /// <summary>
-        /// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+        /// Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
         /// </summary>
         public readonly string Type;
 

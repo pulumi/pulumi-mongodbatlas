@@ -136,8 +136,9 @@ type LookupX509AuthenticationDatabaseUserArgs struct {
 // A collection of values returned by getX509AuthenticationDatabaseUser.
 type LookupX509AuthenticationDatabaseUserResult struct {
 	// Array of objects where each details one unexpired database user certificate.
-	Certificates    []GetX509AuthenticationDatabaseUserCertificate `pulumi:"certificates"`
-	CustomerX509Cas string                                         `pulumi:"customerX509Cas"`
+	Certificates []GetX509AuthenticationDatabaseUserCertificate `pulumi:"certificates"`
+	// PEM string of the customer-managed X.509 Certificate Authority (CA).
+	CustomerX509Cas string `pulumi:"customerX509Cas"`
 	// The provider-assigned unique ID for this managed resource.
 	Id        string  `pulumi:"id"`
 	ProjectId string  `pulumi:"projectId"`
@@ -187,6 +188,7 @@ func (o LookupX509AuthenticationDatabaseUserResultOutput) Certificates() GetX509
 	}).(GetX509AuthenticationDatabaseUserCertificateArrayOutput)
 }
 
+// PEM string of the customer-managed X.509 Certificate Authority (CA).
 func (o LookupX509AuthenticationDatabaseUserResultOutput) CustomerX509Cas() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupX509AuthenticationDatabaseUserResult) string { return v.CustomerX509Cas }).(pulumi.StringOutput)
 }

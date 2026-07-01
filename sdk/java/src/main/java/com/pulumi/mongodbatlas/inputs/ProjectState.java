@@ -226,14 +226,14 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+     * Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
      * 
      */
     @Import(name="projectOwnerId")
     private @Nullable Output<String> projectOwnerId;
 
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+     * @return Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
      * 
      */
     public Optional<Output<String>> projectOwnerId() {
@@ -627,7 +627,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectOwnerId Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+         * @param projectOwnerId Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
          * 
          * @return builder
          * 
@@ -638,7 +638,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param projectOwnerId Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://docs.atlas.mongodb.com/reference/user-roles/#mongodb-authrole-Organization-Owner).
+         * @param projectOwnerId Unique 24-hexadecimal digit string that identifies the Atlas user account to be granted the [Project Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Project-Owner) role on the specified project. If you set this parameter, it overrides the default value of the oldest [Organization Owner](https://www.mongodb.com/docs/atlas/reference/user-roles/#mongodb-authrole-Organization-Owner).
          * 
          * @return builder
          * 

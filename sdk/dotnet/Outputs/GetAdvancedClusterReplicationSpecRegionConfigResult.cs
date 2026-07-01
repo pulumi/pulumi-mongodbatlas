@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly Outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult AnalyticsAutoScaling;
         /// <summary>
-        /// Hardware specifications for [analytics nodes](https://docs.atlas.mongodb.com/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
+        /// Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. See below.
         /// </summary>
         public readonly Outputs.GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult AnalyticsSpecs;
         /// <summary>

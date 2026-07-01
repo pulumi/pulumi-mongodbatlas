@@ -47,14 +47,14 @@ public final class DatabaseUserRoleArgs extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
+     * Name of the role to grant. See [Create a Database User](https://www.mongodb.com/docs/atlas/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
      * 
      */
     @Import(name="roleName", required=true)
     private Output<String> roleName;
 
     /**
-     * @return Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
+     * @return Name of the role to grant. See [Create a Database User](https://www.mongodb.com/docs/atlas/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
      * 
      */
     public Output<String> roleName() {
@@ -130,7 +130,7 @@ public final class DatabaseUserRoleArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param roleName Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
+         * @param roleName Name of the role to grant. See [Create a Database User](https://www.mongodb.com/docs/atlas/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
          * 
          * @return builder
          * 
@@ -141,7 +141,7 @@ public final class DatabaseUserRoleArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param roleName Name of the role to grant. See [Create a Database User](https://docs.atlas.mongodb.com/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
+         * @param roleName Name of the role to grant. See [Create a Database User](https://www.mongodb.com/docs/atlas/reference/api/database-users-create-a-user/) `roles.roleName` for valid values and restrictions.
          * 
          * @return builder
          * 

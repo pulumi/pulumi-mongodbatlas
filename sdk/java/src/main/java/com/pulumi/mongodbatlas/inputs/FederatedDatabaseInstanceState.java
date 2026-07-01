@@ -24,7 +24,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
     /**
      * Cloud provider linked to this data federated instance.
      * * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
-     * * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
+     * * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://www.mongodb.com/docs/atlas/security/manage-iam-roles/) or [API](https://www.mongodb.com/docs/atlas/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
      * * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
      * * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
      * * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
@@ -36,7 +36,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
     /**
      * @return Cloud provider linked to this data federated instance.
      * * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
-     * * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
+     * * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://www.mongodb.com/docs/atlas/security/manage-iam-roles/) or [API](https://www.mongodb.com/docs/atlas/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
      * * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
      * * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
      * * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
@@ -145,9 +145,9 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
     }
 
     /**
-     * Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+     * Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
      * * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-     * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
+     * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/) data store.
      * * `storage_databases.#.collections.#.name` - Name of the collection.
      * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
      * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `&lt;collection&gt;`. Must match the name of an object in the stores array.
@@ -160,9 +160,9 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
      * * `storage_databases.#.collections.#.data_sources.#.collection` - Human-readable label that identifies the collection in the database.
      * * `storage_databases.#.collections.#.data_sources.#.collection_regex` - Regex pattern to use for creating the wildcard (*) collection.
      * * `storage_databases.#.collections.#.data_sources.#.provenance_field_name` - Name for the field that includes the provenance of the documents in the results.
-     * * `storage_databases.#.collections.#.data_sources.#.storeName` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
+     * * `storage_databases.#.collections.#.data_sources.#.store_name` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
      * * `storage_databases.#.collections.#.data_sources.#.urls` - URLs of the publicly accessible data files. You can&#39;t specify URLs that require authentication.
-     * * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://docs.mongodb.com/manual/core/views/).
+     * * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://www.mongodb.com/docs/manual/core/views/).
      * * `storage_databases.#.views.#.name` - Name of the view.
      * * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
      * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
@@ -172,9 +172,9 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
     private @Nullable Output<List<FederatedDatabaseInstanceStorageDatabaseArgs>> storageDatabases;
 
     /**
-     * @return Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+     * @return Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
      * * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-     * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
+     * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/) data store.
      * * `storage_databases.#.collections.#.name` - Name of the collection.
      * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
      * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `&lt;collection&gt;`. Must match the name of an object in the stores array.
@@ -187,9 +187,9 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
      * * `storage_databases.#.collections.#.data_sources.#.collection` - Human-readable label that identifies the collection in the database.
      * * `storage_databases.#.collections.#.data_sources.#.collection_regex` - Regex pattern to use for creating the wildcard (*) collection.
      * * `storage_databases.#.collections.#.data_sources.#.provenance_field_name` - Name for the field that includes the provenance of the documents in the results.
-     * * `storage_databases.#.collections.#.data_sources.#.storeName` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
+     * * `storage_databases.#.collections.#.data_sources.#.store_name` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
      * * `storage_databases.#.collections.#.data_sources.#.urls` - URLs of the publicly accessible data files. You can&#39;t specify URLs that require authentication.
-     * * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://docs.mongodb.com/manual/core/views/).
+     * * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://www.mongodb.com/docs/manual/core/views/).
      * * `storage_databases.#.views.#.name` - Name of the view.
      * * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
      * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
@@ -200,7 +200,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
     }
 
     /**
-     * Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
+     * Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
      * * `storage_stores.#.name` - Name of the data store.
      * * `storage_stores.#.provider` - Defines where the data is stored.
      * * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -214,7 +214,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
      * * `storage_stores.#.default_format` - Default format that Data Federation assumes if it encounters a file without an extension while searching the storeName.
      * * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
      * * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
-     * * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
+     * * `storage_stores.#.read_preference.max_staleness_seconds` - Maximum replication lag, or staleness, for reads from secondaries.
      * * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
      * * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
      * * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
@@ -226,7 +226,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
     private @Nullable Output<List<FederatedDatabaseInstanceStorageStoreArgs>> storageStores;
 
     /**
-     * @return Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
+     * @return Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
      * * `storage_stores.#.name` - Name of the data store.
      * * `storage_stores.#.provider` - Defines where the data is stored.
      * * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -240,7 +240,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
      * * `storage_stores.#.default_format` - Default format that Data Federation assumes if it encounters a file without an extension while searching the storeName.
      * * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
      * * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
-     * * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
+     * * `storage_stores.#.read_preference.max_staleness_seconds` - Maximum replication lag, or staleness, for reads from secondaries.
      * * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
      * * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
      * * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
@@ -287,7 +287,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
         /**
          * @param cloudProviderConfig Cloud provider linked to this data federated instance.
          * * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
-         * * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
+         * * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://www.mongodb.com/docs/atlas/security/manage-iam-roles/) or [API](https://www.mongodb.com/docs/atlas/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
          * * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
          * * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
          * * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
@@ -303,7 +303,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
         /**
          * @param cloudProviderConfig Cloud provider linked to this data federated instance.
          * * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
-         * * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://docs.atlas.mongodb.com/security/manage-iam-roles/) or [API](https://docs.atlas.mongodb.com/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
+         * * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://www.mongodb.com/docs/atlas/security/manage-iam-roles/) or [API](https://www.mongodb.com/docs/atlas/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `testS3Bucket`.
          * * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `roleId`.
          * * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
          * * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
@@ -470,9 +470,9 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
         }
 
         /**
-         * @param storageDatabases Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+         * @param storageDatabases Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
          * * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-         * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
+         * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/) data store.
          * * `storage_databases.#.collections.#.name` - Name of the collection.
          * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
          * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `&lt;collection&gt;`. Must match the name of an object in the stores array.
@@ -485,9 +485,9 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
          * * `storage_databases.#.collections.#.data_sources.#.collection` - Human-readable label that identifies the collection in the database.
          * * `storage_databases.#.collections.#.data_sources.#.collection_regex` - Regex pattern to use for creating the wildcard (*) collection.
          * * `storage_databases.#.collections.#.data_sources.#.provenance_field_name` - Name for the field that includes the provenance of the documents in the results.
-         * * `storage_databases.#.collections.#.data_sources.#.storeName` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
+         * * `storage_databases.#.collections.#.data_sources.#.store_name` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
          * * `storage_databases.#.collections.#.data_sources.#.urls` - URLs of the publicly accessible data files. You can&#39;t specify URLs that require authentication.
-         * * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://docs.mongodb.com/manual/core/views/).
+         * * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://www.mongodb.com/docs/manual/core/views/).
          * * `storage_databases.#.views.#.name` - Name of the view.
          * * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
          * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
@@ -501,9 +501,9 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
         }
 
         /**
-         * @param storageDatabases Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+         * @param storageDatabases Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
          * * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-         * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
+         * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/) data store.
          * * `storage_databases.#.collections.#.name` - Name of the collection.
          * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
          * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `&lt;collection&gt;`. Must match the name of an object in the stores array.
@@ -516,9 +516,9 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
          * * `storage_databases.#.collections.#.data_sources.#.collection` - Human-readable label that identifies the collection in the database.
          * * `storage_databases.#.collections.#.data_sources.#.collection_regex` - Regex pattern to use for creating the wildcard (*) collection.
          * * `storage_databases.#.collections.#.data_sources.#.provenance_field_name` - Name for the field that includes the provenance of the documents in the results.
-         * * `storage_databases.#.collections.#.data_sources.#.storeName` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
+         * * `storage_databases.#.collections.#.data_sources.#.store_name` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
          * * `storage_databases.#.collections.#.data_sources.#.urls` - URLs of the publicly accessible data files. You can&#39;t specify URLs that require authentication.
-         * * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://docs.mongodb.com/manual/core/views/).
+         * * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://www.mongodb.com/docs/manual/core/views/).
          * * `storage_databases.#.views.#.name` - Name of the view.
          * * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
          * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
@@ -531,9 +531,9 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
         }
 
         /**
-         * @param storageDatabases Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#databases). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+         * @param storageDatabases Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
          * * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
-         * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores) data store.
+         * * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/) data store.
          * * `storage_databases.#.collections.#.name` - Name of the collection.
          * * `storage_databases.#.collections.#.data_sources` -     Array of objects where each object represents a stores data store to map with the collection.
          * * `storage_databases.#.collections.#.data_sources.#.store_name` -     Name of a data store to map to the `&lt;collection&gt;`. Must match the name of an object in the stores array.
@@ -546,9 +546,9 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
          * * `storage_databases.#.collections.#.data_sources.#.collection` - Human-readable label that identifies the collection in the database.
          * * `storage_databases.#.collections.#.data_sources.#.collection_regex` - Regex pattern to use for creating the wildcard (*) collection.
          * * `storage_databases.#.collections.#.data_sources.#.provenance_field_name` - Name for the field that includes the provenance of the documents in the results.
-         * * `storage_databases.#.collections.#.data_sources.#.storeName` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
+         * * `storage_databases.#.collections.#.data_sources.#.store_name` - Human-readable label that identifies the data store that MongoDB Cloud maps to the collection.
          * * `storage_databases.#.collections.#.data_sources.#.urls` - URLs of the publicly accessible data files. You can&#39;t specify URLs that require authentication.
-         * * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://docs.mongodb.com/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://docs.mongodb.com/manual/core/views/).
+         * * `storage_databases.#.views` -     Array of objects where each object represents an [aggregation pipeline](https://www.mongodb.com/docs/manual/core/aggregation-pipeline/#id1) on a collection. To learn more about views, see [Views](https://www.mongodb.com/docs/manual/core/views/).
          * * `storage_databases.#.views.#.name` - Name of the view.
          * * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
          * * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
@@ -561,7 +561,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
         }
 
         /**
-         * @param storageStores Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
+         * @param storageStores Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
          * * `storage_stores.#.name` - Name of the data store.
          * * `storage_stores.#.provider` - Defines where the data is stored.
          * * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -575,7 +575,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
          * * `storage_stores.#.default_format` - Default format that Data Federation assumes if it encounters a file without an extension while searching the storeName.
          * * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
          * * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
-         * * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
+         * * `storage_stores.#.read_preference.max_staleness_seconds` - Maximum replication lag, or staleness, for reads from secondaries.
          * * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
          * * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
          * * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
@@ -591,7 +591,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
         }
 
         /**
-         * @param storageStores Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
+         * @param storageStores Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
          * * `storage_stores.#.name` - Name of the data store.
          * * `storage_stores.#.provider` - Defines where the data is stored.
          * * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -605,7 +605,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
          * * `storage_stores.#.default_format` - Default format that Data Federation assumes if it encounters a file without an extension while searching the storeName.
          * * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
          * * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
-         * * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
+         * * `storage_stores.#.read_preference.max_staleness_seconds` - Maximum replication lag, or staleness, for reads from secondaries.
          * * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
          * * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
          * * `storage_stores.#.read_preference.tags` - List of all tags within a tag set
@@ -620,7 +620,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
         }
 
         /**
-         * @param storageStores Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-oa/#stores). An empty object indicates that the Federated Database Instance has no configured data stores.
+         * @param storageStores Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
          * * `storage_stores.#.name` - Name of the data store.
          * * `storage_stores.#.provider` - Defines where the data is stored.
          * * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -634,7 +634,7 @@ public final class FederatedDatabaseInstanceState extends com.pulumi.resources.R
          * * `storage_stores.#.default_format` - Default format that Data Federation assumes if it encounters a file without an extension while searching the storeName.
          * * `storage_stores.#.urls` - Comma-separated list of publicly accessible HTTP URLs where data is stored.
          * * `storage_stores.#.read_preference` - MongoDB Cloud cluster read preference, which describes how to route read requests to the cluster.
-         * * `storage_stores.#.read_preference.maxStalenessSeconds` - Maximum replication lag, or staleness, for reads from secondaries.
+         * * `storage_stores.#.read_preference.max_staleness_seconds` - Maximum replication lag, or staleness, for reads from secondaries.
          * * `storage_stores.#.read_preference.mode` - Read preference mode that specifies to which replica set member to route the read requests.
          * * `storage_stores.#.read_preference.tag_sets` - List that contains tag sets or tag specification documents.
          * * `storage_stores.#.read_preference.tags` - List of all tags within a tag set

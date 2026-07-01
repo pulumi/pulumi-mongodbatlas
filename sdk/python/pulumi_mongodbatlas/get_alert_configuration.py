@@ -122,6 +122,9 @@ class GetAlertConfigurationResult:
     @_builtins.property
     @pulumi.getter
     def notifications(self) -> Sequence['outputs.GetAlertConfigurationNotificationResult']:
+        """
+        List of notifications to send when an alert condition is detected. See notification.
+        """
         return pulumi.get(self, "notifications")
 
     @_builtins.property
@@ -220,7 +223,7 @@ def get_alert_configuration(alert_configuration_id: Optional[_builtins.str] = No
         alert_configuration_id=test_alert_configuration.alert_configuration_id)
     ```
 
-    > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+    > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/
 
     ```python
     import pulumi
@@ -321,7 +324,7 @@ def get_alert_configuration_output(alert_configuration_id: pulumi.Input[Optional
         alert_configuration_id=test_alert_configuration.alert_configuration_id)
     ```
 
-    > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+    > **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/
 
     ```python
     import pulumi

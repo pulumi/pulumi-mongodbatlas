@@ -26,10 +26,13 @@ public final class GetCloudBackupSnapshotRestoreJobsInvokeResult {
     private String projectId;
     /**
      * @return Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.
-     * * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
      * 
      */
     private List<GetCloudBackupSnapshotRestoreJobsResult> results;
+    /**
+     * @return Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
+     * 
+     */
     private Integer totalCount;
 
     private GetCloudBackupSnapshotRestoreJobsInvokeResult() {}
@@ -54,12 +57,15 @@ public final class GetCloudBackupSnapshotRestoreJobsInvokeResult {
     }
     /**
      * @return Includes cloudProviderSnapshotRestoreJob object for each item detailed in the results array section.
-     * * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
      * 
      */
     public List<GetCloudBackupSnapshotRestoreJobsResult> results() {
         return this.results;
     }
+    /**
+     * @return Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
+     * 
+     */
     public Integer totalCount() {
         return this.totalCount;
     }

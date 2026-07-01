@@ -13,32 +13,62 @@ import java.util.Objects;
 public final class GetProjectsResultUser {
     /**
      * @return Two-character alphabetical string that identifies the MongoDB Cloud user&#39;s geographic location. This parameter uses the ISO 3166-1a2 code format.
-     * * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
-     * * `firstName`- First or given name that belongs to the MongoDB Cloud user.
-     * * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
-     * * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
-     * * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
+     * 
+     */
+    private String country;
+    /**
+     * @return Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+     * 
+     */
+    private String createdAt;
+    /**
+     * @return First or given name that belongs to the MongoDB Cloud user.
+     * 
+     */
+    private String firstName;
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     * 
+     */
+    private String id;
+    /**
+     * @return Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     * 
+     */
+    private String invitationCreatedAt;
+    /**
+     * @return Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     * 
+     */
+    private String invitationExpiresAt;
+    /**
+     * @return Username of the MongoDB Cloud user who sent the invitation to join the organization.
      * 
      * &gt; **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `mongodbatlas.ProjectInvitation` resource.
      * 
      * See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
      * 
      */
-    private String country;
-    private String createdAt;
-    private String firstName;
+    private String inviterUsername;
     /**
-     * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-     * * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+     * @return Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
      * 
      */
-    private String id;
-    private String invitationCreatedAt;
-    private String invitationExpiresAt;
-    private String inviterUsername;
     private String lastAuth;
+    /**
+     * @return Last name, family name, or surname that belongs to the MongoDB Cloud user.
+     * 
+     */
     private String lastName;
+    /**
+     * @return Mobile phone number that belongs to the MongoDB Cloud user.
+     * 
+     */
     private String mobileNumber;
+    /**
+     * @return String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+     * 
+     */
     private String orgMembershipStatus;
     /**
      * @return One or more project-level roles assigned to the MongoDB Cloud user.
@@ -54,52 +84,82 @@ public final class GetProjectsResultUser {
     private GetProjectsResultUser() {}
     /**
      * @return Two-character alphabetical string that identifies the MongoDB Cloud user&#39;s geographic location. This parameter uses the ISO 3166-1a2 code format.
-     * * `createdAt`- Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
-     * * `firstName`- First or given name that belongs to the MongoDB Cloud user.
-     * * `lastAuth` - Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
-     * * `lastName`- Last name, family name, or surname that belongs to the MongoDB Cloud user.
-     * * `mobileNumber` - Mobile phone number that belongs to the MongoDB Cloud user.
+     * 
+     */
+    public String country() {
+        return this.country;
+    }
+    /**
+     * @return Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
+     * 
+     */
+    public String createdAt() {
+        return this.createdAt;
+    }
+    /**
+     * @return First or given name that belongs to the MongoDB Cloud user.
+     * 
+     */
+    public String firstName() {
+        return this.firstName;
+    }
+    /**
+     * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
+     * 
+     */
+    public String id() {
+        return this.id;
+    }
+    /**
+     * @return Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     * 
+     */
+    public String invitationCreatedAt() {
+        return this.invitationCreatedAt;
+    }
+    /**
+     * @return Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
+     * 
+     */
+    public String invitationExpiresAt() {
+        return this.invitationExpiresAt;
+    }
+    /**
+     * @return Username of the MongoDB Cloud user who sent the invitation to join the organization.
      * 
      * &gt; **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `mongodbatlas.ProjectInvitation` resource.
      * 
      * See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
      * 
      */
-    public String country() {
-        return this.country;
-    }
-    public String createdAt() {
-        return this.createdAt;
-    }
-    public String firstName() {
-        return this.firstName;
-    }
-    /**
-     * @return Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-     * * `orgMembershipStatus`- String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
-    public String invitationCreatedAt() {
-        return this.invitationCreatedAt;
-    }
-    public String invitationExpiresAt() {
-        return this.invitationExpiresAt;
-    }
     public String inviterUsername() {
         return this.inviterUsername;
     }
+    /**
+     * @return Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public String lastAuth() {
         return this.lastAuth;
     }
+    /**
+     * @return Last name, family name, or surname that belongs to the MongoDB Cloud user.
+     * 
+     */
     public String lastName() {
         return this.lastName;
     }
+    /**
+     * @return Mobile phone number that belongs to the MongoDB Cloud user.
+     * 
+     */
     public String mobileNumber() {
         return this.mobileNumber;
     }
+    /**
+     * @return String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
+     * 
+     */
     public String orgMembershipStatus() {
         return this.orgMembershipStatus;
     }

@@ -152,7 +152,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Import
     /// 
-    /// See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.
+    /// See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api/online-archive-create-one/) Documentation for more information.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/onlineArchive:OnlineArchive")]
     public partial class OnlineArchive : global::Pulumi.CustomResource

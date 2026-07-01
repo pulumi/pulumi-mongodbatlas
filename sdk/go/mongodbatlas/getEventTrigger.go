@@ -40,21 +40,23 @@ type LookupEventTriggerResult struct {
 	ConfigCollection string `pulumi:"configCollection"`
 	// The name of the MongoDB database to watch.
 	ConfigDatabase string `pulumi:"configDatabase"`
-	// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
-	ConfigFullDocument       bool `pulumi:"configFullDocument"`
+	// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+	ConfigFullDocument bool `pulumi:"configFullDocument"`
+	// If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
 	ConfigFullDocumentBefore bool `pulumi:"configFullDocumentBefore"`
-	// A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+	// A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
 	ConfigMatch string `pulumi:"configMatch"`
-	// The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+	// The [authentication operation type](https://www.mongodb.com/docs/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
 	ConfigOperationType string `pulumi:"configOperationType"`
-	// The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+	// The [database event operation types](https://www.mongodb.com/docs/realm/triggers/database-triggers/#std-label-database-events) to listen for.
 	ConfigOperationTypes []string `pulumi:"configOperationTypes"`
-	// A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+	// A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 	ConfigProject string `pulumi:"configProject"`
-	// A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+	// A list of one or more [authentication provider](https://www.mongodb.com/docs/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
 	ConfigProviders []string `pulumi:"configProviders"`
-	// A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
-	ConfigSchedule     string `pulumi:"configSchedule"`
+	// A [cron expression](https://www.mongodb.com/docs/realm/triggers/cron-expressions/) that defines the trigger schedule.
+	ConfigSchedule string `pulumi:"configSchedule"`
+	// The type of the scheduled trigger.
 	ConfigScheduleType string `pulumi:"configScheduleType"`
 	// The ID of the MongoDB Service associated with the trigger.
 	ConfigServiceId string `pulumi:"configServiceId"`
@@ -131,45 +133,47 @@ func (o LookupEventTriggerResultOutput) ConfigDatabase() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigDatabase }).(pulumi.StringOutput)
 }
 
-// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://docs.mongodb.com/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
+// If true, indicates that `UPDATE` change events should include the most current [majority-committed](https://www.mongodb.com/docs/manual/reference/read-concern-majority/) version of the modified document in the fullDocument field.
 func (o LookupEventTriggerResultOutput) ConfigFullDocument() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupEventTriggerResult) bool { return v.ConfigFullDocument }).(pulumi.BoolOutput)
 }
 
+// If true, indicates that `UPDATE` change events should include the previous revision of the modified document in the fullDocumentBeforeChange field.
 func (o LookupEventTriggerResultOutput) ConfigFullDocumentBefore() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupEventTriggerResult) bool { return v.ConfigFullDocumentBefore }).(pulumi.BoolOutput)
 }
 
-// A [$match](https://docs.mongodb.com/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
+// A [$match](https://www.mongodb.com/docs/manual/reference/operator/aggregation/match/) expression document that MongoDB Realm includes in the underlying change stream pipeline for the trigger.
 func (o LookupEventTriggerResultOutput) ConfigMatch() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigMatch }).(pulumi.StringOutput)
 }
 
-// The [authentication operation type](https://docs.mongodb.com/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
+// The [authentication operation type](https://www.mongodb.com/docs/realm/triggers/authentication-triggers/#std-label-authentication-event-operation-types) to listen for.
 func (o LookupEventTriggerResultOutput) ConfigOperationType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigOperationType }).(pulumi.StringOutput)
 }
 
-// The [database event operation types](https://docs.mongodb.com/realm/triggers/database-triggers/#std-label-database-events) to listen for.
+// The [database event operation types](https://www.mongodb.com/docs/realm/triggers/database-triggers/#std-label-database-events) to listen for.
 func (o LookupEventTriggerResultOutput) ConfigOperationTypes() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupEventTriggerResult) []string { return v.ConfigOperationTypes }).(pulumi.StringArrayOutput)
 }
 
-// A [$project](https://docs.mongodb.com/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
+// A [$project](https://www.mongodb.com/docs/manual/reference/operator/aggregation/project/) expression document that Realm uses to filter the fields that appear in change event objects.
 func (o LookupEventTriggerResultOutput) ConfigProject() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigProject }).(pulumi.StringOutput)
 }
 
-// A list of one or more [authentication provider](https://docs.mongodb.com/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
+// A list of one or more [authentication provider](https://www.mongodb.com/docs/realm/authentication/providers/) id values. The trigger will only listen for authentication events produced by these providers.
 func (o LookupEventTriggerResultOutput) ConfigProviders() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupEventTriggerResult) []string { return v.ConfigProviders }).(pulumi.StringArrayOutput)
 }
 
-// A [cron expression](https://docs.mongodb.com/realm/triggers/cron-expressions/) that defines the trigger schedule.
+// A [cron expression](https://www.mongodb.com/docs/realm/triggers/cron-expressions/) that defines the trigger schedule.
 func (o LookupEventTriggerResultOutput) ConfigSchedule() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigSchedule }).(pulumi.StringOutput)
 }
 
+// The type of the scheduled trigger.
 func (o LookupEventTriggerResultOutput) ConfigScheduleType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEventTriggerResult) string { return v.ConfigScheduleType }).(pulumi.StringOutput)
 }

@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  * ```
  *
  * Refer to the following for a full example on using this dataSource as a tool to import all resources:
- * * atlas-alert-configurations
+ * * mongodbatlas.AlertConfiguration
  */
 export function getAlertConfigurations(args: GetAlertConfigurationsArgs, opts?: pulumi.InvokeOptions): Promise<GetAlertConfigurationsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -120,7 +120,7 @@ export interface GetAlertConfigurationsResult {
  * ```
  *
  * Refer to the following for a full example on using this dataSource as a tool to import all resources:
- * * atlas-alert-configurations
+ * * mongodbatlas.AlertConfiguration
  */
 export function getAlertConfigurationsOutput(args: GetAlertConfigurationsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetAlertConfigurationsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

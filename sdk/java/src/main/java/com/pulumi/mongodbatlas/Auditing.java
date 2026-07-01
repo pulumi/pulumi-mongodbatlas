@@ -61,34 +61,34 @@ import javax.annotation.Nullable;
  * $ pulumi import mongodbatlas:index/auditing:Auditing my_auditing 5d09d6a59ccf6445652a444a
  * ```
  * 
- * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/auditing/)
+ * For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/auditing/)
  * 
  */
 @ResourceType(type="mongodbatlas:index/auditing:Auditing")
 public class Auditing extends com.pulumi.resources.CustomResource {
     /**
-     * Indicates whether the auditing system captures successful authentication attempts for audit filters using the &#34;atype&#34; : &#34;authCheck&#34; auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+     * Indicates whether the auditing system captures successful authentication attempts for audit filters using the &#34;atype&#34; : &#34;authCheck&#34; auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
      * 
      */
     @Export(name="auditAuthorizationSuccess", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> auditAuthorizationSuccess;
 
     /**
-     * @return Indicates whether the auditing system captures successful authentication attempts for audit filters using the &#34;atype&#34; : &#34;authCheck&#34; auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+     * @return Indicates whether the auditing system captures successful authentication attempts for audit filters using the &#34;atype&#34; : &#34;authCheck&#34; auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
      * 
      */
     public Output<Boolean> auditAuthorizationSuccess() {
         return this.auditAuthorizationSuccess;
     }
     /**
-     * JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+     * JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://www.mongodb.com/docs/manual/tutorial/configure-audit-filters/).
      * 
      */
     @Export(name="auditFilter", refs={String.class}, tree="[0]")
     private Output<String> auditFilter;
 
     /**
-     * @return JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+     * @return JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://www.mongodb.com/docs/manual/tutorial/configure-audit-filters/).
      * 
      */
     public Output<String> auditFilter() {

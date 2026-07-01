@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+ * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
  *
  * ## Example Usage
  *
@@ -61,24 +61,34 @@ export interface GetFederatedQueryLimitResult {
     readonly currentUsage: number;
     /**
      * Default value of the limit.
-     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-     * * `maximumLimit` - Maximum value of the limit.
      */
     readonly defaultLimit: number;
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
+    /**
+     * Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     */
     readonly lastModifiedDate: string;
     readonly limitName: string;
+    /**
+     * Maximum value of the limit.
+     */
     readonly maximumLimit: number;
+    /**
+     * String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit.
+     */
     readonly overrunPolicy: string;
     readonly projectId: string;
     readonly tenantName: string;
+    /**
+     * Amount to set the limit to.
+     */
     readonly value: number;
 }
 /**
- * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+ * `mongodbatlas.FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
  *
  * ## Example Usage
  *

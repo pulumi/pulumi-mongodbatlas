@@ -28,7 +28,7 @@ func LookupResourcePolicy(ctx *pulumi.Context, args *LookupResourcePolicyArgs, o
 type LookupResourcePolicyArgs struct {
 	// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
 	Id string `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	OrgId string `pulumi:"orgId"`
 }
 
@@ -48,7 +48,7 @@ type LookupResourcePolicyResult struct {
 	LastUpdatedDate string `pulumi:"lastUpdatedDate"`
 	// Human-readable label that describes the Atlas resource policy.
 	Name string `pulumi:"name"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	OrgId string `pulumi:"orgId"`
 	// List of policies that make up the Atlas resource policy.
 	Policies []GetResourcePolicyPolicy `pulumi:"policies"`
@@ -69,7 +69,7 @@ func LookupResourcePolicyOutput(ctx *pulumi.Context, args LookupResourcePolicyOu
 type LookupResourcePolicyOutputArgs struct {
 	// Unique 24-hexadecimal digit string that identifies an Atlas resource policy.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	OrgId pulumi.StringInput `pulumi:"orgId"`
 }
 
@@ -127,7 +127,7 @@ func (o LookupResourcePolicyResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupResourcePolicyResult) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the /orgs endpoint to retrieve all organizations to which the authenticated user has access.
+// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 func (o LookupResourcePolicyResultOutput) OrgId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupResourcePolicyResult) string { return v.OrgId }).(pulumi.StringOutput)
 }

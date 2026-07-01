@@ -26,6 +26,9 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// (Deprecated) Flag that indicates whether the serverless instance uses Serverless Continuous Backup.
         /// </summary>
         public readonly bool ContinuousBackupEnabled;
+        /// <summary>
+        /// Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
+        /// </summary>
         public readonly string CreateDate;
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the serverless instance.
@@ -41,7 +44,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+        /// Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
         /// <summary>

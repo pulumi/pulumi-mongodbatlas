@@ -51,13 +51,13 @@ import (
 // $ pulumi import mongodbatlas:index/auditing:Auditing my_auditing 5d09d6a59ccf6445652a444a
 // ```
 //
-// For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/auditing/)
+// For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/auditing/)
 type Auditing struct {
 	pulumi.CustomResourceState
 
-	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
 	AuditAuthorizationSuccess pulumi.BoolOutput `pulumi:"auditAuthorizationSuccess"`
-	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://www.mongodb.com/docs/manual/tutorial/configure-audit-filters/).
 	AuditFilter pulumi.StringOutput `pulumi:"auditFilter"`
 	// Denotes the configuration method for the audit filter. Possible values are:
 	// * NONE - auditing not configured for the project.
@@ -105,9 +105,9 @@ func GetAuditing(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Auditing resources.
 type auditingState struct {
-	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
 	AuditAuthorizationSuccess *bool `pulumi:"auditAuthorizationSuccess"`
-	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://www.mongodb.com/docs/manual/tutorial/configure-audit-filters/).
 	AuditFilter *string `pulumi:"auditFilter"`
 	// Denotes the configuration method for the audit filter. Possible values are:
 	// * NONE - auditing not configured for the project.
@@ -123,9 +123,9 @@ type auditingState struct {
 }
 
 type AuditingState struct {
-	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
 	AuditAuthorizationSuccess pulumi.BoolPtrInput
-	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://www.mongodb.com/docs/manual/tutorial/configure-audit-filters/).
 	AuditFilter pulumi.StringPtrInput
 	// Denotes the configuration method for the audit filter. Possible values are:
 	// * NONE - auditing not configured for the project.
@@ -145,9 +145,9 @@ func (AuditingState) ElementType() reflect.Type {
 }
 
 type auditingArgs struct {
-	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
 	AuditAuthorizationSuccess *bool `pulumi:"auditAuthorizationSuccess"`
-	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://www.mongodb.com/docs/manual/tutorial/configure-audit-filters/).
 	AuditFilter *string `pulumi:"auditFilter"`
 	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
 	//
@@ -159,9 +159,9 @@ type auditingArgs struct {
 
 // The set of arguments for constructing a Auditing resource.
 type AuditingArgs struct {
-	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+	// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
 	AuditAuthorizationSuccess pulumi.BoolPtrInput
-	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+	// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://www.mongodb.com/docs/manual/tutorial/configure-audit-filters/).
 	AuditFilter pulumi.StringPtrInput
 	// Denotes whether or not the project associated with the {project_id} has database auditing enabled.  Defaults to false.
 	//
@@ -258,12 +258,12 @@ func (o AuditingOutput) ToAuditingOutputWithContext(ctx context.Context) Auditin
 	return o
 }
 
-// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://docs.mongodb.com/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
+// Indicates whether the auditing system captures successful authentication attempts for audit filters using the "atype" : "authCheck" auditing event. For more information, see [auditAuthorizationSuccess](https://www.mongodb.com/docs/manual/reference/parameters/#param.auditAuthorizationSuccess).  **Warning! Enabling Audit authorization successes can severely impact cluster performance. Enable this option with caution.**
 func (o AuditingOutput) AuditAuthorizationSuccess() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Auditing) pulumi.BoolOutput { return v.AuditAuthorizationSuccess }).(pulumi.BoolOutput)
 }
 
-// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://docs.mongodb.com/manual/tutorial/configure-audit-filters/).
+// JSON-formatted audit filter. For complete documentation on custom auditing filters, see [Configure Audit Filters](https://www.mongodb.com/docs/manual/tutorial/configure-audit-filters/).
 func (o AuditingOutput) AuditFilter() pulumi.StringOutput {
 	return o.ApplyT(func(v *Auditing) pulumi.StringOutput { return v.AuditFilter }).(pulumi.StringOutput)
 }

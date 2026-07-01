@@ -81,7 +81,7 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
- * &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://docs.atlas.mongodb.com/reference/api/alert-configurations-create-config/
+ * &gt; **NOTE:** In order to allow for a fast pace of change to alert variables some validations have been removed from this resource in order to unblock alert creation. Impacted areas have links to the MongoDB Atlas API documentation so always check it for the most current information: https://www.mongodb.com/docs/atlas/reference/api/alert-configurations-create-config/
  * 
  * <pre>
  * {@code
@@ -266,7 +266,7 @@ import javax.annotation.Nullable;
  * 
  * **NOTE**: Third-party notifications will not contain their respective credentials as these are sensitive attributes. If you wish to perform updates on these notifications without providing the original credentials, the corresponding `notifierId` attribute must be provided instead.
  * 
- * For more information see: [MongoDB Atlas API Reference.](https://docs.atlas.mongodb.com/reference/api/alert-configurations/)
+ * For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/alert-configurations/)
  * 
  */
 @ResourceType(type="mongodbatlas:index/alertConfiguration:AlertConfiguration")

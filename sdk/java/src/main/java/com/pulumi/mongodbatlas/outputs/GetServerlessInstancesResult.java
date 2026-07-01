@@ -38,6 +38,10 @@ public final class GetServerlessInstancesResult {
      */
     @Deprecated /* This parameter is deprecated and will be removed in March 2025. For more details see https://registry.terraform.io/providers/mongodb/mongodbatlas/latest/docs/guides/serverless-shared-migration-guide. */
     private Boolean continuousBackupEnabled;
+    /**
+     * @return Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
+     * 
+     */
     private String createDate;
     /**
      * @return Unique 24-hexadecimal digit string that identifies the serverless instance.
@@ -56,7 +60,7 @@ public final class GetServerlessInstancesResult {
      */
     private String name;
     /**
-     * @return Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+     * @return Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      * 
      */
     private String projectId;
@@ -124,6 +128,10 @@ public final class GetServerlessInstancesResult {
     public Boolean continuousBackupEnabled() {
         return this.continuousBackupEnabled;
     }
+    /**
+     * @return Timestamp that indicates when MongoDB Cloud created the serverless instance. The timestamp displays in the ISO 8601 date and time format in UTC.
+     * 
+     */
     public String createDate() {
         return this.createDate;
     }
@@ -152,7 +160,7 @@ public final class GetServerlessInstancesResult {
         return this.name;
     }
     /**
-     * @return Unique identifier for the [project](https://docs.atlas.mongodb.com/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
+     * @return Unique identifier for the [project](https://www.mongodb.com/docs/atlas/organizations-projects/#std-label-projects) that contains the specified cluster, also known as `groupId` in the official documentation.
      * 
      */
     public String projectId() {

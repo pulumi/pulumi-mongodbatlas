@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class SearchIndexSynonym
     {
         /// <summary>
-        /// [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        /// [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         /// </summary>
         public readonly string Analyzer;
         /// <summary>
@@ -22,7 +22,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+        /// (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
         /// </summary>
         public readonly string SourceCollection;
 

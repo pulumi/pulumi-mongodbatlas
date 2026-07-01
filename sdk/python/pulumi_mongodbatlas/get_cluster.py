@@ -232,7 +232,7 @@ class GetClusterResult:
     @pulumi.getter(name="connectionStrings")
     def connection_strings(self) -> Sequence['outputs.GetClusterConnectionStringResult']:
         """
-        Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://docs.mongodb.com/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://docs.atlas.mongodb.com/reference/faq/connection-changes/).
+        Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/).
         """
         return pulumi.get(self, "connection_strings")
 
@@ -431,7 +431,7 @@ class GetClusterResult:
     @pulumi.getter(name="providerRegionName")
     def provider_region_name(self) -> _builtins.str:
         """
-        Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the Atlas Region name, see the reference list for [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/), [GCP](https://docs.atlas.mongodb.com/reference/google-gcp/), [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+        Indicates Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the Atlas Region name, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
         """
         return pulumi.get(self, "provider_region_name")
 
@@ -586,7 +586,7 @@ def get_cluster(name: Optional[_builtins.str] = None,
 
     > **IMPORTANT:**
     <br> &#8226; Multi Region Cluster: The `Cluster` data source doesn't return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `AdvancedCluster` data source instead.
-    <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+    <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).
     <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
 
     > **NOTE:** To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
@@ -684,7 +684,7 @@ def get_cluster_output(name: pulumi.Input[Optional[_builtins.str]] = None,
 
     > **IMPORTANT:**
     <br> &#8226; Multi Region Cluster: The `Cluster` data source doesn't return the `container_id` for each region utilized by the cluster. For retrieving the `container_id`, we recommend the `AdvancedCluster` data source instead.
-    <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://docs.atlas.mongodb.com/billing/).
+    <br> &#8226; Changes to cluster configurations can affect costs. Before making changes, please see [Billing](https://www.mongodb.com/docs/atlas/billing/).
     <br> &#8226; If your Atlas project contains a custom role that uses actions introduced in a specific MongoDB version, you cannot create a cluster with a MongoDB version less than that version unless you delete the custom role.
 
     > **NOTE:** To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.

@@ -55,6 +55,9 @@ class GetX509AuthenticationDatabaseUserResult:
     @_builtins.property
     @pulumi.getter(name="customerX509Cas")
     def customer_x509_cas(self) -> _builtins.str:
+        """
+        PEM string of the customer-managed X.509 Certificate Authority (CA).
+        """
         return pulumi.get(self, "customer_x509_cas")
 
     @_builtins.property

@@ -10,6 +10,10 @@ import java.util.Objects;
 
 @CustomType
 public final class GetFederatedDatabaseInstancesResultCloudProviderConfigAzure {
+    /**
+     * @return Unique identifier of the Azure Active Directory application associated with the service principal.
+     * 
+     */
     private String atlasAppId;
     /**
      * @return Unique identifier of the role that the Federated Database Instance can use to access the data stores.
@@ -28,6 +32,10 @@ public final class GetFederatedDatabaseInstancesResultCloudProviderConfigAzure {
     private String tenantId;
 
     private GetFederatedDatabaseInstancesResultCloudProviderConfigAzure() {}
+    /**
+     * @return Unique identifier of the Azure Active Directory application associated with the service principal.
+     * 
+     */
     public String atlasAppId() {
         return this.atlasAppId;
     }

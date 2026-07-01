@@ -602,7 +602,7 @@ class OnlineArchive(pulumi.CustomResource):
 
         ## Import
 
-        See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.
+        See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api/online-archive-create-one/) Documentation for more information.
 
 
         :param str resource_name: The name of the resource.
@@ -730,7 +730,7 @@ class OnlineArchive(pulumi.CustomResource):
 
         ## Import
 
-        See [MongoDB Atlas API](https://docs.atlas.mongodb.com/reference/api/online-archive-create-one/) Documentation for more information.
+        See [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api/online-archive-create-one/) Documentation for more information.
 
 
         :param str resource_name: The name of the resource.

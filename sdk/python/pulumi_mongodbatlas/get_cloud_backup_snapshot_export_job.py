@@ -120,11 +120,17 @@ class GetCloudBackupSnapshotExportJobResult:
     @_builtins.property
     @pulumi.getter(name="exportStatusExportedCollections")
     def export_status_exported_collections(self) -> _builtins.int:
+        """
+        _Returned for replica set only._ Number of collections that have been exported.
+        """
         return pulumi.get(self, "export_status_exported_collections")
 
     @_builtins.property
     @pulumi.getter(name="exportStatusTotalCollections")
     def export_status_total_collections(self) -> _builtins.int:
+        """
+        _Returned for replica set only._ Total number of collections to export.
+        """
         return pulumi.get(self, "export_status_total_collections")
 
     @_builtins.property

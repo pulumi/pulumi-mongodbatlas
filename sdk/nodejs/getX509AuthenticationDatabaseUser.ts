@@ -103,6 +103,9 @@ export interface GetX509AuthenticationDatabaseUserResult {
      * Array of objects where each details one unexpired database user certificate.
      */
     readonly certificates: outputs.GetX509AuthenticationDatabaseUserCertificate[];
+    /**
+     * PEM string of the customer-managed X.509 Certificate Authority (CA).
+     */
     readonly customerX509Cas: string;
     /**
      * The provider-assigned unique ID for this managed resource.

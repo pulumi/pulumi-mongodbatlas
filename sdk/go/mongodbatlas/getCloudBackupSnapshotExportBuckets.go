@@ -76,9 +76,9 @@ type LookupCloudBackupSnapshotExportBucketsResult struct {
 	// The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Includes CloudProviderSnapshotExportBucket object for each item detailed in the results array section.
-	// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
-	Results    []GetCloudBackupSnapshotExportBucketsResult `pulumi:"results"`
-	TotalCount int                                         `pulumi:"totalCount"`
+	Results []GetCloudBackupSnapshotExportBucketsResult `pulumi:"results"`
+	// Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
+	TotalCount int `pulumi:"totalCount"`
 }
 
 func LookupCloudBackupSnapshotExportBucketsOutput(ctx *pulumi.Context, args LookupCloudBackupSnapshotExportBucketsOutputArgs, opts ...pulumi.InvokeOption) LookupCloudBackupSnapshotExportBucketsResultOutput {
@@ -138,13 +138,13 @@ func (o LookupCloudBackupSnapshotExportBucketsResultOutput) ProjectId() pulumi.S
 }
 
 // Includes CloudProviderSnapshotExportBucket object for each item detailed in the results array section.
-// * `totalCount` - Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 func (o LookupCloudBackupSnapshotExportBucketsResultOutput) Results() GetCloudBackupSnapshotExportBucketsResultArrayOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketsResult) []GetCloudBackupSnapshotExportBucketsResult {
 		return v.Results
 	}).(GetCloudBackupSnapshotExportBucketsResultArrayOutput)
 }
 
+// Count of the total number of items in the result set. It may be greater than the number of objects in the results array if the entire result set is paginated.
 func (o LookupCloudBackupSnapshotExportBucketsResultOutput) TotalCount() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupCloudBackupSnapshotExportBucketsResult) int { return v.TotalCount }).(pulumi.IntOutput)
 }

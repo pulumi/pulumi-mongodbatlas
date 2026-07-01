@@ -148,7 +148,7 @@ import javax.annotation.Nullable;
  * $ pulumi import mongodbatlas:index/networkContainer:NetworkContainer my_container 1112222b3bf99403840e8934-5cbf563d87d9d67253be590a
  * ```
  * 
- * See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/)
+ * See detailed information for arguments and attributes: [MongoDB API Network Peering Container](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/)
  * 
  */
 @ResourceType(type="mongodbatlas:index/networkContainer:NetworkContainer")
@@ -280,42 +280,42 @@ public class NetworkContainer extends com.pulumi.resources.CustomResource {
         return this.provisioned;
     }
     /**
-     * Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://docs.atlas.mongodb.com/reference/microsoft-azure/).
+     * @return Atlas region where the container resides, see the reference list for Atlas Azure region names [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
      * 
      */
     public Output<String> region() {
         return this.region;
     }
     /**
-     * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+     * The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
      * 
      */
     @Export(name="regionName", refs={String.class}, tree="[0]")
     private Output<String> regionName;
 
     /**
-     * @return The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+     * @return The Atlas AWS region name for where this container will exist, see the reference list for Atlas AWS region names [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
      * 
      */
     public Output<String> regionName() {
         return this.regionName;
     }
     /**
-     * Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+     * Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
      * 
      */
     @Export(name="regions", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> regions;
 
     /**
-     * @return Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://docs.atlas.mongodb.com/reference/api/vpc-create-container/#request-body-parameters).
+     * @return Atlas regions where the container resides. Provide this field only if you provide an `atlasCidrBlock` smaller than `/18`. [GCP Regions values](https://www.mongodb.com/docs/atlas/reference/api/vpc-create-container/#request-body-parameters).
      * 
      */
     public Output<List<String>> regions() {

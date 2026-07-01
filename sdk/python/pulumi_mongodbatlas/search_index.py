@@ -46,8 +46,8 @@ class SearchIndexArgs:
         :param pulumi.Input[_builtins.str] collection_name: Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         :param pulumi.Input[_builtins.str] database: Name of the database the collection is in.
         :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
-        :param pulumi.Input[_builtins.str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
-        :param pulumi.Input[_builtins.str] analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+        :param pulumi.Input[_builtins.str] analyzer: [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        :param pulumi.Input[_builtins.str] analyzers: [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
                ```
                analyzers = <<-EOF
                [{
@@ -75,7 +75,7 @@ class SearchIndexArgs:
         :param pulumi.Input[_builtins.str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
         :param pulumi.Input[_builtins.str] name: The name of the search index you want to create.
         :param pulumi.Input[_builtins.int] num_partitions: Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
-        :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[_builtins.str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[_builtins.str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
@@ -167,7 +167,7 @@ class SearchIndexArgs:
     @pulumi.getter
     def analyzer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         """
         return pulumi.get(self, "analyzer")
 
@@ -179,7 +179,7 @@ class SearchIndexArgs:
     @pulumi.getter
     def analyzers(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+        [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
         ```
         analyzers = <<-EOF
         [{
@@ -284,7 +284,7 @@ class SearchIndexArgs:
     @pulumi.getter(name="searchAnalyzer")
     def search_analyzer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         """
         return pulumi.get(self, "search_analyzer")
 
@@ -379,8 +379,8 @@ class _SearchIndexState:
         """
         Input properties used for looking up and filtering SearchIndex resources.
 
-        :param pulumi.Input[_builtins.str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
-        :param pulumi.Input[_builtins.str] analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+        :param pulumi.Input[_builtins.str] analyzer: [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        :param pulumi.Input[_builtins.str] analyzers: [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
                ```
                analyzers = <<-EOF
                [{
@@ -413,7 +413,7 @@ class _SearchIndexState:
         :param pulumi.Input[_builtins.str] name: The name of the search index you want to create.
         :param pulumi.Input[_builtins.int] num_partitions: Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
         :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
-        :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[_builtins.str] status: Current status of the index.
         :param pulumi.Input[_builtins.str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         :param pulumi.Input[Sequence[pulumi.Input['SearchIndexSynonymArgs']]] synonyms: Synonyms mapping definition to use in this index.
@@ -466,7 +466,7 @@ class _SearchIndexState:
     @pulumi.getter
     def analyzer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         """
         return pulumi.get(self, "analyzer")
 
@@ -478,7 +478,7 @@ class _SearchIndexState:
     @pulumi.getter
     def analyzers(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+        [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
         ```
         analyzers = <<-EOF
         [{
@@ -643,7 +643,7 @@ class _SearchIndexState:
     @pulumi.getter(name="searchAnalyzer")
     def search_analyzer(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         """
         return pulumi.get(self, "search_analyzer")
 
@@ -893,8 +893,8 @@ class SearchIndex(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
-        :param pulumi.Input[_builtins.str] analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+        :param pulumi.Input[_builtins.str] analyzer: [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        :param pulumi.Input[_builtins.str] analyzers: [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
                ```
                analyzers = <<-EOF
                [{
@@ -926,7 +926,7 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the search index you want to create.
         :param pulumi.Input[_builtins.int] num_partitions: Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
         :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
-        :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[_builtins.str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[_builtins.str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
@@ -1188,8 +1188,8 @@ class SearchIndex(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
-        :param pulumi.Input[_builtins.str] analyzers: [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+        :param pulumi.Input[_builtins.str] analyzer: [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        :param pulumi.Input[_builtins.str] analyzers: [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
                ```
                analyzers = <<-EOF
                [{
@@ -1222,7 +1222,7 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: The name of the search index you want to create.
         :param pulumi.Input[_builtins.int] num_partitions: Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
         :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
-        :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[_builtins.str] status: Current status of the index.
         :param pulumi.Input[_builtins.str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
         :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]] synonyms: Synonyms mapping definition to use in this index.
@@ -1260,7 +1260,7 @@ class SearchIndex(pulumi.CustomResource):
     @pulumi.getter
     def analyzer(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         """
         return pulumi.get(self, "analyzer")
 
@@ -1268,7 +1268,7 @@ class SearchIndex(pulumi.CustomResource):
     @pulumi.getter
     def analyzers(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        [Custom analyzers](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+        [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
         ```
         analyzers = <<-EOF
         [{
@@ -1385,7 +1385,7 @@ class SearchIndex(pulumi.CustomResource):
     @pulumi.getter(name="searchAnalyzer")
     def search_analyzer(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         """
         return pulumi.get(self, "search_analyzer")
 

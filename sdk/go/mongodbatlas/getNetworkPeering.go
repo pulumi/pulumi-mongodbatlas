@@ -70,7 +70,7 @@ type LookupNetworkPeeringArgs struct {
 
 // A collection of values returned by getNetworkPeering.
 type LookupNetworkPeeringResult struct {
-	// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+	// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 	AccepterRegionName string `pulumi:"accepterRegionName"`
 	AtlasCidrBlock     string `pulumi:"atlasCidrBlock"`
 	AtlasId            string `pulumi:"atlasId"`
@@ -149,7 +149,7 @@ func (o LookupNetworkPeeringResultOutput) ToLookupNetworkPeeringResultOutputWith
 	return o
 }
 
-// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://docs.atlas.mongodb.com/reference/amazon-aws/).
+// Specifies the region where the peer VPC resides. For complete lists of supported regions, see [Amazon Web Services](https://www.mongodb.com/docs/atlas/reference/amazon-aws/).
 func (o LookupNetworkPeeringResultOutput) AccepterRegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupNetworkPeeringResult) string { return v.AccepterRegionName }).(pulumi.StringOutput)
 }

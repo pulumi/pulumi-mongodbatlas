@@ -38,7 +38,7 @@ public final class ClusterBiConnectorConfigArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     * Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
      * 
      * - Set to &#34;primary&#34; to have BI Connector for Atlas read from the primary.
      * 
@@ -51,7 +51,7 @@ public final class ClusterBiConnectorConfigArgs extends com.pulumi.resources.Res
     private @Nullable Output<String> readPreference;
 
     /**
-     * @return Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+     * @return Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
      * 
      * - Set to &#34;primary&#34; to have BI Connector for Atlas read from the primary.
      * 
@@ -117,7 +117,7 @@ public final class ClusterBiConnectorConfigArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param readPreference Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+         * @param readPreference Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
          * 
          * - Set to &#34;primary&#34; to have BI Connector for Atlas read from the primary.
          * 
@@ -134,7 +134,7 @@ public final class ClusterBiConnectorConfigArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param readPreference Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://docs.mongodb.com/manual/core/read-preference/) and [readPreferenceTags](https://docs.mongodb.com/manual/core/read-preference/#tag-sets) options. For details on BI Connector for Atlas read preferences, refer to the [BI Connector Read Preferences Table](https://docs.atlas.mongodb.com/tutorial/create-global-writes-cluster/#bic-read-preferences).
+         * @param readPreference Specifies the read preference to be used by BI Connector for Atlas on the cluster. Each BI Connector for Atlas read preference contains a distinct combination of [readPreference](https://www.mongodb.com/docs/manual/core/read-preference/) and [readPreferenceTags](https://www.mongodb.com/docs/manual/core/read-preference/#tag-sets) options. For details, refer to [Atlas cluster read preferences](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#read-preferences).
          * 
          * - Set to &#34;primary&#34; to have BI Connector for Atlas read from the primary.
          * 

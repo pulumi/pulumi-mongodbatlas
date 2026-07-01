@@ -644,7 +644,7 @@ import (
 // $ pulumi import mongodbatlas:index/streamConnection:StreamConnection test "DefaultInstance-12251446ae5f3f6ec7968b13-NewConnection"
 // ```
 //
-// To learn more, see: [MongoDB Atlas API - Stream Connection](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamConnection) Documentation.
+// To learn more, see: [MongoDB Atlas API - Stream Connection](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createstreamconnection) Documentation.
 // The Terraform Provider Examples Section also contains details on the overall support for Atlas Streams Processing in Terraform.
 type StreamConnection struct {
 	pulumi.CustomResourceState
@@ -673,7 +673,7 @@ type StreamConnection struct {
 	SchemaRegistryUrls           pulumi.StringArrayOutput                              `pulumi:"schemaRegistryUrls"`
 	Security                     StreamConnectionSecurityPtrOutput                     `pulumi:"security"`
 	Timeouts                     StreamConnectionTimeoutsPtrOutput                     `pulumi:"timeouts"`
-	// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+	// Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
 	Type pulumi.StringOutput    `pulumi:"type"`
 	Url  pulumi.StringPtrOutput `pulumi:"url"`
 	// Label that identifies the stream processing workspace.
@@ -743,7 +743,7 @@ type streamConnectionState struct {
 	SchemaRegistryUrls           []string                                      `pulumi:"schemaRegistryUrls"`
 	Security                     *StreamConnectionSecurity                     `pulumi:"security"`
 	Timeouts                     *StreamConnectionTimeouts                     `pulumi:"timeouts"`
-	// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+	// Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
 	Type *string `pulumi:"type"`
 	Url  *string `pulumi:"url"`
 	// Label that identifies the stream processing workspace.
@@ -775,7 +775,7 @@ type StreamConnectionState struct {
 	SchemaRegistryUrls           pulumi.StringArrayInput
 	Security                     StreamConnectionSecurityPtrInput
 	Timeouts                     StreamConnectionTimeoutsPtrInput
-	// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+	// Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
 	Type pulumi.StringPtrInput
 	Url  pulumi.StringPtrInput
 	// Label that identifies the stream processing workspace.
@@ -811,7 +811,7 @@ type streamConnectionArgs struct {
 	SchemaRegistryUrls           []string                                      `pulumi:"schemaRegistryUrls"`
 	Security                     *StreamConnectionSecurity                     `pulumi:"security"`
 	Timeouts                     *StreamConnectionTimeouts                     `pulumi:"timeouts"`
-	// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+	// Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
 	Type string  `pulumi:"type"`
 	Url  *string `pulumi:"url"`
 	// Label that identifies the stream processing workspace.
@@ -844,7 +844,7 @@ type StreamConnectionArgs struct {
 	SchemaRegistryUrls           pulumi.StringArrayInput
 	Security                     StreamConnectionSecurityPtrInput
 	Timeouts                     StreamConnectionTimeoutsPtrInput
-	// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+	// Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
 	Type pulumi.StringInput
 	Url  pulumi.StringPtrInput
 	// Label that identifies the stream processing workspace.
@@ -1021,7 +1021,7 @@ func (o StreamConnectionOutput) Timeouts() StreamConnectionTimeoutsPtrOutput {
 	return o.ApplyT(func(v *StreamConnection) StreamConnectionTimeoutsPtrOutput { return v.Timeouts }).(StreamConnectionTimeoutsPtrOutput)
 }
 
-// Type of connection. Can be `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `Sample`, or `SchemaRegistry`.
+// Type of connection. Can be `AWSKinesisDataStreams`, `AWSLambda`, `AzureBlobStorage`, `Cluster`, `GCPPubSub`, `Https`, `Kafka`, `S3`, `Sample`, or `SchemaRegistry`.
 func (o StreamConnectionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamConnection) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

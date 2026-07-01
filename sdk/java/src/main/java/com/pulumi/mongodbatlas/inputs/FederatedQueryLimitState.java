@@ -33,8 +33,6 @@ public final class FederatedQueryLimitState extends com.pulumi.resources.Resourc
 
     /**
      * Default value of the limit.
-     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-     * * `maximumLimit` - Maximum value of the limit.
      * 
      */
     @Import(name="defaultLimit")
@@ -42,17 +40,23 @@ public final class FederatedQueryLimitState extends com.pulumi.resources.Resourc
 
     /**
      * @return Default value of the limit.
-     * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-     * * `maximumLimit` - Maximum value of the limit.
      * 
      */
     public Optional<Output<Integer>> defaultLimit() {
         return Optional.ofNullable(this.defaultLimit);
     }
 
+    /**
+     * Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     * 
+     */
     @Import(name="lastModifiedDate")
     private @Nullable Output<String> lastModifiedDate;
 
+    /**
+     * @return Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+     * 
+     */
     public Optional<Output<String>> lastModifiedDate() {
         return Optional.ofNullable(this.lastModifiedDate);
     }
@@ -80,9 +84,17 @@ public final class FederatedQueryLimitState extends com.pulumi.resources.Resourc
         return Optional.ofNullable(this.limitName);
     }
 
+    /**
+     * Maximum value of the limit.
+     * 
+     */
     @Import(name="maximumLimit")
     private @Nullable Output<Integer> maximumLimit;
 
+    /**
+     * @return Maximum value of the limit.
+     * 
+     */
     public Optional<Output<Integer>> maximumLimit() {
         return Optional.ofNullable(this.maximumLimit);
     }
@@ -202,8 +214,6 @@ public final class FederatedQueryLimitState extends com.pulumi.resources.Resourc
 
         /**
          * @param defaultLimit Default value of the limit.
-         * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-         * * `maximumLimit` - Maximum value of the limit.
          * 
          * @return builder
          * 
@@ -215,8 +225,6 @@ public final class FederatedQueryLimitState extends com.pulumi.resources.Resourc
 
         /**
          * @param defaultLimit Default value of the limit.
-         * * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-         * * `maximumLimit` - Maximum value of the limit.
          * 
          * @return builder
          * 
@@ -225,11 +233,23 @@ public final class FederatedQueryLimitState extends com.pulumi.resources.Resourc
             return defaultLimit(Output.of(defaultLimit));
         }
 
+        /**
+         * @param lastModifiedDate Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+         * 
+         * @return builder
+         * 
+         */
         public Builder lastModifiedDate(@Nullable Output<String> lastModifiedDate) {
             $.lastModifiedDate = lastModifiedDate;
             return this;
         }
 
+        /**
+         * @param lastModifiedDate Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
+         * 
+         * @return builder
+         * 
+         */
         public Builder lastModifiedDate(String lastModifiedDate) {
             return lastModifiedDate(Output.of(lastModifiedDate));
         }
@@ -263,11 +283,23 @@ public final class FederatedQueryLimitState extends com.pulumi.resources.Resourc
             return limitName(Output.of(limitName));
         }
 
+        /**
+         * @param maximumLimit Maximum value of the limit.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maximumLimit(@Nullable Output<Integer> maximumLimit) {
             $.maximumLimit = maximumLimit;
             return this;
         }
 
+        /**
+         * @param maximumLimit Maximum value of the limit.
+         * 
+         * @return builder
+         * 
+         */
         public Builder maximumLimit(Integer maximumLimit) {
             return maximumLimit(Output.of(maximumLimit));
         }

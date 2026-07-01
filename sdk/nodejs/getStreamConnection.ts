@@ -80,7 +80,7 @@ export interface GetStreamConnectionResult {
      */
     readonly authentication: outputs.GetStreamConnectionAuthentication;
     /**
-     * The configuration for AWS Lambda connection. See AWS
+     * The configuration for S3 connection. See AWS.
      */
     readonly aws: outputs.GetStreamConnectionAws;
     /**
@@ -109,7 +109,7 @@ export interface GetStreamConnectionResult {
      */
     readonly dbRoleToExecute: outputs.GetStreamConnectionDbRoleToExecute;
     /**
-     * The configuration for GCP Pub/Sub connection. See GCP
+     * The configuration for GCP Pub/Sub connection. See GCP.
      */
     readonly gcp: outputs.GetStreamConnectionGcp;
     /**
@@ -122,7 +122,7 @@ export interface GetStreamConnectionResult {
      */
     readonly instanceName?: string;
     /**
-     * Networking Access Type can be `PUBLIC` or `PRIVATE_LINK`. See networking.
+     * Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
      */
     readonly networking: outputs.GetStreamConnectionNetworking;
     readonly projectId: string;

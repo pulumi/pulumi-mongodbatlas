@@ -13,19 +13,19 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class StreamConnectionTimeoutsArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `20m` (20 minutes).
+        /// The maximum time to wait for the stream connection to be fully provisioned after creation. Defaults to `40m` (40 minutes).
         /// </summary>
         [Input("create")]
         public Input<string>? Create { get; set; }
 
         /// <summary>
-        /// The maximum time to wait for the stream connection to be fully deleted. Defaults to `20m` (20 minutes).
+        /// The maximum time to wait for the stream connection to be fully deleted. Defaults to `40m` (40 minutes).
         /// </summary>
         [Input("delete")]
         public Input<string>? Delete { get; set; }
 
         /// <summary>
-        /// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `20m` (20 minutes).
+        /// The maximum time to wait for the stream connection to be fully provisioned after an update. Defaults to `40m` (40 minutes).
         /// </summary>
         [Input("update")]
         public Input<string>? Update { get; set; }

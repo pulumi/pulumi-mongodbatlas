@@ -7,7 +7,7 @@ import * as outputs from "./types/output";
 import * as utilities from "./utilities";
 
 /**
- * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+ * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
  *
  * ## Example Usage
  *
@@ -61,7 +61,7 @@ export interface GetFederatedQueryLimitsResult {
     readonly tenantName: string;
 }
 /**
- * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+ * `mongodbatlas.getFederatedQueryLimits` provides a Federated Database Instance Query Limits data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
  *
  * ## Example Usage
  *

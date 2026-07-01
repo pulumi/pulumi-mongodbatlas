@@ -15,14 +15,14 @@ public final class SearchIndexSynonymArgs extends com.pulumi.resources.ResourceA
     public static final SearchIndexSynonymArgs Empty = new SearchIndexSynonymArgs();
 
     /**
-     * [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+     * [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      * 
      */
     @Import(name="analyzer", required=true)
     private Output<String> analyzer;
 
     /**
-     * @return [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+     * @return [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
      * 
      */
     public Output<String> analyzer() {
@@ -45,14 +45,14 @@ public final class SearchIndexSynonymArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+     * (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
      * 
      */
     @Import(name="sourceCollection", required=true)
     private Output<String> sourceCollection;
 
     /**
-     * @return (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+     * @return (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
      * 
      */
     public Output<String> sourceCollection() {
@@ -86,7 +86,7 @@ public final class SearchIndexSynonymArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param analyzer [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+         * @param analyzer [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
          * 
          * @return builder
          * 
@@ -97,7 +97,7 @@ public final class SearchIndexSynonymArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param analyzer [Analyzer](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://docs.atlas.mongodb.com/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+         * @param analyzer [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
          * 
          * @return builder
          * 
@@ -128,7 +128,7 @@ public final class SearchIndexSynonymArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param sourceCollection (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+         * @param sourceCollection (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
          * 
          * @return builder
          * 
@@ -139,7 +139,7 @@ public final class SearchIndexSynonymArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param sourceCollection (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://docs.atlas.mongodb.com/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
+         * @param sourceCollection (Required) Name of the source MongoDB collection for the synonyms. Documents in this collection must be in the format described in the [Synonyms Source Collection Documents](https://www.mongodb.com/docs/atlas/reference/atlas-search/synonyms/#std-label-synonyms-coll-spec).
          * 
          * @return builder
          * 

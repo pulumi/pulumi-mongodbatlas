@@ -11,7 +11,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// `FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/overview/.
+// `FederatedQueryLimit` provides a Federated Database Instance Query Limit data source. To learn more about Atlas Data Federation see https://www.mongodb.com/docs/atlas/data-federation/adf-overview/overview/.
 //
 // ## Example Usage
 //
@@ -69,18 +69,20 @@ type LookupFederatedQueryLimitResult struct {
 	// Amount that indicates the current usage of the limit.
 	CurrentUsage int `pulumi:"currentUsage"`
 	// Default value of the limit.
-	// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-	// * `maximumLimit` - Maximum value of the limit.
 	DefaultLimit int `pulumi:"defaultLimit"`
 	// The provider-assigned unique ID for this managed resource.
-	Id               string `pulumi:"id"`
+	Id string `pulumi:"id"`
+	// Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
 	LastModifiedDate string `pulumi:"lastModifiedDate"`
 	LimitName        string `pulumi:"limitName"`
-	MaximumLimit     int    `pulumi:"maximumLimit"`
-	OverrunPolicy    string `pulumi:"overrunPolicy"`
-	ProjectId        string `pulumi:"projectId"`
-	TenantName       string `pulumi:"tenantName"`
-	Value            int    `pulumi:"value"`
+	// Maximum value of the limit.
+	MaximumLimit int `pulumi:"maximumLimit"`
+	// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit.
+	OverrunPolicy string `pulumi:"overrunPolicy"`
+	ProjectId     string `pulumi:"projectId"`
+	TenantName    string `pulumi:"tenantName"`
+	// Amount to set the limit to.
+	Value int `pulumi:"value"`
 }
 
 func LookupFederatedQueryLimitOutput(ctx *pulumi.Context, args LookupFederatedQueryLimitOutputArgs, opts ...pulumi.InvokeOption) LookupFederatedQueryLimitResultOutput {
@@ -131,8 +133,6 @@ func (o LookupFederatedQueryLimitResultOutput) CurrentUsage() pulumi.IntOutput {
 }
 
 // Default value of the limit.
-// * `lastModifiedDate` - Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
-// * `maximumLimit` - Maximum value of the limit.
 func (o LookupFederatedQueryLimitResultOutput) DefaultLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFederatedQueryLimitResult) int { return v.DefaultLimit }).(pulumi.IntOutput)
 }
@@ -142,6 +142,7 @@ func (o LookupFederatedQueryLimitResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFederatedQueryLimitResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
+// Only used for Data Federation limits. Timestamp that indicates when this usage limit was last modified. This field uses the ISO 8601 timestamp format in UTC.
 func (o LookupFederatedQueryLimitResultOutput) LastModifiedDate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFederatedQueryLimitResult) string { return v.LastModifiedDate }).(pulumi.StringOutput)
 }
@@ -150,10 +151,12 @@ func (o LookupFederatedQueryLimitResultOutput) LimitName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFederatedQueryLimitResult) string { return v.LimitName }).(pulumi.StringOutput)
 }
 
+// Maximum value of the limit.
 func (o LookupFederatedQueryLimitResultOutput) MaximumLimit() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFederatedQueryLimitResult) int { return v.MaximumLimit }).(pulumi.IntOutput)
 }
 
+// String enum that identifies action to take when the usage limit is exceeded. If limit span is set to QUERY, this is ignored because MongoDB Cloud stops the query when it exceeds the usage limit.
 func (o LookupFederatedQueryLimitResultOutput) OverrunPolicy() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupFederatedQueryLimitResult) string { return v.OverrunPolicy }).(pulumi.StringOutput)
 }
@@ -166,6 +169,7 @@ func (o LookupFederatedQueryLimitResultOutput) TenantName() pulumi.StringOutput 
 	return o.ApplyT(func(v LookupFederatedQueryLimitResult) string { return v.TenantName }).(pulumi.StringOutput)
 }
 
+// Amount to set the limit to.
 func (o LookupFederatedQueryLimitResultOutput) Value() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupFederatedQueryLimitResult) int { return v.Value }).(pulumi.IntOutput)
 }

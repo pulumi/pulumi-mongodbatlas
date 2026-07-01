@@ -18,7 +18,7 @@ public final class ClusterTag {
     /**
      * @return Variable that belongs to the set of the tag.
      * 
-     * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+     * To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
      * 
      */
     private String value;
@@ -34,7 +34,7 @@ public final class ClusterTag {
     /**
      * @return Variable that belongs to the set of the tag.
      * 
-     * To learn more, see [Resource Tags](https://dochub.mongodb.org/core/add-cluster-tag-atlas).
+     * To learn more, see [Resource Tags](https://www.mongodb.com/docs/atlas/tags/).
      * 
      */
     public String value() {
