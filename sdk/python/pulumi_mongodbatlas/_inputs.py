@@ -2180,8 +2180,6 @@ class AlertConfigurationMatcherArgsDict(TypedDict):
     | `HOSTNAME_AND_PORT` |                     |                         |
     | `REPLICA_SET_NAME`  |                     |                         |
 
-
-
     All other types of alerts do not support matchers.
     """
     operator: pulumi.Input[_builtins.str]
@@ -2212,8 +2210,6 @@ class AlertConfigurationMatcherArgs:
                | `HOSTNAME_AND_PORT` |                     |                         |
                | `REPLICA_SET_NAME`  |                     |                         |
                
-               
-               
                All other types of alerts do not support matchers.
         :param pulumi.Input[_builtins.str] value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
                - `PRIMARY`
@@ -2239,8 +2235,6 @@ class AlertConfigurationMatcherArgs:
         | `PORT`              | `CLUSTER_NAME`      |                         |
         | `HOSTNAME_AND_PORT` |                     |                         |
         | `REPLICA_SET_NAME`  |                     |                         |
-
-
 
         All other types of alerts do not support matchers.
         """
@@ -9423,7 +9417,7 @@ class OnlineArchivePartitionFieldArgs:
 class OnlineArchiveScheduleArgsDict(TypedDict):
     type: pulumi.Input[_builtins.str]
     """
-    Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
+    Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
     """
     day_of_month: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
@@ -9461,7 +9455,7 @@ class OnlineArchiveScheduleArgs:
                  start_hour: pulumi.Input[Optional[_builtins.int]] = None,
                  start_minute: pulumi.Input[Optional[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.str] type: Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
+        :param pulumi.Input[_builtins.str] type: Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
         :param pulumi.Input[_builtins.int] day_of_month: Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
         :param pulumi.Input[_builtins.int] day_of_week: Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `type` is `WEEKLY`.
         :param pulumi.Input[_builtins.int] end_hour: Hour of the day when the scheduled window to run one online archive ends.
@@ -9487,7 +9481,7 @@ class OnlineArchiveScheduleArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
+        Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
         """
         return pulumi.get(self, "type")
 

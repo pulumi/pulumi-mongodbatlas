@@ -149,7 +149,7 @@ export class FederatedSettingsIdentityProvider extends pulumi.CustomResource {
      */
     declare public readonly requestedScopes: pulumi.Output<string[] | undefined>;
     /**
-     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
      */
     declare public readonly responseSignatureAlgorithm: pulumi.Output<string | undefined>;
     /**
@@ -301,7 +301,7 @@ export interface FederatedSettingsIdentityProviderState {
      */
     requestedScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
      */
     responseSignatureAlgorithm?: pulumi.Input<string | undefined>;
     /**
@@ -379,7 +379,7 @@ export interface FederatedSettingsIdentityProviderArgs {
      */
     requestedScopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
-     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+     * Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
      */
     responseSignatureAlgorithm?: pulumi.Input<string | undefined>;
     /**

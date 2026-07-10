@@ -626,25 +626,25 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             region=gcp_region,
             network=default.id)
         # Create Google 50 Addresses (required for GCP legacy private endpoint architecture)
-        default_compute_address: list[Any] = []
-        for range in [{"value": i} for i in range(0, 50)]:
-            default_compute_address.append(google.ComputeAddress(f"default-{range['value']}",
+        default_compute_address: list[google.ComputeAddress] = []
+        for default_compute_address_range in [{"value": i} for i in range(0, 50)]:
+            default_compute_address.append(google.ComputeAddress(f"default-{default_compute_address_range['value']}",
                 project=default_compute_subnetwork.project,
-                name=ftf-this{range.value},
+                name=ftf-this{default_compute_address_range.value},
                 subnetwork=default_compute_subnetwork.id,
                 address_type=INTERNAL,
-                address=f10.0.42.{range.value},
+                address=f10.0.42.{default_compute_address_range.value},
                 region=gcp_region,
                 opts = pulumi.ResourceOptions(depends_on=[this])))
         # Create 50 Forwarding rules (required for GCP legacy private endpoint architecture)
-        default_compute_forwarding_rule: list[Any] = []
-        for range in [{"value": i} for i in range(0, 50)]:
-            default_compute_forwarding_rule.append(google.ComputeForwardingRule(f"default-{range['value']}",
-                target=this.service_attachment_names[range.value],
-                project=default_compute_address[range.value].project,
-                region=default_compute_address[range.value].region,
-                name=default_compute_address[range.value].name,
-                ip_address=default_compute_address[range.value].id,
+        default_compute_forwarding_rule: list[google.ComputeForwardingRule] = []
+        for default_compute_forwarding_rule_range in [{"value": i} for i in range(0, 50)]:
+            default_compute_forwarding_rule.append(google.ComputeForwardingRule(f"default-{default_compute_forwarding_rule_range['value']}",
+                target=this.service_attachment_names[default_compute_forwarding_rule_range.value],
+                project=default_compute_address[default_compute_forwarding_rule_range.value].project,
+                region=default_compute_address[default_compute_forwarding_rule_range.value].region,
+                name=default_compute_address[default_compute_forwarding_rule_range.value].name,
+                ip_address=default_compute_address[default_compute_forwarding_rule_range.value].id,
                 network=default.id,
                 load_balancing_scheme=))
         this_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("this",
@@ -868,25 +868,25 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             region=gcp_region,
             network=default.id)
         # Create Google 50 Addresses (required for GCP legacy private endpoint architecture)
-        default_compute_address: list[Any] = []
-        for range in [{"value": i} for i in range(0, 50)]:
-            default_compute_address.append(google.ComputeAddress(f"default-{range['value']}",
+        default_compute_address: list[google.ComputeAddress] = []
+        for default_compute_address_range in [{"value": i} for i in range(0, 50)]:
+            default_compute_address.append(google.ComputeAddress(f"default-{default_compute_address_range['value']}",
                 project=default_compute_subnetwork.project,
-                name=ftf-this{range.value},
+                name=ftf-this{default_compute_address_range.value},
                 subnetwork=default_compute_subnetwork.id,
                 address_type=INTERNAL,
-                address=f10.0.42.{range.value},
+                address=f10.0.42.{default_compute_address_range.value},
                 region=gcp_region,
                 opts = pulumi.ResourceOptions(depends_on=[this])))
         # Create 50 Forwarding rules (required for GCP legacy private endpoint architecture)
-        default_compute_forwarding_rule: list[Any] = []
-        for range in [{"value": i} for i in range(0, 50)]:
-            default_compute_forwarding_rule.append(google.ComputeForwardingRule(f"default-{range['value']}",
-                target=this.service_attachment_names[range.value],
-                project=default_compute_address[range.value].project,
-                region=default_compute_address[range.value].region,
-                name=default_compute_address[range.value].name,
-                ip_address=default_compute_address[range.value].id,
+        default_compute_forwarding_rule: list[google.ComputeForwardingRule] = []
+        for default_compute_forwarding_rule_range in [{"value": i} for i in range(0, 50)]:
+            default_compute_forwarding_rule.append(google.ComputeForwardingRule(f"default-{default_compute_forwarding_rule_range['value']}",
+                target=this.service_attachment_names[default_compute_forwarding_rule_range.value],
+                project=default_compute_address[default_compute_forwarding_rule_range.value].project,
+                region=default_compute_address[default_compute_forwarding_rule_range.value].region,
+                name=default_compute_address[default_compute_forwarding_rule_range.value].name,
+                ip_address=default_compute_address[default_compute_forwarding_rule_range.value].id,
                 network=default.id,
                 load_balancing_scheme=))
         this_private_link_endpoint_service = mongodbatlas.PrivateLinkEndpointService("this",

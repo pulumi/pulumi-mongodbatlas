@@ -68,7 +68,7 @@ export class Auditing extends pulumi.CustomResource {
      */
     declare public readonly auditFilter: pulumi.Output<string>;
     /**
-     * Denotes the configuration method for the audit filter. Possible values are: 
+     * Denotes the configuration method for the audit filter. Possible values are:
      * * NONE - auditing not configured for the project.
      * * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
      * * FILTER_JSON - auditing configured via Atlas custom filter or API.
@@ -132,7 +132,7 @@ export interface AuditingState {
      */
     auditFilter?: pulumi.Input<string | undefined>;
     /**
-     * Denotes the configuration method for the audit filter. Possible values are: 
+     * Denotes the configuration method for the audit filter. Possible values are:
      * * NONE - auditing not configured for the project.
      * * FILTER_BUILDER - auditing configured via Atlas UI filter builder.
      * * FILTER_JSON - auditing configured via Atlas custom filter or API.

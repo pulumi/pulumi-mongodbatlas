@@ -42,7 +42,7 @@ class ThirdPartyIntegrationArgs:
         The set of arguments for constructing a ThirdPartyIntegration resource.
 
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
-        :param pulumi.Input[_builtins.str] type: Third-Party Integration Settings type 
+        :param pulumi.Input[_builtins.str] type: Third-Party Integration Settings type
                * PAGER_DUTY
                * DATADOG
                * OPS_GENIE
@@ -50,7 +50,6 @@ class ThirdPartyIntegrationArgs:
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
-               
                
                * `PAGER_DUTY`
         """
@@ -107,7 +106,7 @@ class ThirdPartyIntegrationArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Third-Party Integration Settings type 
+        Third-Party Integration Settings type
         * PAGER_DUTY
         * DATADOG
         * OPS_GENIE
@@ -115,7 +114,6 @@ class ThirdPartyIntegrationArgs:
         * WEBHOOK
         * MICROSOFT_TEAMS
         * PROMETHEUS
-
 
         * `PAGER_DUTY`
         """
@@ -305,7 +303,7 @@ class _ThirdPartyIntegrationState:
         Input properties used for looking up and filtering ThirdPartyIntegration resources.
 
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
-        :param pulumi.Input[_builtins.str] type: Third-Party Integration Settings type 
+        :param pulumi.Input[_builtins.str] type: Third-Party Integration Settings type
                * PAGER_DUTY
                * DATADOG
                * OPS_GENIE
@@ -313,7 +311,6 @@ class _ThirdPartyIntegrationState:
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
-               
                
                * `PAGER_DUTY`
         """
@@ -507,7 +504,7 @@ class _ThirdPartyIntegrationState:
     @pulumi.getter
     def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Third-Party Integration Settings type 
+        Third-Party Integration Settings type
         * PAGER_DUTY
         * DATADOG
         * OPS_GENIE
@@ -515,7 +512,6 @@ class _ThirdPartyIntegrationState:
         * WEBHOOK
         * MICROSOFT_TEAMS
         * PROMETHEUS
-
 
         * `PAGER_DUTY`
         """
@@ -609,7 +605,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
-        :param pulumi.Input[_builtins.str] type: Third-Party Integration Settings type 
+        :param pulumi.Input[_builtins.str] type: Third-Party Integration Settings type
                * PAGER_DUTY
                * DATADOG
                * OPS_GENIE
@@ -617,7 +613,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
-               
                
                * `PAGER_DUTY`
         """
@@ -768,7 +763,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
-        :param pulumi.Input[_builtins.str] type: Third-Party Integration Settings type 
+        :param pulumi.Input[_builtins.str] type: Third-Party Integration Settings type
                * PAGER_DUTY
                * DATADOG
                * OPS_GENIE
@@ -776,7 +771,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                * WEBHOOK
                * MICROSOFT_TEAMS
                * PROMETHEUS
-               
                
                * `PAGER_DUTY`
         """
@@ -892,7 +886,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        Third-Party Integration Settings type 
+        Third-Party Integration Settings type
         * PAGER_DUTY
         * DATADOG
         * OPS_GENIE
@@ -900,7 +894,6 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         * WEBHOOK
         * MICROSOFT_TEAMS
         * PROMETHEUS
-
 
         * `PAGER_DUTY`
         """

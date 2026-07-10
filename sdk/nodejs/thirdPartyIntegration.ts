@@ -88,7 +88,7 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     declare public readonly serviceKey: pulumi.Output<string>;
     declare public readonly teamName: pulumi.Output<string>;
     /**
-     * Third-Party Integration Settings type 
+     * Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
      * * OPS_GENIE
@@ -96,7 +96,6 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     *
      *
      * * `PAGER_DUTY`
      */
@@ -195,7 +194,7 @@ export interface ThirdPartyIntegrationState {
     serviceKey?: pulumi.Input<string | undefined>;
     teamName?: pulumi.Input<string | undefined>;
     /**
-     * Third-Party Integration Settings type 
+     * Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
      * * OPS_GENIE
@@ -203,7 +202,6 @@ export interface ThirdPartyIntegrationState {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     *
      *
      * * `PAGER_DUTY`
      */
@@ -236,7 +234,7 @@ export interface ThirdPartyIntegrationArgs {
     serviceKey?: pulumi.Input<string | undefined>;
     teamName?: pulumi.Input<string | undefined>;
     /**
-     * Third-Party Integration Settings type 
+     * Third-Party Integration Settings type
      * * PAGER_DUTY
      * * DATADOG
      * * OPS_GENIE
@@ -244,7 +242,6 @@ export interface ThirdPartyIntegrationArgs {
      * * WEBHOOK
      * * MICROSOFT_TEAMS
      * * PROMETHEUS
-     *
      *
      * * `PAGER_DUTY`
      */

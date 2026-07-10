@@ -199,13 +199,13 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
     /**
      * The domain hostname. Required for the following provider and vendor combinations:
      *
-     * 	* AWS provider with CONFLUENT vendor.
-     *
-     * 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
-     *
-     * 	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
-     *
-     * 	* For GCP provider with PUBSUB vendor, the API computes this process.
+     *     * AWS provider with CONFLUENT vendor.
+     *     
+     *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *     
+     *     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+     *     
+     *     * For GCP provider with PUBSUB vendor, the API computes this process.
      */
     declare public readonly dnsDomain: pulumi.Output<string>;
     /**
@@ -255,11 +255,11 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
     /**
      * Vendor that manages the endpoint. The following are the vendor values per provider:
      *
-     * 	* **AWS**: MSK, CONFLUENT, and S3
-     *
-     * 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
-     *
-     * 	* **GCP**: CONFLUENT and PUBSUB
+     *     * **AWS**: MSK, CONFLUENT, and S3
+     *     
+     *     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
+     *     
+     *     * **GCP**: CONFLUENT and PUBSUB
      */
     declare public readonly vendor: pulumi.Output<string>;
 
@@ -332,13 +332,13 @@ export interface StreamPrivatelinkEndpointState {
     /**
      * The domain hostname. Required for the following provider and vendor combinations:
      *
-     * 	* AWS provider with CONFLUENT vendor.
-     *
-     * 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
-     *
-     * 	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
-     *
-     * 	* For GCP provider with PUBSUB vendor, the API computes this process.
+     *     * AWS provider with CONFLUENT vendor.
+     *     
+     *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *     
+     *     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+     *     
+     *     * For GCP provider with PUBSUB vendor, the API computes this process.
      */
     dnsDomain?: pulumi.Input<string | undefined>;
     /**
@@ -388,11 +388,11 @@ export interface StreamPrivatelinkEndpointState {
     /**
      * Vendor that manages the endpoint. The following are the vendor values per provider:
      *
-     * 	* **AWS**: MSK, CONFLUENT, and S3
-     *
-     * 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
-     *
-     * 	* **GCP**: CONFLUENT and PUBSUB
+     *     * **AWS**: MSK, CONFLUENT, and S3
+     *     
+     *     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
+     *     
+     *     * **GCP**: CONFLUENT and PUBSUB
      */
     vendor?: pulumi.Input<string | undefined>;
 }
@@ -408,13 +408,13 @@ export interface StreamPrivatelinkEndpointArgs {
     /**
      * The domain hostname. Required for the following provider and vendor combinations:
      *
-     * 	* AWS provider with CONFLUENT vendor.
-     *
-     * 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
-     *
-     * 	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
-     *
-     * 	* For GCP provider with PUBSUB vendor, the API computes this process.
+     *     * AWS provider with CONFLUENT vendor.
+     *     
+     *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *     
+     *     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+     *     
+     *     * For GCP provider with PUBSUB vendor, the API computes this process.
      */
     dnsDomain?: pulumi.Input<string | undefined>;
     /**
@@ -444,11 +444,11 @@ export interface StreamPrivatelinkEndpointArgs {
     /**
      * Vendor that manages the endpoint. The following are the vendor values per provider:
      *
-     * 	* **AWS**: MSK, CONFLUENT, and S3
-     *
-     * 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
-     *
-     * 	* **GCP**: CONFLUENT and PUBSUB
+     *     * **AWS**: MSK, CONFLUENT, and S3
+     *     
+     *     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
+     *     
+     *     * **GCP**: CONFLUENT and PUBSUB
      */
     vendor: pulumi.Input<string>;
 }

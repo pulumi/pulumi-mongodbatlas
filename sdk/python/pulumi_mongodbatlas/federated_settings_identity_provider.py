@@ -54,7 +54,7 @@ class FederatedSettingsIdentityProviderArgs:
                - HTTP POST
                - HTTP REDIRECT
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] requested_scopes: Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
-        :param pulumi.Input[_builtins.str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+        :param pulumi.Input[_builtins.str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
         :param pulumi.Input[_builtins.bool] sso_debug_enabled: Flag that indicates whether the identity provider has SSO debug enabled.
         :param pulumi.Input[_builtins.str] sso_url: Unique string that identifies the intended audience of the SAML assertion.
         :param pulumi.Input[_builtins.str] status: String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
@@ -255,7 +255,7 @@ class FederatedSettingsIdentityProviderArgs:
     @pulumi.getter(name="responseSignatureAlgorithm")
     def response_signature_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+        Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
         """
         return pulumi.get(self, "response_signature_algorithm")
 
@@ -355,7 +355,7 @@ class _FederatedSettingsIdentityProviderState:
                - HTTP POST
                - HTTP REDIRECT
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] requested_scopes: Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
-        :param pulumi.Input[_builtins.str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+        :param pulumi.Input[_builtins.str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
         :param pulumi.Input[_builtins.bool] sso_debug_enabled: Flag that indicates whether the identity provider has SSO debug enabled.
         :param pulumi.Input[_builtins.str] sso_url: Unique string that identifies the intended audience of the SAML assertion.
         :param pulumi.Input[_builtins.str] status: String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
@@ -586,7 +586,7 @@ class _FederatedSettingsIdentityProviderState:
     @pulumi.getter(name="responseSignatureAlgorithm")
     def response_signature_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+        Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
         """
         return pulumi.get(self, "response_signature_algorithm")
 
@@ -741,7 +741,7 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
                - HTTP POST
                - HTTP REDIRECT
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] requested_scopes: Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
-        :param pulumi.Input[_builtins.str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+        :param pulumi.Input[_builtins.str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
         :param pulumi.Input[_builtins.bool] sso_debug_enabled: Flag that indicates whether the identity provider has SSO debug enabled.
         :param pulumi.Input[_builtins.str] sso_url: Unique string that identifies the intended audience of the SAML assertion.
         :param pulumi.Input[_builtins.str] status: String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
@@ -929,7 +929,7 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
                - HTTP POST
                - HTTP REDIRECT
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] requested_scopes: Scopes that MongoDB applications will request from the authorization endpoint used for OIDC IdPs.
-        :param pulumi.Input[_builtins.str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+        :param pulumi.Input[_builtins.str] response_signature_algorithm: Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
         :param pulumi.Input[_builtins.bool] sso_debug_enabled: Flag that indicates whether the identity provider has SSO debug enabled.
         :param pulumi.Input[_builtins.str] sso_url: Unique string that identifies the intended audience of the SAML assertion.
         :param pulumi.Input[_builtins.str] status: String enum that indicates whether the identity provider is active or not. Accepted values are ACTIVE or INACTIVE.
@@ -1085,7 +1085,7 @@ class FederatedSettingsIdentityProvider(pulumi.CustomResource):
     @pulumi.getter(name="responseSignatureAlgorithm")
     def response_signature_algorithm(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include `SHA-1 `and `SHA-256`.
+        Signature algorithm that Federated Authentication uses to encrypt the identity provider signature.  Valid values include ` SHA-1  `and `SHA-256`.
         """
         return pulumi.get(self, "response_signature_algorithm")
 
