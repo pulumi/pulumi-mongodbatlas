@@ -438,8 +438,6 @@ export interface AlertConfigurationMatcher {
      * | `HOSTNAME_AND_PORT` |                     |                         |
      * | `REPLICA_SET_NAME`  |                     |                         |
      *
-     *
-     *
      * All other types of alerts do not support matchers.
      */
     fieldName: string;
@@ -2020,7 +2018,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScali
      */
     computeEnabled: boolean;
     /**
-     * Maximum instance size to which your cluster can automatically scale (such as M40). 
+     * Maximum instance size to which your cluster can automatically scale (such as M40).
      * #### Advanced Configuration
      */
     computeMaxInstanceSize: string;
@@ -2071,7 +2069,7 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAutoScaling {
      */
     computeEnabled: boolean;
     /**
-     * Maximum instance size to which your cluster can automatically scale (such as M40). 
+     * Maximum instance size to which your cluster can automatically scale (such as M40).
      * #### Advanced Configuration
      */
     computeMaxInstanceSize: string;
@@ -3718,7 +3716,7 @@ export interface GetCloudBackupSnapshotExportJobsResult {
     exportBucketId: string;
     /**
      * Unique identifier of the export job.
-     * * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+     * * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
      */
     exportJobId: string;
     exportStatusExportedCollections: number;
@@ -6724,13 +6722,10 @@ export interface GetOrganizationsResultUser {
     /**
      * Mobile phone number that belongs to the MongoDB Cloud user.
      *
-     *
      * > **NOTE:** - Users with pending invitations created using `mongodbatlas.ProjectInvitation` resource or via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint are excluded (or cannot be managed) with this resource. See [MongoDB Atlas API - MongoDB Cloud Users](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-mongodb-cloud-users) for details.
      * To manage these users with this resource/data source, refer to our Org Invitation to Cloud User Org Assignment Migration Guide.
      *
-     *
      * > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true` using the `mongodbatlas.Organization` resource.
-     *
      *
      * See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
      */
@@ -8329,13 +8324,13 @@ export interface GetStreamPrivatelinkEndpointsResult {
     /**
      * The domain hostname. Required for the following provider and vendor combinations:
      *
-     * 	* AWS provider with CONFLUENT vendor.
-     *
-     * 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
-     *
-     * 	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
-     *
-     * 	* For GCP provider with PUBSUB vendor, the API computes this process.
+     *     * AWS provider with CONFLUENT vendor.
+     *     
+     *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+     *     
+     *     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+     *     
+     *     * For GCP provider with PUBSUB vendor, the API computes this process.
      */
     dnsDomain: string;
     /**
@@ -8389,11 +8384,11 @@ export interface GetStreamPrivatelinkEndpointsResult {
     /**
      * Vendor that manages the endpoint. The following are the vendor values per provider:
      *
-     * 	* **AWS**: MSK, CONFLUENT, and S3
-     *
-     * 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
-     *
-     * 	* **GCP**: CONFLUENT and PUBSUB
+     *     * **AWS**: MSK, CONFLUENT, and S3
+     *     
+     *     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
+     *     
+     *     * **GCP**: CONFLUENT and PUBSUB
      */
     vendor: string;
 }
@@ -8869,7 +8864,7 @@ export interface OnlineArchiveSchedule {
      */
     startMinute?: number;
     /**
-     * Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
+     * Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
      */
     type: string;
 }

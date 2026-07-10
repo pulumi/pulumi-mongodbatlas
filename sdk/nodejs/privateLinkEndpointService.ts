@@ -135,13 +135,13 @@ import * as utilities from "./utilities";
  * });
  * // Create Google 50 Addresses (required for GCP legacy private endpoint architecture)
  * const defaultComputeAddress: google.index.ComputeAddress[] = [];
- * for (const range = {value: 0}; range.value < 50; range.value++) {
- *     defaultComputeAddress.push(new google.index.ComputeAddress(`default-${range.value}`, {
+ * for (let range = 0; range < 50; range++) {
+ *     defaultComputeAddress.push(new google.index.ComputeAddress(`default-${range}`, {
  *         project: defaultComputeSubnetwork.project,
- *         name: `tf-this${range.value}`,
+ *         name: `tf-this${range}`,
  *         subnetwork: defaultComputeSubnetwork.id,
  *         addressType: "INTERNAL",
- *         address: `10.0.42.${range.value}`,
+ *         address: `10.0.42.${range}`,
  *         region: gcpRegion,
  *     }, {
  *     dependsOn: [_this],
@@ -149,13 +149,13 @@ import * as utilities from "./utilities";
  * }
  * // Create 50 Forwarding rules (required for GCP legacy private endpoint architecture)
  * const defaultComputeForwardingRule: google.index.ComputeForwardingRule[] = [];
- * for (const range = {value: 0}; range.value < 50; range.value++) {
- *     defaultComputeForwardingRule.push(new google.index.ComputeForwardingRule(`default-${range.value}`, {
- *         target: _this.serviceAttachmentNames[range.value],
- *         project: defaultComputeAddress[range.value].project,
- *         region: defaultComputeAddress[range.value].region,
- *         name: defaultComputeAddress[range.value].name,
- *         ipAddress: defaultComputeAddress[range.value].id,
+ * for (let range = 0; range < 50; range++) {
+ *     defaultComputeForwardingRule.push(new google.index.ComputeForwardingRule(`default-${range}`, {
+ *         target: _this.serviceAttachmentNames[range],
+ *         project: defaultComputeAddress[range].project,
+ *         region: defaultComputeAddress[range].region,
+ *         name: defaultComputeAddress[range].name,
+ *         ipAddress: defaultComputeAddress[range].id,
  *         network: _default.id,
  *         loadBalancingScheme: "",
  *     }));

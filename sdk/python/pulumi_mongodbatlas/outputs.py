@@ -1977,8 +1977,6 @@ class AlertConfigurationMatcher(dict):
                | `HOSTNAME_AND_PORT` |                     |                         |
                | `REPLICA_SET_NAME`  |                     |                         |
                
-               
-               
                All other types of alerts do not support matchers.
         :param _builtins.str value: Value to test with the specified operator. If `field_name` is set to TYPE_NAME, you can match on the following values:
                - `PRIMARY`
@@ -2004,8 +2002,6 @@ class AlertConfigurationMatcher(dict):
         | `PORT`              | `CLUSTER_NAME`      |                         |
         | `HOSTNAME_AND_PORT` |                     |                         |
         | `REPLICA_SET_NAME`  |                     |                         |
-
-
 
         All other types of alerts do not support matchers.
         """
@@ -8001,7 +7997,7 @@ class OnlineArchiveSchedule(dict):
                  start_hour: Optional[_builtins.int] = None,
                  start_minute: Optional[_builtins.int] = None):
         """
-        :param _builtins.str type: Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
+        :param _builtins.str type: Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
         :param _builtins.int day_of_month: Day of the month when the scheduled archive starts. This field should be provided only when schedule `type` is `MONTHLY`.
         :param _builtins.int day_of_week: Day of the week when the scheduled archive starts. The week starts with Monday (1) and ends with Sunday (7). This field should be provided only when schedule `type` is `WEEKLY`.
         :param _builtins.int end_hour: Hour of the day when the scheduled window to run one online archive ends.
@@ -8027,7 +8023,7 @@ class OnlineArchiveSchedule(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
+        Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
         """
         return pulumi.get(self, "type")
 
@@ -10760,7 +10756,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult(di
                  disk_gb_enabled: _builtins.bool):
         """
         :param _builtins.bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled.
-        :param _builtins.str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). 
+        :param _builtins.str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40).
                #### Advanced Configuration
         :param _builtins.str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10).
         :param _builtins.bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
@@ -10784,7 +10780,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult(di
     @pulumi.getter(name="computeMaxInstanceSize")
     def compute_max_instance_size(self) -> _builtins.str:
         """
-        Maximum instance size to which your cluster can automatically scale (such as M40). 
+        Maximum instance size to which your cluster can automatically scale (such as M40).
         #### Advanced Configuration
         """
         return pulumi.get(self, "compute_max_instance_size")
@@ -10897,7 +10893,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult(dict):
                  disk_gb_enabled: _builtins.bool):
         """
         :param _builtins.bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled.
-        :param _builtins.str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). 
+        :param _builtins.str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40).
                #### Advanced Configuration
         :param _builtins.str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10).
         :param _builtins.bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
@@ -10921,7 +10917,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult(dict):
     @pulumi.getter(name="computeMaxInstanceSize")
     def compute_max_instance_size(self) -> _builtins.str:
         """
-        Maximum instance size to which your cluster can automatically scale (such as M40). 
+        Maximum instance size to which your cluster can automatically scale (such as M40).
         #### Advanced Configuration
         """
         return pulumi.get(self, "compute_max_instance_size")
@@ -15334,7 +15330,7 @@ class GetCloudBackupSnapshotExportJobsResultResult(dict):
         :param Sequence['GetCloudBackupSnapshotExportJobsResultCustomDataArgs'] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         :param _builtins.str export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to.
         :param _builtins.str export_job_id: Unique identifier of the export job.
-               * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+               * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
         :param _builtins.str finished_at: Timestamp in ISO 8601 date and time format in UTC when the export job completes.
         :param _builtins.str snapshot_id: Unique identifier of the Cloud Backup snapshot to export.
         :param _builtins.str state: Status of the export job. Value can be one of the following:
@@ -15393,7 +15389,7 @@ class GetCloudBackupSnapshotExportJobsResultResult(dict):
     def export_job_id(self) -> _builtins.str:
         """
         Unique identifier of the export job.
-        * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+        * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
         """
         return pulumi.get(self, "export_job_id")
 
@@ -24166,13 +24162,10 @@ class GetOrganizationsResultUserResult(dict):
         :param _builtins.str last_name: Last name, family name, or surname that belongs to the MongoDB Cloud user.
         :param _builtins.str mobile_number: Mobile phone number that belongs to the MongoDB Cloud user.
                
-               
                > **NOTE:** - Users with pending invitations created using `ProjectInvitation` resource or via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint are excluded (or cannot be managed) with this resource. See [MongoDB Atlas API - MongoDB Cloud Users](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-mongodb-cloud-users) for details.
                To manage these users with this resource/data source, refer to our Org Invitation to Cloud User Org Assignment Migration Guide.
                
-               
                > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true` using the `Organization` resource.
-               
                
                See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
         :param _builtins.str org_membership_status: String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
@@ -24273,13 +24266,10 @@ class GetOrganizationsResultUserResult(dict):
         """
         Mobile phone number that belongs to the MongoDB Cloud user.
 
-
         > **NOTE:** - Users with pending invitations created using `ProjectInvitation` resource or via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint are excluded (or cannot be managed) with this resource. See [MongoDB Atlas API - MongoDB Cloud Users](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-mongodb-cloud-users) for details.
         To manage these users with this resource/data source, refer to our Org Invitation to Cloud User Org Assignment Migration Guide.
 
-
         > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true` using the `Organization` resource.
-
 
         See [MongoDB Atlas API - Organizations](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Organizations/operation/listOrganizations)  Documentation for more information.
         """
@@ -28673,13 +28663,13 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         :param _builtins.str arn: Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
         :param _builtins.str dns_domain: The domain hostname. Required for the following provider and vendor combinations:
                
-               	* AWS provider with CONFLUENT vendor.
-               
-               	* AZURE provider with EVENTHUB or CONFLUENT vendor.
-               
-               	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
-               
-               	* For GCP provider with PUBSUB vendor, the API computes this process.
+                   * AWS provider with CONFLUENT vendor.
+                   
+                   * AZURE provider with EVENTHUB or CONFLUENT vendor.
+                   
+                   * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+                   
+                   * For GCP provider with PUBSUB vendor, the API computes this process.
         :param Sequence[_builtins.str] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
         :param _builtins.str error_message: Error message if the connection is in a failed state.
         :param _builtins.str id: The ID of the Private Link connection.
@@ -28694,11 +28684,11 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         :param _builtins.str state: Status of the connection.
         :param _builtins.str vendor: Vendor that manages the endpoint. The following are the vendor values per provider:
                
-               	* **AWS**: MSK, CONFLUENT, and S3
-               
-               	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
-               
-               	* **GCP**: CONFLUENT and PUBSUB
+                   * **AWS**: MSK, CONFLUENT, and S3
+                   
+                   * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
+                   
+                   * **GCP**: CONFLUENT and PUBSUB
         """
         pulumi.set(__self__, "arn", arn)
         pulumi.set(__self__, "dns_domain", dns_domain)
@@ -28730,13 +28720,13 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         """
         The domain hostname. Required for the following provider and vendor combinations:
 
-        	* AWS provider with CONFLUENT vendor.
-
-        	* AZURE provider with EVENTHUB or CONFLUENT vendor.
-
-        	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
-
-        	* For GCP provider with PUBSUB vendor, the API computes this process.
+            * AWS provider with CONFLUENT vendor.
+            
+            * AZURE provider with EVENTHUB or CONFLUENT vendor.
+            
+            * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+            
+            * For GCP provider with PUBSUB vendor, the API computes this process.
         """
         return pulumi.get(self, "dns_domain")
 
@@ -28842,11 +28832,11 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         """
         Vendor that manages the endpoint. The following are the vendor values per provider:
 
-        	* **AWS**: MSK, CONFLUENT, and S3
-
-        	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
-
-        	* **GCP**: CONFLUENT and PUBSUB
+            * **AWS**: MSK, CONFLUENT, and S3
+            
+            * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
+            
+            * **GCP**: CONFLUENT and PUBSUB
         """
         return pulumi.get(self, "vendor")
 

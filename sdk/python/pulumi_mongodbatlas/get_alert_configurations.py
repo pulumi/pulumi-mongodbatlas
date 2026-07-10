@@ -122,7 +122,7 @@ def get_alert_configurations(list_options: Optional[Sequence[Union['GetAlertConf
             "resource_import",
         ])
     alerts = import_.results
-    outputs = std.flatten(input=[[] if alert.output == None else alert.output for i, alert in enumerate(alerts)])["result"]
+    outputs = std.flatten(input=[[] if alert.output is None else alert.output for i, alert in enumerate(alerts)])["result"]
     output_values = std.compact(input=[o["value"] for i, o in enumerate(outputs)])["result"]
     pulumi.export("alertOutput", std.join(separator="\\n",
         input=output_values)["result"])
@@ -173,7 +173,7 @@ def get_alert_configurations_output(list_options: pulumi.Input[Optional[Optional
             "resource_import",
         ])
     alerts = import_.results
-    outputs = std.flatten(input=[[] if alert.output == None else alert.output for i, alert in enumerate(alerts)])["result"]
+    outputs = std.flatten(input=[[] if alert.output is None else alert.output for i, alert in enumerate(alerts)])["result"]
     output_values = std.compact(input=[o["value"] for i, o in enumerate(outputs)])["result"]
     pulumi.export("alertOutput", std.join(separator="\\n",
         input=output_values)["result"])

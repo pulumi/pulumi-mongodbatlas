@@ -56,7 +56,7 @@ class CloudBackupScheduleArgs:
         :param pulumi.Input[_builtins.int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
         :param pulumi.Input[_builtins.bool] skip_destroy: Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
-        :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+        :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
                
                **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
         :param pulumi.Input[_builtins.bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
@@ -266,7 +266,7 @@ class CloudBackupScheduleArgs:
     @pulumi.getter(name="updateSnapshots")
     def update_snapshots(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+        Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
 
         **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
         """
@@ -333,7 +333,7 @@ class _CloudBackupScheduleState:
         :param pulumi.Input[_builtins.int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
         :param pulumi.Input[_builtins.bool] skip_destroy: Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
-        :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+        :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
                
                **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
         :param pulumi.Input[_builtins.bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
@@ -587,7 +587,7 @@ class _CloudBackupScheduleState:
     @pulumi.getter(name="updateSnapshots")
     def update_snapshots(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+        Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
 
         **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
         """
@@ -859,7 +859,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
         :param pulumi.Input[_builtins.bool] skip_destroy: Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
-        :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+        :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
                
                **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
         :param pulumi.Input[_builtins.bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
@@ -1196,7 +1196,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] reference_minute_of_hour: UTC Minutes after `reference_hour_of_day` that Atlas takes snapshots for backup policy items. Must be between 0 and 59, inclusive.
         :param pulumi.Input[_builtins.int] restore_window_days: Number of days back in time you can restore to with point-in-time accuracy. Must be a positive, non-zero integer.
         :param pulumi.Input[_builtins.bool] skip_destroy: Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
-        :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+        :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
                
                **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
         :param pulumi.Input[_builtins.bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
@@ -1368,7 +1368,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
     @pulumi.getter(name="updateSnapshots")
     def update_snapshots(self) -> pulumi.Output[_builtins.bool]:
         """
-        Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+        Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
 
         **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
         """

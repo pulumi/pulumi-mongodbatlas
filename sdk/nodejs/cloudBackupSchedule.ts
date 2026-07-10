@@ -320,7 +320,7 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
      */
     declare public readonly skipDestroy: pulumi.Output<boolean | undefined>;
     /**
-     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
      *
      * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
      */
@@ -470,7 +470,7 @@ export interface CloudBackupScheduleState {
      */
     skipDestroy?: pulumi.Input<boolean | undefined>;
     /**
-     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
      *
      * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
      */
@@ -544,7 +544,7 @@ export interface CloudBackupScheduleArgs {
      */
     skipDestroy?: pulumi.Input<boolean | undefined>;
     /**
-     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously. 
+     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
      *
      * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
      */

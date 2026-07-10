@@ -438,8 +438,6 @@ export interface AlertConfigurationMatcher {
      * | `HOSTNAME_AND_PORT` |                     |                         |
      * | `REPLICA_SET_NAME`  |                     |                         |
      *
-     *
-     *
      * All other types of alerts do not support matchers.
      */
     fieldName: pulumi.Input<string>;
@@ -2160,7 +2158,7 @@ export interface OnlineArchiveSchedule {
      */
     startMinute?: pulumi.Input<number | undefined>;
     /**
-     * Type of schedule (``DAILY`, `MONTHLY`, `WEEKLY`).
+     * Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
      */
     type: pulumi.Input<string>;
 }

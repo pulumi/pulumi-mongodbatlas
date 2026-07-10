@@ -128,7 +128,7 @@ class _CloudBackupSnapshotExportJobState:
         :param pulumi.Input[Sequence[pulumi.Input['CloudBackupSnapshotExportJobCustomDataArgs']]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         :param pulumi.Input[_builtins.str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
         :param pulumi.Input[_builtins.str] export_job_id: Unique identifier of the export job.
-               * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+               * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
         :param pulumi.Input[_builtins.int] export_status_exported_collections: _Returned for replica set only._ Number of collections that have been exported.
         :param pulumi.Input[_builtins.int] export_status_total_collections: _Returned for replica set only._ Total number of collections to export.
         :param pulumi.Input[_builtins.str] finished_at: Timestamp in ISO 8601 date and time format in UTC when the export job completes.
@@ -233,7 +233,7 @@ class _CloudBackupSnapshotExportJobState:
     def export_job_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
         Unique identifier of the export job.
-        * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+        * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
         """
         return pulumi.get(self, "export_job_id")
 
@@ -612,7 +612,7 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotExportJobCustomDataArgs', 'CloudBackupSnapshotExportJobCustomDataArgsDict']]]] custom_datas: Custom data to include in the metadata file named `.complete` that Atlas uploads to the bucket when the export job finishes. Custom data can be specified as key and value pairs.
         :param pulumi.Input[_builtins.str] export_bucket_id: Unique identifier of the AWS bucket to export the Cloud Backup snapshot to. If necessary, use the [Get All Snapshot Export Buckets](https://www.mongodb.com/docs/atlas/reference/api/cloud-backup/export/get-all-export-buckets/) API to retrieve the IDs of all available export buckets for a project or use the data source mongodbatlas_cloud_backup_snapshot_export_buckets
         :param pulumi.Input[_builtins.str] export_job_id: Unique identifier of the export job.
-               * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+               * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
         :param pulumi.Input[_builtins.int] export_status_exported_collections: _Returned for replica set only._ Number of collections that have been exported.
         :param pulumi.Input[_builtins.int] export_status_total_collections: _Returned for replica set only._ Total number of collections to export.
         :param pulumi.Input[_builtins.str] finished_at: Timestamp in ISO 8601 date and time format in UTC when the export job completes.
@@ -689,7 +689,7 @@ class CloudBackupSnapshotExportJob(pulumi.CustomResource):
     def export_job_id(self) -> pulumi.Output[_builtins.str]:
         """
         Unique identifier of the export job.
-        * `prefix ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
+        * ` prefix  ` - Full path on the cloud provider bucket to the folder where the snapshot is exported. The path is in the following format:`/exported_snapshots/{ORG-NAME}/{PROJECT-NAME}/{CLUSTER-NAME}/{SNAPSHOT-INITIATION-DATE}/{TIMESTAMP}`
         """
         return pulumi.get(self, "export_job_id")
 
