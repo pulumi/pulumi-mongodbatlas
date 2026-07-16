@@ -17,11 +17,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         public readonly int? DefaultLimit;
         public readonly int? MaximumLimit;
         /// <summary>
-        /// Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+        /// Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
         /// </summary>
         public readonly string Name;
         /// <summary>
-        /// Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+        /// Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
         /// </summary>
         public readonly int Value;
 

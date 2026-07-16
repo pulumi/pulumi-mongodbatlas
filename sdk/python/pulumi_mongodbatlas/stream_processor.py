@@ -25,6 +25,7 @@ class StreamProcessorArgs:
                  processor_name: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 failover_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  instance_name: pulumi.Input[Optional[_builtins.str]] = None,
                  options: pulumi.Input[Optional['StreamProcessorOptionsArgs']] = None,
                  state: pulumi.Input[Optional[_builtins.str]] = None,
@@ -38,6 +39,7 @@ class StreamProcessorArgs:
         :param pulumi.Input[_builtins.str] processor_name: Label that identifies the stream processor.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[_builtins.bool] failover_enabled: Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace.
         :param pulumi.Input['StreamProcessorOptionsArgs'] options: Optional configuration for the stream processor.
         :param pulumi.Input[_builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
@@ -49,6 +51,8 @@ class StreamProcessorArgs:
         pulumi.set(__self__, "project_id", project_id)
         if delete_on_create_timeout is not None:
             pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
+        if failover_enabled is not None:
+            pulumi.set(__self__, "failover_enabled", failover_enabled)
         if instance_name is not None:
             warnings.warn("""This parameter is deprecated. Please transition to workspace_name.""", DeprecationWarning)
             pulumi.log.warn("""instance_name is deprecated: This parameter is deprecated. Please transition to workspace_name.""")
@@ -112,6 +116,18 @@ class StreamProcessorArgs:
     @delete_on_create_timeout.setter
     def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
+
+    @_builtins.property
+    @pulumi.getter(name="failoverEnabled")
+    def failover_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
+        """
+        return pulumi.get(self, "failover_enabled")
+
+    @failover_enabled.setter
+    def failover_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "failover_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceName")
@@ -188,6 +204,7 @@ class StreamProcessorArgs:
 class _StreamProcessorState:
     def __init__(__self__, *,
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 failover_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  instance_name: pulumi.Input[Optional[_builtins.str]] = None,
                  options: pulumi.Input[Optional['StreamProcessorOptionsArgs']] = None,
                  pipeline: pulumi.Input[Optional[_builtins.str]] = None,
@@ -202,6 +219,7 @@ class _StreamProcessorState:
         Input properties used for looking up and filtering StreamProcessor resources.
 
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[_builtins.bool] failover_enabled: Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace.
         :param pulumi.Input['StreamProcessorOptionsArgs'] options: Optional configuration for the stream processor.
         :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
@@ -214,6 +232,8 @@ class _StreamProcessorState:
         """
         if delete_on_create_timeout is not None:
             pulumi.set(__self__, "delete_on_create_timeout", delete_on_create_timeout)
+        if failover_enabled is not None:
+            pulumi.set(__self__, "failover_enabled", failover_enabled)
         if instance_name is not None:
             warnings.warn("""This parameter is deprecated. Please transition to workspace_name.""", DeprecationWarning)
             pulumi.log.warn("""instance_name is deprecated: This parameter is deprecated. Please transition to workspace_name.""")
@@ -249,6 +269,18 @@ class _StreamProcessorState:
     @delete_on_create_timeout.setter
     def delete_on_create_timeout(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "delete_on_create_timeout", value)
+
+    @_builtins.property
+    @pulumi.getter(name="failoverEnabled")
+    def failover_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
+        """
+        return pulumi.get(self, "failover_enabled")
+
+    @failover_enabled.setter
+    def failover_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "failover_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="instanceName")
@@ -376,6 +408,7 @@ class StreamProcessor(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 failover_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  instance_name: pulumi.Input[Optional[_builtins.str]] = None,
                  options: pulumi.Input[Optional[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']]] = None,
                  pipeline: pulumi.Input[Optional[_builtins.str]] = None,
@@ -535,6 +568,7 @@ class StreamProcessor(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[_builtins.bool] failover_enabled: Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace.
         :param pulumi.Input[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']] options: Optional configuration for the stream processor.
         :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
@@ -712,6 +746,7 @@ class StreamProcessor(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+                 failover_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  instance_name: pulumi.Input[Optional[_builtins.str]] = None,
                  options: pulumi.Input[Optional[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']]] = None,
                  pipeline: pulumi.Input[Optional[_builtins.str]] = None,
@@ -731,6 +766,7 @@ class StreamProcessor(pulumi.CustomResource):
             __props__ = StreamProcessorArgs.__new__(StreamProcessorArgs)
 
             __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
+            __props__.__dict__["failover_enabled"] = failover_enabled
             __props__.__dict__["instance_name"] = instance_name
             __props__.__dict__["options"] = options
             if pipeline is None and not opts.urn:
@@ -758,6 +794,7 @@ class StreamProcessor(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
+            failover_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             instance_name: pulumi.Input[Optional[_builtins.str]] = None,
             options: pulumi.Input[Optional[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']]] = None,
             pipeline: pulumi.Input[Optional[_builtins.str]] = None,
@@ -776,6 +813,7 @@ class StreamProcessor(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+        :param pulumi.Input[_builtins.bool] failover_enabled: Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace.
         :param pulumi.Input[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']] options: Optional configuration for the stream processor.
         :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
@@ -791,6 +829,7 @@ class StreamProcessor(pulumi.CustomResource):
         __props__ = _StreamProcessorState.__new__(_StreamProcessorState)
 
         __props__.__dict__["delete_on_create_timeout"] = delete_on_create_timeout
+        __props__.__dict__["failover_enabled"] = failover_enabled
         __props__.__dict__["instance_name"] = instance_name
         __props__.__dict__["options"] = options
         __props__.__dict__["pipeline"] = pipeline
@@ -810,6 +849,14 @@ class StreamProcessor(pulumi.CustomResource):
         Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         """
         return pulumi.get(self, "delete_on_create_timeout")
+
+    @_builtins.property
+    @pulumi.getter(name="failoverEnabled")
+    def failover_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
+        """
+        return pulumi.get(self, "failover_enabled")
 
     @_builtins.property
     @pulumi.getter(name="instanceName")

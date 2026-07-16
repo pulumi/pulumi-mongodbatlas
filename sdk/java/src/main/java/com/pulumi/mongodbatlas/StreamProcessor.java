@@ -235,6 +235,20 @@ public class StreamProcessor extends com.pulumi.resources.CustomResource {
         return this.deleteOnCreateTimeout;
     }
     /**
+     * Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace&#39;s `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+     * 
+     */
+    @Export(name="failoverEnabled", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> failoverEnabled;
+
+    /**
+     * @return Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace&#39;s `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+     * 
+     */
+    public Output<Optional<Boolean>> failoverEnabled() {
+        return Codegen.optional(this.failoverEnabled);
+    }
+    /**
      * Label that identifies the stream processing workspace.
      * 
      * @deprecated

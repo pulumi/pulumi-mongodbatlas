@@ -66,7 +66,7 @@ namespace Pulumi.Mongodbatlas
     /// ```sh
     /// $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
     /// ```
-    /// For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://www.mongodb.com/docs/atlas/reference/api/teams/) Documentation for more information.
+    /// For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Teams) Documentation for more information.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/project:Project")]
     public partial class Project : global::Pulumi.CustomResource
@@ -90,6 +90,12 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.ProjectIpAddresses> IpAddresses { get; private set; } = null!;
 
         /// <summary>
+        /// Flag that indicates whether to enable the AI Assistant for the project's clusters.
+        /// </summary>
+        [Output("isClusterAiAssistantEnabled")]
+        public Output<bool> IsClusterAiAssistantEnabled { get; private set; } = null!;
+
+        /// <summary>
         /// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         /// </summary>
         [Output("isCollectDatabaseSpecificsStatisticsEnabled")]
@@ -100,6 +106,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("isDataExplorerEnabled")]
         public Output<bool> IsDataExplorerEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+        /// </summary>
+        [Output("isDataExplorerGenAiFeaturesEnabled")]
+        public Output<bool> IsDataExplorerGenAiFeaturesEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+        /// </summary>
+        [Output("isDataExplorerGenAiSampleDocumentPassingEnabled")]
+        public Output<bool> IsDataExplorerGenAiSampleDocumentPassingEnabled { get; private set; } = null!;
 
         /// <summary>
         /// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
@@ -220,6 +238,12 @@ namespace Pulumi.Mongodbatlas
     public sealed class ProjectArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// Flag that indicates whether to enable the AI Assistant for the project's clusters.
+        /// </summary>
+        [Input("isClusterAiAssistantEnabled")]
+        public Input<bool>? IsClusterAiAssistantEnabled { get; set; }
+
+        /// <summary>
         /// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         /// </summary>
         [Input("isCollectDatabaseSpecificsStatisticsEnabled")]
@@ -230,6 +254,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("isDataExplorerEnabled")]
         public Input<bool>? IsDataExplorerEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+        /// </summary>
+        [Input("isDataExplorerGenAiFeaturesEnabled")]
+        public Input<bool>? IsDataExplorerGenAiFeaturesEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+        /// </summary>
+        [Input("isDataExplorerGenAiSampleDocumentPassingEnabled")]
+        public Input<bool>? IsDataExplorerGenAiSampleDocumentPassingEnabled { get; set; }
 
         /// <summary>
         /// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
@@ -347,6 +383,12 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.ProjectIpAddressesGetArgs>? IpAddresses { get; set; }
 
         /// <summary>
+        /// Flag that indicates whether to enable the AI Assistant for the project's clusters.
+        /// </summary>
+        [Input("isClusterAiAssistantEnabled")]
+        public Input<bool>? IsClusterAiAssistantEnabled { get; set; }
+
+        /// <summary>
         /// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         /// </summary>
         [Input("isCollectDatabaseSpecificsStatisticsEnabled")]
@@ -357,6 +399,18 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("isDataExplorerEnabled")]
         public Input<bool>? IsDataExplorerEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+        /// </summary>
+        [Input("isDataExplorerGenAiFeaturesEnabled")]
+        public Input<bool>? IsDataExplorerGenAiFeaturesEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+        /// </summary>
+        [Input("isDataExplorerGenAiSampleDocumentPassingEnabled")]
+        public Input<bool>? IsDataExplorerGenAiSampleDocumentPassingEnabled { get; set; }
 
         /// <summary>
         /// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.

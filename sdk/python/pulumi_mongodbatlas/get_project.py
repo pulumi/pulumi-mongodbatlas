@@ -27,7 +27,7 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, cluster_count=None, created=None, id=None, ip_addresses=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, is_slow_operation_thresholding_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, tags=None, teams=None, users=None):
+    def __init__(__self__, cluster_count=None, created=None, id=None, ip_addresses=None, is_cluster_ai_assistant_enabled=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_data_explorer_gen_ai_features_enabled=None, is_data_explorer_gen_ai_sample_document_passing_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, is_slow_operation_thresholding_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, tags=None, teams=None, users=None):
         if cluster_count and not isinstance(cluster_count, int):
             raise TypeError("Expected argument 'cluster_count' to be a int")
         pulumi.set(__self__, "cluster_count", cluster_count)
@@ -40,12 +40,21 @@ class GetProjectResult:
         if ip_addresses and not isinstance(ip_addresses, dict):
             raise TypeError("Expected argument 'ip_addresses' to be a dict")
         pulumi.set(__self__, "ip_addresses", ip_addresses)
+        if is_cluster_ai_assistant_enabled and not isinstance(is_cluster_ai_assistant_enabled, bool):
+            raise TypeError("Expected argument 'is_cluster_ai_assistant_enabled' to be a bool")
+        pulumi.set(__self__, "is_cluster_ai_assistant_enabled", is_cluster_ai_assistant_enabled)
         if is_collect_database_specifics_statistics_enabled and not isinstance(is_collect_database_specifics_statistics_enabled, bool):
             raise TypeError("Expected argument 'is_collect_database_specifics_statistics_enabled' to be a bool")
         pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
         if is_data_explorer_enabled and not isinstance(is_data_explorer_enabled, bool):
             raise TypeError("Expected argument 'is_data_explorer_enabled' to be a bool")
         pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
+        if is_data_explorer_gen_ai_features_enabled and not isinstance(is_data_explorer_gen_ai_features_enabled, bool):
+            raise TypeError("Expected argument 'is_data_explorer_gen_ai_features_enabled' to be a bool")
+        pulumi.set(__self__, "is_data_explorer_gen_ai_features_enabled", is_data_explorer_gen_ai_features_enabled)
+        if is_data_explorer_gen_ai_sample_document_passing_enabled and not isinstance(is_data_explorer_gen_ai_sample_document_passing_enabled, bool):
+            raise TypeError("Expected argument 'is_data_explorer_gen_ai_sample_document_passing_enabled' to be a bool")
+        pulumi.set(__self__, "is_data_explorer_gen_ai_sample_document_passing_enabled", is_data_explorer_gen_ai_sample_document_passing_enabled)
         if is_extended_storage_sizes_enabled and not isinstance(is_extended_storage_sizes_enabled, bool):
             raise TypeError("Expected argument 'is_extended_storage_sizes_enabled' to be a bool")
         pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
@@ -120,6 +129,14 @@ class GetProjectResult:
         return pulumi.get(self, "ip_addresses")
 
     @_builtins.property
+    @pulumi.getter(name="isClusterAiAssistantEnabled")
+    def is_cluster_ai_assistant_enabled(self) -> _builtins.bool:
+        """
+        Flag that indicates whether the AI Assistant is enabled for the project's clusters.
+        """
+        return pulumi.get(self, "is_cluster_ai_assistant_enabled")
+
+    @_builtins.property
     @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
     def is_collect_database_specifics_statistics_enabled(self) -> _builtins.bool:
         """
@@ -134,6 +151,22 @@ class GetProjectResult:
         Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
         """
         return pulumi.get(self, "is_data_explorer_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="isDataExplorerGenAiFeaturesEnabled")
+    def is_data_explorer_gen_ai_features_enabled(self) -> _builtins.bool:
+        """
+        Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
+        """
+        return pulumi.get(self, "is_data_explorer_gen_ai_features_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="isDataExplorerGenAiSampleDocumentPassingEnabled")
+    def is_data_explorer_gen_ai_sample_document_passing_enabled(self) -> _builtins.bool:
+        """
+        Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
+        """
+        return pulumi.get(self, "is_data_explorer_gen_ai_sample_document_passing_enabled")
 
     @_builtins.property
     @pulumi.getter(name="isExtendedStorageSizesEnabled")
@@ -249,8 +282,11 @@ class AwaitableGetProjectResult(GetProjectResult):
             created=self.created,
             id=self.id,
             ip_addresses=self.ip_addresses,
+            is_cluster_ai_assistant_enabled=self.is_cluster_ai_assistant_enabled,
             is_collect_database_specifics_statistics_enabled=self.is_collect_database_specifics_statistics_enabled,
             is_data_explorer_enabled=self.is_data_explorer_enabled,
+            is_data_explorer_gen_ai_features_enabled=self.is_data_explorer_gen_ai_features_enabled,
+            is_data_explorer_gen_ai_sample_document_passing_enabled=self.is_data_explorer_gen_ai_sample_document_passing_enabled,
             is_extended_storage_sizes_enabled=self.is_extended_storage_sizes_enabled,
             is_performance_advisor_enabled=self.is_performance_advisor_enabled,
             is_realtime_performance_panel_enabled=self.is_realtime_performance_panel_enabled,
@@ -322,8 +358,11 @@ def get_project(name: Optional[_builtins.str] = None,
         created=pulumi.get(__ret__, 'created'),
         id=pulumi.get(__ret__, 'id'),
         ip_addresses=pulumi.get(__ret__, 'ip_addresses'),
+        is_cluster_ai_assistant_enabled=pulumi.get(__ret__, 'is_cluster_ai_assistant_enabled'),
         is_collect_database_specifics_statistics_enabled=pulumi.get(__ret__, 'is_collect_database_specifics_statistics_enabled'),
         is_data_explorer_enabled=pulumi.get(__ret__, 'is_data_explorer_enabled'),
+        is_data_explorer_gen_ai_features_enabled=pulumi.get(__ret__, 'is_data_explorer_gen_ai_features_enabled'),
+        is_data_explorer_gen_ai_sample_document_passing_enabled=pulumi.get(__ret__, 'is_data_explorer_gen_ai_sample_document_passing_enabled'),
         is_extended_storage_sizes_enabled=pulumi.get(__ret__, 'is_extended_storage_sizes_enabled'),
         is_performance_advisor_enabled=pulumi.get(__ret__, 'is_performance_advisor_enabled'),
         is_realtime_performance_panel_enabled=pulumi.get(__ret__, 'is_realtime_performance_panel_enabled'),
@@ -392,8 +431,11 @@ def get_project_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = N
         created=pulumi.get(__response__, 'created'),
         id=pulumi.get(__response__, 'id'),
         ip_addresses=pulumi.get(__response__, 'ip_addresses'),
+        is_cluster_ai_assistant_enabled=pulumi.get(__response__, 'is_cluster_ai_assistant_enabled'),
         is_collect_database_specifics_statistics_enabled=pulumi.get(__response__, 'is_collect_database_specifics_statistics_enabled'),
         is_data_explorer_enabled=pulumi.get(__response__, 'is_data_explorer_enabled'),
+        is_data_explorer_gen_ai_features_enabled=pulumi.get(__response__, 'is_data_explorer_gen_ai_features_enabled'),
+        is_data_explorer_gen_ai_sample_document_passing_enabled=pulumi.get(__response__, 'is_data_explorer_gen_ai_sample_document_passing_enabled'),
         is_extended_storage_sizes_enabled=pulumi.get(__response__, 'is_extended_storage_sizes_enabled'),
         is_performance_advisor_enabled=pulumi.get(__response__, 'is_performance_advisor_enabled'),
         is_realtime_performance_panel_enabled=pulumi.get(__response__, 'is_realtime_performance_panel_enabled'),

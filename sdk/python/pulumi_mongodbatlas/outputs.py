@@ -146,6 +146,12 @@ __all__ = [
     'StreamConnectionAws',
     'StreamConnectionAzure',
     'StreamConnectionDbRoleToExecute',
+    'StreamConnectionFailoverAuthentication',
+    'StreamConnectionFailoverDbRoleToExecute',
+    'StreamConnectionFailoverNetworking',
+    'StreamConnectionFailoverNetworkingAccess',
+    'StreamConnectionFailoverSecurity',
+    'StreamConnectionFailoverTimeouts',
     'StreamConnectionGcp',
     'StreamConnectionNetworking',
     'StreamConnectionNetworkingAccess',
@@ -158,6 +164,7 @@ __all__ = [
     'StreamProcessorOptionsDlq',
     'StreamProcessorTimeouts',
     'StreamWorkspaceDataProcessRegion',
+    'StreamWorkspaceFailoverRegion',
     'StreamWorkspaceStreamConfig',
     'X509AuthenticationDatabaseUserCertificate',
     'GetAccessListApiKeysResultResult',
@@ -443,6 +450,17 @@ __all__ = [
     'GetStreamConnectionAwsResult',
     'GetStreamConnectionAzureResult',
     'GetStreamConnectionDbRoleToExecuteResult',
+    'GetStreamConnectionFailoverAuthenticationResult',
+    'GetStreamConnectionFailoverDbRoleToExecuteResult',
+    'GetStreamConnectionFailoverNetworkingResult',
+    'GetStreamConnectionFailoverNetworkingAccessResult',
+    'GetStreamConnectionFailoverSecurityResult',
+    'GetStreamConnectionFailoversResultResult',
+    'GetStreamConnectionFailoversResultAuthenticationResult',
+    'GetStreamConnectionFailoversResultDbRoleToExecuteResult',
+    'GetStreamConnectionFailoversResultNetworkingResult',
+    'GetStreamConnectionFailoversResultNetworkingAccessResult',
+    'GetStreamConnectionFailoversResultSecurityResult',
     'GetStreamConnectionGcpResult',
     'GetStreamConnectionNetworkingResult',
     'GetStreamConnectionNetworkingAccessResult',
@@ -470,9 +488,11 @@ __all__ = [
     'GetStreamProcessorsResultOptionsResult',
     'GetStreamProcessorsResultOptionsDlqResult',
     'GetStreamWorkspaceDataProcessRegionResult',
+    'GetStreamWorkspaceFailoverRegionResult',
     'GetStreamWorkspaceStreamConfigResult',
     'GetStreamWorkspacesResultResult',
     'GetStreamWorkspacesResultDataProcessRegionResult',
+    'GetStreamWorkspacesResultFailoverRegionResult',
     'GetStreamWorkspacesResultStreamConfigResult',
     'GetTeamUserResult',
     'GetTeamUserRoleResult',
@@ -8550,8 +8570,8 @@ class ProjectLimit(dict):
                  default_limit: Optional[_builtins.int] = None,
                  maximum_limit: Optional[_builtins.int] = None):
         """
-        :param _builtins.str name: Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
-        :param _builtins.int value: Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+        :param _builtins.str name: Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+        :param _builtins.int value: Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
         """
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "value", value)
@@ -8566,7 +8586,7 @@ class ProjectLimit(dict):
     @pulumi.getter
     def name(self) -> _builtins.str:
         """
-        Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+        Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
         """
         return pulumi.get(self, "name")
 
@@ -8574,7 +8594,7 @@ class ProjectLimit(dict):
     @pulumi.getter
     def value(self) -> _builtins.int:
         """
-        Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+        Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
         """
         return pulumi.get(self, "value")
 
@@ -9484,6 +9504,399 @@ class StreamConnectionDbRoleToExecute(dict):
 
 
 @pulumi.output_type
+class StreamConnectionFailoverAuthentication(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clientId":
+            suggest = "client_id"
+        elif key == "clientSecret":
+            suggest = "client_secret"
+        elif key == "saslOauthbearerExtensions":
+            suggest = "sasl_oauthbearer_extensions"
+        elif key == "sslCertificate":
+            suggest = "ssl_certificate"
+        elif key == "sslKey":
+            suggest = "ssl_key"
+        elif key == "sslKeyPassword":
+            suggest = "ssl_key_password"
+        elif key == "tokenEndpointUrl":
+            suggest = "token_endpoint_url"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StreamConnectionFailoverAuthentication. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StreamConnectionFailoverAuthentication.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StreamConnectionFailoverAuthentication.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 client_id: Optional[_builtins.str] = None,
+                 client_secret: Optional[_builtins.str] = None,
+                 mechanism: Optional[_builtins.str] = None,
+                 method: Optional[_builtins.str] = None,
+                 password: Optional[_builtins.str] = None,
+                 sasl_oauthbearer_extensions: Optional[_builtins.str] = None,
+                 scope: Optional[_builtins.str] = None,
+                 ssl_certificate: Optional[_builtins.str] = None,
+                 ssl_key: Optional[_builtins.str] = None,
+                 ssl_key_password: Optional[_builtins.str] = None,
+                 token_endpoint_url: Optional[_builtins.str] = None,
+                 username: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str client_id: OIDC client identifier for authentication to the Kafka cluster.
+        :param _builtins.str client_secret: OIDC client secret for authentication to the Kafka cluster.
+        :param _builtins.str mechanism: Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+        :param _builtins.str method: SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        :param _builtins.str password: Password of the account to connect to the Kafka cluster.
+        :param _builtins.str sasl_oauthbearer_extensions: SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+        :param _builtins.str scope: OIDC scope parameter defining the access permissions requested.
+        :param _builtins.str ssl_certificate: SSL certificate for client authentication to Kafka.
+        :param _builtins.str ssl_key: SSL key for client authentication to Kafka.
+        :param _builtins.str ssl_key_password: Password for the SSL key, if it is password protected.
+        :param _builtins.str token_endpoint_url: OIDC token endpoint URL for obtaining access tokens.
+        :param _builtins.str username: Username of the account to connect to the Kafka cluster.
+        """
+        if client_id is not None:
+            pulumi.set(__self__, "client_id", client_id)
+        if client_secret is not None:
+            pulumi.set(__self__, "client_secret", client_secret)
+        if mechanism is not None:
+            pulumi.set(__self__, "mechanism", mechanism)
+        if method is not None:
+            pulumi.set(__self__, "method", method)
+        if password is not None:
+            pulumi.set(__self__, "password", password)
+        if sasl_oauthbearer_extensions is not None:
+            pulumi.set(__self__, "sasl_oauthbearer_extensions", sasl_oauthbearer_extensions)
+        if scope is not None:
+            pulumi.set(__self__, "scope", scope)
+        if ssl_certificate is not None:
+            pulumi.set(__self__, "ssl_certificate", ssl_certificate)
+        if ssl_key is not None:
+            pulumi.set(__self__, "ssl_key", ssl_key)
+        if ssl_key_password is not None:
+            pulumi.set(__self__, "ssl_key_password", ssl_key_password)
+        if token_endpoint_url is not None:
+            pulumi.set(__self__, "token_endpoint_url", token_endpoint_url)
+        if username is not None:
+            pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> Optional[_builtins.str]:
+        """
+        OIDC client identifier for authentication to the Kafka cluster.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> Optional[_builtins.str]:
+        """
+        OIDC client secret for authentication to the Kafka cluster.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter
+    def mechanism(self) -> Optional[_builtins.str]:
+        """
+        Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+        """
+        return pulumi.get(self, "mechanism")
+
+    @_builtins.property
+    @pulumi.getter
+    def method(self) -> Optional[_builtins.str]:
+        """
+        SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        """
+        return pulumi.get(self, "method")
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> Optional[_builtins.str]:
+        """
+        Password of the account to connect to the Kafka cluster.
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="saslOauthbearerExtensions")
+    def sasl_oauthbearer_extensions(self) -> Optional[_builtins.str]:
+        """
+        SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+        """
+        return pulumi.get(self, "sasl_oauthbearer_extensions")
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> Optional[_builtins.str]:
+        """
+        OIDC scope parameter defining the access permissions requested.
+        """
+        return pulumi.get(self, "scope")
+
+    @_builtins.property
+    @pulumi.getter(name="sslCertificate")
+    def ssl_certificate(self) -> Optional[_builtins.str]:
+        """
+        SSL certificate for client authentication to Kafka.
+        """
+        return pulumi.get(self, "ssl_certificate")
+
+    @_builtins.property
+    @pulumi.getter(name="sslKey")
+    def ssl_key(self) -> Optional[_builtins.str]:
+        """
+        SSL key for client authentication to Kafka.
+        """
+        return pulumi.get(self, "ssl_key")
+
+    @_builtins.property
+    @pulumi.getter(name="sslKeyPassword")
+    def ssl_key_password(self) -> Optional[_builtins.str]:
+        """
+        Password for the SSL key, if it is password protected.
+        """
+        return pulumi.get(self, "ssl_key_password")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenEndpointUrl")
+    def token_endpoint_url(self) -> Optional[_builtins.str]:
+        """
+        OIDC token endpoint URL for obtaining access tokens.
+        """
+        return pulumi.get(self, "token_endpoint_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> Optional[_builtins.str]:
+        """
+        Username of the account to connect to the Kafka cluster.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class StreamConnectionFailoverDbRoleToExecute(dict):
+    def __init__(__self__, *,
+                 role: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str role: The name of the role to use. Can be a built in role or a custom role.
+        :param _builtins.str type: Type of the DB role. Can be either Built In or Custom.
+        """
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> _builtins.str:
+        """
+        The name of the role to use. Can be a built in role or a custom role.
+        """
+        return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of the DB role. Can be either Built In or Custom.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class StreamConnectionFailoverNetworking(dict):
+    def __init__(__self__, *,
+                 access: Optional['outputs.StreamConnectionFailoverNetworkingAccess'] = None):
+        """
+        :param 'StreamConnectionFailoverNetworkingAccessArgs' access: Information about networking access.
+        """
+        if access is not None:
+            pulumi.set(__self__, "access", access)
+
+    @_builtins.property
+    @pulumi.getter
+    def access(self) -> Optional['outputs.StreamConnectionFailoverNetworkingAccess']:
+        """
+        Information about networking access.
+        """
+        return pulumi.get(self, "access")
+
+
+@pulumi.output_type
+class StreamConnectionFailoverNetworkingAccess(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "connectionId":
+            suggest = "connection_id"
+        elif key == "tgwRouteId":
+            suggest = "tgw_route_id"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StreamConnectionFailoverNetworkingAccess. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StreamConnectionFailoverNetworkingAccess.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StreamConnectionFailoverNetworkingAccess.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 connection_id: Optional[_builtins.str] = None,
+                 name: Optional[_builtins.str] = None,
+                 tgw_route_id: Optional[_builtins.str] = None,
+                 type: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str connection_id: Reserved. Will be used by `PRIVATE_LINK` connection type.
+        :param _builtins.str name: Reserved. Will be used by `PRIVATE_LINK` connection type.
+        :param _builtins.str tgw_route_id: Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+        :param _builtins.str type: Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+        """
+        if connection_id is not None:
+            pulumi.set(__self__, "connection_id", connection_id)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if tgw_route_id is not None:
+            pulumi.set(__self__, "tgw_route_id", tgw_route_id)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> Optional[_builtins.str]:
+        """
+        Reserved. Will be used by `PRIVATE_LINK` connection type.
+        """
+        return pulumi.get(self, "connection_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Reserved. Will be used by `PRIVATE_LINK` connection type.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="tgwRouteId")
+    def tgw_route_id(self) -> Optional[_builtins.str]:
+        """
+        Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+        """
+        return pulumi.get(self, "tgw_route_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> Optional[_builtins.str]:
+        """
+        Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class StreamConnectionFailoverSecurity(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "brokerPublicCertificate":
+            suggest = "broker_public_certificate"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StreamConnectionFailoverSecurity. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StreamConnectionFailoverSecurity.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StreamConnectionFailoverSecurity.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 broker_public_certificate: Optional[_builtins.str] = None,
+                 protocol: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str broker_public_certificate: A trusted, public x509 certificate for connecting to Kafka over SSL.
+        :param _builtins.str protocol: Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+        """
+        if broker_public_certificate is not None:
+            pulumi.set(__self__, "broker_public_certificate", broker_public_certificate)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+
+    @_builtins.property
+    @pulumi.getter(name="brokerPublicCertificate")
+    def broker_public_certificate(self) -> Optional[_builtins.str]:
+        """
+        A trusted, public x509 certificate for connecting to Kafka over SSL.
+        """
+        return pulumi.get(self, "broker_public_certificate")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> Optional[_builtins.str]:
+        """
+        Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+        """
+        return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class StreamConnectionFailoverTimeouts(dict):
+    def __init__(__self__, *,
+                 create: Optional[_builtins.str] = None,
+                 delete: Optional[_builtins.str] = None,
+                 update: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param _builtins.str delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        :param _builtins.str update: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "update")
+
+
+@pulumi.output_type
 class StreamConnectionGcp(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -9951,6 +10364,52 @@ class StreamWorkspaceDataProcessRegion(dict):
     def region(self) -> _builtins.str:
         """
         Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class StreamWorkspaceFailoverRegion(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cloudProvider":
+            suggest = "cloud_provider"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StreamWorkspaceFailoverRegion. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StreamWorkspaceFailoverRegion.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StreamWorkspaceFailoverRegion.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cloud_provider: _builtins.str,
+                 region: _builtins.str):
+        """
+        :param _builtins.str cloud_provider: Cloud service provider for the failover region. Must match the primary region's cloud provider.
+        :param _builtins.str region: Name of the failover cloud provider region.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> _builtins.str:
+        """
+        Cloud service provider for the failover region. Must match the primary region's cloud provider.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Name of the failover cloud provider region.
         """
         return pulumi.get(self, "region")
 
@@ -25417,8 +25876,11 @@ class GetProjectsResultResult(dict):
                  created: _builtins.str,
                  id: _builtins.str,
                  ip_addresses: 'outputs.GetProjectsResultIpAddressesResult',
+                 is_cluster_ai_assistant_enabled: _builtins.bool,
                  is_collect_database_specifics_statistics_enabled: _builtins.bool,
                  is_data_explorer_enabled: _builtins.bool,
+                 is_data_explorer_gen_ai_features_enabled: _builtins.bool,
+                 is_data_explorer_gen_ai_sample_document_passing_enabled: _builtins.bool,
                  is_extended_storage_sizes_enabled: _builtins.bool,
                  is_performance_advisor_enabled: _builtins.bool,
                  is_realtime_performance_panel_enabled: _builtins.bool,
@@ -25437,12 +25899,16 @@ class GetProjectsResultResult(dict):
         :param _builtins.str created: The ISO-8601-formatted timestamp of when Atlas created the project.
         :param _builtins.str id: Autogenerated Unique ID for this data source.
         :param 'GetProjectsResultIpAddressesArgs' ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
+        :param _builtins.bool is_cluster_ai_assistant_enabled: Flag that indicates whether the AI Assistant is enabled for the project's clusters.
         :param _builtins.bool is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
         :param _builtins.bool is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
+        :param _builtins.bool is_data_explorer_gen_ai_features_enabled: Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
+        :param _builtins.bool is_data_explorer_gen_ai_sample_document_passing_enabled: Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
+               #std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         :param _builtins.bool is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project.
         :param _builtins.bool is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         :param _builtins.bool is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
-        :param _builtins.bool is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        :param _builtins.bool is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/).
         :param _builtins.bool is_slow_operation_thresholding_enabled: Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
         :param Sequence['GetProjectsResultLimitArgs'] limits: The limits for the specified project. See Limits.
         :param _builtins.str org_id: The ID of the organization you want to create the project within.
@@ -25456,8 +25922,11 @@ class GetProjectsResultResult(dict):
         pulumi.set(__self__, "created", created)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "ip_addresses", ip_addresses)
+        pulumi.set(__self__, "is_cluster_ai_assistant_enabled", is_cluster_ai_assistant_enabled)
         pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
         pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
+        pulumi.set(__self__, "is_data_explorer_gen_ai_features_enabled", is_data_explorer_gen_ai_features_enabled)
+        pulumi.set(__self__, "is_data_explorer_gen_ai_sample_document_passing_enabled", is_data_explorer_gen_ai_sample_document_passing_enabled)
         pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
         pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
         pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
@@ -25508,6 +25977,14 @@ class GetProjectsResultResult(dict):
         return pulumi.get(self, "ip_addresses")
 
     @_builtins.property
+    @pulumi.getter(name="isClusterAiAssistantEnabled")
+    def is_cluster_ai_assistant_enabled(self) -> _builtins.bool:
+        """
+        Flag that indicates whether the AI Assistant is enabled for the project's clusters.
+        """
+        return pulumi.get(self, "is_cluster_ai_assistant_enabled")
+
+    @_builtins.property
     @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
     def is_collect_database_specifics_statistics_enabled(self) -> _builtins.bool:
         """
@@ -25522,6 +25999,23 @@ class GetProjectsResultResult(dict):
         Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
         """
         return pulumi.get(self, "is_data_explorer_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="isDataExplorerGenAiFeaturesEnabled")
+    def is_data_explorer_gen_ai_features_enabled(self) -> _builtins.bool:
+        """
+        Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
+        """
+        return pulumi.get(self, "is_data_explorer_gen_ai_features_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="isDataExplorerGenAiSampleDocumentPassingEnabled")
+    def is_data_explorer_gen_ai_sample_document_passing_enabled(self) -> _builtins.bool:
+        """
+        Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
+        #std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        """
+        return pulumi.get(self, "is_data_explorer_gen_ai_sample_document_passing_enabled")
 
     @_builtins.property
     @pulumi.getter(name="isExtendedStorageSizesEnabled")
@@ -25551,7 +26045,7 @@ class GetProjectsResultResult(dict):
     @pulumi.getter(name="isSchemaAdvisorEnabled")
     def is_schema_advisor_enabled(self) -> _builtins.bool:
         """
-        Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/).
         """
         return pulumi.get(self, "is_schema_advisor_enabled")
 
@@ -25795,7 +26289,7 @@ class GetProjectsResultUserResult(dict):
                
                > **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `ProjectInvitation` resource.
                
-               See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
+               See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects) Documentation for more information.
         :param _builtins.str last_auth: Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
         :param _builtins.str last_name: Last name, family name, or surname that belongs to the MongoDB Cloud user.
         :param _builtins.str mobile_number: Mobile phone number that belongs to the MongoDB Cloud user.
@@ -25873,7 +26367,7 @@ class GetProjectsResultUserResult(dict):
 
         > **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `ProjectInvitation` resource.
 
-        See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
+        See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects) Documentation for more information.
         """
         return pulumi.get(self, "inviter_username")
 
@@ -27730,6 +28224,677 @@ class GetStreamConnectionDbRoleToExecuteResult(dict):
 
 
 @pulumi.output_type
+class GetStreamConnectionFailoverAuthenticationResult(dict):
+    def __init__(__self__, *,
+                 client_id: _builtins.str,
+                 client_secret: _builtins.str,
+                 mechanism: _builtins.str,
+                 method: _builtins.str,
+                 password: _builtins.str,
+                 sasl_oauthbearer_extensions: _builtins.str,
+                 scope: _builtins.str,
+                 ssl_certificate: _builtins.str,
+                 ssl_key: _builtins.str,
+                 ssl_key_password: _builtins.str,
+                 token_endpoint_url: _builtins.str,
+                 username: _builtins.str):
+        """
+        :param _builtins.str client_id: OIDC client identifier for authentication to the Kafka cluster.
+        :param _builtins.str client_secret: OIDC client secret for authentication to the Kafka cluster.
+        :param _builtins.str mechanism: Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+        :param _builtins.str method: SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        :param _builtins.str password: Password of the account to connect to the Kafka cluster.
+        :param _builtins.str sasl_oauthbearer_extensions: SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+        :param _builtins.str scope: OIDC scope parameter defining the access permissions requested.
+        :param _builtins.str ssl_certificate: SSL certificate for client authentication to Kafka.
+        :param _builtins.str ssl_key: SSL key for client authentication to Kafka.
+        :param _builtins.str ssl_key_password: Password for the SSL key, if it is password protected.
+        :param _builtins.str token_endpoint_url: OIDC token endpoint URL for obtaining access tokens.
+        :param _builtins.str username: Username of the account to connect to the Kafka cluster.
+        """
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret", client_secret)
+        pulumi.set(__self__, "mechanism", mechanism)
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "sasl_oauthbearer_extensions", sasl_oauthbearer_extensions)
+        pulumi.set(__self__, "scope", scope)
+        pulumi.set(__self__, "ssl_certificate", ssl_certificate)
+        pulumi.set(__self__, "ssl_key", ssl_key)
+        pulumi.set(__self__, "ssl_key_password", ssl_key_password)
+        pulumi.set(__self__, "token_endpoint_url", token_endpoint_url)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        """
+        OIDC client identifier for authentication to the Kafka cluster.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> _builtins.str:
+        """
+        OIDC client secret for authentication to the Kafka cluster.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter
+    def mechanism(self) -> _builtins.str:
+        """
+        Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+        """
+        return pulumi.get(self, "mechanism")
+
+    @_builtins.property
+    @pulumi.getter
+    def method(self) -> _builtins.str:
+        """
+        SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        """
+        return pulumi.get(self, "method")
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> _builtins.str:
+        """
+        Password of the account to connect to the Kafka cluster.
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="saslOauthbearerExtensions")
+    def sasl_oauthbearer_extensions(self) -> _builtins.str:
+        """
+        SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+        """
+        return pulumi.get(self, "sasl_oauthbearer_extensions")
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> _builtins.str:
+        """
+        OIDC scope parameter defining the access permissions requested.
+        """
+        return pulumi.get(self, "scope")
+
+    @_builtins.property
+    @pulumi.getter(name="sslCertificate")
+    def ssl_certificate(self) -> _builtins.str:
+        """
+        SSL certificate for client authentication to Kafka.
+        """
+        return pulumi.get(self, "ssl_certificate")
+
+    @_builtins.property
+    @pulumi.getter(name="sslKey")
+    def ssl_key(self) -> _builtins.str:
+        """
+        SSL key for client authentication to Kafka.
+        """
+        return pulumi.get(self, "ssl_key")
+
+    @_builtins.property
+    @pulumi.getter(name="sslKeyPassword")
+    def ssl_key_password(self) -> _builtins.str:
+        """
+        Password for the SSL key, if it is password protected.
+        """
+        return pulumi.get(self, "ssl_key_password")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenEndpointUrl")
+    def token_endpoint_url(self) -> _builtins.str:
+        """
+        OIDC token endpoint URL for obtaining access tokens.
+        """
+        return pulumi.get(self, "token_endpoint_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        Username of the account to connect to the Kafka cluster.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetStreamConnectionFailoverDbRoleToExecuteResult(dict):
+    def __init__(__self__, *,
+                 role: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str role: The name of the role to use. Can be a built in role or a custom role.
+        :param _builtins.str type: Type of the DB role. Can be either Built In or Custom.
+        """
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> _builtins.str:
+        """
+        The name of the role to use. Can be a built in role or a custom role.
+        """
+        return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of the DB role. Can be either Built In or Custom.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetStreamConnectionFailoverNetworkingResult(dict):
+    def __init__(__self__, *,
+                 access: 'outputs.GetStreamConnectionFailoverNetworkingAccessResult'):
+        """
+        :param 'GetStreamConnectionFailoverNetworkingAccessArgs' access: Information about networking access.
+        """
+        pulumi.set(__self__, "access", access)
+
+    @_builtins.property
+    @pulumi.getter
+    def access(self) -> 'outputs.GetStreamConnectionFailoverNetworkingAccessResult':
+        """
+        Information about networking access.
+        """
+        return pulumi.get(self, "access")
+
+
+@pulumi.output_type
+class GetStreamConnectionFailoverNetworkingAccessResult(dict):
+    def __init__(__self__, *,
+                 connection_id: _builtins.str,
+                 name: _builtins.str,
+                 tgw_route_id: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str connection_id: Reserved. Will be used by `PRIVATE_LINK` connection type.
+        :param _builtins.str name: Reserved. Will be used by `PRIVATE_LINK` connection type.
+        :param _builtins.str tgw_route_id: Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+        :param _builtins.str type: Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+        """
+        pulumi.set(__self__, "connection_id", connection_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "tgw_route_id", tgw_route_id)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> _builtins.str:
+        """
+        Reserved. Will be used by `PRIVATE_LINK` connection type.
+        """
+        return pulumi.get(self, "connection_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Reserved. Will be used by `PRIVATE_LINK` connection type.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="tgwRouteId")
+    def tgw_route_id(self) -> _builtins.str:
+        """
+        Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+        """
+        return pulumi.get(self, "tgw_route_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetStreamConnectionFailoverSecurityResult(dict):
+    def __init__(__self__, *,
+                 broker_public_certificate: _builtins.str,
+                 protocol: _builtins.str):
+        """
+        :param _builtins.str broker_public_certificate: A trusted, public x509 certificate for connecting to Kafka over SSL.
+        :param _builtins.str protocol: Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+        """
+        pulumi.set(__self__, "broker_public_certificate", broker_public_certificate)
+        pulumi.set(__self__, "protocol", protocol)
+
+    @_builtins.property
+    @pulumi.getter(name="brokerPublicCertificate")
+    def broker_public_certificate(self) -> _builtins.str:
+        """
+        A trusted, public x509 certificate for connecting to Kafka over SSL.
+        """
+        return pulumi.get(self, "broker_public_certificate")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> _builtins.str:
+        """
+        Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+        """
+        return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
+class GetStreamConnectionFailoversResultResult(dict):
+    def __init__(__self__, *,
+                 authentication: 'outputs.GetStreamConnectionFailoversResultAuthenticationResult',
+                 bootstrap_servers: _builtins.str,
+                 cluster_name: _builtins.str,
+                 cluster_project_id: _builtins.str,
+                 config: Mapping[str, _builtins.str],
+                 db_role_to_execute: 'outputs.GetStreamConnectionFailoversResultDbRoleToExecuteResult',
+                 failover_connection_id: _builtins.str,
+                 networking: 'outputs.GetStreamConnectionFailoversResultNetworkingResult',
+                 region: _builtins.str,
+                 security: 'outputs.GetStreamConnectionFailoversResultSecurityResult',
+                 state: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param 'GetStreamConnectionFailoversResultAuthenticationArgs' authentication: Applies to type: Kafka. User credentials required to connect to a Kafka Cluster. Includes the authentication type, as well as the parameters for that authentication mode.
+        :param _builtins.str bootstrap_servers: Applies to type: Kafka. Comma separated list of server addresses.
+        :param _builtins.str cluster_name: Applies to type: Cluster. Name of the cluster configured for this connection.
+        :param _builtins.str cluster_project_id: Applies to type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
+        :param Mapping[str, _builtins.str] config: Applies to type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+        :param 'GetStreamConnectionFailoversResultDbRoleToExecuteArgs' db_role_to_execute: Applies to type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+        :param _builtins.str failover_connection_id: Unique identifier of the connection.
+        :param 'GetStreamConnectionFailoversResultNetworkingArgs' networking: Applies to type: Kafka. Networking configuration for Streams connections.
+        :param _builtins.str region: The connection's region.
+        :param 'GetStreamConnectionFailoversResultSecurityArgs' security: Applies to type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
+        :param _builtins.str state: The state of the connection.
+        :param _builtins.str type: Type of the connection.
+        """
+        pulumi.set(__self__, "authentication", authentication)
+        pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
+        pulumi.set(__self__, "cluster_name", cluster_name)
+        pulumi.set(__self__, "cluster_project_id", cluster_project_id)
+        pulumi.set(__self__, "config", config)
+        pulumi.set(__self__, "db_role_to_execute", db_role_to_execute)
+        pulumi.set(__self__, "failover_connection_id", failover_connection_id)
+        pulumi.set(__self__, "networking", networking)
+        pulumi.set(__self__, "region", region)
+        pulumi.set(__self__, "security", security)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def authentication(self) -> 'outputs.GetStreamConnectionFailoversResultAuthenticationResult':
+        """
+        Applies to type: Kafka. User credentials required to connect to a Kafka Cluster. Includes the authentication type, as well as the parameters for that authentication mode.
+        """
+        return pulumi.get(self, "authentication")
+
+    @_builtins.property
+    @pulumi.getter(name="bootstrapServers")
+    def bootstrap_servers(self) -> _builtins.str:
+        """
+        Applies to type: Kafka. Comma separated list of server addresses.
+        """
+        return pulumi.get(self, "bootstrap_servers")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterName")
+    def cluster_name(self) -> _builtins.str:
+        """
+        Applies to type: Cluster. Name of the cluster configured for this connection.
+        """
+        return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="clusterProjectId")
+    def cluster_project_id(self) -> _builtins.str:
+        """
+        Applies to type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
+        """
+        return pulumi.get(self, "cluster_project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def config(self) -> Mapping[str, _builtins.str]:
+        """
+        Applies to type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+        """
+        return pulumi.get(self, "config")
+
+    @_builtins.property
+    @pulumi.getter(name="dbRoleToExecute")
+    def db_role_to_execute(self) -> 'outputs.GetStreamConnectionFailoversResultDbRoleToExecuteResult':
+        """
+        Applies to type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+        """
+        return pulumi.get(self, "db_role_to_execute")
+
+    @_builtins.property
+    @pulumi.getter(name="failoverConnectionId")
+    def failover_connection_id(self) -> _builtins.str:
+        """
+        Unique identifier of the connection.
+        """
+        return pulumi.get(self, "failover_connection_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def networking(self) -> 'outputs.GetStreamConnectionFailoversResultNetworkingResult':
+        """
+        Applies to type: Kafka. Networking configuration for Streams connections.
+        """
+        return pulumi.get(self, "networking")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        The connection's region.
+        """
+        return pulumi.get(self, "region")
+
+    @_builtins.property
+    @pulumi.getter
+    def security(self) -> 'outputs.GetStreamConnectionFailoversResultSecurityResult':
+        """
+        Applies to type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
+        """
+        return pulumi.get(self, "security")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        The state of the connection.
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of the connection.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetStreamConnectionFailoversResultAuthenticationResult(dict):
+    def __init__(__self__, *,
+                 client_id: _builtins.str,
+                 client_secret: _builtins.str,
+                 mechanism: _builtins.str,
+                 method: _builtins.str,
+                 password: _builtins.str,
+                 sasl_oauthbearer_extensions: _builtins.str,
+                 scope: _builtins.str,
+                 ssl_certificate: _builtins.str,
+                 ssl_key: _builtins.str,
+                 ssl_key_password: _builtins.str,
+                 token_endpoint_url: _builtins.str,
+                 username: _builtins.str):
+        """
+        :param _builtins.str client_id: OIDC client identifier for authentication to the Kafka cluster.
+        :param _builtins.str client_secret: OIDC client secret for authentication to the Kafka cluster.
+        :param _builtins.str mechanism: Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+        :param _builtins.str method: SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        :param _builtins.str password: Password of the account to connect to the Kafka cluster.
+        :param _builtins.str sasl_oauthbearer_extensions: SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+        :param _builtins.str scope: OIDC scope parameter defining the access permissions requested.
+        :param _builtins.str ssl_certificate: SSL certificate for client authentication to Kafka.
+        :param _builtins.str ssl_key: SSL key for client authentication to Kafka.
+        :param _builtins.str ssl_key_password: Password for the SSL key, if it is password protected.
+        :param _builtins.str token_endpoint_url: OIDC token endpoint URL for obtaining access tokens.
+        :param _builtins.str username: Username of the account to connect to the Kafka cluster.
+        """
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "client_secret", client_secret)
+        pulumi.set(__self__, "mechanism", mechanism)
+        pulumi.set(__self__, "method", method)
+        pulumi.set(__self__, "password", password)
+        pulumi.set(__self__, "sasl_oauthbearer_extensions", sasl_oauthbearer_extensions)
+        pulumi.set(__self__, "scope", scope)
+        pulumi.set(__self__, "ssl_certificate", ssl_certificate)
+        pulumi.set(__self__, "ssl_key", ssl_key)
+        pulumi.set(__self__, "ssl_key_password", ssl_key_password)
+        pulumi.set(__self__, "token_endpoint_url", token_endpoint_url)
+        pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        """
+        OIDC client identifier for authentication to the Kafka cluster.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> _builtins.str:
+        """
+        OIDC client secret for authentication to the Kafka cluster.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @_builtins.property
+    @pulumi.getter
+    def mechanism(self) -> _builtins.str:
+        """
+        Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+        """
+        return pulumi.get(self, "mechanism")
+
+    @_builtins.property
+    @pulumi.getter
+    def method(self) -> _builtins.str:
+        """
+        SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        """
+        return pulumi.get(self, "method")
+
+    @_builtins.property
+    @pulumi.getter
+    def password(self) -> _builtins.str:
+        """
+        Password of the account to connect to the Kafka cluster.
+        """
+        return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="saslOauthbearerExtensions")
+    def sasl_oauthbearer_extensions(self) -> _builtins.str:
+        """
+        SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+        """
+        return pulumi.get(self, "sasl_oauthbearer_extensions")
+
+    @_builtins.property
+    @pulumi.getter
+    def scope(self) -> _builtins.str:
+        """
+        OIDC scope parameter defining the access permissions requested.
+        """
+        return pulumi.get(self, "scope")
+
+    @_builtins.property
+    @pulumi.getter(name="sslCertificate")
+    def ssl_certificate(self) -> _builtins.str:
+        """
+        SSL certificate for client authentication to Kafka.
+        """
+        return pulumi.get(self, "ssl_certificate")
+
+    @_builtins.property
+    @pulumi.getter(name="sslKey")
+    def ssl_key(self) -> _builtins.str:
+        """
+        SSL key for client authentication to Kafka.
+        """
+        return pulumi.get(self, "ssl_key")
+
+    @_builtins.property
+    @pulumi.getter(name="sslKeyPassword")
+    def ssl_key_password(self) -> _builtins.str:
+        """
+        Password for the SSL key, if it is password protected.
+        """
+        return pulumi.get(self, "ssl_key_password")
+
+    @_builtins.property
+    @pulumi.getter(name="tokenEndpointUrl")
+    def token_endpoint_url(self) -> _builtins.str:
+        """
+        OIDC token endpoint URL for obtaining access tokens.
+        """
+        return pulumi.get(self, "token_endpoint_url")
+
+    @_builtins.property
+    @pulumi.getter
+    def username(self) -> _builtins.str:
+        """
+        Username of the account to connect to the Kafka cluster.
+        """
+        return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetStreamConnectionFailoversResultDbRoleToExecuteResult(dict):
+    def __init__(__self__, *,
+                 role: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str role: The name of the role to use. Can be a built in role or a custom role.
+        :param _builtins.str type: Type of the DB role. Can be either Built In or Custom.
+        """
+        pulumi.set(__self__, "role", role)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> _builtins.str:
+        """
+        The name of the role to use. Can be a built in role or a custom role.
+        """
+        return pulumi.get(self, "role")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Type of the DB role. Can be either Built In or Custom.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetStreamConnectionFailoversResultNetworkingResult(dict):
+    def __init__(__self__, *,
+                 access: 'outputs.GetStreamConnectionFailoversResultNetworkingAccessResult'):
+        """
+        :param 'GetStreamConnectionFailoversResultNetworkingAccessArgs' access: Information about networking access.
+        """
+        pulumi.set(__self__, "access", access)
+
+    @_builtins.property
+    @pulumi.getter
+    def access(self) -> 'outputs.GetStreamConnectionFailoversResultNetworkingAccessResult':
+        """
+        Information about networking access.
+        """
+        return pulumi.get(self, "access")
+
+
+@pulumi.output_type
+class GetStreamConnectionFailoversResultNetworkingAccessResult(dict):
+    def __init__(__self__, *,
+                 connection_id: _builtins.str,
+                 name: _builtins.str,
+                 tgw_route_id: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str connection_id: Reserved. Will be used by `PRIVATE_LINK` connection type.
+        :param _builtins.str name: Reserved. Will be used by `PRIVATE_LINK` connection type.
+        :param _builtins.str tgw_route_id: Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+        :param _builtins.str type: Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+        """
+        pulumi.set(__self__, "connection_id", connection_id)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "tgw_route_id", tgw_route_id)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="connectionId")
+    def connection_id(self) -> _builtins.str:
+        """
+        Reserved. Will be used by `PRIVATE_LINK` connection type.
+        """
+        return pulumi.get(self, "connection_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Reserved. Will be used by `PRIVATE_LINK` connection type.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="tgwRouteId")
+    def tgw_route_id(self) -> _builtins.str:
+        """
+        Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+        """
+        return pulumi.get(self, "tgw_route_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+        """
+        return pulumi.get(self, "type")
+
+
+@pulumi.output_type
+class GetStreamConnectionFailoversResultSecurityResult(dict):
+    def __init__(__self__, *,
+                 broker_public_certificate: _builtins.str,
+                 protocol: _builtins.str):
+        """
+        :param _builtins.str broker_public_certificate: A trusted, public x509 certificate for connecting to Kafka over SSL.
+        :param _builtins.str protocol: Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+        """
+        pulumi.set(__self__, "broker_public_certificate", broker_public_certificate)
+        pulumi.set(__self__, "protocol", protocol)
+
+    @_builtins.property
+    @pulumi.getter(name="brokerPublicCertificate")
+    def broker_public_certificate(self) -> _builtins.str:
+        """
+        A trusted, public x509 certificate for connecting to Kafka over SSL.
+        """
+        return pulumi.get(self, "broker_public_certificate")
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> _builtins.str:
+        """
+        Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+        """
+        return pulumi.get(self, "protocol")
+
+
+@pulumi.output_type
 class GetStreamConnectionGcpResult(dict):
     def __init__(__self__, *,
                  service_account_id: _builtins.str):
@@ -28902,6 +30067,7 @@ class GetStreamProcessorOptionsDlqResult(dict):
 @pulumi.output_type
 class GetStreamProcessorsResultResult(dict):
     def __init__(__self__, *,
+                 failover_enabled: _builtins.bool,
                  id: _builtins.str,
                  instance_name: _builtins.str,
                  options: 'outputs.GetStreamProcessorsResultOptionsResult',
@@ -28913,6 +30079,7 @@ class GetStreamProcessorsResultResult(dict):
                  tier: _builtins.str,
                  workspace_name: _builtins.str):
         """
+        :param _builtins.bool failover_enabled: Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
         :param _builtins.str id: Unique 24-hexadecimal character string that identifies the stream processor.
         :param _builtins.str instance_name: Label that identifies the stream processing workspace.
         :param 'GetStreamProcessorsResultOptionsArgs' options: Optional configuration for the stream processor.
@@ -28924,6 +30091,7 @@ class GetStreamProcessorsResultResult(dict):
         :param _builtins.str tier: Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
         :param _builtins.str workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
         """
+        pulumi.set(__self__, "failover_enabled", failover_enabled)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "instance_name", instance_name)
         pulumi.set(__self__, "options", options)
@@ -28934,6 +30102,14 @@ class GetStreamProcessorsResultResult(dict):
         pulumi.set(__self__, "stats", stats)
         pulumi.set(__self__, "tier", tier)
         pulumi.set(__self__, "workspace_name", workspace_name)
+
+    @_builtins.property
+    @pulumi.getter(name="failoverEnabled")
+    def failover_enabled(self) -> _builtins.bool:
+        """
+        Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
+        """
+        return pulumi.get(self, "failover_enabled")
 
     @_builtins.property
     @pulumi.getter
@@ -29105,6 +30281,35 @@ class GetStreamWorkspaceDataProcessRegionResult(dict):
 
 
 @pulumi.output_type
+class GetStreamWorkspaceFailoverRegionResult(dict):
+    def __init__(__self__, *,
+                 cloud_provider: _builtins.str,
+                 region: _builtins.str):
+        """
+        :param _builtins.str cloud_provider: Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        :param _builtins.str region: Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> _builtins.str:
+        """
+        Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
 class GetStreamWorkspaceStreamConfigResult(dict):
     def __init__(__self__, *,
                  max_tier_size: _builtins.str,
@@ -29133,6 +30338,7 @@ class GetStreamWorkspaceStreamConfigResult(dict):
 class GetStreamWorkspacesResultResult(dict):
     def __init__(__self__, *,
                  data_process_region: 'outputs.GetStreamWorkspacesResultDataProcessRegionResult',
+                 failover_regions: Sequence['outputs.GetStreamWorkspacesResultFailoverRegionResult'],
                  hostnames: Sequence[_builtins.str],
                  id: _builtins.str,
                  project_id: _builtins.str,
@@ -29146,6 +30352,7 @@ class GetStreamWorkspacesResultResult(dict):
         :param _builtins.str workspace_name: Label that identifies the stream workspace.
         """
         pulumi.set(__self__, "data_process_region", data_process_region)
+        pulumi.set(__self__, "failover_regions", failover_regions)
         pulumi.set(__self__, "hostnames", hostnames)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "project_id", project_id)
@@ -29159,6 +30366,11 @@ class GetStreamWorkspacesResultResult(dict):
         Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
         """
         return pulumi.get(self, "data_process_region")
+
+    @_builtins.property
+    @pulumi.getter(name="failoverRegions")
+    def failover_regions(self) -> Sequence['outputs.GetStreamWorkspacesResultFailoverRegionResult']:
+        return pulumi.get(self, "failover_regions")
 
     @_builtins.property
     @pulumi.getter
@@ -29200,6 +30412,35 @@ class GetStreamWorkspacesResultResult(dict):
 
 @pulumi.output_type
 class GetStreamWorkspacesResultDataProcessRegionResult(dict):
+    def __init__(__self__, *,
+                 cloud_provider: _builtins.str,
+                 region: _builtins.str):
+        """
+        :param _builtins.str cloud_provider: Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        :param _builtins.str region: Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "region", region)
+
+    @_builtins.property
+    @pulumi.getter(name="cloudProvider")
+    def cloud_provider(self) -> _builtins.str:
+        """
+        Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "cloud_provider")
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> _builtins.str:
+        """
+        Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+        """
+        return pulumi.get(self, "region")
+
+
+@pulumi.output_type
+class GetStreamWorkspacesResultFailoverRegionResult(dict):
     def __init__(__self__, *,
                  cloud_provider: _builtins.str,
                  region: _builtins.str):

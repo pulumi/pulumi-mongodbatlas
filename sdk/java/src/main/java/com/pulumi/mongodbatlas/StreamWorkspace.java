@@ -11,6 +11,7 @@ import com.pulumi.mongodbatlas.StreamWorkspaceArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.StreamWorkspaceState;
 import com.pulumi.mongodbatlas.outputs.StreamWorkspaceDataProcessRegion;
+import com.pulumi.mongodbatlas.outputs.StreamWorkspaceFailoverRegion;
 import com.pulumi.mongodbatlas.outputs.StreamWorkspaceStreamConfig;
 import java.lang.String;
 import java.util.List;
@@ -52,6 +53,50 @@ import javax.annotation.Nullable;
  *             .dataProcessRegion(StreamWorkspaceDataProcessRegionArgs.builder()
  *                 .region("VIRGINIA_USA")
  *                 .cloudProvider("AWS")
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
+ * ### With Failover Regions
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.StreamWorkspace;
+ * import com.pulumi.mongodbatlas.StreamWorkspaceArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamWorkspaceDataProcessRegionArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamWorkspaceFailoverRegionArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new StreamWorkspace("test", StreamWorkspaceArgs.builder()
+ *             .projectId(projectId)
+ *             .workspaceName("WorkspaceName")
+ *             .dataProcessRegion(StreamWorkspaceDataProcessRegionArgs.builder()
+ *                 .region("VIRGINIA_USA")
+ *                 .cloudProvider("AWS")
+ *                 .build())
+ *             .failoverRegions(StreamWorkspaceFailoverRegionArgs.builder()
+ *                 .cloudProvider("AWS")
+ *                 .region("OREGON_USA")
  *                 .build())
  *             .build());
  * 
@@ -130,6 +175,24 @@ public class StreamWorkspace extends com.pulumi.resources.CustomResource {
         return this.dataProcessRegion;
     }
     /**
+     * List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+     * **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+     * **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+     * 
+     */
+    @Export(name="failoverRegions", refs={List.class,StreamWorkspaceFailoverRegion.class}, tree="[0,1]")
+    private Output<List<StreamWorkspaceFailoverRegion>> failoverRegions;
+
+    /**
+     * @return List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+     * **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+     * **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+     * 
+     */
+    public Output<List<StreamWorkspaceFailoverRegion>> failoverRegions() {
+        return this.failoverRegions;
+    }
+    /**
      * List that contains the hostnames assigned to the stream workspace.
      * 
      */
@@ -158,14 +221,14 @@ public class StreamWorkspace extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * Configuration options for an Atlas Stream Processing Instance. See stream config
+     * Configuration options for an Atlas Stream Processing Instance. See stream config.
      * 
      */
     @Export(name="streamConfig", refs={StreamWorkspaceStreamConfig.class}, tree="[0]")
     private Output<StreamWorkspaceStreamConfig> streamConfig;
 
     /**
-     * @return Configuration options for an Atlas Stream Processing Instance. See stream config
+     * @return Configuration options for an Atlas Stream Processing Instance. See stream config.
      * 
      */
     public Output<StreamWorkspaceStreamConfig> streamConfig() {

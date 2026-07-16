@@ -38,6 +38,38 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### With Failover Regions
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.StreamWorkspace("test", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         WorkspaceName = "WorkspaceName",
+    ///         DataProcessRegion = new Mongodbatlas.Inputs.StreamWorkspaceDataProcessRegionArgs
+    ///         {
+    ///             Region = "VIRGINIA_USA",
+    ///             CloudProvider = "AWS",
+    ///         },
+    ///         FailoverRegions = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.StreamWorkspaceFailoverRegionArgs
+    ///             {
+    ///                 CloudProvider = "AWS",
+    ///                 Region = "OREGON_USA",
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Further Examples
     /// - Atlas Stream Workspace
     /// 
@@ -85,6 +117,14 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.StreamWorkspaceDataProcessRegion> DataProcessRegion { get; private set; } = null!;
 
         /// <summary>
+        /// List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+        /// **Write-once:** once set, `FailoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+        /// **Mutually exclusive with `DataProcessRegion` updates:** `FailoverRegions` and `DataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+        /// </summary>
+        [Output("failoverRegions")]
+        public Output<ImmutableArray<Outputs.StreamWorkspaceFailoverRegion>> FailoverRegions { get; private set; } = null!;
+
+        /// <summary>
         /// List that contains the hostnames assigned to the stream workspace.
         /// </summary>
         [Output("hostnames")]
@@ -97,7 +137,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Configuration options for an Atlas Stream Processing Instance. See stream config
+        /// Configuration options for an Atlas Stream Processing Instance. See stream config.
         /// </summary>
         [Output("streamConfig")]
         public Output<Outputs.StreamWorkspaceStreamConfig> StreamConfig { get; private set; } = null!;
@@ -160,6 +200,20 @@ namespace Pulumi.Mongodbatlas
         [Input("dataProcessRegion", required: true)]
         public Input<Inputs.StreamWorkspaceDataProcessRegionArgs> DataProcessRegion { get; set; } = null!;
 
+        [Input("failoverRegions")]
+        private InputList<Inputs.StreamWorkspaceFailoverRegionArgs>? _failoverRegions;
+
+        /// <summary>
+        /// List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+        /// **Write-once:** once set, `FailoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+        /// **Mutually exclusive with `DataProcessRegion` updates:** `FailoverRegions` and `DataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+        /// </summary>
+        public InputList<Inputs.StreamWorkspaceFailoverRegionArgs> FailoverRegions
+        {
+            get => _failoverRegions ?? (_failoverRegions = new InputList<Inputs.StreamWorkspaceFailoverRegionArgs>());
+            set => _failoverRegions = value;
+        }
+
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
@@ -167,7 +221,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// Configuration options for an Atlas Stream Processing Instance. See stream config
+        /// Configuration options for an Atlas Stream Processing Instance. See stream config.
         /// </summary>
         [Input("streamConfig")]
         public Input<Inputs.StreamWorkspaceStreamConfigArgs>? StreamConfig { get; set; }
@@ -192,6 +246,20 @@ namespace Pulumi.Mongodbatlas
         [Input("dataProcessRegion")]
         public Input<Inputs.StreamWorkspaceDataProcessRegionGetArgs>? DataProcessRegion { get; set; }
 
+        [Input("failoverRegions")]
+        private InputList<Inputs.StreamWorkspaceFailoverRegionGetArgs>? _failoverRegions;
+
+        /// <summary>
+        /// List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+        /// **Write-once:** once set, `FailoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+        /// **Mutually exclusive with `DataProcessRegion` updates:** `FailoverRegions` and `DataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+        /// </summary>
+        public InputList<Inputs.StreamWorkspaceFailoverRegionGetArgs> FailoverRegions
+        {
+            get => _failoverRegions ?? (_failoverRegions = new InputList<Inputs.StreamWorkspaceFailoverRegionGetArgs>());
+            set => _failoverRegions = value;
+        }
+
         [Input("hostnames")]
         private InputList<string>? _hostnames;
 
@@ -211,7 +279,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// Configuration options for an Atlas Stream Processing Instance. See stream config
+        /// Configuration options for an Atlas Stream Processing Instance. See stream config.
         /// </summary>
         [Input("streamConfig")]
         public Input<Inputs.StreamWorkspaceStreamConfigGetArgs>? StreamConfig { get; set; }

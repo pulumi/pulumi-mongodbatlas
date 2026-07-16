@@ -194,6 +194,10 @@ export class StreamProcessor extends pulumi.CustomResource {
      */
     declare public readonly deleteOnCreateTimeout: pulumi.Output<boolean>;
     /**
+     * Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+     */
+    declare public readonly failoverEnabled: pulumi.Output<boolean | undefined>;
+    /**
      * Label that identifies the stream processing workspace.
      *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.
@@ -247,6 +251,7 @@ export class StreamProcessor extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as StreamProcessorState | undefined;
             resourceInputs["deleteOnCreateTimeout"] = state?.deleteOnCreateTimeout;
+            resourceInputs["failoverEnabled"] = state?.failoverEnabled;
             resourceInputs["instanceName"] = state?.instanceName;
             resourceInputs["options"] = state?.options;
             resourceInputs["pipeline"] = state?.pipeline;
@@ -269,6 +274,7 @@ export class StreamProcessor extends pulumi.CustomResource {
                 throw new Error("Missing required property 'projectId'");
             }
             resourceInputs["deleteOnCreateTimeout"] = args?.deleteOnCreateTimeout;
+            resourceInputs["failoverEnabled"] = args?.failoverEnabled;
             resourceInputs["instanceName"] = args?.instanceName;
             resourceInputs["options"] = args?.options;
             resourceInputs["pipeline"] = args?.pipeline;
@@ -293,6 +299,10 @@ export interface StreamProcessorState {
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
     deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
+    /**
+     * Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+     */
+    failoverEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Label that identifies the stream processing workspace.
      *
@@ -342,6 +352,10 @@ export interface StreamProcessorArgs {
      * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
      */
     deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
+    /**
+     * Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+     */
+    failoverEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Label that identifies the stream processing workspace.
      *

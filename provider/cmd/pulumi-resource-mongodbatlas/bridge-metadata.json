@@ -923,6 +923,10 @@
                     }
                 }
             },
+            "mongodbatlas_stream_connection_failover": {
+                "current": "mongodbatlas:index/streamConnectionFailover:StreamConnectionFailover",
+                "majorVersion": 4
+            },
             "mongodbatlas_stream_instance": {
                 "current": "mongodbatlas:index/streamInstance:StreamInstance",
                 "majorVersion": 4,
@@ -952,6 +956,9 @@
                 "current": "mongodbatlas:index/streamWorkspace:StreamWorkspace",
                 "majorVersion": 4,
                 "fields": {
+                    "failover_regions": {
+                        "maxItemsOne": false
+                    },
                     "hostnames": {
                         "maxItemsOne": false
                     }
@@ -3087,6 +3094,19 @@
                     }
                 }
             },
+            "mongodbatlas_stream_connection_failover": {
+                "current": "mongodbatlas:index/getStreamConnectionFailover:getStreamConnectionFailover",
+                "majorVersion": 4
+            },
+            "mongodbatlas_stream_connection_failovers": {
+                "current": "mongodbatlas:index/getStreamConnectionFailovers:getStreamConnectionFailovers",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_stream_connections": {
                 "current": "mongodbatlas:index/getStreamConnections:getStreamConnections",
                 "majorVersion": 4,
@@ -3176,6 +3196,9 @@
                 "current": "mongodbatlas:index/getStreamWorkspace:getStreamWorkspace",
                 "majorVersion": 4,
                 "fields": {
+                    "failover_regions": {
+                        "maxItemsOne": false
+                    },
                     "hostnames": {
                         "maxItemsOne": false
                     }
@@ -3189,6 +3212,9 @@
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
+                                "failover_regions": {
+                                    "maxItemsOne": false
+                                },
                                 "hostnames": {
                                     "maxItemsOne": false
                                 }
@@ -3353,6 +3379,11 @@
                 }
             },
             "mongodbatlas_stream_connection": {},
+            "mongodbatlas_stream_connection_failover": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "mongodbatlas_stream_instance": {},
             "mongodbatlas_stream_privatelink_endpoint": {},
             "mongodbatlas_stream_processor": {},
@@ -3429,6 +3460,7 @@
             "mongodbatlas:index/serviceAccountProjectAssignment:ServiceAccountProjectAssignment": 1,
             "mongodbatlas:index/serviceAccountSecret:ServiceAccountSecret": 1,
             "mongodbatlas:index/streamConnection:StreamConnection": 1,
+            "mongodbatlas:index/streamConnectionFailover:StreamConnectionFailover": 1,
             "mongodbatlas:index/streamInstance:StreamInstance": 1,
             "mongodbatlas:index/streamPrivatelinkEndpoint:StreamPrivatelinkEndpoint": 1,
             "mongodbatlas:index/streamProcessor:StreamProcessor": 1,
@@ -3554,6 +3586,8 @@
             "mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots": 0,
             "mongodbatlas:index/getStreamAccountDetails:getStreamAccountDetails": 1,
             "mongodbatlas:index/getStreamConnection:getStreamConnection": 1,
+            "mongodbatlas:index/getStreamConnectionFailover:getStreamConnectionFailover": 1,
+            "mongodbatlas:index/getStreamConnectionFailovers:getStreamConnectionFailovers": 1,
             "mongodbatlas:index/getStreamConnections:getStreamConnections": 1,
             "mongodbatlas:index/getStreamInstance:getStreamInstance": 1,
             "mongodbatlas:index/getStreamInstances:getStreamInstances": 1,

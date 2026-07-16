@@ -2286,11 +2286,11 @@ export interface ProjectLimit {
     defaultLimit?: pulumi.Input<number | undefined>;
     maximumLimit?: pulumi.Input<number | undefined>;
     /**
-     * Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+     * Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
      */
     name: pulumi.Input<string>;
     /**
-     * Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+     * Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
      */
     value: pulumi.Input<number>;
 }
@@ -2559,6 +2559,120 @@ export interface StreamConnectionDbRoleToExecute {
     type: pulumi.Input<string>;
 }
 
+export interface StreamConnectionFailoverAuthentication {
+    /**
+     * OIDC client identifier for authentication to the Kafka cluster.
+     */
+    clientId?: pulumi.Input<string | undefined>;
+    /**
+     * OIDC client secret for authentication to the Kafka cluster.
+     */
+    clientSecret?: pulumi.Input<string | undefined>;
+    /**
+     * Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+     */
+    mechanism?: pulumi.Input<string | undefined>;
+    /**
+     * SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+     */
+    method?: pulumi.Input<string | undefined>;
+    /**
+     * Password of the account to connect to the Kafka cluster.
+     */
+    password?: pulumi.Input<string | undefined>;
+    /**
+     * SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+     */
+    saslOauthbearerExtensions?: pulumi.Input<string | undefined>;
+    /**
+     * OIDC scope parameter defining the access permissions requested.
+     */
+    scope?: pulumi.Input<string | undefined>;
+    /**
+     * SSL certificate for client authentication to Kafka.
+     */
+    sslCertificate?: pulumi.Input<string | undefined>;
+    /**
+     * SSL key for client authentication to Kafka.
+     */
+    sslKey?: pulumi.Input<string | undefined>;
+    /**
+     * Password for the SSL key, if it is password protected.
+     */
+    sslKeyPassword?: pulumi.Input<string | undefined>;
+    /**
+     * OIDC token endpoint URL for obtaining access tokens.
+     */
+    tokenEndpointUrl?: pulumi.Input<string | undefined>;
+    /**
+     * Username of the account to connect to the Kafka cluster.
+     */
+    username?: pulumi.Input<string | undefined>;
+}
+
+export interface StreamConnectionFailoverDbRoleToExecute {
+    /**
+     * The name of the role to use. Can be a built in role or a custom role.
+     */
+    role: pulumi.Input<string>;
+    /**
+     * Type of the DB role. Can be either Built In or Custom.
+     */
+    type: pulumi.Input<string>;
+}
+
+export interface StreamConnectionFailoverNetworking {
+    /**
+     * Information about networking access.
+     */
+    access?: pulumi.Input<inputs.StreamConnectionFailoverNetworkingAccess | undefined>;
+}
+
+export interface StreamConnectionFailoverNetworkingAccess {
+    /**
+     * Reserved. Will be used by `PRIVATE_LINK` connection type.
+     */
+    connectionId?: pulumi.Input<string | undefined>;
+    /**
+     * Reserved. Will be used by `PRIVATE_LINK` connection type.
+     */
+    name?: pulumi.Input<string | undefined>;
+    /**
+     * Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+     */
+    tgwRouteId?: pulumi.Input<string | undefined>;
+    /**
+     * Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+     */
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface StreamConnectionFailoverSecurity {
+    /**
+     * A trusted, public x509 certificate for connecting to Kafka over SSL.
+     */
+    brokerPublicCertificate?: pulumi.Input<string | undefined>;
+    /**
+     * Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+     */
+    protocol?: pulumi.Input<string | undefined>;
+}
+
+export interface StreamConnectionFailoverTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    create?: pulumi.Input<string | undefined>;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     */
+    delete?: pulumi.Input<string | undefined>;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    update?: pulumi.Input<string | undefined>;
+}
+
 export interface StreamConnectionGcp {
     /**
      * Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
@@ -2685,6 +2799,17 @@ export interface StreamWorkspaceDataProcessRegion {
     cloudProvider: pulumi.Input<string>;
     /**
      * Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+     */
+    region: pulumi.Input<string>;
+}
+
+export interface StreamWorkspaceFailoverRegion {
+    /**
+     * Cloud service provider for the failover region. Must match the primary region's cloud provider.
+     */
+    cloudProvider: pulumi.Input<string>;
+    /**
+     * Name of the failover cloud provider region.
      */
     region: pulumi.Input<string>;
 }

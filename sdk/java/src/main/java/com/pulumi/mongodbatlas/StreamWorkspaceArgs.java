@@ -7,8 +7,10 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.StreamWorkspaceDataProcessRegionArgs;
+import com.pulumi.mongodbatlas.inputs.StreamWorkspaceFailoverRegionArgs;
 import com.pulumi.mongodbatlas.inputs.StreamWorkspaceStreamConfigArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -34,6 +36,25 @@ public final class StreamWorkspaceArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+     * **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+     * **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+     * 
+     */
+    @Import(name="failoverRegions")
+    private @Nullable Output<List<StreamWorkspaceFailoverRegionArgs>> failoverRegions;
+
+    /**
+     * @return List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+     * **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+     * **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+     * 
+     */
+    public Optional<Output<List<StreamWorkspaceFailoverRegionArgs>>> failoverRegions() {
+        return Optional.ofNullable(this.failoverRegions);
+    }
+
+    /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
@@ -49,14 +70,14 @@ public final class StreamWorkspaceArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Configuration options for an Atlas Stream Processing Instance. See stream config
+     * Configuration options for an Atlas Stream Processing Instance. See stream config.
      * 
      */
     @Import(name="streamConfig")
     private @Nullable Output<StreamWorkspaceStreamConfigArgs> streamConfig;
 
     /**
-     * @return Configuration options for an Atlas Stream Processing Instance. See stream config
+     * @return Configuration options for an Atlas Stream Processing Instance. See stream config.
      * 
      */
     public Optional<Output<StreamWorkspaceStreamConfigArgs>> streamConfig() {
@@ -82,6 +103,7 @@ public final class StreamWorkspaceArgs extends com.pulumi.resources.ResourceArgs
 
     private StreamWorkspaceArgs(StreamWorkspaceArgs $) {
         this.dataProcessRegion = $.dataProcessRegion;
+        this.failoverRegions = $.failoverRegions;
         this.projectId = $.projectId;
         this.streamConfig = $.streamConfig;
         this.workspaceName = $.workspaceName;
@@ -127,6 +149,43 @@ public final class StreamWorkspaceArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
+         * @param failoverRegions List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+         * **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+         * **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder failoverRegions(@Nullable Output<List<StreamWorkspaceFailoverRegionArgs>> failoverRegions) {
+            $.failoverRegions = failoverRegions;
+            return this;
+        }
+
+        /**
+         * @param failoverRegions List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+         * **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+         * **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder failoverRegions(List<StreamWorkspaceFailoverRegionArgs> failoverRegions) {
+            return failoverRegions(Output.of(failoverRegions));
+        }
+
+        /**
+         * @param failoverRegions List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+         * **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+         * **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder failoverRegions(StreamWorkspaceFailoverRegionArgs... failoverRegions) {
+            return failoverRegions(List.of(failoverRegions));
+        }
+
+        /**
          * @param projectId Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
          * 
          * @return builder
@@ -148,7 +207,7 @@ public final class StreamWorkspaceArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param streamConfig Configuration options for an Atlas Stream Processing Instance. See stream config
+         * @param streamConfig Configuration options for an Atlas Stream Processing Instance. See stream config.
          * 
          * @return builder
          * 
@@ -159,7 +218,7 @@ public final class StreamWorkspaceArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param streamConfig Configuration options for an Atlas Stream Processing Instance. See stream config
+         * @param streamConfig Configuration options for an Atlas Stream Processing Instance. See stream config.
          * 
          * @return builder
          * 

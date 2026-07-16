@@ -30,6 +30,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly Outputs.GetProjectsResultIpAddressesResult IpAddresses;
         /// <summary>
+        /// Flag that indicates whether the AI Assistant is enabled for the project's clusters.
+        /// </summary>
+        public readonly bool IsClusterAiAssistantEnabled;
+        /// <summary>
         /// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
         /// </summary>
         public readonly bool IsCollectDatabaseSpecificsStatisticsEnabled;
@@ -37,6 +41,15 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
         /// </summary>
         public readonly bool IsDataExplorerEnabled;
+        /// <summary>
+        /// Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
+        /// </summary>
+        public readonly bool IsDataExplorerGenAiFeaturesEnabled;
+        /// <summary>
+        /// Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
+        /// #std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        /// </summary>
+        public readonly bool IsDataExplorerGenAiSampleDocumentPassingEnabled;
         /// <summary>
         /// Flag that indicates whether to enable extended storage sizes for the specified project.
         /// </summary>
@@ -50,7 +63,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly bool IsRealtimePerformancePanelEnabled;
         /// <summary>
-        /// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+        /// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/).
         /// </summary>
         public readonly bool IsSchemaAdvisorEnabled;
         /// <summary>
@@ -97,9 +110,15 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             Outputs.GetProjectsResultIpAddressesResult ipAddresses,
 
+            bool isClusterAiAssistantEnabled,
+
             bool isCollectDatabaseSpecificsStatisticsEnabled,
 
             bool isDataExplorerEnabled,
+
+            bool isDataExplorerGenAiFeaturesEnabled,
+
+            bool isDataExplorerGenAiSampleDocumentPassingEnabled,
 
             bool isExtendedStorageSizesEnabled,
 
@@ -131,8 +150,11 @@ namespace Pulumi.Mongodbatlas.Outputs
             Created = created;
             Id = id;
             IpAddresses = ipAddresses;
+            IsClusterAiAssistantEnabled = isClusterAiAssistantEnabled;
             IsCollectDatabaseSpecificsStatisticsEnabled = isCollectDatabaseSpecificsStatisticsEnabled;
             IsDataExplorerEnabled = isDataExplorerEnabled;
+            IsDataExplorerGenAiFeaturesEnabled = isDataExplorerGenAiFeaturesEnabled;
+            IsDataExplorerGenAiSampleDocumentPassingEnabled = isDataExplorerGenAiSampleDocumentPassingEnabled;
             IsExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;
             IsPerformanceAdvisorEnabled = isPerformanceAdvisorEnabled;
             IsRealtimePerformancePanelEnabled = isRealtimePerformancePanelEnabled;

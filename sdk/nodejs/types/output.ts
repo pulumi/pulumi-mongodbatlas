@@ -7169,6 +7169,10 @@ export interface GetProjectsResult {
      */
     ipAddresses: outputs.GetProjectsResultIpAddresses;
     /**
+     * Flag that indicates whether the AI Assistant is enabled for the project's clusters.
+     */
+    isClusterAiAssistantEnabled: boolean;
+    /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
      */
     isCollectDatabaseSpecificsStatisticsEnabled: boolean;
@@ -7176,6 +7180,15 @@ export interface GetProjectsResult {
      * Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
      */
     isDataExplorerEnabled: boolean;
+    /**
+     * Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
+     */
+    isDataExplorerGenAiFeaturesEnabled: boolean;
+    /**
+     * Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
+     * #std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+     */
+    isDataExplorerGenAiSampleDocumentPassingEnabled: boolean;
     /**
      * Flag that indicates whether to enable extended storage sizes for the specified project.
      */
@@ -7189,7 +7202,7 @@ export interface GetProjectsResult {
      */
     isRealtimePerformancePanelEnabled: boolean;
     /**
-     * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+     * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/).
      */
     isSchemaAdvisorEnabled: boolean;
     /**
@@ -7309,7 +7322,7 @@ export interface GetProjectsResultUser {
      *
      * > **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `mongodbatlas.ProjectInvitation` resource.
      *
-     * See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
+     * See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects) Documentation for more information.
      */
     inviterUsername: string;
     /**
@@ -7976,6 +7989,255 @@ export interface GetStreamConnectionDbRoleToExecute {
     type: string;
 }
 
+export interface GetStreamConnectionFailoverAuthentication {
+    /**
+     * OIDC client identifier for authentication to the Kafka cluster.
+     */
+    clientId: string;
+    /**
+     * OIDC client secret for authentication to the Kafka cluster.
+     */
+    clientSecret: string;
+    /**
+     * Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+     */
+    mechanism: string;
+    /**
+     * SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+     */
+    method: string;
+    /**
+     * Password of the account to connect to the Kafka cluster.
+     */
+    password: string;
+    /**
+     * SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+     */
+    saslOauthbearerExtensions: string;
+    /**
+     * OIDC scope parameter defining the access permissions requested.
+     */
+    scope: string;
+    /**
+     * SSL certificate for client authentication to Kafka.
+     */
+    sslCertificate: string;
+    /**
+     * SSL key for client authentication to Kafka.
+     */
+    sslKey: string;
+    /**
+     * Password for the SSL key, if it is password protected.
+     */
+    sslKeyPassword: string;
+    /**
+     * OIDC token endpoint URL for obtaining access tokens.
+     */
+    tokenEndpointUrl: string;
+    /**
+     * Username of the account to connect to the Kafka cluster.
+     */
+    username: string;
+}
+
+export interface GetStreamConnectionFailoverDbRoleToExecute {
+    /**
+     * The name of the role to use. Can be a built in role or a custom role.
+     */
+    role: string;
+    /**
+     * Type of the DB role. Can be either Built In or Custom.
+     */
+    type: string;
+}
+
+export interface GetStreamConnectionFailoverNetworking {
+    /**
+     * Information about networking access.
+     */
+    access: outputs.GetStreamConnectionFailoverNetworkingAccess;
+}
+
+export interface GetStreamConnectionFailoverNetworkingAccess {
+    /**
+     * Reserved. Will be used by `PRIVATE_LINK` connection type.
+     */
+    connectionId: string;
+    /**
+     * Reserved. Will be used by `PRIVATE_LINK` connection type.
+     */
+    name: string;
+    /**
+     * Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+     */
+    tgwRouteId: string;
+    /**
+     * Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+     */
+    type: string;
+}
+
+export interface GetStreamConnectionFailoverSecurity {
+    /**
+     * A trusted, public x509 certificate for connecting to Kafka over SSL.
+     */
+    brokerPublicCertificate: string;
+    /**
+     * Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+     */
+    protocol: string;
+}
+
+export interface GetStreamConnectionFailoversResult {
+    /**
+     * Applies to type: Kafka. User credentials required to connect to a Kafka Cluster. Includes the authentication type, as well as the parameters for that authentication mode.
+     */
+    authentication: outputs.GetStreamConnectionFailoversResultAuthentication;
+    /**
+     * Applies to type: Kafka. Comma separated list of server addresses.
+     */
+    bootstrapServers: string;
+    /**
+     * Applies to type: Cluster. Name of the cluster configured for this connection.
+     */
+    clusterName: string;
+    /**
+     * Applies to type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
+     */
+    clusterProjectId: string;
+    /**
+     * Applies to type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+     */
+    config: {[key: string]: string};
+    /**
+     * Applies to type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+     */
+    dbRoleToExecute: outputs.GetStreamConnectionFailoversResultDbRoleToExecute;
+    /**
+     * Unique identifier of the connection.
+     */
+    failoverConnectionId: string;
+    /**
+     * Applies to type: Kafka. Networking configuration for Streams connections.
+     */
+    networking: outputs.GetStreamConnectionFailoversResultNetworking;
+    /**
+     * The connection's region.
+     */
+    region: string;
+    /**
+     * Applies to type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
+     */
+    security: outputs.GetStreamConnectionFailoversResultSecurity;
+    /**
+     * The state of the connection.
+     */
+    state: string;
+    /**
+     * Type of the connection.
+     */
+    type: string;
+}
+
+export interface GetStreamConnectionFailoversResultAuthentication {
+    /**
+     * OIDC client identifier for authentication to the Kafka cluster.
+     */
+    clientId: string;
+    /**
+     * OIDC client secret for authentication to the Kafka cluster.
+     */
+    clientSecret: string;
+    /**
+     * Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+     */
+    mechanism: string;
+    /**
+     * SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+     */
+    method: string;
+    /**
+     * Password of the account to connect to the Kafka cluster.
+     */
+    password: string;
+    /**
+     * SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+     */
+    saslOauthbearerExtensions: string;
+    /**
+     * OIDC scope parameter defining the access permissions requested.
+     */
+    scope: string;
+    /**
+     * SSL certificate for client authentication to Kafka.
+     */
+    sslCertificate: string;
+    /**
+     * SSL key for client authentication to Kafka.
+     */
+    sslKey: string;
+    /**
+     * Password for the SSL key, if it is password protected.
+     */
+    sslKeyPassword: string;
+    /**
+     * OIDC token endpoint URL for obtaining access tokens.
+     */
+    tokenEndpointUrl: string;
+    /**
+     * Username of the account to connect to the Kafka cluster.
+     */
+    username: string;
+}
+
+export interface GetStreamConnectionFailoversResultDbRoleToExecute {
+    /**
+     * The name of the role to use. Can be a built in role or a custom role.
+     */
+    role: string;
+    /**
+     * Type of the DB role. Can be either Built In or Custom.
+     */
+    type: string;
+}
+
+export interface GetStreamConnectionFailoversResultNetworking {
+    /**
+     * Information about networking access.
+     */
+    access: outputs.GetStreamConnectionFailoversResultNetworkingAccess;
+}
+
+export interface GetStreamConnectionFailoversResultNetworkingAccess {
+    /**
+     * Reserved. Will be used by `PRIVATE_LINK` connection type.
+     */
+    connectionId: string;
+    /**
+     * Reserved. Will be used by `PRIVATE_LINK` connection type.
+     */
+    name: string;
+    /**
+     * Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+     */
+    tgwRouteId: string;
+    /**
+     * Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+     */
+    type: string;
+}
+
+export interface GetStreamConnectionFailoversResultSecurity {
+    /**
+     * A trusted, public x509 certificate for connecting to Kafka over SSL.
+     */
+    brokerPublicCertificate: string;
+    /**
+     * Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+     */
+    protocol: string;
+}
+
 export interface GetStreamConnectionGcp {
     /**
      * Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
@@ -8417,6 +8679,10 @@ export interface GetStreamProcessorOptionsDlq {
 
 export interface GetStreamProcessorsResult {
     /**
+     * Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+     */
+    failoverEnabled: boolean;
+    /**
      * Unique 24-hexadecimal character string that identifies the stream processor.
      */
     id: string;
@@ -8493,6 +8759,17 @@ export interface GetStreamWorkspaceDataProcessRegion {
     region: string;
 }
 
+export interface GetStreamWorkspaceFailoverRegion {
+    /**
+     * Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+     */
+    cloudProvider: string;
+    /**
+     * Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+     */
+    region: string;
+}
+
 export interface GetStreamWorkspaceStreamConfig {
     maxTierSize: string;
     /**
@@ -8506,6 +8783,7 @@ export interface GetStreamWorkspacesResult {
      * Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
      */
     dataProcessRegion: outputs.GetStreamWorkspacesResultDataProcessRegion;
+    failoverRegions: outputs.GetStreamWorkspacesResultFailoverRegion[];
     /**
      * List that contains the hostnames assigned to the stream workspace.
      */
@@ -8526,6 +8804,17 @@ export interface GetStreamWorkspacesResult {
 }
 
 export interface GetStreamWorkspacesResultDataProcessRegion {
+    /**
+     * Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+     */
+    cloudProvider: string;
+    /**
+     * Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+     */
+    region: string;
+}
+
+export interface GetStreamWorkspacesResultFailoverRegion {
     /**
      * Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
      */
@@ -8992,11 +9281,11 @@ export interface ProjectLimit {
     defaultLimit: number;
     maximumLimit: number;
     /**
-     * Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+     * Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
      */
     name: string;
     /**
-     * Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+     * Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
      */
     value: number;
 }
@@ -9258,6 +9547,120 @@ export interface StreamConnectionDbRoleToExecute {
     type: string;
 }
 
+export interface StreamConnectionFailoverAuthentication {
+    /**
+     * OIDC client identifier for authentication to the Kafka cluster.
+     */
+    clientId?: string;
+    /**
+     * OIDC client secret for authentication to the Kafka cluster.
+     */
+    clientSecret?: string;
+    /**
+     * Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+     */
+    mechanism?: string;
+    /**
+     * SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+     */
+    method?: string;
+    /**
+     * Password of the account to connect to the Kafka cluster.
+     */
+    password?: string;
+    /**
+     * SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+     */
+    saslOauthbearerExtensions?: string;
+    /**
+     * OIDC scope parameter defining the access permissions requested.
+     */
+    scope?: string;
+    /**
+     * SSL certificate for client authentication to Kafka.
+     */
+    sslCertificate?: string;
+    /**
+     * SSL key for client authentication to Kafka.
+     */
+    sslKey?: string;
+    /**
+     * Password for the SSL key, if it is password protected.
+     */
+    sslKeyPassword?: string;
+    /**
+     * OIDC token endpoint URL for obtaining access tokens.
+     */
+    tokenEndpointUrl?: string;
+    /**
+     * Username of the account to connect to the Kafka cluster.
+     */
+    username?: string;
+}
+
+export interface StreamConnectionFailoverDbRoleToExecute {
+    /**
+     * The name of the role to use. Can be a built in role or a custom role.
+     */
+    role: string;
+    /**
+     * Type of the DB role. Can be either Built In or Custom.
+     */
+    type: string;
+}
+
+export interface StreamConnectionFailoverNetworking {
+    /**
+     * Information about networking access.
+     */
+    access: outputs.StreamConnectionFailoverNetworkingAccess;
+}
+
+export interface StreamConnectionFailoverNetworkingAccess {
+    /**
+     * Reserved. Will be used by `PRIVATE_LINK` connection type.
+     */
+    connectionId?: string;
+    /**
+     * Reserved. Will be used by `PRIVATE_LINK` connection type.
+     */
+    name?: string;
+    /**
+     * Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+     */
+    tgwRouteId?: string;
+    /**
+     * Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+     */
+    type: string;
+}
+
+export interface StreamConnectionFailoverSecurity {
+    /**
+     * A trusted, public x509 certificate for connecting to Kafka over SSL.
+     */
+    brokerPublicCertificate?: string;
+    /**
+     * Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+     */
+    protocol?: string;
+}
+
+export interface StreamConnectionFailoverTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    create?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     */
+    delete?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    update?: string;
+}
+
 export interface StreamConnectionGcp {
     /**
      * Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
@@ -9384,6 +9787,17 @@ export interface StreamWorkspaceDataProcessRegion {
     cloudProvider: string;
     /**
      * Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+     */
+    region: string;
+}
+
+export interface StreamWorkspaceFailoverRegion {
+    /**
+     * Cloud service provider for the failover region. Must match the primary region's cloud provider.
+     */
+    cloudProvider: string;
+    /**
+     * Name of the failover cloud provider region.
      */
     region: string;
 }

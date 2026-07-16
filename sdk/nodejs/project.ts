@@ -52,7 +52,7 @@ import * as utilities from "./utilities";
  * ```sh
  * $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
  * ```
- * For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://www.mongodb.com/docs/atlas/reference/api/teams/) Documentation for more information.
+ * For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Teams) Documentation for more information.
  */
 export class Project extends pulumi.CustomResource {
     /**
@@ -97,6 +97,10 @@ export class Project extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly ipAddresses: pulumi.Output<outputs.ProjectIpAddresses>;
     /**
+     * Flag that indicates whether to enable the AI Assistant for the project's clusters.
+     */
+    declare public readonly isClusterAiAssistantEnabled: pulumi.Output<boolean>;
+    /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
      */
     declare public readonly isCollectDatabaseSpecificsStatisticsEnabled: pulumi.Output<boolean>;
@@ -104,6 +108,14 @@ export class Project extends pulumi.CustomResource {
      * Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
      */
     declare public readonly isDataExplorerEnabled: pulumi.Output<boolean>;
+    /**
+     * Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+     */
+    declare public readonly isDataExplorerGenAiFeaturesEnabled: pulumi.Output<boolean>;
+    /**
+     * Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+     */
+    declare public readonly isDataExplorerGenAiSampleDocumentPassingEnabled: pulumi.Output<boolean>;
     /**
      * Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
      */
@@ -172,8 +184,11 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["clusterCount"] = state?.clusterCount;
             resourceInputs["created"] = state?.created;
             resourceInputs["ipAddresses"] = state?.ipAddresses;
+            resourceInputs["isClusterAiAssistantEnabled"] = state?.isClusterAiAssistantEnabled;
             resourceInputs["isCollectDatabaseSpecificsStatisticsEnabled"] = state?.isCollectDatabaseSpecificsStatisticsEnabled;
             resourceInputs["isDataExplorerEnabled"] = state?.isDataExplorerEnabled;
+            resourceInputs["isDataExplorerGenAiFeaturesEnabled"] = state?.isDataExplorerGenAiFeaturesEnabled;
+            resourceInputs["isDataExplorerGenAiSampleDocumentPassingEnabled"] = state?.isDataExplorerGenAiSampleDocumentPassingEnabled;
             resourceInputs["isExtendedStorageSizesEnabled"] = state?.isExtendedStorageSizesEnabled;
             resourceInputs["isPerformanceAdvisorEnabled"] = state?.isPerformanceAdvisorEnabled;
             resourceInputs["isRealtimePerformancePanelEnabled"] = state?.isRealtimePerformancePanelEnabled;
@@ -192,8 +207,11 @@ export class Project extends pulumi.CustomResource {
             if (args?.orgId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'orgId'");
             }
+            resourceInputs["isClusterAiAssistantEnabled"] = args?.isClusterAiAssistantEnabled;
             resourceInputs["isCollectDatabaseSpecificsStatisticsEnabled"] = args?.isCollectDatabaseSpecificsStatisticsEnabled;
             resourceInputs["isDataExplorerEnabled"] = args?.isDataExplorerEnabled;
+            resourceInputs["isDataExplorerGenAiFeaturesEnabled"] = args?.isDataExplorerGenAiFeaturesEnabled;
+            resourceInputs["isDataExplorerGenAiSampleDocumentPassingEnabled"] = args?.isDataExplorerGenAiSampleDocumentPassingEnabled;
             resourceInputs["isExtendedStorageSizesEnabled"] = args?.isExtendedStorageSizesEnabled;
             resourceInputs["isPerformanceAdvisorEnabled"] = args?.isPerformanceAdvisorEnabled;
             resourceInputs["isRealtimePerformancePanelEnabled"] = args?.isRealtimePerformancePanelEnabled;
@@ -235,6 +253,10 @@ export interface ProjectState {
      */
     ipAddresses?: pulumi.Input<inputs.ProjectIpAddresses | undefined>;
     /**
+     * Flag that indicates whether to enable the AI Assistant for the project's clusters.
+     */
+    isClusterAiAssistantEnabled?: pulumi.Input<boolean | undefined>;
+    /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
      */
     isCollectDatabaseSpecificsStatisticsEnabled?: pulumi.Input<boolean | undefined>;
@@ -242,6 +264,14 @@ export interface ProjectState {
      * Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
      */
     isDataExplorerEnabled?: pulumi.Input<boolean | undefined>;
+    /**
+     * Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+     */
+    isDataExplorerGenAiFeaturesEnabled?: pulumi.Input<boolean | undefined>;
+    /**
+     * Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+     */
+    isDataExplorerGenAiSampleDocumentPassingEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
      */
@@ -300,6 +330,10 @@ export interface ProjectState {
  */
 export interface ProjectArgs {
     /**
+     * Flag that indicates whether to enable the AI Assistant for the project's clusters.
+     */
+    isClusterAiAssistantEnabled?: pulumi.Input<boolean | undefined>;
+    /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
      */
     isCollectDatabaseSpecificsStatisticsEnabled?: pulumi.Input<boolean | undefined>;
@@ -307,6 +341,14 @@ export interface ProjectArgs {
      * Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
      */
     isDataExplorerEnabled?: pulumi.Input<boolean | undefined>;
+    /**
+     * Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+     */
+    isDataExplorerGenAiFeaturesEnabled?: pulumi.Input<boolean | undefined>;
+    /**
+     * Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+     */
+    isDataExplorerGenAiSampleDocumentPassingEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
      */

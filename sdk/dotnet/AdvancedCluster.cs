@@ -715,6 +715,22 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// More information about moving resources can be found in our Migration Guide and in the Terraform documentation here and here.
     /// 
+    /// ## Multi-shard clusters and topology changes
+    /// 
+    /// This section applies to clusters with more than one `ReplicationSpecs` entry.
+    /// 
+    /// **Known issues:**
+    /// 
+    /// - **Effective fields:** For clusters with more than one `ReplicationSpecs` entry, setting `UseEffectiveFields = true` currently has no effect. The resulting behavior is the same as leaving the attribute unset or setting it to `False`. We recommend that you do not enable this attribute for multi-shard clusters.
+    /// - **Topology changes:** The update path currently relies on list position to correlate each `ReplicationSpecs` entry with a shard. If you add, remove, or reorder entries, an existing configuration might be associated with a different Atlas shard than intended.
+    /// 
+    /// When updating a multi-shard cluster, follow this guidance:
+    /// 
+    /// - Keep existing `ReplicationSpecs` entries in the same order when updating a multi-shard cluster.
+    /// - Add new shards only after the existing entries, and keep the existing entries unchanged in the same update.
+    /// - If auto-scaling is enabled, do not rely on list-index `lifecycle.ignore_changes` to preserve Atlas-managed `InstanceSize`, `DiskSizeGb`, or `DiskIops` values when changing the shard topology.
+    /// - Before removing a shard or making other significant production topology changes, we recommend that you contact [MongoDB Support](https://www.mongodb.com/docs/atlas/support/#request-support).
+    /// 
     /// ## Auto-Scaling with Effective Fields
     /// 
     /// The `UseEffectiveFields` attribute enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and providing visibility into Atlas-managed changes. This feature only applies to dedicated clusters (M10+) and is not supported for flex and tenant clusters.
@@ -760,6 +776,24 @@ namespace Pulumi.Mongodbatlas
     /// &gt; **NOTE:** If `advanced_configuration.oplog_min_retention_hours` is non-zero on the server, set it to `0` and apply before step 1 disables `DiskGbEnabled`. Otherwise the API can return `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400). See the `DiskGbEnabled` argument description.
     /// 
     /// This workflow allows you to set specific baseline values from which auto-scaling will resume dynamic adjustments based on workload.
+    /// 
+    /// ### Adjusting the Auto-Scaling Range with UseEffectiveFields
+    /// 
+    /// Changing the compute auto-scaling range (`ComputeMinInstanceSize` or `ComputeMaxInstanceSize`) requires extra care when the new range would no longer contain the cluster's **current effective** instance size. This includes:
+    /// 
+    /// - Raising `ComputeMinInstanceSize` above the effective size.
+    /// - Lowering `ComputeMaxInstanceSize` below the effective size.
+    /// 
+    /// Atlas validates the new range against the current effective instance size, so attempting either in a single apply fails with a validation error from Atlas. Updating `InstanceSize` in the same apply as changing the range does not avoid the error, because the updated `InstanceSize` value is not applied while auto-scaling is enabled with `UseEffectiveFields = true`.
+    /// 
+    /// To adjust the range when the new range would exclude the current effective instance size, move the effective instance size into the new range before changing the bounds:
+    /// 
+    /// 1. Disable auto-scaling and set `InstanceSize` to a value inside your intended new range, then apply. Follow the Manually Updating Specs with UseEffectiveFields workflow, which also covers disabling disk auto-scaling and the related `OplogMinRetentionHours` requirement.
+    /// 2. Re-enable auto-scaling with the new `ComputeMinInstanceSize` and `ComputeMaxInstanceSize` bounds, then apply.
+    /// 
+    /// The same process applies to the `AnalyticsAutoScaling` block, using `analytics_specs.instance_size` in step 1.
+    /// 
+    /// &gt; **NOTE:** This multi-step process is only required while the current effective instance size would fall outside the new range. If the new range still contains the effective size, you can change the bounds in a single apply.
     /// 
     /// ### Terraform Modules
     /// 
@@ -965,7 +999,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ReplicaSetScalingStrategy { get; private set; } = null!;
 
         /// <summary>
-        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. See below.
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. If this list contains more than one entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
         /// </summary>
         [Output("replicationSpecs")]
         public Output<ImmutableArray<Outputs.AdvancedClusterReplicationSpec>> ReplicationSpecs { get; private set; } = null!;
@@ -1023,6 +1057,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`ElectableSpecs`, `ReadOnlySpecs`, `AnalyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+        /// If your cluster has more than one `ReplicationSpecs` entry, see Multi-shard clusters and topology changes before enabling this attribute.
         /// **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `ReadOnlySpecs` or `AnalyticsSpecs` attributes from your configuration, you'll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `NodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
         /// </summary>
         [Output("useEffectiveFields")]
@@ -1224,7 +1259,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterReplicationSpecArgs>? _replicationSpecs;
 
         /// <summary>
-        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. See below.
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. If this list contains more than one entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
         /// </summary>
         public InputList<Inputs.AdvancedClusterReplicationSpecArgs> ReplicationSpecs
         {
@@ -1278,6 +1313,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`ElectableSpecs`, `ReadOnlySpecs`, `AnalyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+        /// If your cluster has more than one `ReplicationSpecs` entry, see Multi-shard clusters and topology changes before enabling this attribute.
         /// **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `ReadOnlySpecs` or `AnalyticsSpecs` attributes from your configuration, you'll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `NodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
         /// </summary>
         [Input("useEffectiveFields")]
@@ -1471,7 +1507,7 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterReplicationSpecGetArgs>? _replicationSpecs;
 
         /// <summary>
-        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. See below.
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. If this list contains more than one entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
         /// </summary>
         public InputList<Inputs.AdvancedClusterReplicationSpecGetArgs> ReplicationSpecs
         {
@@ -1538,6 +1574,7 @@ namespace Pulumi.Mongodbatlas
 
         /// <summary>
         /// Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`ElectableSpecs`, `ReadOnlySpecs`, `AnalyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+        /// If your cluster has more than one `ReplicationSpecs` entry, see Multi-shard clusters and topology changes before enabling this attribute.
         /// **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `ReadOnlySpecs` or `AnalyticsSpecs` attributes from your configuration, you'll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `NodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
         /// </summary>
         [Input("useEffectiveFields")]

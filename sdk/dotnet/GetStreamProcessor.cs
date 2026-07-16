@@ -664,6 +664,10 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetStreamProcessorResult
     {
         /// <summary>
+        /// Indicates whether this stream processor is eligible for failover. When `True`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `FailoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `FailoverRegions` configured on the workspace.
+        /// </summary>
+        public readonly bool FailoverEnabled;
+        /// <summary>
         /// Unique 24-hexadecimal character string that identifies the stream processor.
         /// </summary>
         public readonly string Id;
@@ -700,6 +704,8 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetStreamProcessorResult(
+            bool failoverEnabled,
+
             string id,
 
             string? instanceName,
@@ -720,6 +726,7 @@ namespace Pulumi.Mongodbatlas
 
             string? workspaceName)
         {
+            FailoverEnabled = failoverEnabled;
             Id = id;
             InstanceName = instanceName;
             Options = options;

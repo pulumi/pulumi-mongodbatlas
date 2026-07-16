@@ -22,8 +22,11 @@ __all__ = ['ProjectArgs', 'Project']
 class ProjectArgs:
     def __init__(__self__, *,
                  org_id: pulumi.Input[_builtins.str],
+                 is_cluster_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_data_explorer_gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_data_explorer_gen_ai_sample_document_passing_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -40,8 +43,11 @@ class ProjectArgs:
         The set of arguments for constructing a Project resource.
 
         :param pulumi.Input[_builtins.str] org_id: The ID of the organization you want to create the project within.
+        :param pulumi.Input[_builtins.bool] is_cluster_ai_assistant_enabled: Flag that indicates whether to enable the AI Assistant for the project's clusters.
         :param pulumi.Input[_builtins.bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
+        :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_features_enabled: Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+        :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_sample_document_passing_enabled: Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
         :param pulumi.Input[_builtins.bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
         :param pulumi.Input[_builtins.bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
@@ -54,10 +60,16 @@ class ProjectArgs:
         :param pulumi.Input[_builtins.bool] with_default_alerts_settings: Flag that indicates whether to create the project with default alert settings. This setting cannot be updated after project creation. By default, this flag is set to true.
         """
         pulumi.set(__self__, "org_id", org_id)
+        if is_cluster_ai_assistant_enabled is not None:
+            pulumi.set(__self__, "is_cluster_ai_assistant_enabled", is_cluster_ai_assistant_enabled)
         if is_collect_database_specifics_statistics_enabled is not None:
             pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
         if is_data_explorer_enabled is not None:
             pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
+        if is_data_explorer_gen_ai_features_enabled is not None:
+            pulumi.set(__self__, "is_data_explorer_gen_ai_features_enabled", is_data_explorer_gen_ai_features_enabled)
+        if is_data_explorer_gen_ai_sample_document_passing_enabled is not None:
+            pulumi.set(__self__, "is_data_explorer_gen_ai_sample_document_passing_enabled", is_data_explorer_gen_ai_sample_document_passing_enabled)
         if is_extended_storage_sizes_enabled is not None:
             pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
         if is_performance_advisor_enabled is not None:
@@ -102,6 +114,18 @@ class ProjectArgs:
         pulumi.set(self, "org_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="isClusterAiAssistantEnabled")
+    def is_cluster_ai_assistant_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Flag that indicates whether to enable the AI Assistant for the project's clusters.
+        """
+        return pulumi.get(self, "is_cluster_ai_assistant_enabled")
+
+    @is_cluster_ai_assistant_enabled.setter
+    def is_cluster_ai_assistant_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_cluster_ai_assistant_enabled", value)
+
+    @_builtins.property
     @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
     def is_collect_database_specifics_statistics_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -124,6 +148,30 @@ class ProjectArgs:
     @is_data_explorer_enabled.setter
     def is_data_explorer_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_data_explorer_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isDataExplorerGenAiFeaturesEnabled")
+    def is_data_explorer_gen_ai_features_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+        """
+        return pulumi.get(self, "is_data_explorer_gen_ai_features_enabled")
+
+    @is_data_explorer_gen_ai_features_enabled.setter
+    def is_data_explorer_gen_ai_features_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_data_explorer_gen_ai_features_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isDataExplorerGenAiSampleDocumentPassingEnabled")
+    def is_data_explorer_gen_ai_sample_document_passing_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+        """
+        return pulumi.get(self, "is_data_explorer_gen_ai_sample_document_passing_enabled")
+
+    @is_data_explorer_gen_ai_sample_document_passing_enabled.setter
+    def is_data_explorer_gen_ai_sample_document_passing_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_data_explorer_gen_ai_sample_document_passing_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isExtendedStorageSizesEnabled")
@@ -272,8 +320,11 @@ class _ProjectState:
                  cluster_count: pulumi.Input[Optional[_builtins.int]] = None,
                  created: pulumi.Input[Optional[_builtins.str]] = None,
                  ip_addresses: pulumi.Input[Optional['ProjectIpAddressesArgs']] = None,
+                 is_cluster_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_data_explorer_gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_data_explorer_gen_ai_sample_document_passing_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -293,8 +344,11 @@ class _ProjectState:
         :param pulumi.Input[_builtins.int] cluster_count: The number of Atlas clusters deployed in the project.
         :param pulumi.Input[_builtins.str] created: The ISO-8601-formatted timestamp of when Atlas created the project.
         :param pulumi.Input['ProjectIpAddressesArgs'] ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
+        :param pulumi.Input[_builtins.bool] is_cluster_ai_assistant_enabled: Flag that indicates whether to enable the AI Assistant for the project's clusters.
         :param pulumi.Input[_builtins.bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
+        :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_features_enabled: Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+        :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_sample_document_passing_enabled: Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
         :param pulumi.Input[_builtins.bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
         :param pulumi.Input[_builtins.bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
@@ -316,10 +370,16 @@ class _ProjectState:
             pulumi.log.warn("""ip_addresses is deprecated: This parameter is deprecated. Please transition to get_project_ip_addresses data source.""")
         if ip_addresses is not None:
             pulumi.set(__self__, "ip_addresses", ip_addresses)
+        if is_cluster_ai_assistant_enabled is not None:
+            pulumi.set(__self__, "is_cluster_ai_assistant_enabled", is_cluster_ai_assistant_enabled)
         if is_collect_database_specifics_statistics_enabled is not None:
             pulumi.set(__self__, "is_collect_database_specifics_statistics_enabled", is_collect_database_specifics_statistics_enabled)
         if is_data_explorer_enabled is not None:
             pulumi.set(__self__, "is_data_explorer_enabled", is_data_explorer_enabled)
+        if is_data_explorer_gen_ai_features_enabled is not None:
+            pulumi.set(__self__, "is_data_explorer_gen_ai_features_enabled", is_data_explorer_gen_ai_features_enabled)
+        if is_data_explorer_gen_ai_sample_document_passing_enabled is not None:
+            pulumi.set(__self__, "is_data_explorer_gen_ai_sample_document_passing_enabled", is_data_explorer_gen_ai_sample_document_passing_enabled)
         if is_extended_storage_sizes_enabled is not None:
             pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
         if is_performance_advisor_enabled is not None:
@@ -391,6 +451,18 @@ class _ProjectState:
         pulumi.set(self, "ip_addresses", value)
 
     @_builtins.property
+    @pulumi.getter(name="isClusterAiAssistantEnabled")
+    def is_cluster_ai_assistant_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Flag that indicates whether to enable the AI Assistant for the project's clusters.
+        """
+        return pulumi.get(self, "is_cluster_ai_assistant_enabled")
+
+    @is_cluster_ai_assistant_enabled.setter
+    def is_cluster_ai_assistant_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_cluster_ai_assistant_enabled", value)
+
+    @_builtins.property
     @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
     def is_collect_database_specifics_statistics_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -413,6 +485,30 @@ class _ProjectState:
     @is_data_explorer_enabled.setter
     def is_data_explorer_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_data_explorer_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isDataExplorerGenAiFeaturesEnabled")
+    def is_data_explorer_gen_ai_features_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+        """
+        return pulumi.get(self, "is_data_explorer_gen_ai_features_enabled")
+
+    @is_data_explorer_gen_ai_features_enabled.setter
+    def is_data_explorer_gen_ai_features_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_data_explorer_gen_ai_features_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isDataExplorerGenAiSampleDocumentPassingEnabled")
+    def is_data_explorer_gen_ai_sample_document_passing_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+        """
+        return pulumi.get(self, "is_data_explorer_gen_ai_sample_document_passing_enabled")
+
+    @is_data_explorer_gen_ai_sample_document_passing_enabled.setter
+    def is_data_explorer_gen_ai_sample_document_passing_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_data_explorer_gen_ai_sample_document_passing_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isExtendedStorageSizesEnabled")
@@ -573,8 +669,11 @@ class Project(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 is_cluster_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_data_explorer_gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_data_explorer_gen_ai_sample_document_passing_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -634,13 +733,16 @@ class Project(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
         ```
-        For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://www.mongodb.com/docs/atlas/reference/api/teams/) Documentation for more information.
+        For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Teams) Documentation for more information.
 
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] is_cluster_ai_assistant_enabled: Flag that indicates whether to enable the AI Assistant for the project's clusters.
         :param pulumi.Input[_builtins.bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
+        :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_features_enabled: Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+        :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_sample_document_passing_enabled: Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
         :param pulumi.Input[_builtins.bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
         :param pulumi.Input[_builtins.bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
@@ -704,7 +806,7 @@ class Project(pulumi.CustomResource):
         ```sh
         $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
         ```
-        For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://www.mongodb.com/docs/atlas/reference/api/teams/) Documentation for more information.
+        For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Teams) Documentation for more information.
 
 
         :param str resource_name: The name of the resource.
@@ -722,8 +824,11 @@ class Project(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 is_cluster_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_data_explorer_gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_data_explorer_gen_ai_sample_document_passing_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -746,8 +851,11 @@ class Project(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = ProjectArgs.__new__(ProjectArgs)
 
+            __props__.__dict__["is_cluster_ai_assistant_enabled"] = is_cluster_ai_assistant_enabled
             __props__.__dict__["is_collect_database_specifics_statistics_enabled"] = is_collect_database_specifics_statistics_enabled
             __props__.__dict__["is_data_explorer_enabled"] = is_data_explorer_enabled
+            __props__.__dict__["is_data_explorer_gen_ai_features_enabled"] = is_data_explorer_gen_ai_features_enabled
+            __props__.__dict__["is_data_explorer_gen_ai_sample_document_passing_enabled"] = is_data_explorer_gen_ai_sample_document_passing_enabled
             __props__.__dict__["is_extended_storage_sizes_enabled"] = is_extended_storage_sizes_enabled
             __props__.__dict__["is_performance_advisor_enabled"] = is_performance_advisor_enabled
             __props__.__dict__["is_realtime_performance_panel_enabled"] = is_realtime_performance_panel_enabled
@@ -779,8 +887,11 @@ class Project(pulumi.CustomResource):
             cluster_count: pulumi.Input[Optional[_builtins.int]] = None,
             created: pulumi.Input[Optional[_builtins.str]] = None,
             ip_addresses: pulumi.Input[Optional[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict']]] = None,
+            is_cluster_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_data_explorer_gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_data_explorer_gen_ai_sample_document_passing_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -804,8 +915,11 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] cluster_count: The number of Atlas clusters deployed in the project.
         :param pulumi.Input[_builtins.str] created: The ISO-8601-formatted timestamp of when Atlas created the project.
         :param pulumi.Input[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict']] ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
+        :param pulumi.Input[_builtins.bool] is_cluster_ai_assistant_enabled: Flag that indicates whether to enable the AI Assistant for the project's clusters.
         :param pulumi.Input[_builtins.bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
+        :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_features_enabled: Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+        :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_sample_document_passing_enabled: Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
         :param pulumi.Input[_builtins.bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
         :param pulumi.Input[_builtins.bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
@@ -825,8 +939,11 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["cluster_count"] = cluster_count
         __props__.__dict__["created"] = created
         __props__.__dict__["ip_addresses"] = ip_addresses
+        __props__.__dict__["is_cluster_ai_assistant_enabled"] = is_cluster_ai_assistant_enabled
         __props__.__dict__["is_collect_database_specifics_statistics_enabled"] = is_collect_database_specifics_statistics_enabled
         __props__.__dict__["is_data_explorer_enabled"] = is_data_explorer_enabled
+        __props__.__dict__["is_data_explorer_gen_ai_features_enabled"] = is_data_explorer_gen_ai_features_enabled
+        __props__.__dict__["is_data_explorer_gen_ai_sample_document_passing_enabled"] = is_data_explorer_gen_ai_sample_document_passing_enabled
         __props__.__dict__["is_extended_storage_sizes_enabled"] = is_extended_storage_sizes_enabled
         __props__.__dict__["is_performance_advisor_enabled"] = is_performance_advisor_enabled
         __props__.__dict__["is_realtime_performance_panel_enabled"] = is_realtime_performance_panel_enabled
@@ -868,6 +985,14 @@ class Project(pulumi.CustomResource):
         return pulumi.get(self, "ip_addresses")
 
     @_builtins.property
+    @pulumi.getter(name="isClusterAiAssistantEnabled")
+    def is_cluster_ai_assistant_enabled(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Flag that indicates whether to enable the AI Assistant for the project's clusters.
+        """
+        return pulumi.get(self, "is_cluster_ai_assistant_enabled")
+
+    @_builtins.property
     @pulumi.getter(name="isCollectDatabaseSpecificsStatisticsEnabled")
     def is_collect_database_specifics_statistics_enabled(self) -> pulumi.Output[_builtins.bool]:
         """
@@ -882,6 +1007,22 @@ class Project(pulumi.CustomResource):
         Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.
         """
         return pulumi.get(self, "is_data_explorer_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="isDataExplorerGenAiFeaturesEnabled")
+    def is_data_explorer_gen_ai_features_enabled(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+        """
+        return pulumi.get(self, "is_data_explorer_gen_ai_features_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="isDataExplorerGenAiSampleDocumentPassingEnabled")
+    def is_data_explorer_gen_ai_sample_document_passing_enabled(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+        """
+        return pulumi.get(self, "is_data_explorer_gen_ai_sample_document_passing_enabled")
 
     @_builtins.property
     @pulumi.getter(name="isExtendedStorageSizesEnabled")

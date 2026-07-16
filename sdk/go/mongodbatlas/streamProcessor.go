@@ -224,6 +224,8 @@ type StreamProcessor struct {
 
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout pulumi.BoolOutput `pulumi:"deleteOnCreateTimeout"`
+	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+	FailoverEnabled pulumi.BoolPtrOutput `pulumi:"failoverEnabled"`
 	// Label that identifies the stream processing workspace.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
@@ -288,6 +290,8 @@ func GetStreamProcessor(ctx *pulumi.Context,
 type streamProcessorState struct {
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
+	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+	FailoverEnabled *bool `pulumi:"failoverEnabled"`
 	// Label that identifies the stream processing workspace.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
@@ -314,6 +318,8 @@ type streamProcessorState struct {
 type StreamProcessorState struct {
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout pulumi.BoolPtrInput
+	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+	FailoverEnabled pulumi.BoolPtrInput
 	// Label that identifies the stream processing workspace.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
@@ -344,6 +350,8 @@ func (StreamProcessorState) ElementType() reflect.Type {
 type streamProcessorArgs struct {
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
+	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+	FailoverEnabled *bool `pulumi:"failoverEnabled"`
 	// Label that identifies the stream processing workspace.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
@@ -369,6 +377,8 @@ type streamProcessorArgs struct {
 type StreamProcessorArgs struct {
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout pulumi.BoolPtrInput
+	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+	FailoverEnabled pulumi.BoolPtrInput
 	// Label that identifies the stream processing workspace.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
@@ -480,6 +490,11 @@ func (o StreamProcessorOutput) ToStreamProcessorOutputWithContext(ctx context.Co
 // Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 func (o StreamProcessorOutput) DeleteOnCreateTimeout() pulumi.BoolOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.BoolOutput { return v.DeleteOnCreateTimeout }).(pulumi.BoolOutput)
+}
+
+// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+func (o StreamProcessorOutput) FailoverEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *StreamProcessor) pulumi.BoolPtrOutput { return v.FailoverEnabled }).(pulumi.BoolPtrOutput)
 }
 
 // Label that identifies the stream processing workspace.

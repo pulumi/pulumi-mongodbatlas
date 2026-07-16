@@ -27,7 +27,10 @@ class GetStreamProcessorResult:
     """
     A collection of values returned by getStreamProcessor.
     """
-    def __init__(__self__, id=None, instance_name=None, options=None, pipeline=None, processor_name=None, project_id=None, state=None, stats=None, tier=None, workspace_name=None):
+    def __init__(__self__, failover_enabled=None, id=None, instance_name=None, options=None, pipeline=None, processor_name=None, project_id=None, state=None, stats=None, tier=None, workspace_name=None):
+        if failover_enabled and not isinstance(failover_enabled, bool):
+            raise TypeError("Expected argument 'failover_enabled' to be a bool")
+        pulumi.set(__self__, "failover_enabled", failover_enabled)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -58,6 +61,14 @@ class GetStreamProcessorResult:
         if workspace_name and not isinstance(workspace_name, str):
             raise TypeError("Expected argument 'workspace_name' to be a str")
         pulumi.set(__self__, "workspace_name", workspace_name)
+
+    @_builtins.property
+    @pulumi.getter(name="failoverEnabled")
+    def failover_enabled(self) -> _builtins.bool:
+        """
+        Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
+        """
+        return pulumi.get(self, "failover_enabled")
 
     @_builtins.property
     @pulumi.getter
@@ -141,6 +152,7 @@ class AwaitableGetStreamProcessorResult(GetStreamProcessorResult):
         if False:
             yield self
         return GetStreamProcessorResult(
+            failover_enabled=self.failover_enabled,
             id=self.id,
             instance_name=self.instance_name,
             options=self.options,
@@ -303,6 +315,7 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getStreamProcessor:getStreamProcessor', __args__, opts=opts, typ=GetStreamProcessorResult).value
 
     return AwaitableGetStreamProcessorResult(
+        failover_enabled=pulumi.get(__ret__, 'failover_enabled'),
         id=pulumi.get(__ret__, 'id'),
         instance_name=pulumi.get(__ret__, 'instance_name'),
         options=pulumi.get(__ret__, 'options'),
@@ -462,6 +475,7 @@ def get_stream_processor_output(instance_name: pulumi.Input[Optional[Optional[_b
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamProcessor:getStreamProcessor', __args__, opts=opts, typ=GetStreamProcessorResult)
     return __ret__.apply(lambda __response__: GetStreamProcessorResult(
+        failover_enabled=pulumi.get(__response__, 'failover_enabled'),
         id=pulumi.get(__response__, 'id'),
         instance_name=pulumi.get(__response__, 'instance_name'),
         options=pulumi.get(__response__, 'options'),

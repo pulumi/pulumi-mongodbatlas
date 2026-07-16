@@ -185,6 +185,10 @@ export interface GetStreamProcessorArgs {
  */
 export interface GetStreamProcessorResult {
     /**
+     * Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+     */
+    readonly failoverEnabled: boolean;
+    /**
      * Unique 24-hexadecimal character string that identifies the stream processor.
      */
     readonly id: string;

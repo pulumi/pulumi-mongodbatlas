@@ -27,10 +27,13 @@ class GetStreamWorkspaceResult:
     """
     A collection of values returned by getStreamWorkspace.
     """
-    def __init__(__self__, data_process_region=None, hostnames=None, id=None, project_id=None, stream_config=None, workspace_name=None):
+    def __init__(__self__, data_process_region=None, failover_regions=None, hostnames=None, id=None, project_id=None, stream_config=None, workspace_name=None):
         if data_process_region and not isinstance(data_process_region, dict):
             raise TypeError("Expected argument 'data_process_region' to be a dict")
         pulumi.set(__self__, "data_process_region", data_process_region)
+        if failover_regions and not isinstance(failover_regions, list):
+            raise TypeError("Expected argument 'failover_regions' to be a list")
+        pulumi.set(__self__, "failover_regions", failover_regions)
         if hostnames and not isinstance(hostnames, list):
             raise TypeError("Expected argument 'hostnames' to be a list")
         pulumi.set(__self__, "hostnames", hostnames)
@@ -54,6 +57,11 @@ class GetStreamWorkspaceResult:
         Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
         """
         return pulumi.get(self, "data_process_region")
+
+    @_builtins.property
+    @pulumi.getter(name="failoverRegions")
+    def failover_regions(self) -> Sequence['outputs.GetStreamWorkspaceFailoverRegionResult']:
+        return pulumi.get(self, "failover_regions")
 
     @_builtins.property
     @pulumi.getter
@@ -94,6 +102,7 @@ class AwaitableGetStreamWorkspaceResult(GetStreamWorkspaceResult):
             yield self
         return GetStreamWorkspaceResult(
             data_process_region=self.data_process_region,
+            failover_regions=self.failover_regions,
             hostnames=self.hostnames,
             id=self.id,
             project_id=self.project_id,
@@ -135,6 +144,7 @@ def get_stream_workspace(project_id: Optional[_builtins.str] = None,
 
     return AwaitableGetStreamWorkspaceResult(
         data_process_region=pulumi.get(__ret__, 'data_process_region'),
+        failover_regions=pulumi.get(__ret__, 'failover_regions'),
         hostnames=pulumi.get(__ret__, 'hostnames'),
         id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
@@ -173,6 +183,7 @@ def get_stream_workspace_output(project_id: pulumi.Input[Optional[_builtins.str]
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamWorkspace:getStreamWorkspace', __args__, opts=opts, typ=GetStreamWorkspaceResult)
     return __ret__.apply(lambda __response__: GetStreamWorkspaceResult(
         data_process_region=pulumi.get(__response__, 'data_process_region'),
+        failover_regions=pulumi.get(__response__, 'failover_regions'),
         hostnames=pulumi.get(__response__, 'hostnames'),
         id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id'),

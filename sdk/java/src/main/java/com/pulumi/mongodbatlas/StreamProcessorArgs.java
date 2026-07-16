@@ -35,6 +35,21 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
+     * Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace&#39;s `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+     * 
+     */
+    @Import(name="failoverEnabled")
+    private @Nullable Output<Boolean> failoverEnabled;
+
+    /**
+     * @return Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace&#39;s `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+     * 
+     */
+    public Optional<Output<Boolean>> failoverEnabled() {
+        return Optional.ofNullable(this.failoverEnabled);
+    }
+
+    /**
      * Label that identifies the stream processing workspace.
      * 
      * @deprecated
@@ -173,6 +188,7 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
 
     private StreamProcessorArgs(StreamProcessorArgs $) {
         this.deleteOnCreateTimeout = $.deleteOnCreateTimeout;
+        this.failoverEnabled = $.failoverEnabled;
         this.instanceName = $.instanceName;
         this.options = $.options;
         this.pipeline = $.pipeline;
@@ -221,6 +237,27 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
          */
         public Builder deleteOnCreateTimeout(Boolean deleteOnCreateTimeout) {
             return deleteOnCreateTimeout(Output.of(deleteOnCreateTimeout));
+        }
+
+        /**
+         * @param failoverEnabled Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace&#39;s `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder failoverEnabled(@Nullable Output<Boolean> failoverEnabled) {
+            $.failoverEnabled = failoverEnabled;
+            return this;
+        }
+
+        /**
+         * @param failoverEnabled Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace&#39;s `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder failoverEnabled(Boolean failoverEnabled) {
+            return failoverEnabled(Output.of(failoverEnabled));
         }
 
         /**
