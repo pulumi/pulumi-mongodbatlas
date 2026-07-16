@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetStreamWorkspaceDataProcessRegion;
+import com.pulumi.mongodbatlas.outputs.GetStreamWorkspaceFailoverRegion;
 import com.pulumi.mongodbatlas.outputs.GetStreamWorkspaceStreamConfig;
 import java.lang.String;
 import java.util.List;
@@ -18,6 +19,7 @@ public final class GetStreamWorkspaceResult {
      * 
      */
     private GetStreamWorkspaceDataProcessRegion dataProcessRegion;
+    private List<GetStreamWorkspaceFailoverRegion> failoverRegions;
     /**
      * @return List that contains the hostnames assigned to the stream workspace.
      * 
@@ -39,6 +41,9 @@ public final class GetStreamWorkspaceResult {
      */
     public GetStreamWorkspaceDataProcessRegion dataProcessRegion() {
         return this.dataProcessRegion;
+    }
+    public List<GetStreamWorkspaceFailoverRegion> failoverRegions() {
+        return this.failoverRegions;
     }
     /**
      * @return List that contains the hostnames assigned to the stream workspace.
@@ -74,6 +79,7 @@ public final class GetStreamWorkspaceResult {
     @CustomType.Builder
     public static final class Builder {
         private GetStreamWorkspaceDataProcessRegion dataProcessRegion;
+        private List<GetStreamWorkspaceFailoverRegion> failoverRegions;
         private List<String> hostnames;
         private String id;
         private String projectId;
@@ -83,6 +89,7 @@ public final class GetStreamWorkspaceResult {
         public Builder(GetStreamWorkspaceResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.dataProcessRegion = defaults.dataProcessRegion;
+    	      this.failoverRegions = defaults.failoverRegions;
     	      this.hostnames = defaults.hostnames;
     	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
@@ -97,6 +104,17 @@ public final class GetStreamWorkspaceResult {
             }
             this.dataProcessRegion = dataProcessRegion;
             return this;
+        }
+        @CustomType.Setter
+        public Builder failoverRegions(List<GetStreamWorkspaceFailoverRegion> failoverRegions) {
+            if (failoverRegions == null) {
+              throw new MissingRequiredPropertyException("GetStreamWorkspaceResult", "failoverRegions");
+            }
+            this.failoverRegions = failoverRegions;
+            return this;
+        }
+        public Builder failoverRegions(GetStreamWorkspaceFailoverRegion... failoverRegions) {
+            return failoverRegions(List.of(failoverRegions));
         }
         @CustomType.Setter
         public Builder hostnames(List<String> hostnames) {
@@ -144,6 +162,7 @@ public final class GetStreamWorkspaceResult {
         public GetStreamWorkspaceResult build() {
             final var _resultValue = new GetStreamWorkspaceResult();
             _resultValue.dataProcessRegion = dataProcessRegion;
+            _resultValue.failoverRegions = failoverRegions;
             _resultValue.hostnames = hostnames;
             _resultValue.id = id;
             _resultValue.projectId = projectId;

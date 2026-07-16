@@ -96,6 +96,10 @@ export interface GetProjectResult {
      */
     readonly ipAddresses: outputs.GetProjectIpAddresses;
     /**
+     * Flag that indicates whether the AI Assistant is enabled for the project's clusters.
+     */
+    readonly isClusterAiAssistantEnabled: boolean;
+    /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
      */
     readonly isCollectDatabaseSpecificsStatisticsEnabled: boolean;
@@ -103,6 +107,14 @@ export interface GetProjectResult {
      * Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
      */
     readonly isDataExplorerEnabled: boolean;
+    /**
+     * Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
+     */
+    readonly isDataExplorerGenAiFeaturesEnabled: boolean;
+    /**
+     * Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
+     */
+    readonly isDataExplorerGenAiSampleDocumentPassingEnabled: boolean;
     /**
      * Flag that indicates whether to enable extended storage sizes for the specified project.
      */

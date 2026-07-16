@@ -234,6 +234,10 @@ import com.pulumi.mongodbatlas.inputs.GetSharedTierSnapshotsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamAccountDetailsArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamAccountDetailsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamConnectionArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamConnectionFailoverArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamConnectionFailoverPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamConnectionFailoversArgs;
+import com.pulumi.mongodbatlas.inputs.GetStreamConnectionFailoversPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamConnectionPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamConnectionsArgs;
 import com.pulumi.mongodbatlas.inputs.GetStreamConnectionsPlainArgs;
@@ -377,6 +381,8 @@ import com.pulumi.mongodbatlas.outputs.GetSharedTierRestoreJobsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetSharedTierSnapshotResult;
 import com.pulumi.mongodbatlas.outputs.GetSharedTierSnapshotsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamAccountDetailsResult;
+import com.pulumi.mongodbatlas.outputs.GetStreamConnectionFailoverResult;
+import com.pulumi.mongodbatlas.outputs.GetStreamConnectionFailoversInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamConnectionsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetStreamInstanceResult;
@@ -35102,6 +35108,296 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetStreamConnectionResult> getStreamConnectionPlain(GetStreamConnectionPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamConnection:getStreamConnection", TypeShape.of(GetStreamConnectionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.StreamConnectionFailover` describes a failover (regional-alternate) connection for an existing stream connection. It is looked up by its parent `connectionName` and its computed `failoverConnectionId`. Only `Kafka` and `Cluster` connection types support failover.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionFailoverArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Reads a single failover connection by its ID.
+     *         final var example = MongodbatlasFunctions.getStreamConnectionFailover(GetStreamConnectionFailoverArgs.builder()
+     *             .projectId(projectId)
+     *             .workspaceName(exampleMongodbatlasStreamWorkspace.workspaceName())
+     *             .connectionName(exampleMongodbatlasStreamConnectionFailover.connectionName())
+     *             .failoverConnectionId(exampleMongodbatlasStreamConnectionFailover.failoverConnectionId())
+     *             .build());
+     * 
+     *         ctx.export("failoverBootstrapServers", example.bootstrapServers());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetStreamConnectionFailoverResult> getStreamConnectionFailover(GetStreamConnectionFailoverArgs args) {
+        return getStreamConnectionFailover(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.StreamConnectionFailover` describes a failover (regional-alternate) connection for an existing stream connection. It is looked up by its parent `connectionName` and its computed `failoverConnectionId`. Only `Kafka` and `Cluster` connection types support failover.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionFailoverArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Reads a single failover connection by its ID.
+     *         final var example = MongodbatlasFunctions.getStreamConnectionFailover(GetStreamConnectionFailoverArgs.builder()
+     *             .projectId(projectId)
+     *             .workspaceName(exampleMongodbatlasStreamWorkspace.workspaceName())
+     *             .connectionName(exampleMongodbatlasStreamConnectionFailover.connectionName())
+     *             .failoverConnectionId(exampleMongodbatlasStreamConnectionFailover.failoverConnectionId())
+     *             .build());
+     * 
+     *         ctx.export("failoverBootstrapServers", example.bootstrapServers());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetStreamConnectionFailoverResult> getStreamConnectionFailoverPlain(GetStreamConnectionFailoverPlainArgs args) {
+        return getStreamConnectionFailoverPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.StreamConnectionFailover` describes a failover (regional-alternate) connection for an existing stream connection. It is looked up by its parent `connectionName` and its computed `failoverConnectionId`. Only `Kafka` and `Cluster` connection types support failover.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionFailoverArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Reads a single failover connection by its ID.
+     *         final var example = MongodbatlasFunctions.getStreamConnectionFailover(GetStreamConnectionFailoverArgs.builder()
+     *             .projectId(projectId)
+     *             .workspaceName(exampleMongodbatlasStreamWorkspace.workspaceName())
+     *             .connectionName(exampleMongodbatlasStreamConnectionFailover.connectionName())
+     *             .failoverConnectionId(exampleMongodbatlasStreamConnectionFailover.failoverConnectionId())
+     *             .build());
+     * 
+     *         ctx.export("failoverBootstrapServers", example.bootstrapServers());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetStreamConnectionFailoverResult> getStreamConnectionFailover(GetStreamConnectionFailoverArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamConnectionFailover:getStreamConnectionFailover", TypeShape.of(GetStreamConnectionFailoverResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.StreamConnectionFailover` describes a failover (regional-alternate) connection for an existing stream connection. It is looked up by its parent `connectionName` and its computed `failoverConnectionId`. Only `Kafka` and `Cluster` connection types support failover.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionFailoverArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Reads a single failover connection by its ID.
+     *         final var example = MongodbatlasFunctions.getStreamConnectionFailover(GetStreamConnectionFailoverArgs.builder()
+     *             .projectId(projectId)
+     *             .workspaceName(exampleMongodbatlasStreamWorkspace.workspaceName())
+     *             .connectionName(exampleMongodbatlasStreamConnectionFailover.connectionName())
+     *             .failoverConnectionId(exampleMongodbatlasStreamConnectionFailover.failoverConnectionId())
+     *             .build());
+     * 
+     *         ctx.export("failoverBootstrapServers", example.bootstrapServers());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetStreamConnectionFailoverResult> getStreamConnectionFailover(GetStreamConnectionFailoverArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamConnectionFailover:getStreamConnectionFailover", TypeShape.of(GetStreamConnectionFailoverResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.StreamConnectionFailover` describes a failover (regional-alternate) connection for an existing stream connection. It is looked up by its parent `connectionName` and its computed `failoverConnectionId`. Only `Kafka` and `Cluster` connection types support failover.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetStreamConnectionFailoverArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Reads a single failover connection by its ID.
+     *         final var example = MongodbatlasFunctions.getStreamConnectionFailover(GetStreamConnectionFailoverArgs.builder()
+     *             .projectId(projectId)
+     *             .workspaceName(exampleMongodbatlasStreamWorkspace.workspaceName())
+     *             .connectionName(exampleMongodbatlasStreamConnectionFailover.connectionName())
+     *             .failoverConnectionId(exampleMongodbatlasStreamConnectionFailover.failoverConnectionId())
+     *             .build());
+     * 
+     *         ctx.export("failoverBootstrapServers", example.bootstrapServers());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetStreamConnectionFailoverResult> getStreamConnectionFailoverPlain(GetStreamConnectionFailoverPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamConnectionFailover:getStreamConnectionFailover", TypeShape.of(GetStreamConnectionFailoverResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getStreamConnectionFailovers` describes all failover (regional-alternate) connections configured for an existing stream connection, identified by the parent `connectionName`. Only `Kafka` and `Cluster` connection types support failover.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static Output<GetStreamConnectionFailoversInvokeResult> getStreamConnectionFailovers(GetStreamConnectionFailoversArgs args) {
+        return getStreamConnectionFailovers(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getStreamConnectionFailovers` describes all failover (regional-alternate) connections configured for an existing stream connection, identified by the parent `connectionName`. Only `Kafka` and `Cluster` connection types support failover.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static CompletableFuture<GetStreamConnectionFailoversInvokeResult> getStreamConnectionFailoversPlain(GetStreamConnectionFailoversPlainArgs args) {
+        return getStreamConnectionFailoversPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getStreamConnectionFailovers` describes all failover (regional-alternate) connections configured for an existing stream connection, identified by the parent `connectionName`. Only `Kafka` and `Cluster` connection types support failover.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static Output<GetStreamConnectionFailoversInvokeResult> getStreamConnectionFailovers(GetStreamConnectionFailoversArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamConnectionFailovers:getStreamConnectionFailovers", TypeShape.of(GetStreamConnectionFailoversInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getStreamConnectionFailovers` describes all failover (regional-alternate) connections configured for an existing stream connection, identified by the parent `connectionName`. Only `Kafka` and `Cluster` connection types support failover.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static Output<GetStreamConnectionFailoversInvokeResult> getStreamConnectionFailovers(GetStreamConnectionFailoversArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getStreamConnectionFailovers:getStreamConnectionFailovers", TypeShape.of(GetStreamConnectionFailoversInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getStreamConnectionFailovers` describes all failover (regional-alternate) connections configured for an existing stream connection, identified by the parent `connectionName`. Only `Kafka` and `Cluster` connection types support failover.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     */
+    public static CompletableFuture<GetStreamConnectionFailoversInvokeResult> getStreamConnectionFailoversPlain(GetStreamConnectionFailoversPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getStreamConnectionFailovers:getStreamConnectionFailovers", TypeShape.of(GetStreamConnectionFailoversInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `mongodbatlas.getStreamConnections` describes all connections of a stream instance for the specified project.

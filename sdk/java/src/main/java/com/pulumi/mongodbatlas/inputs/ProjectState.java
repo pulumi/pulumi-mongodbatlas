@@ -76,6 +76,21 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters.
+     * 
+     */
+    @Import(name="isClusterAiAssistantEnabled")
+    private @Nullable Output<Boolean> isClusterAiAssistantEnabled;
+
+    /**
+     * @return Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters.
+     * 
+     */
+    public Optional<Output<Boolean>> isClusterAiAssistantEnabled() {
+        return Optional.ofNullable(this.isClusterAiAssistantEnabled);
+    }
+
+    /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
      * 
      */
@@ -103,6 +118,36 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> isDataExplorerEnabled() {
         return Optional.ofNullable(this.isDataExplorerEnabled);
+    }
+
+    /**
+     * Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+     * 
+     */
+    @Import(name="isDataExplorerGenAiFeaturesEnabled")
+    private @Nullable Output<Boolean> isDataExplorerGenAiFeaturesEnabled;
+
+    /**
+     * @return Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+     * 
+     */
+    public Optional<Output<Boolean>> isDataExplorerGenAiFeaturesEnabled() {
+        return Optional.ofNullable(this.isDataExplorerGenAiFeaturesEnabled);
+    }
+
+    /**
+     * Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+     * 
+     */
+    @Import(name="isDataExplorerGenAiSampleDocumentPassingEnabled")
+    private @Nullable Output<Boolean> isDataExplorerGenAiSampleDocumentPassingEnabled;
+
+    /**
+     * @return Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+     * 
+     */
+    public Optional<Output<Boolean>> isDataExplorerGenAiSampleDocumentPassingEnabled() {
+        return Optional.ofNullable(this.isDataExplorerGenAiSampleDocumentPassingEnabled);
     }
 
     /**
@@ -310,8 +355,11 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         this.clusterCount = $.clusterCount;
         this.created = $.created;
         this.ipAddresses = $.ipAddresses;
+        this.isClusterAiAssistantEnabled = $.isClusterAiAssistantEnabled;
         this.isCollectDatabaseSpecificsStatisticsEnabled = $.isCollectDatabaseSpecificsStatisticsEnabled;
         this.isDataExplorerEnabled = $.isDataExplorerEnabled;
+        this.isDataExplorerGenAiFeaturesEnabled = $.isDataExplorerGenAiFeaturesEnabled;
+        this.isDataExplorerGenAiSampleDocumentPassingEnabled = $.isDataExplorerGenAiSampleDocumentPassingEnabled;
         this.isExtendedStorageSizesEnabled = $.isExtendedStorageSizesEnabled;
         this.isPerformanceAdvisorEnabled = $.isPerformanceAdvisorEnabled;
         this.isRealtimePerformancePanelEnabled = $.isRealtimePerformancePanelEnabled;
@@ -417,6 +465,27 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param isClusterAiAssistantEnabled Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isClusterAiAssistantEnabled(@Nullable Output<Boolean> isClusterAiAssistantEnabled) {
+            $.isClusterAiAssistantEnabled = isClusterAiAssistantEnabled;
+            return this;
+        }
+
+        /**
+         * @param isClusterAiAssistantEnabled Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isClusterAiAssistantEnabled(Boolean isClusterAiAssistantEnabled) {
+            return isClusterAiAssistantEnabled(Output.of(isClusterAiAssistantEnabled));
+        }
+
+        /**
          * @param isCollectDatabaseSpecificsStatisticsEnabled Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
          * 
          * @return builder
@@ -456,6 +525,48 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder isDataExplorerEnabled(Boolean isDataExplorerEnabled) {
             return isDataExplorerEnabled(Output.of(isDataExplorerEnabled));
+        }
+
+        /**
+         * @param isDataExplorerGenAiFeaturesEnabled Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isDataExplorerGenAiFeaturesEnabled(@Nullable Output<Boolean> isDataExplorerGenAiFeaturesEnabled) {
+            $.isDataExplorerGenAiFeaturesEnabled = isDataExplorerGenAiFeaturesEnabled;
+            return this;
+        }
+
+        /**
+         * @param isDataExplorerGenAiFeaturesEnabled Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isDataExplorerGenAiFeaturesEnabled(Boolean isDataExplorerGenAiFeaturesEnabled) {
+            return isDataExplorerGenAiFeaturesEnabled(Output.of(isDataExplorerGenAiFeaturesEnabled));
+        }
+
+        /**
+         * @param isDataExplorerGenAiSampleDocumentPassingEnabled Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isDataExplorerGenAiSampleDocumentPassingEnabled(@Nullable Output<Boolean> isDataExplorerGenAiSampleDocumentPassingEnabled) {
+            $.isDataExplorerGenAiSampleDocumentPassingEnabled = isDataExplorerGenAiSampleDocumentPassingEnabled;
+            return this;
+        }
+
+        /**
+         * @param isDataExplorerGenAiSampleDocumentPassingEnabled Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isDataExplorerGenAiSampleDocumentPassingEnabled(Boolean isDataExplorerGenAiSampleDocumentPassingEnabled) {
+            return isDataExplorerGenAiSampleDocumentPassingEnabled(Output.of(isDataExplorerGenAiSampleDocumentPassingEnabled));
         }
 
         /**

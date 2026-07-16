@@ -17,6 +17,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
         /// </summary>
         public readonly Outputs.GetStreamWorkspacesResultDataProcessRegionResult DataProcessRegion;
+        public readonly ImmutableArray<Outputs.GetStreamWorkspacesResultFailoverRegionResult> FailoverRegions;
         /// <summary>
         /// List that contains the hostnames assigned to the stream workspace.
         /// </summary>
@@ -39,6 +40,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         private GetStreamWorkspacesResultResult(
             Outputs.GetStreamWorkspacesResultDataProcessRegionResult dataProcessRegion,
 
+            ImmutableArray<Outputs.GetStreamWorkspacesResultFailoverRegionResult> failoverRegions,
+
             ImmutableArray<string> hostnames,
 
             string id,
@@ -50,6 +53,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             string workspaceName)
         {
             DataProcessRegion = dataProcessRegion;
+            FailoverRegions = failoverRegions;
             Hostnames = hostnames;
             Id = id;
             ProjectId = projectId;

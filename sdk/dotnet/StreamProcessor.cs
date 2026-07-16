@@ -225,6 +225,12 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> DeleteOnCreateTimeout { get; private set; } = null!;
 
         /// <summary>
+        /// Indicates whether this stream processor is eligible for failover. When `True`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `FailoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `FailoverRegions` configured on the workspace.
+        /// </summary>
+        [Output("failoverEnabled")]
+        public Output<bool?> FailoverEnabled { get; private set; } = null!;
+
+        /// <summary>
         /// Label that identifies the stream processing workspace.
         /// </summary>
         [Output("instanceName")]
@@ -334,6 +340,12 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? DeleteOnCreateTimeout { get; set; }
 
         /// <summary>
+        /// Indicates whether this stream processor is eligible for failover. When `True`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `FailoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `FailoverRegions` configured on the workspace.
+        /// </summary>
+        [Input("failoverEnabled")]
+        public Input<bool>? FailoverEnabled { get; set; }
+
+        /// <summary>
         /// Label that identifies the stream processing workspace.
         /// </summary>
         [Input("instanceName")]
@@ -397,6 +409,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("deleteOnCreateTimeout")]
         public Input<bool>? DeleteOnCreateTimeout { get; set; }
+
+        /// <summary>
+        /// Indicates whether this stream processor is eligible for failover. When `True`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `FailoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `FailoverRegions` configured on the workspace.
+        /// </summary>
+        [Input("failoverEnabled")]
+        public Input<bool>? FailoverEnabled { get; set; }
 
         /// <summary>
         /// Label that identifies the stream processing workspace.

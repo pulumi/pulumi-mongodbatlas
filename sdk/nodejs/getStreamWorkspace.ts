@@ -57,6 +57,7 @@ export interface GetStreamWorkspaceResult {
      * Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
      */
     readonly dataProcessRegion: outputs.GetStreamWorkspaceDataProcessRegion;
+    readonly failoverRegions: outputs.GetStreamWorkspaceFailoverRegion[];
     /**
      * List that contains the hostnames assigned to the stream workspace.
      */

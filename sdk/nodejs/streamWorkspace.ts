@@ -27,6 +27,26 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### With Failover Regions
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.StreamWorkspace("test", {
+ *     projectId: projectId,
+ *     workspaceName: "WorkspaceName",
+ *     dataProcessRegion: {
+ *         region: "VIRGINIA_USA",
+ *         cloudProvider: "AWS",
+ *     },
+ *     failoverRegions: [{
+ *         cloudProvider: "AWS",
+ *         region: "OREGON_USA",
+ *     }],
+ * });
+ * ```
+ *
  * ### Further Examples
  * - Atlas Stream Workspace
  *
@@ -89,6 +109,12 @@ export class StreamWorkspace extends pulumi.CustomResource {
      */
     declare public readonly dataProcessRegion: pulumi.Output<outputs.StreamWorkspaceDataProcessRegion>;
     /**
+     * List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+     * **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+     * **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+     */
+    declare public readonly failoverRegions: pulumi.Output<outputs.StreamWorkspaceFailoverRegion[]>;
+    /**
      * List that contains the hostnames assigned to the stream workspace.
      */
     declare public /*out*/ readonly hostnames: pulumi.Output<string[]>;
@@ -97,7 +123,7 @@ export class StreamWorkspace extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
-     * Configuration options for an Atlas Stream Processing Instance. See stream config
+     * Configuration options for an Atlas Stream Processing Instance. See stream config.
      */
     declare public readonly streamConfig: pulumi.Output<outputs.StreamWorkspaceStreamConfig>;
     /**
@@ -119,6 +145,7 @@ export class StreamWorkspace extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as StreamWorkspaceState | undefined;
             resourceInputs["dataProcessRegion"] = state?.dataProcessRegion;
+            resourceInputs["failoverRegions"] = state?.failoverRegions;
             resourceInputs["hostnames"] = state?.hostnames;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["streamConfig"] = state?.streamConfig;
@@ -135,6 +162,7 @@ export class StreamWorkspace extends pulumi.CustomResource {
                 throw new Error("Missing required property 'workspaceName'");
             }
             resourceInputs["dataProcessRegion"] = args?.dataProcessRegion;
+            resourceInputs["failoverRegions"] = args?.failoverRegions;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["streamConfig"] = args?.streamConfig;
             resourceInputs["workspaceName"] = args?.workspaceName;
@@ -154,6 +182,12 @@ export interface StreamWorkspaceState {
      */
     dataProcessRegion?: pulumi.Input<inputs.StreamWorkspaceDataProcessRegion | undefined>;
     /**
+     * List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+     * **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+     * **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+     */
+    failoverRegions?: pulumi.Input<pulumi.Input<inputs.StreamWorkspaceFailoverRegion>[] | undefined>;
+    /**
      * List that contains the hostnames assigned to the stream workspace.
      */
     hostnames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
@@ -162,7 +196,7 @@ export interface StreamWorkspaceState {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * Configuration options for an Atlas Stream Processing Instance. See stream config
+     * Configuration options for an Atlas Stream Processing Instance. See stream config.
      */
     streamConfig?: pulumi.Input<inputs.StreamWorkspaceStreamConfig | undefined>;
     /**
@@ -180,11 +214,17 @@ export interface StreamWorkspaceArgs {
      */
     dataProcessRegion: pulumi.Input<inputs.StreamWorkspaceDataProcessRegion>;
     /**
+     * List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+     * **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+     * **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+     */
+    failoverRegions?: pulumi.Input<pulumi.Input<inputs.StreamWorkspaceFailoverRegion>[] | undefined>;
+    /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId: pulumi.Input<string>;
     /**
-     * Configuration options for an Atlas Stream Processing Instance. See stream config
+     * Configuration options for an Atlas Stream Processing Instance. See stream config.
      */
     streamConfig?: pulumi.Input<inputs.StreamWorkspaceStreamConfig | undefined>;
     /**

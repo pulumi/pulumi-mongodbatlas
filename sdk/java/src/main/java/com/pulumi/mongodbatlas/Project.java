@@ -91,7 +91,7 @@ import javax.annotation.Nullable;
  * ```sh
  * $ pulumi import mongodbatlas:index/project:Project my_project 5d09d6a59ccf6445652a444a
  * ```
- * For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://www.mongodb.com/docs/atlas/reference/api/teams/) Documentation for more information.
+ * For more information see: [MongoDB Atlas Admin API Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) and [MongoDB Atlas Admin API Teams](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Teams) Documentation for more information.
  * 
  */
 @ResourceType(type="mongodbatlas:index/project:Project")
@@ -143,6 +143,20 @@ public class Project extends com.pulumi.resources.CustomResource {
         return this.ipAddresses;
     }
     /**
+     * Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters.
+     * 
+     */
+    @Export(name="isClusterAiAssistantEnabled", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> isClusterAiAssistantEnabled;
+
+    /**
+     * @return Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters.
+     * 
+     */
+    public Output<Boolean> isClusterAiAssistantEnabled() {
+        return this.isClusterAiAssistantEnabled;
+    }
+    /**
      * Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
      * 
      */
@@ -169,6 +183,34 @@ public class Project extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> isDataExplorerEnabled() {
         return this.isDataExplorerEnabled;
+    }
+    /**
+     * Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+     * 
+     */
+    @Export(name="isDataExplorerGenAiFeaturesEnabled", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> isDataExplorerGenAiFeaturesEnabled;
+
+    /**
+     * @return Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+     * 
+     */
+    public Output<Boolean> isDataExplorerGenAiFeaturesEnabled() {
+        return this.isDataExplorerGenAiFeaturesEnabled;
+    }
+    /**
+     * Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+     * 
+     */
+    @Export(name="isDataExplorerGenAiSampleDocumentPassingEnabled", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> isDataExplorerGenAiSampleDocumentPassingEnabled;
+
+    /**
+     * @return Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+     * 
+     */
+    public Output<Boolean> isDataExplorerGenAiSampleDocumentPassingEnabled() {
+        return this.isDataExplorerGenAiSampleDocumentPassingEnabled;
     }
     /**
      * Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.

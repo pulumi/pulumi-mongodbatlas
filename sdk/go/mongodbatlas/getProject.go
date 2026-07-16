@@ -120,10 +120,16 @@ type LookupProjectResult struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
 	IpAddresses GetProjectIpAddresses `pulumi:"ipAddresses"`
+	// Flag that indicates whether the AI Assistant is enabled for the project's clusters.
+	IsClusterAiAssistantEnabled bool `pulumi:"isClusterAiAssistantEnabled"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
 	IsDataExplorerEnabled bool `pulumi:"isDataExplorerEnabled"`
+	// Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
+	IsDataExplorerGenAiFeaturesEnabled bool `pulumi:"isDataExplorerGenAiFeaturesEnabled"`
+	// Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
+	IsDataExplorerGenAiSampleDocumentPassingEnabled bool `pulumi:"isDataExplorerGenAiSampleDocumentPassingEnabled"`
 	// Flag that indicates whether to enable extended storage sizes for the specified project.
 	IsExtendedStorageSizesEnabled bool `pulumi:"isExtendedStorageSizesEnabled"`
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
@@ -215,6 +221,11 @@ func (o LookupProjectResultOutput) IpAddresses() GetProjectIpAddressesOutput {
 	return o.ApplyT(func(v LookupProjectResult) GetProjectIpAddresses { return v.IpAddresses }).(GetProjectIpAddressesOutput)
 }
 
+// Flag that indicates whether the AI Assistant is enabled for the project's clusters.
+func (o LookupProjectResultOutput) IsClusterAiAssistantEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupProjectResult) bool { return v.IsClusterAiAssistantEnabled }).(pulumi.BoolOutput)
+}
+
 // Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 func (o LookupProjectResultOutput) IsCollectDatabaseSpecificsStatisticsEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupProjectResult) bool { return v.IsCollectDatabaseSpecificsStatisticsEnabled }).(pulumi.BoolOutput)
@@ -223,6 +234,16 @@ func (o LookupProjectResultOutput) IsCollectDatabaseSpecificsStatisticsEnabled()
 // Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
 func (o LookupProjectResultOutput) IsDataExplorerEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupProjectResult) bool { return v.IsDataExplorerEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
+func (o LookupProjectResultOutput) IsDataExplorerGenAiFeaturesEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupProjectResult) bool { return v.IsDataExplorerGenAiFeaturesEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
+func (o LookupProjectResultOutput) IsDataExplorerGenAiSampleDocumentPassingEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupProjectResult) bool { return v.IsDataExplorerGenAiSampleDocumentPassingEnabled }).(pulumi.BoolOutput)
 }
 
 // Flag that indicates whether to enable extended storage sizes for the specified project.

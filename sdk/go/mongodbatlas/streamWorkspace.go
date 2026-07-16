@@ -47,6 +47,43 @@ import (
 //
 // ```
 //
+// ### With Failover Regions
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewStreamWorkspace(ctx, "test", &mongodbatlas.StreamWorkspaceArgs{
+//				ProjectId:     pulumi.Any(projectId),
+//				WorkspaceName: pulumi.String("WorkspaceName"),
+//				DataProcessRegion: &mongodbatlas.StreamWorkspaceDataProcessRegionArgs{
+//					Region:        pulumi.String("VIRGINIA_USA"),
+//					CloudProvider: pulumi.String("AWS"),
+//				},
+//				FailoverRegions: mongodbatlas.StreamWorkspaceFailoverRegionArray{
+//					&mongodbatlas.StreamWorkspaceFailoverRegionArgs{
+//						CloudProvider: pulumi.String("AWS"),
+//						Region:        pulumi.String("OREGON_USA"),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Further Examples
 // - Atlas Stream Workspace
 //
@@ -95,11 +132,15 @@ type StreamWorkspace struct {
 
 	// Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
 	DataProcessRegion StreamWorkspaceDataProcessRegionOutput `pulumi:"dataProcessRegion"`
+	// List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+	// **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+	// **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+	FailoverRegions StreamWorkspaceFailoverRegionArrayOutput `pulumi:"failoverRegions"`
 	// List that contains the hostnames assigned to the stream workspace.
 	Hostnames pulumi.StringArrayOutput `pulumi:"hostnames"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// Configuration options for an Atlas Stream Processing Instance. See stream config
+	// Configuration options for an Atlas Stream Processing Instance. See stream config.
 	StreamConfig StreamWorkspaceStreamConfigOutput `pulumi:"streamConfig"`
 	// Label that identifies the stream workspace.
 	WorkspaceName pulumi.StringOutput `pulumi:"workspaceName"`
@@ -146,11 +187,15 @@ func GetStreamWorkspace(ctx *pulumi.Context,
 type streamWorkspaceState struct {
 	// Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
 	DataProcessRegion *StreamWorkspaceDataProcessRegion `pulumi:"dataProcessRegion"`
+	// List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+	// **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+	// **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+	FailoverRegions []StreamWorkspaceFailoverRegion `pulumi:"failoverRegions"`
 	// List that contains the hostnames assigned to the stream workspace.
 	Hostnames []string `pulumi:"hostnames"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
-	// Configuration options for an Atlas Stream Processing Instance. See stream config
+	// Configuration options for an Atlas Stream Processing Instance. See stream config.
 	StreamConfig *StreamWorkspaceStreamConfig `pulumi:"streamConfig"`
 	// Label that identifies the stream workspace.
 	WorkspaceName *string `pulumi:"workspaceName"`
@@ -159,11 +204,15 @@ type streamWorkspaceState struct {
 type StreamWorkspaceState struct {
 	// Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
 	DataProcessRegion StreamWorkspaceDataProcessRegionPtrInput
+	// List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+	// **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+	// **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+	FailoverRegions StreamWorkspaceFailoverRegionArrayInput
 	// List that contains the hostnames assigned to the stream workspace.
 	Hostnames pulumi.StringArrayInput
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
-	// Configuration options for an Atlas Stream Processing Instance. See stream config
+	// Configuration options for an Atlas Stream Processing Instance. See stream config.
 	StreamConfig StreamWorkspaceStreamConfigPtrInput
 	// Label that identifies the stream workspace.
 	WorkspaceName pulumi.StringPtrInput
@@ -176,9 +225,13 @@ func (StreamWorkspaceState) ElementType() reflect.Type {
 type streamWorkspaceArgs struct {
 	// Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
 	DataProcessRegion StreamWorkspaceDataProcessRegion `pulumi:"dataProcessRegion"`
+	// List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+	// **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+	// **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+	FailoverRegions []StreamWorkspaceFailoverRegion `pulumi:"failoverRegions"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
-	// Configuration options for an Atlas Stream Processing Instance. See stream config
+	// Configuration options for an Atlas Stream Processing Instance. See stream config.
 	StreamConfig *StreamWorkspaceStreamConfig `pulumi:"streamConfig"`
 	// Label that identifies the stream workspace.
 	WorkspaceName string `pulumi:"workspaceName"`
@@ -188,9 +241,13 @@ type streamWorkspaceArgs struct {
 type StreamWorkspaceArgs struct {
 	// Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
 	DataProcessRegion StreamWorkspaceDataProcessRegionInput
+	// List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+	// **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+	// **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+	FailoverRegions StreamWorkspaceFailoverRegionArrayInput
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
-	// Configuration options for an Atlas Stream Processing Instance. See stream config
+	// Configuration options for an Atlas Stream Processing Instance. See stream config.
 	StreamConfig StreamWorkspaceStreamConfigPtrInput
 	// Label that identifies the stream workspace.
 	WorkspaceName pulumi.StringInput
@@ -288,6 +345,13 @@ func (o StreamWorkspaceOutput) DataProcessRegion() StreamWorkspaceDataProcessReg
 	return o.ApplyT(func(v *StreamWorkspace) StreamWorkspaceDataProcessRegionOutput { return v.DataProcessRegion }).(StreamWorkspaceDataProcessRegionOutput)
 }
 
+// List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+// **Write-once:** once set, `failoverRegions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
+// **Mutually exclusive with `dataProcessRegion` updates:** `failoverRegions` and `dataProcessRegion` cannot both be changed in the same apply. Apply each change in a separate operation.
+func (o StreamWorkspaceOutput) FailoverRegions() StreamWorkspaceFailoverRegionArrayOutput {
+	return o.ApplyT(func(v *StreamWorkspace) StreamWorkspaceFailoverRegionArrayOutput { return v.FailoverRegions }).(StreamWorkspaceFailoverRegionArrayOutput)
+}
+
 // List that contains the hostnames assigned to the stream workspace.
 func (o StreamWorkspaceOutput) Hostnames() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *StreamWorkspace) pulumi.StringArrayOutput { return v.Hostnames }).(pulumi.StringArrayOutput)
@@ -298,7 +362,7 @@ func (o StreamWorkspaceOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamWorkspace) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// Configuration options for an Atlas Stream Processing Instance. See stream config
+// Configuration options for an Atlas Stream Processing Instance. See stream config.
 func (o StreamWorkspaceOutput) StreamConfig() StreamWorkspaceStreamConfigOutput {
 	return o.ApplyT(func(v *StreamWorkspace) StreamWorkspaceStreamConfigOutput { return v.StreamConfig }).(StreamWorkspaceStreamConfigOutput)
 }

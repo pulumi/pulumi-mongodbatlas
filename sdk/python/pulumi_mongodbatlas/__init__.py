@@ -152,6 +152,8 @@ from .get_shared_tier_snapshot import *
 from .get_shared_tier_snapshots import *
 from .get_stream_account_details import *
 from .get_stream_connection import *
+from .get_stream_connection_failover import *
+from .get_stream_connection_failovers import *
 from .get_stream_connections import *
 from .get_stream_instance import *
 from .get_stream_instances import *
@@ -199,6 +201,7 @@ from .service_account_access_list_entry import *
 from .service_account_project_assignment import *
 from .service_account_secret import *
 from .stream_connection import *
+from .stream_connection_failover import *
 from .stream_instance import *
 from .stream_privatelink_endpoint import *
 from .stream_processor import *
@@ -722,6 +725,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/streamConnection:StreamConnection": "StreamConnection"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/streamConnectionFailover",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/streamConnectionFailover:StreamConnectionFailover": "StreamConnectionFailover"
   }
  },
  {

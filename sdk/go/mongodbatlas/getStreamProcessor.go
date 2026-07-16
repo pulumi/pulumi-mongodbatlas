@@ -229,6 +229,8 @@ type LookupStreamProcessorArgs struct {
 
 // A collection of values returned by getStreamProcessor.
 type LookupStreamProcessorResult struct {
+	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+	FailoverEnabled bool `pulumi:"failoverEnabled"`
 	// Unique 24-hexadecimal character string that identifies the stream processor.
 	Id string `pulumi:"id"`
 	// Label that identifies the stream processing workspace.
@@ -291,6 +293,11 @@ func (o LookupStreamProcessorResultOutput) ToLookupStreamProcessorResultOutput()
 
 func (o LookupStreamProcessorResultOutput) ToLookupStreamProcessorResultOutputWithContext(ctx context.Context) LookupStreamProcessorResultOutput {
 	return o
+}
+
+// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+func (o LookupStreamProcessorResultOutput) FailoverEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupStreamProcessorResult) bool { return v.FailoverEnabled }).(pulumi.BoolOutput)
 }
 
 // Unique 24-hexadecimal character string that identifies the stream processor.

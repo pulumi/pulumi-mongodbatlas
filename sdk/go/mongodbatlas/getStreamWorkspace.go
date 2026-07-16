@@ -67,6 +67,7 @@ type LookupStreamWorkspaceArgs struct {
 type LookupStreamWorkspaceResult struct {
 	// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
 	DataProcessRegion GetStreamWorkspaceDataProcessRegion `pulumi:"dataProcessRegion"`
+	FailoverRegions   []GetStreamWorkspaceFailoverRegion  `pulumi:"failoverRegions"`
 	// List that contains the hostnames assigned to the stream workspace.
 	Hostnames []string `pulumi:"hostnames"`
 	Id        string   `pulumi:"id"`
@@ -115,6 +116,10 @@ func (o LookupStreamWorkspaceResultOutput) ToLookupStreamWorkspaceResultOutputWi
 // Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
 func (o LookupStreamWorkspaceResultOutput) DataProcessRegion() GetStreamWorkspaceDataProcessRegionOutput {
 	return o.ApplyT(func(v LookupStreamWorkspaceResult) GetStreamWorkspaceDataProcessRegion { return v.DataProcessRegion }).(GetStreamWorkspaceDataProcessRegionOutput)
+}
+
+func (o LookupStreamWorkspaceResultOutput) FailoverRegions() GetStreamWorkspaceFailoverRegionArrayOutput {
+	return o.ApplyT(func(v LookupStreamWorkspaceResult) []GetStreamWorkspaceFailoverRegion { return v.FailoverRegions }).(GetStreamWorkspaceFailoverRegionArrayOutput)
 }
 
 // List that contains the hostnames assigned to the stream workspace.

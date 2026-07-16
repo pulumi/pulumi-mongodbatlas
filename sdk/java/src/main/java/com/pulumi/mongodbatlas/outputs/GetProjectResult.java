@@ -45,6 +45,11 @@ public final class GetProjectResult {
     @Deprecated /* This parameter is deprecated. Please transition to mongodbatlas.getProjectIpAddresses data source. */
     private GetProjectIpAddresses ipAddresses;
     /**
+     * @return Flag that indicates whether the AI Assistant is enabled for the project&#39;s clusters.
+     * 
+     */
+    private Boolean isClusterAiAssistantEnabled;
+    /**
      * @return Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
      * 
      */
@@ -54,6 +59,16 @@ public final class GetProjectResult {
      * 
      */
     private Boolean isDataExplorerEnabled;
+    /**
+     * @return Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
+     * 
+     */
+    private Boolean isDataExplorerGenAiFeaturesEnabled;
+    /**
+     * @return Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
+     * 
+     */
+    private Boolean isDataExplorerGenAiSampleDocumentPassingEnabled;
     /**
      * @return Flag that indicates whether to enable extended storage sizes for the specified project.
      * 
@@ -158,6 +173,13 @@ public final class GetProjectResult {
         return this.ipAddresses;
     }
     /**
+     * @return Flag that indicates whether the AI Assistant is enabled for the project&#39;s clusters.
+     * 
+     */
+    public Boolean isClusterAiAssistantEnabled() {
+        return this.isClusterAiAssistantEnabled;
+    }
+    /**
      * @return Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
      * 
      */
@@ -170,6 +192,20 @@ public final class GetProjectResult {
      */
     public Boolean isDataExplorerEnabled() {
         return this.isDataExplorerEnabled;
+    }
+    /**
+     * @return Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
+     * 
+     */
+    public Boolean isDataExplorerGenAiFeaturesEnabled() {
+        return this.isDataExplorerGenAiFeaturesEnabled;
+    }
+    /**
+     * @return Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
+     * 
+     */
+    public Boolean isDataExplorerGenAiSampleDocumentPassingEnabled() {
+        return this.isDataExplorerGenAiSampleDocumentPassingEnabled;
     }
     /**
      * @return Flag that indicates whether to enable extended storage sizes for the specified project.
@@ -280,8 +316,11 @@ public final class GetProjectResult {
         private String created;
         private String id;
         private GetProjectIpAddresses ipAddresses;
+        private Boolean isClusterAiAssistantEnabled;
         private Boolean isCollectDatabaseSpecificsStatisticsEnabled;
         private Boolean isDataExplorerEnabled;
+        private Boolean isDataExplorerGenAiFeaturesEnabled;
+        private Boolean isDataExplorerGenAiSampleDocumentPassingEnabled;
         private Boolean isExtendedStorageSizesEnabled;
         private Boolean isPerformanceAdvisorEnabled;
         private Boolean isRealtimePerformancePanelEnabled;
@@ -302,8 +341,11 @@ public final class GetProjectResult {
     	      this.created = defaults.created;
     	      this.id = defaults.id;
     	      this.ipAddresses = defaults.ipAddresses;
+    	      this.isClusterAiAssistantEnabled = defaults.isClusterAiAssistantEnabled;
     	      this.isCollectDatabaseSpecificsStatisticsEnabled = defaults.isCollectDatabaseSpecificsStatisticsEnabled;
     	      this.isDataExplorerEnabled = defaults.isDataExplorerEnabled;
+    	      this.isDataExplorerGenAiFeaturesEnabled = defaults.isDataExplorerGenAiFeaturesEnabled;
+    	      this.isDataExplorerGenAiSampleDocumentPassingEnabled = defaults.isDataExplorerGenAiSampleDocumentPassingEnabled;
     	      this.isExtendedStorageSizesEnabled = defaults.isExtendedStorageSizesEnabled;
     	      this.isPerformanceAdvisorEnabled = defaults.isPerformanceAdvisorEnabled;
     	      this.isRealtimePerformancePanelEnabled = defaults.isRealtimePerformancePanelEnabled;
@@ -352,6 +394,14 @@ public final class GetProjectResult {
             return this;
         }
         @CustomType.Setter
+        public Builder isClusterAiAssistantEnabled(Boolean isClusterAiAssistantEnabled) {
+            if (isClusterAiAssistantEnabled == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "isClusterAiAssistantEnabled");
+            }
+            this.isClusterAiAssistantEnabled = isClusterAiAssistantEnabled;
+            return this;
+        }
+        @CustomType.Setter
         public Builder isCollectDatabaseSpecificsStatisticsEnabled(Boolean isCollectDatabaseSpecificsStatisticsEnabled) {
             if (isCollectDatabaseSpecificsStatisticsEnabled == null) {
               throw new MissingRequiredPropertyException("GetProjectResult", "isCollectDatabaseSpecificsStatisticsEnabled");
@@ -365,6 +415,22 @@ public final class GetProjectResult {
               throw new MissingRequiredPropertyException("GetProjectResult", "isDataExplorerEnabled");
             }
             this.isDataExplorerEnabled = isDataExplorerEnabled;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder isDataExplorerGenAiFeaturesEnabled(Boolean isDataExplorerGenAiFeaturesEnabled) {
+            if (isDataExplorerGenAiFeaturesEnabled == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "isDataExplorerGenAiFeaturesEnabled");
+            }
+            this.isDataExplorerGenAiFeaturesEnabled = isDataExplorerGenAiFeaturesEnabled;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder isDataExplorerGenAiSampleDocumentPassingEnabled(Boolean isDataExplorerGenAiSampleDocumentPassingEnabled) {
+            if (isDataExplorerGenAiSampleDocumentPassingEnabled == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "isDataExplorerGenAiSampleDocumentPassingEnabled");
+            }
+            this.isDataExplorerGenAiSampleDocumentPassingEnabled = isDataExplorerGenAiSampleDocumentPassingEnabled;
             return this;
         }
         @CustomType.Setter
@@ -482,8 +548,11 @@ public final class GetProjectResult {
             _resultValue.created = created;
             _resultValue.id = id;
             _resultValue.ipAddresses = ipAddresses;
+            _resultValue.isClusterAiAssistantEnabled = isClusterAiAssistantEnabled;
             _resultValue.isCollectDatabaseSpecificsStatisticsEnabled = isCollectDatabaseSpecificsStatisticsEnabled;
             _resultValue.isDataExplorerEnabled = isDataExplorerEnabled;
+            _resultValue.isDataExplorerGenAiFeaturesEnabled = isDataExplorerGenAiFeaturesEnabled;
+            _resultValue.isDataExplorerGenAiSampleDocumentPassingEnabled = isDataExplorerGenAiSampleDocumentPassingEnabled;
             _resultValue.isExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;
             _resultValue.isPerformanceAdvisorEnabled = isPerformanceAdvisorEnabled;
             _resultValue.isRealtimePerformancePanelEnabled = isRealtimePerformancePanelEnabled;

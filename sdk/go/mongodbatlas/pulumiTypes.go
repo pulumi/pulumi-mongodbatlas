@@ -17964,9 +17964,9 @@ type ProjectLimit struct {
 	CurrentUsage *int `pulumi:"currentUsage"`
 	DefaultLimit *int `pulumi:"defaultLimit"`
 	MaximumLimit *int `pulumi:"maximumLimit"`
-	// Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+	// Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
 	Name string `pulumi:"name"`
-	// Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+	// Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
 	Value int `pulumi:"value"`
 }
 
@@ -17985,9 +17985,9 @@ type ProjectLimitArgs struct {
 	CurrentUsage pulumi.IntPtrInput `pulumi:"currentUsage"`
 	DefaultLimit pulumi.IntPtrInput `pulumi:"defaultLimit"`
 	MaximumLimit pulumi.IntPtrInput `pulumi:"maximumLimit"`
-	// Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+	// Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
 	Name pulumi.StringInput `pulumi:"name"`
-	// Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+	// Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
 	Value pulumi.IntInput `pulumi:"value"`
 }
 
@@ -18054,12 +18054,12 @@ func (o ProjectLimitOutput) MaximumLimit() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProjectLimit) *int { return v.MaximumLimit }).(pulumi.IntPtrOutput)
 }
 
-// Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
+// Human-readable label that identifies this project limit. See [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to find all the limits that can be defined.
 func (o ProjectLimitOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v ProjectLimit) string { return v.Name }).(pulumi.StringOutput)
 }
 
-// Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
+// Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
 func (o ProjectLimitOutput) Value() pulumi.IntOutput {
 	return o.ApplyT(func(v ProjectLimit) int { return v.Value }).(pulumi.IntOutput)
 }
@@ -20681,6 +20681,1170 @@ func (o StreamConnectionDbRoleToExecutePtrOutput) Type() pulumi.StringPtrOutput 
 	}).(pulumi.StringPtrOutput)
 }
 
+type StreamConnectionFailoverAuthentication struct {
+	// OIDC client identifier for authentication to the Kafka cluster.
+	ClientId *string `pulumi:"clientId"`
+	// OIDC client secret for authentication to the Kafka cluster.
+	ClientSecret *string `pulumi:"clientSecret"`
+	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+	Mechanism *string `pulumi:"mechanism"`
+	// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+	Method *string `pulumi:"method"`
+	// Password of the account to connect to the Kafka cluster.
+	Password *string `pulumi:"password"`
+	// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+	SaslOauthbearerExtensions *string `pulumi:"saslOauthbearerExtensions"`
+	// OIDC scope parameter defining the access permissions requested.
+	Scope *string `pulumi:"scope"`
+	// SSL certificate for client authentication to Kafka.
+	SslCertificate *string `pulumi:"sslCertificate"`
+	// SSL key for client authentication to Kafka.
+	SslKey *string `pulumi:"sslKey"`
+	// Password for the SSL key, if it is password protected.
+	SslKeyPassword *string `pulumi:"sslKeyPassword"`
+	// OIDC token endpoint URL for obtaining access tokens.
+	TokenEndpointUrl *string `pulumi:"tokenEndpointUrl"`
+	// Username of the account to connect to the Kafka cluster.
+	Username *string `pulumi:"username"`
+}
+
+// StreamConnectionFailoverAuthenticationInput is an input type that accepts StreamConnectionFailoverAuthenticationArgs and StreamConnectionFailoverAuthenticationOutput values.
+// You can construct a concrete instance of `StreamConnectionFailoverAuthenticationInput` via:
+//
+//	StreamConnectionFailoverAuthenticationArgs{...}
+type StreamConnectionFailoverAuthenticationInput interface {
+	pulumi.Input
+
+	ToStreamConnectionFailoverAuthenticationOutput() StreamConnectionFailoverAuthenticationOutput
+	ToStreamConnectionFailoverAuthenticationOutputWithContext(context.Context) StreamConnectionFailoverAuthenticationOutput
+}
+
+type StreamConnectionFailoverAuthenticationArgs struct {
+	// OIDC client identifier for authentication to the Kafka cluster.
+	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
+	// OIDC client secret for authentication to the Kafka cluster.
+	ClientSecret pulumi.StringPtrInput `pulumi:"clientSecret"`
+	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+	Mechanism pulumi.StringPtrInput `pulumi:"mechanism"`
+	// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+	Method pulumi.StringPtrInput `pulumi:"method"`
+	// Password of the account to connect to the Kafka cluster.
+	Password pulumi.StringPtrInput `pulumi:"password"`
+	// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+	SaslOauthbearerExtensions pulumi.StringPtrInput `pulumi:"saslOauthbearerExtensions"`
+	// OIDC scope parameter defining the access permissions requested.
+	Scope pulumi.StringPtrInput `pulumi:"scope"`
+	// SSL certificate for client authentication to Kafka.
+	SslCertificate pulumi.StringPtrInput `pulumi:"sslCertificate"`
+	// SSL key for client authentication to Kafka.
+	SslKey pulumi.StringPtrInput `pulumi:"sslKey"`
+	// Password for the SSL key, if it is password protected.
+	SslKeyPassword pulumi.StringPtrInput `pulumi:"sslKeyPassword"`
+	// OIDC token endpoint URL for obtaining access tokens.
+	TokenEndpointUrl pulumi.StringPtrInput `pulumi:"tokenEndpointUrl"`
+	// Username of the account to connect to the Kafka cluster.
+	Username pulumi.StringPtrInput `pulumi:"username"`
+}
+
+func (StreamConnectionFailoverAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionFailoverAuthentication)(nil)).Elem()
+}
+
+func (i StreamConnectionFailoverAuthenticationArgs) ToStreamConnectionFailoverAuthenticationOutput() StreamConnectionFailoverAuthenticationOutput {
+	return i.ToStreamConnectionFailoverAuthenticationOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionFailoverAuthenticationArgs) ToStreamConnectionFailoverAuthenticationOutputWithContext(ctx context.Context) StreamConnectionFailoverAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverAuthenticationOutput)
+}
+
+func (i StreamConnectionFailoverAuthenticationArgs) ToStreamConnectionFailoverAuthenticationPtrOutput() StreamConnectionFailoverAuthenticationPtrOutput {
+	return i.ToStreamConnectionFailoverAuthenticationPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionFailoverAuthenticationArgs) ToStreamConnectionFailoverAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverAuthenticationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverAuthenticationOutput).ToStreamConnectionFailoverAuthenticationPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionFailoverAuthenticationPtrInput is an input type that accepts StreamConnectionFailoverAuthenticationArgs, StreamConnectionFailoverAuthenticationPtr and StreamConnectionFailoverAuthenticationPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionFailoverAuthenticationPtrInput` via:
+//
+//	        StreamConnectionFailoverAuthenticationArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionFailoverAuthenticationPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionFailoverAuthenticationPtrOutput() StreamConnectionFailoverAuthenticationPtrOutput
+	ToStreamConnectionFailoverAuthenticationPtrOutputWithContext(context.Context) StreamConnectionFailoverAuthenticationPtrOutput
+}
+
+type streamConnectionFailoverAuthenticationPtrType StreamConnectionFailoverAuthenticationArgs
+
+func StreamConnectionFailoverAuthenticationPtr(v *StreamConnectionFailoverAuthenticationArgs) StreamConnectionFailoverAuthenticationPtrInput {
+	return (*streamConnectionFailoverAuthenticationPtrType)(v)
+}
+
+func (*streamConnectionFailoverAuthenticationPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionFailoverAuthentication)(nil)).Elem()
+}
+
+func (i *streamConnectionFailoverAuthenticationPtrType) ToStreamConnectionFailoverAuthenticationPtrOutput() StreamConnectionFailoverAuthenticationPtrOutput {
+	return i.ToStreamConnectionFailoverAuthenticationPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionFailoverAuthenticationPtrType) ToStreamConnectionFailoverAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverAuthenticationPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverAuthenticationPtrOutput)
+}
+
+type StreamConnectionFailoverAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionFailoverAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionFailoverAuthentication)(nil)).Elem()
+}
+
+func (o StreamConnectionFailoverAuthenticationOutput) ToStreamConnectionFailoverAuthenticationOutput() StreamConnectionFailoverAuthenticationOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverAuthenticationOutput) ToStreamConnectionFailoverAuthenticationOutputWithContext(ctx context.Context) StreamConnectionFailoverAuthenticationOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverAuthenticationOutput) ToStreamConnectionFailoverAuthenticationPtrOutput() StreamConnectionFailoverAuthenticationPtrOutput {
+	return o.ToStreamConnectionFailoverAuthenticationPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionFailoverAuthenticationOutput) ToStreamConnectionFailoverAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverAuthenticationPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionFailoverAuthentication) *StreamConnectionFailoverAuthentication {
+		return &v
+	}).(StreamConnectionFailoverAuthenticationPtrOutput)
+}
+
+// OIDC client identifier for authentication to the Kafka cluster.
+func (o StreamConnectionFailoverAuthenticationOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverAuthentication) *string { return v.ClientId }).(pulumi.StringPtrOutput)
+}
+
+// OIDC client secret for authentication to the Kafka cluster.
+func (o StreamConnectionFailoverAuthenticationOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverAuthentication) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+func (o StreamConnectionFailoverAuthenticationOutput) Mechanism() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverAuthentication) *string { return v.Mechanism }).(pulumi.StringPtrOutput)
+}
+
+// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+func (o StreamConnectionFailoverAuthenticationOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverAuthentication) *string { return v.Method }).(pulumi.StringPtrOutput)
+}
+
+// Password of the account to connect to the Kafka cluster.
+func (o StreamConnectionFailoverAuthenticationOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverAuthentication) *string { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+func (o StreamConnectionFailoverAuthenticationOutput) SaslOauthbearerExtensions() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverAuthentication) *string { return v.SaslOauthbearerExtensions }).(pulumi.StringPtrOutput)
+}
+
+// OIDC scope parameter defining the access permissions requested.
+func (o StreamConnectionFailoverAuthenticationOutput) Scope() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverAuthentication) *string { return v.Scope }).(pulumi.StringPtrOutput)
+}
+
+// SSL certificate for client authentication to Kafka.
+func (o StreamConnectionFailoverAuthenticationOutput) SslCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverAuthentication) *string { return v.SslCertificate }).(pulumi.StringPtrOutput)
+}
+
+// SSL key for client authentication to Kafka.
+func (o StreamConnectionFailoverAuthenticationOutput) SslKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverAuthentication) *string { return v.SslKey }).(pulumi.StringPtrOutput)
+}
+
+// Password for the SSL key, if it is password protected.
+func (o StreamConnectionFailoverAuthenticationOutput) SslKeyPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverAuthentication) *string { return v.SslKeyPassword }).(pulumi.StringPtrOutput)
+}
+
+// OIDC token endpoint URL for obtaining access tokens.
+func (o StreamConnectionFailoverAuthenticationOutput) TokenEndpointUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverAuthentication) *string { return v.TokenEndpointUrl }).(pulumi.StringPtrOutput)
+}
+
+// Username of the account to connect to the Kafka cluster.
+func (o StreamConnectionFailoverAuthenticationOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverAuthentication) *string { return v.Username }).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionFailoverAuthenticationPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionFailoverAuthenticationPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionFailoverAuthentication)(nil)).Elem()
+}
+
+func (o StreamConnectionFailoverAuthenticationPtrOutput) ToStreamConnectionFailoverAuthenticationPtrOutput() StreamConnectionFailoverAuthenticationPtrOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverAuthenticationPtrOutput) ToStreamConnectionFailoverAuthenticationPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverAuthenticationPtrOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverAuthenticationPtrOutput) Elem() StreamConnectionFailoverAuthenticationOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverAuthentication) StreamConnectionFailoverAuthentication {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionFailoverAuthentication
+		return ret
+	}).(StreamConnectionFailoverAuthenticationOutput)
+}
+
+// OIDC client identifier for authentication to the Kafka cluster.
+func (o StreamConnectionFailoverAuthenticationPtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+// OIDC client secret for authentication to the Kafka cluster.
+func (o StreamConnectionFailoverAuthenticationPtrOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientSecret
+	}).(pulumi.StringPtrOutput)
+}
+
+// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+func (o StreamConnectionFailoverAuthenticationPtrOutput) Mechanism() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Mechanism
+	}).(pulumi.StringPtrOutput)
+}
+
+// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+func (o StreamConnectionFailoverAuthenticationPtrOutput) Method() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Method
+	}).(pulumi.StringPtrOutput)
+}
+
+// Password of the account to connect to the Kafka cluster.
+func (o StreamConnectionFailoverAuthenticationPtrOutput) Password() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Password
+	}).(pulumi.StringPtrOutput)
+}
+
+// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+func (o StreamConnectionFailoverAuthenticationPtrOutput) SaslOauthbearerExtensions() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SaslOauthbearerExtensions
+	}).(pulumi.StringPtrOutput)
+}
+
+// OIDC scope parameter defining the access permissions requested.
+func (o StreamConnectionFailoverAuthenticationPtrOutput) Scope() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Scope
+	}).(pulumi.StringPtrOutput)
+}
+
+// SSL certificate for client authentication to Kafka.
+func (o StreamConnectionFailoverAuthenticationPtrOutput) SslCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SslCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
+// SSL key for client authentication to Kafka.
+func (o StreamConnectionFailoverAuthenticationPtrOutput) SslKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SslKey
+	}).(pulumi.StringPtrOutput)
+}
+
+// Password for the SSL key, if it is password protected.
+func (o StreamConnectionFailoverAuthenticationPtrOutput) SslKeyPassword() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SslKeyPassword
+	}).(pulumi.StringPtrOutput)
+}
+
+// OIDC token endpoint URL for obtaining access tokens.
+func (o StreamConnectionFailoverAuthenticationPtrOutput) TokenEndpointUrl() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TokenEndpointUrl
+	}).(pulumi.StringPtrOutput)
+}
+
+// Username of the account to connect to the Kafka cluster.
+func (o StreamConnectionFailoverAuthenticationPtrOutput) Username() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverAuthentication) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionFailoverDbRoleToExecute struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role string `pulumi:"role"`
+	// Type of the DB role. Can be either Built In or Custom.
+	Type string `pulumi:"type"`
+}
+
+// StreamConnectionFailoverDbRoleToExecuteInput is an input type that accepts StreamConnectionFailoverDbRoleToExecuteArgs and StreamConnectionFailoverDbRoleToExecuteOutput values.
+// You can construct a concrete instance of `StreamConnectionFailoverDbRoleToExecuteInput` via:
+//
+//	StreamConnectionFailoverDbRoleToExecuteArgs{...}
+type StreamConnectionFailoverDbRoleToExecuteInput interface {
+	pulumi.Input
+
+	ToStreamConnectionFailoverDbRoleToExecuteOutput() StreamConnectionFailoverDbRoleToExecuteOutput
+	ToStreamConnectionFailoverDbRoleToExecuteOutputWithContext(context.Context) StreamConnectionFailoverDbRoleToExecuteOutput
+}
+
+type StreamConnectionFailoverDbRoleToExecuteArgs struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role pulumi.StringInput `pulumi:"role"`
+	// Type of the DB role. Can be either Built In or Custom.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (StreamConnectionFailoverDbRoleToExecuteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionFailoverDbRoleToExecute)(nil)).Elem()
+}
+
+func (i StreamConnectionFailoverDbRoleToExecuteArgs) ToStreamConnectionFailoverDbRoleToExecuteOutput() StreamConnectionFailoverDbRoleToExecuteOutput {
+	return i.ToStreamConnectionFailoverDbRoleToExecuteOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionFailoverDbRoleToExecuteArgs) ToStreamConnectionFailoverDbRoleToExecuteOutputWithContext(ctx context.Context) StreamConnectionFailoverDbRoleToExecuteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverDbRoleToExecuteOutput)
+}
+
+func (i StreamConnectionFailoverDbRoleToExecuteArgs) ToStreamConnectionFailoverDbRoleToExecutePtrOutput() StreamConnectionFailoverDbRoleToExecutePtrOutput {
+	return i.ToStreamConnectionFailoverDbRoleToExecutePtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionFailoverDbRoleToExecuteArgs) ToStreamConnectionFailoverDbRoleToExecutePtrOutputWithContext(ctx context.Context) StreamConnectionFailoverDbRoleToExecutePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverDbRoleToExecuteOutput).ToStreamConnectionFailoverDbRoleToExecutePtrOutputWithContext(ctx)
+}
+
+// StreamConnectionFailoverDbRoleToExecutePtrInput is an input type that accepts StreamConnectionFailoverDbRoleToExecuteArgs, StreamConnectionFailoverDbRoleToExecutePtr and StreamConnectionFailoverDbRoleToExecutePtrOutput values.
+// You can construct a concrete instance of `StreamConnectionFailoverDbRoleToExecutePtrInput` via:
+//
+//	        StreamConnectionFailoverDbRoleToExecuteArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionFailoverDbRoleToExecutePtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionFailoverDbRoleToExecutePtrOutput() StreamConnectionFailoverDbRoleToExecutePtrOutput
+	ToStreamConnectionFailoverDbRoleToExecutePtrOutputWithContext(context.Context) StreamConnectionFailoverDbRoleToExecutePtrOutput
+}
+
+type streamConnectionFailoverDbRoleToExecutePtrType StreamConnectionFailoverDbRoleToExecuteArgs
+
+func StreamConnectionFailoverDbRoleToExecutePtr(v *StreamConnectionFailoverDbRoleToExecuteArgs) StreamConnectionFailoverDbRoleToExecutePtrInput {
+	return (*streamConnectionFailoverDbRoleToExecutePtrType)(v)
+}
+
+func (*streamConnectionFailoverDbRoleToExecutePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionFailoverDbRoleToExecute)(nil)).Elem()
+}
+
+func (i *streamConnectionFailoverDbRoleToExecutePtrType) ToStreamConnectionFailoverDbRoleToExecutePtrOutput() StreamConnectionFailoverDbRoleToExecutePtrOutput {
+	return i.ToStreamConnectionFailoverDbRoleToExecutePtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionFailoverDbRoleToExecutePtrType) ToStreamConnectionFailoverDbRoleToExecutePtrOutputWithContext(ctx context.Context) StreamConnectionFailoverDbRoleToExecutePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverDbRoleToExecutePtrOutput)
+}
+
+type StreamConnectionFailoverDbRoleToExecuteOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionFailoverDbRoleToExecuteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionFailoverDbRoleToExecute)(nil)).Elem()
+}
+
+func (o StreamConnectionFailoverDbRoleToExecuteOutput) ToStreamConnectionFailoverDbRoleToExecuteOutput() StreamConnectionFailoverDbRoleToExecuteOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverDbRoleToExecuteOutput) ToStreamConnectionFailoverDbRoleToExecuteOutputWithContext(ctx context.Context) StreamConnectionFailoverDbRoleToExecuteOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverDbRoleToExecuteOutput) ToStreamConnectionFailoverDbRoleToExecutePtrOutput() StreamConnectionFailoverDbRoleToExecutePtrOutput {
+	return o.ToStreamConnectionFailoverDbRoleToExecutePtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionFailoverDbRoleToExecuteOutput) ToStreamConnectionFailoverDbRoleToExecutePtrOutputWithContext(ctx context.Context) StreamConnectionFailoverDbRoleToExecutePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionFailoverDbRoleToExecute) *StreamConnectionFailoverDbRoleToExecute {
+		return &v
+	}).(StreamConnectionFailoverDbRoleToExecutePtrOutput)
+}
+
+// The name of the role to use. Can be a built in role or a custom role.
+func (o StreamConnectionFailoverDbRoleToExecuteOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// Type of the DB role. Can be either Built In or Custom.
+func (o StreamConnectionFailoverDbRoleToExecuteOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type StreamConnectionFailoverDbRoleToExecutePtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionFailoverDbRoleToExecutePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionFailoverDbRoleToExecute)(nil)).Elem()
+}
+
+func (o StreamConnectionFailoverDbRoleToExecutePtrOutput) ToStreamConnectionFailoverDbRoleToExecutePtrOutput() StreamConnectionFailoverDbRoleToExecutePtrOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverDbRoleToExecutePtrOutput) ToStreamConnectionFailoverDbRoleToExecutePtrOutputWithContext(ctx context.Context) StreamConnectionFailoverDbRoleToExecutePtrOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverDbRoleToExecutePtrOutput) Elem() StreamConnectionFailoverDbRoleToExecuteOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverDbRoleToExecute) StreamConnectionFailoverDbRoleToExecute {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionFailoverDbRoleToExecute
+		return ret
+	}).(StreamConnectionFailoverDbRoleToExecuteOutput)
+}
+
+// The name of the role to use. Can be a built in role or a custom role.
+func (o StreamConnectionFailoverDbRoleToExecutePtrOutput) Role() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverDbRoleToExecute) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Role
+	}).(pulumi.StringPtrOutput)
+}
+
+// Type of the DB role. Can be either Built In or Custom.
+func (o StreamConnectionFailoverDbRoleToExecutePtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverDbRoleToExecute) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionFailoverNetworking struct {
+	// Information about networking access.
+	Access *StreamConnectionFailoverNetworkingAccess `pulumi:"access"`
+}
+
+// StreamConnectionFailoverNetworkingInput is an input type that accepts StreamConnectionFailoverNetworkingArgs and StreamConnectionFailoverNetworkingOutput values.
+// You can construct a concrete instance of `StreamConnectionFailoverNetworkingInput` via:
+//
+//	StreamConnectionFailoverNetworkingArgs{...}
+type StreamConnectionFailoverNetworkingInput interface {
+	pulumi.Input
+
+	ToStreamConnectionFailoverNetworkingOutput() StreamConnectionFailoverNetworkingOutput
+	ToStreamConnectionFailoverNetworkingOutputWithContext(context.Context) StreamConnectionFailoverNetworkingOutput
+}
+
+type StreamConnectionFailoverNetworkingArgs struct {
+	// Information about networking access.
+	Access StreamConnectionFailoverNetworkingAccessPtrInput `pulumi:"access"`
+}
+
+func (StreamConnectionFailoverNetworkingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionFailoverNetworking)(nil)).Elem()
+}
+
+func (i StreamConnectionFailoverNetworkingArgs) ToStreamConnectionFailoverNetworkingOutput() StreamConnectionFailoverNetworkingOutput {
+	return i.ToStreamConnectionFailoverNetworkingOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionFailoverNetworkingArgs) ToStreamConnectionFailoverNetworkingOutputWithContext(ctx context.Context) StreamConnectionFailoverNetworkingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverNetworkingOutput)
+}
+
+func (i StreamConnectionFailoverNetworkingArgs) ToStreamConnectionFailoverNetworkingPtrOutput() StreamConnectionFailoverNetworkingPtrOutput {
+	return i.ToStreamConnectionFailoverNetworkingPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionFailoverNetworkingArgs) ToStreamConnectionFailoverNetworkingPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverNetworkingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverNetworkingOutput).ToStreamConnectionFailoverNetworkingPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionFailoverNetworkingPtrInput is an input type that accepts StreamConnectionFailoverNetworkingArgs, StreamConnectionFailoverNetworkingPtr and StreamConnectionFailoverNetworkingPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionFailoverNetworkingPtrInput` via:
+//
+//	        StreamConnectionFailoverNetworkingArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionFailoverNetworkingPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionFailoverNetworkingPtrOutput() StreamConnectionFailoverNetworkingPtrOutput
+	ToStreamConnectionFailoverNetworkingPtrOutputWithContext(context.Context) StreamConnectionFailoverNetworkingPtrOutput
+}
+
+type streamConnectionFailoverNetworkingPtrType StreamConnectionFailoverNetworkingArgs
+
+func StreamConnectionFailoverNetworkingPtr(v *StreamConnectionFailoverNetworkingArgs) StreamConnectionFailoverNetworkingPtrInput {
+	return (*streamConnectionFailoverNetworkingPtrType)(v)
+}
+
+func (*streamConnectionFailoverNetworkingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionFailoverNetworking)(nil)).Elem()
+}
+
+func (i *streamConnectionFailoverNetworkingPtrType) ToStreamConnectionFailoverNetworkingPtrOutput() StreamConnectionFailoverNetworkingPtrOutput {
+	return i.ToStreamConnectionFailoverNetworkingPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionFailoverNetworkingPtrType) ToStreamConnectionFailoverNetworkingPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverNetworkingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverNetworkingPtrOutput)
+}
+
+type StreamConnectionFailoverNetworkingOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionFailoverNetworkingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionFailoverNetworking)(nil)).Elem()
+}
+
+func (o StreamConnectionFailoverNetworkingOutput) ToStreamConnectionFailoverNetworkingOutput() StreamConnectionFailoverNetworkingOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverNetworkingOutput) ToStreamConnectionFailoverNetworkingOutputWithContext(ctx context.Context) StreamConnectionFailoverNetworkingOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverNetworkingOutput) ToStreamConnectionFailoverNetworkingPtrOutput() StreamConnectionFailoverNetworkingPtrOutput {
+	return o.ToStreamConnectionFailoverNetworkingPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionFailoverNetworkingOutput) ToStreamConnectionFailoverNetworkingPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverNetworkingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionFailoverNetworking) *StreamConnectionFailoverNetworking {
+		return &v
+	}).(StreamConnectionFailoverNetworkingPtrOutput)
+}
+
+// Information about networking access.
+func (o StreamConnectionFailoverNetworkingOutput) Access() StreamConnectionFailoverNetworkingAccessPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverNetworking) *StreamConnectionFailoverNetworkingAccess { return v.Access }).(StreamConnectionFailoverNetworkingAccessPtrOutput)
+}
+
+type StreamConnectionFailoverNetworkingPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionFailoverNetworkingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionFailoverNetworking)(nil)).Elem()
+}
+
+func (o StreamConnectionFailoverNetworkingPtrOutput) ToStreamConnectionFailoverNetworkingPtrOutput() StreamConnectionFailoverNetworkingPtrOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverNetworkingPtrOutput) ToStreamConnectionFailoverNetworkingPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverNetworkingPtrOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverNetworkingPtrOutput) Elem() StreamConnectionFailoverNetworkingOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverNetworking) StreamConnectionFailoverNetworking {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionFailoverNetworking
+		return ret
+	}).(StreamConnectionFailoverNetworkingOutput)
+}
+
+// Information about networking access.
+func (o StreamConnectionFailoverNetworkingPtrOutput) Access() StreamConnectionFailoverNetworkingAccessPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverNetworking) *StreamConnectionFailoverNetworkingAccess {
+		if v == nil {
+			return nil
+		}
+		return v.Access
+	}).(StreamConnectionFailoverNetworkingAccessPtrOutput)
+}
+
+type StreamConnectionFailoverNetworkingAccess struct {
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	ConnectionId *string `pulumi:"connectionId"`
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	Name *string `pulumi:"name"`
+	// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+	TgwRouteId *string `pulumi:"tgwRouteId"`
+	// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+	Type *string `pulumi:"type"`
+}
+
+// StreamConnectionFailoverNetworkingAccessInput is an input type that accepts StreamConnectionFailoverNetworkingAccessArgs and StreamConnectionFailoverNetworkingAccessOutput values.
+// You can construct a concrete instance of `StreamConnectionFailoverNetworkingAccessInput` via:
+//
+//	StreamConnectionFailoverNetworkingAccessArgs{...}
+type StreamConnectionFailoverNetworkingAccessInput interface {
+	pulumi.Input
+
+	ToStreamConnectionFailoverNetworkingAccessOutput() StreamConnectionFailoverNetworkingAccessOutput
+	ToStreamConnectionFailoverNetworkingAccessOutputWithContext(context.Context) StreamConnectionFailoverNetworkingAccessOutput
+}
+
+type StreamConnectionFailoverNetworkingAccessArgs struct {
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	ConnectionId pulumi.StringPtrInput `pulumi:"connectionId"`
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+	TgwRouteId pulumi.StringPtrInput `pulumi:"tgwRouteId"`
+	// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+	Type pulumi.StringPtrInput `pulumi:"type"`
+}
+
+func (StreamConnectionFailoverNetworkingAccessArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionFailoverNetworkingAccess)(nil)).Elem()
+}
+
+func (i StreamConnectionFailoverNetworkingAccessArgs) ToStreamConnectionFailoverNetworkingAccessOutput() StreamConnectionFailoverNetworkingAccessOutput {
+	return i.ToStreamConnectionFailoverNetworkingAccessOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionFailoverNetworkingAccessArgs) ToStreamConnectionFailoverNetworkingAccessOutputWithContext(ctx context.Context) StreamConnectionFailoverNetworkingAccessOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverNetworkingAccessOutput)
+}
+
+func (i StreamConnectionFailoverNetworkingAccessArgs) ToStreamConnectionFailoverNetworkingAccessPtrOutput() StreamConnectionFailoverNetworkingAccessPtrOutput {
+	return i.ToStreamConnectionFailoverNetworkingAccessPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionFailoverNetworkingAccessArgs) ToStreamConnectionFailoverNetworkingAccessPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverNetworkingAccessPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverNetworkingAccessOutput).ToStreamConnectionFailoverNetworkingAccessPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionFailoverNetworkingAccessPtrInput is an input type that accepts StreamConnectionFailoverNetworkingAccessArgs, StreamConnectionFailoverNetworkingAccessPtr and StreamConnectionFailoverNetworkingAccessPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionFailoverNetworkingAccessPtrInput` via:
+//
+//	        StreamConnectionFailoverNetworkingAccessArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionFailoverNetworkingAccessPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionFailoverNetworkingAccessPtrOutput() StreamConnectionFailoverNetworkingAccessPtrOutput
+	ToStreamConnectionFailoverNetworkingAccessPtrOutputWithContext(context.Context) StreamConnectionFailoverNetworkingAccessPtrOutput
+}
+
+type streamConnectionFailoverNetworkingAccessPtrType StreamConnectionFailoverNetworkingAccessArgs
+
+func StreamConnectionFailoverNetworkingAccessPtr(v *StreamConnectionFailoverNetworkingAccessArgs) StreamConnectionFailoverNetworkingAccessPtrInput {
+	return (*streamConnectionFailoverNetworkingAccessPtrType)(v)
+}
+
+func (*streamConnectionFailoverNetworkingAccessPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionFailoverNetworkingAccess)(nil)).Elem()
+}
+
+func (i *streamConnectionFailoverNetworkingAccessPtrType) ToStreamConnectionFailoverNetworkingAccessPtrOutput() StreamConnectionFailoverNetworkingAccessPtrOutput {
+	return i.ToStreamConnectionFailoverNetworkingAccessPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionFailoverNetworkingAccessPtrType) ToStreamConnectionFailoverNetworkingAccessPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverNetworkingAccessPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverNetworkingAccessPtrOutput)
+}
+
+type StreamConnectionFailoverNetworkingAccessOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionFailoverNetworkingAccessOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionFailoverNetworkingAccess)(nil)).Elem()
+}
+
+func (o StreamConnectionFailoverNetworkingAccessOutput) ToStreamConnectionFailoverNetworkingAccessOutput() StreamConnectionFailoverNetworkingAccessOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverNetworkingAccessOutput) ToStreamConnectionFailoverNetworkingAccessOutputWithContext(ctx context.Context) StreamConnectionFailoverNetworkingAccessOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverNetworkingAccessOutput) ToStreamConnectionFailoverNetworkingAccessPtrOutput() StreamConnectionFailoverNetworkingAccessPtrOutput {
+	return o.ToStreamConnectionFailoverNetworkingAccessPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionFailoverNetworkingAccessOutput) ToStreamConnectionFailoverNetworkingAccessPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverNetworkingAccessPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionFailoverNetworkingAccess) *StreamConnectionFailoverNetworkingAccess {
+		return &v
+	}).(StreamConnectionFailoverNetworkingAccessPtrOutput)
+}
+
+// Reserved. Will be used by `PRIVATE_LINK` connection type.
+func (o StreamConnectionFailoverNetworkingAccessOutput) ConnectionId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverNetworkingAccess) *string { return v.ConnectionId }).(pulumi.StringPtrOutput)
+}
+
+// Reserved. Will be used by `PRIVATE_LINK` connection type.
+func (o StreamConnectionFailoverNetworkingAccessOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverNetworkingAccess) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+func (o StreamConnectionFailoverNetworkingAccessOutput) TgwRouteId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverNetworkingAccess) *string { return v.TgwRouteId }).(pulumi.StringPtrOutput)
+}
+
+// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+func (o StreamConnectionFailoverNetworkingAccessOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverNetworkingAccess) *string { return v.Type }).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionFailoverNetworkingAccessPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionFailoverNetworkingAccessPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionFailoverNetworkingAccess)(nil)).Elem()
+}
+
+func (o StreamConnectionFailoverNetworkingAccessPtrOutput) ToStreamConnectionFailoverNetworkingAccessPtrOutput() StreamConnectionFailoverNetworkingAccessPtrOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverNetworkingAccessPtrOutput) ToStreamConnectionFailoverNetworkingAccessPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverNetworkingAccessPtrOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverNetworkingAccessPtrOutput) Elem() StreamConnectionFailoverNetworkingAccessOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverNetworkingAccess) StreamConnectionFailoverNetworkingAccess {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionFailoverNetworkingAccess
+		return ret
+	}).(StreamConnectionFailoverNetworkingAccessOutput)
+}
+
+// Reserved. Will be used by `PRIVATE_LINK` connection type.
+func (o StreamConnectionFailoverNetworkingAccessPtrOutput) ConnectionId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverNetworkingAccess) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ConnectionId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Reserved. Will be used by `PRIVATE_LINK` connection type.
+func (o StreamConnectionFailoverNetworkingAccessPtrOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverNetworkingAccess) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringPtrOutput)
+}
+
+// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+func (o StreamConnectionFailoverNetworkingAccessPtrOutput) TgwRouteId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverNetworkingAccess) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TgwRouteId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+func (o StreamConnectionFailoverNetworkingAccessPtrOutput) Type() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverNetworkingAccess) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionFailoverSecurity struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL.
+	BrokerPublicCertificate *string `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+	Protocol *string `pulumi:"protocol"`
+}
+
+// StreamConnectionFailoverSecurityInput is an input type that accepts StreamConnectionFailoverSecurityArgs and StreamConnectionFailoverSecurityOutput values.
+// You can construct a concrete instance of `StreamConnectionFailoverSecurityInput` via:
+//
+//	StreamConnectionFailoverSecurityArgs{...}
+type StreamConnectionFailoverSecurityInput interface {
+	pulumi.Input
+
+	ToStreamConnectionFailoverSecurityOutput() StreamConnectionFailoverSecurityOutput
+	ToStreamConnectionFailoverSecurityOutputWithContext(context.Context) StreamConnectionFailoverSecurityOutput
+}
+
+type StreamConnectionFailoverSecurityArgs struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL.
+	BrokerPublicCertificate pulumi.StringPtrInput `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+	Protocol pulumi.StringPtrInput `pulumi:"protocol"`
+}
+
+func (StreamConnectionFailoverSecurityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionFailoverSecurity)(nil)).Elem()
+}
+
+func (i StreamConnectionFailoverSecurityArgs) ToStreamConnectionFailoverSecurityOutput() StreamConnectionFailoverSecurityOutput {
+	return i.ToStreamConnectionFailoverSecurityOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionFailoverSecurityArgs) ToStreamConnectionFailoverSecurityOutputWithContext(ctx context.Context) StreamConnectionFailoverSecurityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverSecurityOutput)
+}
+
+func (i StreamConnectionFailoverSecurityArgs) ToStreamConnectionFailoverSecurityPtrOutput() StreamConnectionFailoverSecurityPtrOutput {
+	return i.ToStreamConnectionFailoverSecurityPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionFailoverSecurityArgs) ToStreamConnectionFailoverSecurityPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverSecurityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverSecurityOutput).ToStreamConnectionFailoverSecurityPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionFailoverSecurityPtrInput is an input type that accepts StreamConnectionFailoverSecurityArgs, StreamConnectionFailoverSecurityPtr and StreamConnectionFailoverSecurityPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionFailoverSecurityPtrInput` via:
+//
+//	        StreamConnectionFailoverSecurityArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionFailoverSecurityPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionFailoverSecurityPtrOutput() StreamConnectionFailoverSecurityPtrOutput
+	ToStreamConnectionFailoverSecurityPtrOutputWithContext(context.Context) StreamConnectionFailoverSecurityPtrOutput
+}
+
+type streamConnectionFailoverSecurityPtrType StreamConnectionFailoverSecurityArgs
+
+func StreamConnectionFailoverSecurityPtr(v *StreamConnectionFailoverSecurityArgs) StreamConnectionFailoverSecurityPtrInput {
+	return (*streamConnectionFailoverSecurityPtrType)(v)
+}
+
+func (*streamConnectionFailoverSecurityPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionFailoverSecurity)(nil)).Elem()
+}
+
+func (i *streamConnectionFailoverSecurityPtrType) ToStreamConnectionFailoverSecurityPtrOutput() StreamConnectionFailoverSecurityPtrOutput {
+	return i.ToStreamConnectionFailoverSecurityPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionFailoverSecurityPtrType) ToStreamConnectionFailoverSecurityPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverSecurityPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverSecurityPtrOutput)
+}
+
+type StreamConnectionFailoverSecurityOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionFailoverSecurityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionFailoverSecurity)(nil)).Elem()
+}
+
+func (o StreamConnectionFailoverSecurityOutput) ToStreamConnectionFailoverSecurityOutput() StreamConnectionFailoverSecurityOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverSecurityOutput) ToStreamConnectionFailoverSecurityOutputWithContext(ctx context.Context) StreamConnectionFailoverSecurityOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverSecurityOutput) ToStreamConnectionFailoverSecurityPtrOutput() StreamConnectionFailoverSecurityPtrOutput {
+	return o.ToStreamConnectionFailoverSecurityPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionFailoverSecurityOutput) ToStreamConnectionFailoverSecurityPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverSecurityPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionFailoverSecurity) *StreamConnectionFailoverSecurity {
+		return &v
+	}).(StreamConnectionFailoverSecurityPtrOutput)
+}
+
+// A trusted, public x509 certificate for connecting to Kafka over SSL.
+func (o StreamConnectionFailoverSecurityOutput) BrokerPublicCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverSecurity) *string { return v.BrokerPublicCertificate }).(pulumi.StringPtrOutput)
+}
+
+// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+func (o StreamConnectionFailoverSecurityOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverSecurity) *string { return v.Protocol }).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionFailoverSecurityPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionFailoverSecurityPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionFailoverSecurity)(nil)).Elem()
+}
+
+func (o StreamConnectionFailoverSecurityPtrOutput) ToStreamConnectionFailoverSecurityPtrOutput() StreamConnectionFailoverSecurityPtrOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverSecurityPtrOutput) ToStreamConnectionFailoverSecurityPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverSecurityPtrOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverSecurityPtrOutput) Elem() StreamConnectionFailoverSecurityOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverSecurity) StreamConnectionFailoverSecurity {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionFailoverSecurity
+		return ret
+	}).(StreamConnectionFailoverSecurityOutput)
+}
+
+// A trusted, public x509 certificate for connecting to Kafka over SSL.
+func (o StreamConnectionFailoverSecurityPtrOutput) BrokerPublicCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverSecurity) *string {
+		if v == nil {
+			return nil
+		}
+		return v.BrokerPublicCertificate
+	}).(pulumi.StringPtrOutput)
+}
+
+// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+func (o StreamConnectionFailoverSecurityPtrOutput) Protocol() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverSecurity) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Protocol
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionFailoverTimeouts struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create *string `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete *string `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update *string `pulumi:"update"`
+}
+
+// StreamConnectionFailoverTimeoutsInput is an input type that accepts StreamConnectionFailoverTimeoutsArgs and StreamConnectionFailoverTimeoutsOutput values.
+// You can construct a concrete instance of `StreamConnectionFailoverTimeoutsInput` via:
+//
+//	StreamConnectionFailoverTimeoutsArgs{...}
+type StreamConnectionFailoverTimeoutsInput interface {
+	pulumi.Input
+
+	ToStreamConnectionFailoverTimeoutsOutput() StreamConnectionFailoverTimeoutsOutput
+	ToStreamConnectionFailoverTimeoutsOutputWithContext(context.Context) StreamConnectionFailoverTimeoutsOutput
+}
+
+type StreamConnectionFailoverTimeoutsArgs struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create pulumi.StringPtrInput `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete pulumi.StringPtrInput `pulumi:"delete"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Update pulumi.StringPtrInput `pulumi:"update"`
+}
+
+func (StreamConnectionFailoverTimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionFailoverTimeouts)(nil)).Elem()
+}
+
+func (i StreamConnectionFailoverTimeoutsArgs) ToStreamConnectionFailoverTimeoutsOutput() StreamConnectionFailoverTimeoutsOutput {
+	return i.ToStreamConnectionFailoverTimeoutsOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionFailoverTimeoutsArgs) ToStreamConnectionFailoverTimeoutsOutputWithContext(ctx context.Context) StreamConnectionFailoverTimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverTimeoutsOutput)
+}
+
+func (i StreamConnectionFailoverTimeoutsArgs) ToStreamConnectionFailoverTimeoutsPtrOutput() StreamConnectionFailoverTimeoutsPtrOutput {
+	return i.ToStreamConnectionFailoverTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionFailoverTimeoutsArgs) ToStreamConnectionFailoverTimeoutsPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverTimeoutsOutput).ToStreamConnectionFailoverTimeoutsPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionFailoverTimeoutsPtrInput is an input type that accepts StreamConnectionFailoverTimeoutsArgs, StreamConnectionFailoverTimeoutsPtr and StreamConnectionFailoverTimeoutsPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionFailoverTimeoutsPtrInput` via:
+//
+//	        StreamConnectionFailoverTimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionFailoverTimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionFailoverTimeoutsPtrOutput() StreamConnectionFailoverTimeoutsPtrOutput
+	ToStreamConnectionFailoverTimeoutsPtrOutputWithContext(context.Context) StreamConnectionFailoverTimeoutsPtrOutput
+}
+
+type streamConnectionFailoverTimeoutsPtrType StreamConnectionFailoverTimeoutsArgs
+
+func StreamConnectionFailoverTimeoutsPtr(v *StreamConnectionFailoverTimeoutsArgs) StreamConnectionFailoverTimeoutsPtrInput {
+	return (*streamConnectionFailoverTimeoutsPtrType)(v)
+}
+
+func (*streamConnectionFailoverTimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionFailoverTimeouts)(nil)).Elem()
+}
+
+func (i *streamConnectionFailoverTimeoutsPtrType) ToStreamConnectionFailoverTimeoutsPtrOutput() StreamConnectionFailoverTimeoutsPtrOutput {
+	return i.ToStreamConnectionFailoverTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionFailoverTimeoutsPtrType) ToStreamConnectionFailoverTimeoutsPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionFailoverTimeoutsPtrOutput)
+}
+
+type StreamConnectionFailoverTimeoutsOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionFailoverTimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionFailoverTimeouts)(nil)).Elem()
+}
+
+func (o StreamConnectionFailoverTimeoutsOutput) ToStreamConnectionFailoverTimeoutsOutput() StreamConnectionFailoverTimeoutsOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverTimeoutsOutput) ToStreamConnectionFailoverTimeoutsOutputWithContext(ctx context.Context) StreamConnectionFailoverTimeoutsOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverTimeoutsOutput) ToStreamConnectionFailoverTimeoutsPtrOutput() StreamConnectionFailoverTimeoutsPtrOutput {
+	return o.ToStreamConnectionFailoverTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionFailoverTimeoutsOutput) ToStreamConnectionFailoverTimeoutsPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverTimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionFailoverTimeouts) *StreamConnectionFailoverTimeouts {
+		return &v
+	}).(StreamConnectionFailoverTimeoutsPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o StreamConnectionFailoverTimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o StreamConnectionFailoverTimeoutsOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o StreamConnectionFailoverTimeoutsOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamConnectionFailoverTimeouts) *string { return v.Update }).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionFailoverTimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionFailoverTimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionFailoverTimeouts)(nil)).Elem()
+}
+
+func (o StreamConnectionFailoverTimeoutsPtrOutput) ToStreamConnectionFailoverTimeoutsPtrOutput() StreamConnectionFailoverTimeoutsPtrOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverTimeoutsPtrOutput) ToStreamConnectionFailoverTimeoutsPtrOutputWithContext(ctx context.Context) StreamConnectionFailoverTimeoutsPtrOutput {
+	return o
+}
+
+func (o StreamConnectionFailoverTimeoutsPtrOutput) Elem() StreamConnectionFailoverTimeoutsOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverTimeouts) StreamConnectionFailoverTimeouts {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionFailoverTimeouts
+		return ret
+	}).(StreamConnectionFailoverTimeoutsOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o StreamConnectionFailoverTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o StreamConnectionFailoverTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o StreamConnectionFailoverTimeoutsPtrOutput) Update() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionFailoverTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(pulumi.StringPtrOutput)
+}
+
 type StreamConnectionGcp struct {
 	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
 	ServiceAccountId string `pulumi:"serviceAccountId"`
@@ -22540,6 +23704,112 @@ func (o StreamWorkspaceDataProcessRegionPtrOutput) Region() pulumi.StringPtrOutp
 		}
 		return &v.Region
 	}).(pulumi.StringPtrOutput)
+}
+
+type StreamWorkspaceFailoverRegion struct {
+	// Cloud service provider for the failover region. Must match the primary region's cloud provider.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Name of the failover cloud provider region.
+	Region string `pulumi:"region"`
+}
+
+// StreamWorkspaceFailoverRegionInput is an input type that accepts StreamWorkspaceFailoverRegionArgs and StreamWorkspaceFailoverRegionOutput values.
+// You can construct a concrete instance of `StreamWorkspaceFailoverRegionInput` via:
+//
+//	StreamWorkspaceFailoverRegionArgs{...}
+type StreamWorkspaceFailoverRegionInput interface {
+	pulumi.Input
+
+	ToStreamWorkspaceFailoverRegionOutput() StreamWorkspaceFailoverRegionOutput
+	ToStreamWorkspaceFailoverRegionOutputWithContext(context.Context) StreamWorkspaceFailoverRegionOutput
+}
+
+type StreamWorkspaceFailoverRegionArgs struct {
+	// Cloud service provider for the failover region. Must match the primary region's cloud provider.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Name of the failover cloud provider region.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (StreamWorkspaceFailoverRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamWorkspaceFailoverRegion)(nil)).Elem()
+}
+
+func (i StreamWorkspaceFailoverRegionArgs) ToStreamWorkspaceFailoverRegionOutput() StreamWorkspaceFailoverRegionOutput {
+	return i.ToStreamWorkspaceFailoverRegionOutputWithContext(context.Background())
+}
+
+func (i StreamWorkspaceFailoverRegionArgs) ToStreamWorkspaceFailoverRegionOutputWithContext(ctx context.Context) StreamWorkspaceFailoverRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamWorkspaceFailoverRegionOutput)
+}
+
+// StreamWorkspaceFailoverRegionArrayInput is an input type that accepts StreamWorkspaceFailoverRegionArray and StreamWorkspaceFailoverRegionArrayOutput values.
+// You can construct a concrete instance of `StreamWorkspaceFailoverRegionArrayInput` via:
+//
+//	StreamWorkspaceFailoverRegionArray{ StreamWorkspaceFailoverRegionArgs{...} }
+type StreamWorkspaceFailoverRegionArrayInput interface {
+	pulumi.Input
+
+	ToStreamWorkspaceFailoverRegionArrayOutput() StreamWorkspaceFailoverRegionArrayOutput
+	ToStreamWorkspaceFailoverRegionArrayOutputWithContext(context.Context) StreamWorkspaceFailoverRegionArrayOutput
+}
+
+type StreamWorkspaceFailoverRegionArray []StreamWorkspaceFailoverRegionInput
+
+func (StreamWorkspaceFailoverRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]StreamWorkspaceFailoverRegion)(nil)).Elem()
+}
+
+func (i StreamWorkspaceFailoverRegionArray) ToStreamWorkspaceFailoverRegionArrayOutput() StreamWorkspaceFailoverRegionArrayOutput {
+	return i.ToStreamWorkspaceFailoverRegionArrayOutputWithContext(context.Background())
+}
+
+func (i StreamWorkspaceFailoverRegionArray) ToStreamWorkspaceFailoverRegionArrayOutputWithContext(ctx context.Context) StreamWorkspaceFailoverRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamWorkspaceFailoverRegionArrayOutput)
+}
+
+type StreamWorkspaceFailoverRegionOutput struct{ *pulumi.OutputState }
+
+func (StreamWorkspaceFailoverRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamWorkspaceFailoverRegion)(nil)).Elem()
+}
+
+func (o StreamWorkspaceFailoverRegionOutput) ToStreamWorkspaceFailoverRegionOutput() StreamWorkspaceFailoverRegionOutput {
+	return o
+}
+
+func (o StreamWorkspaceFailoverRegionOutput) ToStreamWorkspaceFailoverRegionOutputWithContext(ctx context.Context) StreamWorkspaceFailoverRegionOutput {
+	return o
+}
+
+// Cloud service provider for the failover region. Must match the primary region's cloud provider.
+func (o StreamWorkspaceFailoverRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamWorkspaceFailoverRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Name of the failover cloud provider region.
+func (o StreamWorkspaceFailoverRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamWorkspaceFailoverRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type StreamWorkspaceFailoverRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (StreamWorkspaceFailoverRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]StreamWorkspaceFailoverRegion)(nil)).Elem()
+}
+
+func (o StreamWorkspaceFailoverRegionArrayOutput) ToStreamWorkspaceFailoverRegionArrayOutput() StreamWorkspaceFailoverRegionArrayOutput {
+	return o
+}
+
+func (o StreamWorkspaceFailoverRegionArrayOutput) ToStreamWorkspaceFailoverRegionArrayOutputWithContext(ctx context.Context) StreamWorkspaceFailoverRegionArrayOutput {
+	return o
+}
+
+func (o StreamWorkspaceFailoverRegionArrayOutput) Index(i pulumi.IntInput) StreamWorkspaceFailoverRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) StreamWorkspaceFailoverRegion {
+		return vs[0].([]StreamWorkspaceFailoverRegion)[vs[1].(int)]
+	}).(StreamWorkspaceFailoverRegionOutput)
 }
 
 type StreamWorkspaceStreamConfig struct {
@@ -54429,17 +55699,24 @@ type GetProjectsResult struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
 	IpAddresses GetProjectsResultIpAddresses `pulumi:"ipAddresses"`
+	// Flag that indicates whether the AI Assistant is enabled for the project's clusters.
+	IsClusterAiAssistantEnabled bool `pulumi:"isClusterAiAssistantEnabled"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled bool `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
 	IsDataExplorerEnabled bool `pulumi:"isDataExplorerEnabled"`
+	// Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
+	IsDataExplorerGenAiFeaturesEnabled bool `pulumi:"isDataExplorerGenAiFeaturesEnabled"`
+	// Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
+	// #std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+	IsDataExplorerGenAiSampleDocumentPassingEnabled bool `pulumi:"isDataExplorerGenAiSampleDocumentPassingEnabled"`
 	// Flag that indicates whether to enable extended storage sizes for the specified project.
 	IsExtendedStorageSizesEnabled bool `pulumi:"isExtendedStorageSizesEnabled"`
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
 	IsPerformanceAdvisorEnabled bool `pulumi:"isPerformanceAdvisorEnabled"`
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
 	IsRealtimePerformancePanelEnabled bool `pulumi:"isRealtimePerformancePanelEnabled"`
-	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/).
 	IsSchemaAdvisorEnabled bool `pulumi:"isSchemaAdvisorEnabled"`
 	// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
 	//
@@ -54486,17 +55763,24 @@ type GetProjectsResultArgs struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to getProjectIpAddresses data source.
 	IpAddresses GetProjectsResultIpAddressesInput `pulumi:"ipAddresses"`
+	// Flag that indicates whether the AI Assistant is enabled for the project's clusters.
+	IsClusterAiAssistantEnabled pulumi.BoolInput `pulumi:"isClusterAiAssistantEnabled"`
 	// Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 	IsCollectDatabaseSpecificsStatisticsEnabled pulumi.BoolInput `pulumi:"isCollectDatabaseSpecificsStatisticsEnabled"`
 	// Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
 	IsDataExplorerEnabled pulumi.BoolInput `pulumi:"isDataExplorerEnabled"`
+	// Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
+	IsDataExplorerGenAiFeaturesEnabled pulumi.BoolInput `pulumi:"isDataExplorerGenAiFeaturesEnabled"`
+	// Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
+	// #std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+	IsDataExplorerGenAiSampleDocumentPassingEnabled pulumi.BoolInput `pulumi:"isDataExplorerGenAiSampleDocumentPassingEnabled"`
 	// Flag that indicates whether to enable extended storage sizes for the specified project.
 	IsExtendedStorageSizesEnabled pulumi.BoolInput `pulumi:"isExtendedStorageSizesEnabled"`
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
 	IsPerformanceAdvisorEnabled pulumi.BoolInput `pulumi:"isPerformanceAdvisorEnabled"`
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
 	IsRealtimePerformancePanelEnabled pulumi.BoolInput `pulumi:"isRealtimePerformancePanelEnabled"`
-	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/).
 	IsSchemaAdvisorEnabled pulumi.BoolInput `pulumi:"isSchemaAdvisorEnabled"`
 	// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
 	//
@@ -54594,6 +55878,11 @@ func (o GetProjectsResultOutput) IpAddresses() GetProjectsResultIpAddressesOutpu
 	return o.ApplyT(func(v GetProjectsResult) GetProjectsResultIpAddresses { return v.IpAddresses }).(GetProjectsResultIpAddressesOutput)
 }
 
+// Flag that indicates whether the AI Assistant is enabled for the project's clusters.
+func (o GetProjectsResultOutput) IsClusterAiAssistantEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsClusterAiAssistantEnabled }).(pulumi.BoolOutput)
+}
+
 // Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project.
 func (o GetProjectsResultOutput) IsCollectDatabaseSpecificsStatisticsEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsCollectDatabaseSpecificsStatisticsEnabled }).(pulumi.BoolOutput)
@@ -54602,6 +55891,17 @@ func (o GetProjectsResultOutput) IsCollectDatabaseSpecificsStatisticsEnabled() p
 // Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
 func (o GetProjectsResultOutput) IsDataExplorerEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsDataExplorerEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
+func (o GetProjectsResultOutput) IsDataExplorerGenAiFeaturesEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsDataExplorerGenAiFeaturesEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
+// #std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+func (o GetProjectsResultOutput) IsDataExplorerGenAiSampleDocumentPassingEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsDataExplorerGenAiSampleDocumentPassingEnabled }).(pulumi.BoolOutput)
 }
 
 // Flag that indicates whether to enable extended storage sizes for the specified project.
@@ -54619,7 +55919,7 @@ func (o GetProjectsResultOutput) IsRealtimePerformancePanelEnabled() pulumi.Bool
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsRealtimePerformancePanelEnabled }).(pulumi.BoolOutput)
 }
 
-// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
+// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/).
 func (o GetProjectsResultOutput) IsSchemaAdvisorEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsSchemaAdvisorEnabled }).(pulumi.BoolOutput)
 }
@@ -55154,7 +56454,7 @@ type GetProjectsResultUser struct {
 	//
 	// > **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `ProjectInvitation` resource.
 	//
-	// See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
+	// See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects) Documentation for more information.
 	InviterUsername string `pulumi:"inviterUsername"`
 	// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
 	LastAuth string `pulumi:"lastAuth"`
@@ -55198,7 +56498,7 @@ type GetProjectsResultUserArgs struct {
 	//
 	// > **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `ProjectInvitation` resource.
 	//
-	// See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
+	// See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects) Documentation for more information.
 	InviterUsername pulumi.StringInput `pulumi:"inviterUsername"`
 	// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
 	LastAuth pulumi.StringInput `pulumi:"lastAuth"`
@@ -55299,7 +56599,7 @@ func (o GetProjectsResultUserOutput) InvitationExpiresAt() pulumi.StringOutput {
 //
 // > **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `ProjectInvitation` resource.
 //
-// See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
+// See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects) Documentation for more information.
 func (o GetProjectsResultUserOutput) InviterUsername() pulumi.StringOutput {
 	return o.ApplyT(func(v GetProjectsResultUser) string { return v.InviterUsername }).(pulumi.StringOutput)
 }
@@ -59131,6 +60431,1022 @@ func (o GetStreamConnectionDbRoleToExecuteOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
 }
 
+type GetStreamConnectionFailoverAuthentication struct {
+	// OIDC client identifier for authentication to the Kafka cluster.
+	ClientId string `pulumi:"clientId"`
+	// OIDC client secret for authentication to the Kafka cluster.
+	ClientSecret string `pulumi:"clientSecret"`
+	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+	Mechanism string `pulumi:"mechanism"`
+	// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+	Method string `pulumi:"method"`
+	// Password of the account to connect to the Kafka cluster.
+	Password string `pulumi:"password"`
+	// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+	SaslOauthbearerExtensions string `pulumi:"saslOauthbearerExtensions"`
+	// OIDC scope parameter defining the access permissions requested.
+	Scope string `pulumi:"scope"`
+	// SSL certificate for client authentication to Kafka.
+	SslCertificate string `pulumi:"sslCertificate"`
+	// SSL key for client authentication to Kafka.
+	SslKey string `pulumi:"sslKey"`
+	// Password for the SSL key, if it is password protected.
+	SslKeyPassword string `pulumi:"sslKeyPassword"`
+	// OIDC token endpoint URL for obtaining access tokens.
+	TokenEndpointUrl string `pulumi:"tokenEndpointUrl"`
+	// Username of the account to connect to the Kafka cluster.
+	Username string `pulumi:"username"`
+}
+
+// GetStreamConnectionFailoverAuthenticationInput is an input type that accepts GetStreamConnectionFailoverAuthenticationArgs and GetStreamConnectionFailoverAuthenticationOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoverAuthenticationInput` via:
+//
+//	GetStreamConnectionFailoverAuthenticationArgs{...}
+type GetStreamConnectionFailoverAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoverAuthenticationOutput() GetStreamConnectionFailoverAuthenticationOutput
+	ToGetStreamConnectionFailoverAuthenticationOutputWithContext(context.Context) GetStreamConnectionFailoverAuthenticationOutput
+}
+
+type GetStreamConnectionFailoverAuthenticationArgs struct {
+	// OIDC client identifier for authentication to the Kafka cluster.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// OIDC client secret for authentication to the Kafka cluster.
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+	Mechanism pulumi.StringInput `pulumi:"mechanism"`
+	// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+	Method pulumi.StringInput `pulumi:"method"`
+	// Password of the account to connect to the Kafka cluster.
+	Password pulumi.StringInput `pulumi:"password"`
+	// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+	SaslOauthbearerExtensions pulumi.StringInput `pulumi:"saslOauthbearerExtensions"`
+	// OIDC scope parameter defining the access permissions requested.
+	Scope pulumi.StringInput `pulumi:"scope"`
+	// SSL certificate for client authentication to Kafka.
+	SslCertificate pulumi.StringInput `pulumi:"sslCertificate"`
+	// SSL key for client authentication to Kafka.
+	SslKey pulumi.StringInput `pulumi:"sslKey"`
+	// Password for the SSL key, if it is password protected.
+	SslKeyPassword pulumi.StringInput `pulumi:"sslKeyPassword"`
+	// OIDC token endpoint URL for obtaining access tokens.
+	TokenEndpointUrl pulumi.StringInput `pulumi:"tokenEndpointUrl"`
+	// Username of the account to connect to the Kafka cluster.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetStreamConnectionFailoverAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoverAuthentication)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoverAuthenticationArgs) ToGetStreamConnectionFailoverAuthenticationOutput() GetStreamConnectionFailoverAuthenticationOutput {
+	return i.ToGetStreamConnectionFailoverAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoverAuthenticationArgs) ToGetStreamConnectionFailoverAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionFailoverAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoverAuthenticationOutput)
+}
+
+type GetStreamConnectionFailoverAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoverAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoverAuthentication)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoverAuthenticationOutput) ToGetStreamConnectionFailoverAuthenticationOutput() GetStreamConnectionFailoverAuthenticationOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoverAuthenticationOutput) ToGetStreamConnectionFailoverAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionFailoverAuthenticationOutput {
+	return o
+}
+
+// OIDC client identifier for authentication to the Kafka cluster.
+func (o GetStreamConnectionFailoverAuthenticationOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverAuthentication) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// OIDC client secret for authentication to the Kafka cluster.
+func (o GetStreamConnectionFailoverAuthenticationOutput) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverAuthentication) string { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+func (o GetStreamConnectionFailoverAuthenticationOutput) Mechanism() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverAuthentication) string { return v.Mechanism }).(pulumi.StringOutput)
+}
+
+// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+func (o GetStreamConnectionFailoverAuthenticationOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverAuthentication) string { return v.Method }).(pulumi.StringOutput)
+}
+
+// Password of the account to connect to the Kafka cluster.
+func (o GetStreamConnectionFailoverAuthenticationOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverAuthentication) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+func (o GetStreamConnectionFailoverAuthenticationOutput) SaslOauthbearerExtensions() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverAuthentication) string { return v.SaslOauthbearerExtensions }).(pulumi.StringOutput)
+}
+
+// OIDC scope parameter defining the access permissions requested.
+func (o GetStreamConnectionFailoverAuthenticationOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverAuthentication) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+// SSL certificate for client authentication to Kafka.
+func (o GetStreamConnectionFailoverAuthenticationOutput) SslCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverAuthentication) string { return v.SslCertificate }).(pulumi.StringOutput)
+}
+
+// SSL key for client authentication to Kafka.
+func (o GetStreamConnectionFailoverAuthenticationOutput) SslKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverAuthentication) string { return v.SslKey }).(pulumi.StringOutput)
+}
+
+// Password for the SSL key, if it is password protected.
+func (o GetStreamConnectionFailoverAuthenticationOutput) SslKeyPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverAuthentication) string { return v.SslKeyPassword }).(pulumi.StringOutput)
+}
+
+// OIDC token endpoint URL for obtaining access tokens.
+func (o GetStreamConnectionFailoverAuthenticationOutput) TokenEndpointUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverAuthentication) string { return v.TokenEndpointUrl }).(pulumi.StringOutput)
+}
+
+// Username of the account to connect to the Kafka cluster.
+func (o GetStreamConnectionFailoverAuthenticationOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverAuthentication) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionFailoverDbRoleToExecute struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role string `pulumi:"role"`
+	// Type of the DB role. Can be either Built In or Custom.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionFailoverDbRoleToExecuteInput is an input type that accepts GetStreamConnectionFailoverDbRoleToExecuteArgs and GetStreamConnectionFailoverDbRoleToExecuteOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoverDbRoleToExecuteInput` via:
+//
+//	GetStreamConnectionFailoverDbRoleToExecuteArgs{...}
+type GetStreamConnectionFailoverDbRoleToExecuteInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoverDbRoleToExecuteOutput() GetStreamConnectionFailoverDbRoleToExecuteOutput
+	ToGetStreamConnectionFailoverDbRoleToExecuteOutputWithContext(context.Context) GetStreamConnectionFailoverDbRoleToExecuteOutput
+}
+
+type GetStreamConnectionFailoverDbRoleToExecuteArgs struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role pulumi.StringInput `pulumi:"role"`
+	// Type of the DB role. Can be either Built In or Custom.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionFailoverDbRoleToExecuteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoverDbRoleToExecute)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoverDbRoleToExecuteArgs) ToGetStreamConnectionFailoverDbRoleToExecuteOutput() GetStreamConnectionFailoverDbRoleToExecuteOutput {
+	return i.ToGetStreamConnectionFailoverDbRoleToExecuteOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoverDbRoleToExecuteArgs) ToGetStreamConnectionFailoverDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionFailoverDbRoleToExecuteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoverDbRoleToExecuteOutput)
+}
+
+type GetStreamConnectionFailoverDbRoleToExecuteOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoverDbRoleToExecuteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoverDbRoleToExecute)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoverDbRoleToExecuteOutput) ToGetStreamConnectionFailoverDbRoleToExecuteOutput() GetStreamConnectionFailoverDbRoleToExecuteOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoverDbRoleToExecuteOutput) ToGetStreamConnectionFailoverDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionFailoverDbRoleToExecuteOutput {
+	return o
+}
+
+// The name of the role to use. Can be a built in role or a custom role.
+func (o GetStreamConnectionFailoverDbRoleToExecuteOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// Type of the DB role. Can be either Built In or Custom.
+func (o GetStreamConnectionFailoverDbRoleToExecuteOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionFailoverNetworking struct {
+	// Information about networking access.
+	Access GetStreamConnectionFailoverNetworkingAccess `pulumi:"access"`
+}
+
+// GetStreamConnectionFailoverNetworkingInput is an input type that accepts GetStreamConnectionFailoverNetworkingArgs and GetStreamConnectionFailoverNetworkingOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoverNetworkingInput` via:
+//
+//	GetStreamConnectionFailoverNetworkingArgs{...}
+type GetStreamConnectionFailoverNetworkingInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoverNetworkingOutput() GetStreamConnectionFailoverNetworkingOutput
+	ToGetStreamConnectionFailoverNetworkingOutputWithContext(context.Context) GetStreamConnectionFailoverNetworkingOutput
+}
+
+type GetStreamConnectionFailoverNetworkingArgs struct {
+	// Information about networking access.
+	Access GetStreamConnectionFailoverNetworkingAccessInput `pulumi:"access"`
+}
+
+func (GetStreamConnectionFailoverNetworkingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoverNetworking)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoverNetworkingArgs) ToGetStreamConnectionFailoverNetworkingOutput() GetStreamConnectionFailoverNetworkingOutput {
+	return i.ToGetStreamConnectionFailoverNetworkingOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoverNetworkingArgs) ToGetStreamConnectionFailoverNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionFailoverNetworkingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoverNetworkingOutput)
+}
+
+type GetStreamConnectionFailoverNetworkingOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoverNetworkingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoverNetworking)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoverNetworkingOutput) ToGetStreamConnectionFailoverNetworkingOutput() GetStreamConnectionFailoverNetworkingOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoverNetworkingOutput) ToGetStreamConnectionFailoverNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionFailoverNetworkingOutput {
+	return o
+}
+
+// Information about networking access.
+func (o GetStreamConnectionFailoverNetworkingOutput) Access() GetStreamConnectionFailoverNetworkingAccessOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverNetworking) GetStreamConnectionFailoverNetworkingAccess {
+		return v.Access
+	}).(GetStreamConnectionFailoverNetworkingAccessOutput)
+}
+
+type GetStreamConnectionFailoverNetworkingAccess struct {
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	ConnectionId string `pulumi:"connectionId"`
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	Name string `pulumi:"name"`
+	// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+	TgwRouteId string `pulumi:"tgwRouteId"`
+	// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionFailoverNetworkingAccessInput is an input type that accepts GetStreamConnectionFailoverNetworkingAccessArgs and GetStreamConnectionFailoverNetworkingAccessOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoverNetworkingAccessInput` via:
+//
+//	GetStreamConnectionFailoverNetworkingAccessArgs{...}
+type GetStreamConnectionFailoverNetworkingAccessInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoverNetworkingAccessOutput() GetStreamConnectionFailoverNetworkingAccessOutput
+	ToGetStreamConnectionFailoverNetworkingAccessOutputWithContext(context.Context) GetStreamConnectionFailoverNetworkingAccessOutput
+}
+
+type GetStreamConnectionFailoverNetworkingAccessArgs struct {
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	ConnectionId pulumi.StringInput `pulumi:"connectionId"`
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+	TgwRouteId pulumi.StringInput `pulumi:"tgwRouteId"`
+	// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionFailoverNetworkingAccessArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoverNetworkingAccess)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoverNetworkingAccessArgs) ToGetStreamConnectionFailoverNetworkingAccessOutput() GetStreamConnectionFailoverNetworkingAccessOutput {
+	return i.ToGetStreamConnectionFailoverNetworkingAccessOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoverNetworkingAccessArgs) ToGetStreamConnectionFailoverNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionFailoverNetworkingAccessOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoverNetworkingAccessOutput)
+}
+
+type GetStreamConnectionFailoverNetworkingAccessOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoverNetworkingAccessOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoverNetworkingAccess)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoverNetworkingAccessOutput) ToGetStreamConnectionFailoverNetworkingAccessOutput() GetStreamConnectionFailoverNetworkingAccessOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoverNetworkingAccessOutput) ToGetStreamConnectionFailoverNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionFailoverNetworkingAccessOutput {
+	return o
+}
+
+// Reserved. Will be used by `PRIVATE_LINK` connection type.
+func (o GetStreamConnectionFailoverNetworkingAccessOutput) ConnectionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverNetworkingAccess) string { return v.ConnectionId }).(pulumi.StringOutput)
+}
+
+// Reserved. Will be used by `PRIVATE_LINK` connection type.
+func (o GetStreamConnectionFailoverNetworkingAccessOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverNetworkingAccess) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+func (o GetStreamConnectionFailoverNetworkingAccessOutput) TgwRouteId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverNetworkingAccess) string { return v.TgwRouteId }).(pulumi.StringOutput)
+}
+
+// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+func (o GetStreamConnectionFailoverNetworkingAccessOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionFailoverSecurity struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL.
+	BrokerPublicCertificate string `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+	Protocol string `pulumi:"protocol"`
+}
+
+// GetStreamConnectionFailoverSecurityInput is an input type that accepts GetStreamConnectionFailoverSecurityArgs and GetStreamConnectionFailoverSecurityOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoverSecurityInput` via:
+//
+//	GetStreamConnectionFailoverSecurityArgs{...}
+type GetStreamConnectionFailoverSecurityInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoverSecurityOutput() GetStreamConnectionFailoverSecurityOutput
+	ToGetStreamConnectionFailoverSecurityOutputWithContext(context.Context) GetStreamConnectionFailoverSecurityOutput
+}
+
+type GetStreamConnectionFailoverSecurityArgs struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL.
+	BrokerPublicCertificate pulumi.StringInput `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+}
+
+func (GetStreamConnectionFailoverSecurityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoverSecurity)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoverSecurityArgs) ToGetStreamConnectionFailoverSecurityOutput() GetStreamConnectionFailoverSecurityOutput {
+	return i.ToGetStreamConnectionFailoverSecurityOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoverSecurityArgs) ToGetStreamConnectionFailoverSecurityOutputWithContext(ctx context.Context) GetStreamConnectionFailoverSecurityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoverSecurityOutput)
+}
+
+type GetStreamConnectionFailoverSecurityOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoverSecurityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoverSecurity)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoverSecurityOutput) ToGetStreamConnectionFailoverSecurityOutput() GetStreamConnectionFailoverSecurityOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoverSecurityOutput) ToGetStreamConnectionFailoverSecurityOutputWithContext(ctx context.Context) GetStreamConnectionFailoverSecurityOutput {
+	return o
+}
+
+// A trusted, public x509 certificate for connecting to Kafka over SSL.
+func (o GetStreamConnectionFailoverSecurityOutput) BrokerPublicCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverSecurity) string { return v.BrokerPublicCertificate }).(pulumi.StringOutput)
+}
+
+// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+func (o GetStreamConnectionFailoverSecurityOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoverSecurity) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionFailoversResult struct {
+	// Applies to type: Kafka. User credentials required to connect to a Kafka Cluster. Includes the authentication type, as well as the parameters for that authentication mode.
+	Authentication GetStreamConnectionFailoversResultAuthentication `pulumi:"authentication"`
+	// Applies to type: Kafka. Comma separated list of server addresses.
+	BootstrapServers string `pulumi:"bootstrapServers"`
+	// Applies to type: Cluster. Name of the cluster configured for this connection.
+	ClusterName string `pulumi:"clusterName"`
+	// Applies to type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
+	ClusterProjectId string `pulumi:"clusterProjectId"`
+	// Applies to type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+	Config map[string]string `pulumi:"config"`
+	// Applies to type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+	DbRoleToExecute GetStreamConnectionFailoversResultDbRoleToExecute `pulumi:"dbRoleToExecute"`
+	// Unique identifier of the connection.
+	FailoverConnectionId string `pulumi:"failoverConnectionId"`
+	// Applies to type: Kafka. Networking configuration for Streams connections.
+	Networking GetStreamConnectionFailoversResultNetworking `pulumi:"networking"`
+	// The connection's region.
+	Region string `pulumi:"region"`
+	// Applies to type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
+	Security GetStreamConnectionFailoversResultSecurity `pulumi:"security"`
+	// The state of the connection.
+	State string `pulumi:"state"`
+	// Type of the connection.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionFailoversResultInput is an input type that accepts GetStreamConnectionFailoversResultArgs and GetStreamConnectionFailoversResultOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoversResultInput` via:
+//
+//	GetStreamConnectionFailoversResultArgs{...}
+type GetStreamConnectionFailoversResultInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoversResultOutput() GetStreamConnectionFailoversResultOutput
+	ToGetStreamConnectionFailoversResultOutputWithContext(context.Context) GetStreamConnectionFailoversResultOutput
+}
+
+type GetStreamConnectionFailoversResultArgs struct {
+	// Applies to type: Kafka. User credentials required to connect to a Kafka Cluster. Includes the authentication type, as well as the parameters for that authentication mode.
+	Authentication GetStreamConnectionFailoversResultAuthenticationInput `pulumi:"authentication"`
+	// Applies to type: Kafka. Comma separated list of server addresses.
+	BootstrapServers pulumi.StringInput `pulumi:"bootstrapServers"`
+	// Applies to type: Cluster. Name of the cluster configured for this connection.
+	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	// Applies to type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
+	ClusterProjectId pulumi.StringInput `pulumi:"clusterProjectId"`
+	// Applies to type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+	Config pulumi.StringMapInput `pulumi:"config"`
+	// Applies to type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+	DbRoleToExecute GetStreamConnectionFailoversResultDbRoleToExecuteInput `pulumi:"dbRoleToExecute"`
+	// Unique identifier of the connection.
+	FailoverConnectionId pulumi.StringInput `pulumi:"failoverConnectionId"`
+	// Applies to type: Kafka. Networking configuration for Streams connections.
+	Networking GetStreamConnectionFailoversResultNetworkingInput `pulumi:"networking"`
+	// The connection's region.
+	Region pulumi.StringInput `pulumi:"region"`
+	// Applies to type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
+	Security GetStreamConnectionFailoversResultSecurityInput `pulumi:"security"`
+	// The state of the connection.
+	State pulumi.StringInput `pulumi:"state"`
+	// Type of the connection.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionFailoversResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResult)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoversResultArgs) ToGetStreamConnectionFailoversResultOutput() GetStreamConnectionFailoversResultOutput {
+	return i.ToGetStreamConnectionFailoversResultOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoversResultArgs) ToGetStreamConnectionFailoversResultOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultOutput)
+}
+
+// GetStreamConnectionFailoversResultArrayInput is an input type that accepts GetStreamConnectionFailoversResultArray and GetStreamConnectionFailoversResultArrayOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoversResultArrayInput` via:
+//
+//	GetStreamConnectionFailoversResultArray{ GetStreamConnectionFailoversResultArgs{...} }
+type GetStreamConnectionFailoversResultArrayInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoversResultArrayOutput() GetStreamConnectionFailoversResultArrayOutput
+	ToGetStreamConnectionFailoversResultArrayOutputWithContext(context.Context) GetStreamConnectionFailoversResultArrayOutput
+}
+
+type GetStreamConnectionFailoversResultArray []GetStreamConnectionFailoversResultInput
+
+func (GetStreamConnectionFailoversResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamConnectionFailoversResult)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoversResultArray) ToGetStreamConnectionFailoversResultArrayOutput() GetStreamConnectionFailoversResultArrayOutput {
+	return i.ToGetStreamConnectionFailoversResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoversResultArray) ToGetStreamConnectionFailoversResultArrayOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultArrayOutput)
+}
+
+type GetStreamConnectionFailoversResultOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoversResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResult)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoversResultOutput) ToGetStreamConnectionFailoversResultOutput() GetStreamConnectionFailoversResultOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoversResultOutput) ToGetStreamConnectionFailoversResultOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultOutput {
+	return o
+}
+
+// Applies to type: Kafka. User credentials required to connect to a Kafka Cluster. Includes the authentication type, as well as the parameters for that authentication mode.
+func (o GetStreamConnectionFailoversResultOutput) Authentication() GetStreamConnectionFailoversResultAuthenticationOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResult) GetStreamConnectionFailoversResultAuthentication {
+		return v.Authentication
+	}).(GetStreamConnectionFailoversResultAuthenticationOutput)
+}
+
+// Applies to type: Kafka. Comma separated list of server addresses.
+func (o GetStreamConnectionFailoversResultOutput) BootstrapServers() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResult) string { return v.BootstrapServers }).(pulumi.StringOutput)
+}
+
+// Applies to type: Cluster. Name of the cluster configured for this connection.
+func (o GetStreamConnectionFailoversResultOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// Applies to type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
+func (o GetStreamConnectionFailoversResultOutput) ClusterProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResult) string { return v.ClusterProjectId }).(pulumi.StringOutput)
+}
+
+// Applies to type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+func (o GetStreamConnectionFailoversResultOutput) Config() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResult) map[string]string { return v.Config }).(pulumi.StringMapOutput)
+}
+
+// Applies to type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+func (o GetStreamConnectionFailoversResultOutput) DbRoleToExecute() GetStreamConnectionFailoversResultDbRoleToExecuteOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResult) GetStreamConnectionFailoversResultDbRoleToExecute {
+		return v.DbRoleToExecute
+	}).(GetStreamConnectionFailoversResultDbRoleToExecuteOutput)
+}
+
+// Unique identifier of the connection.
+func (o GetStreamConnectionFailoversResultOutput) FailoverConnectionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResult) string { return v.FailoverConnectionId }).(pulumi.StringOutput)
+}
+
+// Applies to type: Kafka. Networking configuration for Streams connections.
+func (o GetStreamConnectionFailoversResultOutput) Networking() GetStreamConnectionFailoversResultNetworkingOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResult) GetStreamConnectionFailoversResultNetworking {
+		return v.Networking
+	}).(GetStreamConnectionFailoversResultNetworkingOutput)
+}
+
+// The connection's region.
+func (o GetStreamConnectionFailoversResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Applies to type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
+func (o GetStreamConnectionFailoversResultOutput) Security() GetStreamConnectionFailoversResultSecurityOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResult) GetStreamConnectionFailoversResultSecurity {
+		return v.Security
+	}).(GetStreamConnectionFailoversResultSecurityOutput)
+}
+
+// The state of the connection.
+func (o GetStreamConnectionFailoversResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResult) string { return v.State }).(pulumi.StringOutput)
+}
+
+// Type of the connection.
+func (o GetStreamConnectionFailoversResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionFailoversResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoversResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamConnectionFailoversResult)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoversResultArrayOutput) ToGetStreamConnectionFailoversResultArrayOutput() GetStreamConnectionFailoversResultArrayOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoversResultArrayOutput) ToGetStreamConnectionFailoversResultArrayOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultArrayOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoversResultArrayOutput) Index(i pulumi.IntInput) GetStreamConnectionFailoversResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamConnectionFailoversResult {
+		return vs[0].([]GetStreamConnectionFailoversResult)[vs[1].(int)]
+	}).(GetStreamConnectionFailoversResultOutput)
+}
+
+type GetStreamConnectionFailoversResultAuthentication struct {
+	// OIDC client identifier for authentication to the Kafka cluster.
+	ClientId string `pulumi:"clientId"`
+	// OIDC client secret for authentication to the Kafka cluster.
+	ClientSecret string `pulumi:"clientSecret"`
+	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+	Mechanism string `pulumi:"mechanism"`
+	// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+	Method string `pulumi:"method"`
+	// Password of the account to connect to the Kafka cluster.
+	Password string `pulumi:"password"`
+	// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+	SaslOauthbearerExtensions string `pulumi:"saslOauthbearerExtensions"`
+	// OIDC scope parameter defining the access permissions requested.
+	Scope string `pulumi:"scope"`
+	// SSL certificate for client authentication to Kafka.
+	SslCertificate string `pulumi:"sslCertificate"`
+	// SSL key for client authentication to Kafka.
+	SslKey string `pulumi:"sslKey"`
+	// Password for the SSL key, if it is password protected.
+	SslKeyPassword string `pulumi:"sslKeyPassword"`
+	// OIDC token endpoint URL for obtaining access tokens.
+	TokenEndpointUrl string `pulumi:"tokenEndpointUrl"`
+	// Username of the account to connect to the Kafka cluster.
+	Username string `pulumi:"username"`
+}
+
+// GetStreamConnectionFailoversResultAuthenticationInput is an input type that accepts GetStreamConnectionFailoversResultAuthenticationArgs and GetStreamConnectionFailoversResultAuthenticationOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoversResultAuthenticationInput` via:
+//
+//	GetStreamConnectionFailoversResultAuthenticationArgs{...}
+type GetStreamConnectionFailoversResultAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoversResultAuthenticationOutput() GetStreamConnectionFailoversResultAuthenticationOutput
+	ToGetStreamConnectionFailoversResultAuthenticationOutputWithContext(context.Context) GetStreamConnectionFailoversResultAuthenticationOutput
+}
+
+type GetStreamConnectionFailoversResultAuthenticationArgs struct {
+	// OIDC client identifier for authentication to the Kafka cluster.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// OIDC client secret for authentication to the Kafka cluster.
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+	Mechanism pulumi.StringInput `pulumi:"mechanism"`
+	// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+	Method pulumi.StringInput `pulumi:"method"`
+	// Password of the account to connect to the Kafka cluster.
+	Password pulumi.StringInput `pulumi:"password"`
+	// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+	SaslOauthbearerExtensions pulumi.StringInput `pulumi:"saslOauthbearerExtensions"`
+	// OIDC scope parameter defining the access permissions requested.
+	Scope pulumi.StringInput `pulumi:"scope"`
+	// SSL certificate for client authentication to Kafka.
+	SslCertificate pulumi.StringInput `pulumi:"sslCertificate"`
+	// SSL key for client authentication to Kafka.
+	SslKey pulumi.StringInput `pulumi:"sslKey"`
+	// Password for the SSL key, if it is password protected.
+	SslKeyPassword pulumi.StringInput `pulumi:"sslKeyPassword"`
+	// OIDC token endpoint URL for obtaining access tokens.
+	TokenEndpointUrl pulumi.StringInput `pulumi:"tokenEndpointUrl"`
+	// Username of the account to connect to the Kafka cluster.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetStreamConnectionFailoversResultAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultAuthentication)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoversResultAuthenticationArgs) ToGetStreamConnectionFailoversResultAuthenticationOutput() GetStreamConnectionFailoversResultAuthenticationOutput {
+	return i.ToGetStreamConnectionFailoversResultAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoversResultAuthenticationArgs) ToGetStreamConnectionFailoversResultAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultAuthenticationOutput)
+}
+
+type GetStreamConnectionFailoversResultAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoversResultAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultAuthentication)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) ToGetStreamConnectionFailoversResultAuthenticationOutput() GetStreamConnectionFailoversResultAuthenticationOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) ToGetStreamConnectionFailoversResultAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultAuthenticationOutput {
+	return o
+}
+
+// OIDC client identifier for authentication to the Kafka cluster.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// OIDC client secret for authentication to the Kafka cluster.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) Mechanism() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Mechanism }).(pulumi.StringOutput)
+}
+
+// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Method }).(pulumi.StringOutput)
+}
+
+// Password of the account to connect to the Kafka cluster.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) SaslOauthbearerExtensions() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.SaslOauthbearerExtensions }).(pulumi.StringOutput)
+}
+
+// OIDC scope parameter defining the access permissions requested.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+// SSL certificate for client authentication to Kafka.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) SslCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.SslCertificate }).(pulumi.StringOutput)
+}
+
+// SSL key for client authentication to Kafka.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) SslKey() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.SslKey }).(pulumi.StringOutput)
+}
+
+// Password for the SSL key, if it is password protected.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) SslKeyPassword() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.SslKeyPassword }).(pulumi.StringOutput)
+}
+
+// OIDC token endpoint URL for obtaining access tokens.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) TokenEndpointUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.TokenEndpointUrl }).(pulumi.StringOutput)
+}
+
+// Username of the account to connect to the Kafka cluster.
+func (o GetStreamConnectionFailoversResultAuthenticationOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionFailoversResultDbRoleToExecute struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role string `pulumi:"role"`
+	// Type of the DB role. Can be either Built In or Custom.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionFailoversResultDbRoleToExecuteInput is an input type that accepts GetStreamConnectionFailoversResultDbRoleToExecuteArgs and GetStreamConnectionFailoversResultDbRoleToExecuteOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoversResultDbRoleToExecuteInput` via:
+//
+//	GetStreamConnectionFailoversResultDbRoleToExecuteArgs{...}
+type GetStreamConnectionFailoversResultDbRoleToExecuteInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoversResultDbRoleToExecuteOutput() GetStreamConnectionFailoversResultDbRoleToExecuteOutput
+	ToGetStreamConnectionFailoversResultDbRoleToExecuteOutputWithContext(context.Context) GetStreamConnectionFailoversResultDbRoleToExecuteOutput
+}
+
+type GetStreamConnectionFailoversResultDbRoleToExecuteArgs struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role pulumi.StringInput `pulumi:"role"`
+	// Type of the DB role. Can be either Built In or Custom.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionFailoversResultDbRoleToExecuteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultDbRoleToExecute)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoversResultDbRoleToExecuteArgs) ToGetStreamConnectionFailoversResultDbRoleToExecuteOutput() GetStreamConnectionFailoversResultDbRoleToExecuteOutput {
+	return i.ToGetStreamConnectionFailoversResultDbRoleToExecuteOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoversResultDbRoleToExecuteArgs) ToGetStreamConnectionFailoversResultDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultDbRoleToExecuteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultDbRoleToExecuteOutput)
+}
+
+type GetStreamConnectionFailoversResultDbRoleToExecuteOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoversResultDbRoleToExecuteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultDbRoleToExecute)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoversResultDbRoleToExecuteOutput) ToGetStreamConnectionFailoversResultDbRoleToExecuteOutput() GetStreamConnectionFailoversResultDbRoleToExecuteOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoversResultDbRoleToExecuteOutput) ToGetStreamConnectionFailoversResultDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultDbRoleToExecuteOutput {
+	return o
+}
+
+// The name of the role to use. Can be a built in role or a custom role.
+func (o GetStreamConnectionFailoversResultDbRoleToExecuteOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// Type of the DB role. Can be either Built In or Custom.
+func (o GetStreamConnectionFailoversResultDbRoleToExecuteOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionFailoversResultNetworking struct {
+	// Information about networking access.
+	Access GetStreamConnectionFailoversResultNetworkingAccess `pulumi:"access"`
+}
+
+// GetStreamConnectionFailoversResultNetworkingInput is an input type that accepts GetStreamConnectionFailoversResultNetworkingArgs and GetStreamConnectionFailoversResultNetworkingOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoversResultNetworkingInput` via:
+//
+//	GetStreamConnectionFailoversResultNetworkingArgs{...}
+type GetStreamConnectionFailoversResultNetworkingInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoversResultNetworkingOutput() GetStreamConnectionFailoversResultNetworkingOutput
+	ToGetStreamConnectionFailoversResultNetworkingOutputWithContext(context.Context) GetStreamConnectionFailoversResultNetworkingOutput
+}
+
+type GetStreamConnectionFailoversResultNetworkingArgs struct {
+	// Information about networking access.
+	Access GetStreamConnectionFailoversResultNetworkingAccessInput `pulumi:"access"`
+}
+
+func (GetStreamConnectionFailoversResultNetworkingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultNetworking)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoversResultNetworkingArgs) ToGetStreamConnectionFailoversResultNetworkingOutput() GetStreamConnectionFailoversResultNetworkingOutput {
+	return i.ToGetStreamConnectionFailoversResultNetworkingOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoversResultNetworkingArgs) ToGetStreamConnectionFailoversResultNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultNetworkingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultNetworkingOutput)
+}
+
+type GetStreamConnectionFailoversResultNetworkingOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoversResultNetworkingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultNetworking)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoversResultNetworkingOutput) ToGetStreamConnectionFailoversResultNetworkingOutput() GetStreamConnectionFailoversResultNetworkingOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoversResultNetworkingOutput) ToGetStreamConnectionFailoversResultNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultNetworkingOutput {
+	return o
+}
+
+// Information about networking access.
+func (o GetStreamConnectionFailoversResultNetworkingOutput) Access() GetStreamConnectionFailoversResultNetworkingAccessOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultNetworking) GetStreamConnectionFailoversResultNetworkingAccess {
+		return v.Access
+	}).(GetStreamConnectionFailoversResultNetworkingAccessOutput)
+}
+
+type GetStreamConnectionFailoversResultNetworkingAccess struct {
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	ConnectionId string `pulumi:"connectionId"`
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	Name string `pulumi:"name"`
+	// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+	TgwRouteId string `pulumi:"tgwRouteId"`
+	// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionFailoversResultNetworkingAccessInput is an input type that accepts GetStreamConnectionFailoversResultNetworkingAccessArgs and GetStreamConnectionFailoversResultNetworkingAccessOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoversResultNetworkingAccessInput` via:
+//
+//	GetStreamConnectionFailoversResultNetworkingAccessArgs{...}
+type GetStreamConnectionFailoversResultNetworkingAccessInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoversResultNetworkingAccessOutput() GetStreamConnectionFailoversResultNetworkingAccessOutput
+	ToGetStreamConnectionFailoversResultNetworkingAccessOutputWithContext(context.Context) GetStreamConnectionFailoversResultNetworkingAccessOutput
+}
+
+type GetStreamConnectionFailoversResultNetworkingAccessArgs struct {
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	ConnectionId pulumi.StringInput `pulumi:"connectionId"`
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+	TgwRouteId pulumi.StringInput `pulumi:"tgwRouteId"`
+	// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionFailoversResultNetworkingAccessArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultNetworkingAccess)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoversResultNetworkingAccessArgs) ToGetStreamConnectionFailoversResultNetworkingAccessOutput() GetStreamConnectionFailoversResultNetworkingAccessOutput {
+	return i.ToGetStreamConnectionFailoversResultNetworkingAccessOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoversResultNetworkingAccessArgs) ToGetStreamConnectionFailoversResultNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultNetworkingAccessOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultNetworkingAccessOutput)
+}
+
+type GetStreamConnectionFailoversResultNetworkingAccessOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoversResultNetworkingAccessOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultNetworkingAccess)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) ToGetStreamConnectionFailoversResultNetworkingAccessOutput() GetStreamConnectionFailoversResultNetworkingAccessOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) ToGetStreamConnectionFailoversResultNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultNetworkingAccessOutput {
+	return o
+}
+
+// Reserved. Will be used by `PRIVATE_LINK` connection type.
+func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) ConnectionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultNetworkingAccess) string { return v.ConnectionId }).(pulumi.StringOutput)
+}
+
+// Reserved. Will be used by `PRIVATE_LINK` connection type.
+func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultNetworkingAccess) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) TgwRouteId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultNetworkingAccess) string { return v.TgwRouteId }).(pulumi.StringOutput)
+}
+
+// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionFailoversResultSecurity struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL.
+	BrokerPublicCertificate string `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+	Protocol string `pulumi:"protocol"`
+}
+
+// GetStreamConnectionFailoversResultSecurityInput is an input type that accepts GetStreamConnectionFailoversResultSecurityArgs and GetStreamConnectionFailoversResultSecurityOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoversResultSecurityInput` via:
+//
+//	GetStreamConnectionFailoversResultSecurityArgs{...}
+type GetStreamConnectionFailoversResultSecurityInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoversResultSecurityOutput() GetStreamConnectionFailoversResultSecurityOutput
+	ToGetStreamConnectionFailoversResultSecurityOutputWithContext(context.Context) GetStreamConnectionFailoversResultSecurityOutput
+}
+
+type GetStreamConnectionFailoversResultSecurityArgs struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL.
+	BrokerPublicCertificate pulumi.StringInput `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+}
+
+func (GetStreamConnectionFailoversResultSecurityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultSecurity)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoversResultSecurityArgs) ToGetStreamConnectionFailoversResultSecurityOutput() GetStreamConnectionFailoversResultSecurityOutput {
+	return i.ToGetStreamConnectionFailoversResultSecurityOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoversResultSecurityArgs) ToGetStreamConnectionFailoversResultSecurityOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultSecurityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultSecurityOutput)
+}
+
+type GetStreamConnectionFailoversResultSecurityOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoversResultSecurityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultSecurity)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoversResultSecurityOutput) ToGetStreamConnectionFailoversResultSecurityOutput() GetStreamConnectionFailoversResultSecurityOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoversResultSecurityOutput) ToGetStreamConnectionFailoversResultSecurityOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultSecurityOutput {
+	return o
+}
+
+// A trusted, public x509 certificate for connecting to Kafka over SSL.
+func (o GetStreamConnectionFailoversResultSecurityOutput) BrokerPublicCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultSecurity) string { return v.BrokerPublicCertificate }).(pulumi.StringOutput)
+}
+
+// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+func (o GetStreamConnectionFailoversResultSecurityOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultSecurity) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
 type GetStreamConnectionGcp struct {
 	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
 	ServiceAccountId string `pulumi:"serviceAccountId"`
@@ -61130,6 +63446,8 @@ func (o GetStreamProcessorOptionsDlqOutput) Db() pulumi.StringOutput {
 }
 
 type GetStreamProcessorsResult struct {
+	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+	FailoverEnabled bool `pulumi:"failoverEnabled"`
 	// Unique 24-hexadecimal character string that identifies the stream processor.
 	Id string `pulumi:"id"`
 	// Label that identifies the stream processing workspace.
@@ -61166,6 +63484,8 @@ type GetStreamProcessorsResultInput interface {
 }
 
 type GetStreamProcessorsResultArgs struct {
+	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+	FailoverEnabled pulumi.BoolInput `pulumi:"failoverEnabled"`
 	// Unique 24-hexadecimal character string that identifies the stream processor.
 	Id pulumi.StringInput `pulumi:"id"`
 	// Label that identifies the stream processing workspace.
@@ -61239,6 +63559,11 @@ func (o GetStreamProcessorsResultOutput) ToGetStreamProcessorsResultOutput() Get
 
 func (o GetStreamProcessorsResultOutput) ToGetStreamProcessorsResultOutputWithContext(ctx context.Context) GetStreamProcessorsResultOutput {
 	return o
+}
+
+// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+func (o GetStreamProcessorsResultOutput) FailoverEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) bool { return v.FailoverEnabled }).(pulumi.BoolOutput)
 }
 
 // Unique 24-hexadecimal character string that identifies the stream processor.
@@ -61496,6 +63821,112 @@ func (o GetStreamWorkspaceDataProcessRegionOutput) Region() pulumi.StringOutput 
 	return o.ApplyT(func(v GetStreamWorkspaceDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
 }
 
+type GetStreamWorkspaceFailoverRegion struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+	Region string `pulumi:"region"`
+}
+
+// GetStreamWorkspaceFailoverRegionInput is an input type that accepts GetStreamWorkspaceFailoverRegionArgs and GetStreamWorkspaceFailoverRegionOutput values.
+// You can construct a concrete instance of `GetStreamWorkspaceFailoverRegionInput` via:
+//
+//	GetStreamWorkspaceFailoverRegionArgs{...}
+type GetStreamWorkspaceFailoverRegionInput interface {
+	pulumi.Input
+
+	ToGetStreamWorkspaceFailoverRegionOutput() GetStreamWorkspaceFailoverRegionOutput
+	ToGetStreamWorkspaceFailoverRegionOutputWithContext(context.Context) GetStreamWorkspaceFailoverRegionOutput
+}
+
+type GetStreamWorkspaceFailoverRegionArgs struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetStreamWorkspaceFailoverRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamWorkspaceFailoverRegion)(nil)).Elem()
+}
+
+func (i GetStreamWorkspaceFailoverRegionArgs) ToGetStreamWorkspaceFailoverRegionOutput() GetStreamWorkspaceFailoverRegionOutput {
+	return i.ToGetStreamWorkspaceFailoverRegionOutputWithContext(context.Background())
+}
+
+func (i GetStreamWorkspaceFailoverRegionArgs) ToGetStreamWorkspaceFailoverRegionOutputWithContext(ctx context.Context) GetStreamWorkspaceFailoverRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspaceFailoverRegionOutput)
+}
+
+// GetStreamWorkspaceFailoverRegionArrayInput is an input type that accepts GetStreamWorkspaceFailoverRegionArray and GetStreamWorkspaceFailoverRegionArrayOutput values.
+// You can construct a concrete instance of `GetStreamWorkspaceFailoverRegionArrayInput` via:
+//
+//	GetStreamWorkspaceFailoverRegionArray{ GetStreamWorkspaceFailoverRegionArgs{...} }
+type GetStreamWorkspaceFailoverRegionArrayInput interface {
+	pulumi.Input
+
+	ToGetStreamWorkspaceFailoverRegionArrayOutput() GetStreamWorkspaceFailoverRegionArrayOutput
+	ToGetStreamWorkspaceFailoverRegionArrayOutputWithContext(context.Context) GetStreamWorkspaceFailoverRegionArrayOutput
+}
+
+type GetStreamWorkspaceFailoverRegionArray []GetStreamWorkspaceFailoverRegionInput
+
+func (GetStreamWorkspaceFailoverRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamWorkspaceFailoverRegion)(nil)).Elem()
+}
+
+func (i GetStreamWorkspaceFailoverRegionArray) ToGetStreamWorkspaceFailoverRegionArrayOutput() GetStreamWorkspaceFailoverRegionArrayOutput {
+	return i.ToGetStreamWorkspaceFailoverRegionArrayOutputWithContext(context.Background())
+}
+
+func (i GetStreamWorkspaceFailoverRegionArray) ToGetStreamWorkspaceFailoverRegionArrayOutputWithContext(ctx context.Context) GetStreamWorkspaceFailoverRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspaceFailoverRegionArrayOutput)
+}
+
+type GetStreamWorkspaceFailoverRegionOutput struct{ *pulumi.OutputState }
+
+func (GetStreamWorkspaceFailoverRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamWorkspaceFailoverRegion)(nil)).Elem()
+}
+
+func (o GetStreamWorkspaceFailoverRegionOutput) ToGetStreamWorkspaceFailoverRegionOutput() GetStreamWorkspaceFailoverRegionOutput {
+	return o
+}
+
+func (o GetStreamWorkspaceFailoverRegionOutput) ToGetStreamWorkspaceFailoverRegionOutputWithContext(ctx context.Context) GetStreamWorkspaceFailoverRegionOutput {
+	return o
+}
+
+// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+func (o GetStreamWorkspaceFailoverRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamWorkspaceFailoverRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+func (o GetStreamWorkspaceFailoverRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamWorkspaceFailoverRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetStreamWorkspaceFailoverRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStreamWorkspaceFailoverRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamWorkspaceFailoverRegion)(nil)).Elem()
+}
+
+func (o GetStreamWorkspaceFailoverRegionArrayOutput) ToGetStreamWorkspaceFailoverRegionArrayOutput() GetStreamWorkspaceFailoverRegionArrayOutput {
+	return o
+}
+
+func (o GetStreamWorkspaceFailoverRegionArrayOutput) ToGetStreamWorkspaceFailoverRegionArrayOutputWithContext(ctx context.Context) GetStreamWorkspaceFailoverRegionArrayOutput {
+	return o
+}
+
+func (o GetStreamWorkspaceFailoverRegionArrayOutput) Index(i pulumi.IntInput) GetStreamWorkspaceFailoverRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamWorkspaceFailoverRegion {
+		return vs[0].([]GetStreamWorkspaceFailoverRegion)[vs[1].(int)]
+	}).(GetStreamWorkspaceFailoverRegionOutput)
+}
+
 type GetStreamWorkspaceStreamConfig struct {
 	MaxTierSize string `pulumi:"maxTierSize"`
 	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
@@ -61557,6 +63988,7 @@ func (o GetStreamWorkspaceStreamConfigOutput) Tier() pulumi.StringOutput {
 type GetStreamWorkspacesResult struct {
 	// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
 	DataProcessRegion GetStreamWorkspacesResultDataProcessRegion `pulumi:"dataProcessRegion"`
+	FailoverRegions   []GetStreamWorkspacesResultFailoverRegion  `pulumi:"failoverRegions"`
 	// List that contains the hostnames assigned to the stream workspace.
 	Hostnames []string `pulumi:"hostnames"`
 	Id        string   `pulumi:"id"`
@@ -61581,7 +64013,8 @@ type GetStreamWorkspacesResultInput interface {
 
 type GetStreamWorkspacesResultArgs struct {
 	// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
-	DataProcessRegion GetStreamWorkspacesResultDataProcessRegionInput `pulumi:"dataProcessRegion"`
+	DataProcessRegion GetStreamWorkspacesResultDataProcessRegionInput   `pulumi:"dataProcessRegion"`
+	FailoverRegions   GetStreamWorkspacesResultFailoverRegionArrayInput `pulumi:"failoverRegions"`
 	// List that contains the hostnames assigned to the stream workspace.
 	Hostnames pulumi.StringArrayInput `pulumi:"hostnames"`
 	Id        pulumi.StringInput      `pulumi:"id"`
@@ -61649,6 +64082,10 @@ func (o GetStreamWorkspacesResultOutput) DataProcessRegion() GetStreamWorkspaces
 	return o.ApplyT(func(v GetStreamWorkspacesResult) GetStreamWorkspacesResultDataProcessRegion {
 		return v.DataProcessRegion
 	}).(GetStreamWorkspacesResultDataProcessRegionOutput)
+}
+
+func (o GetStreamWorkspacesResultOutput) FailoverRegions() GetStreamWorkspacesResultFailoverRegionArrayOutput {
+	return o.ApplyT(func(v GetStreamWorkspacesResult) []GetStreamWorkspacesResultFailoverRegion { return v.FailoverRegions }).(GetStreamWorkspacesResultFailoverRegionArrayOutput)
 }
 
 // List that contains the hostnames assigned to the stream workspace.
@@ -61754,6 +64191,112 @@ func (o GetStreamWorkspacesResultDataProcessRegionOutput) CloudProvider() pulumi
 // Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
 func (o GetStreamWorkspacesResultDataProcessRegionOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamWorkspacesResultDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetStreamWorkspacesResultFailoverRegion struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+	Region string `pulumi:"region"`
+}
+
+// GetStreamWorkspacesResultFailoverRegionInput is an input type that accepts GetStreamWorkspacesResultFailoverRegionArgs and GetStreamWorkspacesResultFailoverRegionOutput values.
+// You can construct a concrete instance of `GetStreamWorkspacesResultFailoverRegionInput` via:
+//
+//	GetStreamWorkspacesResultFailoverRegionArgs{...}
+type GetStreamWorkspacesResultFailoverRegionInput interface {
+	pulumi.Input
+
+	ToGetStreamWorkspacesResultFailoverRegionOutput() GetStreamWorkspacesResultFailoverRegionOutput
+	ToGetStreamWorkspacesResultFailoverRegionOutputWithContext(context.Context) GetStreamWorkspacesResultFailoverRegionOutput
+}
+
+type GetStreamWorkspacesResultFailoverRegionArgs struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetStreamWorkspacesResultFailoverRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamWorkspacesResultFailoverRegion)(nil)).Elem()
+}
+
+func (i GetStreamWorkspacesResultFailoverRegionArgs) ToGetStreamWorkspacesResultFailoverRegionOutput() GetStreamWorkspacesResultFailoverRegionOutput {
+	return i.ToGetStreamWorkspacesResultFailoverRegionOutputWithContext(context.Background())
+}
+
+func (i GetStreamWorkspacesResultFailoverRegionArgs) ToGetStreamWorkspacesResultFailoverRegionOutputWithContext(ctx context.Context) GetStreamWorkspacesResultFailoverRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspacesResultFailoverRegionOutput)
+}
+
+// GetStreamWorkspacesResultFailoverRegionArrayInput is an input type that accepts GetStreamWorkspacesResultFailoverRegionArray and GetStreamWorkspacesResultFailoverRegionArrayOutput values.
+// You can construct a concrete instance of `GetStreamWorkspacesResultFailoverRegionArrayInput` via:
+//
+//	GetStreamWorkspacesResultFailoverRegionArray{ GetStreamWorkspacesResultFailoverRegionArgs{...} }
+type GetStreamWorkspacesResultFailoverRegionArrayInput interface {
+	pulumi.Input
+
+	ToGetStreamWorkspacesResultFailoverRegionArrayOutput() GetStreamWorkspacesResultFailoverRegionArrayOutput
+	ToGetStreamWorkspacesResultFailoverRegionArrayOutputWithContext(context.Context) GetStreamWorkspacesResultFailoverRegionArrayOutput
+}
+
+type GetStreamWorkspacesResultFailoverRegionArray []GetStreamWorkspacesResultFailoverRegionInput
+
+func (GetStreamWorkspacesResultFailoverRegionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamWorkspacesResultFailoverRegion)(nil)).Elem()
+}
+
+func (i GetStreamWorkspacesResultFailoverRegionArray) ToGetStreamWorkspacesResultFailoverRegionArrayOutput() GetStreamWorkspacesResultFailoverRegionArrayOutput {
+	return i.ToGetStreamWorkspacesResultFailoverRegionArrayOutputWithContext(context.Background())
+}
+
+func (i GetStreamWorkspacesResultFailoverRegionArray) ToGetStreamWorkspacesResultFailoverRegionArrayOutputWithContext(ctx context.Context) GetStreamWorkspacesResultFailoverRegionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspacesResultFailoverRegionArrayOutput)
+}
+
+type GetStreamWorkspacesResultFailoverRegionOutput struct{ *pulumi.OutputState }
+
+func (GetStreamWorkspacesResultFailoverRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamWorkspacesResultFailoverRegion)(nil)).Elem()
+}
+
+func (o GetStreamWorkspacesResultFailoverRegionOutput) ToGetStreamWorkspacesResultFailoverRegionOutput() GetStreamWorkspacesResultFailoverRegionOutput {
+	return o
+}
+
+func (o GetStreamWorkspacesResultFailoverRegionOutput) ToGetStreamWorkspacesResultFailoverRegionOutputWithContext(ctx context.Context) GetStreamWorkspacesResultFailoverRegionOutput {
+	return o
+}
+
+// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+func (o GetStreamWorkspacesResultFailoverRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamWorkspacesResultFailoverRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
+func (o GetStreamWorkspacesResultFailoverRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamWorkspacesResultFailoverRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetStreamWorkspacesResultFailoverRegionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStreamWorkspacesResultFailoverRegionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamWorkspacesResultFailoverRegion)(nil)).Elem()
+}
+
+func (o GetStreamWorkspacesResultFailoverRegionArrayOutput) ToGetStreamWorkspacesResultFailoverRegionArrayOutput() GetStreamWorkspacesResultFailoverRegionArrayOutput {
+	return o
+}
+
+func (o GetStreamWorkspacesResultFailoverRegionArrayOutput) ToGetStreamWorkspacesResultFailoverRegionArrayOutputWithContext(ctx context.Context) GetStreamWorkspacesResultFailoverRegionArrayOutput {
+	return o
+}
+
+func (o GetStreamWorkspacesResultFailoverRegionArrayOutput) Index(i pulumi.IntInput) GetStreamWorkspacesResultFailoverRegionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamWorkspacesResultFailoverRegion {
+		return vs[0].([]GetStreamWorkspacesResultFailoverRegion)[vs[1].(int)]
+	}).(GetStreamWorkspacesResultFailoverRegionOutput)
 }
 
 type GetStreamWorkspacesResultStreamConfig struct {
@@ -62886,6 +65429,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAzurePtrInput)(nil)).Elem(), StreamConnectionAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionDbRoleToExecuteInput)(nil)).Elem(), StreamConnectionDbRoleToExecuteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionDbRoleToExecutePtrInput)(nil)).Elem(), StreamConnectionDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionFailoverAuthenticationInput)(nil)).Elem(), StreamConnectionFailoverAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionFailoverAuthenticationPtrInput)(nil)).Elem(), StreamConnectionFailoverAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionFailoverDbRoleToExecuteInput)(nil)).Elem(), StreamConnectionFailoverDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionFailoverDbRoleToExecutePtrInput)(nil)).Elem(), StreamConnectionFailoverDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionFailoverNetworkingInput)(nil)).Elem(), StreamConnectionFailoverNetworkingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionFailoverNetworkingPtrInput)(nil)).Elem(), StreamConnectionFailoverNetworkingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionFailoverNetworkingAccessInput)(nil)).Elem(), StreamConnectionFailoverNetworkingAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionFailoverNetworkingAccessPtrInput)(nil)).Elem(), StreamConnectionFailoverNetworkingAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionFailoverSecurityInput)(nil)).Elem(), StreamConnectionFailoverSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionFailoverSecurityPtrInput)(nil)).Elem(), StreamConnectionFailoverSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionFailoverTimeoutsInput)(nil)).Elem(), StreamConnectionFailoverTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionFailoverTimeoutsPtrInput)(nil)).Elem(), StreamConnectionFailoverTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionGcpInput)(nil)).Elem(), StreamConnectionGcpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionGcpPtrInput)(nil)).Elem(), StreamConnectionGcpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionNetworkingInput)(nil)).Elem(), StreamConnectionNetworkingArgs{})
@@ -62910,6 +65465,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamProcessorTimeoutsPtrInput)(nil)).Elem(), StreamProcessorTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamWorkspaceDataProcessRegionInput)(nil)).Elem(), StreamWorkspaceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamWorkspaceDataProcessRegionPtrInput)(nil)).Elem(), StreamWorkspaceDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamWorkspaceFailoverRegionInput)(nil)).Elem(), StreamWorkspaceFailoverRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamWorkspaceFailoverRegionArrayInput)(nil)).Elem(), StreamWorkspaceFailoverRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamWorkspaceStreamConfigInput)(nil)).Elem(), StreamWorkspaceStreamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamWorkspaceStreamConfigPtrInput)(nil)).Elem(), StreamWorkspaceStreamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*X509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), X509AuthenticationDatabaseUserCertificateArgs{})
@@ -63429,6 +65986,18 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionAwsInput)(nil)).Elem(), GetStreamConnectionAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionAzureInput)(nil)).Elem(), GetStreamConnectionAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoverAuthenticationInput)(nil)).Elem(), GetStreamConnectionFailoverAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoverDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionFailoverDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoverNetworkingInput)(nil)).Elem(), GetStreamConnectionFailoverNetworkingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoverNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionFailoverNetworkingAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoverSecurityInput)(nil)).Elem(), GetStreamConnectionFailoverSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultInput)(nil)).Elem(), GetStreamConnectionFailoversResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultArrayInput)(nil)).Elem(), GetStreamConnectionFailoversResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultAuthenticationInput)(nil)).Elem(), GetStreamConnectionFailoversResultAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionFailoversResultDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultNetworkingInput)(nil)).Elem(), GetStreamConnectionFailoversResultNetworkingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionFailoversResultNetworkingAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultSecurityInput)(nil)).Elem(), GetStreamConnectionFailoversResultSecurityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionGcpInput)(nil)).Elem(), GetStreamConnectionGcpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionNetworkingInput)(nil)).Elem(), GetStreamConnectionNetworkingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionNetworkingAccessArgs{})
@@ -63460,10 +66029,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultOptionsInput)(nil)).Elem(), GetStreamProcessorsResultOptionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultOptionsDlqInput)(nil)).Elem(), GetStreamProcessorsResultOptionsDlqArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspaceDataProcessRegionInput)(nil)).Elem(), GetStreamWorkspaceDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspaceFailoverRegionInput)(nil)).Elem(), GetStreamWorkspaceFailoverRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspaceFailoverRegionArrayInput)(nil)).Elem(), GetStreamWorkspaceFailoverRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspaceStreamConfigInput)(nil)).Elem(), GetStreamWorkspaceStreamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacesResultInput)(nil)).Elem(), GetStreamWorkspacesResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacesResultArrayInput)(nil)).Elem(), GetStreamWorkspacesResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacesResultDataProcessRegionInput)(nil)).Elem(), GetStreamWorkspacesResultDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacesResultFailoverRegionInput)(nil)).Elem(), GetStreamWorkspacesResultFailoverRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacesResultFailoverRegionArrayInput)(nil)).Elem(), GetStreamWorkspacesResultFailoverRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacesResultStreamConfigInput)(nil)).Elem(), GetStreamWorkspacesResultStreamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamUserInput)(nil)).Elem(), GetTeamUserArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamUserArrayInput)(nil)).Elem(), GetTeamUserArray{})
@@ -63737,6 +66310,18 @@ func init() {
 	pulumi.RegisterOutputType(StreamConnectionAzurePtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionDbRoleToExecuteOutput{})
 	pulumi.RegisterOutputType(StreamConnectionDbRoleToExecutePtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionFailoverAuthenticationOutput{})
+	pulumi.RegisterOutputType(StreamConnectionFailoverAuthenticationPtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionFailoverDbRoleToExecuteOutput{})
+	pulumi.RegisterOutputType(StreamConnectionFailoverDbRoleToExecutePtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionFailoverNetworkingOutput{})
+	pulumi.RegisterOutputType(StreamConnectionFailoverNetworkingPtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionFailoverNetworkingAccessOutput{})
+	pulumi.RegisterOutputType(StreamConnectionFailoverNetworkingAccessPtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionFailoverSecurityOutput{})
+	pulumi.RegisterOutputType(StreamConnectionFailoverSecurityPtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionFailoverTimeoutsOutput{})
+	pulumi.RegisterOutputType(StreamConnectionFailoverTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionGcpOutput{})
 	pulumi.RegisterOutputType(StreamConnectionGcpPtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionNetworkingOutput{})
@@ -63761,6 +66346,8 @@ func init() {
 	pulumi.RegisterOutputType(StreamProcessorTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(StreamWorkspaceDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(StreamWorkspaceDataProcessRegionPtrOutput{})
+	pulumi.RegisterOutputType(StreamWorkspaceFailoverRegionOutput{})
+	pulumi.RegisterOutputType(StreamWorkspaceFailoverRegionArrayOutput{})
 	pulumi.RegisterOutputType(StreamWorkspaceStreamConfigOutput{})
 	pulumi.RegisterOutputType(StreamWorkspaceStreamConfigPtrOutput{})
 	pulumi.RegisterOutputType(X509AuthenticationDatabaseUserCertificateOutput{})
@@ -64280,6 +66867,18 @@ func init() {
 	pulumi.RegisterOutputType(GetStreamConnectionAwsOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionAzureOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionDbRoleToExecuteOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoverAuthenticationOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoverDbRoleToExecuteOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoverNetworkingOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoverNetworkingAccessOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoverSecurityOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultArrayOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultAuthenticationOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultDbRoleToExecuteOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultNetworkingOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultNetworkingAccessOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultSecurityOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionGcpOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionNetworkingOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionNetworkingAccessOutput{})
@@ -64311,10 +66910,14 @@ func init() {
 	pulumi.RegisterOutputType(GetStreamProcessorsResultOptionsOutput{})
 	pulumi.RegisterOutputType(GetStreamProcessorsResultOptionsDlqOutput{})
 	pulumi.RegisterOutputType(GetStreamWorkspaceDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(GetStreamWorkspaceFailoverRegionOutput{})
+	pulumi.RegisterOutputType(GetStreamWorkspaceFailoverRegionArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamWorkspaceStreamConfigOutput{})
 	pulumi.RegisterOutputType(GetStreamWorkspacesResultOutput{})
 	pulumi.RegisterOutputType(GetStreamWorkspacesResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamWorkspacesResultDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(GetStreamWorkspacesResultFailoverRegionOutput{})
+	pulumi.RegisterOutputType(GetStreamWorkspacesResultFailoverRegionArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamWorkspacesResultStreamConfigOutput{})
 	pulumi.RegisterOutputType(GetTeamUserOutput{})
 	pulumi.RegisterOutputType(GetTeamUserArrayOutput{})

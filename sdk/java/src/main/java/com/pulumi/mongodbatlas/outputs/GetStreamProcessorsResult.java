@@ -6,11 +6,17 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetStreamProcessorsResultOptions;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 
 @CustomType
 public final class GetStreamProcessorsResult {
+    /**
+     * @return Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace&#39;s `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+     * 
+     */
+    private Boolean failoverEnabled;
     /**
      * @return Unique 24-hexadecimal character string that identifies the stream processor.
      * 
@@ -67,6 +73,13 @@ public final class GetStreamProcessorsResult {
     private String workspaceName;
 
     private GetStreamProcessorsResult() {}
+    /**
+     * @return Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace&#39;s `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+     * 
+     */
+    public Boolean failoverEnabled() {
+        return this.failoverEnabled;
+    }
     /**
      * @return Unique 24-hexadecimal character string that identifies the stream processor.
      * 
@@ -151,6 +164,7 @@ public final class GetStreamProcessorsResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private Boolean failoverEnabled;
         private String id;
         private String instanceName;
         private GetStreamProcessorsResultOptions options;
@@ -164,6 +178,7 @@ public final class GetStreamProcessorsResult {
         public Builder() {}
         public Builder(GetStreamProcessorsResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.failoverEnabled = defaults.failoverEnabled;
     	      this.id = defaults.id;
     	      this.instanceName = defaults.instanceName;
     	      this.options = defaults.options;
@@ -176,6 +191,14 @@ public final class GetStreamProcessorsResult {
     	      this.workspaceName = defaults.workspaceName;
         }
 
+        @CustomType.Setter
+        public Builder failoverEnabled(Boolean failoverEnabled) {
+            if (failoverEnabled == null) {
+              throw new MissingRequiredPropertyException("GetStreamProcessorsResult", "failoverEnabled");
+            }
+            this.failoverEnabled = failoverEnabled;
+            return this;
+        }
         @CustomType.Setter
         public Builder id(String id) {
             if (id == null) {
@@ -258,6 +281,7 @@ public final class GetStreamProcessorsResult {
         }
         public GetStreamProcessorsResult build() {
             final var _resultValue = new GetStreamProcessorsResult();
+            _resultValue.failoverEnabled = failoverEnabled;
             _resultValue.id = id;
             _resultValue.instanceName = instanceName;
             _resultValue.options = options;

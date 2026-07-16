@@ -46,7 +46,7 @@ public final class GetProjectsResultUser {
      * 
      * &gt; **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `mongodbatlas.ProjectInvitation` resource.
      * 
-     * See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
+     * See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects) Documentation for more information.
      * 
      */
     private String inviterUsername;
@@ -129,7 +129,7 @@ public final class GetProjectsResultUser {
      * 
      * &gt; **NOTE:** - Does not return pending users invited via the deprecated [Invite One MongoDB Cloud User to Join One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createprojectinvitation) endpoint or pending invitations created using `mongodbatlas.ProjectInvitation` resource.
      * 
-     * See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Projects) Documentation for more information.
+     * See [MongoDB Atlas API - Projects](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects) Documentation for more information.
      * 
      */
     public String inviterUsername() {
