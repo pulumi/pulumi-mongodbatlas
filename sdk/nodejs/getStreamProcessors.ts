@@ -180,10 +180,6 @@ export interface GetStreamProcessorsArgs {
  */
 export interface GetStreamProcessorsResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Label that identifies the stream processing workspace.
      *
      * @deprecated This parameter is deprecated. Please transition to workspace_name.

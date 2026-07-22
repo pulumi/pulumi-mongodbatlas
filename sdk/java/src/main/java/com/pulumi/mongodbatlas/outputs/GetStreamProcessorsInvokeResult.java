@@ -15,11 +15,6 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetStreamProcessorsInvokeResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Label that identifies the stream processing workspace.
      * 
      * @deprecated
@@ -45,13 +40,6 @@ public final class GetStreamProcessorsInvokeResult {
     private @Nullable String workspaceName;
 
     private GetStreamProcessorsInvokeResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return Label that identifies the stream processing workspace.
      * 
@@ -94,7 +82,6 @@ public final class GetStreamProcessorsInvokeResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private @Nullable String instanceName;
         private String projectId;
         private List<GetStreamProcessorsResult> results;
@@ -102,21 +89,12 @@ public final class GetStreamProcessorsInvokeResult {
         public Builder() {}
         public Builder(GetStreamProcessorsInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.instanceName = defaults.instanceName;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
     	      this.workspaceName = defaults.workspaceName;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetStreamProcessorsInvokeResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder instanceName(@Nullable String instanceName) {
 
@@ -150,7 +128,6 @@ public final class GetStreamProcessorsInvokeResult {
         }
         public GetStreamProcessorsInvokeResult build() {
             final var _resultValue = new GetStreamProcessorsInvokeResult();
-            _resultValue.id = id;
             _resultValue.instanceName = instanceName;
             _resultValue.projectId = projectId;
             _resultValue.results = results;

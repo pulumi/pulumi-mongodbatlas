@@ -27,7 +27,7 @@ class GetStreamConnectionFailoverResult:
     """
     A collection of values returned by getStreamConnectionFailover.
     """
-    def __init__(__self__, authentication=None, bootstrap_servers=None, cluster_name=None, cluster_project_id=None, config=None, connection_name=None, db_role_to_execute=None, failover_connection_id=None, id=None, networking=None, project_id=None, region=None, security=None, state=None, type=None, workspace_name=None):
+    def __init__(__self__, authentication=None, bootstrap_servers=None, cluster_name=None, cluster_project_id=None, config=None, connection_name=None, db_role_to_execute=None, failover_connection_id=None, networking=None, project_id=None, region=None, security=None, state=None, type=None, workspace_name=None):
         if authentication and not isinstance(authentication, dict):
             raise TypeError("Expected argument 'authentication' to be a dict")
         pulumi.set(__self__, "authentication", authentication)
@@ -52,9 +52,6 @@ class GetStreamConnectionFailoverResult:
         if failover_connection_id and not isinstance(failover_connection_id, str):
             raise TypeError("Expected argument 'failover_connection_id' to be a str")
         pulumi.set(__self__, "failover_connection_id", failover_connection_id)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if networking and not isinstance(networking, dict):
             raise TypeError("Expected argument 'networking' to be a dict")
         pulumi.set(__self__, "networking", networking)
@@ -125,14 +122,6 @@ class GetStreamConnectionFailoverResult:
 
     @_builtins.property
     @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
-    @pulumi.getter
     def networking(self) -> 'outputs.GetStreamConnectionFailoverNetworkingResult':
         return pulumi.get(self, "networking")
 
@@ -196,7 +185,6 @@ class AwaitableGetStreamConnectionFailoverResult(GetStreamConnectionFailoverResu
             connection_name=self.connection_name,
             db_role_to_execute=self.db_role_to_execute,
             failover_connection_id=self.failover_connection_id,
-            id=self.id,
             networking=self.networking,
             project_id=self.project_id,
             region=self.region,
@@ -253,7 +241,6 @@ def get_stream_connection_failover(connection_name: Optional[_builtins.str] = No
         connection_name=pulumi.get(__ret__, 'connection_name'),
         db_role_to_execute=pulumi.get(__ret__, 'db_role_to_execute'),
         failover_connection_id=pulumi.get(__ret__, 'failover_connection_id'),
-        id=pulumi.get(__ret__, 'id'),
         networking=pulumi.get(__ret__, 'networking'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region=pulumi.get(__ret__, 'region'),
@@ -307,7 +294,6 @@ def get_stream_connection_failover_output(connection_name: pulumi.Input[Optional
         connection_name=pulumi.get(__response__, 'connection_name'),
         db_role_to_execute=pulumi.get(__response__, 'db_role_to_execute'),
         failover_connection_id=pulumi.get(__response__, 'failover_connection_id'),
-        id=pulumi.get(__response__, 'id'),
         networking=pulumi.get(__response__, 'networking'),
         project_id=pulumi.get(__response__, 'project_id'),
         region=pulumi.get(__response__, 'region'),

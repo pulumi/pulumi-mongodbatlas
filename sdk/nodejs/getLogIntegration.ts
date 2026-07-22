@@ -59,10 +59,6 @@ export interface GetLogIntegrationResult {
     readonly hecUrl: string;
     readonly iamRoleId: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Unique identifier of the log integration configuration.
      */
     readonly integrationId: string;

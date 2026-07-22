@@ -27,13 +27,10 @@ class GetStreamConnectionFailoversResult:
     """
     A collection of values returned by getStreamConnectionFailovers.
     """
-    def __init__(__self__, connection_name=None, id=None, project_id=None, results=None, workspace_name=None):
+    def __init__(__self__, connection_name=None, project_id=None, results=None, workspace_name=None):
         if connection_name and not isinstance(connection_name, str):
             raise TypeError("Expected argument 'connection_name' to be a str")
         pulumi.set(__self__, "connection_name", connection_name)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -51,14 +48,6 @@ class GetStreamConnectionFailoversResult:
         Label that identifies the stream connection.
         """
         return pulumi.get(self, "connection_name")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -92,7 +81,6 @@ class AwaitableGetStreamConnectionFailoversResult(GetStreamConnectionFailoversRe
             yield self
         return GetStreamConnectionFailoversResult(
             connection_name=self.connection_name,
-            id=self.id,
             project_id=self.project_id,
             results=self.results,
             workspace_name=self.workspace_name)
@@ -134,7 +122,6 @@ def get_stream_connection_failovers(connection_name: Optional[_builtins.str] = N
 
     return AwaitableGetStreamConnectionFailoversResult(
         connection_name=pulumi.get(__ret__, 'connection_name'),
-        id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
         workspace_name=pulumi.get(__ret__, 'workspace_name'))
@@ -173,7 +160,6 @@ def get_stream_connection_failovers_output(connection_name: pulumi.Input[Optiona
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamConnectionFailovers:getStreamConnectionFailovers', __args__, opts=opts, typ=GetStreamConnectionFailoversResult)
     return __ret__.apply(lambda __response__: GetStreamConnectionFailoversResult(
         connection_name=pulumi.get(__response__, 'connection_name'),
-        id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id'),
         results=pulumi.get(__response__, 'results'),
         workspace_name=pulumi.get(__response__, 'workspace_name')))

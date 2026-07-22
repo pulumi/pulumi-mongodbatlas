@@ -86,8 +86,6 @@ type LookupCloudUserTeamAssignmentResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// First or given name that belongs to the MongoDB Cloud user.
 	FirstName string `pulumi:"firstName"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
 	InvitationCreatedAt string `pulumi:"invitationCreatedAt"`
 	// Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
@@ -169,11 +167,6 @@ func (o LookupCloudUserTeamAssignmentResultOutput) CreatedAt() pulumi.StringOutp
 // First or given name that belongs to the MongoDB Cloud user.
 func (o LookupCloudUserTeamAssignmentResultOutput) FirstName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudUserTeamAssignmentResult) string { return v.FirstName }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupCloudUserTeamAssignmentResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupCloudUserTeamAssignmentResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.

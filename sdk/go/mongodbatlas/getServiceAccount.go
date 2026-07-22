@@ -42,8 +42,6 @@ type LookupServiceAccountResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Human readable description for the Service Account.
 	Description string `pulumi:"description"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Human-readable name for the Service Account.
 	Name string `pulumi:"name"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
@@ -103,11 +101,6 @@ func (o LookupServiceAccountResultOutput) CreatedAt() pulumi.StringOutput {
 // Human readable description for the Service Account.
 func (o LookupServiceAccountResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServiceAccountResult) string { return v.Description }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupServiceAccountResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupServiceAccountResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Human-readable name for the Service Account.

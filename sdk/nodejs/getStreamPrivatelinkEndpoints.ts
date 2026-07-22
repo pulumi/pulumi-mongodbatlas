@@ -171,10 +171,6 @@ export interface GetStreamPrivatelinkEndpointsArgs {
  * A collection of values returned by getStreamPrivatelinkEndpoints.
  */
 export interface GetStreamPrivatelinkEndpointsResult {
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly projectId: string;
     readonly results: outputs.GetStreamPrivatelinkEndpointsResult[];
 }

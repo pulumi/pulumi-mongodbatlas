@@ -26,7 +26,7 @@ class GetPushBasedLogExportResult:
     """
     A collection of values returned by getPushBasedLogExport.
     """
-    def __init__(__self__, bucket_name=None, create_date=None, iam_role_id=None, id=None, prefix_path=None, project_id=None, state=None):
+    def __init__(__self__, bucket_name=None, create_date=None, iam_role_id=None, prefix_path=None, project_id=None, state=None):
         if bucket_name and not isinstance(bucket_name, str):
             raise TypeError("Expected argument 'bucket_name' to be a str")
         pulumi.set(__self__, "bucket_name", bucket_name)
@@ -36,9 +36,6 @@ class GetPushBasedLogExportResult:
         if iam_role_id and not isinstance(iam_role_id, str):
             raise TypeError("Expected argument 'iam_role_id' to be a str")
         pulumi.set(__self__, "iam_role_id", iam_role_id)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if prefix_path and not isinstance(prefix_path, str):
             raise TypeError("Expected argument 'prefix_path' to be a str")
         pulumi.set(__self__, "prefix_path", prefix_path)
@@ -74,14 +71,6 @@ class GetPushBasedLogExportResult:
         return pulumi.get(self, "iam_role_id")
 
     @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
     @pulumi.getter(name="prefixPath")
     def prefix_path(self) -> _builtins.str:
         """
@@ -115,7 +104,6 @@ class AwaitableGetPushBasedLogExportResult(GetPushBasedLogExportResult):
             bucket_name=self.bucket_name,
             create_date=self.create_date,
             iam_role_id=self.iam_role_id,
-            id=self.id,
             prefix_path=self.prefix_path,
             project_id=self.project_id,
             state=self.state)
@@ -170,7 +158,6 @@ def get_push_based_log_export(project_id: Optional[_builtins.str] = None,
         bucket_name=pulumi.get(__ret__, 'bucket_name'),
         create_date=pulumi.get(__ret__, 'create_date'),
         iam_role_id=pulumi.get(__ret__, 'iam_role_id'),
-        id=pulumi.get(__ret__, 'id'),
         prefix_path=pulumi.get(__ret__, 'prefix_path'),
         project_id=pulumi.get(__ret__, 'project_id'),
         state=pulumi.get(__ret__, 'state'))
@@ -222,7 +209,6 @@ def get_push_based_log_export_output(project_id: pulumi.Input[Optional[_builtins
         bucket_name=pulumi.get(__response__, 'bucket_name'),
         create_date=pulumi.get(__response__, 'create_date'),
         iam_role_id=pulumi.get(__response__, 'iam_role_id'),
-        id=pulumi.get(__response__, 'id'),
         prefix_path=pulumi.get(__response__, 'prefix_path'),
         project_id=pulumi.get(__response__, 'project_id'),
         state=pulumi.get(__response__, 'state')))

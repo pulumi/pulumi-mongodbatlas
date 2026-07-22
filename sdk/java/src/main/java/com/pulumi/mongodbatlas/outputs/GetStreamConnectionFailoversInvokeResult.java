@@ -18,11 +18,6 @@ public final class GetStreamConnectionFailoversInvokeResult {
      */
     private String connectionName;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
@@ -45,13 +40,6 @@ public final class GetStreamConnectionFailoversInvokeResult {
      */
     public String connectionName() {
         return this.connectionName;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -85,7 +73,6 @@ public final class GetStreamConnectionFailoversInvokeResult {
     @CustomType.Builder
     public static final class Builder {
         private String connectionName;
-        private String id;
         private String projectId;
         private List<GetStreamConnectionFailoversResult> results;
         private String workspaceName;
@@ -93,7 +80,6 @@ public final class GetStreamConnectionFailoversInvokeResult {
         public Builder(GetStreamConnectionFailoversInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.connectionName = defaults.connectionName;
-    	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
     	      this.workspaceName = defaults.workspaceName;
@@ -105,14 +91,6 @@ public final class GetStreamConnectionFailoversInvokeResult {
               throw new MissingRequiredPropertyException("GetStreamConnectionFailoversInvokeResult", "connectionName");
             }
             this.connectionName = connectionName;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetStreamConnectionFailoversInvokeResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -145,7 +123,6 @@ public final class GetStreamConnectionFailoversInvokeResult {
         public GetStreamConnectionFailoversInvokeResult build() {
             final var _resultValue = new GetStreamConnectionFailoversInvokeResult();
             _resultValue.connectionName = connectionName;
-            _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.results = results;
             _resultValue.workspaceName = workspaceName;

@@ -775,10 +775,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly bool GlobalClusterSelfManagedSharding;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `Tags` instead.
         /// </summary>
         public readonly ImmutableDictionary<string, string> Labels;
@@ -868,8 +864,6 @@ namespace Pulumi.Mongodbatlas
 
             bool globalClusterSelfManagedSharding,
 
-            string id,
-
             ImmutableDictionary<string, string> labels,
 
             string mongoDbMajorVersion,
@@ -918,7 +912,6 @@ namespace Pulumi.Mongodbatlas
             CreateDate = createDate;
             EncryptionAtRestProvider = encryptionAtRestProvider;
             GlobalClusterSelfManagedSharding = globalClusterSelfManagedSharding;
-            Id = id;
             Labels = labels;
             MongoDbMajorVersion = mongoDbMajorVersion;
             MongoDbVersion = mongoDbVersion;

@@ -13,11 +13,6 @@ import java.util.Objects;
 @CustomType
 public final class GetProjectServiceAccountsInvokeResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
@@ -29,13 +24,6 @@ public final class GetProjectServiceAccountsInvokeResult {
     private List<GetProjectServiceAccountsResult> results;
 
     private GetProjectServiceAccountsInvokeResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
@@ -60,25 +48,15 @@ public final class GetProjectServiceAccountsInvokeResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private String projectId;
         private List<GetProjectServiceAccountsResult> results;
         public Builder() {}
         public Builder(GetProjectServiceAccountsInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetProjectServiceAccountsInvokeResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
@@ -100,7 +78,6 @@ public final class GetProjectServiceAccountsInvokeResult {
         }
         public GetProjectServiceAccountsInvokeResult build() {
             final var _resultValue = new GetProjectServiceAccountsInvokeResult();
-            _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.results = results;
             return _resultValue;

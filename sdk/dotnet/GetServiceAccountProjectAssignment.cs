@@ -248,10 +248,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ClientId;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
@@ -264,14 +260,11 @@ namespace Pulumi.Mongodbatlas
         private GetServiceAccountProjectAssignmentResult(
             string clientId,
 
-            string id,
-
             string projectId,
 
             ImmutableArray<string> roles)
         {
             ClientId = clientId;
-            Id = id;
             ProjectId = projectId;
             Roles = roles;
         }

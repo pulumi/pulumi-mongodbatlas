@@ -28,11 +28,6 @@ public final class GetCloudUserOrgAssignmentResult {
      */
     private String firstName;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
      * 
      */
@@ -114,13 +109,6 @@ public final class GetCloudUserOrgAssignmentResult {
      */
     public String firstName() {
         return this.firstName;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
@@ -219,7 +207,6 @@ public final class GetCloudUserOrgAssignmentResult {
         private String country;
         private String createdAt;
         private String firstName;
-        private String id;
         private String invitationCreatedAt;
         private String invitationExpiresAt;
         private String inviterUsername;
@@ -238,7 +225,6 @@ public final class GetCloudUserOrgAssignmentResult {
     	      this.country = defaults.country;
     	      this.createdAt = defaults.createdAt;
     	      this.firstName = defaults.firstName;
-    	      this.id = defaults.id;
     	      this.invitationCreatedAt = defaults.invitationCreatedAt;
     	      this.invitationExpiresAt = defaults.invitationExpiresAt;
     	      this.inviterUsername = defaults.inviterUsername;
@@ -275,14 +261,6 @@ public final class GetCloudUserOrgAssignmentResult {
               throw new MissingRequiredPropertyException("GetCloudUserOrgAssignmentResult", "firstName");
             }
             this.firstName = firstName;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetCloudUserOrgAssignmentResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -389,7 +367,6 @@ public final class GetCloudUserOrgAssignmentResult {
             _resultValue.country = country;
             _resultValue.createdAt = createdAt;
             _resultValue.firstName = firstName;
-            _resultValue.id = id;
             _resultValue.invitationCreatedAt = invitationCreatedAt;
             _resultValue.invitationExpiresAt = invitationExpiresAt;
             _resultValue.inviterUsername = inviterUsername;

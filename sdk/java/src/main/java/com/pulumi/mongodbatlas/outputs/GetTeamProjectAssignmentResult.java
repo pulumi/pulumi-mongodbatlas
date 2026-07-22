@@ -12,11 +12,6 @@ import java.util.Objects;
 @CustomType
 public final class GetTeamProjectAssignmentResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
@@ -33,13 +28,6 @@ public final class GetTeamProjectAssignmentResult {
     private String teamId;
 
     private GetTeamProjectAssignmentResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
@@ -71,27 +59,17 @@ public final class GetTeamProjectAssignmentResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private String projectId;
         private List<String> roleNames;
         private String teamId;
         public Builder() {}
         public Builder(GetTeamProjectAssignmentResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.roleNames = defaults.roleNames;
     	      this.teamId = defaults.teamId;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetTeamProjectAssignmentResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
@@ -121,7 +99,6 @@ public final class GetTeamProjectAssignmentResult {
         }
         public GetTeamProjectAssignmentResult build() {
             final var _resultValue = new GetTeamProjectAssignmentResult();
-            _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.roleNames = roleNames;
             _resultValue.teamId = teamId;

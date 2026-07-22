@@ -93,8 +93,6 @@ type LookupProjectServiceAccountSecretResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	ExpiresAt string `pulumi:"expiresAt"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	LastUsedAt string `pulumi:"lastUsedAt"`
 	// The masked Service Account secret.
@@ -156,11 +154,6 @@ func (o LookupProjectServiceAccountSecretResultOutput) CreatedAt() pulumi.String
 // The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 func (o LookupProjectServiceAccountSecretResultOutput) ExpiresAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectServiceAccountSecretResult) string { return v.ExpiresAt }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupProjectServiceAccountSecretResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupProjectServiceAccountSecretResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.

@@ -840,10 +840,6 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetAdvancedClustersResult
     {
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly string ProjectId;
         /// <summary>
         /// A list where each represents a Cluster. See below for more details.
@@ -853,15 +849,12 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetAdvancedClustersResult(
-            string id,
-
             string projectId,
 
             ImmutableArray<Outputs.GetAdvancedClustersResultResult> results,
 
             bool? useEffectiveFields)
         {
-            Id = id;
             ProjectId = projectId;
             Results = results;
             UseEffectiveFields = useEffectiveFields;

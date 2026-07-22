@@ -102,10 +102,6 @@ export interface GetProjectServiceAccountAccessListEntryResult {
      */
     readonly createdAt: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
      */
     readonly ipAddress: string;

@@ -69,8 +69,6 @@ type LookupTeamProjectAssignmentArgs struct {
 
 // A collection of values returned by getTeamProjectAssignment.
 type LookupTeamProjectAssignmentResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// One or more project-level roles assigned to the team.
@@ -113,11 +111,6 @@ func (o LookupTeamProjectAssignmentResultOutput) ToLookupTeamProjectAssignmentRe
 
 func (o LookupTeamProjectAssignmentResultOutput) ToLookupTeamProjectAssignmentResultOutputWithContext(ctx context.Context) LookupTeamProjectAssignmentResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupTeamProjectAssignmentResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupTeamProjectAssignmentResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

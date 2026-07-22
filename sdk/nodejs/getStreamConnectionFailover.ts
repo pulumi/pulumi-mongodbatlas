@@ -77,10 +77,6 @@ export interface GetStreamConnectionFailoverResult {
      * Label that identifies the stream failover connection id.
      */
     readonly failoverConnectionId: string;
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly networking: outputs.GetStreamConnectionFailoverNetworking;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

@@ -27,13 +27,10 @@ class GetProjectServiceAccountAccessListEntriesResult:
     """
     A collection of values returned by getProjectServiceAccountAccessListEntries.
     """
-    def __init__(__self__, client_id=None, id=None, project_id=None, results=None):
+    def __init__(__self__, client_id=None, project_id=None, results=None):
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -48,14 +45,6 @@ class GetProjectServiceAccountAccessListEntriesResult:
         The Client ID of the Service Account.
         """
         return pulumi.get(self, "client_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -81,7 +70,6 @@ class AwaitableGetProjectServiceAccountAccessListEntriesResult(GetProjectService
             yield self
         return GetProjectServiceAccountAccessListEntriesResult(
             client_id=self.client_id,
-            id=self.id,
             project_id=self.project_id,
             results=self.results)
 
@@ -143,7 +131,6 @@ def get_project_service_account_access_list_entries(client_id: Optional[_builtin
 
     return AwaitableGetProjectServiceAccountAccessListEntriesResult(
         client_id=pulumi.get(__ret__, 'client_id'),
-        id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
 def get_project_service_account_access_list_entries_output(client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -202,6 +189,5 @@ def get_project_service_account_access_list_entries_output(client_id: pulumi.Inp
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getProjectServiceAccountAccessListEntries:getProjectServiceAccountAccessListEntries', __args__, opts=opts, typ=GetProjectServiceAccountAccessListEntriesResult)
     return __ret__.apply(lambda __response__: GetProjectServiceAccountAccessListEntriesResult(
         client_id=pulumi.get(__response__, 'client_id'),
-        id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id'),
         results=pulumi.get(__response__, 'results')))

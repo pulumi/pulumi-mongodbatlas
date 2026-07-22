@@ -181,10 +181,6 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetFlexSnapshotsResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
         /// </summary>
         public readonly string Name;
@@ -199,15 +195,12 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetFlexSnapshotsResult(
-            string id,
-
             string name,
 
             string projectId,
 
             ImmutableArray<Outputs.GetFlexSnapshotsResultResult> results)
         {
-            Id = id;
             Name = name;
             ProjectId = projectId;
             Results = results;

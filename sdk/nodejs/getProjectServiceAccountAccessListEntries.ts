@@ -86,10 +86,6 @@ export interface GetProjectServiceAccountAccessListEntriesResult {
      */
     readonly clientId: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Unique 24-hexadecimal digit string that identifies the project.
      */
     readonly projectId: string;

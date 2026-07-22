@@ -14,11 +14,6 @@ import java.util.Objects;
 @CustomType
 public final class GetResourcePoliciesInvokeResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
      * 
      */
@@ -37,13 +32,6 @@ public final class GetResourcePoliciesInvokeResult {
     private List<GetResourcePoliciesResult> results;
 
     private GetResourcePoliciesInvokeResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
      * 
@@ -77,27 +65,17 @@ public final class GetResourcePoliciesInvokeResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private String orgId;
         private List<GetResourcePoliciesResourcePolicy> resourcePolicies;
         private List<GetResourcePoliciesResult> results;
         public Builder() {}
         public Builder(GetResourcePoliciesInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.orgId = defaults.orgId;
     	      this.resourcePolicies = defaults.resourcePolicies;
     	      this.results = defaults.results;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetResourcePoliciesInvokeResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder orgId(String orgId) {
             if (orgId == null) {
@@ -130,7 +108,6 @@ public final class GetResourcePoliciesInvokeResult {
         }
         public GetResourcePoliciesInvokeResult build() {
             final var _resultValue = new GetResourcePoliciesInvokeResult();
-            _resultValue.id = id;
             _resultValue.orgId = orgId;
             _resultValue.resourcePolicies = resourcePolicies;
             _resultValue.results = results;

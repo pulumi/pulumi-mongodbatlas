@@ -174,10 +174,6 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetPrivatelinkEndpointsResult
     {
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly string ProjectId;
         public readonly string ProviderName;
         /// <summary>
@@ -187,15 +183,12 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetPrivatelinkEndpointsResult(
-            string id,
-
             string projectId,
 
             string providerName,
 
             ImmutableArray<Outputs.GetPrivatelinkEndpointsResultResult> results)
         {
-            Id = id;
             ProjectId = projectId;
             ProviderName = providerName;
             Results = results;

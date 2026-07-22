@@ -40,8 +40,6 @@ type LookupStreamConnectionFailoversArgs struct {
 type LookupStreamConnectionFailoversResult struct {
 	// Label that identifies the stream connection.
 	ConnectionName string `pulumi:"connectionName"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of returned documents that MongoDB Cloud provides when completing this request.
@@ -91,11 +89,6 @@ func (o LookupStreamConnectionFailoversResultOutput) ToLookupStreamConnectionFai
 // Label that identifies the stream connection.
 func (o LookupStreamConnectionFailoversResultOutput) ConnectionName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionFailoversResult) string { return v.ConnectionName }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupStreamConnectionFailoversResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupStreamConnectionFailoversResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

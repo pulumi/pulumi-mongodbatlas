@@ -12,11 +12,6 @@ import java.util.Objects;
 @CustomType
 public final class GetProjectIpAddressesResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
@@ -28,13 +23,6 @@ public final class GetProjectIpAddressesResult {
     private GetProjectIpAddressesServices services;
 
     private GetProjectIpAddressesResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
@@ -59,25 +47,15 @@ public final class GetProjectIpAddressesResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private String projectId;
         private GetProjectIpAddressesServices services;
         public Builder() {}
         public Builder(GetProjectIpAddressesResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.services = defaults.services;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetProjectIpAddressesResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
@@ -96,7 +74,6 @@ public final class GetProjectIpAddressesResult {
         }
         public GetProjectIpAddressesResult build() {
             final var _resultValue = new GetProjectIpAddressesResult();
-            _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.services = services;
             return _resultValue;

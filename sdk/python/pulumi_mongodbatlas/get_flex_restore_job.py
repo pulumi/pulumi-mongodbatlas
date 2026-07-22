@@ -26,16 +26,13 @@ class GetFlexRestoreJobResult:
     """
     A collection of values returned by getFlexRestoreJob.
     """
-    def __init__(__self__, delivery_type=None, expiration_date=None, id=None, name=None, project_id=None, restore_finished_date=None, restore_job_id=None, restore_scheduled_date=None, snapshot_finished_date=None, snapshot_id=None, snapshot_url=None, status=None, target_deployment_item_name=None, target_project_id=None):
+    def __init__(__self__, delivery_type=None, expiration_date=None, name=None, project_id=None, restore_finished_date=None, restore_job_id=None, restore_scheduled_date=None, snapshot_finished_date=None, snapshot_id=None, snapshot_url=None, status=None, target_deployment_item_name=None, target_project_id=None):
         if delivery_type and not isinstance(delivery_type, str):
             raise TypeError("Expected argument 'delivery_type' to be a str")
         pulumi.set(__self__, "delivery_type", delivery_type)
         if expiration_date and not isinstance(expiration_date, str):
             raise TypeError("Expected argument 'expiration_date' to be a str")
         pulumi.set(__self__, "expiration_date", expiration_date)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -85,14 +82,6 @@ class GetFlexRestoreJobResult:
         Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "expiration_date")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -191,7 +180,6 @@ class AwaitableGetFlexRestoreJobResult(GetFlexRestoreJobResult):
         return GetFlexRestoreJobResult(
             delivery_type=self.delivery_type,
             expiration_date=self.expiration_date,
-            id=self.id,
             name=self.name,
             project_id=self.project_id,
             restore_finished_date=self.restore_finished_date,
@@ -243,7 +231,6 @@ def get_flex_restore_job(name: Optional[_builtins.str] = None,
     return AwaitableGetFlexRestoreJobResult(
         delivery_type=pulumi.get(__ret__, 'delivery_type'),
         expiration_date=pulumi.get(__ret__, 'expiration_date'),
-        id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         restore_finished_date=pulumi.get(__ret__, 'restore_finished_date'),
@@ -292,7 +279,6 @@ def get_flex_restore_job_output(name: pulumi.Input[Optional[_builtins.str]] = No
     return __ret__.apply(lambda __response__: GetFlexRestoreJobResult(
         delivery_type=pulumi.get(__response__, 'delivery_type'),
         expiration_date=pulumi.get(__response__, 'expiration_date'),
-        id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         project_id=pulumi.get(__response__, 'project_id'),
         restore_finished_date=pulumi.get(__response__, 'restore_finished_date'),

@@ -27,24 +27,13 @@ class GetControlPlaneIpAddressesResult:
     """
     A collection of values returned by getControlPlaneIpAddresses.
     """
-    def __init__(__self__, id=None, inbound=None, outbound=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, inbound=None, outbound=None):
         if inbound and not isinstance(inbound, dict):
             raise TypeError("Expected argument 'inbound' to be a dict")
         pulumi.set(__self__, "inbound", inbound)
         if outbound and not isinstance(outbound, dict):
             raise TypeError("Expected argument 'outbound' to be a dict")
         pulumi.set(__self__, "outbound", outbound)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -69,7 +58,6 @@ class AwaitableGetControlPlaneIpAddressesResult(GetControlPlaneIpAddressesResult
         if False:
             yield self
         return GetControlPlaneIpAddressesResult(
-            id=self.id,
             inbound=self.inbound,
             outbound=self.outbound)
 
@@ -94,7 +82,6 @@ def get_control_plane_ip_addresses(opts: Optional[pulumi.InvokeOptions] = None) 
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses', __args__, opts=opts, typ=GetControlPlaneIpAddressesResult).value
 
     return AwaitableGetControlPlaneIpAddressesResult(
-        id=pulumi.get(__ret__, 'id'),
         inbound=pulumi.get(__ret__, 'inbound'),
         outbound=pulumi.get(__ret__, 'outbound'))
 def get_control_plane_ip_addresses_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetControlPlaneIpAddressesResult]:
@@ -116,6 +103,5 @@ def get_control_plane_ip_addresses_output(opts: Optional[Union[pulumi.InvokeOpti
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses', __args__, opts=opts, typ=GetControlPlaneIpAddressesResult)
     return __ret__.apply(lambda __response__: GetControlPlaneIpAddressesResult(
-        id=pulumi.get(__response__, 'id'),
         inbound=pulumi.get(__response__, 'inbound'),
         outbound=pulumi.get(__response__, 'outbound')))

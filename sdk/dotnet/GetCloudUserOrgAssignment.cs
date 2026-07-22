@@ -232,10 +232,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string FirstName;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
         /// </summary>
         public readonly string InvitationCreatedAt;
@@ -292,8 +288,6 @@ namespace Pulumi.Mongodbatlas
 
             string firstName,
 
-            string id,
-
             string invitationCreatedAt,
 
             string invitationExpiresAt,
@@ -321,7 +315,6 @@ namespace Pulumi.Mongodbatlas
             Country = country;
             CreatedAt = createdAt;
             FirstName = firstName;
-            Id = id;
             InvitationCreatedAt = invitationCreatedAt;
             InvitationExpiresAt = invitationExpiresAt;
             InviterUsername = inviterUsername;

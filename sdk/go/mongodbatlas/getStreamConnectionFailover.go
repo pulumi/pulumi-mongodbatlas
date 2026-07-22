@@ -78,10 +78,8 @@ type LookupStreamConnectionFailoverResult struct {
 	ConnectionName  string                                     `pulumi:"connectionName"`
 	DbRoleToExecute GetStreamConnectionFailoverDbRoleToExecute `pulumi:"dbRoleToExecute"`
 	// Label that identifies the stream failover connection id.
-	FailoverConnectionId string `pulumi:"failoverConnectionId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id         string                                `pulumi:"id"`
-	Networking GetStreamConnectionFailoverNetworking `pulumi:"networking"`
+	FailoverConnectionId string                                `pulumi:"failoverConnectionId"`
+	Networking           GetStreamConnectionFailoverNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// The connection's region.
@@ -171,11 +169,6 @@ func (o LookupStreamConnectionFailoverResultOutput) DbRoleToExecute() GetStreamC
 // Label that identifies the stream failover connection id.
 func (o LookupStreamConnectionFailoverResultOutput) FailoverConnectionId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionFailoverResult) string { return v.FailoverConnectionId }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupStreamConnectionFailoverResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupStreamConnectionFailoverResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o LookupStreamConnectionFailoverResultOutput) Networking() GetStreamConnectionFailoverNetworkingOutput {

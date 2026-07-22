@@ -27,11 +27,6 @@ public final class GetServiceAccountAccessListEntryResult {
      */
     private String createdAt;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
      * 
      */
@@ -78,13 +73,6 @@ public final class GetServiceAccountAccessListEntryResult {
      */
     public String createdAt() {
         return this.createdAt;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
@@ -134,7 +122,6 @@ public final class GetServiceAccountAccessListEntryResult {
         private String cidrBlock;
         private String clientId;
         private String createdAt;
-        private String id;
         private String ipAddress;
         private String lastUsedAddress;
         private String lastUsedAt;
@@ -146,7 +133,6 @@ public final class GetServiceAccountAccessListEntryResult {
     	      this.cidrBlock = defaults.cidrBlock;
     	      this.clientId = defaults.clientId;
     	      this.createdAt = defaults.createdAt;
-    	      this.id = defaults.id;
     	      this.ipAddress = defaults.ipAddress;
     	      this.lastUsedAddress = defaults.lastUsedAddress;
     	      this.lastUsedAt = defaults.lastUsedAt;
@@ -176,14 +162,6 @@ public final class GetServiceAccountAccessListEntryResult {
               throw new MissingRequiredPropertyException("GetServiceAccountAccessListEntryResult", "createdAt");
             }
             this.createdAt = createdAt;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetServiceAccountAccessListEntryResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -231,7 +209,6 @@ public final class GetServiceAccountAccessListEntryResult {
             _resultValue.cidrBlock = cidrBlock;
             _resultValue.clientId = clientId;
             _resultValue.createdAt = createdAt;
-            _resultValue.id = id;
             _resultValue.ipAddress = ipAddress;
             _resultValue.lastUsedAddress = lastUsedAddress;
             _resultValue.lastUsedAt = lastUsedAt;

@@ -27,13 +27,10 @@ class GetServiceAccountAccessListEntriesResult:
     """
     A collection of values returned by getServiceAccountAccessListEntries.
     """
-    def __init__(__self__, client_id=None, id=None, org_id=None, results=None):
+    def __init__(__self__, client_id=None, org_id=None, results=None):
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if org_id and not isinstance(org_id, str):
             raise TypeError("Expected argument 'org_id' to be a str")
         pulumi.set(__self__, "org_id", org_id)
@@ -48,14 +45,6 @@ class GetServiceAccountAccessListEntriesResult:
         The Client ID of the Service Account.
         """
         return pulumi.get(self, "client_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="orgId")
@@ -81,7 +70,6 @@ class AwaitableGetServiceAccountAccessListEntriesResult(GetServiceAccountAccessL
             yield self
         return GetServiceAccountAccessListEntriesResult(
             client_id=self.client_id,
-            id=self.id,
             org_id=self.org_id,
             results=self.results)
 
@@ -143,7 +131,6 @@ def get_service_account_access_list_entries(client_id: Optional[_builtins.str] =
 
     return AwaitableGetServiceAccountAccessListEntriesResult(
         client_id=pulumi.get(__ret__, 'client_id'),
-        id=pulumi.get(__ret__, 'id'),
         org_id=pulumi.get(__ret__, 'org_id'),
         results=pulumi.get(__ret__, 'results'))
 def get_service_account_access_list_entries_output(client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -202,6 +189,5 @@ def get_service_account_access_list_entries_output(client_id: pulumi.Input[Optio
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getServiceAccountAccessListEntries:getServiceAccountAccessListEntries', __args__, opts=opts, typ=GetServiceAccountAccessListEntriesResult)
     return __ret__.apply(lambda __response__: GetServiceAccountAccessListEntriesResult(
         client_id=pulumi.get(__response__, 'client_id'),
-        id=pulumi.get(__response__, 'id'),
         org_id=pulumi.get(__response__, 'org_id'),
         results=pulumi.get(__response__, 'results')))

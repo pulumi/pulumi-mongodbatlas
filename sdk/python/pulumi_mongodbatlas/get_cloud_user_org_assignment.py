@@ -27,7 +27,7 @@ class GetCloudUserOrgAssignmentResult:
     """
     A collection of values returned by getCloudUserOrgAssignment.
     """
-    def __init__(__self__, country=None, created_at=None, first_name=None, id=None, invitation_created_at=None, invitation_expires_at=None, inviter_username=None, last_auth=None, last_name=None, mobile_number=None, org_id=None, org_membership_status=None, roles=None, team_ids=None, user_id=None, username=None):
+    def __init__(__self__, country=None, created_at=None, first_name=None, invitation_created_at=None, invitation_expires_at=None, inviter_username=None, last_auth=None, last_name=None, mobile_number=None, org_id=None, org_membership_status=None, roles=None, team_ids=None, user_id=None, username=None):
         if country and not isinstance(country, str):
             raise TypeError("Expected argument 'country' to be a str")
         pulumi.set(__self__, "country", country)
@@ -37,9 +37,6 @@ class GetCloudUserOrgAssignmentResult:
         if first_name and not isinstance(first_name, str):
             raise TypeError("Expected argument 'first_name' to be a str")
         pulumi.set(__self__, "first_name", first_name)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if invitation_created_at and not isinstance(invitation_created_at, str):
             raise TypeError("Expected argument 'invitation_created_at' to be a str")
         pulumi.set(__self__, "invitation_created_at", invitation_created_at)
@@ -100,14 +97,6 @@ class GetCloudUserOrgAssignmentResult:
         First or given name that belongs to the MongoDB Cloud user.
         """
         return pulumi.get(self, "first_name")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="invitationCreatedAt")
@@ -215,7 +204,6 @@ class AwaitableGetCloudUserOrgAssignmentResult(GetCloudUserOrgAssignmentResult):
             country=self.country,
             created_at=self.created_at,
             first_name=self.first_name,
-            id=self.id,
             invitation_created_at=self.invitation_created_at,
             invitation_expires_at=self.invitation_expires_at,
             inviter_username=self.inviter_username,
@@ -277,7 +265,6 @@ def get_cloud_user_org_assignment(org_id: Optional[_builtins.str] = None,
         country=pulumi.get(__ret__, 'country'),
         created_at=pulumi.get(__ret__, 'created_at'),
         first_name=pulumi.get(__ret__, 'first_name'),
-        id=pulumi.get(__ret__, 'id'),
         invitation_created_at=pulumi.get(__ret__, 'invitation_created_at'),
         invitation_expires_at=pulumi.get(__ret__, 'invitation_expires_at'),
         inviter_username=pulumi.get(__ret__, 'inviter_username'),
@@ -336,7 +323,6 @@ def get_cloud_user_org_assignment_output(org_id: pulumi.Input[Optional[_builtins
         country=pulumi.get(__response__, 'country'),
         created_at=pulumi.get(__response__, 'created_at'),
         first_name=pulumi.get(__response__, 'first_name'),
-        id=pulumi.get(__response__, 'id'),
         invitation_created_at=pulumi.get(__response__, 'invitation_created_at'),
         invitation_expires_at=pulumi.get(__response__, 'invitation_expires_at'),
         inviter_username=pulumi.get(__response__, 'inviter_username'),

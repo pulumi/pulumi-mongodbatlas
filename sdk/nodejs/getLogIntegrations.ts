@@ -53,10 +53,6 @@ export interface GetLogIntegrationsArgs {
  */
 export interface GetLogIntegrationsResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
      */
     readonly integrationType?: string;

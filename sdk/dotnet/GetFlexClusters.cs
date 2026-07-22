@@ -205,10 +205,6 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetFlexClustersResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Unique 24-hexadecimal character string that identifies the project.
         /// </summary>
         public readonly string ProjectId;
@@ -219,13 +215,10 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetFlexClustersResult(
-            string id,
-
             string projectId,
 
             ImmutableArray<Outputs.GetFlexClustersResultResult> results)
         {
-            Id = id;
             ProjectId = projectId;
             Results = results;
         }

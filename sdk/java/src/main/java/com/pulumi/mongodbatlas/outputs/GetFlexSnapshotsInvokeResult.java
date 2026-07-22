@@ -13,11 +13,6 @@ import java.util.Objects;
 @CustomType
 public final class GetFlexSnapshotsInvokeResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Human-readable label that identifies the flex cluster whose snapshot you want to restore.
      * 
      */
@@ -34,13 +29,6 @@ public final class GetFlexSnapshotsInvokeResult {
     private List<GetFlexSnapshotsResult> results;
 
     private GetFlexSnapshotsInvokeResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return Human-readable label that identifies the flex cluster whose snapshot you want to restore.
      * 
@@ -72,27 +60,17 @@ public final class GetFlexSnapshotsInvokeResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private String name;
         private String projectId;
         private List<GetFlexSnapshotsResult> results;
         public Builder() {}
         public Builder(GetFlexSnapshotsInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetFlexSnapshotsInvokeResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder name(String name) {
             if (name == null) {
@@ -122,7 +100,6 @@ public final class GetFlexSnapshotsInvokeResult {
         }
         public GetFlexSnapshotsInvokeResult build() {
             final var _resultValue = new GetFlexSnapshotsInvokeResult();
-            _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.projectId = projectId;
             _resultValue.results = results;

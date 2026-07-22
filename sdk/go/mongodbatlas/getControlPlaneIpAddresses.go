@@ -50,8 +50,6 @@ func GetControlPlaneIpAddresses(ctx *pulumi.Context, opts ...pulumi.InvokeOption
 
 // A collection of values returned by getControlPlaneIpAddresses.
 type GetControlPlaneIpAddressesResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// List of inbound IP addresses to the Atlas control plane, categorized by cloud provider. If your application allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your API requests can reach the Atlas control plane.
 	Inbound GetControlPlaneIpAddressesInbound `pulumi:"inbound"`
 	// List of outbound IP addresses from the Atlas control plane, categorized by cloud provider. If your network allows inbound HTTP requests only from specific IP addresses, you must allow access from the following IP addresses so that Atlas can communicate with your webhooks and KMS.
@@ -78,11 +76,6 @@ func (o GetControlPlaneIpAddressesResultOutput) ToGetControlPlaneIpAddressesResu
 
 func (o GetControlPlaneIpAddressesResultOutput) ToGetControlPlaneIpAddressesResultOutputWithContext(ctx context.Context) GetControlPlaneIpAddressesResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetControlPlaneIpAddressesResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetControlPlaneIpAddressesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // List of inbound IP addresses to the Atlas control plane, categorized by cloud provider. If your application allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your API requests can reach the Atlas control plane.

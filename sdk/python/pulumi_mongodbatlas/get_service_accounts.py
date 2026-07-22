@@ -27,24 +27,13 @@ class GetServiceAccountsResult:
     """
     A collection of values returned by getServiceAccounts.
     """
-    def __init__(__self__, id=None, org_id=None, results=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, org_id=None, results=None):
         if org_id and not isinstance(org_id, str):
             raise TypeError("Expected argument 'org_id' to be a str")
         pulumi.set(__self__, "org_id", org_id)
         if results and not isinstance(results, list):
             raise TypeError("Expected argument 'results' to be a list")
         pulumi.set(__self__, "results", results)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="orgId")
@@ -69,7 +58,6 @@ class AwaitableGetServiceAccountsResult(GetServiceAccountsResult):
         if False:
             yield self
         return GetServiceAccountsResult(
-            id=self.id,
             org_id=self.org_id,
             results=self.results)
 
@@ -92,7 +80,6 @@ def get_service_accounts(org_id: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getServiceAccounts:getServiceAccounts', __args__, opts=opts, typ=GetServiceAccountsResult).value
 
     return AwaitableGetServiceAccountsResult(
-        id=pulumi.get(__ret__, 'id'),
         org_id=pulumi.get(__ret__, 'org_id'),
         results=pulumi.get(__ret__, 'results'))
 def get_service_accounts_output(org_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -112,6 +99,5 @@ def get_service_accounts_output(org_id: pulumi.Input[Optional[_builtins.str]] = 
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getServiceAccounts:getServiceAccounts', __args__, opts=opts, typ=GetServiceAccountsResult)
     return __ret__.apply(lambda __response__: GetServiceAccountsResult(
-        id=pulumi.get(__response__, 'id'),
         org_id=pulumi.get(__response__, 'org_id'),
         results=pulumi.get(__response__, 'results')))

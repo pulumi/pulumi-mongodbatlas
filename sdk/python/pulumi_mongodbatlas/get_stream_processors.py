@@ -27,10 +27,7 @@ class GetStreamProcessorsResult:
     """
     A collection of values returned by getStreamProcessors.
     """
-    def __init__(__self__, id=None, instance_name=None, project_id=None, results=None, workspace_name=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, instance_name=None, project_id=None, results=None, workspace_name=None):
         if instance_name and not isinstance(instance_name, str):
             raise TypeError("Expected argument 'instance_name' to be a str")
         pulumi.set(__self__, "instance_name", instance_name)
@@ -43,14 +40,6 @@ class GetStreamProcessorsResult:
         if workspace_name and not isinstance(workspace_name, str):
             raise TypeError("Expected argument 'workspace_name' to be a str")
         pulumi.set(__self__, "workspace_name", workspace_name)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="instanceName")
@@ -92,7 +81,6 @@ class AwaitableGetStreamProcessorsResult(GetStreamProcessorsResult):
         if False:
             yield self
         return GetStreamProcessorsResult(
-            id=self.id,
             instance_name=self.instance_name,
             project_id=self.project_id,
             results=self.results,
@@ -246,7 +234,6 @@ def get_stream_processors(instance_name: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getStreamProcessors:getStreamProcessors', __args__, opts=opts, typ=GetStreamProcessorsResult).value
 
     return AwaitableGetStreamProcessorsResult(
-        id=pulumi.get(__ret__, 'id'),
         instance_name=pulumi.get(__ret__, 'instance_name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
@@ -397,7 +384,6 @@ def get_stream_processors_output(instance_name: pulumi.Input[Optional[Optional[_
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamProcessors:getStreamProcessors', __args__, opts=opts, typ=GetStreamProcessorsResult)
     return __ret__.apply(lambda __response__: GetStreamProcessorsResult(
-        id=pulumi.get(__response__, 'id'),
         instance_name=pulumi.get(__response__, 'instance_name'),
         project_id=pulumi.get(__response__, 'project_id'),
         results=pulumi.get(__response__, 'results'),

@@ -27,7 +27,7 @@ class GetProjectServiceAccountResult:
     """
     A collection of values returned by getProjectServiceAccount.
     """
-    def __init__(__self__, client_id=None, created_at=None, description=None, id=None, name=None, project_id=None, roles=None, secrets=None):
+    def __init__(__self__, client_id=None, created_at=None, description=None, name=None, project_id=None, roles=None, secrets=None):
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
@@ -37,9 +37,6 @@ class GetProjectServiceAccountResult:
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -76,14 +73,6 @@ class GetProjectServiceAccountResult:
         Human readable description for the Service Account.
         """
         return pulumi.get(self, "description")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -127,7 +116,6 @@ class AwaitableGetProjectServiceAccountResult(GetProjectServiceAccountResult):
             client_id=self.client_id,
             created_at=self.created_at,
             description=self.description,
-            id=self.id,
             name=self.name,
             project_id=self.project_id,
             roles=self.roles,
@@ -158,7 +146,6 @@ def get_project_service_account(client_id: Optional[_builtins.str] = None,
         client_id=pulumi.get(__ret__, 'client_id'),
         created_at=pulumi.get(__ret__, 'created_at'),
         description=pulumi.get(__ret__, 'description'),
-        id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         roles=pulumi.get(__ret__, 'roles'),
@@ -186,7 +173,6 @@ def get_project_service_account_output(client_id: pulumi.Input[Optional[_builtin
         client_id=pulumi.get(__response__, 'client_id'),
         created_at=pulumi.get(__response__, 'created_at'),
         description=pulumi.get(__response__, 'description'),
-        id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         project_id=pulumi.get(__response__, 'project_id'),
         roles=pulumi.get(__response__, 'roles'),

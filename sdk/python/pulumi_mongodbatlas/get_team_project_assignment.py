@@ -26,10 +26,7 @@ class GetTeamProjectAssignmentResult:
     """
     A collection of values returned by getTeamProjectAssignment.
     """
-    def __init__(__self__, id=None, project_id=None, role_names=None, team_id=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, project_id=None, role_names=None, team_id=None):
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -39,14 +36,6 @@ class GetTeamProjectAssignmentResult:
         if team_id and not isinstance(team_id, str):
             raise TypeError("Expected argument 'team_id' to be a str")
         pulumi.set(__self__, "team_id", team_id)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -79,7 +68,6 @@ class AwaitableGetTeamProjectAssignmentResult(GetTeamProjectAssignmentResult):
         if False:
             yield self
         return GetTeamProjectAssignmentResult(
-            id=self.id,
             project_id=self.project_id,
             role_names=self.role_names,
             team_id=self.team_id)
@@ -121,7 +109,6 @@ def get_team_project_assignment(project_id: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getTeamProjectAssignment:getTeamProjectAssignment', __args__, opts=opts, typ=GetTeamProjectAssignmentResult).value
 
     return AwaitableGetTeamProjectAssignmentResult(
-        id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         role_names=pulumi.get(__ret__, 'role_names'),
         team_id=pulumi.get(__ret__, 'team_id'))
@@ -160,7 +147,6 @@ def get_team_project_assignment_output(project_id: pulumi.Input[Optional[_builti
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getTeamProjectAssignment:getTeamProjectAssignment', __args__, opts=opts, typ=GetTeamProjectAssignmentResult)
     return __ret__.apply(lambda __response__: GetTeamProjectAssignmentResult(
-        id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id'),
         role_names=pulumi.get(__response__, 'role_names'),
         team_id=pulumi.get(__response__, 'team_id')))

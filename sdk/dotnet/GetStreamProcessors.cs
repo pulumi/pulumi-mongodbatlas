@@ -652,10 +652,6 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetStreamProcessorsResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Label that identifies the stream processing workspace.
         /// </summary>
         public readonly string? InstanceName;
@@ -674,8 +670,6 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetStreamProcessorsResult(
-            string id,
-
             string? instanceName,
 
             string projectId,
@@ -684,7 +678,6 @@ namespace Pulumi.Mongodbatlas
 
             string? workspaceName)
         {
-            Id = id;
             InstanceName = instanceName;
             ProjectId = projectId;
             Results = results;

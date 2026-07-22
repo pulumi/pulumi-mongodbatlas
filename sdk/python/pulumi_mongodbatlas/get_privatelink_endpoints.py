@@ -27,10 +27,7 @@ class GetPrivatelinkEndpointsResult:
     """
     A collection of values returned by getPrivatelinkEndpoints.
     """
-    def __init__(__self__, id=None, project_id=None, provider_name=None, results=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, project_id=None, provider_name=None, results=None):
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -40,14 +37,6 @@ class GetPrivatelinkEndpointsResult:
         if results and not isinstance(results, list):
             raise TypeError("Expected argument 'results' to be a list")
         pulumi.set(__self__, "results", results)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -74,7 +63,6 @@ class AwaitableGetPrivatelinkEndpointsResult(GetPrivatelinkEndpointsResult):
         if False:
             yield self
         return GetPrivatelinkEndpointsResult(
-            id=self.id,
             project_id=self.project_id,
             provider_name=self.provider_name,
             results=self.results)
@@ -118,7 +106,6 @@ def get_privatelink_endpoints(project_id: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints', __args__, opts=opts, typ=GetPrivatelinkEndpointsResult).value
 
     return AwaitableGetPrivatelinkEndpointsResult(
-        id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         provider_name=pulumi.get(__ret__, 'provider_name'),
         results=pulumi.get(__ret__, 'results'))
@@ -159,7 +146,6 @@ def get_privatelink_endpoints_output(project_id: pulumi.Input[Optional[_builtins
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints', __args__, opts=opts, typ=GetPrivatelinkEndpointsResult)
     return __ret__.apply(lambda __response__: GetPrivatelinkEndpointsResult(
-        id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id'),
         provider_name=pulumi.get(__response__, 'provider_name'),
         results=pulumi.get(__response__, 'results')))

@@ -71,8 +71,6 @@ type LookupPrivatelinkEndpointsArgs struct {
 
 // A collection of values returned by getPrivatelinkEndpoints.
 type LookupPrivatelinkEndpointsResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id           string `pulumi:"id"`
 	ProjectId    string `pulumi:"projectId"`
 	ProviderName string `pulumi:"providerName"`
 	// A list of Private Endpoints. (see below for nested schema)
@@ -113,11 +111,6 @@ func (o LookupPrivatelinkEndpointsResultOutput) ToLookupPrivatelinkEndpointsResu
 
 func (o LookupPrivatelinkEndpointsResultOutput) ToLookupPrivatelinkEndpointsResultOutputWithContext(ctx context.Context) LookupPrivatelinkEndpointsResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupPrivatelinkEndpointsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupPrivatelinkEndpointsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o LookupPrivatelinkEndpointsResultOutput) ProjectId() pulumi.StringOutput {

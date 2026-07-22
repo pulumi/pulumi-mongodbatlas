@@ -52,10 +52,6 @@ export interface GetProjectServiceAccountResult {
      */
     readonly description: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Human-readable name for the Service Account.
      */
     readonly name: string;

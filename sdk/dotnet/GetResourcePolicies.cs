@@ -70,10 +70,6 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetResourcePoliciesResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
         /// </summary>
         public readonly string OrgId;
@@ -85,15 +81,12 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetResourcePoliciesResult(
-            string id,
-
             string orgId,
 
             ImmutableArray<Outputs.GetResourcePoliciesResourcePolicyResult> resourcePolicies,
 
             ImmutableArray<Outputs.GetResourcePoliciesResultResult> results)
         {
-            Id = id;
             OrgId = orgId;
             ResourcePolicies = resourcePolicies;
             Results = results;

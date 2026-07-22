@@ -28,11 +28,6 @@ public final class GetProjectServiceAccountResult {
      */
     private String description;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Human-readable name for the Service Account.
      * 
      */
@@ -76,13 +71,6 @@ public final class GetProjectServiceAccountResult {
         return this.description;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
-    /**
      * @return Human-readable name for the Service Account.
      * 
      */
@@ -123,7 +111,6 @@ public final class GetProjectServiceAccountResult {
         private String clientId;
         private String createdAt;
         private String description;
-        private String id;
         private String name;
         private String projectId;
         private List<String> roles;
@@ -134,7 +121,6 @@ public final class GetProjectServiceAccountResult {
     	      this.clientId = defaults.clientId;
     	      this.createdAt = defaults.createdAt;
     	      this.description = defaults.description;
-    	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.projectId = defaults.projectId;
     	      this.roles = defaults.roles;
@@ -163,14 +149,6 @@ public final class GetProjectServiceAccountResult {
               throw new MissingRequiredPropertyException("GetProjectServiceAccountResult", "description");
             }
             this.description = description;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetProjectServiceAccountResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -216,7 +194,6 @@ public final class GetProjectServiceAccountResult {
             _resultValue.clientId = clientId;
             _resultValue.createdAt = createdAt;
             _resultValue.description = description;
-            _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.projectId = projectId;
             _resultValue.roles = roles;

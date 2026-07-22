@@ -76,10 +76,6 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetServiceAccountsResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         /// </summary>
         public readonly string OrgId;
@@ -90,13 +86,10 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetServiceAccountsResult(
-            string id,
-
             string orgId,
 
             ImmutableArray<Outputs.GetServiceAccountsResultResult> results)
         {
-            Id = id;
             OrgId = orgId;
             Results = results;
         }

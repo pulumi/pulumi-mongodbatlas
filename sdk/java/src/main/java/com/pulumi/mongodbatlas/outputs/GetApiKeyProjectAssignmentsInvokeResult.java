@@ -13,11 +13,6 @@ import java.util.Objects;
 @CustomType
 public final class GetApiKeyProjectAssignmentsInvokeResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
@@ -29,13 +24,6 @@ public final class GetApiKeyProjectAssignmentsInvokeResult {
     private List<GetApiKeyProjectAssignmentsResult> results;
 
     private GetApiKeyProjectAssignmentsInvokeResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
@@ -60,25 +48,15 @@ public final class GetApiKeyProjectAssignmentsInvokeResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private String projectId;
         private List<GetApiKeyProjectAssignmentsResult> results;
         public Builder() {}
         public Builder(GetApiKeyProjectAssignmentsInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetApiKeyProjectAssignmentsInvokeResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
@@ -100,7 +78,6 @@ public final class GetApiKeyProjectAssignmentsInvokeResult {
         }
         public GetApiKeyProjectAssignmentsInvokeResult build() {
             final var _resultValue = new GetApiKeyProjectAssignmentsInvokeResult();
-            _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.results = results;
             return _resultValue;

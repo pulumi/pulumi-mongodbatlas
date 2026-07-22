@@ -26,7 +26,7 @@ class GetMongodbEmployeeAccessGrantResult:
     """
     A collection of values returned by getMongodbEmployeeAccessGrant.
     """
-    def __init__(__self__, cluster_name=None, expiration_time=None, grant_type=None, id=None, project_id=None):
+    def __init__(__self__, cluster_name=None, expiration_time=None, grant_type=None, project_id=None):
         if cluster_name and not isinstance(cluster_name, str):
             raise TypeError("Expected argument 'cluster_name' to be a str")
         pulumi.set(__self__, "cluster_name", cluster_name)
@@ -36,9 +36,6 @@ class GetMongodbEmployeeAccessGrantResult:
         if grant_type and not isinstance(grant_type, str):
             raise TypeError("Expected argument 'grant_type' to be a str")
         pulumi.set(__self__, "grant_type", grant_type)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -68,14 +65,6 @@ class GetMongodbEmployeeAccessGrantResult:
         return pulumi.get(self, "grant_type")
 
     @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
@@ -93,7 +82,6 @@ class AwaitableGetMongodbEmployeeAccessGrantResult(GetMongodbEmployeeAccessGrant
             cluster_name=self.cluster_name,
             expiration_time=self.expiration_time,
             grant_type=self.grant_type,
-            id=self.id,
             project_id=self.project_id)
 
 
@@ -135,7 +123,6 @@ def get_mongodb_employee_access_grant(cluster_name: Optional[_builtins.str] = No
         cluster_name=pulumi.get(__ret__, 'cluster_name'),
         expiration_time=pulumi.get(__ret__, 'expiration_time'),
         grant_type=pulumi.get(__ret__, 'grant_type'),
-        id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'))
 def get_mongodb_employee_access_grant_output(cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
                                              project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -174,5 +161,4 @@ def get_mongodb_employee_access_grant_output(cluster_name: pulumi.Input[Optional
         cluster_name=pulumi.get(__response__, 'cluster_name'),
         expiration_time=pulumi.get(__response__, 'expiration_time'),
         grant_type=pulumi.get(__response__, 'grant_type'),
-        id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id')))

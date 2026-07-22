@@ -188,10 +188,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string CloudProvider;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
@@ -218,8 +214,6 @@ namespace Pulumi.Mongodbatlas
 
             string cloudProvider,
 
-            string id,
-
             string projectId,
 
             string regionName,
@@ -232,7 +226,6 @@ namespace Pulumi.Mongodbatlas
             AzureSubscriptionId = azureSubscriptionId;
             CidrBlock = cidrBlock;
             CloudProvider = cloudProvider;
-            Id = id;
             ProjectId = projectId;
             RegionName = regionName;
             VirtualNetworkName = virtualNetworkName;

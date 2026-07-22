@@ -36,8 +36,6 @@ type LookupFlexClustersArgs struct {
 
 // A collection of values returned by getFlexClusters.
 type LookupFlexClustersResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal character string that identifies the project.
 	ProjectId string `pulumi:"projectId"`
 	// List of documents that MongoDB Cloud returns for this request.
@@ -76,11 +74,6 @@ func (o LookupFlexClustersResultOutput) ToLookupFlexClustersResultOutput() Looku
 
 func (o LookupFlexClustersResultOutput) ToLookupFlexClustersResultOutputWithContext(ctx context.Context) LookupFlexClustersResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupFlexClustersResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFlexClustersResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal character string that identifies the project.

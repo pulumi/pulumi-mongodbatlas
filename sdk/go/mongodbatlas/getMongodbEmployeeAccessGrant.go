@@ -77,8 +77,6 @@ type LookupMongodbEmployeeAccessGrantResult struct {
 	ExpirationTime string `pulumi:"expirationTime"`
 	// Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
 	GrantType string `pulumi:"grantType"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
@@ -132,11 +130,6 @@ func (o LookupMongodbEmployeeAccessGrantResultOutput) ExpirationTime() pulumi.St
 // Level of access to grant to MongoDB Employees. Possible values are CLUSTER*DATABASE*LOGS, CLUSTER*INFRASTRUCTURE or CLUSTER*INFRASTRUCTURE*AND*APP*SERVICES*SYNC_DATA.
 func (o LookupMongodbEmployeeAccessGrantResultOutput) GrantType() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMongodbEmployeeAccessGrantResult) string { return v.GrantType }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupMongodbEmployeeAccessGrantResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupMongodbEmployeeAccessGrantResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

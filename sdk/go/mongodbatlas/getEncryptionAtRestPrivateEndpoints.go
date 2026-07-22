@@ -96,8 +96,6 @@ type LookupEncryptionAtRestPrivateEndpointsArgs struct {
 type LookupEncryptionAtRestPrivateEndpointsResult struct {
 	// Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 	CloudProvider string `pulumi:"cloudProvider"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of documents that MongoDB Cloud returns for this request.
@@ -143,11 +141,6 @@ func (o LookupEncryptionAtRestPrivateEndpointsResultOutput) ToLookupEncryptionAt
 // Label that identifies the cloud provider for the Encryption At Rest private endpoint.
 func (o LookupEncryptionAtRestPrivateEndpointsResultOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupEncryptionAtRestPrivateEndpointsResult) string { return v.CloudProvider }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupEncryptionAtRestPrivateEndpointsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupEncryptionAtRestPrivateEndpointsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

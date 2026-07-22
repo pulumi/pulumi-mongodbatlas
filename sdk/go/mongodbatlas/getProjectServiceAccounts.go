@@ -34,8 +34,6 @@ type LookupProjectServiceAccountsArgs struct {
 
 // A collection of values returned by getProjectServiceAccounts.
 type LookupProjectServiceAccountsResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of returned documents that MongoDB Cloud provides when completing this request.
@@ -74,11 +72,6 @@ func (o LookupProjectServiceAccountsResultOutput) ToLookupProjectServiceAccounts
 
 func (o LookupProjectServiceAccountsResultOutput) ToLookupProjectServiceAccountsResultOutputWithContext(ctx context.Context) LookupProjectServiceAccountsResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupProjectServiceAccountsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupProjectServiceAccountsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

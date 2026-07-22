@@ -32,8 +32,6 @@ type LookupResourcePoliciesArgs struct {
 
 // A collection of values returned by getResourcePolicies.
 type LookupResourcePoliciesResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
 	OrgId string `pulumi:"orgId"`
 	// Deprecated: This parameter is deprecated. Please transition to `results`.
@@ -74,11 +72,6 @@ func (o LookupResourcePoliciesResultOutput) ToLookupResourcePoliciesResultOutput
 
 func (o LookupResourcePoliciesResultOutput) ToLookupResourcePoliciesResultOutputWithContext(ctx context.Context) LookupResourcePoliciesResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupResourcePoliciesResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupResourcePoliciesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.

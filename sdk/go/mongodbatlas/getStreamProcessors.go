@@ -227,8 +227,6 @@ type LookupStreamProcessorsArgs struct {
 
 // A collection of values returned by getStreamProcessors.
 type LookupStreamProcessorsResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Label that identifies the stream processing workspace.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
@@ -279,11 +277,6 @@ func (o LookupStreamProcessorsResultOutput) ToLookupStreamProcessorsResultOutput
 
 func (o LookupStreamProcessorsResultOutput) ToLookupStreamProcessorsResultOutputWithContext(ctx context.Context) LookupStreamProcessorsResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupStreamProcessorsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupStreamProcessorsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Label that identifies the stream processing workspace.

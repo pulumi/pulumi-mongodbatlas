@@ -15,11 +15,6 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetLogIntegrationsInvokeResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
      * 
      */
@@ -36,13 +31,6 @@ public final class GetLogIntegrationsInvokeResult {
     private List<GetLogIntegrationsResult> results;
 
     private GetLogIntegrationsInvokeResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
      * 
@@ -74,27 +62,17 @@ public final class GetLogIntegrationsInvokeResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private @Nullable String integrationType;
         private String projectId;
         private List<GetLogIntegrationsResult> results;
         public Builder() {}
         public Builder(GetLogIntegrationsInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.integrationType = defaults.integrationType;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetLogIntegrationsInvokeResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder integrationType(@Nullable String integrationType) {
 
@@ -122,7 +100,6 @@ public final class GetLogIntegrationsInvokeResult {
         }
         public GetLogIntegrationsInvokeResult build() {
             final var _resultValue = new GetLogIntegrationsInvokeResult();
-            _resultValue.id = id;
             _resultValue.integrationType = integrationType;
             _resultValue.projectId = projectId;
             _resultValue.results = results;

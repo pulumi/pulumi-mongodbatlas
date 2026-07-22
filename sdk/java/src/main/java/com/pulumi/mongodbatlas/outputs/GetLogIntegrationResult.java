@@ -19,11 +19,6 @@ public final class GetLogIntegrationResult {
     private String hecUrl;
     private String iamRoleId;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Unique identifier of the log integration configuration.
      * 
      */
@@ -68,13 +63,6 @@ public final class GetLogIntegrationResult {
     }
     public String iamRoleId() {
         return this.iamRoleId;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return Unique identifier of the log integration configuration.
@@ -146,7 +134,6 @@ public final class GetLogIntegrationResult {
         private String hecToken;
         private String hecUrl;
         private String iamRoleId;
-        private String id;
         private String integrationId;
         private String kmsKey;
         private List<String> logTypes;
@@ -168,7 +155,6 @@ public final class GetLogIntegrationResult {
     	      this.hecToken = defaults.hecToken;
     	      this.hecUrl = defaults.hecUrl;
     	      this.iamRoleId = defaults.iamRoleId;
-    	      this.id = defaults.id;
     	      this.integrationId = defaults.integrationId;
     	      this.kmsKey = defaults.kmsKey;
     	      this.logTypes = defaults.logTypes;
@@ -222,14 +208,6 @@ public final class GetLogIntegrationResult {
               throw new MissingRequiredPropertyException("GetLogIntegrationResult", "iamRoleId");
             }
             this.iamRoleId = iamRoleId;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetLogIntegrationResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -349,7 +327,6 @@ public final class GetLogIntegrationResult {
             _resultValue.hecToken = hecToken;
             _resultValue.hecUrl = hecUrl;
             _resultValue.iamRoleId = iamRoleId;
-            _resultValue.id = id;
             _resultValue.integrationId = integrationId;
             _resultValue.kmsKey = kmsKey;
             _resultValue.logTypes = logTypes;

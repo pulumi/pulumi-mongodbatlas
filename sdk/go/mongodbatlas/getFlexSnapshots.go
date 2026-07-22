@@ -36,8 +36,6 @@ type LookupFlexSnapshotsArgs struct {
 
 // A collection of values returned by getFlexSnapshots.
 type LookupFlexSnapshotsResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
 	Name string `pulumi:"name"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -80,11 +78,6 @@ func (o LookupFlexSnapshotsResultOutput) ToLookupFlexSnapshotsResultOutput() Loo
 
 func (o LookupFlexSnapshotsResultOutput) ToLookupFlexSnapshotsResultOutputWithContext(ctx context.Context) LookupFlexSnapshotsResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupFlexSnapshotsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupFlexSnapshotsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Human-readable label that identifies the flex cluster whose snapshot you want to restore.

@@ -762,22 +762,15 @@ namespace Pulumi.Mongodbatlas
     [OutputType]
     public sealed class GetStreamPrivatelinkEndpointsResult
     {
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly string ProjectId;
         public readonly ImmutableArray<Outputs.GetStreamPrivatelinkEndpointsResultResult> Results;
 
         [OutputConstructor]
         private GetStreamPrivatelinkEndpointsResult(
-            string id,
-
             string projectId,
 
             ImmutableArray<Outputs.GetStreamPrivatelinkEndpointsResultResult> results)
         {
-            Id = id;
             ProjectId = projectId;
             Results = results;
         }

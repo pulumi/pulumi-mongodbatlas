@@ -26,11 +26,6 @@ public final class GetServiceAccountSecretResult {
      */
     private String expiresAt;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      * 
      */
@@ -74,13 +69,6 @@ public final class GetServiceAccountSecretResult {
         return this.expiresAt;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
-    /**
      * @return The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      * 
      */
@@ -121,7 +109,6 @@ public final class GetServiceAccountSecretResult {
         private String clientId;
         private String createdAt;
         private String expiresAt;
-        private String id;
         private String lastUsedAt;
         private String maskedSecretValue;
         private String orgId;
@@ -132,7 +119,6 @@ public final class GetServiceAccountSecretResult {
     	      this.clientId = defaults.clientId;
     	      this.createdAt = defaults.createdAt;
     	      this.expiresAt = defaults.expiresAt;
-    	      this.id = defaults.id;
     	      this.lastUsedAt = defaults.lastUsedAt;
     	      this.maskedSecretValue = defaults.maskedSecretValue;
     	      this.orgId = defaults.orgId;
@@ -161,14 +147,6 @@ public final class GetServiceAccountSecretResult {
               throw new MissingRequiredPropertyException("GetServiceAccountSecretResult", "expiresAt");
             }
             this.expiresAt = expiresAt;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetServiceAccountSecretResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -208,7 +186,6 @@ public final class GetServiceAccountSecretResult {
             _resultValue.clientId = clientId;
             _resultValue.createdAt = createdAt;
             _resultValue.expiresAt = expiresAt;
-            _resultValue.id = id;
             _resultValue.lastUsedAt = lastUsedAt;
             _resultValue.maskedSecretValue = maskedSecretValue;
             _resultValue.orgId = orgId;

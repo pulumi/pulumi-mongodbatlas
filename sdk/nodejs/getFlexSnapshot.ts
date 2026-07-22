@@ -67,10 +67,6 @@ export interface GetFlexSnapshotResult {
      */
     readonly finishTime: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * MongoDB host version that the snapshot runs.
      */
     readonly mongoDbVersion: string;

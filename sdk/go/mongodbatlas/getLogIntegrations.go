@@ -39,8 +39,6 @@ type LookupLogIntegrationsArgs struct {
 
 // A collection of values returned by getLogIntegrations.
 type LookupLogIntegrationsResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
 	IntegrationType *string `pulumi:"integrationType"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -83,11 +81,6 @@ func (o LookupLogIntegrationsResultOutput) ToLookupLogIntegrationsResultOutput()
 
 func (o LookupLogIntegrationsResultOutput) ToLookupLogIntegrationsResultOutputWithContext(ctx context.Context) LookupLogIntegrationsResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupLogIntegrationsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLogIntegrationsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Optional filter by integration type (e.g., `S3_LOG_EXPORT`).

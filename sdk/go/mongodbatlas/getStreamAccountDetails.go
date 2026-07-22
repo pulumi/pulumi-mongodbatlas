@@ -75,8 +75,6 @@ type GetStreamAccountDetailsResult struct {
 	CidrBlock string `pulumi:"cidrBlock"`
 	// One of `aws` or `azure`.
 	CloudProvider string `pulumi:"cloudProvider"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// The cloud provider specific region name, i.e. `US_EAST_1` for cloud provider `aws`.
@@ -143,11 +141,6 @@ func (o GetStreamAccountDetailsResultOutput) CidrBlock() pulumi.StringOutput {
 // One of `aws` or `azure`.
 func (o GetStreamAccountDetailsResultOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamAccountDetailsResult) string { return v.CloudProvider }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetStreamAccountDetailsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamAccountDetailsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

@@ -194,10 +194,6 @@ export interface GetAdvancedClustersArgs {
  * A collection of values returned by getAdvancedClusters.
  */
 export interface GetAdvancedClustersResult {
-    /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
     readonly projectId: string;
     /**
      * A list where each represents a Cluster. See below for more details.

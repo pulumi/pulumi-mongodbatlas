@@ -26,13 +26,10 @@ class GetServiceAccountProjectAssignmentResult:
     """
     A collection of values returned by getServiceAccountProjectAssignment.
     """
-    def __init__(__self__, client_id=None, id=None, project_id=None, roles=None):
+    def __init__(__self__, client_id=None, project_id=None, roles=None):
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -47,14 +44,6 @@ class GetServiceAccountProjectAssignmentResult:
         The Client ID of the Service Account.
         """
         return pulumi.get(self, "client_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -80,7 +69,6 @@ class AwaitableGetServiceAccountProjectAssignmentResult(GetServiceAccountProject
             yield self
         return GetServiceAccountProjectAssignmentResult(
             client_id=self.client_id,
-            id=self.id,
             project_id=self.project_id,
             roles=self.roles)
 
@@ -131,7 +119,6 @@ def get_service_account_project_assignment(client_id: Optional[_builtins.str] = 
 
     return AwaitableGetServiceAccountProjectAssignmentResult(
         client_id=pulumi.get(__ret__, 'client_id'),
-        id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         roles=pulumi.get(__ret__, 'roles'))
 def get_service_account_project_assignment_output(client_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -179,6 +166,5 @@ def get_service_account_project_assignment_output(client_id: pulumi.Input[Option
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getServiceAccountProjectAssignment:getServiceAccountProjectAssignment', __args__, opts=opts, typ=GetServiceAccountProjectAssignmentResult)
     return __ret__.apply(lambda __response__: GetServiceAccountProjectAssignmentResult(
         client_id=pulumi.get(__response__, 'client_id'),
-        id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id'),
         roles=pulumi.get(__response__, 'roles')))

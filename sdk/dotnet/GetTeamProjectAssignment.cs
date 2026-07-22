@@ -172,10 +172,6 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetTeamProjectAssignmentResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
@@ -190,15 +186,12 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetTeamProjectAssignmentResult(
-            string id,
-
             string projectId,
 
             ImmutableArray<string> roleNames,
 
             string teamId)
         {
-            Id = id;
             ProjectId = projectId;
             RoleNames = roleNames;
             TeamId = teamId;

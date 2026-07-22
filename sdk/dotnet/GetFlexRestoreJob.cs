@@ -201,10 +201,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ExpirationDate;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
         /// </summary>
         public readonly string Name;
@@ -255,8 +251,6 @@ namespace Pulumi.Mongodbatlas
 
             string expirationDate,
 
-            string id,
-
             string name,
 
             string projectId,
@@ -281,7 +275,6 @@ namespace Pulumi.Mongodbatlas
         {
             DeliveryType = deliveryType;
             ExpirationDate = expirationDate;
-            Id = id;
             Name = name;
             ProjectId = projectId;
             RestoreFinishedDate = restoreFinishedDate;
