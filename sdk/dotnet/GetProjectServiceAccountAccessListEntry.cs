@@ -313,10 +313,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string CreatedAt;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
         /// </summary>
         public readonly string IpAddress;
@@ -345,8 +341,6 @@ namespace Pulumi.Mongodbatlas
 
             string createdAt,
 
-            string id,
-
             string ipAddress,
 
             string lastUsedAddress,
@@ -360,7 +354,6 @@ namespace Pulumi.Mongodbatlas
             CidrBlock = cidrBlock;
             ClientId = clientId;
             CreatedAt = createdAt;
-            Id = id;
             IpAddress = ipAddress;
             LastUsedAddress = lastUsedAddress;
             LastUsedAt = lastUsedAt;

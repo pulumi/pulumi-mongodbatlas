@@ -13,11 +13,6 @@ import java.util.Objects;
 @CustomType
 public final class GetFlexClustersInvokeResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Unique 24-hexadecimal character string that identifies the project.
      * 
      */
@@ -29,13 +24,6 @@ public final class GetFlexClustersInvokeResult {
     private List<GetFlexClustersResult> results;
 
     private GetFlexClustersInvokeResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return Unique 24-hexadecimal character string that identifies the project.
      * 
@@ -60,25 +48,15 @@ public final class GetFlexClustersInvokeResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private String projectId;
         private List<GetFlexClustersResult> results;
         public Builder() {}
         public Builder(GetFlexClustersInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetFlexClustersInvokeResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
@@ -100,7 +78,6 @@ public final class GetFlexClustersInvokeResult {
         }
         public GetFlexClustersInvokeResult build() {
             final var _resultValue = new GetFlexClustersInvokeResult();
-            _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.results = results;
             return _resultValue;

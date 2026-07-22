@@ -247,10 +247,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string IamRoleId;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
         /// </summary>
         public readonly string PrefixPath;
@@ -271,8 +267,6 @@ namespace Pulumi.Mongodbatlas
 
             string iamRoleId,
 
-            string id,
-
             string prefixPath,
 
             string projectId,
@@ -282,7 +276,6 @@ namespace Pulumi.Mongodbatlas
             BucketName = bucketName;
             CreateDate = createDate;
             IamRoleId = iamRoleId;
-            Id = id;
             PrefixPath = prefixPath;
             ProjectId = projectId;
             State = state;

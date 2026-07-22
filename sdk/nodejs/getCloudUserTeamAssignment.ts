@@ -87,10 +87,6 @@ export interface GetCloudUserTeamAssignmentResult {
      */
     readonly firstName: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
      */
     readonly invitationCreatedAt: string;

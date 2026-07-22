@@ -27,24 +27,13 @@ class GetApiKeyProjectAssignmentsResult:
     """
     A collection of values returned by getApiKeyProjectAssignments.
     """
-    def __init__(__self__, id=None, project_id=None, results=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, project_id=None, results=None):
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
         if results and not isinstance(results, list):
             raise TypeError("Expected argument 'results' to be a list")
         pulumi.set(__self__, "results", results)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -69,7 +58,6 @@ class AwaitableGetApiKeyProjectAssignmentsResult(GetApiKeyProjectAssignmentsResu
         if False:
             yield self
         return GetApiKeyProjectAssignmentsResult(
-            id=self.id,
             project_id=self.project_id,
             results=self.results)
 
@@ -128,7 +116,6 @@ def get_api_key_project_assignments(project_id: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getApiKeyProjectAssignments:getApiKeyProjectAssignments', __args__, opts=opts, typ=GetApiKeyProjectAssignmentsResult).value
 
     return AwaitableGetApiKeyProjectAssignmentsResult(
-        id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
 def get_api_key_project_assignments_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -184,6 +171,5 @@ def get_api_key_project_assignments_output(project_id: pulumi.Input[Optional[_bu
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getApiKeyProjectAssignments:getApiKeyProjectAssignments', __args__, opts=opts, typ=GetApiKeyProjectAssignmentsResult)
     return __ret__.apply(lambda __response__: GetApiKeyProjectAssignmentsResult(
-        id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id'),
         results=pulumi.get(__response__, 'results')))

@@ -31,11 +31,6 @@ public final class GetStreamConnectionFailoverResult {
      * 
      */
     private String failoverConnectionId;
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
     private GetStreamConnectionFailoverNetworking networking;
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -97,13 +92,6 @@ public final class GetStreamConnectionFailoverResult {
     public String failoverConnectionId() {
         return this.failoverConnectionId;
     }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     public GetStreamConnectionFailoverNetworking networking() {
         return this.networking;
     }
@@ -163,7 +151,6 @@ public final class GetStreamConnectionFailoverResult {
         private String connectionName;
         private GetStreamConnectionFailoverDbRoleToExecute dbRoleToExecute;
         private String failoverConnectionId;
-        private String id;
         private GetStreamConnectionFailoverNetworking networking;
         private String projectId;
         private String region;
@@ -182,7 +169,6 @@ public final class GetStreamConnectionFailoverResult {
     	      this.connectionName = defaults.connectionName;
     	      this.dbRoleToExecute = defaults.dbRoleToExecute;
     	      this.failoverConnectionId = defaults.failoverConnectionId;
-    	      this.id = defaults.id;
     	      this.networking = defaults.networking;
     	      this.projectId = defaults.projectId;
     	      this.region = defaults.region;
@@ -257,14 +243,6 @@ public final class GetStreamConnectionFailoverResult {
             return this;
         }
         @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetStreamConnectionFailoverResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
-        @CustomType.Setter
         public Builder networking(GetStreamConnectionFailoverNetworking networking) {
             if (networking == null) {
               throw new MissingRequiredPropertyException("GetStreamConnectionFailoverResult", "networking");
@@ -330,7 +308,6 @@ public final class GetStreamConnectionFailoverResult {
             _resultValue.connectionName = connectionName;
             _resultValue.dbRoleToExecute = dbRoleToExecute;
             _resultValue.failoverConnectionId = failoverConnectionId;
-            _resultValue.id = id;
             _resultValue.networking = networking;
             _resultValue.projectId = projectId;
             _resultValue.region = region;

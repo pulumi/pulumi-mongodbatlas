@@ -26,11 +26,6 @@ public final class GetPushBasedLogExportResult {
      */
     private String iamRoleId;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
      * 
      */
@@ -69,13 +64,6 @@ public final class GetPushBasedLogExportResult {
         return this.iamRoleId;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
-    /**
      * @return S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
      * 
      */
@@ -109,7 +97,6 @@ public final class GetPushBasedLogExportResult {
         private String bucketName;
         private String createDate;
         private String iamRoleId;
-        private String id;
         private String prefixPath;
         private String projectId;
         private String state;
@@ -119,7 +106,6 @@ public final class GetPushBasedLogExportResult {
     	      this.bucketName = defaults.bucketName;
     	      this.createDate = defaults.createDate;
     	      this.iamRoleId = defaults.iamRoleId;
-    	      this.id = defaults.id;
     	      this.prefixPath = defaults.prefixPath;
     	      this.projectId = defaults.projectId;
     	      this.state = defaults.state;
@@ -147,14 +133,6 @@ public final class GetPushBasedLogExportResult {
               throw new MissingRequiredPropertyException("GetPushBasedLogExportResult", "iamRoleId");
             }
             this.iamRoleId = iamRoleId;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetPushBasedLogExportResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -186,7 +164,6 @@ public final class GetPushBasedLogExportResult {
             _resultValue.bucketName = bucketName;
             _resultValue.createDate = createDate;
             _resultValue.iamRoleId = iamRoleId;
-            _resultValue.id = id;
             _resultValue.prefixPath = prefixPath;
             _resultValue.projectId = projectId;
             _resultValue.state = state;

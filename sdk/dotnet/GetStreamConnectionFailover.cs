@@ -197,10 +197,6 @@ namespace Pulumi.Mongodbatlas
         /// Label that identifies the stream failover connection id.
         /// </summary>
         public readonly string FailoverConnectionId;
-        /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
         public readonly Outputs.GetStreamConnectionFailoverNetworkingResult Networking;
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -242,8 +238,6 @@ namespace Pulumi.Mongodbatlas
 
             string failoverConnectionId,
 
-            string id,
-
             Outputs.GetStreamConnectionFailoverNetworkingResult networking,
 
             string projectId,
@@ -266,7 +260,6 @@ namespace Pulumi.Mongodbatlas
             ConnectionName = connectionName;
             DbRoleToExecute = dbRoleToExecute;
             FailoverConnectionId = failoverConnectionId;
-            Id = id;
             Networking = networking;
             ProjectId = projectId;
             Region = region;

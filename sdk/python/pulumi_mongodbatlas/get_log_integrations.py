@@ -27,10 +27,7 @@ class GetLogIntegrationsResult:
     """
     A collection of values returned by getLogIntegrations.
     """
-    def __init__(__self__, id=None, integration_type=None, project_id=None, results=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, integration_type=None, project_id=None, results=None):
         if integration_type and not isinstance(integration_type, str):
             raise TypeError("Expected argument 'integration_type' to be a str")
         pulumi.set(__self__, "integration_type", integration_type)
@@ -40,14 +37,6 @@ class GetLogIntegrationsResult:
         if results and not isinstance(results, list):
             raise TypeError("Expected argument 'results' to be a list")
         pulumi.set(__self__, "results", results)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="integrationType")
@@ -80,7 +69,6 @@ class AwaitableGetLogIntegrationsResult(GetLogIntegrationsResult):
         if False:
             yield self
         return GetLogIntegrationsResult(
-            id=self.id,
             integration_type=self.integration_type,
             project_id=self.project_id,
             results=self.results)
@@ -118,7 +106,6 @@ def get_log_integrations(integration_type: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getLogIntegrations:getLogIntegrations', __args__, opts=opts, typ=GetLogIntegrationsResult).value
 
     return AwaitableGetLogIntegrationsResult(
-        id=pulumi.get(__ret__, 'id'),
         integration_type=pulumi.get(__ret__, 'integration_type'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
@@ -153,7 +140,6 @@ def get_log_integrations_output(integration_type: pulumi.Input[Optional[Optional
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getLogIntegrations:getLogIntegrations', __args__, opts=opts, typ=GetLogIntegrationsResult)
     return __ret__.apply(lambda __response__: GetLogIntegrationsResult(
-        id=pulumi.get(__response__, 'id'),
         integration_type=pulumi.get(__response__, 'integration_type'),
         project_id=pulumi.get(__response__, 'project_id'),
         results=pulumi.get(__response__, 'results')))

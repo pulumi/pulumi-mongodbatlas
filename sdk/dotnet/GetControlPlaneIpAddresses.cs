@@ -95,10 +95,6 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetControlPlaneIpAddressesResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// List of inbound IP addresses to the Atlas control plane, categorized by cloud provider. If your application allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your API requests can reach the Atlas control plane.
         /// </summary>
         public readonly Outputs.GetControlPlaneIpAddressesInboundResult Inbound;
@@ -109,13 +105,10 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetControlPlaneIpAddressesResult(
-            string id,
-
             Outputs.GetControlPlaneIpAddressesInboundResult inbound,
 
             Outputs.GetControlPlaneIpAddressesOutboundResult outbound)
         {
-            Id = id;
             Inbound = inbound;
             Outbound = outbound;
         }

@@ -264,8 +264,6 @@ type LookupStreamPrivatelinkEndpointsArgs struct {
 
 // A collection of values returned by getStreamPrivatelinkEndpoints.
 type LookupStreamPrivatelinkEndpointsResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id        string                                `pulumi:"id"`
 	ProjectId string                                `pulumi:"projectId"`
 	Results   []GetStreamPrivatelinkEndpointsResult `pulumi:"results"`
 }
@@ -301,11 +299,6 @@ func (o LookupStreamPrivatelinkEndpointsResultOutput) ToLookupStreamPrivatelinkE
 
 func (o LookupStreamPrivatelinkEndpointsResultOutput) ToLookupStreamPrivatelinkEndpointsResultOutputWithContext(ctx context.Context) LookupStreamPrivatelinkEndpointsResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupStreamPrivatelinkEndpointsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o LookupStreamPrivatelinkEndpointsResultOutput) ProjectId() pulumi.StringOutput {

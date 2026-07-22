@@ -13,11 +13,6 @@ import java.util.Objects;
 @CustomType
 public final class GetServiceAccountsInvokeResult {
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      * 
      */
@@ -29,13 +24,6 @@ public final class GetServiceAccountsInvokeResult {
     private List<GetServiceAccountsResult> results;
 
     private GetServiceAccountsInvokeResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      * 
@@ -60,25 +48,15 @@ public final class GetServiceAccountsInvokeResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private String orgId;
         private List<GetServiceAccountsResult> results;
         public Builder() {}
         public Builder(GetServiceAccountsInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.orgId = defaults.orgId;
     	      this.results = defaults.results;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetServiceAccountsInvokeResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder orgId(String orgId) {
             if (orgId == null) {
@@ -100,7 +78,6 @@ public final class GetServiceAccountsInvokeResult {
         }
         public GetServiceAccountsInvokeResult build() {
             final var _resultValue = new GetServiceAccountsInvokeResult();
-            _resultValue.id = id;
             _resultValue.orgId = orgId;
             _resultValue.results = results;
             return _resultValue;

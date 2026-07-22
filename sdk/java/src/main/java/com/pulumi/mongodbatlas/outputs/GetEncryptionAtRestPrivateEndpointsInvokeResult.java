@@ -18,11 +18,6 @@ public final class GetEncryptionAtRestPrivateEndpointsInvokeResult {
      */
     private String cloudProvider;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
@@ -40,13 +35,6 @@ public final class GetEncryptionAtRestPrivateEndpointsInvokeResult {
      */
     public String cloudProvider() {
         return this.cloudProvider;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -73,14 +61,12 @@ public final class GetEncryptionAtRestPrivateEndpointsInvokeResult {
     @CustomType.Builder
     public static final class Builder {
         private String cloudProvider;
-        private String id;
         private String projectId;
         private List<GetEncryptionAtRestPrivateEndpointsResult> results;
         public Builder() {}
         public Builder(GetEncryptionAtRestPrivateEndpointsInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.cloudProvider = defaults.cloudProvider;
-    	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
         }
@@ -91,14 +77,6 @@ public final class GetEncryptionAtRestPrivateEndpointsInvokeResult {
               throw new MissingRequiredPropertyException("GetEncryptionAtRestPrivateEndpointsInvokeResult", "cloudProvider");
             }
             this.cloudProvider = cloudProvider;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetEncryptionAtRestPrivateEndpointsInvokeResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -123,7 +101,6 @@ public final class GetEncryptionAtRestPrivateEndpointsInvokeResult {
         public GetEncryptionAtRestPrivateEndpointsInvokeResult build() {
             final var _resultValue = new GetEncryptionAtRestPrivateEndpointsInvokeResult();
             _resultValue.cloudProvider = cloudProvider;
-            _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.results = results;
             return _resultValue;

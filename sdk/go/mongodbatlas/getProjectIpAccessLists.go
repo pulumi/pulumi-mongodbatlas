@@ -72,8 +72,6 @@ type LookupProjectIpAccessListsArgs struct {
 
 // A collection of values returned by getProjectIpAccessLists.
 type LookupProjectIpAccessListsResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of returned documents that MongoDB Cloud provides when completing this request.
@@ -112,11 +110,6 @@ func (o LookupProjectIpAccessListsResultOutput) ToLookupProjectIpAccessListsResu
 
 func (o LookupProjectIpAccessListsResultOutput) ToLookupProjectIpAccessListsResultOutputWithContext(ctx context.Context) LookupProjectIpAccessListsResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupProjectIpAccessListsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupProjectIpAccessListsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

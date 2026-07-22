@@ -15,11 +15,6 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetAdvancedClustersInvokeResult {
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
     private String projectId;
     /**
      * @return A list where each represents a Cluster. See below for more details.
@@ -29,13 +24,6 @@ public final class GetAdvancedClustersInvokeResult {
     private @Nullable Boolean useEffectiveFields;
 
     private GetAdvancedClustersInvokeResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     public String projectId() {
         return this.projectId;
     }
@@ -59,27 +47,17 @@ public final class GetAdvancedClustersInvokeResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private String projectId;
         private List<GetAdvancedClustersResult> results;
         private @Nullable Boolean useEffectiveFields;
         public Builder() {}
         public Builder(GetAdvancedClustersInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
     	      this.useEffectiveFields = defaults.useEffectiveFields;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetAdvancedClustersInvokeResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
@@ -107,7 +85,6 @@ public final class GetAdvancedClustersInvokeResult {
         }
         public GetAdvancedClustersInvokeResult build() {
             final var _resultValue = new GetAdvancedClustersInvokeResult();
-            _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.results = results;
             _resultValue.useEffectiveFields = useEffectiveFields;

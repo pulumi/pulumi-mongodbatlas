@@ -27,7 +27,7 @@ class GetLogIntegrationResult:
     """
     A collection of values returned by getLogIntegration.
     """
-    def __init__(__self__, api_key=None, bucket_name=None, hec_token=None, hec_url=None, iam_role_id=None, id=None, integration_id=None, kms_key=None, log_types=None, otel_endpoint=None, otel_supplied_headers=None, prefix_path=None, project_id=None, region=None, role_id=None, storage_account_name=None, storage_container_name=None, type=None, use_legacy_path_structure=None):
+    def __init__(__self__, api_key=None, bucket_name=None, hec_token=None, hec_url=None, iam_role_id=None, integration_id=None, kms_key=None, log_types=None, otel_endpoint=None, otel_supplied_headers=None, prefix_path=None, project_id=None, region=None, role_id=None, storage_account_name=None, storage_container_name=None, type=None, use_legacy_path_structure=None):
         if api_key and not isinstance(api_key, str):
             raise TypeError("Expected argument 'api_key' to be a str")
         pulumi.set(__self__, "api_key", api_key)
@@ -43,9 +43,6 @@ class GetLogIntegrationResult:
         if iam_role_id and not isinstance(iam_role_id, str):
             raise TypeError("Expected argument 'iam_role_id' to be a str")
         pulumi.set(__self__, "iam_role_id", iam_role_id)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if integration_id and not isinstance(integration_id, str):
             raise TypeError("Expected argument 'integration_id' to be a str")
         pulumi.set(__self__, "integration_id", integration_id)
@@ -110,14 +107,6 @@ class GetLogIntegrationResult:
     @pulumi.getter(name="iamRoleId")
     def iam_role_id(self) -> _builtins.str:
         return pulumi.get(self, "iam_role_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="integrationId")
@@ -208,7 +197,6 @@ class AwaitableGetLogIntegrationResult(GetLogIntegrationResult):
             hec_token=self.hec_token,
             hec_url=self.hec_url,
             iam_role_id=self.iam_role_id,
-            id=self.id,
             integration_id=self.integration_id,
             kms_key=self.kms_key,
             log_types=self.log_types,
@@ -262,7 +250,6 @@ def get_log_integration(integration_id: Optional[_builtins.str] = None,
         hec_token=pulumi.get(__ret__, 'hec_token'),
         hec_url=pulumi.get(__ret__, 'hec_url'),
         iam_role_id=pulumi.get(__ret__, 'iam_role_id'),
-        id=pulumi.get(__ret__, 'id'),
         integration_id=pulumi.get(__ret__, 'integration_id'),
         kms_key=pulumi.get(__ret__, 'kms_key'),
         log_types=pulumi.get(__ret__, 'log_types'),
@@ -313,7 +300,6 @@ def get_log_integration_output(integration_id: pulumi.Input[Optional[_builtins.s
         hec_token=pulumi.get(__response__, 'hec_token'),
         hec_url=pulumi.get(__response__, 'hec_url'),
         iam_role_id=pulumi.get(__response__, 'iam_role_id'),
-        id=pulumi.get(__response__, 'id'),
         integration_id=pulumi.get(__response__, 'integration_id'),
         kms_key=pulumi.get(__response__, 'kms_key'),
         log_types=pulumi.get(__response__, 'log_types'),

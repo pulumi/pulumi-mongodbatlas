@@ -115,8 +115,6 @@ type LookupProjectServiceAccountAccessListEntryResult struct {
 	ClientId string `pulumi:"clientId"`
 	// Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
 	CreatedAt string `pulumi:"createdAt"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.
 	IpAddress string `pulumi:"ipAddress"`
 	// Network address that issued the most recent request to the API.
@@ -182,11 +180,6 @@ func (o LookupProjectServiceAccountAccessListEntryResultOutput) ClientId() pulum
 // Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
 func (o LookupProjectServiceAccountAccessListEntryResultOutput) CreatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectServiceAccountAccessListEntryResult) string { return v.CreatedAt }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupProjectServiceAccountAccessListEntryResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupProjectServiceAccountAccessListEntryResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // IP address to be added to the access list. You can set a value for this parameter or **cidr_block**, but not for both.

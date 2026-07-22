@@ -219,10 +219,6 @@ export interface GetAdvancedClusterResult {
      */
     readonly globalClusterSelfManagedSharding: boolean;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
      */
     readonly labels: {[key: string]: string};

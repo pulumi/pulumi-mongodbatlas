@@ -27,10 +27,7 @@ class GetFlexRestoreJobsResult:
     """
     A collection of values returned by getFlexRestoreJobs.
     """
-    def __init__(__self__, id=None, name=None, project_id=None, results=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, name=None, project_id=None, results=None):
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -40,14 +37,6 @@ class GetFlexRestoreJobsResult:
         if results and not isinstance(results, list):
             raise TypeError("Expected argument 'results' to be a list")
         pulumi.set(__self__, "results", results)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -80,7 +69,6 @@ class AwaitableGetFlexRestoreJobsResult(GetFlexRestoreJobsResult):
         if False:
             yield self
         return GetFlexRestoreJobsResult(
-            id=self.id,
             name=self.name,
             project_id=self.project_id,
             results=self.results)
@@ -119,7 +107,6 @@ def get_flex_restore_jobs(name: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getFlexRestoreJobs:getFlexRestoreJobs', __args__, opts=opts, typ=GetFlexRestoreJobsResult).value
 
     return AwaitableGetFlexRestoreJobsResult(
-        id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
@@ -155,7 +142,6 @@ def get_flex_restore_jobs_output(name: pulumi.Input[Optional[_builtins.str]] = N
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFlexRestoreJobs:getFlexRestoreJobs', __args__, opts=opts, typ=GetFlexRestoreJobsResult)
     return __ret__.apply(lambda __response__: GetFlexRestoreJobsResult(
-        id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         project_id=pulumi.get(__response__, 'project_id'),
         results=pulumi.get(__response__, 'results')))

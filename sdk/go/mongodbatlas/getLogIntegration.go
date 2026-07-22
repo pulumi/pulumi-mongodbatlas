@@ -70,8 +70,6 @@ type LookupLogIntegrationResult struct {
 	HecToken   string `pulumi:"hecToken"`
 	HecUrl     string `pulumi:"hecUrl"`
 	IamRoleId  string `pulumi:"iamRoleId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Unique identifier of the log integration configuration.
 	IntegrationId string `pulumi:"integrationId"`
 	KmsKey        string `pulumi:"kmsKey"`
@@ -145,11 +143,6 @@ func (o LookupLogIntegrationResultOutput) HecUrl() pulumi.StringOutput {
 
 func (o LookupLogIntegrationResultOutput) IamRoleId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.IamRoleId }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupLogIntegrationResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLogIntegrationResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Unique identifier of the log integration configuration.

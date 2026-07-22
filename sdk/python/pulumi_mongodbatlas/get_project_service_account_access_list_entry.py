@@ -26,7 +26,7 @@ class GetProjectServiceAccountAccessListEntryResult:
     """
     A collection of values returned by getProjectServiceAccountAccessListEntry.
     """
-    def __init__(__self__, cidr_block=None, client_id=None, created_at=None, id=None, ip_address=None, last_used_address=None, last_used_at=None, project_id=None, request_count=None):
+    def __init__(__self__, cidr_block=None, client_id=None, created_at=None, ip_address=None, last_used_address=None, last_used_at=None, project_id=None, request_count=None):
         if cidr_block and not isinstance(cidr_block, str):
             raise TypeError("Expected argument 'cidr_block' to be a str")
         pulumi.set(__self__, "cidr_block", cidr_block)
@@ -36,9 +36,6 @@ class GetProjectServiceAccountAccessListEntryResult:
         if created_at and not isinstance(created_at, str):
             raise TypeError("Expected argument 'created_at' to be a str")
         pulumi.set(__self__, "created_at", created_at)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if ip_address and not isinstance(ip_address, str):
             raise TypeError("Expected argument 'ip_address' to be a str")
         pulumi.set(__self__, "ip_address", ip_address)
@@ -78,14 +75,6 @@ class GetProjectServiceAccountAccessListEntryResult:
         Date the entry was added to the access list. This attribute expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "created_at")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="ipAddress")
@@ -137,7 +126,6 @@ class AwaitableGetProjectServiceAccountAccessListEntryResult(GetProjectServiceAc
             cidr_block=self.cidr_block,
             client_id=self.client_id,
             created_at=self.created_at,
-            id=self.id,
             ip_address=self.ip_address,
             last_used_address=self.last_used_address,
             last_used_at=self.last_used_at,
@@ -210,7 +198,6 @@ def get_project_service_account_access_list_entry(cidr_block: Optional[_builtins
         cidr_block=pulumi.get(__ret__, 'cidr_block'),
         client_id=pulumi.get(__ret__, 'client_id'),
         created_at=pulumi.get(__ret__, 'created_at'),
-        id=pulumi.get(__ret__, 'id'),
         ip_address=pulumi.get(__ret__, 'ip_address'),
         last_used_address=pulumi.get(__ret__, 'last_used_address'),
         last_used_at=pulumi.get(__ret__, 'last_used_at'),
@@ -280,7 +267,6 @@ def get_project_service_account_access_list_entry_output(cidr_block: pulumi.Inpu
         cidr_block=pulumi.get(__response__, 'cidr_block'),
         client_id=pulumi.get(__response__, 'client_id'),
         created_at=pulumi.get(__response__, 'created_at'),
-        id=pulumi.get(__response__, 'id'),
         ip_address=pulumi.get(__response__, 'ip_address'),
         last_used_address=pulumi.get(__response__, 'last_used_address'),
         last_used_at=pulumi.get(__response__, 'last_used_at'),

@@ -165,10 +165,6 @@ namespace Pulumi.Mongodbatlas
         public readonly string HecUrl;
         public readonly string IamRoleId;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Unique identifier of the log integration configuration.
         /// </summary>
         public readonly string IntegrationId;
@@ -206,8 +202,6 @@ namespace Pulumi.Mongodbatlas
 
             string iamRoleId,
 
-            string id,
-
             string integrationId,
 
             string kmsKey,
@@ -239,7 +233,6 @@ namespace Pulumi.Mongodbatlas
             HecToken = hecToken;
             HecUrl = hecUrl;
             IamRoleId = iamRoleId;
-            Id = id;
             IntegrationId = integrationId;
             KmsKey = kmsKey;
             LogTypes = logTypes;

@@ -42,8 +42,6 @@ type GetFlexRestoreJobResult struct {
 	DeliveryType string `pulumi:"deliveryType"`
 	// Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	ExpirationDate string `pulumi:"expirationDate"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
 	Name string `pulumi:"name"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -114,11 +112,6 @@ func (o GetFlexRestoreJobResultOutput) DeliveryType() pulumi.StringOutput {
 // Date and time when the download link no longer works. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 func (o GetFlexRestoreJobResultOutput) ExpirationDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexRestoreJobResult) string { return v.ExpirationDate }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetFlexRestoreJobResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFlexRestoreJobResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Human-readable label that identifies the flex cluster whose snapshot you want to restore.

@@ -38,8 +38,6 @@ type LookupApiKeyProjectAssignmentArgs struct {
 type LookupApiKeyProjectAssignmentResult struct {
 	// Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
 	ApiKeyId string `pulumi:"apiKeyId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Human-readable label that identifies the collection of privileges that MongoDB Cloud grants a specific API key, MongoDB Cloud user, or MongoDB Cloud team. These roles include only the specific project-level roles.
@@ -85,11 +83,6 @@ func (o LookupApiKeyProjectAssignmentResultOutput) ToLookupApiKeyProjectAssignme
 // Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
 func (o LookupApiKeyProjectAssignmentResultOutput) ApiKeyId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApiKeyProjectAssignmentResult) string { return v.ApiKeyId }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupApiKeyProjectAssignmentResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupApiKeyProjectAssignmentResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

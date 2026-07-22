@@ -26,7 +26,7 @@ class GetProjectServiceAccountSecretResult:
     """
     A collection of values returned by getProjectServiceAccountSecret.
     """
-    def __init__(__self__, client_id=None, created_at=None, expires_at=None, id=None, last_used_at=None, masked_secret_value=None, project_id=None, secret_id=None):
+    def __init__(__self__, client_id=None, created_at=None, expires_at=None, last_used_at=None, masked_secret_value=None, project_id=None, secret_id=None):
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
@@ -36,9 +36,6 @@ class GetProjectServiceAccountSecretResult:
         if expires_at and not isinstance(expires_at, str):
             raise TypeError("Expected argument 'expires_at' to be a str")
         pulumi.set(__self__, "expires_at", expires_at)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if last_used_at and not isinstance(last_used_at, str):
             raise TypeError("Expected argument 'last_used_at' to be a str")
         pulumi.set(__self__, "last_used_at", last_used_at)
@@ -75,14 +72,6 @@ class GetProjectServiceAccountSecretResult:
         The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "expires_at")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="lastUsedAt")
@@ -126,7 +115,6 @@ class AwaitableGetProjectServiceAccountSecretResult(GetProjectServiceAccountSecr
             client_id=self.client_id,
             created_at=self.created_at,
             expires_at=self.expires_at,
-            id=self.id,
             last_used_at=self.last_used_at,
             masked_secret_value=self.masked_secret_value,
             project_id=self.project_id,
@@ -183,7 +171,6 @@ def get_project_service_account_secret(client_id: Optional[_builtins.str] = None
         client_id=pulumi.get(__ret__, 'client_id'),
         created_at=pulumi.get(__ret__, 'created_at'),
         expires_at=pulumi.get(__ret__, 'expires_at'),
-        id=pulumi.get(__ret__, 'id'),
         last_used_at=pulumi.get(__ret__, 'last_used_at'),
         masked_secret_value=pulumi.get(__ret__, 'masked_secret_value'),
         project_id=pulumi.get(__ret__, 'project_id'),
@@ -237,7 +224,6 @@ def get_project_service_account_secret_output(client_id: pulumi.Input[Optional[_
         client_id=pulumi.get(__response__, 'client_id'),
         created_at=pulumi.get(__response__, 'created_at'),
         expires_at=pulumi.get(__response__, 'expires_at'),
-        id=pulumi.get(__response__, 'id'),
         last_used_at=pulumi.get(__response__, 'last_used_at'),
         masked_secret_value=pulumi.get(__response__, 'masked_secret_value'),
         project_id=pulumi.get(__response__, 'project_id'),

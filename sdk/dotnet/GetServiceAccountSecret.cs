@@ -241,10 +241,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ExpiresAt;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         /// </summary>
         public readonly string LastUsedAt;
@@ -269,8 +265,6 @@ namespace Pulumi.Mongodbatlas
 
             string expiresAt,
 
-            string id,
-
             string lastUsedAt,
 
             string maskedSecretValue,
@@ -282,7 +276,6 @@ namespace Pulumi.Mongodbatlas
             ClientId = clientId;
             CreatedAt = createdAt;
             ExpiresAt = expiresAt;
-            Id = id;
             LastUsedAt = lastUsedAt;
             MaskedSecretValue = maskedSecretValue;
             OrgId = orgId;

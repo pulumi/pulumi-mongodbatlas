@@ -182,10 +182,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ConnectionName;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
@@ -202,8 +198,6 @@ namespace Pulumi.Mongodbatlas
         private GetStreamConnectionFailoversResult(
             string connectionName,
 
-            string id,
-
             string projectId,
 
             ImmutableArray<Outputs.GetStreamConnectionFailoversResultResult> results,
@@ -211,7 +205,6 @@ namespace Pulumi.Mongodbatlas
             string workspaceName)
         {
             ConnectionName = connectionName;
-            Id = id;
             ProjectId = projectId;
             Results = results;
             WorkspaceName = workspaceName;

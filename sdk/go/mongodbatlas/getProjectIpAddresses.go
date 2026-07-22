@@ -58,8 +58,6 @@ type LookupProjectIpAddressesArgs struct {
 
 // A collection of values returned by getProjectIpAddresses.
 type LookupProjectIpAddressesResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of IP addresses in a project categorized by services.
@@ -98,11 +96,6 @@ func (o LookupProjectIpAddressesResultOutput) ToLookupProjectIpAddressesResultOu
 
 func (o LookupProjectIpAddressesResultOutput) ToLookupProjectIpAddressesResultOutputWithContext(ctx context.Context) LookupProjectIpAddressesResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupProjectIpAddressesResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupProjectIpAddressesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

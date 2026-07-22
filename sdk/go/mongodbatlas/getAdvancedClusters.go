@@ -186,8 +186,6 @@ type LookupAdvancedClustersArgs struct {
 
 // A collection of values returned by getAdvancedClusters.
 type LookupAdvancedClustersResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id        string `pulumi:"id"`
 	ProjectId string `pulumi:"projectId"`
 	// A list where each represents a Cluster. See below for more details.
 	Results            []GetAdvancedClustersResult `pulumi:"results"`
@@ -228,11 +226,6 @@ func (o LookupAdvancedClustersResultOutput) ToLookupAdvancedClustersResultOutput
 
 func (o LookupAdvancedClustersResultOutput) ToLookupAdvancedClustersResultOutputWithContext(ctx context.Context) LookupAdvancedClustersResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupAdvancedClustersResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupAdvancedClustersResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 func (o LookupAdvancedClustersResultOutput) ProjectId() pulumi.StringOutput {

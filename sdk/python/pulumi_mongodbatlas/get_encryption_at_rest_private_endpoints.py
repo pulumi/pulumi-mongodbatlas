@@ -27,13 +27,10 @@ class GetEncryptionAtRestPrivateEndpointsResult:
     """
     A collection of values returned by getEncryptionAtRestPrivateEndpoints.
     """
-    def __init__(__self__, cloud_provider=None, id=None, project_id=None, results=None):
+    def __init__(__self__, cloud_provider=None, project_id=None, results=None):
         if cloud_provider and not isinstance(cloud_provider, str):
             raise TypeError("Expected argument 'cloud_provider' to be a str")
         pulumi.set(__self__, "cloud_provider", cloud_provider)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -48,14 +45,6 @@ class GetEncryptionAtRestPrivateEndpointsResult:
         Label that identifies the cloud provider for the Encryption At Rest private endpoint.
         """
         return pulumi.get(self, "cloud_provider")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -81,7 +70,6 @@ class AwaitableGetEncryptionAtRestPrivateEndpointsResult(GetEncryptionAtRestPriv
             yield self
         return GetEncryptionAtRestPrivateEndpointsResult(
             cloud_provider=self.cloud_provider,
-            id=self.id,
             project_id=self.project_id,
             results=self.results)
 
@@ -132,7 +120,6 @@ def get_encryption_at_rest_private_endpoints(cloud_provider: Optional[_builtins.
 
     return AwaitableGetEncryptionAtRestPrivateEndpointsResult(
         cloud_provider=pulumi.get(__ret__, 'cloud_provider'),
-        id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
 def get_encryption_at_rest_private_endpoints_output(cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
@@ -180,6 +167,5 @@ def get_encryption_at_rest_private_endpoints_output(cloud_provider: pulumi.Input
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getEncryptionAtRestPrivateEndpoints:getEncryptionAtRestPrivateEndpoints', __args__, opts=opts, typ=GetEncryptionAtRestPrivateEndpointsResult)
     return __ret__.apply(lambda __response__: GetEncryptionAtRestPrivateEndpointsResult(
         cloud_provider=pulumi.get(__response__, 'cloud_provider'),
-        id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id'),
         results=pulumi.get(__response__, 'results')))

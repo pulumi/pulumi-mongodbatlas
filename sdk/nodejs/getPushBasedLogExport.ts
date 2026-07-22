@@ -83,10 +83,6 @@ export interface GetPushBasedLogExportResult {
      */
     readonly iamRoleId: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
      */
     readonly prefixPath: string;

@@ -272,8 +272,6 @@ type LookupAdvancedClusterResult struct {
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
 	// Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
 	GlobalClusterSelfManagedSharding bool `pulumi:"globalClusterSelfManagedSharding"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
 	Labels map[string]string `pulumi:"labels"`
 	// Version of the cluster to deploy.
@@ -405,11 +403,6 @@ func (o LookupAdvancedClusterResultOutput) EncryptionAtRestProvider() pulumi.Str
 // Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
 func (o LookupAdvancedClusterResultOutput) GlobalClusterSelfManagedSharding() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) bool { return v.GlobalClusterSelfManagedSharding }).(pulumi.BoolOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupAdvancedClusterResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.

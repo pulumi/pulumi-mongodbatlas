@@ -281,10 +281,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ClientId;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         /// </summary>
         public readonly string OrgId;
@@ -297,14 +293,11 @@ namespace Pulumi.Mongodbatlas
         private GetServiceAccountAccessListEntriesResult(
             string clientId,
 
-            string id,
-
             string orgId,
 
             ImmutableArray<Outputs.GetServiceAccountAccessListEntriesResultResult> results)
         {
             ClientId = clientId;
-            Id = id;
             OrgId = orgId;
             Results = results;
         }

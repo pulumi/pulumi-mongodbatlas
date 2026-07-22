@@ -21,11 +21,6 @@ public final class GetFlexRestoreJobResult {
      */
     private String expirationDate;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Human-readable label that identifies the flex cluster whose snapshot you want to restore.
      * 
      */
@@ -95,13 +90,6 @@ public final class GetFlexRestoreJobResult {
      */
     public String expirationDate() {
         return this.expirationDate;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return Human-readable label that identifies the flex cluster whose snapshot you want to restore.
@@ -192,7 +180,6 @@ public final class GetFlexRestoreJobResult {
     public static final class Builder {
         private String deliveryType;
         private String expirationDate;
-        private String id;
         private String name;
         private String projectId;
         private String restoreFinishedDate;
@@ -209,7 +196,6 @@ public final class GetFlexRestoreJobResult {
     	      Objects.requireNonNull(defaults);
     	      this.deliveryType = defaults.deliveryType;
     	      this.expirationDate = defaults.expirationDate;
-    	      this.id = defaults.id;
     	      this.name = defaults.name;
     	      this.projectId = defaults.projectId;
     	      this.restoreFinishedDate = defaults.restoreFinishedDate;
@@ -237,14 +223,6 @@ public final class GetFlexRestoreJobResult {
               throw new MissingRequiredPropertyException("GetFlexRestoreJobResult", "expirationDate");
             }
             this.expirationDate = expirationDate;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetFlexRestoreJobResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -339,7 +317,6 @@ public final class GetFlexRestoreJobResult {
             final var _resultValue = new GetFlexRestoreJobResult();
             _resultValue.deliveryType = deliveryType;
             _resultValue.expirationDate = expirationDate;
-            _resultValue.id = id;
             _resultValue.name = name;
             _resultValue.projectId = projectId;
             _resultValue.restoreFinishedDate = restoreFinishedDate;

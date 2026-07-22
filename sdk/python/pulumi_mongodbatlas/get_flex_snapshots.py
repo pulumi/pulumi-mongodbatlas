@@ -27,10 +27,7 @@ class GetFlexSnapshotsResult:
     """
     A collection of values returned by getFlexSnapshots.
     """
-    def __init__(__self__, id=None, name=None, project_id=None, results=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, name=None, project_id=None, results=None):
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -40,14 +37,6 @@ class GetFlexSnapshotsResult:
         if results and not isinstance(results, list):
             raise TypeError("Expected argument 'results' to be a list")
         pulumi.set(__self__, "results", results)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -80,7 +69,6 @@ class AwaitableGetFlexSnapshotsResult(GetFlexSnapshotsResult):
         if False:
             yield self
         return GetFlexSnapshotsResult(
-            id=self.id,
             name=self.name,
             project_id=self.project_id,
             results=self.results)
@@ -119,7 +107,6 @@ def get_flex_snapshots(name: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getFlexSnapshots:getFlexSnapshots', __args__, opts=opts, typ=GetFlexSnapshotsResult).value
 
     return AwaitableGetFlexSnapshotsResult(
-        id=pulumi.get(__ret__, 'id'),
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
@@ -155,7 +142,6 @@ def get_flex_snapshots_output(name: pulumi.Input[Optional[_builtins.str]] = None
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getFlexSnapshots:getFlexSnapshots', __args__, opts=opts, typ=GetFlexSnapshotsResult)
     return __ret__.apply(lambda __response__: GetFlexSnapshotsResult(
-        id=pulumi.get(__response__, 'id'),
         name=pulumi.get(__response__, 'name'),
         project_id=pulumi.get(__response__, 'project_id'),
         results=pulumi.get(__response__, 'results')))

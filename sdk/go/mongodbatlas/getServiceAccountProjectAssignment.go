@@ -94,8 +94,6 @@ type LookupServiceAccountProjectAssignmentArgs struct {
 type LookupServiceAccountProjectAssignmentResult struct {
 	// The Client ID of the Service Account.
 	ClientId string `pulumi:"clientId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// A list of Project roles associated with the Service Account.
@@ -141,11 +139,6 @@ func (o LookupServiceAccountProjectAssignmentResultOutput) ToLookupServiceAccoun
 // The Client ID of the Service Account.
 func (o LookupServiceAccountProjectAssignmentResultOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServiceAccountProjectAssignmentResult) string { return v.ClientId }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupServiceAccountProjectAssignmentResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupServiceAccountProjectAssignmentResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

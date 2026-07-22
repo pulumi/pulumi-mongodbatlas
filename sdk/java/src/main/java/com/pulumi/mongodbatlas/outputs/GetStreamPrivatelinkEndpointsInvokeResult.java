@@ -12,22 +12,10 @@ import java.util.Objects;
 
 @CustomType
 public final class GetStreamPrivatelinkEndpointsInvokeResult {
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
     private String projectId;
     private List<GetStreamPrivatelinkEndpointsResult> results;
 
     private GetStreamPrivatelinkEndpointsInvokeResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     public String projectId() {
         return this.projectId;
     }
@@ -44,25 +32,15 @@ public final class GetStreamPrivatelinkEndpointsInvokeResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private String projectId;
         private List<GetStreamPrivatelinkEndpointsResult> results;
         public Builder() {}
         public Builder(GetStreamPrivatelinkEndpointsInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointsInvokeResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
@@ -84,7 +62,6 @@ public final class GetStreamPrivatelinkEndpointsInvokeResult {
         }
         public GetStreamPrivatelinkEndpointsInvokeResult build() {
             final var _resultValue = new GetStreamPrivatelinkEndpointsInvokeResult();
-            _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.results = results;
             return _resultValue;

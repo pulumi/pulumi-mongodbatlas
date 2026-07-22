@@ -201,10 +201,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string FinishTime;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// MongoDB host version that the snapshot runs.
         /// </summary>
         public readonly string MongoDbVersion;
@@ -239,8 +235,6 @@ namespace Pulumi.Mongodbatlas
 
             string finishTime,
 
-            string id,
-
             string mongoDbVersion,
 
             string name,
@@ -257,7 +251,6 @@ namespace Pulumi.Mongodbatlas
         {
             Expiration = expiration;
             FinishTime = finishTime;
-            Id = id;
             MongoDbVersion = mongoDbVersion;
             Name = name;
             ProjectId = projectId;

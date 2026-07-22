@@ -31,11 +31,6 @@ public final class GetStreamAccountDetailsResult {
      */
     private String cloudProvider;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
@@ -86,13 +81,6 @@ public final class GetStreamAccountDetailsResult {
         return this.cloudProvider;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
-    /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
@@ -134,7 +122,6 @@ public final class GetStreamAccountDetailsResult {
         private String azureSubscriptionId;
         private String cidrBlock;
         private String cloudProvider;
-        private String id;
         private String projectId;
         private String regionName;
         private String virtualNetworkName;
@@ -146,7 +133,6 @@ public final class GetStreamAccountDetailsResult {
     	      this.azureSubscriptionId = defaults.azureSubscriptionId;
     	      this.cidrBlock = defaults.cidrBlock;
     	      this.cloudProvider = defaults.cloudProvider;
-    	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.regionName = defaults.regionName;
     	      this.virtualNetworkName = defaults.virtualNetworkName;
@@ -183,14 +169,6 @@ public final class GetStreamAccountDetailsResult {
               throw new MissingRequiredPropertyException("GetStreamAccountDetailsResult", "cloudProvider");
             }
             this.cloudProvider = cloudProvider;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetStreamAccountDetailsResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -231,7 +209,6 @@ public final class GetStreamAccountDetailsResult {
             _resultValue.azureSubscriptionId = azureSubscriptionId;
             _resultValue.cidrBlock = cidrBlock;
             _resultValue.cloudProvider = cloudProvider;
-            _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.regionName = regionName;
             _resultValue.virtualNetworkName = virtualNetworkName;

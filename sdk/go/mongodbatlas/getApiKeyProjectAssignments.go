@@ -34,8 +34,6 @@ type LookupApiKeyProjectAssignmentsArgs struct {
 
 // A collection of values returned by getApiKeyProjectAssignments.
 type LookupApiKeyProjectAssignmentsResult struct {
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of documents that MongoDB Cloud returns for this request.
@@ -74,11 +72,6 @@ func (o LookupApiKeyProjectAssignmentsResultOutput) ToLookupApiKeyProjectAssignm
 
 func (o LookupApiKeyProjectAssignmentsResultOutput) ToLookupApiKeyProjectAssignmentsResultOutputWithContext(ctx context.Context) LookupApiKeyProjectAssignmentsResultOutput {
 	return o
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupApiKeyProjectAssignmentsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupApiKeyProjectAssignmentsResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

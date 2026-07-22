@@ -73,11 +73,6 @@ public final class GetAdvancedClusterResult {
      */
     private Boolean globalClusterSelfManagedSharding;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
      * 
      */
@@ -234,13 +229,6 @@ public final class GetAdvancedClusterResult {
         return this.globalClusterSelfManagedSharding;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
-    /**
      * @return Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below. **(DEPRECATED)** Use `tags` instead.
      * 
      */
@@ -376,7 +364,6 @@ public final class GetAdvancedClusterResult {
         private String createDate;
         private String encryptionAtRestProvider;
         private Boolean globalClusterSelfManagedSharding;
-        private String id;
         private Map<String,String> labels;
         private String mongoDbMajorVersion;
         private String mongoDbVersion;
@@ -410,7 +397,6 @@ public final class GetAdvancedClusterResult {
     	      this.createDate = defaults.createDate;
     	      this.encryptionAtRestProvider = defaults.encryptionAtRestProvider;
     	      this.globalClusterSelfManagedSharding = defaults.globalClusterSelfManagedSharding;
-    	      this.id = defaults.id;
     	      this.labels = defaults.labels;
     	      this.mongoDbMajorVersion = defaults.mongoDbMajorVersion;
     	      this.mongoDbVersion = defaults.mongoDbVersion;
@@ -525,14 +511,6 @@ public final class GetAdvancedClusterResult {
               throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "globalClusterSelfManagedSharding");
             }
             this.globalClusterSelfManagedSharding = globalClusterSelfManagedSharding;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetAdvancedClusterResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -694,7 +672,6 @@ public final class GetAdvancedClusterResult {
             _resultValue.createDate = createDate;
             _resultValue.encryptionAtRestProvider = encryptionAtRestProvider;
             _resultValue.globalClusterSelfManagedSharding = globalClusterSelfManagedSharding;
-            _resultValue.id = id;
             _resultValue.labels = labels;
             _resultValue.mongoDbMajorVersion = mongoDbMajorVersion;
             _resultValue.mongoDbVersion = mongoDbVersion;

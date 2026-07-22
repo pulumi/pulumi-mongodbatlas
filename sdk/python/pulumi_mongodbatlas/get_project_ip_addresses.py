@@ -27,24 +27,13 @@ class GetProjectIpAddressesResult:
     """
     A collection of values returned by getProjectIpAddresses.
     """
-    def __init__(__self__, id=None, project_id=None, services=None):
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
+    def __init__(__self__, project_id=None, services=None):
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
         if services and not isinstance(services, dict):
             raise TypeError("Expected argument 'services' to be a dict")
         pulumi.set(__self__, "services", services)
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -69,7 +58,6 @@ class AwaitableGetProjectIpAddressesResult(GetProjectIpAddressesResult):
         if False:
             yield self
         return GetProjectIpAddressesResult(
-            id=self.id,
             project_id=self.project_id,
             services=self.services)
 
@@ -99,7 +87,6 @@ def get_project_ip_addresses(project_id: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses', __args__, opts=opts, typ=GetProjectIpAddressesResult).value
 
     return AwaitableGetProjectIpAddressesResult(
-        id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         services=pulumi.get(__ret__, 'services'))
 def get_project_ip_addresses_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -126,6 +113,5 @@ def get_project_ip_addresses_output(project_id: pulumi.Input[Optional[_builtins.
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses', __args__, opts=opts, typ=GetProjectIpAddressesResult)
     return __ret__.apply(lambda __response__: GetProjectIpAddressesResult(
-        id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id'),
         services=pulumi.get(__response__, 'services')))

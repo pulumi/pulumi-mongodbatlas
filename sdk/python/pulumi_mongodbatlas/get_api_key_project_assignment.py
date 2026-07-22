@@ -26,13 +26,10 @@ class GetApiKeyProjectAssignmentResult:
     """
     A collection of values returned by getApiKeyProjectAssignment.
     """
-    def __init__(__self__, api_key_id=None, id=None, project_id=None, roles=None):
+    def __init__(__self__, api_key_id=None, project_id=None, roles=None):
         if api_key_id and not isinstance(api_key_id, str):
             raise TypeError("Expected argument 'api_key_id' to be a str")
         pulumi.set(__self__, "api_key_id", api_key_id)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -47,14 +44,6 @@ class GetApiKeyProjectAssignmentResult:
         Unique 24-hexadecimal digit string that identifies this organization API key that you want to assign to one project.
         """
         return pulumi.get(self, "api_key_id")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -80,7 +69,6 @@ class AwaitableGetApiKeyProjectAssignmentResult(GetApiKeyProjectAssignmentResult
             yield self
         return GetApiKeyProjectAssignmentResult(
             api_key_id=self.api_key_id,
-            id=self.id,
             project_id=self.project_id,
             roles=self.roles)
 
@@ -143,7 +131,6 @@ def get_api_key_project_assignment(api_key_id: Optional[_builtins.str] = None,
 
     return AwaitableGetApiKeyProjectAssignmentResult(
         api_key_id=pulumi.get(__ret__, 'api_key_id'),
-        id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         roles=pulumi.get(__ret__, 'roles'))
 def get_api_key_project_assignment_output(api_key_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -203,6 +190,5 @@ def get_api_key_project_assignment_output(api_key_id: pulumi.Input[Optional[_bui
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getApiKeyProjectAssignment:getApiKeyProjectAssignment', __args__, opts=opts, typ=GetApiKeyProjectAssignmentResult)
     return __ret__.apply(lambda __response__: GetApiKeyProjectAssignmentResult(
         api_key_id=pulumi.get(__response__, 'api_key_id'),
-        id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id'),
         roles=pulumi.get(__response__, 'roles')))

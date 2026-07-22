@@ -27,7 +27,7 @@ class GetAdvancedClusterResult:
     """
     A collection of values returned by getAdvancedCluster.
     """
-    def __init__(__self__, adaptive_capacity=None, advanced_configuration=None, backup_enabled=None, bi_connector_config=None, cluster_id=None, cluster_type=None, config_server_management_mode=None, config_server_type=None, connection_strings=None, create_date=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, id=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pinned_fcv=None, pit_enabled=None, project_id=None, redact_client_log_data=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_aws_time_based_snapshot_copy_for_fast_initial_sync=None, use_effective_fields=None, version_release_system=None):
+    def __init__(__self__, adaptive_capacity=None, advanced_configuration=None, backup_enabled=None, bi_connector_config=None, cluster_id=None, cluster_type=None, config_server_management_mode=None, config_server_type=None, connection_strings=None, create_date=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pinned_fcv=None, pit_enabled=None, project_id=None, redact_client_log_data=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_aws_time_based_snapshot_copy_for_fast_initial_sync=None, use_effective_fields=None, version_release_system=None):
         if adaptive_capacity and not isinstance(adaptive_capacity, str):
             raise TypeError("Expected argument 'adaptive_capacity' to be a str")
         pulumi.set(__self__, "adaptive_capacity", adaptive_capacity)
@@ -64,9 +64,6 @@ class GetAdvancedClusterResult:
         if global_cluster_self_managed_sharding and not isinstance(global_cluster_self_managed_sharding, bool):
             raise TypeError("Expected argument 'global_cluster_self_managed_sharding' to be a bool")
         pulumi.set(__self__, "global_cluster_self_managed_sharding", global_cluster_self_managed_sharding)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if labels and not isinstance(labels, dict):
             raise TypeError("Expected argument 'labels' to be a dict")
         pulumi.set(__self__, "labels", labels)
@@ -211,14 +208,6 @@ class GetAdvancedClusterResult:
         Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
         """
         return pulumi.get(self, "global_cluster_self_managed_sharding")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter
@@ -374,7 +363,6 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
             create_date=self.create_date,
             encryption_at_rest_provider=self.encryption_at_rest_provider,
             global_cluster_self_managed_sharding=self.global_cluster_self_managed_sharding,
-            id=self.id,
             labels=self.labels,
             mongo_db_major_version=self.mongo_db_major_version,
             mongo_db_version=self.mongo_db_version,
@@ -551,7 +539,6 @@ def get_advanced_cluster(name: Optional[_builtins.str] = None,
         create_date=pulumi.get(__ret__, 'create_date'),
         encryption_at_rest_provider=pulumi.get(__ret__, 'encryption_at_rest_provider'),
         global_cluster_self_managed_sharding=pulumi.get(__ret__, 'global_cluster_self_managed_sharding'),
-        id=pulumi.get(__ret__, 'id'),
         labels=pulumi.get(__ret__, 'labels'),
         mongo_db_major_version=pulumi.get(__ret__, 'mongo_db_major_version'),
         mongo_db_version=pulumi.get(__ret__, 'mongo_db_version'),
@@ -725,7 +712,6 @@ def get_advanced_cluster_output(name: pulumi.Input[Optional[_builtins.str]] = No
         create_date=pulumi.get(__response__, 'create_date'),
         encryption_at_rest_provider=pulumi.get(__response__, 'encryption_at_rest_provider'),
         global_cluster_self_managed_sharding=pulumi.get(__response__, 'global_cluster_self_managed_sharding'),
-        id=pulumi.get(__response__, 'id'),
         labels=pulumi.get(__response__, 'labels'),
         mongo_db_major_version=pulumi.get(__response__, 'mongo_db_major_version'),
         mongo_db_version=pulumi.get(__response__, 'mongo_db_version'),

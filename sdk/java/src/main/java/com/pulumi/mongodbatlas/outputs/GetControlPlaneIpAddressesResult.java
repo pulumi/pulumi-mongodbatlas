@@ -7,16 +7,10 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetControlPlaneIpAddressesInbound;
 import com.pulumi.mongodbatlas.outputs.GetControlPlaneIpAddressesOutbound;
-import java.lang.String;
 import java.util.Objects;
 
 @CustomType
 public final class GetControlPlaneIpAddressesResult {
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
     /**
      * @return List of inbound IP addresses to the Atlas control plane, categorized by cloud provider. If your application allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your API requests can reach the Atlas control plane.
      * 
@@ -29,13 +23,6 @@ public final class GetControlPlaneIpAddressesResult {
     private GetControlPlaneIpAddressesOutbound outbound;
 
     private GetControlPlaneIpAddressesResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     /**
      * @return List of inbound IP addresses to the Atlas control plane, categorized by cloud provider. If your application allows outbound HTTP requests only to specific IP addresses, you must allow access to the following IP addresses so that your API requests can reach the Atlas control plane.
      * 
@@ -60,25 +47,15 @@ public final class GetControlPlaneIpAddressesResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private GetControlPlaneIpAddressesInbound inbound;
         private GetControlPlaneIpAddressesOutbound outbound;
         public Builder() {}
         public Builder(GetControlPlaneIpAddressesResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.inbound = defaults.inbound;
     	      this.outbound = defaults.outbound;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetControlPlaneIpAddressesResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder inbound(GetControlPlaneIpAddressesInbound inbound) {
             if (inbound == null) {
@@ -97,7 +74,6 @@ public final class GetControlPlaneIpAddressesResult {
         }
         public GetControlPlaneIpAddressesResult build() {
             final var _resultValue = new GetControlPlaneIpAddressesResult();
-            _resultValue.id = id;
             _resultValue.inbound = inbound;
             _resultValue.outbound = outbound;
             return _resultValue;

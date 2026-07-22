@@ -21,11 +21,6 @@ public final class GetFlexSnapshotResult {
      */
     private String finishTime;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return MongoDB host version that the snapshot runs.
      * 
      */
@@ -75,13 +70,6 @@ public final class GetFlexSnapshotResult {
      */
     public String finishTime() {
         return this.finishTime;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return MongoDB host version that the snapshot runs.
@@ -144,7 +132,6 @@ public final class GetFlexSnapshotResult {
     public static final class Builder {
         private String expiration;
         private String finishTime;
-        private String id;
         private String mongoDbVersion;
         private String name;
         private String projectId;
@@ -157,7 +144,6 @@ public final class GetFlexSnapshotResult {
     	      Objects.requireNonNull(defaults);
     	      this.expiration = defaults.expiration;
     	      this.finishTime = defaults.finishTime;
-    	      this.id = defaults.id;
     	      this.mongoDbVersion = defaults.mongoDbVersion;
     	      this.name = defaults.name;
     	      this.projectId = defaults.projectId;
@@ -181,14 +167,6 @@ public final class GetFlexSnapshotResult {
               throw new MissingRequiredPropertyException("GetFlexSnapshotResult", "finishTime");
             }
             this.finishTime = finishTime;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetFlexSnapshotResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -251,7 +229,6 @@ public final class GetFlexSnapshotResult {
             final var _resultValue = new GetFlexSnapshotResult();
             _resultValue.expiration = expiration;
             _resultValue.finishTime = finishTime;
-            _resultValue.id = id;
             _resultValue.mongoDbVersion = mongoDbVersion;
             _resultValue.name = name;
             _resultValue.projectId = projectId;

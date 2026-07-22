@@ -17,11 +17,6 @@ public final class GetApiKeyProjectAssignmentResult {
      */
     private String apiKeyId;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
@@ -39,13 +34,6 @@ public final class GetApiKeyProjectAssignmentResult {
      */
     public String apiKeyId() {
         return this.apiKeyId;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -72,14 +60,12 @@ public final class GetApiKeyProjectAssignmentResult {
     @CustomType.Builder
     public static final class Builder {
         private String apiKeyId;
-        private String id;
         private String projectId;
         private List<String> roles;
         public Builder() {}
         public Builder(GetApiKeyProjectAssignmentResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.apiKeyId = defaults.apiKeyId;
-    	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.roles = defaults.roles;
         }
@@ -90,14 +76,6 @@ public final class GetApiKeyProjectAssignmentResult {
               throw new MissingRequiredPropertyException("GetApiKeyProjectAssignmentResult", "apiKeyId");
             }
             this.apiKeyId = apiKeyId;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetApiKeyProjectAssignmentResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -122,7 +100,6 @@ public final class GetApiKeyProjectAssignmentResult {
         public GetApiKeyProjectAssignmentResult build() {
             final var _resultValue = new GetApiKeyProjectAssignmentResult();
             _resultValue.apiKeyId = apiKeyId;
-            _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.roles = roles;
             return _resultValue;

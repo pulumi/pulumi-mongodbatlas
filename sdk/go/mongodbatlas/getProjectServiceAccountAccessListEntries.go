@@ -107,8 +107,6 @@ type LookupProjectServiceAccountAccessListEntriesArgs struct {
 type LookupProjectServiceAccountAccessListEntriesResult struct {
 	// The Client ID of the Service Account.
 	ClientId string `pulumi:"clientId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// Unique 24-hexadecimal digit string that identifies the project.
 	ProjectId string `pulumi:"projectId"`
 	// List of documents that MongoDB Cloud returns for this request.
@@ -154,11 +152,6 @@ func (o LookupProjectServiceAccountAccessListEntriesResultOutput) ToLookupProjec
 // The Client ID of the Service Account.
 func (o LookupProjectServiceAccountAccessListEntriesResultOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectServiceAccountAccessListEntriesResult) string { return v.ClientId }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupProjectServiceAccountAccessListEntriesResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupProjectServiceAccountAccessListEntriesResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies the project.

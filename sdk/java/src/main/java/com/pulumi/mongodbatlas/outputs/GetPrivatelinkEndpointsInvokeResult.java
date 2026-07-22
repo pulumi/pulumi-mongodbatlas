@@ -12,11 +12,6 @@ import java.util.Objects;
 
 @CustomType
 public final class GetPrivatelinkEndpointsInvokeResult {
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
     private String projectId;
     private String providerName;
     /**
@@ -26,13 +21,6 @@ public final class GetPrivatelinkEndpointsInvokeResult {
     private List<GetPrivatelinkEndpointsResult> results;
 
     private GetPrivatelinkEndpointsInvokeResult() {}
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
     public String projectId() {
         return this.projectId;
     }
@@ -56,27 +44,17 @@ public final class GetPrivatelinkEndpointsInvokeResult {
     }
     @CustomType.Builder
     public static final class Builder {
-        private String id;
         private String projectId;
         private String providerName;
         private List<GetPrivatelinkEndpointsResult> results;
         public Builder() {}
         public Builder(GetPrivatelinkEndpointsInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.providerName = defaults.providerName;
     	      this.results = defaults.results;
         }
 
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetPrivatelinkEndpointsInvokeResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
         @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
@@ -106,7 +84,6 @@ public final class GetPrivatelinkEndpointsInvokeResult {
         }
         public GetPrivatelinkEndpointsInvokeResult build() {
             final var _resultValue = new GetPrivatelinkEndpointsInvokeResult();
-            _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.providerName = providerName;
             _resultValue.results = results;

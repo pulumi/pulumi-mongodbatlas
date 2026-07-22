@@ -100,10 +100,6 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string Description;
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Human-readable name for the Service Account.
         /// </summary>
         public readonly string Name;
@@ -128,8 +124,6 @@ namespace Pulumi.Mongodbatlas
 
             string description,
 
-            string id,
-
             string name,
 
             string projectId,
@@ -141,7 +135,6 @@ namespace Pulumi.Mongodbatlas
             ClientId = clientId;
             CreatedAt = createdAt;
             Description = description;
-            Id = id;
             Name = name;
             ProjectId = projectId;
             Roles = roles;

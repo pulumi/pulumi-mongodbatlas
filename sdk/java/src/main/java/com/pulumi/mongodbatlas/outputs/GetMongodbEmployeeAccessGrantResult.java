@@ -26,11 +26,6 @@ public final class GetMongodbEmployeeAccessGrantResult {
      */
     private String grantType;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
@@ -59,13 +54,6 @@ public final class GetMongodbEmployeeAccessGrantResult {
         return this.grantType;
     }
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
-    }
-    /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
@@ -85,7 +73,6 @@ public final class GetMongodbEmployeeAccessGrantResult {
         private String clusterName;
         private String expirationTime;
         private String grantType;
-        private String id;
         private String projectId;
         public Builder() {}
         public Builder(GetMongodbEmployeeAccessGrantResult defaults) {
@@ -93,7 +80,6 @@ public final class GetMongodbEmployeeAccessGrantResult {
     	      this.clusterName = defaults.clusterName;
     	      this.expirationTime = defaults.expirationTime;
     	      this.grantType = defaults.grantType;
-    	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
         }
 
@@ -122,14 +108,6 @@ public final class GetMongodbEmployeeAccessGrantResult {
             return this;
         }
         @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetMongodbEmployeeAccessGrantResult", "id");
-            }
-            this.id = id;
-            return this;
-        }
-        @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetMongodbEmployeeAccessGrantResult", "projectId");
@@ -142,7 +120,6 @@ public final class GetMongodbEmployeeAccessGrantResult {
             _resultValue.clusterName = clusterName;
             _resultValue.expirationTime = expirationTime;
             _resultValue.grantType = grantType;
-            _resultValue.id = id;
             _resultValue.projectId = projectId;
             return _resultValue;
         }

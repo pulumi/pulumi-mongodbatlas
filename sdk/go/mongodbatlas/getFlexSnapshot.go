@@ -42,8 +42,6 @@ type GetFlexSnapshotResult struct {
 	Expiration string `pulumi:"expiration"`
 	// Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 	FinishTime string `pulumi:"finishTime"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// MongoDB host version that the snapshot runs.
 	MongoDbVersion string `pulumi:"mongoDbVersion"`
 	// Human-readable label that identifies the flex cluster whose snapshot you want to restore.
@@ -106,11 +104,6 @@ func (o GetFlexSnapshotResultOutput) Expiration() pulumi.StringOutput {
 // Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
 func (o GetFlexSnapshotResultOutput) FinishTime() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFlexSnapshotResult) string { return v.FinishTime }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o GetFlexSnapshotResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetFlexSnapshotResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // MongoDB host version that the snapshot runs.

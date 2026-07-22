@@ -60,10 +60,6 @@ export interface GetFlexClustersArgs {
  */
 export interface GetFlexClustersResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Unique 24-hexadecimal character string that identifies the project.
      */
     readonly projectId: string;

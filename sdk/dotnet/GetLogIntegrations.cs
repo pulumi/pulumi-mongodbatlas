@@ -166,10 +166,6 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetLogIntegrationsResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Optional filter by integration type (e.g., `S3_LOG_EXPORT`).
         /// </summary>
         public readonly string? IntegrationType;
@@ -184,15 +180,12 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetLogIntegrationsResult(
-            string id,
-
             string? integrationType,
 
             string projectId,
 
             ImmutableArray<Outputs.GetLogIntegrationsResultResult> results)
         {
-            Id = id;
             IntegrationType = integrationType;
             ProjectId = projectId;
             Results = results;

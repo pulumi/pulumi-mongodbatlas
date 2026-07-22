@@ -26,16 +26,13 @@ class GetFlexSnapshotResult:
     """
     A collection of values returned by getFlexSnapshot.
     """
-    def __init__(__self__, expiration=None, finish_time=None, id=None, mongo_db_version=None, name=None, project_id=None, scheduled_time=None, snapshot_id=None, start_time=None, status=None):
+    def __init__(__self__, expiration=None, finish_time=None, mongo_db_version=None, name=None, project_id=None, scheduled_time=None, snapshot_id=None, start_time=None, status=None):
         if expiration and not isinstance(expiration, str):
             raise TypeError("Expected argument 'expiration' to be a str")
         pulumi.set(__self__, "expiration", expiration)
         if finish_time and not isinstance(finish_time, str):
             raise TypeError("Expected argument 'finish_time' to be a str")
         pulumi.set(__self__, "finish_time", finish_time)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if mongo_db_version and not isinstance(mongo_db_version, str):
             raise TypeError("Expected argument 'mongo_db_version' to be a str")
         pulumi.set(__self__, "mongo_db_version", mongo_db_version)
@@ -73,14 +70,6 @@ class GetFlexSnapshotResult:
         Date and time when MongoDB Cloud completed writing this snapshot. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         """
         return pulumi.get(self, "finish_time")
-
-    @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
 
     @_builtins.property
     @pulumi.getter(name="mongoDbVersion")
@@ -147,7 +136,6 @@ class AwaitableGetFlexSnapshotResult(GetFlexSnapshotResult):
         return GetFlexSnapshotResult(
             expiration=self.expiration,
             finish_time=self.finish_time,
-            id=self.id,
             mongo_db_version=self.mongo_db_version,
             name=self.name,
             project_id=self.project_id,
@@ -195,7 +183,6 @@ def get_flex_snapshot(name: Optional[_builtins.str] = None,
     return AwaitableGetFlexSnapshotResult(
         expiration=pulumi.get(__ret__, 'expiration'),
         finish_time=pulumi.get(__ret__, 'finish_time'),
-        id=pulumi.get(__ret__, 'id'),
         mongo_db_version=pulumi.get(__ret__, 'mongo_db_version'),
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
@@ -240,7 +227,6 @@ def get_flex_snapshot_output(name: pulumi.Input[Optional[_builtins.str]] = None,
     return __ret__.apply(lambda __response__: GetFlexSnapshotResult(
         expiration=pulumi.get(__response__, 'expiration'),
         finish_time=pulumi.get(__response__, 'finish_time'),
-        id=pulumi.get(__response__, 'id'),
         mongo_db_version=pulumi.get(__response__, 'mongo_db_version'),
         name=pulumi.get(__response__, 'name'),
         project_id=pulumi.get(__response__, 'project_id'),

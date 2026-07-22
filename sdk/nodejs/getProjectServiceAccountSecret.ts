@@ -82,10 +82,6 @@ export interface GetProjectServiceAccountSecretResult {
      */
     readonly expiresAt: string;
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
      */
     readonly lastUsedAt: string;

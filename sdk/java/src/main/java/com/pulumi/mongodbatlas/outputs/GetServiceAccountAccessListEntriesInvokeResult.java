@@ -18,11 +18,6 @@ public final class GetServiceAccountAccessListEntriesInvokeResult {
      */
     private String clientId;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      * 
      */
@@ -40,13 +35,6 @@ public final class GetServiceAccountAccessListEntriesInvokeResult {
      */
     public String clientId() {
         return this.clientId;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
@@ -73,14 +61,12 @@ public final class GetServiceAccountAccessListEntriesInvokeResult {
     @CustomType.Builder
     public static final class Builder {
         private String clientId;
-        private String id;
         private String orgId;
         private List<GetServiceAccountAccessListEntriesResult> results;
         public Builder() {}
         public Builder(GetServiceAccountAccessListEntriesInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.clientId = defaults.clientId;
-    	      this.id = defaults.id;
     	      this.orgId = defaults.orgId;
     	      this.results = defaults.results;
         }
@@ -91,14 +77,6 @@ public final class GetServiceAccountAccessListEntriesInvokeResult {
               throw new MissingRequiredPropertyException("GetServiceAccountAccessListEntriesInvokeResult", "clientId");
             }
             this.clientId = clientId;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetServiceAccountAccessListEntriesInvokeResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -123,7 +101,6 @@ public final class GetServiceAccountAccessListEntriesInvokeResult {
         public GetServiceAccountAccessListEntriesInvokeResult build() {
             final var _resultValue = new GetServiceAccountAccessListEntriesInvokeResult();
             _resultValue.clientId = clientId;
-            _resultValue.id = id;
             _resultValue.orgId = orgId;
             _resultValue.results = results;
             return _resultValue;

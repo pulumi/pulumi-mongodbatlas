@@ -56,10 +56,6 @@ export interface GetFlexRestoreJobsArgs {
  */
 export interface GetFlexRestoreJobsResult {
     /**
-     * The provider-assigned unique ID for this managed resource.
-     */
-    readonly id: string;
-    /**
      * Human-readable label that identifies the flex cluster whose snapshot you want to restore.
      */
     readonly name: string;

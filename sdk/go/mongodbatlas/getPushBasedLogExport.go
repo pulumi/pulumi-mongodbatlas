@@ -100,8 +100,6 @@ type LookupPushBasedLogExportResult struct {
 	CreateDate string `pulumi:"createDate"`
 	// ID of the AWS IAM role that is used to write to the S3 bucket.
 	IamRoleId string `pulumi:"iamRoleId"`
-	// The provider-assigned unique ID for this managed resource.
-	Id string `pulumi:"id"`
 	// S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.
 	PrefixPath string `pulumi:"prefixPath"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -157,11 +155,6 @@ func (o LookupPushBasedLogExportResultOutput) CreateDate() pulumi.StringOutput {
 // ID of the AWS IAM role that is used to write to the S3 bucket.
 func (o LookupPushBasedLogExportResultOutput) IamRoleId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPushBasedLogExportResult) string { return v.IamRoleId }).(pulumi.StringOutput)
-}
-
-// The provider-assigned unique ID for this managed resource.
-func (o LookupPushBasedLogExportResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupPushBasedLogExportResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
 // S3 directory in which vector writes in order to store the logs. An empty string denotes the root directory.

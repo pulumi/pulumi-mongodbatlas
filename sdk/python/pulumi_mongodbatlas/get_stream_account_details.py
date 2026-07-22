@@ -26,7 +26,7 @@ class GetStreamAccountDetailsResult:
     """
     A collection of values returned by getStreamAccountDetails.
     """
-    def __init__(__self__, aws_account_id=None, azure_subscription_id=None, cidr_block=None, cloud_provider=None, id=None, project_id=None, region_name=None, virtual_network_name=None, vpc_id=None):
+    def __init__(__self__, aws_account_id=None, azure_subscription_id=None, cidr_block=None, cloud_provider=None, project_id=None, region_name=None, virtual_network_name=None, vpc_id=None):
         if aws_account_id and not isinstance(aws_account_id, str):
             raise TypeError("Expected argument 'aws_account_id' to be a str")
         pulumi.set(__self__, "aws_account_id", aws_account_id)
@@ -39,9 +39,6 @@ class GetStreamAccountDetailsResult:
         if cloud_provider and not isinstance(cloud_provider, str):
             raise TypeError("Expected argument 'cloud_provider' to be a str")
         pulumi.set(__self__, "cloud_provider", cloud_provider)
-        if id and not isinstance(id, str):
-            raise TypeError("Expected argument 'id' to be a str")
-        pulumi.set(__self__, "id", id)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -88,14 +85,6 @@ class GetStreamAccountDetailsResult:
         return pulumi.get(self, "cloud_provider")
 
     @_builtins.property
-    @pulumi.getter
-    def id(self) -> _builtins.str:
-        """
-        The provider-assigned unique ID for this managed resource.
-        """
-        return pulumi.get(self, "id")
-
-    @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
@@ -138,7 +127,6 @@ class AwaitableGetStreamAccountDetailsResult(GetStreamAccountDetailsResult):
             azure_subscription_id=self.azure_subscription_id,
             cidr_block=self.cidr_block,
             cloud_provider=self.cloud_provider,
-            id=self.id,
             project_id=self.project_id,
             region_name=self.region_name,
             virtual_network_name=self.virtual_network_name,
@@ -185,7 +173,6 @@ def get_stream_account_details(cloud_provider: Optional[_builtins.str] = None,
         azure_subscription_id=pulumi.get(__ret__, 'azure_subscription_id'),
         cidr_block=pulumi.get(__ret__, 'cidr_block'),
         cloud_provider=pulumi.get(__ret__, 'cloud_provider'),
-        id=pulumi.get(__ret__, 'id'),
         project_id=pulumi.get(__ret__, 'project_id'),
         region_name=pulumi.get(__ret__, 'region_name'),
         virtual_network_name=pulumi.get(__ret__, 'virtual_network_name'),
@@ -229,7 +216,6 @@ def get_stream_account_details_output(cloud_provider: pulumi.Input[Optional[_bui
         azure_subscription_id=pulumi.get(__response__, 'azure_subscription_id'),
         cidr_block=pulumi.get(__response__, 'cidr_block'),
         cloud_provider=pulumi.get(__response__, 'cloud_provider'),
-        id=pulumi.get(__response__, 'id'),
         project_id=pulumi.get(__response__, 'project_id'),
         region_name=pulumi.get(__response__, 'region_name'),
         virtual_network_name=pulumi.get(__response__, 'virtual_network_name'),

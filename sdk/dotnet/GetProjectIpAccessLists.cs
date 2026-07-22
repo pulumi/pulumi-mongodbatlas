@@ -163,10 +163,6 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetProjectIpAccessListsResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
@@ -177,13 +173,10 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetProjectIpAccessListsResult(
-            string id,
-
             string projectId,
 
             ImmutableArray<Outputs.GetProjectIpAccessListsResultResult> results)
         {
-            Id = id;
             ProjectId = projectId;
             Results = results;
         }

@@ -322,10 +322,6 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetApiKeyProjectAssignmentsResult
     {
         /// <summary>
-        /// The provider-assigned unique ID for this managed resource.
-        /// </summary>
-        public readonly string Id;
-        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
@@ -336,13 +332,10 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetApiKeyProjectAssignmentsResult(
-            string id,
-
             string projectId,
 
             ImmutableArray<Outputs.GetApiKeyProjectAssignmentsResultResult> results)
         {
-            Id = id;
             ProjectId = projectId;
             Results = results;
         }

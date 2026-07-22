@@ -17,11 +17,6 @@ public final class GetServiceAccountProjectAssignmentResult {
      */
     private String clientId;
     /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    private String id;
-    /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
@@ -39,13 +34,6 @@ public final class GetServiceAccountProjectAssignmentResult {
      */
     public String clientId() {
         return this.clientId;
-    }
-    /**
-     * @return The provider-assigned unique ID for this managed resource.
-     * 
-     */
-    public String id() {
-        return this.id;
     }
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -72,14 +60,12 @@ public final class GetServiceAccountProjectAssignmentResult {
     @CustomType.Builder
     public static final class Builder {
         private String clientId;
-        private String id;
         private String projectId;
         private List<String> roles;
         public Builder() {}
         public Builder(GetServiceAccountProjectAssignmentResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.clientId = defaults.clientId;
-    	      this.id = defaults.id;
     	      this.projectId = defaults.projectId;
     	      this.roles = defaults.roles;
         }
@@ -90,14 +76,6 @@ public final class GetServiceAccountProjectAssignmentResult {
               throw new MissingRequiredPropertyException("GetServiceAccountProjectAssignmentResult", "clientId");
             }
             this.clientId = clientId;
-            return this;
-        }
-        @CustomType.Setter
-        public Builder id(String id) {
-            if (id == null) {
-              throw new MissingRequiredPropertyException("GetServiceAccountProjectAssignmentResult", "id");
-            }
-            this.id = id;
             return this;
         }
         @CustomType.Setter
@@ -122,7 +100,6 @@ public final class GetServiceAccountProjectAssignmentResult {
         public GetServiceAccountProjectAssignmentResult build() {
             final var _resultValue = new GetServiceAccountProjectAssignmentResult();
             _resultValue.clientId = clientId;
-            _resultValue.id = id;
             _resultValue.projectId = projectId;
             _resultValue.roles = roles;
             return _resultValue;
