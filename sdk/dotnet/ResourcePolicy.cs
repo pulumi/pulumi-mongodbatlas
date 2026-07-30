@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// `mongodbatlas.ResourcePolicy` provides a Resource Policy resource. The resource lets you create, edit and delete resource policies to prevent misconfigurations and reduce the need for corrective interventions in your organization.
     /// 
+    /// The Official MongoDB Atlas Organization Module makes use of this resource and simplifies resource policy management.
+    /// 
     /// ## Example Usage
     /// 
     /// ## Import

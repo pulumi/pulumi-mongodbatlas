@@ -29,9 +29,9 @@ import javax.annotation.Nullable;
 /**
  * `mongodbatlas.Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.
  * 
- * &gt; **DEPRECATION:** This resource is deprecated and will be removed in the next major release. Please use `mongodbatlas.AdvancedCluster`. For more details, see our migration guide.
+ * &gt; **DEPRECATION:** This resource is deprecated and will be removed in the next major release. Please use `mongodbatlas.AdvancedCluster`. For more details, see our migration guide. We recommend all MongoDB Atlas Terraform users start with the `Official MongoDB Atlas Cluster Module`. This module simplifies cluster deployment and implements MongoDB Atlas best practices by default.
  * 
- * &gt; **NOTE:** A network container is created for a cluster to reside in. To use this container with another resource, such as peering, reference the computed`containerId` attribute on the cluster.
+ * &gt; **NOTE:** A network container is created for a cluster to reside in. To use this container with another resource, such as peering, reference the computed `containerId` attribute on the cluster.
  * 
  * &gt; **NOTE:** To enable Cluster Extended Storage Sizes use the `isExtendedStorageSizesEnabled` parameter in the mongodbatlas.Project resource.
  * 

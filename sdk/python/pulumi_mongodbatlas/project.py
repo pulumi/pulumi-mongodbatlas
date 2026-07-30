@@ -28,6 +28,7 @@ class ProjectArgs:
                  is_data_explorer_gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_data_explorer_gen_ai_sample_document_passing_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_native_reranking_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_schema_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -49,6 +50,7 @@ class ProjectArgs:
         :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_features_enabled: Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
         :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_sample_document_passing_enabled: Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
         :param pulumi.Input[_builtins.bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+        :param pulumi.Input[_builtins.bool] is_native_reranking_enabled: Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
         :param pulumi.Input[_builtins.bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
@@ -72,6 +74,8 @@ class ProjectArgs:
             pulumi.set(__self__, "is_data_explorer_gen_ai_sample_document_passing_enabled", is_data_explorer_gen_ai_sample_document_passing_enabled)
         if is_extended_storage_sizes_enabled is not None:
             pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
+        if is_native_reranking_enabled is not None:
+            pulumi.set(__self__, "is_native_reranking_enabled", is_native_reranking_enabled)
         if is_performance_advisor_enabled is not None:
             pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
         if is_realtime_performance_panel_enabled is not None:
@@ -184,6 +188,18 @@ class ProjectArgs:
     @is_extended_storage_sizes_enabled.setter
     def is_extended_storage_sizes_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_extended_storage_sizes_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isNativeRerankingEnabled")
+    def is_native_reranking_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+        """
+        return pulumi.get(self, "is_native_reranking_enabled")
+
+    @is_native_reranking_enabled.setter
+    def is_native_reranking_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_native_reranking_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isPerformanceAdvisorEnabled")
@@ -326,6 +342,7 @@ class _ProjectState:
                  is_data_explorer_gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_data_explorer_gen_ai_sample_document_passing_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_native_reranking_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_schema_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -350,6 +367,7 @@ class _ProjectState:
         :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_features_enabled: Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
         :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_sample_document_passing_enabled: Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
         :param pulumi.Input[_builtins.bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+        :param pulumi.Input[_builtins.bool] is_native_reranking_enabled: Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
         :param pulumi.Input[_builtins.bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
@@ -382,6 +400,8 @@ class _ProjectState:
             pulumi.set(__self__, "is_data_explorer_gen_ai_sample_document_passing_enabled", is_data_explorer_gen_ai_sample_document_passing_enabled)
         if is_extended_storage_sizes_enabled is not None:
             pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
+        if is_native_reranking_enabled is not None:
+            pulumi.set(__self__, "is_native_reranking_enabled", is_native_reranking_enabled)
         if is_performance_advisor_enabled is not None:
             pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
         if is_realtime_performance_panel_enabled is not None:
@@ -521,6 +541,18 @@ class _ProjectState:
     @is_extended_storage_sizes_enabled.setter
     def is_extended_storage_sizes_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "is_extended_storage_sizes_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="isNativeRerankingEnabled")
+    def is_native_reranking_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+        """
+        return pulumi.get(self, "is_native_reranking_enabled")
+
+    @is_native_reranking_enabled.setter
+    def is_native_reranking_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "is_native_reranking_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="isPerformanceAdvisorEnabled")
@@ -675,6 +707,7 @@ class Project(pulumi.CustomResource):
                  is_data_explorer_gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_data_explorer_gen_ai_sample_document_passing_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_native_reranking_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_schema_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -690,6 +723,8 @@ class Project(pulumi.CustomResource):
                  __props__=None):
         """
         `Project` provides a Project resource. This allows project to be created.
+
+        The Official MongoDB Atlas Project Module simplifies project management by bundling IP access lists, maintenance windows, backup compliance policies, and log integrations.
 
         > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 
@@ -744,6 +779,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_features_enabled: Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
         :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_sample_document_passing_enabled: Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
         :param pulumi.Input[_builtins.bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+        :param pulumi.Input[_builtins.bool] is_native_reranking_enabled: Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
         :param pulumi.Input[_builtins.bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
@@ -763,6 +799,8 @@ class Project(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
         `Project` provides a Project resource. This allows project to be created.
+
+        The Official MongoDB Atlas Project Module simplifies project management by bundling IP access lists, maintenance windows, backup compliance policies, and log integrations.
 
         > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 
@@ -830,6 +868,7 @@ class Project(pulumi.CustomResource):
                  is_data_explorer_gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_data_explorer_gen_ai_sample_document_passing_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 is_native_reranking_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_schema_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -857,6 +896,7 @@ class Project(pulumi.CustomResource):
             __props__.__dict__["is_data_explorer_gen_ai_features_enabled"] = is_data_explorer_gen_ai_features_enabled
             __props__.__dict__["is_data_explorer_gen_ai_sample_document_passing_enabled"] = is_data_explorer_gen_ai_sample_document_passing_enabled
             __props__.__dict__["is_extended_storage_sizes_enabled"] = is_extended_storage_sizes_enabled
+            __props__.__dict__["is_native_reranking_enabled"] = is_native_reranking_enabled
             __props__.__dict__["is_performance_advisor_enabled"] = is_performance_advisor_enabled
             __props__.__dict__["is_realtime_performance_panel_enabled"] = is_realtime_performance_panel_enabled
             __props__.__dict__["is_schema_advisor_enabled"] = is_schema_advisor_enabled
@@ -893,6 +933,7 @@ class Project(pulumi.CustomResource):
             is_data_explorer_gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_data_explorer_gen_ai_sample_document_passing_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_extended_storage_sizes_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+            is_native_reranking_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_performance_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_schema_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -921,6 +962,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_features_enabled: Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
         :param pulumi.Input[_builtins.bool] is_data_explorer_gen_ai_sample_document_passing_enabled: Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
         :param pulumi.Input[_builtins.bool] is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
+        :param pulumi.Input[_builtins.bool] is_native_reranking_enabled: Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
         :param pulumi.Input[_builtins.bool] is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui). By default, this flag is set to true.
@@ -945,6 +987,7 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["is_data_explorer_gen_ai_features_enabled"] = is_data_explorer_gen_ai_features_enabled
         __props__.__dict__["is_data_explorer_gen_ai_sample_document_passing_enabled"] = is_data_explorer_gen_ai_sample_document_passing_enabled
         __props__.__dict__["is_extended_storage_sizes_enabled"] = is_extended_storage_sizes_enabled
+        __props__.__dict__["is_native_reranking_enabled"] = is_native_reranking_enabled
         __props__.__dict__["is_performance_advisor_enabled"] = is_performance_advisor_enabled
         __props__.__dict__["is_realtime_performance_panel_enabled"] = is_realtime_performance_panel_enabled
         __props__.__dict__["is_schema_advisor_enabled"] = is_schema_advisor_enabled
@@ -1031,6 +1074,14 @@ class Project(pulumi.CustomResource):
         Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
         """
         return pulumi.get(self, "is_extended_storage_sizes_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="isNativeRerankingEnabled")
+    def is_native_reranking_enabled(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+        """
+        return pulumi.get(self, "is_native_reranking_enabled")
 
     @_builtins.property
     @pulumi.getter(name="isPerformanceAdvisorEnabled")

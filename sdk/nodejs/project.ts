@@ -9,6 +9,8 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.Project` provides a Project resource. This allows project to be created.
  *
+ * The Official MongoDB Atlas Project Module simplifies project management by bundling IP access lists, maintenance windows, backup compliance policies, and log integrations.
+ *
  * > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
  *
  * ## Example Usage
@@ -121,6 +123,10 @@ export class Project extends pulumi.CustomResource {
      */
     declare public readonly isExtendedStorageSizesEnabled: pulumi.Output<boolean>;
     /**
+     * Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+     */
+    declare public readonly isNativeRerankingEnabled: pulumi.Output<boolean>;
+    /**
      * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
      */
     declare public readonly isPerformanceAdvisorEnabled: pulumi.Output<boolean>;
@@ -190,6 +196,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["isDataExplorerGenAiFeaturesEnabled"] = state?.isDataExplorerGenAiFeaturesEnabled;
             resourceInputs["isDataExplorerGenAiSampleDocumentPassingEnabled"] = state?.isDataExplorerGenAiSampleDocumentPassingEnabled;
             resourceInputs["isExtendedStorageSizesEnabled"] = state?.isExtendedStorageSizesEnabled;
+            resourceInputs["isNativeRerankingEnabled"] = state?.isNativeRerankingEnabled;
             resourceInputs["isPerformanceAdvisorEnabled"] = state?.isPerformanceAdvisorEnabled;
             resourceInputs["isRealtimePerformancePanelEnabled"] = state?.isRealtimePerformancePanelEnabled;
             resourceInputs["isSchemaAdvisorEnabled"] = state?.isSchemaAdvisorEnabled;
@@ -213,6 +220,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["isDataExplorerGenAiFeaturesEnabled"] = args?.isDataExplorerGenAiFeaturesEnabled;
             resourceInputs["isDataExplorerGenAiSampleDocumentPassingEnabled"] = args?.isDataExplorerGenAiSampleDocumentPassingEnabled;
             resourceInputs["isExtendedStorageSizesEnabled"] = args?.isExtendedStorageSizesEnabled;
+            resourceInputs["isNativeRerankingEnabled"] = args?.isNativeRerankingEnabled;
             resourceInputs["isPerformanceAdvisorEnabled"] = args?.isPerformanceAdvisorEnabled;
             resourceInputs["isRealtimePerformancePanelEnabled"] = args?.isRealtimePerformancePanelEnabled;
             resourceInputs["isSchemaAdvisorEnabled"] = args?.isSchemaAdvisorEnabled;
@@ -276,6 +284,10 @@ export interface ProjectState {
      * Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
      */
     isExtendedStorageSizesEnabled?: pulumi.Input<boolean | undefined>;
+    /**
+     * Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+     */
+    isNativeRerankingEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
      */
@@ -353,6 +365,10 @@ export interface ProjectArgs {
      * Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
      */
     isExtendedStorageSizesEnabled?: pulumi.Input<boolean | undefined>;
+    /**
+     * Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+     */
+    isNativeRerankingEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
      */

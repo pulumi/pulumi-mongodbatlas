@@ -33,6 +33,8 @@ import javax.annotation.Nullable;
  * 
  * This is the first resource in the two-resource path as described above.
  * 
+ * The Official MongoDB Atlas cloud provider modules for AWS, Azure, and Google Cloud make use of this resource and simplify cloud provider access configuration.
+ * 
  * `mongodbatlas.CloudProviderAccessSetup` allows you to register an AWS, AZURE or GCP IAM roles in Atlas.
  * 
  * ## Example Usage

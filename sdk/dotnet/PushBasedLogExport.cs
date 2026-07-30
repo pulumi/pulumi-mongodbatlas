@@ -15,8 +15,6 @@ namespace Pulumi.Mongodbatlas
     /// `mongodbatlas.PushBasedLogExport` provides a resource for push-based log export feature. The resource lets you configure, enable &amp; disable the project level settings for the push-based log export feature. Using this resource you
     /// can continually push logs from mongod, mongos, and audit logs to an Amazon S3 bucket. Atlas exports logs every 5 minutes.
     /// 
-    /// The push based log export Terraform module makes use of this resource and simplifies its use.
-    /// 
     /// ## Example Usage
     /// 
     /// ### S

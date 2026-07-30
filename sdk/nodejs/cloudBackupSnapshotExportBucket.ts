@@ -7,6 +7,8 @@ import * as utilities from "./utilities";
 /**
  * `mongodbatlas.CloudBackupSnapshotExportBucket` allows you to create an export snapshot bucket for the specified project.
  *
+ * The Official MongoDB Atlas cloud provider modules for AWS, Azure, and Google Cloud make use of this resource and simplify backup export configuration.
+ *
  * > **NOTE:** To prevent errors during resource destruction, ensure that no `mongodbatlas.CloudBackupSchedule` resource that defines an automatic export policy references this resource. If you must update related `mongodbatlas.CloudBackupSchedule` resources, make these updates in isolated `pulumi up` operations first, then run the operation that destroys the `mongodbatlas.CloudBackupSnapshotExportBucket` resource.
  *
  * ## Example Usage

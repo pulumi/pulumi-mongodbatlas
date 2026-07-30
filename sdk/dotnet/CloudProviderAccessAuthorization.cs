@@ -23,6 +23,8 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// This is the second resource in the two-resource path as described above.
     /// 
+    /// The Official MongoDB Atlas cloud provider modules for AWS, Azure, and Google Cloud make use of this resource and simplify cloud provider access configuration.
+    /// 
     /// `mongodbatlas.CloudProviderAccessAuthorization` allows you to authorize an AWS, AZURE or GCP IAM roles in Atlas.
     /// 
     /// &gt; **IMPORTANT:** Changes to `ProjectId` or `RoleId` will result in the destruction and recreation of the authorization resource. This action happens as these fields uniquely identify the authorization and cannot be modified in-place.

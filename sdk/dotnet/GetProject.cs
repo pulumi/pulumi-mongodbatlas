@@ -318,6 +318,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly bool IsExtendedStorageSizesEnabled;
         /// <summary>
+        /// Flag that indicates whether Native Reranking with Voyage AI models in the Aggregation Pipeline is enabled for the project.
+        /// </summary>
+        public readonly bool IsNativeRerankingEnabled;
+        /// <summary>
         /// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         /// </summary>
         public readonly bool IsPerformanceAdvisorEnabled;
@@ -385,6 +389,8 @@ namespace Pulumi.Mongodbatlas
 
             bool isExtendedStorageSizesEnabled,
 
+            bool isNativeRerankingEnabled,
+
             bool isPerformanceAdvisorEnabled,
 
             bool isRealtimePerformancePanelEnabled,
@@ -419,6 +425,7 @@ namespace Pulumi.Mongodbatlas
             IsDataExplorerGenAiFeaturesEnabled = isDataExplorerGenAiFeaturesEnabled;
             IsDataExplorerGenAiSampleDocumentPassingEnabled = isDataExplorerGenAiSampleDocumentPassingEnabled;
             IsExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;
+            IsNativeRerankingEnabled = isNativeRerankingEnabled;
             IsPerformanceAdvisorEnabled = isPerformanceAdvisorEnabled;
             IsRealtimePerformancePanelEnabled = isRealtimePerformancePanelEnabled;
             IsSchemaAdvisorEnabled = isSchemaAdvisorEnabled;

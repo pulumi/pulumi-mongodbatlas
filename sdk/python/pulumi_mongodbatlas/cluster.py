@@ -1707,9 +1707,9 @@ class Cluster(pulumi.CustomResource):
         """
         `Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.
 
-        > **DEPRECATION:** This resource is deprecated and will be removed in the next major release. Please use `AdvancedCluster`. For more details, see our migration guide.
+        > **DEPRECATION:** This resource is deprecated and will be removed in the next major release. Please use `AdvancedCluster`. For more details, see our migration guide. We recommend all MongoDB Atlas Terraform users start with the `Official MongoDB Atlas Cluster Module`. This module simplifies cluster deployment and implements MongoDB Atlas best practices by default.
 
-        > **NOTE:** A network container is created for a cluster to reside in. To use this container with another resource, such as peering, reference the computed`container_id` attribute on the cluster.
+        > **NOTE:** A network container is created for a cluster to reside in. To use this container with another resource, such as peering, reference the computed `container_id` attribute on the cluster.
 
         > **NOTE:** To enable Cluster Extended Storage Sizes use the `is_extended_storage_sizes_enabled` parameter in the Project resource.
 
@@ -2062,9 +2062,9 @@ class Cluster(pulumi.CustomResource):
         """
         `Cluster` provides a Cluster resource. The resource lets you create, edit and delete clusters. The resource requires your Project ID.
 
-        > **DEPRECATION:** This resource is deprecated and will be removed in the next major release. Please use `AdvancedCluster`. For more details, see our migration guide.
+        > **DEPRECATION:** This resource is deprecated and will be removed in the next major release. Please use `AdvancedCluster`. For more details, see our migration guide. We recommend all MongoDB Atlas Terraform users start with the `Official MongoDB Atlas Cluster Module`. This module simplifies cluster deployment and implements MongoDB Atlas best practices by default.
 
-        > **NOTE:** A network container is created for a cluster to reside in. To use this container with another resource, such as peering, reference the computed`container_id` attribute on the cluster.
+        > **NOTE:** A network container is created for a cluster to reside in. To use this container with another resource, such as peering, reference the computed `container_id` attribute on the cluster.
 
         > **NOTE:** To enable Cluster Extended Storage Sizes use the `is_extended_storage_sizes_enabled` parameter in the Project resource.
 

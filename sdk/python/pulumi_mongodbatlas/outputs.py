@@ -25882,6 +25882,7 @@ class GetProjectsResultResult(dict):
                  is_data_explorer_gen_ai_features_enabled: _builtins.bool,
                  is_data_explorer_gen_ai_sample_document_passing_enabled: _builtins.bool,
                  is_extended_storage_sizes_enabled: _builtins.bool,
+                 is_native_reranking_enabled: _builtins.bool,
                  is_performance_advisor_enabled: _builtins.bool,
                  is_realtime_performance_panel_enabled: _builtins.bool,
                  is_schema_advisor_enabled: _builtins.bool,
@@ -25904,11 +25905,11 @@ class GetProjectsResultResult(dict):
         :param _builtins.bool is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.
         :param _builtins.bool is_data_explorer_gen_ai_features_enabled: Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
         :param _builtins.bool is_data_explorer_gen_ai_sample_document_passing_enabled: Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
-               #std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         :param _builtins.bool is_extended_storage_sizes_enabled: Flag that indicates whether to enable extended storage sizes for the specified project.
+        :param _builtins.bool is_native_reranking_enabled: Flag that indicates whether Native Reranking with Voyage AI models in the Aggregation Pipeline is enabled for the project.
         :param _builtins.bool is_performance_advisor_enabled: Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
         :param _builtins.bool is_realtime_performance_panel_enabled: Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
-        :param _builtins.bool is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/).
+        :param _builtins.bool is_schema_advisor_enabled: Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         :param _builtins.bool is_slow_operation_thresholding_enabled: Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
         :param Sequence['GetProjectsResultLimitArgs'] limits: The limits for the specified project. See Limits.
         :param _builtins.str org_id: The ID of the organization you want to create the project within.
@@ -25928,6 +25929,7 @@ class GetProjectsResultResult(dict):
         pulumi.set(__self__, "is_data_explorer_gen_ai_features_enabled", is_data_explorer_gen_ai_features_enabled)
         pulumi.set(__self__, "is_data_explorer_gen_ai_sample_document_passing_enabled", is_data_explorer_gen_ai_sample_document_passing_enabled)
         pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
+        pulumi.set(__self__, "is_native_reranking_enabled", is_native_reranking_enabled)
         pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
         pulumi.set(__self__, "is_realtime_performance_panel_enabled", is_realtime_performance_panel_enabled)
         pulumi.set(__self__, "is_schema_advisor_enabled", is_schema_advisor_enabled)
@@ -26013,7 +26015,6 @@ class GetProjectsResultResult(dict):
     def is_data_explorer_gen_ai_sample_document_passing_enabled(self) -> _builtins.bool:
         """
         Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
-        #std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         """
         return pulumi.get(self, "is_data_explorer_gen_ai_sample_document_passing_enabled")
 
@@ -26024,6 +26025,14 @@ class GetProjectsResultResult(dict):
         Flag that indicates whether to enable extended storage sizes for the specified project.
         """
         return pulumi.get(self, "is_extended_storage_sizes_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="isNativeRerankingEnabled")
+    def is_native_reranking_enabled(self) -> _builtins.bool:
+        """
+        Flag that indicates whether Native Reranking with Voyage AI models in the Aggregation Pipeline is enabled for the project.
+        """
+        return pulumi.get(self, "is_native_reranking_enabled")
 
     @_builtins.property
     @pulumi.getter(name="isPerformanceAdvisorEnabled")
@@ -26045,7 +26054,7 @@ class GetProjectsResultResult(dict):
     @pulumi.getter(name="isSchemaAdvisorEnabled")
     def is_schema_advisor_enabled(self) -> _builtins.bool:
         """
-        Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/).
+        Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
         """
         return pulumi.get(self, "is_schema_advisor_enabled")
 
@@ -29826,15 +29835,17 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
                  vendor: _builtins.str):
         """
         :param _builtins.str arn: Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
-        :param _builtins.str dns_domain: The domain hostname. Required for the following provider and vendor combinations:
+        :param _builtins.str dns_domain: The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
                
-                   * AWS provider with CONFLUENT vendor.
+                   * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
                    
                    * AZURE provider with EVENTHUB or CONFLUENT vendor.
                    
                    * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
                    
                    * For GCP provider with PUBSUB vendor, the API computes this process.
+                   
+                   This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
         :param Sequence[_builtins.str] dns_sub_domains: Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
         :param _builtins.str error_message: Error message if the connection is in a failed state.
         :param _builtins.str id: The ID of the Private Link connection.
@@ -29883,15 +29894,17 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
     @pulumi.getter(name="dnsDomain")
     def dns_domain(self) -> _builtins.str:
         """
-        The domain hostname. Required for the following provider and vendor combinations:
+        The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 
-            * AWS provider with CONFLUENT vendor.
+            * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
             
             * AZURE provider with EVENTHUB or CONFLUENT vendor.
             
             * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
             
             * For GCP provider with PUBSUB vendor, the API computes this process.
+            
+            This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
         """
         return pulumi.get(self, "dns_domain")
 

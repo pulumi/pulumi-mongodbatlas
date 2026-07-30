@@ -7186,13 +7186,16 @@ export interface GetProjectsResult {
     isDataExplorerGenAiFeaturesEnabled: boolean;
     /**
      * Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
-     * #std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
      */
     isDataExplorerGenAiSampleDocumentPassingEnabled: boolean;
     /**
      * Flag that indicates whether to enable extended storage sizes for the specified project.
      */
     isExtendedStorageSizesEnabled: boolean;
+    /**
+     * Flag that indicates whether Native Reranking with Voyage AI models in the Aggregation Pipeline is enabled for the project.
+     */
+    isNativeRerankingEnabled: boolean;
     /**
      * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
      */
@@ -7202,7 +7205,7 @@ export interface GetProjectsResult {
      */
     isRealtimePerformancePanelEnabled: boolean;
     /**
-     * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/).
+     * Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
      */
     isSchemaAdvisorEnabled: boolean;
     /**
@@ -8584,15 +8587,17 @@ export interface GetStreamPrivatelinkEndpointsResult {
      */
     arn: string;
     /**
-     * The domain hostname. Required for the following provider and vendor combinations:
+     * The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
      *
-     *     * AWS provider with CONFLUENT vendor.
+     *     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
      *     
      *     * AZURE provider with EVENTHUB or CONFLUENT vendor.
      *     
      *     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
      *     
      *     * For GCP provider with PUBSUB vendor, the API computes this process.
+     *     
+     *     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
      */
     dnsDomain: string;
     /**

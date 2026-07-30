@@ -75,6 +75,11 @@ public final class GetProjectResult {
      */
     private Boolean isExtendedStorageSizesEnabled;
     /**
+     * @return Flag that indicates whether Native Reranking with Voyage AI models in the Aggregation Pipeline is enabled for the project.
+     * 
+     */
+    private Boolean isNativeRerankingEnabled;
+    /**
      * @return Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
      * 
      */
@@ -215,6 +220,13 @@ public final class GetProjectResult {
         return this.isExtendedStorageSizesEnabled;
     }
     /**
+     * @return Flag that indicates whether Native Reranking with Voyage AI models in the Aggregation Pipeline is enabled for the project.
+     * 
+     */
+    public Boolean isNativeRerankingEnabled() {
+        return this.isNativeRerankingEnabled;
+    }
+    /**
      * @return Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
      * 
      */
@@ -322,6 +334,7 @@ public final class GetProjectResult {
         private Boolean isDataExplorerGenAiFeaturesEnabled;
         private Boolean isDataExplorerGenAiSampleDocumentPassingEnabled;
         private Boolean isExtendedStorageSizesEnabled;
+        private Boolean isNativeRerankingEnabled;
         private Boolean isPerformanceAdvisorEnabled;
         private Boolean isRealtimePerformancePanelEnabled;
         private Boolean isSchemaAdvisorEnabled;
@@ -347,6 +360,7 @@ public final class GetProjectResult {
     	      this.isDataExplorerGenAiFeaturesEnabled = defaults.isDataExplorerGenAiFeaturesEnabled;
     	      this.isDataExplorerGenAiSampleDocumentPassingEnabled = defaults.isDataExplorerGenAiSampleDocumentPassingEnabled;
     	      this.isExtendedStorageSizesEnabled = defaults.isExtendedStorageSizesEnabled;
+    	      this.isNativeRerankingEnabled = defaults.isNativeRerankingEnabled;
     	      this.isPerformanceAdvisorEnabled = defaults.isPerformanceAdvisorEnabled;
     	      this.isRealtimePerformancePanelEnabled = defaults.isRealtimePerformancePanelEnabled;
     	      this.isSchemaAdvisorEnabled = defaults.isSchemaAdvisorEnabled;
@@ -439,6 +453,14 @@ public final class GetProjectResult {
               throw new MissingRequiredPropertyException("GetProjectResult", "isExtendedStorageSizesEnabled");
             }
             this.isExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder isNativeRerankingEnabled(Boolean isNativeRerankingEnabled) {
+            if (isNativeRerankingEnabled == null) {
+              throw new MissingRequiredPropertyException("GetProjectResult", "isNativeRerankingEnabled");
+            }
+            this.isNativeRerankingEnabled = isNativeRerankingEnabled;
             return this;
         }
         @CustomType.Setter
@@ -554,6 +576,7 @@ public final class GetProjectResult {
             _resultValue.isDataExplorerGenAiFeaturesEnabled = isDataExplorerGenAiFeaturesEnabled;
             _resultValue.isDataExplorerGenAiSampleDocumentPassingEnabled = isDataExplorerGenAiSampleDocumentPassingEnabled;
             _resultValue.isExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;
+            _resultValue.isNativeRerankingEnabled = isNativeRerankingEnabled;
             _resultValue.isPerformanceAdvisorEnabled = isPerformanceAdvisorEnabled;
             _resultValue.isRealtimePerformancePanelEnabled = isRealtimePerformancePanelEnabled;
             _resultValue.isSchemaAdvisorEnabled = isSchemaAdvisorEnabled;
