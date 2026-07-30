@@ -20,6 +20,8 @@ import javax.annotation.Nullable;
 /**
  * `mongodbatlas.Organization` provides programmatic management (including creation) of a MongoDB Atlas Organization resource.
  * 
+ * The Official MongoDB Atlas Organization Module simplifies organization creation and management with support for resource policies.
+ * 
  * &gt; **IMPORTANT NOTE:**  When you establish an Atlas organization using this resource, it automatically generates a set of initial credentials. Defining `description` and `roleNames` creates a Programmatic API Key (public and private key) — in this case, `roleNames` must have the ORG_OWNER role specified. Defining a `serviceAccount` block creates a Service Account (client ID and client secret) instead. The API does not allow creating both in the same request. These credential values are stored in the Terraform state and used by the resource for subsequent operations on the organization.
  * 
  * &gt; **IMPORTANT NOTE:** To use this resource, the requesting API Key must have the Organization Owner role. The requesting API Key&#39;s organization must be a paying organization. To learn more, see Configure a Paying Organization in the MongoDB Atlas documentation.

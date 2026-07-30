@@ -514,7 +514,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
 
         > **IMPORTANT:** This resource links your cloud provider's Private Endpoint to the MongoDB Atlas Private Endpoint Service. It does not create the service itself (this is done by `PrivateLinkEndpoint`). You first create the service in Atlas with `PrivateLinkEndpoint`, then the endpoint is created in your cloud provider, and you link them together with the `PrivateLinkEndpointService` resource.
 
-        The private link Terraform module makes use of this resource and simplifies its use.
+        The Official MongoDB Atlas cloud provider modules for AWS, Azure, and Google Cloud make use of this resource and simplify private endpoint configuration.
 
         > **NOTE:** You must have Organization Owner or Project Owner role. Create and delete operations wait for all clusters on the project to IDLE to ensure the latest connection strings can be retrieved (default timeout: 2hrs).
 
@@ -756,7 +756,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
 
         > **IMPORTANT:** This resource links your cloud provider's Private Endpoint to the MongoDB Atlas Private Endpoint Service. It does not create the service itself (this is done by `PrivateLinkEndpoint`). You first create the service in Atlas with `PrivateLinkEndpoint`, then the endpoint is created in your cloud provider, and you link them together with the `PrivateLinkEndpointService` resource.
 
-        The private link Terraform module makes use of this resource and simplifies its use.
+        The Official MongoDB Atlas cloud provider modules for AWS, Azure, and Google Cloud make use of this resource and simplify private endpoint configuration.
 
         > **NOTE:** You must have Organization Owner or Project Owner role. Create and delete operations wait for all clusters on the project to IDLE to ensure the latest connection strings can be retrieved (default timeout: 2hrs).
 

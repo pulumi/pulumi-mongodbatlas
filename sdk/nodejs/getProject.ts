@@ -120,6 +120,10 @@ export interface GetProjectResult {
      */
     readonly isExtendedStorageSizesEnabled: boolean;
     /**
+     * Flag that indicates whether Native Reranking with Voyage AI models in the Aggregation Pipeline is enabled for the project.
+     */
+    readonly isNativeRerankingEnabled: boolean;
+    /**
      * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
      */
     readonly isPerformanceAdvisorEnabled: boolean;

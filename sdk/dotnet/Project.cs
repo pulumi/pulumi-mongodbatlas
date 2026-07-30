@@ -12,6 +12,8 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// `mongodbatlas.Project` provides a Project resource. This allows project to be created.
     /// 
+    /// The Official MongoDB Atlas Project Module simplifies project management by bundling IP access lists, maintenance windows, backup compliance policies, and log integrations.
+    /// 
     /// &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
     /// 
     /// ## Example Usage
@@ -124,6 +126,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("isExtendedStorageSizesEnabled")]
         public Output<bool> IsExtendedStorageSizesEnabled { get; private set; } = null!;
+
+        /// <summary>
+        /// Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+        /// </summary>
+        [Output("isNativeRerankingEnabled")]
+        public Output<bool> IsNativeRerankingEnabled { get; private set; } = null!;
 
         /// <summary>
         /// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
@@ -274,6 +282,12 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? IsExtendedStorageSizesEnabled { get; set; }
 
         /// <summary>
+        /// Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+        /// </summary>
+        [Input("isNativeRerankingEnabled")]
+        public Input<bool>? IsNativeRerankingEnabled { get; set; }
+
+        /// <summary>
         /// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
         /// </summary>
         [Input("isPerformanceAdvisorEnabled")]
@@ -417,6 +431,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("isExtendedStorageSizesEnabled")]
         public Input<bool>? IsExtendedStorageSizesEnabled { get; set; }
+
+        /// <summary>
+        /// Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+        /// </summary>
+        [Input("isNativeRerankingEnabled")]
+        public Input<bool>? IsNativeRerankingEnabled { get; set; }
 
         /// <summary>
         /// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.

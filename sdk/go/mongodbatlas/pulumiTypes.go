@@ -55708,15 +55708,16 @@ type GetProjectsResult struct {
 	// Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
 	IsDataExplorerGenAiFeaturesEnabled bool `pulumi:"isDataExplorerGenAiFeaturesEnabled"`
 	// Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
-	// #std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsDataExplorerGenAiSampleDocumentPassingEnabled bool `pulumi:"isDataExplorerGenAiSampleDocumentPassingEnabled"`
 	// Flag that indicates whether to enable extended storage sizes for the specified project.
 	IsExtendedStorageSizesEnabled bool `pulumi:"isExtendedStorageSizesEnabled"`
+	// Flag that indicates whether Native Reranking with Voyage AI models in the Aggregation Pipeline is enabled for the project.
+	IsNativeRerankingEnabled bool `pulumi:"isNativeRerankingEnabled"`
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
 	IsPerformanceAdvisorEnabled bool `pulumi:"isPerformanceAdvisorEnabled"`
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
 	IsRealtimePerformancePanelEnabled bool `pulumi:"isRealtimePerformancePanelEnabled"`
-	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/).
+	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled bool `pulumi:"isSchemaAdvisorEnabled"`
 	// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
 	//
@@ -55772,15 +55773,16 @@ type GetProjectsResultArgs struct {
 	// Flag that indicates whether generative AI features are enabled in the Data Explorer for the project.
 	IsDataExplorerGenAiFeaturesEnabled pulumi.BoolInput `pulumi:"isDataExplorerGenAiFeaturesEnabled"`
 	// Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
-	// #std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsDataExplorerGenAiSampleDocumentPassingEnabled pulumi.BoolInput `pulumi:"isDataExplorerGenAiSampleDocumentPassingEnabled"`
 	// Flag that indicates whether to enable extended storage sizes for the specified project.
 	IsExtendedStorageSizesEnabled pulumi.BoolInput `pulumi:"isExtendedStorageSizesEnabled"`
+	// Flag that indicates whether Native Reranking with Voyage AI models in the Aggregation Pipeline is enabled for the project.
+	IsNativeRerankingEnabled pulumi.BoolInput `pulumi:"isNativeRerankingEnabled"`
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
 	IsPerformanceAdvisorEnabled pulumi.BoolInput `pulumi:"isPerformanceAdvisorEnabled"`
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database.
 	IsRealtimePerformancePanelEnabled pulumi.BoolInput `pulumi:"isRealtimePerformancePanelEnabled"`
-	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/).
+	// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 	IsSchemaAdvisorEnabled pulumi.BoolInput `pulumi:"isSchemaAdvisorEnabled"`
 	// Flag that enables MongoDB Cloud to use its slow operation threshold for the specified project. The threshold determines which operations the Performance Advisor and Query Profiler considers slow. When enabled, MongoDB Cloud uses the average execution time for operations on your cluster to determine slow-running queries. As a result, the threshold is more pertinent to your cluster workload. The slow operation threshold is enabled by default for dedicated clusters (M10+). When disabled, MongoDB Cloud considers any operation that takes longer than 100 milliseconds to be slow. **Note**: To use this attribute, the requesting API Key must have the Project Owner role, if not it will show a warning and will return `false`. If you are not using this field, you don't need to take any action.
 	//
@@ -55899,7 +55901,6 @@ func (o GetProjectsResultOutput) IsDataExplorerGenAiFeaturesEnabled() pulumi.Boo
 }
 
 // Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
-// #std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 func (o GetProjectsResultOutput) IsDataExplorerGenAiSampleDocumentPassingEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsDataExplorerGenAiSampleDocumentPassingEnabled }).(pulumi.BoolOutput)
 }
@@ -55907,6 +55908,11 @@ func (o GetProjectsResultOutput) IsDataExplorerGenAiSampleDocumentPassingEnabled
 // Flag that indicates whether to enable extended storage sizes for the specified project.
 func (o GetProjectsResultOutput) IsExtendedStorageSizesEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsExtendedStorageSizesEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether Native Reranking with Voyage AI models in the Aggregation Pipeline is enabled for the project.
+func (o GetProjectsResultOutput) IsNativeRerankingEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsNativeRerankingEnabled }).(pulumi.BoolOutput)
 }
 
 // Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
@@ -55919,7 +55925,7 @@ func (o GetProjectsResultOutput) IsRealtimePerformancePanelEnabled() pulumi.Bool
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsRealtimePerformancePanelEnabled }).(pulumi.BoolOutput)
 }
 
-// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/).
+// Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
 func (o GetProjectsResultOutput) IsSchemaAdvisorEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetProjectsResult) bool { return v.IsSchemaAdvisorEnabled }).(pulumi.BoolOutput)
 }
@@ -63061,15 +63067,17 @@ func (o GetStreamInstancesResultStreamConfigOutput) Tier() pulumi.StringOutput {
 type GetStreamPrivatelinkEndpointsResult struct {
 	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn string `pulumi:"arn"`
-	// The domain hostname. Required for the following provider and vendor combinations:
+	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 	//
-	//     * AWS provider with CONFLUENT vendor.
+	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
 	//
 	//     * AZURE provider with EVENTHUB or CONFLUENT vendor.
 	//
 	//     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
 	//
 	//     * For GCP provider with PUBSUB vendor, the API computes this process.
+	//
+	//     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
 	DnsDomain string `pulumi:"dnsDomain"`
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
 	DnsSubDomains []string `pulumi:"dnsSubDomains"`
@@ -63119,15 +63127,17 @@ type GetStreamPrivatelinkEndpointsResultInput interface {
 type GetStreamPrivatelinkEndpointsResultArgs struct {
 	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn pulumi.StringInput `pulumi:"arn"`
-	// The domain hostname. Required for the following provider and vendor combinations:
+	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 	//
-	//     * AWS provider with CONFLUENT vendor.
+	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
 	//
 	//     * AZURE provider with EVENTHUB or CONFLUENT vendor.
 	//
 	//     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
 	//
 	//     * For GCP provider with PUBSUB vendor, the API computes this process.
+	//
+	//     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
 	DnsDomain pulumi.StringInput `pulumi:"dnsDomain"`
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
 	DnsSubDomains pulumi.StringArrayInput `pulumi:"dnsSubDomains"`
@@ -63219,15 +63229,17 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) Arn() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Arn }).(pulumi.StringOutput)
 }
 
-// The domain hostname. Required for the following provider and vendor combinations:
+// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 //
-//   - AWS provider with CONFLUENT vendor.
+//   - AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
 //
 //   - AZURE provider with EVENTHUB or CONFLUENT vendor.
 //
 //   - AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
 //
 //   - For GCP provider with PUBSUB vendor, the API computes this process.
+//
+//     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
 func (o GetStreamPrivatelinkEndpointsResultOutput) DnsDomain() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.DnsDomain }).(pulumi.StringOutput)
 }

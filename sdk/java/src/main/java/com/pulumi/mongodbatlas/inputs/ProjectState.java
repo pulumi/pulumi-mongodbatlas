@@ -166,6 +166,21 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+     * 
+     */
+    @Import(name="isNativeRerankingEnabled")
+    private @Nullable Output<Boolean> isNativeRerankingEnabled;
+
+    /**
+     * @return Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+     * 
+     */
+    public Optional<Output<Boolean>> isNativeRerankingEnabled() {
+        return Optional.ofNullable(this.isNativeRerankingEnabled);
+    }
+
+    /**
      * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
      * 
      */
@@ -361,6 +376,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         this.isDataExplorerGenAiFeaturesEnabled = $.isDataExplorerGenAiFeaturesEnabled;
         this.isDataExplorerGenAiSampleDocumentPassingEnabled = $.isDataExplorerGenAiSampleDocumentPassingEnabled;
         this.isExtendedStorageSizesEnabled = $.isExtendedStorageSizesEnabled;
+        this.isNativeRerankingEnabled = $.isNativeRerankingEnabled;
         this.isPerformanceAdvisorEnabled = $.isPerformanceAdvisorEnabled;
         this.isRealtimePerformancePanelEnabled = $.isRealtimePerformancePanelEnabled;
         this.isSchemaAdvisorEnabled = $.isSchemaAdvisorEnabled;
@@ -588,6 +604,27 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder isExtendedStorageSizesEnabled(Boolean isExtendedStorageSizesEnabled) {
             return isExtendedStorageSizesEnabled(Output.of(isExtendedStorageSizesEnabled));
+        }
+
+        /**
+         * @param isNativeRerankingEnabled Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isNativeRerankingEnabled(@Nullable Output<Boolean> isNativeRerankingEnabled) {
+            $.isNativeRerankingEnabled = isNativeRerankingEnabled;
+            return this;
+        }
+
+        /**
+         * @param isNativeRerankingEnabled Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder isNativeRerankingEnabled(Boolean isNativeRerankingEnabled) {
+            return isNativeRerankingEnabled(Output.of(isNativeRerankingEnabled));
         }
 
         /**

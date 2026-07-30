@@ -11,6 +11,8 @@ import * as utilities from "./utilities";
  *
  * To use this resource, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
  *
+ * The Official MongoDB Atlas cloud provider modules for AWS, Azure, and Google Cloud make use of this resource and simplify log integration configuration. The Official MongoDB Atlas Project Module also supports Datadog, Splunk, and OpenTelemetry log integrations.
+ *
  * ## Example Usage
  *
  * ### S
@@ -156,6 +158,8 @@ import * as utilities from "./utilities";
  * ## Import
  *
  * Log integration resource can be imported using the project ID and log integration ID, separated by a slash, e.g.
+ *
+ * > **NOTE:** After importing a `mongodbatlas.LogIntegration` resource that uses OpenTelemetry, with a configuration that sets non-empty header values, the first `pulumi preview` shows a diff on `otelSuppliedHeaders` because the Atlas API redacts these values in GET responses. The diff is expected and resolves after running `pulumi up` once.
  *
  * For more information see: [MongoDB Atlas API - Log Integration](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-push-based-log-export) Documentation.
  */

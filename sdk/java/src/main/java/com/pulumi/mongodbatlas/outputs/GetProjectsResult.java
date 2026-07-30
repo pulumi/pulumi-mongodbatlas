@@ -66,7 +66,6 @@ public final class GetProjectsResult {
     private Boolean isDataExplorerGenAiFeaturesEnabled;
     /**
      * @return Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
-     * #std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
      * 
      */
     private Boolean isDataExplorerGenAiSampleDocumentPassingEnabled;
@@ -75,6 +74,11 @@ public final class GetProjectsResult {
      * 
      */
     private Boolean isExtendedStorageSizesEnabled;
+    /**
+     * @return Flag that indicates whether Native Reranking with Voyage AI models in the Aggregation Pipeline is enabled for the project.
+     * 
+     */
+    private Boolean isNativeRerankingEnabled;
     /**
      * @return Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
      * 
@@ -86,7 +90,7 @@ public final class GetProjectsResult {
      */
     private Boolean isRealtimePerformancePanelEnabled;
     /**
-     * @return Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/).
+     * @return Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
      * 
      */
     private Boolean isSchemaAdvisorEnabled;
@@ -203,7 +207,6 @@ public final class GetProjectsResult {
     }
     /**
      * @return Flag that indicates whether passing sample documents to generative AI features in the Data Explorer is enabled for the project.
-     * #std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
      * 
      */
     public Boolean isDataExplorerGenAiSampleDocumentPassingEnabled() {
@@ -215,6 +218,13 @@ public final class GetProjectsResult {
      */
     public Boolean isExtendedStorageSizesEnabled() {
         return this.isExtendedStorageSizesEnabled;
+    }
+    /**
+     * @return Flag that indicates whether Native Reranking with Voyage AI models in the Aggregation Pipeline is enabled for the project.
+     * 
+     */
+    public Boolean isNativeRerankingEnabled() {
+        return this.isNativeRerankingEnabled;
     }
     /**
      * @return Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements.
@@ -231,7 +241,7 @@ public final class GetProjectsResult {
         return this.isRealtimePerformancePanelEnabled;
     }
     /**
-     * @return Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/).
+     * @return Flag that indicates whether to enable Schema Advisor for the project. If enabled, you receive customized recommendations to optimize your data model and enhance performance. Disable this setting to disable schema suggestions in the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor) and the [Data Explorer](https://www.mongodb.com/docs/atlas/atlas-ui/#std-label-atlas-ui).
      * 
      */
     public Boolean isSchemaAdvisorEnabled() {
@@ -324,6 +334,7 @@ public final class GetProjectsResult {
         private Boolean isDataExplorerGenAiFeaturesEnabled;
         private Boolean isDataExplorerGenAiSampleDocumentPassingEnabled;
         private Boolean isExtendedStorageSizesEnabled;
+        private Boolean isNativeRerankingEnabled;
         private Boolean isPerformanceAdvisorEnabled;
         private Boolean isRealtimePerformancePanelEnabled;
         private Boolean isSchemaAdvisorEnabled;
@@ -349,6 +360,7 @@ public final class GetProjectsResult {
     	      this.isDataExplorerGenAiFeaturesEnabled = defaults.isDataExplorerGenAiFeaturesEnabled;
     	      this.isDataExplorerGenAiSampleDocumentPassingEnabled = defaults.isDataExplorerGenAiSampleDocumentPassingEnabled;
     	      this.isExtendedStorageSizesEnabled = defaults.isExtendedStorageSizesEnabled;
+    	      this.isNativeRerankingEnabled = defaults.isNativeRerankingEnabled;
     	      this.isPerformanceAdvisorEnabled = defaults.isPerformanceAdvisorEnabled;
     	      this.isRealtimePerformancePanelEnabled = defaults.isRealtimePerformancePanelEnabled;
     	      this.isSchemaAdvisorEnabled = defaults.isSchemaAdvisorEnabled;
@@ -441,6 +453,14 @@ public final class GetProjectsResult {
               throw new MissingRequiredPropertyException("GetProjectsResult", "isExtendedStorageSizesEnabled");
             }
             this.isExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder isNativeRerankingEnabled(Boolean isNativeRerankingEnabled) {
+            if (isNativeRerankingEnabled == null) {
+              throw new MissingRequiredPropertyException("GetProjectsResult", "isNativeRerankingEnabled");
+            }
+            this.isNativeRerankingEnabled = isNativeRerankingEnabled;
             return this;
         }
         @CustomType.Setter
@@ -556,6 +576,7 @@ public final class GetProjectsResult {
             _resultValue.isDataExplorerGenAiFeaturesEnabled = isDataExplorerGenAiFeaturesEnabled;
             _resultValue.isDataExplorerGenAiSampleDocumentPassingEnabled = isDataExplorerGenAiSampleDocumentPassingEnabled;
             _resultValue.isExtendedStorageSizesEnabled = isExtendedStorageSizesEnabled;
+            _resultValue.isNativeRerankingEnabled = isNativeRerankingEnabled;
             _resultValue.isPerformanceAdvisorEnabled = isPerformanceAdvisorEnabled;
             _resultValue.isRealtimePerformancePanelEnabled = isRealtimePerformancePanelEnabled;
             _resultValue.isSchemaAdvisorEnabled = isSchemaAdvisorEnabled;

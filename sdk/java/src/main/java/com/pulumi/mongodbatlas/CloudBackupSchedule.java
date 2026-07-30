@@ -27,6 +27,8 @@ import javax.annotation.Nullable;
 /**
  * `mongodbatlas.CloudBackupSchedule` provides a cloud backup schedule resource. The resource lets you create, read, update and delete a cloud backup schedule.
  * 
+ * The Official MongoDB Atlas Cluster Module makes use of this resource and simplifies backup schedule configuration.
+ * 
  * &gt; **NOTE:** If a Backup Compliance Policy is enabled on the project, you cannot modify the backup schedule for an individual cluster below the minimum requirements set in the policy (see [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy)). To allow `terraform destroy` to remove the associated `mongodbatlas.AdvancedCluster` without being blocked by the policy, set `skipDestroy = true`. See the delete cluster guide for background and legacy workarounds.
  * 
  * &gt; **NOTE:** When creating a backup schedule you **must either** use the `dependsOn` clause to indicate the cluster to which it refers **or** specify the values of `projectId` and `clusterName` as reference of the cluster resource (e.g. `clusterName = mongodbatlas_advanced_cluster.my_cluster.name` - see the example below). Failure in doing so will result in an error when executing the plan.

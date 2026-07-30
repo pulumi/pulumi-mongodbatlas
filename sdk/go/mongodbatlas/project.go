@@ -14,6 +14,8 @@ import (
 
 // `Project` provides a Project resource. This allows project to be created.
 //
+// The Official MongoDB Atlas Project Module simplifies project management by bundling IP access lists, maintenance windows, backup compliance policies, and log integrations.
+//
 // > **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
 //
 // ## Example Usage
@@ -99,6 +101,8 @@ type Project struct {
 	IsDataExplorerGenAiSampleDocumentPassingEnabled pulumi.BoolOutput `pulumi:"isDataExplorerGenAiSampleDocumentPassingEnabled"`
 	// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
 	IsExtendedStorageSizesEnabled pulumi.BoolOutput `pulumi:"isExtendedStorageSizesEnabled"`
+	// Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+	IsNativeRerankingEnabled pulumi.BoolOutput `pulumi:"isNativeRerankingEnabled"`
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
 	IsPerformanceAdvisorEnabled pulumi.BoolOutput `pulumi:"isPerformanceAdvisorEnabled"`
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
@@ -179,6 +183,8 @@ type projectState struct {
 	IsDataExplorerGenAiSampleDocumentPassingEnabled *bool `pulumi:"isDataExplorerGenAiSampleDocumentPassingEnabled"`
 	// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
 	IsExtendedStorageSizesEnabled *bool `pulumi:"isExtendedStorageSizesEnabled"`
+	// Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+	IsNativeRerankingEnabled *bool `pulumi:"isNativeRerankingEnabled"`
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
 	IsPerformanceAdvisorEnabled *bool `pulumi:"isPerformanceAdvisorEnabled"`
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
@@ -227,6 +233,8 @@ type ProjectState struct {
 	IsDataExplorerGenAiSampleDocumentPassingEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
 	IsExtendedStorageSizesEnabled pulumi.BoolPtrInput
+	// Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+	IsNativeRerankingEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
 	IsPerformanceAdvisorEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
@@ -271,6 +279,8 @@ type projectArgs struct {
 	IsDataExplorerGenAiSampleDocumentPassingEnabled *bool `pulumi:"isDataExplorerGenAiSampleDocumentPassingEnabled"`
 	// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
 	IsExtendedStorageSizesEnabled *bool `pulumi:"isExtendedStorageSizesEnabled"`
+	// Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+	IsNativeRerankingEnabled *bool `pulumi:"isNativeRerankingEnabled"`
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
 	IsPerformanceAdvisorEnabled *bool `pulumi:"isPerformanceAdvisorEnabled"`
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
@@ -312,6 +322,8 @@ type ProjectArgs struct {
 	IsDataExplorerGenAiSampleDocumentPassingEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
 	IsExtendedStorageSizesEnabled pulumi.BoolPtrInput
+	// Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+	IsNativeRerankingEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.
 	IsPerformanceAdvisorEnabled pulumi.BoolPtrInput
 	// Flag that indicates whether to enable Real Time Performance Panel for the project. If enabled, you can see real time metrics from your MongoDB database. By default, this flag is set to true.
@@ -471,6 +483,11 @@ func (o ProjectOutput) IsDataExplorerGenAiSampleDocumentPassingEnabled() pulumi.
 // Flag that indicates whether to enable extended storage sizes for the specified project. Clusters with extended storage sizes must be on AWS or GCP, and cannot span multiple regions. When extending storage size, initial syncs and cross-project snapshot restores will be slow. This setting should only be used as a measure of temporary relief; consider sharding if more storage is required.
 func (o ProjectOutput) IsExtendedStorageSizesEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Project) pulumi.BoolOutput { return v.IsExtendedStorageSizesEnabled }).(pulumi.BoolOutput)
+}
+
+// Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+func (o ProjectOutput) IsNativeRerankingEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *Project) pulumi.BoolOutput { return v.IsNativeRerankingEnabled }).(pulumi.BoolOutput)
 }
 
 // Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.

@@ -266,15 +266,17 @@ type StreamPrivatelinkEndpoint struct {
 
 	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn pulumi.StringPtrOutput `pulumi:"arn"`
-	// The domain hostname. Required for the following provider and vendor combinations:
+	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 	//
-	//     * AWS provider with CONFLUENT vendor.
+	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
 	//
 	//     * AZURE provider with EVENTHUB or CONFLUENT vendor.
 	//
 	//     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
 	//
 	//     * For GCP provider with PUBSUB vendor, the API computes this process.
+	//
+	//     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
 	DnsDomain pulumi.StringOutput `pulumi:"dnsDomain"`
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
 	DnsSubDomains pulumi.StringArrayOutput `pulumi:"dnsSubDomains"`
@@ -349,15 +351,17 @@ func GetStreamPrivatelinkEndpoint(ctx *pulumi.Context,
 type streamPrivatelinkEndpointState struct {
 	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn *string `pulumi:"arn"`
-	// The domain hostname. Required for the following provider and vendor combinations:
+	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 	//
-	//     * AWS provider with CONFLUENT vendor.
+	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
 	//
 	//     * AZURE provider with EVENTHUB or CONFLUENT vendor.
 	//
 	//     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
 	//
 	//     * For GCP provider with PUBSUB vendor, the API computes this process.
+	//
+	//     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
 	DnsDomain *string `pulumi:"dnsDomain"`
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
 	DnsSubDomains []string `pulumi:"dnsSubDomains"`
@@ -394,15 +398,17 @@ type streamPrivatelinkEndpointState struct {
 type StreamPrivatelinkEndpointState struct {
 	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn pulumi.StringPtrInput
-	// The domain hostname. Required for the following provider and vendor combinations:
+	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 	//
-	//     * AWS provider with CONFLUENT vendor.
+	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
 	//
 	//     * AZURE provider with EVENTHUB or CONFLUENT vendor.
 	//
 	//     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
 	//
 	//     * For GCP provider with PUBSUB vendor, the API computes this process.
+	//
+	//     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
 	DnsDomain pulumi.StringPtrInput
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
 	DnsSubDomains pulumi.StringArrayInput
@@ -443,15 +449,17 @@ func (StreamPrivatelinkEndpointState) ElementType() reflect.Type {
 type streamPrivatelinkEndpointArgs struct {
 	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn *string `pulumi:"arn"`
-	// The domain hostname. Required for the following provider and vendor combinations:
+	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 	//
-	//     * AWS provider with CONFLUENT vendor.
+	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
 	//
 	//     * AZURE provider with EVENTHUB or CONFLUENT vendor.
 	//
 	//     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
 	//
 	//     * For GCP provider with PUBSUB vendor, the API computes this process.
+	//
+	//     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
 	DnsDomain *string `pulumi:"dnsDomain"`
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
 	DnsSubDomains []string `pulumi:"dnsSubDomains"`
@@ -479,15 +487,17 @@ type streamPrivatelinkEndpointArgs struct {
 type StreamPrivatelinkEndpointArgs struct {
 	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn pulumi.StringPtrInput
-	// The domain hostname. Required for the following provider and vendor combinations:
+	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 	//
-	//     * AWS provider with CONFLUENT vendor.
+	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
 	//
 	//     * AZURE provider with EVENTHUB or CONFLUENT vendor.
 	//
 	//     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
 	//
 	//     * For GCP provider with PUBSUB vendor, the API computes this process.
+	//
+	//     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
 	DnsDomain pulumi.StringPtrInput
 	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
 	DnsSubDomains pulumi.StringArrayInput
@@ -603,15 +613,17 @@ func (o StreamPrivatelinkEndpointOutput) Arn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringPtrOutput { return v.Arn }).(pulumi.StringPtrOutput)
 }
 
-// The domain hostname. Required for the following provider and vendor combinations:
+// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 //
-//   - AWS provider with CONFLUENT vendor.
+//   - AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
 //
 //   - AZURE provider with EVENTHUB or CONFLUENT vendor.
 //
 //   - AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
 //
 //   - For GCP provider with PUBSUB vendor, the API computes this process.
+//
+//     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
 func (o StreamPrivatelinkEndpointOutput) DnsDomain() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringOutput { return v.DnsDomain }).(pulumi.StringOutput)
 }

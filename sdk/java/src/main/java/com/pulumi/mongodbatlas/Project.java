@@ -24,6 +24,8 @@ import javax.annotation.Nullable;
 /**
  * `mongodbatlas.Project` provides a Project resource. This allows project to be created.
  * 
+ * The Official MongoDB Atlas Project Module simplifies project management by bundling IP access lists, maintenance windows, backup compliance policies, and log integrations.
+ * 
  * &gt; **NOTE:** If Backup Compliance Policy is enabled for the project for which this backup schedule is defined, you cannot delete the Atlas project if any snapshots exist.  See [Backup Compliance Policy Prohibited Actions and Considerations](https://www.mongodb.com/docs/atlas/backup/cloud-backup/backup-compliance-policy/#configure-a-backup-compliance-policy).
  * 
  * ## Example Usage
@@ -225,6 +227,20 @@ public class Project extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> isExtendedStorageSizesEnabled() {
         return this.isExtendedStorageSizesEnabled;
+    }
+    /**
+     * Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+     * 
+     */
+    @Export(name="isNativeRerankingEnabled", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> isNativeRerankingEnabled;
+
+    /**
+     * @return Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+     * 
+     */
+    public Output<Boolean> isNativeRerankingEnabled() {
+        return this.isNativeRerankingEnabled;
     }
     /**
      * Flag that indicates whether to enable Performance Advisor and Profiler for the project. If enabled, you can analyze database logs to recommend performance improvements. By default, this flag is set to true.

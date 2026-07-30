@@ -24,7 +24,7 @@ import javax.annotation.Nullable;
  * - [Azure Key Vault](https://www.mongodb.com/docs/atlas/security-azure-kms/#security-azure-kms)
  * - [Google Cloud KMS](https://www.mongodb.com/docs/atlas/security-gcp-kms/#security-gcp-kms)
  * 
- * The encryption at rest Terraform module makes use of this resource and simplifies its use. It is currently limited to AWS KMS.
+ * The Official MongoDB Atlas cloud provider modules for AWS, Azure, and Google Cloud make use of this resource and simplify encryption at rest configuration.
  * 
  * Atlas does not automatically rotate user-managed encryption keys. Defer to your preferred Encryption at Rest provider’s documentation and guidance for best practices on key rotation. Atlas automatically creates a 90-day key rotation alert when you configure Encryption at Rest using your Key Management in an Atlas project.
  * 

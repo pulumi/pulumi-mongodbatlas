@@ -12,9 +12,11 @@ namespace Pulumi.Mongodbatlas
     /// <summary>
     /// `mongodbatlas.PrivateEndpointRegionalMode` provides a Private Endpoint Regional Mode resource. This represents a regionalized private endpoint setting for a Project. Enable it to allow region specific private endpoints.
     /// 
-    /// &gt; **IMPORTANT:**You must have one of the following roles to successfully handle the resource: &lt;br&gt; - Organization Owner &lt;br&gt; - Project Owner
+    /// The Official MongoDB Atlas cloud provider modules for AWS, Azure, and Google Cloud make use of this resource and simplify private endpoint configuration.
     /// 
-    /// &gt; **WARNING:**Your [connection strings](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/#std-label-connstring-privatelink) to existing multi-region and global sharded clusters change when you enable this setting.  You must update your applications to use the new connection strings. This might cause downtime.
+    /// &gt; **IMPORTANT:** You must have one of the following roles to successfully handle the resource: &lt;br&gt; - Organization Owner &lt;br&gt; - Project Owner
+    /// 
+    /// &gt; **WARNING:** Your [connection strings](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/#std-label-connstring-privatelink) to existing multi-region and global sharded clusters change when you enable this setting. You must update your applications to use the new connection strings. This might cause downtime.
     /// 
     /// ## Import
     /// 

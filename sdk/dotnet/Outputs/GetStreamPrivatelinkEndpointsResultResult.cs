@@ -18,15 +18,17 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Arn;
         /// <summary>
-        /// The domain hostname. Required for the following provider and vendor combinations:
+        /// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
         /// 
-        /// 	* AWS provider with CONFLUENT vendor.
+        /// 	* AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
         /// 
         /// 	* AZURE provider with EVENTHUB or CONFLUENT vendor.
         /// 
         /// 	* AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
         /// 
         /// 	* For GCP provider with PUBSUB vendor, the API computes this process.
+        /// 
+        /// 	This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
         /// </summary>
         public readonly string DnsDomain;
         /// <summary>

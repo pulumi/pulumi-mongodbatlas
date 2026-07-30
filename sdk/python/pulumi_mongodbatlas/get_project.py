@@ -27,7 +27,7 @@ class GetProjectResult:
     """
     A collection of values returned by getProject.
     """
-    def __init__(__self__, cluster_count=None, created=None, id=None, ip_addresses=None, is_cluster_ai_assistant_enabled=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_data_explorer_gen_ai_features_enabled=None, is_data_explorer_gen_ai_sample_document_passing_enabled=None, is_extended_storage_sizes_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, is_slow_operation_thresholding_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, tags=None, teams=None, users=None):
+    def __init__(__self__, cluster_count=None, created=None, id=None, ip_addresses=None, is_cluster_ai_assistant_enabled=None, is_collect_database_specifics_statistics_enabled=None, is_data_explorer_enabled=None, is_data_explorer_gen_ai_features_enabled=None, is_data_explorer_gen_ai_sample_document_passing_enabled=None, is_extended_storage_sizes_enabled=None, is_native_reranking_enabled=None, is_performance_advisor_enabled=None, is_realtime_performance_panel_enabled=None, is_schema_advisor_enabled=None, is_slow_operation_thresholding_enabled=None, limits=None, name=None, org_id=None, project_id=None, region_usage_restrictions=None, tags=None, teams=None, users=None):
         if cluster_count and not isinstance(cluster_count, int):
             raise TypeError("Expected argument 'cluster_count' to be a int")
         pulumi.set(__self__, "cluster_count", cluster_count)
@@ -58,6 +58,9 @@ class GetProjectResult:
         if is_extended_storage_sizes_enabled and not isinstance(is_extended_storage_sizes_enabled, bool):
             raise TypeError("Expected argument 'is_extended_storage_sizes_enabled' to be a bool")
         pulumi.set(__self__, "is_extended_storage_sizes_enabled", is_extended_storage_sizes_enabled)
+        if is_native_reranking_enabled and not isinstance(is_native_reranking_enabled, bool):
+            raise TypeError("Expected argument 'is_native_reranking_enabled' to be a bool")
+        pulumi.set(__self__, "is_native_reranking_enabled", is_native_reranking_enabled)
         if is_performance_advisor_enabled and not isinstance(is_performance_advisor_enabled, bool):
             raise TypeError("Expected argument 'is_performance_advisor_enabled' to be a bool")
         pulumi.set(__self__, "is_performance_advisor_enabled", is_performance_advisor_enabled)
@@ -177,6 +180,14 @@ class GetProjectResult:
         return pulumi.get(self, "is_extended_storage_sizes_enabled")
 
     @_builtins.property
+    @pulumi.getter(name="isNativeRerankingEnabled")
+    def is_native_reranking_enabled(self) -> _builtins.bool:
+        """
+        Flag that indicates whether Native Reranking with Voyage AI models in the Aggregation Pipeline is enabled for the project.
+        """
+        return pulumi.get(self, "is_native_reranking_enabled")
+
+    @_builtins.property
     @pulumi.getter(name="isPerformanceAdvisorEnabled")
     def is_performance_advisor_enabled(self) -> _builtins.bool:
         """
@@ -288,6 +299,7 @@ class AwaitableGetProjectResult(GetProjectResult):
             is_data_explorer_gen_ai_features_enabled=self.is_data_explorer_gen_ai_features_enabled,
             is_data_explorer_gen_ai_sample_document_passing_enabled=self.is_data_explorer_gen_ai_sample_document_passing_enabled,
             is_extended_storage_sizes_enabled=self.is_extended_storage_sizes_enabled,
+            is_native_reranking_enabled=self.is_native_reranking_enabled,
             is_performance_advisor_enabled=self.is_performance_advisor_enabled,
             is_realtime_performance_panel_enabled=self.is_realtime_performance_panel_enabled,
             is_schema_advisor_enabled=self.is_schema_advisor_enabled,
@@ -364,6 +376,7 @@ def get_project(name: Optional[_builtins.str] = None,
         is_data_explorer_gen_ai_features_enabled=pulumi.get(__ret__, 'is_data_explorer_gen_ai_features_enabled'),
         is_data_explorer_gen_ai_sample_document_passing_enabled=pulumi.get(__ret__, 'is_data_explorer_gen_ai_sample_document_passing_enabled'),
         is_extended_storage_sizes_enabled=pulumi.get(__ret__, 'is_extended_storage_sizes_enabled'),
+        is_native_reranking_enabled=pulumi.get(__ret__, 'is_native_reranking_enabled'),
         is_performance_advisor_enabled=pulumi.get(__ret__, 'is_performance_advisor_enabled'),
         is_realtime_performance_panel_enabled=pulumi.get(__ret__, 'is_realtime_performance_panel_enabled'),
         is_schema_advisor_enabled=pulumi.get(__ret__, 'is_schema_advisor_enabled'),
@@ -437,6 +450,7 @@ def get_project_output(name: pulumi.Input[Optional[Optional[_builtins.str]]] = N
         is_data_explorer_gen_ai_features_enabled=pulumi.get(__response__, 'is_data_explorer_gen_ai_features_enabled'),
         is_data_explorer_gen_ai_sample_document_passing_enabled=pulumi.get(__response__, 'is_data_explorer_gen_ai_sample_document_passing_enabled'),
         is_extended_storage_sizes_enabled=pulumi.get(__response__, 'is_extended_storage_sizes_enabled'),
+        is_native_reranking_enabled=pulumi.get(__response__, 'is_native_reranking_enabled'),
         is_performance_advisor_enabled=pulumi.get(__response__, 'is_performance_advisor_enabled'),
         is_realtime_performance_panel_enabled=pulumi.get(__response__, 'is_realtime_performance_panel_enabled'),
         is_schema_advisor_enabled=pulumi.get(__response__, 'is_schema_advisor_enabled'),
