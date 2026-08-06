@@ -48,7 +48,7 @@ import * as utilities from "./utilities";
  *         projectId: testPushBasedLogExport.projectId,
  *     });
  *     return {
- *         test: test.apply(test => test.prefixPath),
+ *         test: test.prefixPath,
  *     };
  * }
  * ```

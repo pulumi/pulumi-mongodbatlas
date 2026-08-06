@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.GetCustomDnsConfigurationClusterAwsOutput(ctx, mongodbatlas.GetCustomDnsConfigurationClusterAwsOutputArgs{
-//				ProjectId: testCustomDnsConfigurationClusterAws.ID(),
+//				ProjectId: testCustomDnsConfigurationClusterAws.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})

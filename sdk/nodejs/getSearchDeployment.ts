@@ -48,8 +48,8 @@ import * as utilities from "./utilities";
  *     projectId: exampleSearchDeployment.projectId,
  *     clusterName: exampleSearchDeployment.clusterName,
  * });
- * export const mongodbatlasSearchDeploymentId = example.apply(example => example.id);
- * export const mongodbatlasSearchDeploymentEncryptionAtRestProvider = example.apply(example => example.encryptionAtRestProvider);
+ * export const mongodbatlasSearchDeploymentId = example.id;
+ * export const mongodbatlasSearchDeploymentEncryptionAtRestProvider = example.encryptionAtRestProvider;
  * ```
  */
 export function getSearchDeployment(args: GetSearchDeploymentArgs, opts?: pulumi.InvokeOptions): Promise<GetSearchDeploymentResult> {
@@ -145,8 +145,8 @@ export interface GetSearchDeploymentResult {
  *     projectId: exampleSearchDeployment.projectId,
  *     clusterName: exampleSearchDeployment.clusterName,
  * });
- * export const mongodbatlasSearchDeploymentId = example.apply(example => example.id);
- * export const mongodbatlasSearchDeploymentEncryptionAtRestProvider = example.apply(example => example.encryptionAtRestProvider);
+ * export const mongodbatlasSearchDeploymentId = example.id;
+ * export const mongodbatlasSearchDeploymentEncryptionAtRestProvider = example.encryptionAtRestProvider;
  * ```
  */
 export function getSearchDeploymentOutput(args: GetSearchDeploymentOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetSearchDeploymentResult> {

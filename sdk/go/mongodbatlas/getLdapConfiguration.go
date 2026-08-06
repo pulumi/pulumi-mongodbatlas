@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			testLdapConfiguration, err := mongodbatlas.NewLdapConfiguration(ctx, "test", &mongodbatlas.LdapConfigurationArgs{
-//				ProjectId:             testProject.ID(),
+//				ProjectId:             testProject.ID().ToIDOutput().ToStringOutput(),
 //				AuthenticationEnabled: pulumi.Bool(true),
 //				Hostname:              pulumi.String("HOSTNAME"),
 //				Port:                  pulumi.Int(636),
@@ -46,7 +46,7 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.GetLdapConfigurationOutput(ctx, mongodbatlas.GetLdapConfigurationOutputArgs{
-//				ProjectId: testLdapConfiguration.ID(),
+//				ProjectId: testLdapConfiguration.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})

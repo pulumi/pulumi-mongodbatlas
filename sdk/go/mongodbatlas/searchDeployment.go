@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			exampleAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "example", &mongodbatlas.AdvancedClusterArgs{
-//				ProjectId:   exampleProject.ID(),
+//				ProjectId:   exampleProject.ID().ToIDOutput().ToStringOutput(),
 //				Name:        pulumi.String("ClusterExample"),
 //				ClusterType: pulumi.String("REPLICASET"),
 //				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
@@ -65,7 +65,7 @@ import (
 //				return err
 //			}
 //			exampleSearchDeployment, err := mongodbatlas.NewSearchDeployment(ctx, "example", &mongodbatlas.SearchDeploymentArgs{
-//				ProjectId:   exampleProject.ID(),
+//				ProjectId:   exampleProject.ID().ToIDOutput().ToStringOutput(),
 //				ClusterName: exampleAdvancedCluster.Name,
 //				Specs: mongodbatlas.SearchDeploymentSpecArray{
 //					&mongodbatlas.SearchDeploymentSpecArgs{
@@ -81,12 +81,8 @@ import (
 //				ProjectId:   exampleSearchDeployment.ProjectId,
 //				ClusterName: exampleSearchDeployment.ClusterName,
 //			}, nil)
-//			ctx.Export("mongodbatlasSearchDeploymentId", example.ApplyT(func(example mongodbatlas.GetSearchDeploymentResult) (*string, error) {
-//				return example.Id, nil
-//			}).(pulumi.StringPtrOutput))
-//			ctx.Export("mongodbatlasSearchDeploymentEncryptionAtRestProvider", example.ApplyT(func(example mongodbatlas.GetSearchDeploymentResult) (*string, error) {
-//				return example.EncryptionAtRestProvider, nil
-//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("mongodbatlasSearchDeploymentId", example.Id())
+//			ctx.Export("mongodbatlasSearchDeploymentEncryptionAtRestProvider", example.EncryptionAtRestProvider())
 //			return nil
 //		})
 //	}

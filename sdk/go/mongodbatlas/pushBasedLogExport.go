@@ -42,14 +42,14 @@ import (
 //			}
 //			// Set up cloud provider access in Atlas using the created IAM role
 //			setupOnly, err := mongodbatlas.NewCloudProviderAccessSetup(ctx, "setup_only", &mongodbatlas.CloudProviderAccessSetupArgs{
-//				ProjectId:    project_tf.ID(),
+//				ProjectId:    project_tf.ID().ToIDOutput().ToStringOutput(),
 //				ProviderName: pulumi.String("AWS"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			authRole, err := mongodbatlas.NewCloudProviderAccessAuthorization(ctx, "auth_role", &mongodbatlas.CloudProviderAccessAuthorizationArgs{
-//				ProjectId: project_tf.ID(),
+//				ProjectId: project_tf.ID().ToIDOutput().ToStringOutput(),
 //				RoleId:    setupOnly.RoleId,
 //				Aws: &mongodbatlas.CloudProviderAccessAuthorizationAwsArgs{
 //					IamAssumedRoleArn: pulumi.Any(testRole.Arn),
@@ -60,7 +60,7 @@ import (
 //			}
 //			// Set up push-based log export with authorized IAM role
 //			testPushBasedLogExport, err := mongodbatlas.NewPushBasedLogExport(ctx, "test", &mongodbatlas.PushBasedLogExportArgs{
-//				ProjectId:  project_tf.ID(),
+//				ProjectId:  project_tf.ID().ToIDOutput().ToStringOutput(),
 //				BucketName: pulumi.Any(logBucket.Bucket),
 //				IamRoleId:  authRole.RoleId,
 //				PrefixPath: pulumi.String("push-based-log-test"),
@@ -71,9 +71,7 @@ import (
 //			test := mongodbatlas.GetPushBasedLogExportOutput(ctx, mongodbatlas.GetPushBasedLogExportOutputArgs{
 //				ProjectId: testPushBasedLogExport.ProjectId,
 //			}, nil)
-//			ctx.Export("test", test.ApplyT(func(test mongodbatlas.GetPushBasedLogExportResult) (*string, error) {
-//				return test.PrefixPath, nil
-//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("test", test.PrefixPath())
 //			return nil
 //		})
 //	}

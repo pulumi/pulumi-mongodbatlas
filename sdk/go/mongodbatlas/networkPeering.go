@@ -124,7 +124,7 @@ import (
 //				return err
 //			}
 //			// the following assumes a GCP provider is configured
-//			_default, err := google.ComputeNetwork(ctx, map[string]interface{}{
+//			_default, err := google.ComputeNetwork(ctx, map[string]string{
 //				"name": "default",
 //			}, nil)
 //			if err != nil {

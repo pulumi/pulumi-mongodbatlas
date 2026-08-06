@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  * });
  * export const secretId = thisServiceAccountSecret.secretId;
  * export const secret = thisServiceAccountSecret.secret;
- * export const secretExpiresAt = _this.apply(_this => _this.expiresAt);
+ * export const secretExpiresAt = _this.expiresAt;
  * ```
  */
 export function getServiceAccountSecret(args: GetServiceAccountSecretArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceAccountSecretResult> {
@@ -127,7 +127,7 @@ export interface GetServiceAccountSecretResult {
  * });
  * export const secretId = thisServiceAccountSecret.secretId;
  * export const secret = thisServiceAccountSecret.secret;
- * export const secretExpiresAt = _this.apply(_this => _this.expiresAt);
+ * export const secretExpiresAt = _this.expiresAt;
  * ```
  */
 export function getServiceAccountSecretOutput(args: GetServiceAccountSecretOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetServiceAccountSecretResult> {

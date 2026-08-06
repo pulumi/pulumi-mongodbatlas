@@ -42,8 +42,8 @@ import (
 //			}
 //			_, err = aws.NewS3BucketVersioning(ctx, "stream_bucket_versioning", &aws.S3BucketVersioningArgs{
 //				Bucket: streamBucket.Id,
-//				VersioningConfiguration: []map[string]interface{}{
-//					map[string]interface{}{
+//				VersioningConfiguration: []map[string]string{
+//					{
 //						"status": "Enabled",
 //					},
 //				},
@@ -53,10 +53,10 @@ import (
 //			}
 //			_, err = aws.NewS3BucketServerSideEncryptionConfiguration(ctx, "stream_bucket_encryption", &aws.S3BucketServerSideEncryptionConfigurationArgs{
 //				Bucket: streamBucket.Id,
-//				Rule: []map[string]interface{}{
-//					map[string]interface{}{
-//						"applyServerSideEncryptionByDefault": []map[string]interface{}{
-//							map[string]interface{}{
+//				Rule: []map[string][]map[string]string{
+//					{
+//						"applyServerSideEncryptionByDefault": []map[string]string{
+//							{
 //								"sseAlgorithm": "AES256",
 //							},
 //						},
@@ -114,12 +114,10 @@ import (
 //			}
 //			gcpConfluent := mongodbatlas.GetStreamPrivatelinkEndpointOutput(ctx, mongodbatlas.GetStreamPrivatelinkEndpointOutputArgs{
 //				ProjectId: pulumi.Any(projectId),
-//				Id:        gcpConfluentStreamPrivatelinkEndpoint.ID(),
+//				Id:        gcpConfluentStreamPrivatelinkEndpoint.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			ctx.Export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.ID())
-//			ctx.Export("privatelinkEndpointState", gcpConfluent.ApplyT(func(gcpConfluent mongodbatlas.GetStreamPrivatelinkEndpointResult) (*string, error) {
-//				return gcpConfluent.State, nil
-//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("privatelinkEndpointState", gcpConfluent.State())
 //			ctx.Export("serviceAttachmentUris", gcpConfluentStreamPrivatelinkEndpoint.ServiceAttachmentUris)
 //			return nil
 //		})
@@ -179,12 +177,10 @@ import (
 //			}
 //			gcpPubsub := mongodbatlas.GetStreamPrivatelinkEndpointOutput(ctx, mongodbatlas.GetStreamPrivatelinkEndpointOutputArgs{
 //				ProjectId: pulumi.Any(projectId),
-//				Id:        gcpPubsubStreamPrivatelinkEndpoint.ID(),
+//				Id:        gcpPubsubStreamPrivatelinkEndpoint.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			ctx.Export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.ID())
-//			ctx.Export("privatelinkEndpointState", gcpPubsub.ApplyT(func(gcpPubsub mongodbatlas.GetStreamPrivatelinkEndpointResult) (*string, error) {
-//				return gcpPubsub.State, nil
-//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("privatelinkEndpointState", gcpPubsub.State())
 //			ctx.Export("dnsDomain", gcpPubsubStreamPrivatelinkEndpoint.DnsDomain)
 //			return nil
 //		})

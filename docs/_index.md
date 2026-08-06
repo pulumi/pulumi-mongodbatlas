@@ -199,7 +199,7 @@ func main() {
 		}
 		// Create a cluster
 		_, err = mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
-			ProjectId:   this.ID(),
+			ProjectId:   this.ID().ToIDOutput().ToStringOutput(),
 			Name:        pulumi.String("my-cluster"),
 			ClusterType: pulumi.String("REPLICASET"),
 			ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{

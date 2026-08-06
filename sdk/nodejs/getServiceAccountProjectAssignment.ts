@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  *     orgId: orgId,
  *     clientId: thisServiceAccount.clientId,
  * });
- * export const serviceAccountProjectRoles = _this.apply(_this => _this.roles);
+ * export const serviceAccountProjectRoles = _this.roles;
  * export const serviceAccountAssignedProjects = thisGetServiceAccountProjectAssignments.apply(thisGetServiceAccountProjectAssignments => thisGetServiceAccountProjectAssignments.results);
  * ```
  */
@@ -113,7 +113,7 @@ export interface GetServiceAccountProjectAssignmentResult {
  *     orgId: orgId,
  *     clientId: thisServiceAccount.clientId,
  * });
- * export const serviceAccountProjectRoles = _this.apply(_this => _this.roles);
+ * export const serviceAccountProjectRoles = _this.roles;
  * export const serviceAccountAssignedProjects = thisGetServiceAccountProjectAssignments.apply(thisGetServiceAccountProjectAssignments => thisGetServiceAccountProjectAssignments.results);
  * ```
  */

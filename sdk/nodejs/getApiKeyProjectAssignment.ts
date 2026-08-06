@@ -53,7 +53,7 @@ import * as utilities from "./utilities";
  * const allAssignments = mongodbatlas.getApiKeyProjectAssignmentsOutput({
  *     projectId: firstProject.id,
  * });
- * export const firstAssignmentProjectId = firstAssignment.apply(firstAssignment => firstAssignment.projectId);
+ * export const firstAssignmentProjectId = firstAssignment.projectId;
  * export const allAssignmentsProjectIds = allAssignments.apply(allAssignments => .map(assignment => (assignment.projectId)));
  * ```
  */
@@ -145,7 +145,7 @@ export interface GetApiKeyProjectAssignmentResult {
  * const allAssignments = mongodbatlas.getApiKeyProjectAssignmentsOutput({
  *     projectId: firstProject.id,
  * });
- * export const firstAssignmentProjectId = firstAssignment.apply(firstAssignment => firstAssignment.projectId);
+ * export const firstAssignmentProjectId = firstAssignment.projectId;
  * export const allAssignmentsProjectIds = allAssignments.apply(allAssignments => .map(assignment => (assignment.projectId)));
  * ```
  */

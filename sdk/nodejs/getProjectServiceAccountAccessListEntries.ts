@@ -46,7 +46,7 @@ import * as utilities from "./utilities";
  *     clientId: cidr.clientId,
  *     cidrBlock: cidr.cidrBlock,
  * });
- * export const accessListEntryCidrBlock = _this.apply(_this => _this.cidrBlock);
+ * export const accessListEntryCidrBlock = _this.cidrBlock;
  * // Data source to read all Access List entries for the Project Service Account
  * const thisGetProjectServiceAccountAccessListEntries = mongodbatlas.getProjectServiceAccountAccessListEntriesOutput({
  *     projectId: thisProjectServiceAccount.projectId,
@@ -134,7 +134,7 @@ export interface GetProjectServiceAccountAccessListEntriesResult {
  *     clientId: cidr.clientId,
  *     cidrBlock: cidr.cidrBlock,
  * });
- * export const accessListEntryCidrBlock = _this.apply(_this => _this.cidrBlock);
+ * export const accessListEntryCidrBlock = _this.cidrBlock;
  * // Data source to read all Access List entries for the Project Service Account
  * const thisGetProjectServiceAccountAccessListEntries = mongodbatlas.getProjectServiceAccountAccessListEntriesOutput({
  *     projectId: thisProjectServiceAccount.projectId,

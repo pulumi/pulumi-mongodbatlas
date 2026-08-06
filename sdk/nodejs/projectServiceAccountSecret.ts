@@ -38,7 +38,7 @@ import * as utilities from "./utilities";
  * });
  * export const secretId = thisProjectServiceAccountSecret.secretId;
  * export const secret = thisProjectServiceAccountSecret.secret;
- * export const secretExpiresAt = _this.apply(_this => _this.expiresAt);
+ * export const secretExpiresAt = _this.expiresAt;
  * ```
  *
  * ## Import
