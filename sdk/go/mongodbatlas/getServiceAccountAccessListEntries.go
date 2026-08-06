@@ -69,9 +69,7 @@ import (
 //				ClientId:  cidr.ClientId,
 //				CidrBlock: cidr.CidrBlock,
 //			}, nil)
-//			ctx.Export("accessListEntryCidrBlock", this.ApplyT(func(this mongodbatlas.GetServiceAccountAccessListEntryResult) (*string, error) {
-//				return this.CidrBlock, nil
-//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("accessListEntryCidrBlock", this.CidrBlock())
 //			// Data source to read all Access List entries for the Service Account
 //			thisGetServiceAccountAccessListEntries := mongodbatlas.GetServiceAccountAccessListEntriesOutput(ctx, mongodbatlas.GetServiceAccountAccessListEntriesOutputArgs{
 //				OrgId:    thisServiceAccount.OrgId,

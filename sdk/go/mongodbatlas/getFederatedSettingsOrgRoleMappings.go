@@ -53,7 +53,7 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.GetFederatedSettingsOrgRoleMappingsOutput(ctx, mongodbatlas.GetFederatedSettingsOrgRoleMappingsOutputArgs{
-//				FederationSettingsId: orgGroupRoleMappingImport.ID(),
+//				FederationSettingsId: orgGroupRoleMappingImport.ID().ToIDOutput().ToStringOutput(),
 //				OrgId:                pulumi.String("627a9683e7f7f7ff7fe306f14"),
 //				PageNum:              pulumi.Int(1),
 //				ItemsPerPage:         pulumi.Int(5),

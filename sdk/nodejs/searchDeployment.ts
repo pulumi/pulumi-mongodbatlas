@@ -53,8 +53,8 @@ import * as utilities from "./utilities";
  *     projectId: exampleSearchDeployment.projectId,
  *     clusterName: exampleSearchDeployment.clusterName,
  * });
- * export const mongodbatlasSearchDeploymentId = example.apply(example => example.id);
- * export const mongodbatlasSearchDeploymentEncryptionAtRestProvider = example.apply(example => example.encryptionAtRestProvider);
+ * export const mongodbatlasSearchDeploymentId = example.id;
+ * export const mongodbatlasSearchDeploymentEncryptionAtRestProvider = example.encryptionAtRestProvider;
  * ```
  *
  * ### Further Examples

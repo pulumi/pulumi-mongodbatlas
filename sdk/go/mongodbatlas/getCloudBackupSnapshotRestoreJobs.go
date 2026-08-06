@@ -41,7 +41,7 @@ import (
 //			testCloudBackupSnapshotRestoreJob, err := mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, "test", &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
 //				ProjectId:   pulumi.String("5cf5a45a9ccf6400e60981b6"),
 //				ClusterName: pulumi.String("MyCluster"),
-//				SnapshotId:  testCloudBackupSnapshot.ID(),
+//				SnapshotId:  testCloudBackupSnapshot.ID().ToIDOutput().ToStringOutput(),
 //				DeliveryTypeConfig: &mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
 //					Automated:         pulumi.Bool(true),
 //					TargetClusterName: pulumi.String("MyCluster"),

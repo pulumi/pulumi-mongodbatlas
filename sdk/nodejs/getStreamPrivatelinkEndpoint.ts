@@ -69,7 +69,7 @@ import * as utilities from "./utilities";
  *     id: gcpConfluentStreamPrivatelinkEndpoint.id,
  * });
  * export const privatelinkEndpointId = gcpConfluentStreamPrivatelinkEndpoint.id;
- * export const privatelinkEndpointState = gcpConfluent.apply(gcpConfluent => gcpConfluent.state);
+ * export const privatelinkEndpointState = gcpConfluent.state;
  * export const serviceAttachmentUris = gcpConfluentStreamPrivatelinkEndpoint.serviceAttachmentUris;
  * ```
  *
@@ -107,7 +107,7 @@ import * as utilities from "./utilities";
  *     id: gcpPubsubStreamPrivatelinkEndpoint.id,
  * });
  * export const privatelinkEndpointId = gcpPubsubStreamPrivatelinkEndpoint.id;
- * export const privatelinkEndpointState = gcpPubsub.apply(gcpPubsub => gcpPubsub.state);
+ * export const privatelinkEndpointState = gcpPubsub.state;
  * export const dnsDomain = gcpPubsubStreamPrivatelinkEndpoint.dnsDomain;
  * ```
  *
@@ -252,7 +252,7 @@ export interface GetStreamPrivatelinkEndpointResult {
  *     id: gcpConfluentStreamPrivatelinkEndpoint.id,
  * });
  * export const privatelinkEndpointId = gcpConfluentStreamPrivatelinkEndpoint.id;
- * export const privatelinkEndpointState = gcpConfluent.apply(gcpConfluent => gcpConfluent.state);
+ * export const privatelinkEndpointState = gcpConfluent.state;
  * export const serviceAttachmentUris = gcpConfluentStreamPrivatelinkEndpoint.serviceAttachmentUris;
  * ```
  *
@@ -290,7 +290,7 @@ export interface GetStreamPrivatelinkEndpointResult {
  *     id: gcpPubsubStreamPrivatelinkEndpoint.id,
  * });
  * export const privatelinkEndpointId = gcpPubsubStreamPrivatelinkEndpoint.id;
- * export const privatelinkEndpointState = gcpPubsub.apply(gcpPubsub => gcpPubsub.state);
+ * export const privatelinkEndpointState = gcpPubsub.state;
  * export const dnsDomain = gcpPubsubStreamPrivatelinkEndpoint.dnsDomain;
  * ```
  *

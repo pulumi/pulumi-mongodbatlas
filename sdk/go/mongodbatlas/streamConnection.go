@@ -606,13 +606,13 @@ import (
 //					sinkConnectionName := _args[1].(string)
 //					var _zero string
 //					tmpJSON0, err := json.Marshal([]interface{}{
-//						map[string]interface{}{
-//							"$source": map[string]interface{}{
+//						map[string]map[string]string{
+//							"$source": map[string]string{
 //								"connectionName": sourceConnectionName,
 //							},
 //						},
-//						map[string]interface{}{
-//							"$emit": map[string]interface{}{
+//						map[string]map[string]string{
+//							"$emit": map[string]string{
 //								"connectionName": sinkConnectionName,
 //							},
 //						},

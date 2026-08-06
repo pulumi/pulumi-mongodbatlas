@@ -35,7 +35,7 @@ import * as utilities from "./utilities";
  * const example_clusters = mongodbatlas.getFlexClusters({
  *     projectId: projectId,
  * });
- * export const mongodbatlasFlexCluster = example_cluster.apply(example_cluster => example_cluster.name);
+ * export const mongodbatlasFlexCluster = example_cluster.name;
  * export const mongodbatlasFlexClustersNames = example_clusters.then(example_clusters => .map(cluster => (cluster.name)));
  * ```
  *

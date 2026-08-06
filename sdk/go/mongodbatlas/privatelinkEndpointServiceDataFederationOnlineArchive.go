@@ -53,7 +53,7 @@ import (
 //				return err
 //			}
 //			_, err = mongodbatlas.NewPrivatelinkEndpointServiceDataFederationOnlineArchive(ctx, "test", &mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs{
-//				ProjectId:               atlas_project.ID(),
+//				ProjectId:               atlas_project.ID().ToIDOutput().ToStringOutput(),
 //				EndpointId:              test.Id,
 //				ProviderName:            pulumi.String("AWS"),
 //				Comment:                 pulumi.String("Test"),

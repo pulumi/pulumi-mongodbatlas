@@ -142,7 +142,7 @@ import * as utilities from "./utilities";
  *     workspaceName: example.instanceName,
  *     processorName: stream_processor_sample_example.processorName,
  * });
- * export const streamProcessorsState = example_stream_processor.apply(example_stream_processor => example_stream_processor.state);
+ * export const streamProcessorsState = example_stream_processor.state;
  * export const streamProcessorsResults = example_stream_processors.apply(example_stream_processors => example_stream_processors.results);
  * ```
  */
@@ -334,7 +334,7 @@ export interface GetStreamProcessorsResult {
  *     workspaceName: example.instanceName,
  *     processorName: stream_processor_sample_example.processorName,
  * });
- * export const streamProcessorsState = example_stream_processor.apply(example_stream_processor => example_stream_processor.state);
+ * export const streamProcessorsState = example_stream_processor.state;
  * export const streamProcessorsResults = example_stream_processors.apply(example_stream_processors => example_stream_processors.results);
  * ```
  */

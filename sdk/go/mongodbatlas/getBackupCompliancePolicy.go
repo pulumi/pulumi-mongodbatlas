@@ -101,7 +101,7 @@ import (
 //				ClusterName: testCloudBackupSchedule.ClusterName,
 //			}, nil)
 //			_ = mongodbatlas.GetBackupCompliancePolicyOutput(ctx, mongodbatlas.GetBackupCompliancePolicyOutputArgs{
-//				ProjectId: testCloudBackupSchedule.ID(),
+//				ProjectId: testCloudBackupSchedule.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			_, err = mongodbatlas.NewBackupCompliancePolicy(ctx, "backup_policy", &mongodbatlas.BackupCompliancePolicyArgs{
 //				ProjectId:               pulumi.String("<PROJECT-ID>"),

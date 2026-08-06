@@ -43,7 +43,7 @@ import (
 //			}
 //			_ = mongodbatlas.GetNetworkPeeringOutput(ctx, mongodbatlas.GetNetworkPeeringOutputArgs{
 //				ProjectId: testNetworkPeering.ProjectId,
-//				PeeringId: testNetworkPeering.ID(),
+//				PeeringId: testNetworkPeering.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})

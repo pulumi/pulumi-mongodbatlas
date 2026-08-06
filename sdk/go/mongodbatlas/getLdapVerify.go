@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			testAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "test", &mongodbatlas.AdvancedClusterArgs{
-//				ProjectId:     testProject.ID(),
+//				ProjectId:     testProject.ID().ToIDOutput().ToStringOutput(),
 //				Name:          pulumi.String("ClusterName"),
 //				ClusterType:   pulumi.String("REPLICASET"),
 //				BackupEnabled: pulumi.Bool(true),
@@ -59,7 +59,7 @@ import (
 //				return err
 //			}
 //			testLdapVerify, err := mongodbatlas.NewLdapVerify(ctx, "test", &mongodbatlas.LdapVerifyArgs{
-//				ProjectId:    testProject.ID(),
+//				ProjectId:    testProject.ID().ToIDOutput().ToStringOutput(),
 //				Hostname:     pulumi.String("HOSTNAME"),
 //				Port:         pulumi.Int(636),
 //				BindUsername: pulumi.String("USERNAME"),

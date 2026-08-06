@@ -93,17 +93,17 @@ import (
 //				return err
 //			}
 //			tmpJSON0, err := json.Marshal([]interface{}{
-//				map[string]interface{}{
+//				map[string]map[string]interface{}{
 //					"$source": map[string]interface{}{
 //						"connectionName": mongodbatlasStreamConnection.ExampleSample.ConnectionName,
 //					},
 //				},
-//				map[string]interface{}{
+//				map[string]map[string]interface{}{
 //					"$emit": map[string]interface{}{
 //						"connectionName": mongodbatlasStreamConnection.ExampleCluster.ConnectionName,
 //						"db":             "sample",
 //						"coll":           "solar",
-//						"timeseries": map[string]interface{}{
+//						"timeseries": map[string]string{
 //							"timeField": "_ts",
 //						},
 //					},
@@ -125,12 +125,12 @@ import (
 //				return err
 //			}
 //			tmpJSON1, err := json.Marshal([]interface{}{
-//				map[string]interface{}{
+//				map[string]map[string]interface{}{
 //					"$source": map[string]interface{}{
 //						"connectionName": mongodbatlasStreamConnection.ExampleCluster.ConnectionName,
 //					},
 //				},
-//				map[string]interface{}{
+//				map[string]map[string]interface{}{
 //					"$emit": map[string]interface{}{
 //						"connectionName": mongodbatlasStreamConnection.ExampleKafka.ConnectionName,
 //						"topic":          "topic_from_cluster",
@@ -152,18 +152,18 @@ import (
 //				return err
 //			}
 //			tmpJSON2, err := json.Marshal([]interface{}{
-//				map[string]interface{}{
+//				map[string]map[string]interface{}{
 //					"$source": map[string]interface{}{
 //						"connectionName": mongodbatlasStreamConnection.ExampleKafka.ConnectionName,
 //						"topic":          "topic_source",
 //					},
 //				},
-//				map[string]interface{}{
+//				map[string]map[string]interface{}{
 //					"$emit": map[string]interface{}{
 //						"connectionName": mongodbatlasStreamConnection.ExampleCluster.ConnectionName,
 //						"db":             "kafka",
 //						"coll":           "topic_source",
-//						"timeseries": map[string]interface{}{
+//						"timeseries": map[string]string{
 //							"timeField": "ts",
 //						},
 //					},
@@ -199,9 +199,7 @@ import (
 //				WorkspaceName: example.InstanceName,
 //				ProcessorName: stream_processor_sample_example.ProcessorName,
 //			}, nil)
-//			ctx.Export("streamProcessorsState", example_stream_processor.ApplyT(func(example_stream_processor mongodbatlas.GetStreamProcessorResult) (*string, error) {
-//				return example_stream_processor.State, nil
-//			}).(pulumi.StringPtrOutput))
+//			ctx.Export("streamProcessorsState", example_stream_processor.State())
 //			ctx.Export("streamProcessorsResults", example_stream_processors.ApplyT(func(example_stream_processors mongodbatlas.GetStreamProcessorsResult) ([]mongodbatlas.GetStreamProcessorsResult, error) {
 //				return []mongodbatlas.GetStreamProcessorsResult(example_stream_processors.Results), nil
 //			}).(pulumi.ArrayOutput))

@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.GetMaintenanceWindowOutput(ctx, mongodbatlas.GetMaintenanceWindowOutputArgs{
-//				ProjectId: testMaintenanceWindow.ID(),
+//				ProjectId: testMaintenanceWindow.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})
@@ -67,7 +67,7 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.GetMaintenanceWindowOutput(ctx, mongodbatlas.GetMaintenanceWindowOutputArgs{
-//				ProjectId: testMaintenanceWindow.ID(),
+//				ProjectId: testMaintenanceWindow.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})

@@ -35,7 +35,7 @@ import (
 //				return err
 //			}
 //			test, err := mongodbatlas.NewPrivatelinkEndpointServiceDataFederationOnlineArchive(ctx, "test", &mongodbatlas.PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs{
-//				ProjectId:               atlas_project.ID(),
+//				ProjectId:               atlas_project.ID().ToIDOutput().ToStringOutput(),
 //				EndpointId:              pulumi.String("vpce-046cf43c79424d4c9"),
 //				ProviderName:            pulumi.String("AWS"),
 //				Comment:                 pulumi.String("Test"),
@@ -46,7 +46,7 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveOutput(ctx, mongodbatlas.GetPrivatelinkEndpointServiceDataFederationOnlineArchiveOutputArgs{
-//				ProjectId:  atlas_project.ID(),
+//				ProjectId:  atlas_project.ID().ToIDOutput().ToStringOutput(),
 //				EndpointId: test.EndpointId,
 //			}, nil)
 //			return nil

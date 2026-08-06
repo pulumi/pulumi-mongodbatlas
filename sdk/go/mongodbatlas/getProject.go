@@ -46,7 +46,7 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.GetProjectOutput(ctx, mongodbatlas.GetProjectOutputArgs{
-//				ProjectId: testProject.ID(),
+//				ProjectId: testProject.ID().ToIDOutput().ToStringOutput(),
 //			}, nil)
 //			return nil
 //		})

@@ -196,7 +196,7 @@ import * as utilities from "./utilities";
  *     connectionName: "GCPPubSubConnection",
  *     type: "GCPPubSub",
  *     gcp: {
- *         serviceAccountId: gcpSetup.gcpConfigs.apply(gcpConfigs => gcpConfigs[0].serviceAccountForAtlas),
+ *         serviceAccountId: gcpSetup.gcpConfigs[0].serviceAccountForAtlas,
  *     },
  * }, {
  *     dependsOn: [gcpAuth],
@@ -223,7 +223,7 @@ import * as utilities from "./utilities";
  *     connectionName: "GCPPubSubPSCConnection",
  *     type: "GCPPubSub",
  *     gcp: {
- *         serviceAccountId: gcpSetup.gcpConfigs.apply(gcpConfigs => gcpConfigs[0].serviceAccountForAtlas),
+ *         serviceAccountId: gcpSetup.gcpConfigs[0].serviceAccountForAtlas,
  *     },
  *     networking: {
  *         access: {
