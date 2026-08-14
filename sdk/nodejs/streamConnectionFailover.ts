@@ -125,7 +125,7 @@ export class StreamConnectionFailover extends pulumi.CustomResource {
      */
     declare public readonly clusterProjectId: pulumi.Output<string | undefined>;
     /**
-     * Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+     * Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
      */
     declare public readonly config: pulumi.Output<{[key: string]: string} | undefined>;
     /**
@@ -133,7 +133,7 @@ export class StreamConnectionFailover extends pulumi.CustomResource {
      */
     declare public readonly connectionName: pulumi.Output<string>;
     /**
-     * Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+     * Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
      */
     declare public readonly dbRoleToExecute: pulumi.Output<outputs.StreamConnectionFailoverDbRoleToExecute | undefined>;
     /**
@@ -153,7 +153,7 @@ export class StreamConnectionFailover extends pulumi.CustomResource {
      */
     declare public readonly projectId: pulumi.Output<string>;
     /**
-     * The connection's region.
+     * Connection region.
      */
     declare public readonly region: pulumi.Output<string>;
     /**
@@ -161,12 +161,12 @@ export class StreamConnectionFailover extends pulumi.CustomResource {
      */
     declare public readonly security: pulumi.Output<outputs.StreamConnectionFailoverSecurity | undefined>;
     /**
-     * The state of the connection.
+     * Connection state.
      */
     declare public /*out*/ readonly state: pulumi.Output<string>;
     declare public readonly timeouts: pulumi.Output<outputs.StreamConnectionFailoverTimeouts | undefined>;
     /**
-     * Type of the connection.
+     * Connection type.
      */
     declare public readonly type: pulumi.Output<string>;
     /**
@@ -265,7 +265,7 @@ export interface StreamConnectionFailoverState {
      */
     clusterProjectId?: pulumi.Input<string | undefined>;
     /**
-     * Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+     * Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
      */
     config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
@@ -273,7 +273,7 @@ export interface StreamConnectionFailoverState {
      */
     connectionName?: pulumi.Input<string | undefined>;
     /**
-     * Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+     * Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
      */
     dbRoleToExecute?: pulumi.Input<inputs.StreamConnectionFailoverDbRoleToExecute | undefined>;
     /**
@@ -293,7 +293,7 @@ export interface StreamConnectionFailoverState {
      */
     projectId?: pulumi.Input<string | undefined>;
     /**
-     * The connection's region.
+     * Connection region.
      */
     region?: pulumi.Input<string | undefined>;
     /**
@@ -301,12 +301,12 @@ export interface StreamConnectionFailoverState {
      */
     security?: pulumi.Input<inputs.StreamConnectionFailoverSecurity | undefined>;
     /**
-     * The state of the connection.
+     * Connection state.
      */
     state?: pulumi.Input<string | undefined>;
     timeouts?: pulumi.Input<inputs.StreamConnectionFailoverTimeouts | undefined>;
     /**
-     * Type of the connection.
+     * Connection type.
      */
     type?: pulumi.Input<string | undefined>;
     /**
@@ -336,7 +336,7 @@ export interface StreamConnectionFailoverArgs {
      */
     clusterProjectId?: pulumi.Input<string | undefined>;
     /**
-     * Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+     * Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
      */
     config?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     /**
@@ -344,7 +344,7 @@ export interface StreamConnectionFailoverArgs {
      */
     connectionName: pulumi.Input<string>;
     /**
-     * Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+     * Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
      */
     dbRoleToExecute?: pulumi.Input<inputs.StreamConnectionFailoverDbRoleToExecute | undefined>;
     /**
@@ -360,7 +360,7 @@ export interface StreamConnectionFailoverArgs {
      */
     projectId: pulumi.Input<string>;
     /**
-     * The connection's region.
+     * Connection region.
      */
     region: pulumi.Input<string>;
     /**
@@ -369,7 +369,7 @@ export interface StreamConnectionFailoverArgs {
     security?: pulumi.Input<inputs.StreamConnectionFailoverSecurity | undefined>;
     timeouts?: pulumi.Input<inputs.StreamConnectionFailoverTimeouts | undefined>;
     /**
-     * Type of the connection.
+     * Connection type.
      */
     type: pulumi.Input<string>;
     /**

@@ -83,16 +83,16 @@ export interface GetStreamConnectionFailoverResult {
      */
     readonly projectId: string;
     /**
-     * The connection's region.
+     * Connection region.
      */
     readonly region: string;
     readonly security: outputs.GetStreamConnectionFailoverSecurity;
     /**
-     * The state of the connection.
+     * Connection state.
      */
     readonly state: string;
     /**
-     * Type of the connection.
+     * Connection type.
      */
     readonly type: string;
     /**

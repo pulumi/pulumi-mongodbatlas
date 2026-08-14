@@ -355,6 +355,66 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Example AWSLambda Connection with Private Link
+ * 
+ * &gt; **NOTE:** An AWS cluster must be provisioned in the same region before creating an AWS Lambda private endpoint.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpoint;
+ * import com.pulumi.mongodbatlas.StreamPrivatelinkEndpointArgs;
+ * import com.pulumi.mongodbatlas.StreamConnection;
+ * import com.pulumi.mongodbatlas.StreamConnectionArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionAwsArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionNetworkingArgs;
+ * import com.pulumi.mongodbatlas.inputs.StreamConnectionNetworkingAccessArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var awsLambda = new StreamPrivatelinkEndpoint("awsLambda", StreamPrivatelinkEndpointArgs.builder()
+ *             .projectId(projectId)
+ *             .providerName("AWS")
+ *             .vendor("LAMBDA")
+ *             .region("us-east-1")
+ *             .serviceEndpointId("com.amazonaws.us-east-1.lambda")
+ *             .build());
+ * 
+ *         var exampleAwsLambdaPrivateLink = new StreamConnection("exampleAwsLambdaPrivateLink", StreamConnectionArgs.builder()
+ *             .projectId(projectId)
+ *             .workspaceName(example.workspaceName())
+ *             .connectionName("AWSLambdaPLConnection")
+ *             .type("AWSLambda")
+ *             .aws(StreamConnectionAwsArgs.builder()
+ *                 .roleArn("arn:aws:iam::<AWS_ACCOUNT_ID>:role/lambdaRole")
+ *                 .build())
+ *             .networking(StreamConnectionNetworkingArgs.builder()
+ *                 .access(StreamConnectionNetworkingAccessArgs.builder()
+ *                     .type("PRIVATE_LINK")
+ *                     .connectionId(awsLambda.id())
+ *                     .build())
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ### Example GCPPubSub Connection
  * 
  * <pre>

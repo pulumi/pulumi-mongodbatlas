@@ -15,6 +15,16 @@ export type AdvancedCluster = import("./advancedCluster").AdvancedCluster;
 export const AdvancedCluster: typeof import("./advancedCluster").AdvancedCluster = null as any;
 utilities.lazyLoad(exports, ["AdvancedCluster"], () => require("./advancedCluster"));
 
+export { AiModelApiKeyArgs, AiModelApiKeyState } from "./aiModelApiKey";
+export type AiModelApiKey = import("./aiModelApiKey").AiModelApiKey;
+export const AiModelApiKey: typeof import("./aiModelApiKey").AiModelApiKey = null as any;
+utilities.lazyLoad(exports, ["AiModelApiKey"], () => require("./aiModelApiKey"));
+
+export { AiModelRateLimitArgs, AiModelRateLimitState } from "./aiModelRateLimit";
+export type AiModelRateLimit = import("./aiModelRateLimit").AiModelRateLimit;
+export const AiModelRateLimit: typeof import("./aiModelRateLimit").AiModelRateLimit = null as any;
+utilities.lazyLoad(exports, ["AiModelRateLimit"], () => require("./aiModelRateLimit"));
+
 export { AlertConfigurationArgs, AlertConfigurationState } from "./alertConfiguration";
 export type AlertConfiguration = import("./alertConfiguration").AlertConfiguration;
 export const AlertConfiguration: typeof import("./alertConfiguration").AlertConfiguration = null as any;
@@ -179,6 +189,46 @@ export { GetAdvancedClustersArgs, GetAdvancedClustersResult, GetAdvancedClusters
 export const getAdvancedClusters: typeof import("./getAdvancedClusters").getAdvancedClusters = null as any;
 export const getAdvancedClustersOutput: typeof import("./getAdvancedClusters").getAdvancedClustersOutput = null as any;
 utilities.lazyLoad(exports, ["getAdvancedClusters","getAdvancedClustersOutput"], () => require("./getAdvancedClusters"));
+
+export { GetAiModelApiKeyArgs, GetAiModelApiKeyResult, GetAiModelApiKeyOutputArgs } from "./getAiModelApiKey";
+export const getAiModelApiKey: typeof import("./getAiModelApiKey").getAiModelApiKey = null as any;
+export const getAiModelApiKeyOutput: typeof import("./getAiModelApiKey").getAiModelApiKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getAiModelApiKey","getAiModelApiKeyOutput"], () => require("./getAiModelApiKey"));
+
+export { GetAiModelApiKeysArgs, GetAiModelApiKeysResult, GetAiModelApiKeysOutputArgs } from "./getAiModelApiKeys";
+export const getAiModelApiKeys: typeof import("./getAiModelApiKeys").getAiModelApiKeys = null as any;
+export const getAiModelApiKeysOutput: typeof import("./getAiModelApiKeys").getAiModelApiKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getAiModelApiKeys","getAiModelApiKeysOutput"], () => require("./getAiModelApiKeys"));
+
+export { GetAiModelOrgApiKeyArgs, GetAiModelOrgApiKeyResult, GetAiModelOrgApiKeyOutputArgs } from "./getAiModelOrgApiKey";
+export const getAiModelOrgApiKey: typeof import("./getAiModelOrgApiKey").getAiModelOrgApiKey = null as any;
+export const getAiModelOrgApiKeyOutput: typeof import("./getAiModelOrgApiKey").getAiModelOrgApiKeyOutput = null as any;
+utilities.lazyLoad(exports, ["getAiModelOrgApiKey","getAiModelOrgApiKeyOutput"], () => require("./getAiModelOrgApiKey"));
+
+export { GetAiModelOrgApiKeysArgs, GetAiModelOrgApiKeysResult, GetAiModelOrgApiKeysOutputArgs } from "./getAiModelOrgApiKeys";
+export const getAiModelOrgApiKeys: typeof import("./getAiModelOrgApiKeys").getAiModelOrgApiKeys = null as any;
+export const getAiModelOrgApiKeysOutput: typeof import("./getAiModelOrgApiKeys").getAiModelOrgApiKeysOutput = null as any;
+utilities.lazyLoad(exports, ["getAiModelOrgApiKeys","getAiModelOrgApiKeysOutput"], () => require("./getAiModelOrgApiKeys"));
+
+export { GetAiModelOrgRateLimitArgs, GetAiModelOrgRateLimitResult, GetAiModelOrgRateLimitOutputArgs } from "./getAiModelOrgRateLimit";
+export const getAiModelOrgRateLimit: typeof import("./getAiModelOrgRateLimit").getAiModelOrgRateLimit = null as any;
+export const getAiModelOrgRateLimitOutput: typeof import("./getAiModelOrgRateLimit").getAiModelOrgRateLimitOutput = null as any;
+utilities.lazyLoad(exports, ["getAiModelOrgRateLimit","getAiModelOrgRateLimitOutput"], () => require("./getAiModelOrgRateLimit"));
+
+export { GetAiModelOrgRateLimitsArgs, GetAiModelOrgRateLimitsResult, GetAiModelOrgRateLimitsOutputArgs } from "./getAiModelOrgRateLimits";
+export const getAiModelOrgRateLimits: typeof import("./getAiModelOrgRateLimits").getAiModelOrgRateLimits = null as any;
+export const getAiModelOrgRateLimitsOutput: typeof import("./getAiModelOrgRateLimits").getAiModelOrgRateLimitsOutput = null as any;
+utilities.lazyLoad(exports, ["getAiModelOrgRateLimits","getAiModelOrgRateLimitsOutput"], () => require("./getAiModelOrgRateLimits"));
+
+export { GetAiModelRateLimitArgs, GetAiModelRateLimitResult, GetAiModelRateLimitOutputArgs } from "./getAiModelRateLimit";
+export const getAiModelRateLimit: typeof import("./getAiModelRateLimit").getAiModelRateLimit = null as any;
+export const getAiModelRateLimitOutput: typeof import("./getAiModelRateLimit").getAiModelRateLimitOutput = null as any;
+utilities.lazyLoad(exports, ["getAiModelRateLimit","getAiModelRateLimitOutput"], () => require("./getAiModelRateLimit"));
+
+export { GetAiModelRateLimitsArgs, GetAiModelRateLimitsResult, GetAiModelRateLimitsOutputArgs } from "./getAiModelRateLimits";
+export const getAiModelRateLimits: typeof import("./getAiModelRateLimits").getAiModelRateLimits = null as any;
+export const getAiModelRateLimitsOutput: typeof import("./getAiModelRateLimits").getAiModelRateLimitsOutput = null as any;
+utilities.lazyLoad(exports, ["getAiModelRateLimits","getAiModelRateLimitsOutput"], () => require("./getAiModelRateLimits"));
 
 export { GetAlertConfigurationArgs, GetAlertConfigurationResult, GetAlertConfigurationOutputArgs } from "./getAlertConfiguration";
 export const getAlertConfiguration: typeof import("./getAlertConfiguration").getAlertConfiguration = null as any;
@@ -479,6 +529,16 @@ export { GetMaintenanceWindowArgs, GetMaintenanceWindowResult, GetMaintenanceWin
 export const getMaintenanceWindow: typeof import("./getMaintenanceWindow").getMaintenanceWindow = null as any;
 export const getMaintenanceWindowOutput: typeof import("./getMaintenanceWindow").getMaintenanceWindowOutput = null as any;
 utilities.lazyLoad(exports, ["getMaintenanceWindow","getMaintenanceWindowOutput"], () => require("./getMaintenanceWindow"));
+
+export { GetMetricIntegrationArgs, GetMetricIntegrationResult, GetMetricIntegrationOutputArgs } from "./getMetricIntegration";
+export const getMetricIntegration: typeof import("./getMetricIntegration").getMetricIntegration = null as any;
+export const getMetricIntegrationOutput: typeof import("./getMetricIntegration").getMetricIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getMetricIntegration","getMetricIntegrationOutput"], () => require("./getMetricIntegration"));
+
+export { GetMetricIntegrationsArgs, GetMetricIntegrationsResult, GetMetricIntegrationsOutputArgs } from "./getMetricIntegrations";
+export const getMetricIntegrations: typeof import("./getMetricIntegrations").getMetricIntegrations = null as any;
+export const getMetricIntegrationsOutput: typeof import("./getMetricIntegrations").getMetricIntegrationsOutput = null as any;
+utilities.lazyLoad(exports, ["getMetricIntegrations","getMetricIntegrationsOutput"], () => require("./getMetricIntegrations"));
 
 export { GetMongodbEmployeeAccessGrantArgs, GetMongodbEmployeeAccessGrantResult, GetMongodbEmployeeAccessGrantOutputArgs } from "./getMongodbEmployeeAccessGrant";
 export const getMongodbEmployeeAccessGrant: typeof import("./getMongodbEmployeeAccessGrant").getMongodbEmployeeAccessGrant = null as any;
@@ -840,6 +900,11 @@ export type MaintenanceWindow = import("./maintenanceWindow").MaintenanceWindow;
 export const MaintenanceWindow: typeof import("./maintenanceWindow").MaintenanceWindow = null as any;
 utilities.lazyLoad(exports, ["MaintenanceWindow"], () => require("./maintenanceWindow"));
 
+export { MetricIntegrationArgs, MetricIntegrationState } from "./metricIntegration";
+export type MetricIntegration = import("./metricIntegration").MetricIntegration;
+export const MetricIntegration: typeof import("./metricIntegration").MetricIntegration = null as any;
+utilities.lazyLoad(exports, ["MetricIntegration"], () => require("./metricIntegration"));
+
 export { MongodbEmployeeAccessGrantArgs, MongodbEmployeeAccessGrantState } from "./mongodbEmployeeAccessGrant";
 export type MongodbEmployeeAccessGrant = import("./mongodbEmployeeAccessGrant").MongodbEmployeeAccessGrant;
 export const MongodbEmployeeAccessGrant: typeof import("./mongodbEmployeeAccessGrant").MongodbEmployeeAccessGrant = null as any;
@@ -1041,6 +1106,10 @@ const _module = {
                 return new AccessListApiKey(name, <any>undefined, { urn })
             case "mongodbatlas:index/advancedCluster:AdvancedCluster":
                 return new AdvancedCluster(name, <any>undefined, { urn })
+            case "mongodbatlas:index/aiModelApiKey:AiModelApiKey":
+                return new AiModelApiKey(name, <any>undefined, { urn })
+            case "mongodbatlas:index/aiModelRateLimit:AiModelRateLimit":
+                return new AiModelRateLimit(name, <any>undefined, { urn })
             case "mongodbatlas:index/alertConfiguration:AlertConfiguration":
                 return new AlertConfiguration(name, <any>undefined, { urn })
             case "mongodbatlas:index/apiKey:ApiKey":
@@ -1109,6 +1178,8 @@ const _module = {
                 return new LogIntegration(name, <any>undefined, { urn })
             case "mongodbatlas:index/maintenanceWindow:MaintenanceWindow":
                 return new MaintenanceWindow(name, <any>undefined, { urn })
+            case "mongodbatlas:index/metricIntegration:MetricIntegration":
+                return new MetricIntegration(name, <any>undefined, { urn })
             case "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant":
                 return new MongodbEmployeeAccessGrant(name, <any>undefined, { urn })
             case "mongodbatlas:index/networkContainer:NetworkContainer":
@@ -1188,6 +1259,8 @@ const _module = {
 };
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/accessListApiKey", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/advancedCluster", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/aiModelApiKey", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/aiModelRateLimit", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/alertConfiguration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/apiKey", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/apiKeyProjectAssignment", _module)
@@ -1222,6 +1295,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapConfiguration",
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapVerify", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/logIntegration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/maintenanceWindow", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/metricIntegration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/mongodbEmployeeAccessGrant", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkContainer", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkPeering", _module)

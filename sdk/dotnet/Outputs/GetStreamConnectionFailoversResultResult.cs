@@ -30,11 +30,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ClusterProjectId;
         /// <summary>
-        /// Applies to type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+        /// Applies to type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
         /// </summary>
         public readonly ImmutableDictionary<string, string> Config;
         /// <summary>
-        /// Applies to type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+        /// Applies to type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
         /// </summary>
         public readonly Outputs.GetStreamConnectionFailoversResultDbRoleToExecuteResult DbRoleToExecute;
         /// <summary>
@@ -46,7 +46,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly Outputs.GetStreamConnectionFailoversResultNetworkingResult Networking;
         /// <summary>
-        /// The connection's region.
+        /// Connection region.
         /// </summary>
         public readonly string Region;
         /// <summary>
@@ -54,11 +54,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly Outputs.GetStreamConnectionFailoversResultSecurityResult Security;
         /// <summary>
-        /// The state of the connection.
+        /// Connection state.
         /// </summary>
         public readonly string State;
         /// <summary>
-        /// Type of the connection.
+        /// Connection type.
         /// </summary>
         public readonly string Type;
 

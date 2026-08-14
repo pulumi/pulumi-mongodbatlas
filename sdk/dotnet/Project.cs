@@ -92,7 +92,7 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.ProjectIpAddresses> IpAddresses { get; private set; } = null!;
 
         /// <summary>
-        /// Flag that indicates whether to enable the AI Assistant for the project's clusters.
+        /// Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
         /// </summary>
         [Output("isClusterAiAssistantEnabled")]
         public Output<bool> IsClusterAiAssistantEnabled { get; private set; } = null!;
@@ -110,13 +110,13 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> IsDataExplorerEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+        /// Flag that indicates whether to enable generative AI features in the Data Explorer for the project. By default, this flag is set to true.
         /// </summary>
         [Output("isDataExplorerGenAiFeaturesEnabled")]
         public Output<bool> IsDataExplorerGenAiFeaturesEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+        /// Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project. By default, this flag is set to false.
         /// </summary>
         [Output("isDataExplorerGenAiSampleDocumentPassingEnabled")]
         public Output<bool> IsDataExplorerGenAiSampleDocumentPassingEnabled { get; private set; } = null!;
@@ -128,7 +128,7 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> IsExtendedStorageSizesEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+        /// Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project. By default, this flag is set to false.
         /// </summary>
         [Output("isNativeRerankingEnabled")]
         public Output<bool> IsNativeRerankingEnabled { get; private set; } = null!;
@@ -246,7 +246,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class ProjectArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Flag that indicates whether to enable the AI Assistant for the project's clusters.
+        /// Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
         /// </summary>
         [Input("isClusterAiAssistantEnabled")]
         public Input<bool>? IsClusterAiAssistantEnabled { get; set; }
@@ -264,13 +264,13 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? IsDataExplorerEnabled { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+        /// Flag that indicates whether to enable generative AI features in the Data Explorer for the project. By default, this flag is set to true.
         /// </summary>
         [Input("isDataExplorerGenAiFeaturesEnabled")]
         public Input<bool>? IsDataExplorerGenAiFeaturesEnabled { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+        /// Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project. By default, this flag is set to false.
         /// </summary>
         [Input("isDataExplorerGenAiSampleDocumentPassingEnabled")]
         public Input<bool>? IsDataExplorerGenAiSampleDocumentPassingEnabled { get; set; }
@@ -282,7 +282,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? IsExtendedStorageSizesEnabled { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+        /// Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project. By default, this flag is set to false.
         /// </summary>
         [Input("isNativeRerankingEnabled")]
         public Input<bool>? IsNativeRerankingEnabled { get; set; }
@@ -397,7 +397,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.ProjectIpAddressesGetArgs>? IpAddresses { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether to enable the AI Assistant for the project's clusters.
+        /// Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
         /// </summary>
         [Input("isClusterAiAssistantEnabled")]
         public Input<bool>? IsClusterAiAssistantEnabled { get; set; }
@@ -415,13 +415,13 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? IsDataExplorerEnabled { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+        /// Flag that indicates whether to enable generative AI features in the Data Explorer for the project. By default, this flag is set to true.
         /// </summary>
         [Input("isDataExplorerGenAiFeaturesEnabled")]
         public Input<bool>? IsDataExplorerGenAiFeaturesEnabled { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+        /// Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project. By default, this flag is set to false.
         /// </summary>
         [Input("isDataExplorerGenAiSampleDocumentPassingEnabled")]
         public Input<bool>? IsDataExplorerGenAiSampleDocumentPassingEnabled { get; set; }
@@ -433,7 +433,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? IsExtendedStorageSizesEnabled { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+        /// Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project. By default, this flag is set to false.
         /// </summary>
         [Input("isNativeRerankingEnabled")]
         public Input<bool>? IsNativeRerankingEnabled { get; set; }

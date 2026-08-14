@@ -41,7 +41,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         public Input<string>? Mechanism { get; set; }
 
         /// <summary>
-        /// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        /// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
         /// </summary>
         [Input("method")]
         public Input<string>? Method { get; set; }

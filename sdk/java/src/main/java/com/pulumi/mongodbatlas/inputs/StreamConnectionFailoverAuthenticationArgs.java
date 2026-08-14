@@ -61,14 +61,14 @@ public final class StreamConnectionFailoverAuthenticationArgs extends com.pulumi
     }
 
     /**
-     * SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+     * SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
      * 
      */
     @Import(name="method")
     private @Nullable Output<String> method;
 
     /**
-     * @return SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+     * @return SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
      * 
      */
     public Optional<Output<String>> method() {
@@ -294,7 +294,7 @@ public final class StreamConnectionFailoverAuthenticationArgs extends com.pulumi
         }
 
         /**
-         * @param method SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+         * @param method SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
          * 
          * @return builder
          * 
@@ -305,7 +305,7 @@ public final class StreamConnectionFailoverAuthenticationArgs extends com.pulumi
         }
 
         /**
-         * @param method SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+         * @param method SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
          * 
          * @return builder
          * 

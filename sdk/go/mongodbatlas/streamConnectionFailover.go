@@ -118,11 +118,11 @@ type StreamConnectionFailover struct {
 	ClusterName pulumi.StringPtrOutput `pulumi:"clusterName"`
 	// Optional for type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
 	ClusterProjectId pulumi.StringPtrOutput `pulumi:"clusterProjectId"`
-	// Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+	// Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
 	Config pulumi.StringMapOutput `pulumi:"config"`
 	// Label that identifies the stream connection name.
 	ConnectionName pulumi.StringOutput `pulumi:"connectionName"`
-	// Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+	// Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
 	DbRoleToExecute StreamConnectionFailoverDbRoleToExecutePtrOutput `pulumi:"dbRoleToExecute"`
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout pulumi.BoolOutput `pulumi:"deleteOnCreateTimeout"`
@@ -132,14 +132,14 @@ type StreamConnectionFailover struct {
 	Networking StreamConnectionFailoverNetworkingOutput `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
-	// The connection's region.
+	// Connection region.
 	Region pulumi.StringOutput `pulumi:"region"`
 	// Optional for type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
 	Security StreamConnectionFailoverSecurityPtrOutput `pulumi:"security"`
-	// The state of the connection.
+	// Connection state.
 	State    pulumi.StringOutput                       `pulumi:"state"`
 	Timeouts StreamConnectionFailoverTimeoutsPtrOutput `pulumi:"timeouts"`
-	// Type of the connection.
+	// Connection type.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// Label that identifies the stream workspace.
 	WorkspaceName pulumi.StringOutput `pulumi:"workspaceName"`
@@ -198,11 +198,11 @@ type streamConnectionFailoverState struct {
 	ClusterName *string `pulumi:"clusterName"`
 	// Optional for type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
 	ClusterProjectId *string `pulumi:"clusterProjectId"`
-	// Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+	// Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
 	Config map[string]string `pulumi:"config"`
 	// Label that identifies the stream connection name.
 	ConnectionName *string `pulumi:"connectionName"`
-	// Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+	// Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
 	DbRoleToExecute *StreamConnectionFailoverDbRoleToExecute `pulumi:"dbRoleToExecute"`
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
@@ -212,14 +212,14 @@ type streamConnectionFailoverState struct {
 	Networking *StreamConnectionFailoverNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
-	// The connection's region.
+	// Connection region.
 	Region *string `pulumi:"region"`
 	// Optional for type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
 	Security *StreamConnectionFailoverSecurity `pulumi:"security"`
-	// The state of the connection.
+	// Connection state.
 	State    *string                           `pulumi:"state"`
 	Timeouts *StreamConnectionFailoverTimeouts `pulumi:"timeouts"`
-	// Type of the connection.
+	// Connection type.
 	Type *string `pulumi:"type"`
 	// Label that identifies the stream workspace.
 	WorkspaceName *string `pulumi:"workspaceName"`
@@ -234,11 +234,11 @@ type StreamConnectionFailoverState struct {
 	ClusterName pulumi.StringPtrInput
 	// Optional for type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
 	ClusterProjectId pulumi.StringPtrInput
-	// Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+	// Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
 	Config pulumi.StringMapInput
 	// Label that identifies the stream connection name.
 	ConnectionName pulumi.StringPtrInput
-	// Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+	// Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
 	DbRoleToExecute StreamConnectionFailoverDbRoleToExecutePtrInput
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout pulumi.BoolPtrInput
@@ -248,14 +248,14 @@ type StreamConnectionFailoverState struct {
 	Networking StreamConnectionFailoverNetworkingPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
-	// The connection's region.
+	// Connection region.
 	Region pulumi.StringPtrInput
 	// Optional for type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
 	Security StreamConnectionFailoverSecurityPtrInput
-	// The state of the connection.
+	// Connection state.
 	State    pulumi.StringPtrInput
 	Timeouts StreamConnectionFailoverTimeoutsPtrInput
-	// Type of the connection.
+	// Connection type.
 	Type pulumi.StringPtrInput
 	// Label that identifies the stream workspace.
 	WorkspaceName pulumi.StringPtrInput
@@ -274,11 +274,11 @@ type streamConnectionFailoverArgs struct {
 	ClusterName *string `pulumi:"clusterName"`
 	// Optional for type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
 	ClusterProjectId *string `pulumi:"clusterProjectId"`
-	// Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+	// Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
 	Config map[string]string `pulumi:"config"`
 	// Label that identifies the stream connection name.
 	ConnectionName string `pulumi:"connectionName"`
-	// Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+	// Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
 	DbRoleToExecute *StreamConnectionFailoverDbRoleToExecute `pulumi:"dbRoleToExecute"`
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
@@ -286,12 +286,12 @@ type streamConnectionFailoverArgs struct {
 	Networking *StreamConnectionFailoverNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
-	// The connection's region.
+	// Connection region.
 	Region string `pulumi:"region"`
 	// Optional for type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
 	Security *StreamConnectionFailoverSecurity `pulumi:"security"`
 	Timeouts *StreamConnectionFailoverTimeouts `pulumi:"timeouts"`
-	// Type of the connection.
+	// Connection type.
 	Type string `pulumi:"type"`
 	// Label that identifies the stream workspace.
 	WorkspaceName string `pulumi:"workspaceName"`
@@ -307,11 +307,11 @@ type StreamConnectionFailoverArgs struct {
 	ClusterName pulumi.StringPtrInput
 	// Optional for type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
 	ClusterProjectId pulumi.StringPtrInput
-	// Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+	// Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
 	Config pulumi.StringMapInput
 	// Label that identifies the stream connection name.
 	ConnectionName pulumi.StringInput
-	// Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+	// Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
 	DbRoleToExecute StreamConnectionFailoverDbRoleToExecutePtrInput
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout pulumi.BoolPtrInput
@@ -319,12 +319,12 @@ type StreamConnectionFailoverArgs struct {
 	Networking StreamConnectionFailoverNetworkingPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
-	// The connection's region.
+	// Connection region.
 	Region pulumi.StringInput
 	// Optional for type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
 	Security StreamConnectionFailoverSecurityPtrInput
 	Timeouts StreamConnectionFailoverTimeoutsPtrInput
-	// Type of the connection.
+	// Connection type.
 	Type pulumi.StringInput
 	// Label that identifies the stream workspace.
 	WorkspaceName pulumi.StringInput
@@ -439,7 +439,7 @@ func (o StreamConnectionFailoverOutput) ClusterProjectId() pulumi.StringPtrOutpu
 	return o.ApplyT(func(v *StreamConnectionFailover) pulumi.StringPtrOutput { return v.ClusterProjectId }).(pulumi.StringPtrOutput)
 }
 
-// Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+// Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
 func (o StreamConnectionFailoverOutput) Config() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *StreamConnectionFailover) pulumi.StringMapOutput { return v.Config }).(pulumi.StringMapOutput)
 }
@@ -449,7 +449,7 @@ func (o StreamConnectionFailoverOutput) ConnectionName() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamConnectionFailover) pulumi.StringOutput { return v.ConnectionName }).(pulumi.StringOutput)
 }
 
-// Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+// Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
 func (o StreamConnectionFailoverOutput) DbRoleToExecute() StreamConnectionFailoverDbRoleToExecutePtrOutput {
 	return o.ApplyT(func(v *StreamConnectionFailover) StreamConnectionFailoverDbRoleToExecutePtrOutput {
 		return v.DbRoleToExecute
@@ -476,7 +476,7 @@ func (o StreamConnectionFailoverOutput) ProjectId() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamConnectionFailover) pulumi.StringOutput { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The connection's region.
+// Connection region.
 func (o StreamConnectionFailoverOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamConnectionFailover) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
@@ -486,7 +486,7 @@ func (o StreamConnectionFailoverOutput) Security() StreamConnectionFailoverSecur
 	return o.ApplyT(func(v *StreamConnectionFailover) StreamConnectionFailoverSecurityPtrOutput { return v.Security }).(StreamConnectionFailoverSecurityPtrOutput)
 }
 
-// The state of the connection.
+// Connection state.
 func (o StreamConnectionFailoverOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamConnectionFailover) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
 }
@@ -495,7 +495,7 @@ func (o StreamConnectionFailoverOutput) Timeouts() StreamConnectionFailoverTimeo
 	return o.ApplyT(func(v *StreamConnectionFailover) StreamConnectionFailoverTimeoutsPtrOutput { return v.Timeouts }).(StreamConnectionFailoverTimeoutsPtrOutput)
 }
 
-// Type of the connection.
+// Connection type.
 func (o StreamConnectionFailoverOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamConnectionFailover) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

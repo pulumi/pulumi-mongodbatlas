@@ -99,7 +99,7 @@ class GetStreamProcessorResult:
     @pulumi.getter
     def pipeline(self) -> _builtins.str:
         """
-        Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         """
         return pulumi.get(self, "pipeline")
 
@@ -178,7 +178,6 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
     ### S
     ```python
     import pulumi
-    import json
     import pulumi_mongodbatlas as mongodbatlas
 
     example = mongodbatlas.StreamInstance("example",
@@ -224,70 +223,49 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
         project_id=project_id,
         workspace_name=example.instance_name,
         processor_name="sampleProcessorName",
-        pipeline=json.dumps([
-            {
-                "$source": {
-                    "connectionName": mongodbatlas_stream_connection["example-sample"]["connectionName"],
-                },
-            },
-            {
-                "$emit": {
-                    "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
-                    "db": "sample",
-                    "coll": "solar",
-                    "timeseries": {
-                        "timeField": "_ts",
-                    },
-                },
-            },
-        ]),
+        pipeline=pulumi.Output.all(
+            example-sampleConnection_name=example_sample.connection_name,
+            example-clusterConnection_name=example_cluster.connection_name
+    ).apply(lambda resolved_outputs: f\"\"\"[
+      {{\\"$source\\": {{\\"connectionName\\": \\"{resolved_outputs['example-sampleConnection_name']}\\"}}}},
+      {{\\"$emit\\": {{\\"connectionName\\": \\"{resolved_outputs['example-clusterConnection_name']}\\", \\"db\\": \\"sample\\", \\"coll\\": \\"solar\\", \\"timeseries\\": {{\\"timeField\\": \\"_ts\\"}}}}}}
+    ]
+    \"\"\")
+    ,
         state="STARTED",
         tier="SP30")
     stream_processor_cluster_to_kafka_example = mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example",
         project_id=project_id,
         workspace_name=example.instance_name,
         processor_name="clusterProcessorName",
-        pipeline=json.dumps([
-            {
-                "$source": {
-                    "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
-                },
-            },
-            {
-                "$emit": {
-                    "connectionName": mongodbatlas_stream_connection["example-kafka"]["connectionName"],
-                    "topic": "topic_from_cluster",
-                },
-            },
-        ]),
+        pipeline=pulumi.Output.all(
+            example-clusterConnection_name=example_cluster.connection_name,
+            example-kafkaConnection_name=example_kafka.connection_name
+    ).apply(lambda resolved_outputs: f\"\"\"[
+      {{\\"$source\\": {{\\"connectionName\\": \\"{resolved_outputs['example-clusterConnection_name']}\\"}}}},
+      {{\\"$emit\\": {{\\"connectionName\\": \\"{resolved_outputs['example-kafkaConnection_name']}\\", \\"topic\\": \\"topic_from_cluster\\"}}}}
+    ]
+    \"\"\")
+    ,
         state="CREATED")
     stream_processor_kafka_to_cluster_example = mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example",
         project_id=project_id,
         workspace_name=example.instance_name,
         processor_name="kafkaProcessorName",
-        pipeline=json.dumps([
-            {
-                "$source": {
-                    "connectionName": mongodbatlas_stream_connection["example-kafka"]["connectionName"],
-                    "topic": "topic_source",
-                },
-            },
-            {
-                "$emit": {
-                    "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
-                    "db": "kafka",
-                    "coll": "topic_source",
-                    "timeseries": {
-                        "timeField": "ts",
-                    },
-                },
-            },
-        ]),
+        pipeline=pulumi.Output.all(
+            example-kafkaConnection_name=example_kafka.connection_name,
+            example-clusterConnection_name=example_cluster.connection_name
+    ).apply(lambda resolved_outputs: f\"\"\"[
+      {{\\"$source\\": {{\\"connectionName\\": \\"{resolved_outputs['example-kafkaConnection_name']}\\", \\"topic\\": \\"topic_source\\"}}}},
+      {{\\"$emit\\": {{\\"connectionName\\": \\"{resolved_outputs['example-clusterConnection_name']}\\", \\"db\\": \\"kafka\\", \\"coll\\": \\"topic_source\\", \\"timeseries\\": {{\\"timeField\\": \\"ts\\"}}}}}}
+    ]
+    \"\"\")
+    ,
         state="CREATED",
         options={
             "dlq": {
                 "coll": "exampleColumn",
-                "connection_name": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
+                "connection_name": example_cluster.connection_name,
                 "db": "exampleDb",
             },
         })
@@ -339,7 +317,6 @@ def get_stream_processor_output(instance_name: pulumi.Input[Optional[Optional[_b
     ### S
     ```python
     import pulumi
-    import json
     import pulumi_mongodbatlas as mongodbatlas
 
     example = mongodbatlas.StreamInstance("example",
@@ -385,70 +362,49 @@ def get_stream_processor_output(instance_name: pulumi.Input[Optional[Optional[_b
         project_id=project_id,
         workspace_name=example.instance_name,
         processor_name="sampleProcessorName",
-        pipeline=json.dumps([
-            {
-                "$source": {
-                    "connectionName": mongodbatlas_stream_connection["example-sample"]["connectionName"],
-                },
-            },
-            {
-                "$emit": {
-                    "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
-                    "db": "sample",
-                    "coll": "solar",
-                    "timeseries": {
-                        "timeField": "_ts",
-                    },
-                },
-            },
-        ]),
+        pipeline=pulumi.Output.all(
+            example-sampleConnection_name=example_sample.connection_name,
+            example-clusterConnection_name=example_cluster.connection_name
+    ).apply(lambda resolved_outputs: f\"\"\"[
+      {{\\"$source\\": {{\\"connectionName\\": \\"{resolved_outputs['example-sampleConnection_name']}\\"}}}},
+      {{\\"$emit\\": {{\\"connectionName\\": \\"{resolved_outputs['example-clusterConnection_name']}\\", \\"db\\": \\"sample\\", \\"coll\\": \\"solar\\", \\"timeseries\\": {{\\"timeField\\": \\"_ts\\"}}}}}}
+    ]
+    \"\"\")
+    ,
         state="STARTED",
         tier="SP30")
     stream_processor_cluster_to_kafka_example = mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example",
         project_id=project_id,
         workspace_name=example.instance_name,
         processor_name="clusterProcessorName",
-        pipeline=json.dumps([
-            {
-                "$source": {
-                    "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
-                },
-            },
-            {
-                "$emit": {
-                    "connectionName": mongodbatlas_stream_connection["example-kafka"]["connectionName"],
-                    "topic": "topic_from_cluster",
-                },
-            },
-        ]),
+        pipeline=pulumi.Output.all(
+            example-clusterConnection_name=example_cluster.connection_name,
+            example-kafkaConnection_name=example_kafka.connection_name
+    ).apply(lambda resolved_outputs: f\"\"\"[
+      {{\\"$source\\": {{\\"connectionName\\": \\"{resolved_outputs['example-clusterConnection_name']}\\"}}}},
+      {{\\"$emit\\": {{\\"connectionName\\": \\"{resolved_outputs['example-kafkaConnection_name']}\\", \\"topic\\": \\"topic_from_cluster\\"}}}}
+    ]
+    \"\"\")
+    ,
         state="CREATED")
     stream_processor_kafka_to_cluster_example = mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example",
         project_id=project_id,
         workspace_name=example.instance_name,
         processor_name="kafkaProcessorName",
-        pipeline=json.dumps([
-            {
-                "$source": {
-                    "connectionName": mongodbatlas_stream_connection["example-kafka"]["connectionName"],
-                    "topic": "topic_source",
-                },
-            },
-            {
-                "$emit": {
-                    "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
-                    "db": "kafka",
-                    "coll": "topic_source",
-                    "timeseries": {
-                        "timeField": "ts",
-                    },
-                },
-            },
-        ]),
+        pipeline=pulumi.Output.all(
+            example-kafkaConnection_name=example_kafka.connection_name,
+            example-clusterConnection_name=example_cluster.connection_name
+    ).apply(lambda resolved_outputs: f\"\"\"[
+      {{\\"$source\\": {{\\"connectionName\\": \\"{resolved_outputs['example-kafkaConnection_name']}\\", \\"topic\\": \\"topic_source\\"}}}},
+      {{\\"$emit\\": {{\\"connectionName\\": \\"{resolved_outputs['example-clusterConnection_name']}\\", \\"db\\": \\"kafka\\", \\"coll\\": \\"topic_source\\", \\"timeseries\\": {{\\"timeField\\": \\"ts\\"}}}}}}
+    ]
+    \"\"\")
+    ,
         state="CREATED",
         options={
             "dlq": {
                 "coll": "exampleColumn",
-                "connection_name": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
+                "connection_name": example_cluster.connection_name,
                 "db": "exampleDb",
             },
         })

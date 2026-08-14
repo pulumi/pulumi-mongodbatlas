@@ -63,23 +63,11 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  *     workspaceName: example.instanceName,
  *     processorName: "sampleProcessorName",
- *     pipeline: JSON.stringify([
- *         {
- *             $source: {
- *                 connectionName: mongodbatlasStreamConnection["example-sample"].connectionName,
- *             },
- *         },
- *         {
- *             $emit: {
- *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
- *                 db: "sample",
- *                 coll: "solar",
- *                 timeseries: {
- *                     timeField: "_ts",
- *                 },
- *             },
- *         },
- *     ]),
+ *     pipeline: pulumi.interpolate`[
+ *   {\"$source\": {\"connectionName\": \"${example_sample.connectionName}\"}},
+ *   {\"$emit\": {\"connectionName\": \"${example_cluster.connectionName}\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+ * ]
+ * `,
  *     state: "STARTED",
  *     tier: "SP30",
  * });
@@ -87,48 +75,27 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  *     workspaceName: example.instanceName,
  *     processorName: "clusterProcessorName",
- *     pipeline: JSON.stringify([
- *         {
- *             $source: {
- *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
- *             },
- *         },
- *         {
- *             $emit: {
- *                 connectionName: mongodbatlasStreamConnection["example-kafka"].connectionName,
- *                 topic: "topic_from_cluster",
- *             },
- *         },
- *     ]),
+ *     pipeline: pulumi.interpolate`[
+ *   {\"$source\": {\"connectionName\": \"${example_cluster.connectionName}\"}},
+ *   {\"$emit\": {\"connectionName\": \"${example_kafka.connectionName}\", \"topic\": \"topic_from_cluster\"}}
+ * ]
+ * `,
  *     state: "CREATED",
  * });
  * const stream_processor_kafka_to_cluster_example = new mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example", {
  *     projectId: projectId,
  *     workspaceName: example.instanceName,
  *     processorName: "kafkaProcessorName",
- *     pipeline: JSON.stringify([
- *         {
- *             $source: {
- *                 connectionName: mongodbatlasStreamConnection["example-kafka"].connectionName,
- *                 topic: "topic_source",
- *             },
- *         },
- *         {
- *             $emit: {
- *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
- *                 db: "kafka",
- *                 coll: "topic_source",
- *                 timeseries: {
- *                     timeField: "ts",
- *                 },
- *             },
- *         },
- *     ]),
+ *     pipeline: pulumi.interpolate`[
+ *   {\"$source\": {\"connectionName\": \"${example_kafka.connectionName}\", \"topic\": \"topic_source\"}},
+ *   {\"$emit\": {\"connectionName\": \"${example_cluster.connectionName}\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+ * ]
+ * `,
  *     state: "CREATED",
  *     options: {
  *         dlq: {
  *             coll: "exampleColumn",
- *             connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
+ *             connectionName: example_cluster.connectionName,
  *             db: "exampleDb",
  *         },
  *     },
@@ -203,7 +170,7 @@ export interface GetStreamProcessorResult {
      */
     readonly options: outputs.GetStreamProcessorOptions;
     /**
-     * Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+     * Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
      */
     readonly pipeline: string;
     /**
@@ -282,23 +249,11 @@ export interface GetStreamProcessorResult {
  *     projectId: projectId,
  *     workspaceName: example.instanceName,
  *     processorName: "sampleProcessorName",
- *     pipeline: JSON.stringify([
- *         {
- *             $source: {
- *                 connectionName: mongodbatlasStreamConnection["example-sample"].connectionName,
- *             },
- *         },
- *         {
- *             $emit: {
- *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
- *                 db: "sample",
- *                 coll: "solar",
- *                 timeseries: {
- *                     timeField: "_ts",
- *                 },
- *             },
- *         },
- *     ]),
+ *     pipeline: pulumi.interpolate`[
+ *   {\"$source\": {\"connectionName\": \"${example_sample.connectionName}\"}},
+ *   {\"$emit\": {\"connectionName\": \"${example_cluster.connectionName}\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+ * ]
+ * `,
  *     state: "STARTED",
  *     tier: "SP30",
  * });
@@ -306,48 +261,27 @@ export interface GetStreamProcessorResult {
  *     projectId: projectId,
  *     workspaceName: example.instanceName,
  *     processorName: "clusterProcessorName",
- *     pipeline: JSON.stringify([
- *         {
- *             $source: {
- *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
- *             },
- *         },
- *         {
- *             $emit: {
- *                 connectionName: mongodbatlasStreamConnection["example-kafka"].connectionName,
- *                 topic: "topic_from_cluster",
- *             },
- *         },
- *     ]),
+ *     pipeline: pulumi.interpolate`[
+ *   {\"$source\": {\"connectionName\": \"${example_cluster.connectionName}\"}},
+ *   {\"$emit\": {\"connectionName\": \"${example_kafka.connectionName}\", \"topic\": \"topic_from_cluster\"}}
+ * ]
+ * `,
  *     state: "CREATED",
  * });
  * const stream_processor_kafka_to_cluster_example = new mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example", {
  *     projectId: projectId,
  *     workspaceName: example.instanceName,
  *     processorName: "kafkaProcessorName",
- *     pipeline: JSON.stringify([
- *         {
- *             $source: {
- *                 connectionName: mongodbatlasStreamConnection["example-kafka"].connectionName,
- *                 topic: "topic_source",
- *             },
- *         },
- *         {
- *             $emit: {
- *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
- *                 db: "kafka",
- *                 coll: "topic_source",
- *                 timeseries: {
- *                     timeField: "ts",
- *                 },
- *             },
- *         },
- *     ]),
+ *     pipeline: pulumi.interpolate`[
+ *   {\"$source\": {\"connectionName\": \"${example_kafka.connectionName}\", \"topic\": \"topic_source\"}},
+ *   {\"$emit\": {\"connectionName\": \"${example_cluster.connectionName}\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+ * ]
+ * `,
  *     state: "CREATED",
  *     options: {
  *         dlq: {
  *             coll: "exampleColumn",
- *             connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
+ *             connectionName: example_cluster.connectionName,
  *             db: "exampleDb",
  *         },
  *     },

@@ -107,6 +107,55 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Vector index with automatically generated embeddings
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.SearchIndex;
+ * import com.pulumi.mongodbatlas.SearchIndexArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test_auto_embed_vector_index = new SearchIndex("test-auto-embed-vector-index", SearchIndexArgs.builder()
+ *             .projectId("<PROJECT_ID>")
+ *             .clusterName("<CLUSTER_NAME>")
+ *             .collectionName("collection_test")
+ *             .database("database_test")
+ *             .name("test-auto-embed-vector-index")
+ *             .type("vectorSearch")
+ *             .fields("""
+ * [{
+ *       \"type\": \"autoEmbed\",
+ *       \"path\": \"description\",
+ *       \"model\": \"voyage-4-lite\",
+ *       \"modality\": \"text\"
+ * },
+ * {
+ *       \"type\": \"filter\",
+ *       \"path\": \"property_type\"
+ * }]
+ *             """)
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ### Advanced search index (with custom analyzers)
  * <pre>
  * {@code
@@ -252,6 +301,9 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Further Examples
+ * - Search Index Examples
+ * 
  * ## Import
  * 
  * You can import search indexes using `projectId`, `clusterName`, and `indexId` as in the following example:
@@ -334,14 +386,14 @@ public class SearchIndex extends com.pulumi.resources.CustomResource {
         return this.database;
     }
     /**
-     * Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+     * Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
      * 
      */
     @Export(name="fields", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> fields;
 
     /**
-     * @return Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+     * @return Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
      * 
      */
     public Output<Optional<String>> fields() {

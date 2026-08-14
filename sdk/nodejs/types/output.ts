@@ -212,6 +212,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      * Election priority of the region. For regions with only read-only nodes, set this value to 0.
      * * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
      * * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+     * * If several `regionConfigs` objects share the same priority, such as regions with only read-only or analytics nodes that have a priority of 0, list them in reverse alphabetical order by `regionName`. See the note at the beginning of this section.
      */
     priority: number;
     /**
@@ -2777,6 +2778,162 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpe
      * Number of nodes of the given type for MongoDB Atlas to deploy to the region.
      */
     nodeCount: number;
+}
+
+export interface GetAiModelApiKeysResult {
+    /**
+     * Identifier used to reference this API key in admin API calls.
+     */
+    apiKeyId: string;
+    /**
+     * Cloud provider scope for this API key. Use "ANY" for cloud-agnostic scope.
+     */
+    cloud: string;
+    /**
+     * UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
+     */
+    createdAt: string;
+    /**
+     * Name of the user that created this API key. If no user name is available, the user ID is returned.
+     */
+    createdBy: string;
+    /**
+     * Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+     */
+    endpoint: string;
+    /**
+     * Geography scope for this API key. Use "ANY" for geography-agnostic scope.
+     */
+    geography: string;
+    /**
+     * UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
+     */
+    lastUsedAt: string;
+    /**
+     * A partially obfuscated version of the API key secret returned when the API key was created.
+     */
+    maskedSecret: string;
+    /**
+     * Arbitrary string identifier assigned to this API key for convenient identification.
+     */
+    name: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+     */
+    projectId: string;
+    /**
+     * A string describing the current status of the API key.
+     */
+    status: string;
+}
+
+export interface GetAiModelOrgApiKeysResult {
+    /**
+     * Identifier used to reference this API key in admin API calls.
+     */
+    apiKeyId: string;
+    /**
+     * Cloud provider scope for this API key. Use "ANY" for cloud-agnostic scope.
+     */
+    cloud: string;
+    /**
+     * UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
+     */
+    createdAt: string;
+    /**
+     * Name of the user that created this API key. If no user name is available, the user ID is returned.
+     */
+    createdBy: string;
+    /**
+     * Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+     */
+    endpoint: string;
+    /**
+     * Geography scope for this API key. Use "ANY" for geography-agnostic scope.
+     */
+    geography: string;
+    /**
+     * UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
+     */
+    lastUsedAt: string;
+    /**
+     * A partially obfuscated version of the API key secret returned when the API key was created.
+     */
+    maskedSecret: string;
+    /**
+     * Arbitrary string identifier assigned to this API key for convenient identification.
+     */
+    name: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+     */
+    projectId: string;
+    /**
+     * A string describing the current status of the API key.
+     */
+    status: string;
+}
+
+export interface GetAiModelOrgRateLimitsResult {
+    /**
+     * Cloud provider scope for this rate limit. Use "ANY" for cloud-agnostic scope.
+     */
+    cloud: string;
+    /**
+     * Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+     */
+    endpoint: string;
+    /**
+     * Geography scope for this rate limit. Use "ANY" for geography-agnostic scope.
+     */
+    geography: string;
+    /**
+     * Identifier used to reference this model group.
+     */
+    modelGroupName: string;
+    /**
+     * List of embedding model names included in this model group.
+     */
+    modelNames: string[];
+    /**
+     * The number of requests per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+     */
+    requestsPerMinuteLimit: number;
+    /**
+     * The number of tokens per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+     */
+    tokensPerMinuteLimit: number;
+}
+
+export interface GetAiModelRateLimitsResult {
+    /**
+     * Cloud provider scope for this rate limit. Use "ANY" for cloud-agnostic scope.
+     */
+    cloud: string;
+    /**
+     * Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+     */
+    endpoint: string;
+    /**
+     * Geography scope for this rate limit. Use "ANY" for geography-agnostic scope.
+     */
+    geography: string;
+    /**
+     * Identifier used to reference this model group.
+     */
+    modelGroupName: string;
+    /**
+     * List of embedding model names included in this model group.
+     */
+    modelNames: string[];
+    /**
+     * The number of requests per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+     */
+    requestsPerMinuteLimit: number;
+    /**
+     * The number of tokens per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+     */
+    tokensPerMinuteLimit: number;
 }
 
 export interface GetAlertConfigurationMatcher {
@@ -6339,6 +6496,63 @@ export interface GetMaintenanceWindowProtectedHour {
     startHourOfDay: number;
 }
 
+export interface GetMetricIntegrationHeadersRedacted {
+    /**
+     * Header name.
+     */
+    name: string;
+    /**
+     * Redacted header value.
+     */
+    value: string;
+}
+
+export interface GetMetricIntegrationsResult {
+    /**
+     * The temporality to send to the metric integration.
+     */
+    aggregationTemporality: string;
+    /**
+     * Authentication method the integration uses when exporting metrics to the endpoint.
+     */
+    authType: string;
+    /**
+     * OpenTelemetry collector endpoint URL.
+     */
+    endpoint: string;
+    /**
+     * HTTP headers for authentication and configuration. Values are redacted and never returned in plaintext.
+     */
+    headersRedacteds: outputs.GetMetricIntegrationsResultHeadersRedacted[];
+    /**
+     * Type of metric integration. Identifies which protocol will be used for the integration.
+     */
+    integrationType: string;
+    /**
+     * Unique identifier of the metric integration configuration.
+     */
+    metricIntegrationId: string;
+    /**
+     * Array of metric categories to export. Determines which types of metrics are sent to the integration.
+     */
+    metricSelections: string[];
+    /**
+     * The provider type for the metric integration. Identifies the third-party service provider.
+     */
+    providerType: string;
+}
+
+export interface GetMetricIntegrationsResultHeadersRedacted {
+    /**
+     * Header name.
+     */
+    name: string;
+    /**
+     * Redacted header value.
+     */
+    value: string;
+}
+
 export interface GetNetworkContainersResult {
     /**
      * CIDR block that Atlas uses for your clusters. Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3).
@@ -8006,7 +8220,7 @@ export interface GetStreamConnectionFailoverAuthentication {
      */
     mechanism: string;
     /**
-     * SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+     * SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
      */
     method: string;
     /**
@@ -8109,11 +8323,11 @@ export interface GetStreamConnectionFailoversResult {
      */
     clusterProjectId: string;
     /**
-     * Applies to type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+     * Applies to type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
      */
     config: {[key: string]: string};
     /**
-     * Applies to type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+     * Applies to type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
      */
     dbRoleToExecute: outputs.GetStreamConnectionFailoversResultDbRoleToExecute;
     /**
@@ -8125,7 +8339,7 @@ export interface GetStreamConnectionFailoversResult {
      */
     networking: outputs.GetStreamConnectionFailoversResultNetworking;
     /**
-     * The connection's region.
+     * Connection region.
      */
     region: string;
     /**
@@ -8133,11 +8347,11 @@ export interface GetStreamConnectionFailoversResult {
      */
     security: outputs.GetStreamConnectionFailoversResultSecurity;
     /**
-     * The state of the connection.
+     * Connection state.
      */
     state: string;
     /**
-     * Type of the connection.
+     * Connection type.
      */
     type: string;
 }
@@ -8156,7 +8370,7 @@ export interface GetStreamConnectionFailoversResultAuthentication {
      */
     mechanism: string;
     /**
-     * SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+     * SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
      */
     method: string;
     /**
@@ -8641,7 +8855,7 @@ export interface GetStreamPrivatelinkEndpointsResult {
      */
     serviceAttachmentUris: string[];
     /**
-     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
      */
     serviceEndpointId: string;
     /**
@@ -8651,7 +8865,7 @@ export interface GetStreamPrivatelinkEndpointsResult {
     /**
      * Vendor that manages the endpoint. The following are the vendor values per provider:
      *
-     *     * **AWS**: MSK, CONFLUENT, and S3
+     *     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
      *     
      *     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
      *     
@@ -8702,7 +8916,7 @@ export interface GetStreamProcessorsResult {
      */
     options: outputs.GetStreamProcessorsResultOptions;
     /**
-     * Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+     * Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
      */
     pipeline: string;
     /**
@@ -9068,6 +9282,28 @@ export interface MaintenanceWindowProtectedHours {
      * Zero-based integer that represents the beginning hour of the day for the protected hours window.
      */
     startHourOfDay: number;
+}
+
+export interface MetricIntegrationHeader {
+    /**
+     * Header name.
+     */
+    name: string;
+    /**
+     * Header value.
+     */
+    value: string;
+}
+
+export interface MetricIntegrationHeadersRedacted {
+    /**
+     * Header name.
+     */
+    name: string;
+    /**
+     * Redacted header value.
+     */
+    value: string;
 }
 
 export interface OnlineArchiveCriteria {
@@ -9566,7 +9802,7 @@ export interface StreamConnectionFailoverAuthentication {
      */
     mechanism?: string;
     /**
-     * SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+     * SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
      */
     method?: string;
     /**

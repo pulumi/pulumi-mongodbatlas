@@ -8,6 +8,8 @@ import typing
 # Export this package's modules as members:
 from .access_list_api_key import *
 from .advanced_cluster import *
+from .ai_model_api_key import *
+from .ai_model_rate_limit import *
 from .alert_configuration import *
 from .api_key import *
 from .api_key_project_assignment import *
@@ -41,6 +43,14 @@ from .get_access_list_api_key import *
 from .get_access_list_api_keys import *
 from .get_advanced_cluster import *
 from .get_advanced_clusters import *
+from .get_ai_model_api_key import *
+from .get_ai_model_api_keys import *
+from .get_ai_model_org_api_key import *
+from .get_ai_model_org_api_keys import *
+from .get_ai_model_org_rate_limit import *
+from .get_ai_model_org_rate_limits import *
+from .get_ai_model_rate_limit import *
+from .get_ai_model_rate_limits import *
 from .get_alert_configuration import *
 from .get_alert_configurations import *
 from .get_api_key import *
@@ -101,6 +111,8 @@ from .get_ldap_verify import *
 from .get_log_integration import *
 from .get_log_integrations import *
 from .get_maintenance_window import *
+from .get_metric_integration import *
+from .get_metric_integrations import *
 from .get_mongodb_employee_access_grant import *
 from .get_network_container import *
 from .get_network_containers import *
@@ -173,6 +185,7 @@ from .ldap_configuration import *
 from .ldap_verify import *
 from .log_integration import *
 from .maintenance_window import *
+from .metric_integration import *
 from .mongodb_employee_access_grant import *
 from .network_container import *
 from .network_peering import *
@@ -237,6 +250,22 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/advancedCluster:AdvancedCluster": "AdvancedCluster"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/aiModelApiKey",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/aiModelApiKey:AiModelApiKey": "AiModelApiKey"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/aiModelRateLimit",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/aiModelRateLimit:AiModelRateLimit": "AiModelRateLimit"
   }
  },
  {
@@ -509,6 +538,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/maintenanceWindow:MaintenanceWindow": "MaintenanceWindow"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/metricIntegration",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/metricIntegration:MetricIntegration": "MetricIntegration"
   }
  },
  {

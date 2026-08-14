@@ -286,6 +286,56 @@ import (
 //
 // ```
 //
+// ### Example AWSLambda Connection with Private Link
+//
+// > **NOTE:** An AWS cluster must be provisioned in the same region before creating an AWS Lambda private endpoint.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			awsLambda, err := mongodbatlas.NewStreamPrivatelinkEndpoint(ctx, "aws_lambda", &mongodbatlas.StreamPrivatelinkEndpointArgs{
+//				ProjectId:         pulumi.Any(projectId),
+//				ProviderName:      pulumi.String("AWS"),
+//				Vendor:            pulumi.String("LAMBDA"),
+//				Region:            pulumi.String("us-east-1"),
+//				ServiceEndpointId: pulumi.String("com.amazonaws.us-east-1.lambda"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = mongodbatlas.NewStreamConnection(ctx, "example_aws_lambda_private_link", &mongodbatlas.StreamConnectionArgs{
+//				ProjectId:      pulumi.Any(projectId),
+//				WorkspaceName:  pulumi.Any(example.WorkspaceName),
+//				ConnectionName: pulumi.String("AWSLambdaPLConnection"),
+//				Type:           pulumi.String("AWSLambda"),
+//				Aws: &mongodbatlas.StreamConnectionAwsArgs{
+//					RoleArn: pulumi.String("arn:aws:iam::<AWS_ACCOUNT_ID>:role/lambdaRole"),
+//				},
+//				Networking: &mongodbatlas.StreamConnectionNetworkingArgs{
+//					Access: &mongodbatlas.StreamConnectionNetworkingAccessArgs{
+//						Type:         pulumi.String("PRIVATE_LINK"),
+//						ConnectionId: awsLambda.ID().ToIDOutput().ToStringOutput(),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Example GCPPubSub Connection
 //
 // ```go

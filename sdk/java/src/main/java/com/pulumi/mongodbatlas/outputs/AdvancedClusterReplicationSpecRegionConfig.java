@@ -47,6 +47,7 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
      * @return Election priority of the region. For regions with only read-only nodes, set this value to 0.
      * * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
      * * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+     * * If several `regionConfigs` objects share the same priority, such as regions with only read-only or analytics nodes that have a priority of 0, list them in reverse alphabetical order by `regionName`. See the note at the beginning of this section.
      * 
      */
     private Integer priority;
@@ -114,6 +115,7 @@ public final class AdvancedClusterReplicationSpecRegionConfig {
      * @return Election priority of the region. For regions with only read-only nodes, set this value to 0.
      * * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
      * * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+     * * If several `regionConfigs` objects share the same priority, such as regions with only read-only or analytics nodes that have a priority of 0, list them in reverse alphabetical order by `regionName`. See the note at the beginning of this section.
      * 
      */
     public Integer priority() {

@@ -132,7 +132,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string?> ClusterProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+        /// Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
         /// </summary>
         [Output("config")]
         public Output<ImmutableDictionary<string, string>?> Config { get; private set; } = null!;
@@ -144,7 +144,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ConnectionName { get; private set; } = null!;
 
         /// <summary>
-        /// Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+        /// Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
         /// </summary>
         [Output("dbRoleToExecute")]
         public Output<Outputs.StreamConnectionFailoverDbRoleToExecute?> DbRoleToExecute { get; private set; } = null!;
@@ -174,7 +174,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The connection's region.
+        /// Connection region.
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
@@ -186,7 +186,7 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.StreamConnectionFailoverSecurity?> Security { get; private set; } = null!;
 
         /// <summary>
-        /// The state of the connection.
+        /// Connection state.
         /// </summary>
         [Output("state")]
         public Output<string> State { get; private set; } = null!;
@@ -195,7 +195,7 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.StreamConnectionFailoverTimeouts?> Timeouts { get; private set; } = null!;
 
         /// <summary>
-        /// Type of the connection.
+        /// Connection type.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -280,7 +280,7 @@ namespace Pulumi.Mongodbatlas
         private InputMap<string>? _config;
 
         /// <summary>
-        /// Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+        /// Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
         /// </summary>
         public InputMap<string> Config
         {
@@ -295,7 +295,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ConnectionName { get; set; } = null!;
 
         /// <summary>
-        /// Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+        /// Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
         /// </summary>
         [Input("dbRoleToExecute")]
         public Input<Inputs.StreamConnectionFailoverDbRoleToExecuteArgs>? DbRoleToExecute { get; set; }
@@ -319,7 +319,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> ProjectId { get; set; } = null!;
 
         /// <summary>
-        /// The connection's region.
+        /// Connection region.
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
@@ -334,7 +334,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamConnectionFailoverTimeoutsArgs>? Timeouts { get; set; }
 
         /// <summary>
-        /// Type of the connection.
+        /// Connection type.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -381,7 +381,7 @@ namespace Pulumi.Mongodbatlas
         private InputMap<string>? _config;
 
         /// <summary>
-        /// Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+        /// Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
         /// </summary>
         public InputMap<string> Config
         {
@@ -396,7 +396,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ConnectionName { get; set; }
 
         /// <summary>
-        /// Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+        /// Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
         /// </summary>
         [Input("dbRoleToExecute")]
         public Input<Inputs.StreamConnectionFailoverDbRoleToExecuteGetArgs>? DbRoleToExecute { get; set; }
@@ -426,7 +426,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The connection's region.
+        /// Connection region.
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
@@ -438,7 +438,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamConnectionFailoverSecurityGetArgs>? Security { get; set; }
 
         /// <summary>
-        /// The state of the connection.
+        /// Connection state.
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
@@ -447,7 +447,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamConnectionFailoverTimeoutsGetArgs>? Timeouts { get; set; }
 
         /// <summary>
-        /// Type of the connection.
+        /// Connection type.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

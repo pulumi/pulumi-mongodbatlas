@@ -243,6 +243,50 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Example AWSLambda Connection with Private Link
+    /// 
+    /// &gt; **NOTE:** An AWS cluster must be provisioned in the same region before creating an AWS Lambda private endpoint.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var awsLambda = new Mongodbatlas.StreamPrivatelinkEndpoint("aws_lambda", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         ProviderName = "AWS",
+    ///         Vendor = "LAMBDA",
+    ///         Region = "us-east-1",
+    ///         ServiceEndpointId = "com.amazonaws.us-east-1.lambda",
+    ///     });
+    /// 
+    ///     var exampleAwsLambdaPrivateLink = new Mongodbatlas.StreamConnection("example_aws_lambda_private_link", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         WorkspaceName = example.WorkspaceName,
+    ///         ConnectionName = "AWSLambdaPLConnection",
+    ///         Type = "AWSLambda",
+    ///         Aws = new Mongodbatlas.Inputs.StreamConnectionAwsArgs
+    ///         {
+    ///             RoleArn = "arn:aws:iam::&lt;AWS_ACCOUNT_ID&gt;:role/lambdaRole",
+    ///         },
+    ///         Networking = new Mongodbatlas.Inputs.StreamConnectionNetworkingArgs
+    ///         {
+    ///             Access = new Mongodbatlas.Inputs.StreamConnectionNetworkingAccessArgs
+    ///             {
+    ///                 Type = "PRIVATE_LINK",
+    ///                 ConnectionId = awsLambda.Id,
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Example GCPPubSub Connection
     /// 
     /// ```csharp

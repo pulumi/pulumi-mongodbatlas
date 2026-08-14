@@ -137,7 +137,7 @@ class GetStreamConnectionFailoverResult:
     @pulumi.getter
     def region(self) -> _builtins.str:
         """
-        The connection's region.
+        Connection region.
         """
         return pulumi.get(self, "region")
 
@@ -150,7 +150,7 @@ class GetStreamConnectionFailoverResult:
     @pulumi.getter
     def state(self) -> _builtins.str:
         """
-        The state of the connection.
+        Connection state.
         """
         return pulumi.get(self, "state")
 
@@ -158,7 +158,7 @@ class GetStreamConnectionFailoverResult:
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Type of the connection.
+        Connection type.
         """
         return pulumi.get(self, "type")
 

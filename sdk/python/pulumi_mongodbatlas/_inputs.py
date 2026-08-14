@@ -211,6 +211,10 @@ __all__ = [
     'LogIntegrationOtelSuppliedHeaderArgsDict',
     'MaintenanceWindowProtectedHoursArgs',
     'MaintenanceWindowProtectedHoursArgsDict',
+    'MetricIntegrationHeaderArgs',
+    'MetricIntegrationHeaderArgsDict',
+    'MetricIntegrationHeadersRedactedArgs',
+    'MetricIntegrationHeadersRedactedArgsDict',
     'OnlineArchiveCriteriaArgs',
     'OnlineArchiveCriteriaArgsDict',
     'OnlineArchiveDataExpirationRuleArgs',
@@ -1177,6 +1181,7 @@ class AdvancedClusterReplicationSpecRegionConfigArgsDict(TypedDict):
     Election priority of the region. For regions with only read-only nodes, set this value to 0.
     * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
     * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+    * If several `region_configs` objects share the same priority, such as regions with only read-only or analytics nodes that have a priority of 0, list them in reverse alphabetical order by `region_name`. See the note at the beginning of this section.
     """
     provider_name: pulumi.Input[_builtins.str]
     """
@@ -1235,6 +1240,7 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
         :param pulumi.Input[_builtins.int] priority: Election priority of the region. For regions with only read-only nodes, set this value to 0.
                * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
                * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+               * If several `region_configs` objects share the same priority, such as regions with only read-only or analytics nodes that have a priority of 0, list them in reverse alphabetical order by `region_name`. See the note at the beginning of this section.
         :param pulumi.Input[_builtins.str] provider_name: Cloud service provider on which the servers are provisioned.
                The possible values are:
                - `AWS` - Amazon AWS
@@ -1275,6 +1281,7 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
         Election priority of the region. For regions with only read-only nodes, set this value to 0.
         * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
         * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+        * If several `region_configs` objects share the same priority, such as regions with only read-only or analytics nodes that have a priority of 0, list them in reverse alphabetical order by `region_name`. See the note at the beginning of this section.
         """
         return pulumi.get(self, "priority")
 
@@ -9158,6 +9165,102 @@ class MaintenanceWindowProtectedHoursArgs:
         pulumi.set(self, "start_hour_of_day", value)
 
 
+class MetricIntegrationHeaderArgsDict(TypedDict):
+    name: pulumi.Input[_builtins.str]
+    """
+    Header name.
+    """
+    value: pulumi.Input[_builtins.str]
+    """
+    Header value.
+    """
+
+@pulumi.input_type
+class MetricIntegrationHeaderArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[_builtins.str],
+                 value: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] name: Header name.
+        :param pulumi.Input[_builtins.str] value: Header value.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[_builtins.str]:
+        """
+        Header name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[_builtins.str]:
+        """
+        Header value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "value", value)
+
+
+class MetricIntegrationHeadersRedactedArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Header name.
+    """
+    value: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Redacted header value.
+    """
+
+@pulumi.input_type
+class MetricIntegrationHeadersRedactedArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 value: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] name: Header name.
+        :param pulumi.Input[_builtins.str] value: Redacted header value.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Header name.
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Redacted header value.
+        """
+        return pulumi.get(self, "value")
+
+    @value.setter
+    def value(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "value", value)
+
+
 class OnlineArchiveCriteriaArgsDict(TypedDict):
     type: pulumi.Input[_builtins.str]
     """
@@ -11439,7 +11542,7 @@ class StreamConnectionFailoverAuthenticationArgsDict(TypedDict):
     """
     method: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+    SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
     """
     password: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -11493,7 +11596,7 @@ class StreamConnectionFailoverAuthenticationArgs:
         :param pulumi.Input[_builtins.str] client_id: OIDC client identifier for authentication to the Kafka cluster.
         :param pulumi.Input[_builtins.str] client_secret: OIDC client secret for authentication to the Kafka cluster.
         :param pulumi.Input[_builtins.str] mechanism: Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
-        :param pulumi.Input[_builtins.str] method: SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        :param pulumi.Input[_builtins.str] method: SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
         :param pulumi.Input[_builtins.str] password: Password of the account to connect to the Kafka cluster.
         :param pulumi.Input[_builtins.str] sasl_oauthbearer_extensions: SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
         :param pulumi.Input[_builtins.str] scope: OIDC scope parameter defining the access permissions requested.
@@ -11568,7 +11671,7 @@ class StreamConnectionFailoverAuthenticationArgs:
     @pulumi.getter
     def method(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
         """
         return pulumi.get(self, "method")
 

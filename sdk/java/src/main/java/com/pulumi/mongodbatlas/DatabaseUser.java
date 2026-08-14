@@ -13,6 +13,7 @@ import com.pulumi.mongodbatlas.inputs.DatabaseUserState;
 import com.pulumi.mongodbatlas.outputs.DatabaseUserLabel;
 import com.pulumi.mongodbatlas.outputs.DatabaseUserRole;
 import com.pulumi.mongodbatlas.outputs.DatabaseUserScope;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +24,7 @@ import javax.annotation.Nullable;
  * 
  * Each user has a set of roles that provide access to the project’s databases. User&#39;s roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
  * 
- * &gt; **IMPORTANT WARNING:** Managing passwords with Terraform exposes sensitive organizational secrets in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+ * &gt; **IMPORTANT WARNING:** The `password` argument is stored in Terraform state in plain text. To avoid this issue, you can use `passwordWo` instead, which is a write-only argument and is never written to state or plan files. It requires Terraform 1.11 or later. See Terraform&#39;s best practices for handling sensitive data in state.
  * 
  * ## Example Usage
  * 
@@ -230,9 +231,6 @@ import javax.annotation.Nullable;
  * 
  * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  * 
- * ### Further Examples
- * - Database User
- * 
  * ## Import
  * 
  * Database users can be imported using project ID, username, and auth database name in the format:
@@ -245,7 +243,7 @@ import javax.annotation.Nullable;
  * terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
  * ```
  * 
- * &gt; **NOTE:** Terraform will want to change the password after importing the user if a `password` argument is specified.
+ * &gt; **NOTE:** Terraform will want to change the password after importing the user if a `password` or `passwordWo` argument is specified.
  * 
  */
 @ResourceType(type="mongodbatlas:index/databaseUser:DatabaseUser")
@@ -347,18 +345,48 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
         return this.oidcAuthType;
     }
     /**
-     * User&#39;s initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+     * User&#39;s initial password. Only applicable for password-based authentication. Conflicts with `passwordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `passwordWo` instead.
      * 
      */
     @Export(name="password", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> password;
 
     /**
-     * @return User&#39;s initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+     * @return User&#39;s initial password. Only applicable for password-based authentication. Conflicts with `passwordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `passwordWo` instead.
      * 
      */
     public Output<Optional<String>> password() {
         return Codegen.optional(this.password);
+    }
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * User&#39;s password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `passwordWoVersion`.
+     * 
+     */
+    @Export(name="passwordWo", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * User&#39;s password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `passwordWoVersion`.
+     * 
+     */
+    public Output<Optional<String>> passwordWo() {
+        return Codegen.optional(this.passwordWo);
+    }
+    /**
+     * Integer that triggers an update of `passwordWo`. To rotate the password, change `passwordWo` and increment this value in the same edit. Changing `passwordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+     * 
+     */
+    @Export(name="passwordWoVersion", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> passwordWoVersion;
+
+    /**
+     * @return Integer that triggers an update of `passwordWo`. To rotate the password, change `passwordWo` and increment this value in the same edit. Changing `passwordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+     * 
+     */
+    public Output<Optional<Integer>> passwordWoVersion() {
+        return Codegen.optional(this.passwordWoVersion);
     }
     /**
      * The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
@@ -469,7 +497,8 @@ public class DatabaseUser extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
-                "password"
+                "password",
+                "passwordWo"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

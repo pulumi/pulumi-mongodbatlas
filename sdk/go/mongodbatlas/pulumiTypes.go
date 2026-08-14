@@ -1395,6 +1395,7 @@ type AdvancedClusterReplicationSpecRegionConfig struct {
 	// Election priority of the region. For regions with only read-only nodes, set this value to 0.
 	// * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
 	// * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+	// * If several `regionConfigs` objects share the same priority, such as regions with only read-only or analytics nodes that have a priority of 0, list them in reverse alphabetical order by `regionName`. See the note at the beginning of this section.
 	Priority int `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	// The possible values are:
@@ -1437,6 +1438,7 @@ type AdvancedClusterReplicationSpecRegionConfigArgs struct {
 	// Election priority of the region. For regions with only read-only nodes, set this value to 0.
 	// * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
 	// * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+	// * If several `regionConfigs` objects share the same priority, such as regions with only read-only or analytics nodes that have a priority of 0, list them in reverse alphabetical order by `regionName`. See the note at the beginning of this section.
 	Priority pulumi.IntInput `pulumi:"priority"`
 	// Cloud service provider on which the servers are provisioned.
 	// The possible values are:
@@ -1541,6 +1543,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) ElectableSpecs() Advan
 // Election priority of the region. For regions with only read-only nodes, set this value to 0.
 // * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
 // * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+// * If several `regionConfigs` objects share the same priority, such as regions with only read-only or analytics nodes that have a priority of 0, list them in reverse alphabetical order by `regionName`. See the note at the beginning of this section.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) int { return v.Priority }).(pulumi.IntOutput)
 }
@@ -15757,6 +15760,218 @@ func (o MaintenanceWindowProtectedHoursPtrOutput) StartHourOfDay() pulumi.IntPtr
 	}).(pulumi.IntPtrOutput)
 }
 
+type MetricIntegrationHeader struct {
+	// Header name.
+	Name string `pulumi:"name"`
+	// Header value.
+	Value string `pulumi:"value"`
+}
+
+// MetricIntegrationHeaderInput is an input type that accepts MetricIntegrationHeaderArgs and MetricIntegrationHeaderOutput values.
+// You can construct a concrete instance of `MetricIntegrationHeaderInput` via:
+//
+//	MetricIntegrationHeaderArgs{...}
+type MetricIntegrationHeaderInput interface {
+	pulumi.Input
+
+	ToMetricIntegrationHeaderOutput() MetricIntegrationHeaderOutput
+	ToMetricIntegrationHeaderOutputWithContext(context.Context) MetricIntegrationHeaderOutput
+}
+
+type MetricIntegrationHeaderArgs struct {
+	// Header name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Header value.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (MetricIntegrationHeaderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MetricIntegrationHeader)(nil)).Elem()
+}
+
+func (i MetricIntegrationHeaderArgs) ToMetricIntegrationHeaderOutput() MetricIntegrationHeaderOutput {
+	return i.ToMetricIntegrationHeaderOutputWithContext(context.Background())
+}
+
+func (i MetricIntegrationHeaderArgs) ToMetricIntegrationHeaderOutputWithContext(ctx context.Context) MetricIntegrationHeaderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricIntegrationHeaderOutput)
+}
+
+// MetricIntegrationHeaderArrayInput is an input type that accepts MetricIntegrationHeaderArray and MetricIntegrationHeaderArrayOutput values.
+// You can construct a concrete instance of `MetricIntegrationHeaderArrayInput` via:
+//
+//	MetricIntegrationHeaderArray{ MetricIntegrationHeaderArgs{...} }
+type MetricIntegrationHeaderArrayInput interface {
+	pulumi.Input
+
+	ToMetricIntegrationHeaderArrayOutput() MetricIntegrationHeaderArrayOutput
+	ToMetricIntegrationHeaderArrayOutputWithContext(context.Context) MetricIntegrationHeaderArrayOutput
+}
+
+type MetricIntegrationHeaderArray []MetricIntegrationHeaderInput
+
+func (MetricIntegrationHeaderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MetricIntegrationHeader)(nil)).Elem()
+}
+
+func (i MetricIntegrationHeaderArray) ToMetricIntegrationHeaderArrayOutput() MetricIntegrationHeaderArrayOutput {
+	return i.ToMetricIntegrationHeaderArrayOutputWithContext(context.Background())
+}
+
+func (i MetricIntegrationHeaderArray) ToMetricIntegrationHeaderArrayOutputWithContext(ctx context.Context) MetricIntegrationHeaderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricIntegrationHeaderArrayOutput)
+}
+
+type MetricIntegrationHeaderOutput struct{ *pulumi.OutputState }
+
+func (MetricIntegrationHeaderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MetricIntegrationHeader)(nil)).Elem()
+}
+
+func (o MetricIntegrationHeaderOutput) ToMetricIntegrationHeaderOutput() MetricIntegrationHeaderOutput {
+	return o
+}
+
+func (o MetricIntegrationHeaderOutput) ToMetricIntegrationHeaderOutputWithContext(ctx context.Context) MetricIntegrationHeaderOutput {
+	return o
+}
+
+// Header name.
+func (o MetricIntegrationHeaderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v MetricIntegrationHeader) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Header value.
+func (o MetricIntegrationHeaderOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v MetricIntegrationHeader) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type MetricIntegrationHeaderArrayOutput struct{ *pulumi.OutputState }
+
+func (MetricIntegrationHeaderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MetricIntegrationHeader)(nil)).Elem()
+}
+
+func (o MetricIntegrationHeaderArrayOutput) ToMetricIntegrationHeaderArrayOutput() MetricIntegrationHeaderArrayOutput {
+	return o
+}
+
+func (o MetricIntegrationHeaderArrayOutput) ToMetricIntegrationHeaderArrayOutputWithContext(ctx context.Context) MetricIntegrationHeaderArrayOutput {
+	return o
+}
+
+func (o MetricIntegrationHeaderArrayOutput) Index(i pulumi.IntInput) MetricIntegrationHeaderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MetricIntegrationHeader {
+		return vs[0].([]MetricIntegrationHeader)[vs[1].(int)]
+	}).(MetricIntegrationHeaderOutput)
+}
+
+type MetricIntegrationHeadersRedacted struct {
+	// Header name.
+	Name *string `pulumi:"name"`
+	// Redacted header value.
+	Value *string `pulumi:"value"`
+}
+
+// MetricIntegrationHeadersRedactedInput is an input type that accepts MetricIntegrationHeadersRedactedArgs and MetricIntegrationHeadersRedactedOutput values.
+// You can construct a concrete instance of `MetricIntegrationHeadersRedactedInput` via:
+//
+//	MetricIntegrationHeadersRedactedArgs{...}
+type MetricIntegrationHeadersRedactedInput interface {
+	pulumi.Input
+
+	ToMetricIntegrationHeadersRedactedOutput() MetricIntegrationHeadersRedactedOutput
+	ToMetricIntegrationHeadersRedactedOutputWithContext(context.Context) MetricIntegrationHeadersRedactedOutput
+}
+
+type MetricIntegrationHeadersRedactedArgs struct {
+	// Header name.
+	Name pulumi.StringPtrInput `pulumi:"name"`
+	// Redacted header value.
+	Value pulumi.StringPtrInput `pulumi:"value"`
+}
+
+func (MetricIntegrationHeadersRedactedArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MetricIntegrationHeadersRedacted)(nil)).Elem()
+}
+
+func (i MetricIntegrationHeadersRedactedArgs) ToMetricIntegrationHeadersRedactedOutput() MetricIntegrationHeadersRedactedOutput {
+	return i.ToMetricIntegrationHeadersRedactedOutputWithContext(context.Background())
+}
+
+func (i MetricIntegrationHeadersRedactedArgs) ToMetricIntegrationHeadersRedactedOutputWithContext(ctx context.Context) MetricIntegrationHeadersRedactedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricIntegrationHeadersRedactedOutput)
+}
+
+// MetricIntegrationHeadersRedactedArrayInput is an input type that accepts MetricIntegrationHeadersRedactedArray and MetricIntegrationHeadersRedactedArrayOutput values.
+// You can construct a concrete instance of `MetricIntegrationHeadersRedactedArrayInput` via:
+//
+//	MetricIntegrationHeadersRedactedArray{ MetricIntegrationHeadersRedactedArgs{...} }
+type MetricIntegrationHeadersRedactedArrayInput interface {
+	pulumi.Input
+
+	ToMetricIntegrationHeadersRedactedArrayOutput() MetricIntegrationHeadersRedactedArrayOutput
+	ToMetricIntegrationHeadersRedactedArrayOutputWithContext(context.Context) MetricIntegrationHeadersRedactedArrayOutput
+}
+
+type MetricIntegrationHeadersRedactedArray []MetricIntegrationHeadersRedactedInput
+
+func (MetricIntegrationHeadersRedactedArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MetricIntegrationHeadersRedacted)(nil)).Elem()
+}
+
+func (i MetricIntegrationHeadersRedactedArray) ToMetricIntegrationHeadersRedactedArrayOutput() MetricIntegrationHeadersRedactedArrayOutput {
+	return i.ToMetricIntegrationHeadersRedactedArrayOutputWithContext(context.Background())
+}
+
+func (i MetricIntegrationHeadersRedactedArray) ToMetricIntegrationHeadersRedactedArrayOutputWithContext(ctx context.Context) MetricIntegrationHeadersRedactedArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricIntegrationHeadersRedactedArrayOutput)
+}
+
+type MetricIntegrationHeadersRedactedOutput struct{ *pulumi.OutputState }
+
+func (MetricIntegrationHeadersRedactedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MetricIntegrationHeadersRedacted)(nil)).Elem()
+}
+
+func (o MetricIntegrationHeadersRedactedOutput) ToMetricIntegrationHeadersRedactedOutput() MetricIntegrationHeadersRedactedOutput {
+	return o
+}
+
+func (o MetricIntegrationHeadersRedactedOutput) ToMetricIntegrationHeadersRedactedOutputWithContext(ctx context.Context) MetricIntegrationHeadersRedactedOutput {
+	return o
+}
+
+// Header name.
+func (o MetricIntegrationHeadersRedactedOutput) Name() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MetricIntegrationHeadersRedacted) *string { return v.Name }).(pulumi.StringPtrOutput)
+}
+
+// Redacted header value.
+func (o MetricIntegrationHeadersRedactedOutput) Value() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MetricIntegrationHeadersRedacted) *string { return v.Value }).(pulumi.StringPtrOutput)
+}
+
+type MetricIntegrationHeadersRedactedArrayOutput struct{ *pulumi.OutputState }
+
+func (MetricIntegrationHeadersRedactedArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]MetricIntegrationHeadersRedacted)(nil)).Elem()
+}
+
+func (o MetricIntegrationHeadersRedactedArrayOutput) ToMetricIntegrationHeadersRedactedArrayOutput() MetricIntegrationHeadersRedactedArrayOutput {
+	return o
+}
+
+func (o MetricIntegrationHeadersRedactedArrayOutput) ToMetricIntegrationHeadersRedactedArrayOutputWithContext(ctx context.Context) MetricIntegrationHeadersRedactedArrayOutput {
+	return o
+}
+
+func (o MetricIntegrationHeadersRedactedArrayOutput) Index(i pulumi.IntInput) MetricIntegrationHeadersRedactedOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MetricIntegrationHeadersRedacted {
+		return vs[0].([]MetricIntegrationHeadersRedacted)[vs[1].(int)]
+	}).(MetricIntegrationHeadersRedactedOutput)
+}
+
 type OnlineArchiveCriteria struct {
 	// Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
 	DateField *string `pulumi:"dateField"`
@@ -20688,7 +20903,7 @@ type StreamConnectionFailoverAuthentication struct {
 	ClientSecret *string `pulumi:"clientSecret"`
 	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
 	Mechanism *string `pulumi:"mechanism"`
-	// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+	// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
 	Method *string `pulumi:"method"`
 	// Password of the account to connect to the Kafka cluster.
 	Password *string `pulumi:"password"`
@@ -20726,7 +20941,7 @@ type StreamConnectionFailoverAuthenticationArgs struct {
 	ClientSecret pulumi.StringPtrInput `pulumi:"clientSecret"`
 	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
 	Mechanism pulumi.StringPtrInput `pulumi:"mechanism"`
-	// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+	// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
 	Method pulumi.StringPtrInput `pulumi:"method"`
 	// Password of the account to connect to the Kafka cluster.
 	Password pulumi.StringPtrInput `pulumi:"password"`
@@ -20838,7 +21053,7 @@ func (o StreamConnectionFailoverAuthenticationOutput) Mechanism() pulumi.StringP
 	return o.ApplyT(func(v StreamConnectionFailoverAuthentication) *string { return v.Mechanism }).(pulumi.StringPtrOutput)
 }
 
-// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
 func (o StreamConnectionFailoverAuthenticationOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StreamConnectionFailoverAuthentication) *string { return v.Method }).(pulumi.StringPtrOutput)
 }
@@ -20937,7 +21152,7 @@ func (o StreamConnectionFailoverAuthenticationPtrOutput) Mechanism() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
-// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
 func (o StreamConnectionFailoverAuthenticationPtrOutput) Method() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionFailoverAuthentication) *string {
 		if v == nil {
@@ -28254,6 +28469,682 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput)
 // Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) NodeCount() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) int { return v.NodeCount }).(pulumi.IntOutput)
+}
+
+type GetAiModelApiKeysResult struct {
+	// Identifier used to reference this API key in admin API calls.
+	ApiKeyId string `pulumi:"apiKeyId"`
+	// Cloud provider scope for this API key. Use "ANY" for cloud-agnostic scope.
+	Cloud string `pulumi:"cloud"`
+	// UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
+	CreatedAt string `pulumi:"createdAt"`
+	// Name of the user that created this API key. If no user name is available, the user ID is returned.
+	CreatedBy string `pulumi:"createdBy"`
+	// Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+	Endpoint string `pulumi:"endpoint"`
+	// Geography scope for this API key. Use "ANY" for geography-agnostic scope.
+	Geography string `pulumi:"geography"`
+	// UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// A partially obfuscated version of the API key secret returned when the API key was created.
+	MaskedSecret string `pulumi:"maskedSecret"`
+	// Arbitrary string identifier assigned to this API key for convenient identification.
+	Name string `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// A string describing the current status of the API key.
+	Status string `pulumi:"status"`
+}
+
+// GetAiModelApiKeysResultInput is an input type that accepts GetAiModelApiKeysResultArgs and GetAiModelApiKeysResultOutput values.
+// You can construct a concrete instance of `GetAiModelApiKeysResultInput` via:
+//
+//	GetAiModelApiKeysResultArgs{...}
+type GetAiModelApiKeysResultInput interface {
+	pulumi.Input
+
+	ToGetAiModelApiKeysResultOutput() GetAiModelApiKeysResultOutput
+	ToGetAiModelApiKeysResultOutputWithContext(context.Context) GetAiModelApiKeysResultOutput
+}
+
+type GetAiModelApiKeysResultArgs struct {
+	// Identifier used to reference this API key in admin API calls.
+	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
+	// Cloud provider scope for this API key. Use "ANY" for cloud-agnostic scope.
+	Cloud pulumi.StringInput `pulumi:"cloud"`
+	// UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Name of the user that created this API key. If no user name is available, the user ID is returned.
+	CreatedBy pulumi.StringInput `pulumi:"createdBy"`
+	// Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// Geography scope for this API key. Use "ANY" for geography-agnostic scope.
+	Geography pulumi.StringInput `pulumi:"geography"`
+	// UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// A partially obfuscated version of the API key secret returned when the API key was created.
+	MaskedSecret pulumi.StringInput `pulumi:"maskedSecret"`
+	// Arbitrary string identifier assigned to this API key for convenient identification.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// A string describing the current status of the API key.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetAiModelApiKeysResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiModelApiKeysResult)(nil)).Elem()
+}
+
+func (i GetAiModelApiKeysResultArgs) ToGetAiModelApiKeysResultOutput() GetAiModelApiKeysResultOutput {
+	return i.ToGetAiModelApiKeysResultOutputWithContext(context.Background())
+}
+
+func (i GetAiModelApiKeysResultArgs) ToGetAiModelApiKeysResultOutputWithContext(ctx context.Context) GetAiModelApiKeysResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiModelApiKeysResultOutput)
+}
+
+// GetAiModelApiKeysResultArrayInput is an input type that accepts GetAiModelApiKeysResultArray and GetAiModelApiKeysResultArrayOutput values.
+// You can construct a concrete instance of `GetAiModelApiKeysResultArrayInput` via:
+//
+//	GetAiModelApiKeysResultArray{ GetAiModelApiKeysResultArgs{...} }
+type GetAiModelApiKeysResultArrayInput interface {
+	pulumi.Input
+
+	ToGetAiModelApiKeysResultArrayOutput() GetAiModelApiKeysResultArrayOutput
+	ToGetAiModelApiKeysResultArrayOutputWithContext(context.Context) GetAiModelApiKeysResultArrayOutput
+}
+
+type GetAiModelApiKeysResultArray []GetAiModelApiKeysResultInput
+
+func (GetAiModelApiKeysResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiModelApiKeysResult)(nil)).Elem()
+}
+
+func (i GetAiModelApiKeysResultArray) ToGetAiModelApiKeysResultArrayOutput() GetAiModelApiKeysResultArrayOutput {
+	return i.ToGetAiModelApiKeysResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetAiModelApiKeysResultArray) ToGetAiModelApiKeysResultArrayOutputWithContext(ctx context.Context) GetAiModelApiKeysResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiModelApiKeysResultArrayOutput)
+}
+
+type GetAiModelApiKeysResultOutput struct{ *pulumi.OutputState }
+
+func (GetAiModelApiKeysResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiModelApiKeysResult)(nil)).Elem()
+}
+
+func (o GetAiModelApiKeysResultOutput) ToGetAiModelApiKeysResultOutput() GetAiModelApiKeysResultOutput {
+	return o
+}
+
+func (o GetAiModelApiKeysResultOutput) ToGetAiModelApiKeysResultOutputWithContext(ctx context.Context) GetAiModelApiKeysResultOutput {
+	return o
+}
+
+// Identifier used to reference this API key in admin API calls.
+func (o GetAiModelApiKeysResultOutput) ApiKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelApiKeysResult) string { return v.ApiKeyId }).(pulumi.StringOutput)
+}
+
+// Cloud provider scope for this API key. Use "ANY" for cloud-agnostic scope.
+func (o GetAiModelApiKeysResultOutput) Cloud() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelApiKeysResult) string { return v.Cloud }).(pulumi.StringOutput)
+}
+
+// UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
+func (o GetAiModelApiKeysResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelApiKeysResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Name of the user that created this API key. If no user name is available, the user ID is returned.
+func (o GetAiModelApiKeysResultOutput) CreatedBy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelApiKeysResult) string { return v.CreatedBy }).(pulumi.StringOutput)
+}
+
+// Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+func (o GetAiModelApiKeysResultOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelApiKeysResult) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// Geography scope for this API key. Use "ANY" for geography-agnostic scope.
+func (o GetAiModelApiKeysResultOutput) Geography() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelApiKeysResult) string { return v.Geography }).(pulumi.StringOutput)
+}
+
+// UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
+func (o GetAiModelApiKeysResultOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelApiKeysResult) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// A partially obfuscated version of the API key secret returned when the API key was created.
+func (o GetAiModelApiKeysResultOutput) MaskedSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelApiKeysResult) string { return v.MaskedSecret }).(pulumi.StringOutput)
+}
+
+// Arbitrary string identifier assigned to this API key for convenient identification.
+func (o GetAiModelApiKeysResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelApiKeysResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+func (o GetAiModelApiKeysResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelApiKeysResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// A string describing the current status of the API key.
+func (o GetAiModelApiKeysResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelApiKeysResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetAiModelApiKeysResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAiModelApiKeysResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiModelApiKeysResult)(nil)).Elem()
+}
+
+func (o GetAiModelApiKeysResultArrayOutput) ToGetAiModelApiKeysResultArrayOutput() GetAiModelApiKeysResultArrayOutput {
+	return o
+}
+
+func (o GetAiModelApiKeysResultArrayOutput) ToGetAiModelApiKeysResultArrayOutputWithContext(ctx context.Context) GetAiModelApiKeysResultArrayOutput {
+	return o
+}
+
+func (o GetAiModelApiKeysResultArrayOutput) Index(i pulumi.IntInput) GetAiModelApiKeysResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAiModelApiKeysResult {
+		return vs[0].([]GetAiModelApiKeysResult)[vs[1].(int)]
+	}).(GetAiModelApiKeysResultOutput)
+}
+
+type GetAiModelOrgApiKeysResult struct {
+	// Identifier used to reference this API key in admin API calls.
+	ApiKeyId string `pulumi:"apiKeyId"`
+	// Cloud provider scope for this API key. Use "ANY" for cloud-agnostic scope.
+	Cloud string `pulumi:"cloud"`
+	// UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
+	CreatedAt string `pulumi:"createdAt"`
+	// Name of the user that created this API key. If no user name is available, the user ID is returned.
+	CreatedBy string `pulumi:"createdBy"`
+	// Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+	Endpoint string `pulumi:"endpoint"`
+	// Geography scope for this API key. Use "ANY" for geography-agnostic scope.
+	Geography string `pulumi:"geography"`
+	// UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// A partially obfuscated version of the API key secret returned when the API key was created.
+	MaskedSecret string `pulumi:"maskedSecret"`
+	// Arbitrary string identifier assigned to this API key for convenient identification.
+	Name string `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// A string describing the current status of the API key.
+	Status string `pulumi:"status"`
+}
+
+// GetAiModelOrgApiKeysResultInput is an input type that accepts GetAiModelOrgApiKeysResultArgs and GetAiModelOrgApiKeysResultOutput values.
+// You can construct a concrete instance of `GetAiModelOrgApiKeysResultInput` via:
+//
+//	GetAiModelOrgApiKeysResultArgs{...}
+type GetAiModelOrgApiKeysResultInput interface {
+	pulumi.Input
+
+	ToGetAiModelOrgApiKeysResultOutput() GetAiModelOrgApiKeysResultOutput
+	ToGetAiModelOrgApiKeysResultOutputWithContext(context.Context) GetAiModelOrgApiKeysResultOutput
+}
+
+type GetAiModelOrgApiKeysResultArgs struct {
+	// Identifier used to reference this API key in admin API calls.
+	ApiKeyId pulumi.StringInput `pulumi:"apiKeyId"`
+	// Cloud provider scope for this API key. Use "ANY" for cloud-agnostic scope.
+	Cloud pulumi.StringInput `pulumi:"cloud"`
+	// UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Name of the user that created this API key. If no user name is available, the user ID is returned.
+	CreatedBy pulumi.StringInput `pulumi:"createdBy"`
+	// Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// Geography scope for this API key. Use "ANY" for geography-agnostic scope.
+	Geography pulumi.StringInput `pulumi:"geography"`
+	// UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// A partially obfuscated version of the API key secret returned when the API key was created.
+	MaskedSecret pulumi.StringInput `pulumi:"maskedSecret"`
+	// Arbitrary string identifier assigned to this API key for convenient identification.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// A string describing the current status of the API key.
+	Status pulumi.StringInput `pulumi:"status"`
+}
+
+func (GetAiModelOrgApiKeysResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiModelOrgApiKeysResult)(nil)).Elem()
+}
+
+func (i GetAiModelOrgApiKeysResultArgs) ToGetAiModelOrgApiKeysResultOutput() GetAiModelOrgApiKeysResultOutput {
+	return i.ToGetAiModelOrgApiKeysResultOutputWithContext(context.Background())
+}
+
+func (i GetAiModelOrgApiKeysResultArgs) ToGetAiModelOrgApiKeysResultOutputWithContext(ctx context.Context) GetAiModelOrgApiKeysResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiModelOrgApiKeysResultOutput)
+}
+
+// GetAiModelOrgApiKeysResultArrayInput is an input type that accepts GetAiModelOrgApiKeysResultArray and GetAiModelOrgApiKeysResultArrayOutput values.
+// You can construct a concrete instance of `GetAiModelOrgApiKeysResultArrayInput` via:
+//
+//	GetAiModelOrgApiKeysResultArray{ GetAiModelOrgApiKeysResultArgs{...} }
+type GetAiModelOrgApiKeysResultArrayInput interface {
+	pulumi.Input
+
+	ToGetAiModelOrgApiKeysResultArrayOutput() GetAiModelOrgApiKeysResultArrayOutput
+	ToGetAiModelOrgApiKeysResultArrayOutputWithContext(context.Context) GetAiModelOrgApiKeysResultArrayOutput
+}
+
+type GetAiModelOrgApiKeysResultArray []GetAiModelOrgApiKeysResultInput
+
+func (GetAiModelOrgApiKeysResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiModelOrgApiKeysResult)(nil)).Elem()
+}
+
+func (i GetAiModelOrgApiKeysResultArray) ToGetAiModelOrgApiKeysResultArrayOutput() GetAiModelOrgApiKeysResultArrayOutput {
+	return i.ToGetAiModelOrgApiKeysResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetAiModelOrgApiKeysResultArray) ToGetAiModelOrgApiKeysResultArrayOutputWithContext(ctx context.Context) GetAiModelOrgApiKeysResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiModelOrgApiKeysResultArrayOutput)
+}
+
+type GetAiModelOrgApiKeysResultOutput struct{ *pulumi.OutputState }
+
+func (GetAiModelOrgApiKeysResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiModelOrgApiKeysResult)(nil)).Elem()
+}
+
+func (o GetAiModelOrgApiKeysResultOutput) ToGetAiModelOrgApiKeysResultOutput() GetAiModelOrgApiKeysResultOutput {
+	return o
+}
+
+func (o GetAiModelOrgApiKeysResultOutput) ToGetAiModelOrgApiKeysResultOutputWithContext(ctx context.Context) GetAiModelOrgApiKeysResultOutput {
+	return o
+}
+
+// Identifier used to reference this API key in admin API calls.
+func (o GetAiModelOrgApiKeysResultOutput) ApiKeyId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelOrgApiKeysResult) string { return v.ApiKeyId }).(pulumi.StringOutput)
+}
+
+// Cloud provider scope for this API key. Use "ANY" for cloud-agnostic scope.
+func (o GetAiModelOrgApiKeysResultOutput) Cloud() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelOrgApiKeysResult) string { return v.Cloud }).(pulumi.StringOutput)
+}
+
+// UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
+func (o GetAiModelOrgApiKeysResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelOrgApiKeysResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Name of the user that created this API key. If no user name is available, the user ID is returned.
+func (o GetAiModelOrgApiKeysResultOutput) CreatedBy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelOrgApiKeysResult) string { return v.CreatedBy }).(pulumi.StringOutput)
+}
+
+// Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+func (o GetAiModelOrgApiKeysResultOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelOrgApiKeysResult) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// Geography scope for this API key. Use "ANY" for geography-agnostic scope.
+func (o GetAiModelOrgApiKeysResultOutput) Geography() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelOrgApiKeysResult) string { return v.Geography }).(pulumi.StringOutput)
+}
+
+// UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
+func (o GetAiModelOrgApiKeysResultOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelOrgApiKeysResult) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// A partially obfuscated version of the API key secret returned when the API key was created.
+func (o GetAiModelOrgApiKeysResultOutput) MaskedSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelOrgApiKeysResult) string { return v.MaskedSecret }).(pulumi.StringOutput)
+}
+
+// Arbitrary string identifier assigned to this API key for convenient identification.
+func (o GetAiModelOrgApiKeysResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelOrgApiKeysResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+func (o GetAiModelOrgApiKeysResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelOrgApiKeysResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// A string describing the current status of the API key.
+func (o GetAiModelOrgApiKeysResultOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelOrgApiKeysResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+type GetAiModelOrgApiKeysResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAiModelOrgApiKeysResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiModelOrgApiKeysResult)(nil)).Elem()
+}
+
+func (o GetAiModelOrgApiKeysResultArrayOutput) ToGetAiModelOrgApiKeysResultArrayOutput() GetAiModelOrgApiKeysResultArrayOutput {
+	return o
+}
+
+func (o GetAiModelOrgApiKeysResultArrayOutput) ToGetAiModelOrgApiKeysResultArrayOutputWithContext(ctx context.Context) GetAiModelOrgApiKeysResultArrayOutput {
+	return o
+}
+
+func (o GetAiModelOrgApiKeysResultArrayOutput) Index(i pulumi.IntInput) GetAiModelOrgApiKeysResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAiModelOrgApiKeysResult {
+		return vs[0].([]GetAiModelOrgApiKeysResult)[vs[1].(int)]
+	}).(GetAiModelOrgApiKeysResultOutput)
+}
+
+type GetAiModelOrgRateLimitsResult struct {
+	// Cloud provider scope for this rate limit. Use "ANY" for cloud-agnostic scope.
+	Cloud string `pulumi:"cloud"`
+	// Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+	Endpoint string `pulumi:"endpoint"`
+	// Geography scope for this rate limit. Use "ANY" for geography-agnostic scope.
+	Geography string `pulumi:"geography"`
+	// Identifier used to reference this model group.
+	ModelGroupName string `pulumi:"modelGroupName"`
+	// List of embedding model names included in this model group.
+	ModelNames []string `pulumi:"modelNames"`
+	// The number of requests per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+	RequestsPerMinuteLimit int `pulumi:"requestsPerMinuteLimit"`
+	// The number of tokens per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+	TokensPerMinuteLimit int `pulumi:"tokensPerMinuteLimit"`
+}
+
+// GetAiModelOrgRateLimitsResultInput is an input type that accepts GetAiModelOrgRateLimitsResultArgs and GetAiModelOrgRateLimitsResultOutput values.
+// You can construct a concrete instance of `GetAiModelOrgRateLimitsResultInput` via:
+//
+//	GetAiModelOrgRateLimitsResultArgs{...}
+type GetAiModelOrgRateLimitsResultInput interface {
+	pulumi.Input
+
+	ToGetAiModelOrgRateLimitsResultOutput() GetAiModelOrgRateLimitsResultOutput
+	ToGetAiModelOrgRateLimitsResultOutputWithContext(context.Context) GetAiModelOrgRateLimitsResultOutput
+}
+
+type GetAiModelOrgRateLimitsResultArgs struct {
+	// Cloud provider scope for this rate limit. Use "ANY" for cloud-agnostic scope.
+	Cloud pulumi.StringInput `pulumi:"cloud"`
+	// Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// Geography scope for this rate limit. Use "ANY" for geography-agnostic scope.
+	Geography pulumi.StringInput `pulumi:"geography"`
+	// Identifier used to reference this model group.
+	ModelGroupName pulumi.StringInput `pulumi:"modelGroupName"`
+	// List of embedding model names included in this model group.
+	ModelNames pulumi.StringArrayInput `pulumi:"modelNames"`
+	// The number of requests per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+	RequestsPerMinuteLimit pulumi.IntInput `pulumi:"requestsPerMinuteLimit"`
+	// The number of tokens per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+	TokensPerMinuteLimit pulumi.IntInput `pulumi:"tokensPerMinuteLimit"`
+}
+
+func (GetAiModelOrgRateLimitsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiModelOrgRateLimitsResult)(nil)).Elem()
+}
+
+func (i GetAiModelOrgRateLimitsResultArgs) ToGetAiModelOrgRateLimitsResultOutput() GetAiModelOrgRateLimitsResultOutput {
+	return i.ToGetAiModelOrgRateLimitsResultOutputWithContext(context.Background())
+}
+
+func (i GetAiModelOrgRateLimitsResultArgs) ToGetAiModelOrgRateLimitsResultOutputWithContext(ctx context.Context) GetAiModelOrgRateLimitsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiModelOrgRateLimitsResultOutput)
+}
+
+// GetAiModelOrgRateLimitsResultArrayInput is an input type that accepts GetAiModelOrgRateLimitsResultArray and GetAiModelOrgRateLimitsResultArrayOutput values.
+// You can construct a concrete instance of `GetAiModelOrgRateLimitsResultArrayInput` via:
+//
+//	GetAiModelOrgRateLimitsResultArray{ GetAiModelOrgRateLimitsResultArgs{...} }
+type GetAiModelOrgRateLimitsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetAiModelOrgRateLimitsResultArrayOutput() GetAiModelOrgRateLimitsResultArrayOutput
+	ToGetAiModelOrgRateLimitsResultArrayOutputWithContext(context.Context) GetAiModelOrgRateLimitsResultArrayOutput
+}
+
+type GetAiModelOrgRateLimitsResultArray []GetAiModelOrgRateLimitsResultInput
+
+func (GetAiModelOrgRateLimitsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiModelOrgRateLimitsResult)(nil)).Elem()
+}
+
+func (i GetAiModelOrgRateLimitsResultArray) ToGetAiModelOrgRateLimitsResultArrayOutput() GetAiModelOrgRateLimitsResultArrayOutput {
+	return i.ToGetAiModelOrgRateLimitsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetAiModelOrgRateLimitsResultArray) ToGetAiModelOrgRateLimitsResultArrayOutputWithContext(ctx context.Context) GetAiModelOrgRateLimitsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiModelOrgRateLimitsResultArrayOutput)
+}
+
+type GetAiModelOrgRateLimitsResultOutput struct{ *pulumi.OutputState }
+
+func (GetAiModelOrgRateLimitsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiModelOrgRateLimitsResult)(nil)).Elem()
+}
+
+func (o GetAiModelOrgRateLimitsResultOutput) ToGetAiModelOrgRateLimitsResultOutput() GetAiModelOrgRateLimitsResultOutput {
+	return o
+}
+
+func (o GetAiModelOrgRateLimitsResultOutput) ToGetAiModelOrgRateLimitsResultOutputWithContext(ctx context.Context) GetAiModelOrgRateLimitsResultOutput {
+	return o
+}
+
+// Cloud provider scope for this rate limit. Use "ANY" for cloud-agnostic scope.
+func (o GetAiModelOrgRateLimitsResultOutput) Cloud() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelOrgRateLimitsResult) string { return v.Cloud }).(pulumi.StringOutput)
+}
+
+// Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+func (o GetAiModelOrgRateLimitsResultOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelOrgRateLimitsResult) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// Geography scope for this rate limit. Use "ANY" for geography-agnostic scope.
+func (o GetAiModelOrgRateLimitsResultOutput) Geography() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelOrgRateLimitsResult) string { return v.Geography }).(pulumi.StringOutput)
+}
+
+// Identifier used to reference this model group.
+func (o GetAiModelOrgRateLimitsResultOutput) ModelGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelOrgRateLimitsResult) string { return v.ModelGroupName }).(pulumi.StringOutput)
+}
+
+// List of embedding model names included in this model group.
+func (o GetAiModelOrgRateLimitsResultOutput) ModelNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAiModelOrgRateLimitsResult) []string { return v.ModelNames }).(pulumi.StringArrayOutput)
+}
+
+// The number of requests per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+func (o GetAiModelOrgRateLimitsResultOutput) RequestsPerMinuteLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAiModelOrgRateLimitsResult) int { return v.RequestsPerMinuteLimit }).(pulumi.IntOutput)
+}
+
+// The number of tokens per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+func (o GetAiModelOrgRateLimitsResultOutput) TokensPerMinuteLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAiModelOrgRateLimitsResult) int { return v.TokensPerMinuteLimit }).(pulumi.IntOutput)
+}
+
+type GetAiModelOrgRateLimitsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAiModelOrgRateLimitsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiModelOrgRateLimitsResult)(nil)).Elem()
+}
+
+func (o GetAiModelOrgRateLimitsResultArrayOutput) ToGetAiModelOrgRateLimitsResultArrayOutput() GetAiModelOrgRateLimitsResultArrayOutput {
+	return o
+}
+
+func (o GetAiModelOrgRateLimitsResultArrayOutput) ToGetAiModelOrgRateLimitsResultArrayOutputWithContext(ctx context.Context) GetAiModelOrgRateLimitsResultArrayOutput {
+	return o
+}
+
+func (o GetAiModelOrgRateLimitsResultArrayOutput) Index(i pulumi.IntInput) GetAiModelOrgRateLimitsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAiModelOrgRateLimitsResult {
+		return vs[0].([]GetAiModelOrgRateLimitsResult)[vs[1].(int)]
+	}).(GetAiModelOrgRateLimitsResultOutput)
+}
+
+type GetAiModelRateLimitsResult struct {
+	// Cloud provider scope for this rate limit. Use "ANY" for cloud-agnostic scope.
+	Cloud string `pulumi:"cloud"`
+	// Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+	Endpoint string `pulumi:"endpoint"`
+	// Geography scope for this rate limit. Use "ANY" for geography-agnostic scope.
+	Geography string `pulumi:"geography"`
+	// Identifier used to reference this model group.
+	ModelGroupName string `pulumi:"modelGroupName"`
+	// List of embedding model names included in this model group.
+	ModelNames []string `pulumi:"modelNames"`
+	// The number of requests per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+	RequestsPerMinuteLimit int `pulumi:"requestsPerMinuteLimit"`
+	// The number of tokens per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+	TokensPerMinuteLimit int `pulumi:"tokensPerMinuteLimit"`
+}
+
+// GetAiModelRateLimitsResultInput is an input type that accepts GetAiModelRateLimitsResultArgs and GetAiModelRateLimitsResultOutput values.
+// You can construct a concrete instance of `GetAiModelRateLimitsResultInput` via:
+//
+//	GetAiModelRateLimitsResultArgs{...}
+type GetAiModelRateLimitsResultInput interface {
+	pulumi.Input
+
+	ToGetAiModelRateLimitsResultOutput() GetAiModelRateLimitsResultOutput
+	ToGetAiModelRateLimitsResultOutputWithContext(context.Context) GetAiModelRateLimitsResultOutput
+}
+
+type GetAiModelRateLimitsResultArgs struct {
+	// Cloud provider scope for this rate limit. Use "ANY" for cloud-agnostic scope.
+	Cloud pulumi.StringInput `pulumi:"cloud"`
+	// Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// Geography scope for this rate limit. Use "ANY" for geography-agnostic scope.
+	Geography pulumi.StringInput `pulumi:"geography"`
+	// Identifier used to reference this model group.
+	ModelGroupName pulumi.StringInput `pulumi:"modelGroupName"`
+	// List of embedding model names included in this model group.
+	ModelNames pulumi.StringArrayInput `pulumi:"modelNames"`
+	// The number of requests per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+	RequestsPerMinuteLimit pulumi.IntInput `pulumi:"requestsPerMinuteLimit"`
+	// The number of tokens per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+	TokensPerMinuteLimit pulumi.IntInput `pulumi:"tokensPerMinuteLimit"`
+}
+
+func (GetAiModelRateLimitsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiModelRateLimitsResult)(nil)).Elem()
+}
+
+func (i GetAiModelRateLimitsResultArgs) ToGetAiModelRateLimitsResultOutput() GetAiModelRateLimitsResultOutput {
+	return i.ToGetAiModelRateLimitsResultOutputWithContext(context.Background())
+}
+
+func (i GetAiModelRateLimitsResultArgs) ToGetAiModelRateLimitsResultOutputWithContext(ctx context.Context) GetAiModelRateLimitsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiModelRateLimitsResultOutput)
+}
+
+// GetAiModelRateLimitsResultArrayInput is an input type that accepts GetAiModelRateLimitsResultArray and GetAiModelRateLimitsResultArrayOutput values.
+// You can construct a concrete instance of `GetAiModelRateLimitsResultArrayInput` via:
+//
+//	GetAiModelRateLimitsResultArray{ GetAiModelRateLimitsResultArgs{...} }
+type GetAiModelRateLimitsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetAiModelRateLimitsResultArrayOutput() GetAiModelRateLimitsResultArrayOutput
+	ToGetAiModelRateLimitsResultArrayOutputWithContext(context.Context) GetAiModelRateLimitsResultArrayOutput
+}
+
+type GetAiModelRateLimitsResultArray []GetAiModelRateLimitsResultInput
+
+func (GetAiModelRateLimitsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiModelRateLimitsResult)(nil)).Elem()
+}
+
+func (i GetAiModelRateLimitsResultArray) ToGetAiModelRateLimitsResultArrayOutput() GetAiModelRateLimitsResultArrayOutput {
+	return i.ToGetAiModelRateLimitsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetAiModelRateLimitsResultArray) ToGetAiModelRateLimitsResultArrayOutputWithContext(ctx context.Context) GetAiModelRateLimitsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAiModelRateLimitsResultArrayOutput)
+}
+
+type GetAiModelRateLimitsResultOutput struct{ *pulumi.OutputState }
+
+func (GetAiModelRateLimitsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAiModelRateLimitsResult)(nil)).Elem()
+}
+
+func (o GetAiModelRateLimitsResultOutput) ToGetAiModelRateLimitsResultOutput() GetAiModelRateLimitsResultOutput {
+	return o
+}
+
+func (o GetAiModelRateLimitsResultOutput) ToGetAiModelRateLimitsResultOutputWithContext(ctx context.Context) GetAiModelRateLimitsResultOutput {
+	return o
+}
+
+// Cloud provider scope for this rate limit. Use "ANY" for cloud-agnostic scope.
+func (o GetAiModelRateLimitsResultOutput) Cloud() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelRateLimitsResult) string { return v.Cloud }).(pulumi.StringOutput)
+}
+
+// Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+func (o GetAiModelRateLimitsResultOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelRateLimitsResult) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// Geography scope for this rate limit. Use "ANY" for geography-agnostic scope.
+func (o GetAiModelRateLimitsResultOutput) Geography() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelRateLimitsResult) string { return v.Geography }).(pulumi.StringOutput)
+}
+
+// Identifier used to reference this model group.
+func (o GetAiModelRateLimitsResultOutput) ModelGroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAiModelRateLimitsResult) string { return v.ModelGroupName }).(pulumi.StringOutput)
+}
+
+// List of embedding model names included in this model group.
+func (o GetAiModelRateLimitsResultOutput) ModelNames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetAiModelRateLimitsResult) []string { return v.ModelNames }).(pulumi.StringArrayOutput)
+}
+
+// The number of requests per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+func (o GetAiModelRateLimitsResultOutput) RequestsPerMinuteLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAiModelRateLimitsResult) int { return v.RequestsPerMinuteLimit }).(pulumi.IntOutput)
+}
+
+// The number of tokens per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+func (o GetAiModelRateLimitsResultOutput) TokensPerMinuteLimit() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAiModelRateLimitsResult) int { return v.TokensPerMinuteLimit }).(pulumi.IntOutput)
+}
+
+type GetAiModelRateLimitsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetAiModelRateLimitsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetAiModelRateLimitsResult)(nil)).Elem()
+}
+
+func (o GetAiModelRateLimitsResultArrayOutput) ToGetAiModelRateLimitsResultArrayOutput() GetAiModelRateLimitsResultArrayOutput {
+	return o
+}
+
+func (o GetAiModelRateLimitsResultArrayOutput) ToGetAiModelRateLimitsResultArrayOutputWithContext(ctx context.Context) GetAiModelRateLimitsResultArrayOutput {
+	return o
+}
+
+func (o GetAiModelRateLimitsResultArrayOutput) Index(i pulumi.IntInput) GetAiModelRateLimitsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetAiModelRateLimitsResult {
+		return vs[0].([]GetAiModelRateLimitsResult)[vs[1].(int)]
+	}).(GetAiModelRateLimitsResultOutput)
 }
 
 type GetAlertConfigurationMatcher struct {
@@ -50513,6 +51404,380 @@ func (o GetMaintenanceWindowProtectedHourArrayOutput) Index(i pulumi.IntInput) G
 	}).(GetMaintenanceWindowProtectedHourOutput)
 }
 
+type GetMetricIntegrationHeadersRedacted struct {
+	// Header name.
+	Name string `pulumi:"name"`
+	// Redacted header value.
+	Value string `pulumi:"value"`
+}
+
+// GetMetricIntegrationHeadersRedactedInput is an input type that accepts GetMetricIntegrationHeadersRedactedArgs and GetMetricIntegrationHeadersRedactedOutput values.
+// You can construct a concrete instance of `GetMetricIntegrationHeadersRedactedInput` via:
+//
+//	GetMetricIntegrationHeadersRedactedArgs{...}
+type GetMetricIntegrationHeadersRedactedInput interface {
+	pulumi.Input
+
+	ToGetMetricIntegrationHeadersRedactedOutput() GetMetricIntegrationHeadersRedactedOutput
+	ToGetMetricIntegrationHeadersRedactedOutputWithContext(context.Context) GetMetricIntegrationHeadersRedactedOutput
+}
+
+type GetMetricIntegrationHeadersRedactedArgs struct {
+	// Header name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Redacted header value.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetMetricIntegrationHeadersRedactedArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMetricIntegrationHeadersRedacted)(nil)).Elem()
+}
+
+func (i GetMetricIntegrationHeadersRedactedArgs) ToGetMetricIntegrationHeadersRedactedOutput() GetMetricIntegrationHeadersRedactedOutput {
+	return i.ToGetMetricIntegrationHeadersRedactedOutputWithContext(context.Background())
+}
+
+func (i GetMetricIntegrationHeadersRedactedArgs) ToGetMetricIntegrationHeadersRedactedOutputWithContext(ctx context.Context) GetMetricIntegrationHeadersRedactedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMetricIntegrationHeadersRedactedOutput)
+}
+
+// GetMetricIntegrationHeadersRedactedArrayInput is an input type that accepts GetMetricIntegrationHeadersRedactedArray and GetMetricIntegrationHeadersRedactedArrayOutput values.
+// You can construct a concrete instance of `GetMetricIntegrationHeadersRedactedArrayInput` via:
+//
+//	GetMetricIntegrationHeadersRedactedArray{ GetMetricIntegrationHeadersRedactedArgs{...} }
+type GetMetricIntegrationHeadersRedactedArrayInput interface {
+	pulumi.Input
+
+	ToGetMetricIntegrationHeadersRedactedArrayOutput() GetMetricIntegrationHeadersRedactedArrayOutput
+	ToGetMetricIntegrationHeadersRedactedArrayOutputWithContext(context.Context) GetMetricIntegrationHeadersRedactedArrayOutput
+}
+
+type GetMetricIntegrationHeadersRedactedArray []GetMetricIntegrationHeadersRedactedInput
+
+func (GetMetricIntegrationHeadersRedactedArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMetricIntegrationHeadersRedacted)(nil)).Elem()
+}
+
+func (i GetMetricIntegrationHeadersRedactedArray) ToGetMetricIntegrationHeadersRedactedArrayOutput() GetMetricIntegrationHeadersRedactedArrayOutput {
+	return i.ToGetMetricIntegrationHeadersRedactedArrayOutputWithContext(context.Background())
+}
+
+func (i GetMetricIntegrationHeadersRedactedArray) ToGetMetricIntegrationHeadersRedactedArrayOutputWithContext(ctx context.Context) GetMetricIntegrationHeadersRedactedArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMetricIntegrationHeadersRedactedArrayOutput)
+}
+
+type GetMetricIntegrationHeadersRedactedOutput struct{ *pulumi.OutputState }
+
+func (GetMetricIntegrationHeadersRedactedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMetricIntegrationHeadersRedacted)(nil)).Elem()
+}
+
+func (o GetMetricIntegrationHeadersRedactedOutput) ToGetMetricIntegrationHeadersRedactedOutput() GetMetricIntegrationHeadersRedactedOutput {
+	return o
+}
+
+func (o GetMetricIntegrationHeadersRedactedOutput) ToGetMetricIntegrationHeadersRedactedOutputWithContext(ctx context.Context) GetMetricIntegrationHeadersRedactedOutput {
+	return o
+}
+
+// Header name.
+func (o GetMetricIntegrationHeadersRedactedOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationHeadersRedacted) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Redacted header value.
+func (o GetMetricIntegrationHeadersRedactedOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationHeadersRedacted) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetMetricIntegrationHeadersRedactedArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMetricIntegrationHeadersRedactedArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMetricIntegrationHeadersRedacted)(nil)).Elem()
+}
+
+func (o GetMetricIntegrationHeadersRedactedArrayOutput) ToGetMetricIntegrationHeadersRedactedArrayOutput() GetMetricIntegrationHeadersRedactedArrayOutput {
+	return o
+}
+
+func (o GetMetricIntegrationHeadersRedactedArrayOutput) ToGetMetricIntegrationHeadersRedactedArrayOutputWithContext(ctx context.Context) GetMetricIntegrationHeadersRedactedArrayOutput {
+	return o
+}
+
+func (o GetMetricIntegrationHeadersRedactedArrayOutput) Index(i pulumi.IntInput) GetMetricIntegrationHeadersRedactedOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMetricIntegrationHeadersRedacted {
+		return vs[0].([]GetMetricIntegrationHeadersRedacted)[vs[1].(int)]
+	}).(GetMetricIntegrationHeadersRedactedOutput)
+}
+
+type GetMetricIntegrationsResult struct {
+	// The temporality to send to the metric integration.
+	AggregationTemporality string `pulumi:"aggregationTemporality"`
+	// Authentication method the integration uses when exporting metrics to the endpoint.
+	AuthType string `pulumi:"authType"`
+	// OpenTelemetry collector endpoint URL.
+	Endpoint string `pulumi:"endpoint"`
+	// HTTP headers for authentication and configuration. Values are redacted and never returned in plaintext.
+	HeadersRedacteds []GetMetricIntegrationsResultHeadersRedacted `pulumi:"headersRedacteds"`
+	// Type of metric integration. Identifies which protocol will be used for the integration.
+	IntegrationType string `pulumi:"integrationType"`
+	// Unique identifier of the metric integration configuration.
+	MetricIntegrationId string `pulumi:"metricIntegrationId"`
+	// Array of metric categories to export. Determines which types of metrics are sent to the integration.
+	MetricSelections []string `pulumi:"metricSelections"`
+	// The provider type for the metric integration. Identifies the third-party service provider.
+	ProviderType string `pulumi:"providerType"`
+}
+
+// GetMetricIntegrationsResultInput is an input type that accepts GetMetricIntegrationsResultArgs and GetMetricIntegrationsResultOutput values.
+// You can construct a concrete instance of `GetMetricIntegrationsResultInput` via:
+//
+//	GetMetricIntegrationsResultArgs{...}
+type GetMetricIntegrationsResultInput interface {
+	pulumi.Input
+
+	ToGetMetricIntegrationsResultOutput() GetMetricIntegrationsResultOutput
+	ToGetMetricIntegrationsResultOutputWithContext(context.Context) GetMetricIntegrationsResultOutput
+}
+
+type GetMetricIntegrationsResultArgs struct {
+	// The temporality to send to the metric integration.
+	AggregationTemporality pulumi.StringInput `pulumi:"aggregationTemporality"`
+	// Authentication method the integration uses when exporting metrics to the endpoint.
+	AuthType pulumi.StringInput `pulumi:"authType"`
+	// OpenTelemetry collector endpoint URL.
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// HTTP headers for authentication and configuration. Values are redacted and never returned in plaintext.
+	HeadersRedacteds GetMetricIntegrationsResultHeadersRedactedArrayInput `pulumi:"headersRedacteds"`
+	// Type of metric integration. Identifies which protocol will be used for the integration.
+	IntegrationType pulumi.StringInput `pulumi:"integrationType"`
+	// Unique identifier of the metric integration configuration.
+	MetricIntegrationId pulumi.StringInput `pulumi:"metricIntegrationId"`
+	// Array of metric categories to export. Determines which types of metrics are sent to the integration.
+	MetricSelections pulumi.StringArrayInput `pulumi:"metricSelections"`
+	// The provider type for the metric integration. Identifies the third-party service provider.
+	ProviderType pulumi.StringInput `pulumi:"providerType"`
+}
+
+func (GetMetricIntegrationsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMetricIntegrationsResult)(nil)).Elem()
+}
+
+func (i GetMetricIntegrationsResultArgs) ToGetMetricIntegrationsResultOutput() GetMetricIntegrationsResultOutput {
+	return i.ToGetMetricIntegrationsResultOutputWithContext(context.Background())
+}
+
+func (i GetMetricIntegrationsResultArgs) ToGetMetricIntegrationsResultOutputWithContext(ctx context.Context) GetMetricIntegrationsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMetricIntegrationsResultOutput)
+}
+
+// GetMetricIntegrationsResultArrayInput is an input type that accepts GetMetricIntegrationsResultArray and GetMetricIntegrationsResultArrayOutput values.
+// You can construct a concrete instance of `GetMetricIntegrationsResultArrayInput` via:
+//
+//	GetMetricIntegrationsResultArray{ GetMetricIntegrationsResultArgs{...} }
+type GetMetricIntegrationsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetMetricIntegrationsResultArrayOutput() GetMetricIntegrationsResultArrayOutput
+	ToGetMetricIntegrationsResultArrayOutputWithContext(context.Context) GetMetricIntegrationsResultArrayOutput
+}
+
+type GetMetricIntegrationsResultArray []GetMetricIntegrationsResultInput
+
+func (GetMetricIntegrationsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMetricIntegrationsResult)(nil)).Elem()
+}
+
+func (i GetMetricIntegrationsResultArray) ToGetMetricIntegrationsResultArrayOutput() GetMetricIntegrationsResultArrayOutput {
+	return i.ToGetMetricIntegrationsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetMetricIntegrationsResultArray) ToGetMetricIntegrationsResultArrayOutputWithContext(ctx context.Context) GetMetricIntegrationsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMetricIntegrationsResultArrayOutput)
+}
+
+type GetMetricIntegrationsResultOutput struct{ *pulumi.OutputState }
+
+func (GetMetricIntegrationsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMetricIntegrationsResult)(nil)).Elem()
+}
+
+func (o GetMetricIntegrationsResultOutput) ToGetMetricIntegrationsResultOutput() GetMetricIntegrationsResultOutput {
+	return o
+}
+
+func (o GetMetricIntegrationsResultOutput) ToGetMetricIntegrationsResultOutputWithContext(ctx context.Context) GetMetricIntegrationsResultOutput {
+	return o
+}
+
+// The temporality to send to the metric integration.
+func (o GetMetricIntegrationsResultOutput) AggregationTemporality() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResult) string { return v.AggregationTemporality }).(pulumi.StringOutput)
+}
+
+// Authentication method the integration uses when exporting metrics to the endpoint.
+func (o GetMetricIntegrationsResultOutput) AuthType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResult) string { return v.AuthType }).(pulumi.StringOutput)
+}
+
+// OpenTelemetry collector endpoint URL.
+func (o GetMetricIntegrationsResultOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResult) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// HTTP headers for authentication and configuration. Values are redacted and never returned in plaintext.
+func (o GetMetricIntegrationsResultOutput) HeadersRedacteds() GetMetricIntegrationsResultHeadersRedactedArrayOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResult) []GetMetricIntegrationsResultHeadersRedacted {
+		return v.HeadersRedacteds
+	}).(GetMetricIntegrationsResultHeadersRedactedArrayOutput)
+}
+
+// Type of metric integration. Identifies which protocol will be used for the integration.
+func (o GetMetricIntegrationsResultOutput) IntegrationType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResult) string { return v.IntegrationType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the metric integration configuration.
+func (o GetMetricIntegrationsResultOutput) MetricIntegrationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResult) string { return v.MetricIntegrationId }).(pulumi.StringOutput)
+}
+
+// Array of metric categories to export. Determines which types of metrics are sent to the integration.
+func (o GetMetricIntegrationsResultOutput) MetricSelections() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResult) []string { return v.MetricSelections }).(pulumi.StringArrayOutput)
+}
+
+// The provider type for the metric integration. Identifies the third-party service provider.
+func (o GetMetricIntegrationsResultOutput) ProviderType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResult) string { return v.ProviderType }).(pulumi.StringOutput)
+}
+
+type GetMetricIntegrationsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMetricIntegrationsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMetricIntegrationsResult)(nil)).Elem()
+}
+
+func (o GetMetricIntegrationsResultArrayOutput) ToGetMetricIntegrationsResultArrayOutput() GetMetricIntegrationsResultArrayOutput {
+	return o
+}
+
+func (o GetMetricIntegrationsResultArrayOutput) ToGetMetricIntegrationsResultArrayOutputWithContext(ctx context.Context) GetMetricIntegrationsResultArrayOutput {
+	return o
+}
+
+func (o GetMetricIntegrationsResultArrayOutput) Index(i pulumi.IntInput) GetMetricIntegrationsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMetricIntegrationsResult {
+		return vs[0].([]GetMetricIntegrationsResult)[vs[1].(int)]
+	}).(GetMetricIntegrationsResultOutput)
+}
+
+type GetMetricIntegrationsResultHeadersRedacted struct {
+	// Header name.
+	Name string `pulumi:"name"`
+	// Redacted header value.
+	Value string `pulumi:"value"`
+}
+
+// GetMetricIntegrationsResultHeadersRedactedInput is an input type that accepts GetMetricIntegrationsResultHeadersRedactedArgs and GetMetricIntegrationsResultHeadersRedactedOutput values.
+// You can construct a concrete instance of `GetMetricIntegrationsResultHeadersRedactedInput` via:
+//
+//	GetMetricIntegrationsResultHeadersRedactedArgs{...}
+type GetMetricIntegrationsResultHeadersRedactedInput interface {
+	pulumi.Input
+
+	ToGetMetricIntegrationsResultHeadersRedactedOutput() GetMetricIntegrationsResultHeadersRedactedOutput
+	ToGetMetricIntegrationsResultHeadersRedactedOutputWithContext(context.Context) GetMetricIntegrationsResultHeadersRedactedOutput
+}
+
+type GetMetricIntegrationsResultHeadersRedactedArgs struct {
+	// Header name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Redacted header value.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (GetMetricIntegrationsResultHeadersRedactedArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMetricIntegrationsResultHeadersRedacted)(nil)).Elem()
+}
+
+func (i GetMetricIntegrationsResultHeadersRedactedArgs) ToGetMetricIntegrationsResultHeadersRedactedOutput() GetMetricIntegrationsResultHeadersRedactedOutput {
+	return i.ToGetMetricIntegrationsResultHeadersRedactedOutputWithContext(context.Background())
+}
+
+func (i GetMetricIntegrationsResultHeadersRedactedArgs) ToGetMetricIntegrationsResultHeadersRedactedOutputWithContext(ctx context.Context) GetMetricIntegrationsResultHeadersRedactedOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMetricIntegrationsResultHeadersRedactedOutput)
+}
+
+// GetMetricIntegrationsResultHeadersRedactedArrayInput is an input type that accepts GetMetricIntegrationsResultHeadersRedactedArray and GetMetricIntegrationsResultHeadersRedactedArrayOutput values.
+// You can construct a concrete instance of `GetMetricIntegrationsResultHeadersRedactedArrayInput` via:
+//
+//	GetMetricIntegrationsResultHeadersRedactedArray{ GetMetricIntegrationsResultHeadersRedactedArgs{...} }
+type GetMetricIntegrationsResultHeadersRedactedArrayInput interface {
+	pulumi.Input
+
+	ToGetMetricIntegrationsResultHeadersRedactedArrayOutput() GetMetricIntegrationsResultHeadersRedactedArrayOutput
+	ToGetMetricIntegrationsResultHeadersRedactedArrayOutputWithContext(context.Context) GetMetricIntegrationsResultHeadersRedactedArrayOutput
+}
+
+type GetMetricIntegrationsResultHeadersRedactedArray []GetMetricIntegrationsResultHeadersRedactedInput
+
+func (GetMetricIntegrationsResultHeadersRedactedArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMetricIntegrationsResultHeadersRedacted)(nil)).Elem()
+}
+
+func (i GetMetricIntegrationsResultHeadersRedactedArray) ToGetMetricIntegrationsResultHeadersRedactedArrayOutput() GetMetricIntegrationsResultHeadersRedactedArrayOutput {
+	return i.ToGetMetricIntegrationsResultHeadersRedactedArrayOutputWithContext(context.Background())
+}
+
+func (i GetMetricIntegrationsResultHeadersRedactedArray) ToGetMetricIntegrationsResultHeadersRedactedArrayOutputWithContext(ctx context.Context) GetMetricIntegrationsResultHeadersRedactedArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMetricIntegrationsResultHeadersRedactedArrayOutput)
+}
+
+type GetMetricIntegrationsResultHeadersRedactedOutput struct{ *pulumi.OutputState }
+
+func (GetMetricIntegrationsResultHeadersRedactedOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMetricIntegrationsResultHeadersRedacted)(nil)).Elem()
+}
+
+func (o GetMetricIntegrationsResultHeadersRedactedOutput) ToGetMetricIntegrationsResultHeadersRedactedOutput() GetMetricIntegrationsResultHeadersRedactedOutput {
+	return o
+}
+
+func (o GetMetricIntegrationsResultHeadersRedactedOutput) ToGetMetricIntegrationsResultHeadersRedactedOutputWithContext(ctx context.Context) GetMetricIntegrationsResultHeadersRedactedOutput {
+	return o
+}
+
+// Header name.
+func (o GetMetricIntegrationsResultHeadersRedactedOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResultHeadersRedacted) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Redacted header value.
+func (o GetMetricIntegrationsResultHeadersRedactedOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResultHeadersRedacted) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type GetMetricIntegrationsResultHeadersRedactedArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMetricIntegrationsResultHeadersRedactedArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMetricIntegrationsResultHeadersRedacted)(nil)).Elem()
+}
+
+func (o GetMetricIntegrationsResultHeadersRedactedArrayOutput) ToGetMetricIntegrationsResultHeadersRedactedArrayOutput() GetMetricIntegrationsResultHeadersRedactedArrayOutput {
+	return o
+}
+
+func (o GetMetricIntegrationsResultHeadersRedactedArrayOutput) ToGetMetricIntegrationsResultHeadersRedactedArrayOutputWithContext(ctx context.Context) GetMetricIntegrationsResultHeadersRedactedArrayOutput {
+	return o
+}
+
+func (o GetMetricIntegrationsResultHeadersRedactedArrayOutput) Index(i pulumi.IntInput) GetMetricIntegrationsResultHeadersRedactedOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMetricIntegrationsResultHeadersRedacted {
+		return vs[0].([]GetMetricIntegrationsResultHeadersRedacted)[vs[1].(int)]
+	}).(GetMetricIntegrationsResultHeadersRedactedOutput)
+}
+
 type GetNetworkContainersResult struct {
 	// CIDR block that Atlas uses for your clusters. Atlas uses the specified CIDR block for all other Network Peering connections created in the project. The Atlas CIDR block must be at least a /24 and at most a /21 in one of the following [private networks](https://tools.ietf.org/html/rfc1918.html#section-3).
 	AtlasCidrBlock string `pulumi:"atlasCidrBlock"`
@@ -60444,7 +61709,7 @@ type GetStreamConnectionFailoverAuthentication struct {
 	ClientSecret string `pulumi:"clientSecret"`
 	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
 	Mechanism string `pulumi:"mechanism"`
-	// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+	// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
 	Method string `pulumi:"method"`
 	// Password of the account to connect to the Kafka cluster.
 	Password string `pulumi:"password"`
@@ -60482,7 +61747,7 @@ type GetStreamConnectionFailoverAuthenticationArgs struct {
 	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
 	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
 	Mechanism pulumi.StringInput `pulumi:"mechanism"`
-	// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+	// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
 	Method pulumi.StringInput `pulumi:"method"`
 	// Password of the account to connect to the Kafka cluster.
 	Password pulumi.StringInput `pulumi:"password"`
@@ -60543,7 +61808,7 @@ func (o GetStreamConnectionFailoverAuthenticationOutput) Mechanism() pulumi.Stri
 	return o.ApplyT(func(v GetStreamConnectionFailoverAuthentication) string { return v.Mechanism }).(pulumi.StringOutput)
 }
 
-// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
 func (o GetStreamConnectionFailoverAuthenticationOutput) Method() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionFailoverAuthentication) string { return v.Method }).(pulumi.StringOutput)
 }
@@ -60852,21 +62117,21 @@ type GetStreamConnectionFailoversResult struct {
 	ClusterName string `pulumi:"clusterName"`
 	// Applies to type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
 	ClusterProjectId string `pulumi:"clusterProjectId"`
-	// Applies to type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+	// Applies to type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
 	Config map[string]string `pulumi:"config"`
-	// Applies to type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+	// Applies to type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
 	DbRoleToExecute GetStreamConnectionFailoversResultDbRoleToExecute `pulumi:"dbRoleToExecute"`
 	// Unique identifier of the connection.
 	FailoverConnectionId string `pulumi:"failoverConnectionId"`
 	// Applies to type: Kafka. Networking configuration for Streams connections.
 	Networking GetStreamConnectionFailoversResultNetworking `pulumi:"networking"`
-	// The connection's region.
+	// Connection region.
 	Region string `pulumi:"region"`
 	// Applies to type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
 	Security GetStreamConnectionFailoversResultSecurity `pulumi:"security"`
-	// The state of the connection.
+	// Connection state.
 	State string `pulumi:"state"`
-	// Type of the connection.
+	// Connection type.
 	Type string `pulumi:"type"`
 }
 
@@ -60890,21 +62155,21 @@ type GetStreamConnectionFailoversResultArgs struct {
 	ClusterName pulumi.StringInput `pulumi:"clusterName"`
 	// Applies to type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
 	ClusterProjectId pulumi.StringInput `pulumi:"clusterProjectId"`
-	// Applies to type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+	// Applies to type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
 	Config pulumi.StringMapInput `pulumi:"config"`
-	// Applies to type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+	// Applies to type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
 	DbRoleToExecute GetStreamConnectionFailoversResultDbRoleToExecuteInput `pulumi:"dbRoleToExecute"`
 	// Unique identifier of the connection.
 	FailoverConnectionId pulumi.StringInput `pulumi:"failoverConnectionId"`
 	// Applies to type: Kafka. Networking configuration for Streams connections.
 	Networking GetStreamConnectionFailoversResultNetworkingInput `pulumi:"networking"`
-	// The connection's region.
+	// Connection region.
 	Region pulumi.StringInput `pulumi:"region"`
 	// Applies to type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
 	Security GetStreamConnectionFailoversResultSecurityInput `pulumi:"security"`
-	// The state of the connection.
+	// Connection state.
 	State pulumi.StringInput `pulumi:"state"`
-	// Type of the connection.
+	// Connection type.
 	Type pulumi.StringInput `pulumi:"type"`
 }
 
@@ -60981,12 +62246,12 @@ func (o GetStreamConnectionFailoversResultOutput) ClusterProjectId() pulumi.Stri
 	return o.ApplyT(func(v GetStreamConnectionFailoversResult) string { return v.ClusterProjectId }).(pulumi.StringOutput)
 }
 
-// Applies to type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+// Applies to type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
 func (o GetStreamConnectionFailoversResultOutput) Config() pulumi.StringMapOutput {
 	return o.ApplyT(func(v GetStreamConnectionFailoversResult) map[string]string { return v.Config }).(pulumi.StringMapOutput)
 }
 
-// Applies to type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+// Applies to type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
 func (o GetStreamConnectionFailoversResultOutput) DbRoleToExecute() GetStreamConnectionFailoversResultDbRoleToExecuteOutput {
 	return o.ApplyT(func(v GetStreamConnectionFailoversResult) GetStreamConnectionFailoversResultDbRoleToExecute {
 		return v.DbRoleToExecute
@@ -61005,7 +62270,7 @@ func (o GetStreamConnectionFailoversResultOutput) Networking() GetStreamConnecti
 	}).(GetStreamConnectionFailoversResultNetworkingOutput)
 }
 
-// The connection's region.
+// Connection region.
 func (o GetStreamConnectionFailoversResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionFailoversResult) string { return v.Region }).(pulumi.StringOutput)
 }
@@ -61017,12 +62282,12 @@ func (o GetStreamConnectionFailoversResultOutput) Security() GetStreamConnection
 	}).(GetStreamConnectionFailoversResultSecurityOutput)
 }
 
-// The state of the connection.
+// Connection state.
 func (o GetStreamConnectionFailoversResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionFailoversResult) string { return v.State }).(pulumi.StringOutput)
 }
 
-// Type of the connection.
+// Connection type.
 func (o GetStreamConnectionFailoversResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionFailoversResult) string { return v.Type }).(pulumi.StringOutput)
 }
@@ -61054,7 +62319,7 @@ type GetStreamConnectionFailoversResultAuthentication struct {
 	ClientSecret string `pulumi:"clientSecret"`
 	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
 	Mechanism string `pulumi:"mechanism"`
-	// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+	// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
 	Method string `pulumi:"method"`
 	// Password of the account to connect to the Kafka cluster.
 	Password string `pulumi:"password"`
@@ -61092,7 +62357,7 @@ type GetStreamConnectionFailoversResultAuthenticationArgs struct {
 	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
 	// Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
 	Mechanism pulumi.StringInput `pulumi:"mechanism"`
-	// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+	// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
 	Method pulumi.StringInput `pulumi:"method"`
 	// Password of the account to connect to the Kafka cluster.
 	Password pulumi.StringInput `pulumi:"password"`
@@ -61153,7 +62418,7 @@ func (o GetStreamConnectionFailoversResultAuthenticationOutput) Mechanism() pulu
 	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Mechanism }).(pulumi.StringOutput)
 }
 
-// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
 func (o GetStreamConnectionFailoversResultAuthenticationOutput) Method() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Method }).(pulumi.StringOutput)
 }
@@ -63099,13 +64364,13 @@ type GetStreamPrivatelinkEndpointsResult struct {
 	Region string `pulumi:"region"`
 	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
 	ServiceAttachmentUris []string `pulumi:"serviceAttachmentUris"`
-	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
 	ServiceEndpointId string `pulumi:"serviceEndpointId"`
 	// Status of the connection.
 	State string `pulumi:"state"`
 	// Vendor that manages the endpoint. The following are the vendor values per provider:
 	//
-	//     * **AWS**: MSK, CONFLUENT, and S3
+	//     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
 	//
 	//     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
 	//
@@ -63159,13 +64424,13 @@ type GetStreamPrivatelinkEndpointsResultArgs struct {
 	Region pulumi.StringInput `pulumi:"region"`
 	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
 	ServiceAttachmentUris pulumi.StringArrayInput `pulumi:"serviceAttachmentUris"`
-	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
 	ServiceEndpointId pulumi.StringInput `pulumi:"serviceEndpointId"`
 	// Status of the connection.
 	State pulumi.StringInput `pulumi:"state"`
 	// Vendor that manages the endpoint. The following are the vendor values per provider:
 	//
-	//     * **AWS**: MSK, CONFLUENT, and S3
+	//     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
 	//
 	//     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
 	//
@@ -63294,7 +64559,7 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) ServiceAttachmentUris() pulum
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) []string { return v.ServiceAttachmentUris }).(pulumi.StringArrayOutput)
 }
 
-// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
 func (o GetStreamPrivatelinkEndpointsResultOutput) ServiceEndpointId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ServiceEndpointId }).(pulumi.StringOutput)
 }
@@ -63306,7 +64571,7 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) State() pulumi.StringOutput {
 
 // Vendor that manages the endpoint. The following are the vendor values per provider:
 //
-//   - **AWS**: MSK, CONFLUENT, and S3
+//   - **AWS**: MSK, CONFLUENT, S3, and LAMBDA
 //
 //   - **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
 //
@@ -63468,7 +64733,7 @@ type GetStreamProcessorsResult struct {
 	InstanceName string `pulumi:"instanceName"`
 	// Optional configuration for the stream processor.
 	Options GetStreamProcessorsResultOptions `pulumi:"options"`
-	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 	Pipeline string `pulumi:"pipeline"`
 	// Label that identifies the stream processor.
 	ProcessorName string `pulumi:"processorName"`
@@ -63506,7 +64771,7 @@ type GetStreamProcessorsResultArgs struct {
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
 	// Optional configuration for the stream processor.
 	Options GetStreamProcessorsResultOptionsInput `pulumi:"options"`
-	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 	Pipeline pulumi.StringInput `pulumi:"pipeline"`
 	// Label that identifies the stream processor.
 	ProcessorName pulumi.StringInput `pulumi:"processorName"`
@@ -63595,7 +64860,7 @@ func (o GetStreamProcessorsResultOutput) Options() GetStreamProcessorsResultOpti
 	return o.ApplyT(func(v GetStreamProcessorsResult) GetStreamProcessorsResultOptions { return v.Options }).(GetStreamProcessorsResultOptionsOutput)
 }
 
-// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 func (o GetStreamProcessorsResultOutput) Pipeline() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.Pipeline }).(pulumi.StringOutput)
 }
@@ -65375,6 +66640,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LogIntegrationOtelSuppliedHeaderArrayInput)(nil)).Elem(), LogIntegrationOtelSuppliedHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MaintenanceWindowProtectedHoursInput)(nil)).Elem(), MaintenanceWindowProtectedHoursArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MaintenanceWindowProtectedHoursPtrInput)(nil)).Elem(), MaintenanceWindowProtectedHoursArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MetricIntegrationHeaderInput)(nil)).Elem(), MetricIntegrationHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MetricIntegrationHeaderArrayInput)(nil)).Elem(), MetricIntegrationHeaderArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MetricIntegrationHeadersRedactedInput)(nil)).Elem(), MetricIntegrationHeadersRedactedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MetricIntegrationHeadersRedactedArrayInput)(nil)).Elem(), MetricIntegrationHeadersRedactedArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveCriteriaInput)(nil)).Elem(), OnlineArchiveCriteriaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveCriteriaPtrInput)(nil)).Elem(), OnlineArchiveCriteriaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveDataExpirationRuleInput)(nil)).Elem(), OnlineArchiveDataExpirationRuleArgs{})
@@ -65527,6 +66796,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiModelApiKeysResultInput)(nil)).Elem(), GetAiModelApiKeysResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiModelApiKeysResultArrayInput)(nil)).Elem(), GetAiModelApiKeysResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiModelOrgApiKeysResultInput)(nil)).Elem(), GetAiModelOrgApiKeysResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiModelOrgApiKeysResultArrayInput)(nil)).Elem(), GetAiModelOrgApiKeysResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiModelOrgRateLimitsResultInput)(nil)).Elem(), GetAiModelOrgRateLimitsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiModelOrgRateLimitsResultArrayInput)(nil)).Elem(), GetAiModelOrgRateLimitsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiModelRateLimitsResultInput)(nil)).Elem(), GetAiModelRateLimitsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAiModelRateLimitsResultArrayInput)(nil)).Elem(), GetAiModelRateLimitsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationMatcherInput)(nil)).Elem(), GetAlertConfigurationMatcherArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationMatcherArrayInput)(nil)).Elem(), GetAlertConfigurationMatcherArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAlertConfigurationMetricThresholdConfigInput)(nil)).Elem(), GetAlertConfigurationMetricThresholdConfigArgs{})
@@ -65854,6 +67131,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLogIntegrationsResultOtelSuppliedHeaderArrayInput)(nil)).Elem(), GetLogIntegrationsResultOtelSuppliedHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMaintenanceWindowProtectedHourInput)(nil)).Elem(), GetMaintenanceWindowProtectedHourArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMaintenanceWindowProtectedHourArrayInput)(nil)).Elem(), GetMaintenanceWindowProtectedHourArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationHeadersRedactedInput)(nil)).Elem(), GetMetricIntegrationHeadersRedactedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationHeadersRedactedArrayInput)(nil)).Elem(), GetMetricIntegrationHeadersRedactedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationsResultInput)(nil)).Elem(), GetMetricIntegrationsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationsResultArrayInput)(nil)).Elem(), GetMetricIntegrationsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationsResultHeadersRedactedInput)(nil)).Elem(), GetMetricIntegrationsResultHeadersRedactedArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationsResultHeadersRedactedArrayInput)(nil)).Elem(), GetMetricIntegrationsResultHeadersRedactedArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkContainersResultInput)(nil)).Elem(), GetNetworkContainersResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkContainersResultArrayInput)(nil)).Elem(), GetNetworkContainersResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkPeeringsResultInput)(nil)).Elem(), GetNetworkPeeringsResultArgs{})
@@ -66256,6 +67539,10 @@ func init() {
 	pulumi.RegisterOutputType(LogIntegrationOtelSuppliedHeaderArrayOutput{})
 	pulumi.RegisterOutputType(MaintenanceWindowProtectedHoursOutput{})
 	pulumi.RegisterOutputType(MaintenanceWindowProtectedHoursPtrOutput{})
+	pulumi.RegisterOutputType(MetricIntegrationHeaderOutput{})
+	pulumi.RegisterOutputType(MetricIntegrationHeaderArrayOutput{})
+	pulumi.RegisterOutputType(MetricIntegrationHeadersRedactedOutput{})
+	pulumi.RegisterOutputType(MetricIntegrationHeadersRedactedArrayOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveCriteriaOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveCriteriaPtrOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveDataExpirationRuleOutput{})
@@ -66408,6 +67695,14 @@ func init() {
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput{})
+	pulumi.RegisterOutputType(GetAiModelApiKeysResultOutput{})
+	pulumi.RegisterOutputType(GetAiModelApiKeysResultArrayOutput{})
+	pulumi.RegisterOutputType(GetAiModelOrgApiKeysResultOutput{})
+	pulumi.RegisterOutputType(GetAiModelOrgApiKeysResultArrayOutput{})
+	pulumi.RegisterOutputType(GetAiModelOrgRateLimitsResultOutput{})
+	pulumi.RegisterOutputType(GetAiModelOrgRateLimitsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetAiModelRateLimitsResultOutput{})
+	pulumi.RegisterOutputType(GetAiModelRateLimitsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationMatcherOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationMatcherArrayOutput{})
 	pulumi.RegisterOutputType(GetAlertConfigurationMetricThresholdConfigOutput{})
@@ -66735,6 +68030,12 @@ func init() {
 	pulumi.RegisterOutputType(GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput{})
 	pulumi.RegisterOutputType(GetMaintenanceWindowProtectedHourOutput{})
 	pulumi.RegisterOutputType(GetMaintenanceWindowProtectedHourArrayOutput{})
+	pulumi.RegisterOutputType(GetMetricIntegrationHeadersRedactedOutput{})
+	pulumi.RegisterOutputType(GetMetricIntegrationHeadersRedactedArrayOutput{})
+	pulumi.RegisterOutputType(GetMetricIntegrationsResultOutput{})
+	pulumi.RegisterOutputType(GetMetricIntegrationsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetMetricIntegrationsResultHeadersRedactedOutput{})
+	pulumi.RegisterOutputType(GetMetricIntegrationsResultHeadersRedactedArrayOutput{})
 	pulumi.RegisterOutputType(GetNetworkContainersResultOutput{})
 	pulumi.RegisterOutputType(GetNetworkContainersResultArrayOutput{})
 	pulumi.RegisterOutputType(GetNetworkPeeringsResultOutput{})

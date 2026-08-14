@@ -17,6 +17,10 @@ namespace Pulumi.Mongodbatlas
     /// 2. The update will be performed while the processor is in `STOPPED` state
     /// 3. If the processor was originally in `STARTED` state, it will be restarted after the update
     /// 
+    /// ## Pipeline field ordering
+    /// 
+    /// &gt; **IMPORTANT:** MongoDB documents are ordered, and several pipeline constructs depend on the order of keys within a document: sort specifications, where key order is sort precedence; equality comparisons against a document literal, which match by exact field order; and `$addFields`/`$project` specifications, whose key order becomes the field order of the documents the processor writes. Do not build `Pipeline` with `jsonencode()`: it emits object keys in lexicographic order, so a sort written as `{"region": 1, "city": 1}` reaches Atlas as `{"city": 1, "region": 1}`, reversing the sort precedence and silently changing what your processor does. Author `Pipeline` as a raw JSON string instead — a heredoc, `file("pipeline.json")`, or `templatefile("pipeline.json", { ... })` when the pipeline needs values interpolated into it — which Terraform passes through unchanged. Beware that `jsonencode(jsondecode(...))`, sometimes used to pull a pipeline out of a larger JSON document, sorts the keys for the same reason `jsonencode()` does; keep the pipeline in a file of its own so it can be read as a string. Note that `pulumi preview` still displays the attribute alphabetized and rendered as `jsonencode(...)`; that is how Terraform renders any JSON-string attribute and does not reflect what is sent to Atlas. To confirm the order that was applied, inspect the request body with `TF_LOG=DEBUG`, or run `sp.listStreamProcessors()` against the workspace.
+    /// 
     /// ## Example Usage
     /// 
     /// ### S
@@ -24,7 +28,6 @@ namespace Pulumi.Mongodbatlas
     /// ```csharp
     /// using System.Collections.Generic;
     /// using System.Linq;
-    /// using System.Text.Json;
     /// using Pulumi;
     /// using Mongodbatlas = Pulumi.Mongodbatlas;
     /// 
@@ -91,28 +94,15 @@ namespace Pulumi.Mongodbatlas
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.InstanceName,
     ///         ProcessorName = "sampleProcessorName",
-    ///         Pipeline = JsonSerializer.Serialize(new[]
+    ///         Pipeline = Output.Tuple(example_sample.ConnectionName, example_cluster.ConnectionName).Apply(values =&gt;
     ///         {
-    ///             new Dictionary&lt;string, object?&gt;
-    ///             {
-    ///                 ["$source"] = new Dictionary&lt;string, object?&gt;
-    ///                 {
-    ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_sample.ConnectionName,
-    ///                 },
-    ///             },
-    ///             new Dictionary&lt;string, object?&gt;
-    ///             {
-    ///                 ["$emit"] = new Dictionary&lt;string, object?&gt;
-    ///                 {
-    ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
-    ///                     ["db"] = "sample",
-    ///                     ["coll"] = "solar",
-    ///                     ["timeseries"] = new Dictionary&lt;string, object?&gt;
-    ///                     {
-    ///                         ["timeField"] = "_ts",
-    ///                     },
-    ///                 },
-    ///             },
+    ///             var example-sampleConnectionName = values.Item1;
+    ///             var example-clusterConnectionName = values.Item2;
+    ///             return @$"[
+    ///   {{\""$source\"": {{\""connectionName\"": \""{example_sampleConnectionName}\""}}}},
+    ///   {{\""$emit\"": {{\""connectionName\"": \""{example_clusterConnectionName}\"", \""db\"": \""sample\"", \""coll\"": \""solar\"", \""timeseries\"": {{\""timeField\"": \""_ts\""}}}}}}
+    /// ]
+    /// ";
     ///         }),
     ///         State = "STARTED",
     ///         Tier = "SP30",
@@ -123,23 +113,15 @@ namespace Pulumi.Mongodbatlas
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.InstanceName,
     ///         ProcessorName = "clusterProcessorName",
-    ///         Pipeline = JsonSerializer.Serialize(new[]
+    ///         Pipeline = Output.Tuple(example_cluster.ConnectionName, example_kafka.ConnectionName).Apply(values =&gt;
     ///         {
-    ///             new Dictionary&lt;string, object?&gt;
-    ///             {
-    ///                 ["$source"] = new Dictionary&lt;string, object?&gt;
-    ///                 {
-    ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
-    ///                 },
-    ///             },
-    ///             new Dictionary&lt;string, object?&gt;
-    ///             {
-    ///                 ["$emit"] = new Dictionary&lt;string, object?&gt;
-    ///                 {
-    ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_kafka.ConnectionName,
-    ///                     ["topic"] = "topic_from_cluster",
-    ///                 },
-    ///             },
+    ///             var example-clusterConnectionName = values.Item1;
+    ///             var example-kafkaConnectionName = values.Item2;
+    ///             return @$"[
+    ///   {{\""$source\"": {{\""connectionName\"": \""{example_clusterConnectionName}\""}}}},
+    ///   {{\""$emit\"": {{\""connectionName\"": \""{example_kafkaConnectionName}\"", \""topic\"": \""topic_from_cluster\""}}}}
+    /// ]
+    /// ";
     ///         }),
     ///         State = "CREATED",
     ///     });
@@ -149,29 +131,15 @@ namespace Pulumi.Mongodbatlas
     ///         ProjectId = projectId,
     ///         WorkspaceName = example.InstanceName,
     ///         ProcessorName = "kafkaProcessorName",
-    ///         Pipeline = JsonSerializer.Serialize(new[]
+    ///         Pipeline = Output.Tuple(example_kafka.ConnectionName, example_cluster.ConnectionName).Apply(values =&gt;
     ///         {
-    ///             new Dictionary&lt;string, object?&gt;
-    ///             {
-    ///                 ["$source"] = new Dictionary&lt;string, object?&gt;
-    ///                 {
-    ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_kafka.ConnectionName,
-    ///                     ["topic"] = "topic_source",
-    ///                 },
-    ///             },
-    ///             new Dictionary&lt;string, object?&gt;
-    ///             {
-    ///                 ["$emit"] = new Dictionary&lt;string, object?&gt;
-    ///                 {
-    ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
-    ///                     ["db"] = "kafka",
-    ///                     ["coll"] = "topic_source",
-    ///                     ["timeseries"] = new Dictionary&lt;string, object?&gt;
-    ///                     {
-    ///                         ["timeField"] = "ts",
-    ///                     },
-    ///                 },
-    ///             },
+    ///             var example-kafkaConnectionName = values.Item1;
+    ///             var example-clusterConnectionName = values.Item2;
+    ///             return @$"[
+    ///   {{\""$source\"": {{\""connectionName\"": \""{example_kafkaConnectionName}\"", \""topic\"": \""topic_source\""}}}},
+    ///   {{\""$emit\"": {{\""connectionName\"": \""{example_clusterConnectionName}\"", \""db\"": \""kafka\"", \""coll\"": \""topic_source\"", \""timeseries\"": {{\""timeField\"": \""ts\""}}}}}}
+    /// ]
+    /// ";
     ///         }),
     ///         State = "CREATED",
     ///         Options = new Mongodbatlas.Inputs.StreamProcessorOptionsArgs
@@ -179,7 +147,7 @@ namespace Pulumi.Mongodbatlas
     ///             Dlq = new Mongodbatlas.Inputs.StreamProcessorOptionsDlqArgs
     ///             {
     ///                 Coll = "exampleColumn",
-    ///                 ConnectionName = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
+    ///                 ConnectionName = example_cluster.ConnectionName,
     ///                 Db = "exampleDb",
     ///             },
     ///         },
@@ -243,7 +211,7 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.StreamProcessorOptions?> Options { get; private set; } = null!;
 
         /// <summary>
-        /// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        /// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         /// </summary>
         [Output("pipeline")]
         public Output<string> Pipeline { get; private set; } = null!;
@@ -358,7 +326,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamProcessorOptionsArgs>? Options { get; set; }
 
         /// <summary>
-        /// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        /// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         /// </summary>
         [Input("pipeline", required: true)]
         public Input<string> Pipeline { get; set; } = null!;
@@ -429,7 +397,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.StreamProcessorOptionsGetArgs>? Options { get; set; }
 
         /// <summary>
-        /// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        /// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         /// </summary>
         [Input("pipeline")]
         public Input<string>? Pipeline { get; set; }

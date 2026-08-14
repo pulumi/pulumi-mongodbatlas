@@ -212,6 +212,7 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
      * Election priority of the region. For regions with only read-only nodes, set this value to 0.
      * * If you have multiple `regionConfigs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
      * * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+     * * If several `regionConfigs` objects share the same priority, such as regions with only read-only or analytics nodes that have a priority of 0, list them in reverse alphabetical order by `regionName`. See the note at the beginning of this section.
      */
     priority: pulumi.Input<number>;
     /**
@@ -2070,6 +2071,28 @@ export interface MaintenanceWindowProtectedHours {
     startHourOfDay: pulumi.Input<number>;
 }
 
+export interface MetricIntegrationHeader {
+    /**
+     * Header name.
+     */
+    name: pulumi.Input<string>;
+    /**
+     * Header value.
+     */
+    value: pulumi.Input<string>;
+}
+
+export interface MetricIntegrationHeadersRedacted {
+    /**
+     * Header name.
+     */
+    name?: pulumi.Input<string | undefined>;
+    /**
+     * Redacted header value.
+     */
+    value?: pulumi.Input<string | undefined>;
+}
+
 export interface OnlineArchiveCriteria {
     /**
      * Indexed database parameter that stores the date that determines when data moves to the online archive. MongoDB Cloud archives the data when the current date exceeds the date in this database parameter plus the number of days specified through the expireAfterDays parameter.
@@ -2573,7 +2596,7 @@ export interface StreamConnectionFailoverAuthentication {
      */
     mechanism?: pulumi.Input<string | undefined>;
     /**
-     * SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+     * SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
      */
     method?: pulumi.Input<string | undefined>;
     /**

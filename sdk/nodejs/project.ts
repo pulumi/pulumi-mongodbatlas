@@ -99,7 +99,7 @@ export class Project extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly ipAddresses: pulumi.Output<outputs.ProjectIpAddresses>;
     /**
-     * Flag that indicates whether to enable the AI Assistant for the project's clusters.
+     * Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
      */
     declare public readonly isClusterAiAssistantEnabled: pulumi.Output<boolean>;
     /**
@@ -111,11 +111,11 @@ export class Project extends pulumi.CustomResource {
      */
     declare public readonly isDataExplorerEnabled: pulumi.Output<boolean>;
     /**
-     * Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+     * Flag that indicates whether to enable generative AI features in the Data Explorer for the project. By default, this flag is set to true.
      */
     declare public readonly isDataExplorerGenAiFeaturesEnabled: pulumi.Output<boolean>;
     /**
-     * Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+     * Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project. By default, this flag is set to false.
      */
     declare public readonly isDataExplorerGenAiSampleDocumentPassingEnabled: pulumi.Output<boolean>;
     /**
@@ -123,7 +123,7 @@ export class Project extends pulumi.CustomResource {
      */
     declare public readonly isExtendedStorageSizesEnabled: pulumi.Output<boolean>;
     /**
-     * Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+     * Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project. By default, this flag is set to false.
      */
     declare public readonly isNativeRerankingEnabled: pulumi.Output<boolean>;
     /**
@@ -261,7 +261,7 @@ export interface ProjectState {
      */
     ipAddresses?: pulumi.Input<inputs.ProjectIpAddresses | undefined>;
     /**
-     * Flag that indicates whether to enable the AI Assistant for the project's clusters.
+     * Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
      */
     isClusterAiAssistantEnabled?: pulumi.Input<boolean | undefined>;
     /**
@@ -273,11 +273,11 @@ export interface ProjectState {
      */
     isDataExplorerEnabled?: pulumi.Input<boolean | undefined>;
     /**
-     * Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+     * Flag that indicates whether to enable generative AI features in the Data Explorer for the project. By default, this flag is set to true.
      */
     isDataExplorerGenAiFeaturesEnabled?: pulumi.Input<boolean | undefined>;
     /**
-     * Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+     * Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project. By default, this flag is set to false.
      */
     isDataExplorerGenAiSampleDocumentPassingEnabled?: pulumi.Input<boolean | undefined>;
     /**
@@ -285,7 +285,7 @@ export interface ProjectState {
      */
     isExtendedStorageSizesEnabled?: pulumi.Input<boolean | undefined>;
     /**
-     * Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+     * Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project. By default, this flag is set to false.
      */
     isNativeRerankingEnabled?: pulumi.Input<boolean | undefined>;
     /**
@@ -342,7 +342,7 @@ export interface ProjectState {
  */
 export interface ProjectArgs {
     /**
-     * Flag that indicates whether to enable the AI Assistant for the project's clusters.
+     * Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
      */
     isClusterAiAssistantEnabled?: pulumi.Input<boolean | undefined>;
     /**
@@ -354,11 +354,11 @@ export interface ProjectArgs {
      */
     isDataExplorerEnabled?: pulumi.Input<boolean | undefined>;
     /**
-     * Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+     * Flag that indicates whether to enable generative AI features in the Data Explorer for the project. By default, this flag is set to true.
      */
     isDataExplorerGenAiFeaturesEnabled?: pulumi.Input<boolean | undefined>;
     /**
-     * Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+     * Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project. By default, this flag is set to false.
      */
     isDataExplorerGenAiSampleDocumentPassingEnabled?: pulumi.Input<boolean | undefined>;
     /**
@@ -366,7 +366,7 @@ export interface ProjectArgs {
      */
     isExtendedStorageSizesEnabled?: pulumi.Input<boolean | undefined>;
     /**
-     * Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+     * Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project. By default, this flag is set to false.
      */
     isNativeRerankingEnabled?: pulumi.Input<boolean | undefined>;
     /**

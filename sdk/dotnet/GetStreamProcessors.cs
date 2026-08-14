@@ -20,7 +20,6 @@ namespace Pulumi.Mongodbatlas
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
-        /// using System.Text.Json;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -87,28 +86,15 @@ namespace Pulumi.Mongodbatlas
         ///         ProjectId = projectId,
         ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "sampleProcessorName",
-        ///         Pipeline = JsonSerializer.Serialize(new[]
+        ///         Pipeline = Output.Tuple(example_sample.ConnectionName, example_cluster.ConnectionName).Apply(values =&gt;
         ///         {
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$source"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_sample.ConnectionName,
-        ///                 },
-        ///             },
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$emit"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
-        ///                     ["db"] = "sample",
-        ///                     ["coll"] = "solar",
-        ///                     ["timeseries"] = new Dictionary&lt;string, object?&gt;
-        ///                     {
-        ///                         ["timeField"] = "_ts",
-        ///                     },
-        ///                 },
-        ///             },
+        ///             var example-sampleConnectionName = values.Item1;
+        ///             var example-clusterConnectionName = values.Item2;
+        ///             return @$"[
+        ///   {{\""$source\"": {{\""connectionName\"": \""{example_sampleConnectionName}\""}}}},
+        ///   {{\""$emit\"": {{\""connectionName\"": \""{example_clusterConnectionName}\"", \""db\"": \""sample\"", \""coll\"": \""solar\"", \""timeseries\"": {{\""timeField\"": \""_ts\""}}}}}}
+        /// ]
+        /// ";
         ///         }),
         ///         State = "STARTED",
         ///         Tier = "SP30",
@@ -119,23 +105,15 @@ namespace Pulumi.Mongodbatlas
         ///         ProjectId = projectId,
         ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "clusterProcessorName",
-        ///         Pipeline = JsonSerializer.Serialize(new[]
+        ///         Pipeline = Output.Tuple(example_cluster.ConnectionName, example_kafka.ConnectionName).Apply(values =&gt;
         ///         {
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$source"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
-        ///                 },
-        ///             },
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$emit"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_kafka.ConnectionName,
-        ///                     ["topic"] = "topic_from_cluster",
-        ///                 },
-        ///             },
+        ///             var example-clusterConnectionName = values.Item1;
+        ///             var example-kafkaConnectionName = values.Item2;
+        ///             return @$"[
+        ///   {{\""$source\"": {{\""connectionName\"": \""{example_clusterConnectionName}\""}}}},
+        ///   {{\""$emit\"": {{\""connectionName\"": \""{example_kafkaConnectionName}\"", \""topic\"": \""topic_from_cluster\""}}}}
+        /// ]
+        /// ";
         ///         }),
         ///         State = "CREATED",
         ///     });
@@ -145,29 +123,15 @@ namespace Pulumi.Mongodbatlas
         ///         ProjectId = projectId,
         ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "kafkaProcessorName",
-        ///         Pipeline = JsonSerializer.Serialize(new[]
+        ///         Pipeline = Output.Tuple(example_kafka.ConnectionName, example_cluster.ConnectionName).Apply(values =&gt;
         ///         {
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$source"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_kafka.ConnectionName,
-        ///                     ["topic"] = "topic_source",
-        ///                 },
-        ///             },
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$emit"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
-        ///                     ["db"] = "kafka",
-        ///                     ["coll"] = "topic_source",
-        ///                     ["timeseries"] = new Dictionary&lt;string, object?&gt;
-        ///                     {
-        ///                         ["timeField"] = "ts",
-        ///                     },
-        ///                 },
-        ///             },
+        ///             var example-kafkaConnectionName = values.Item1;
+        ///             var example-clusterConnectionName = values.Item2;
+        ///             return @$"[
+        ///   {{\""$source\"": {{\""connectionName\"": \""{example_kafkaConnectionName}\"", \""topic\"": \""topic_source\""}}}},
+        ///   {{\""$emit\"": {{\""connectionName\"": \""{example_clusterConnectionName}\"", \""db\"": \""kafka\"", \""coll\"": \""topic_source\"", \""timeseries\"": {{\""timeField\"": \""ts\""}}}}}}
+        /// ]
+        /// ";
         ///         }),
         ///         State = "CREATED",
         ///         Options = new Mongodbatlas.Inputs.StreamProcessorOptionsArgs
@@ -175,7 +139,7 @@ namespace Pulumi.Mongodbatlas
         ///             Dlq = new Mongodbatlas.Inputs.StreamProcessorOptionsDlqArgs
         ///             {
         ///                 Coll = "exampleColumn",
-        ///                 ConnectionName = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
+        ///                 ConnectionName = example_cluster.ConnectionName,
         ///                 Db = "exampleDb",
         ///             },
         ///         },
@@ -214,7 +178,6 @@ namespace Pulumi.Mongodbatlas
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
-        /// using System.Text.Json;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -281,28 +244,15 @@ namespace Pulumi.Mongodbatlas
         ///         ProjectId = projectId,
         ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "sampleProcessorName",
-        ///         Pipeline = JsonSerializer.Serialize(new[]
+        ///         Pipeline = Output.Tuple(example_sample.ConnectionName, example_cluster.ConnectionName).Apply(values =&gt;
         ///         {
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$source"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_sample.ConnectionName,
-        ///                 },
-        ///             },
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$emit"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
-        ///                     ["db"] = "sample",
-        ///                     ["coll"] = "solar",
-        ///                     ["timeseries"] = new Dictionary&lt;string, object?&gt;
-        ///                     {
-        ///                         ["timeField"] = "_ts",
-        ///                     },
-        ///                 },
-        ///             },
+        ///             var example-sampleConnectionName = values.Item1;
+        ///             var example-clusterConnectionName = values.Item2;
+        ///             return @$"[
+        ///   {{\""$source\"": {{\""connectionName\"": \""{example_sampleConnectionName}\""}}}},
+        ///   {{\""$emit\"": {{\""connectionName\"": \""{example_clusterConnectionName}\"", \""db\"": \""sample\"", \""coll\"": \""solar\"", \""timeseries\"": {{\""timeField\"": \""_ts\""}}}}}}
+        /// ]
+        /// ";
         ///         }),
         ///         State = "STARTED",
         ///         Tier = "SP30",
@@ -313,23 +263,15 @@ namespace Pulumi.Mongodbatlas
         ///         ProjectId = projectId,
         ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "clusterProcessorName",
-        ///         Pipeline = JsonSerializer.Serialize(new[]
+        ///         Pipeline = Output.Tuple(example_cluster.ConnectionName, example_kafka.ConnectionName).Apply(values =&gt;
         ///         {
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$source"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
-        ///                 },
-        ///             },
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$emit"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_kafka.ConnectionName,
-        ///                     ["topic"] = "topic_from_cluster",
-        ///                 },
-        ///             },
+        ///             var example-clusterConnectionName = values.Item1;
+        ///             var example-kafkaConnectionName = values.Item2;
+        ///             return @$"[
+        ///   {{\""$source\"": {{\""connectionName\"": \""{example_clusterConnectionName}\""}}}},
+        ///   {{\""$emit\"": {{\""connectionName\"": \""{example_kafkaConnectionName}\"", \""topic\"": \""topic_from_cluster\""}}}}
+        /// ]
+        /// ";
         ///         }),
         ///         State = "CREATED",
         ///     });
@@ -339,29 +281,15 @@ namespace Pulumi.Mongodbatlas
         ///         ProjectId = projectId,
         ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "kafkaProcessorName",
-        ///         Pipeline = JsonSerializer.Serialize(new[]
+        ///         Pipeline = Output.Tuple(example_kafka.ConnectionName, example_cluster.ConnectionName).Apply(values =&gt;
         ///         {
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$source"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_kafka.ConnectionName,
-        ///                     ["topic"] = "topic_source",
-        ///                 },
-        ///             },
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$emit"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
-        ///                     ["db"] = "kafka",
-        ///                     ["coll"] = "topic_source",
-        ///                     ["timeseries"] = new Dictionary&lt;string, object?&gt;
-        ///                     {
-        ///                         ["timeField"] = "ts",
-        ///                     },
-        ///                 },
-        ///             },
+        ///             var example-kafkaConnectionName = values.Item1;
+        ///             var example-clusterConnectionName = values.Item2;
+        ///             return @$"[
+        ///   {{\""$source\"": {{\""connectionName\"": \""{example_kafkaConnectionName}\"", \""topic\"": \""topic_source\""}}}},
+        ///   {{\""$emit\"": {{\""connectionName\"": \""{example_clusterConnectionName}\"", \""db\"": \""kafka\"", \""coll\"": \""topic_source\"", \""timeseries\"": {{\""timeField\"": \""ts\""}}}}}}
+        /// ]
+        /// ";
         ///         }),
         ///         State = "CREATED",
         ///         Options = new Mongodbatlas.Inputs.StreamProcessorOptionsArgs
@@ -369,7 +297,7 @@ namespace Pulumi.Mongodbatlas
         ///             Dlq = new Mongodbatlas.Inputs.StreamProcessorOptionsDlqArgs
         ///             {
         ///                 Coll = "exampleColumn",
-        ///                 ConnectionName = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
+        ///                 ConnectionName = example_cluster.ConnectionName,
         ///                 Db = "exampleDb",
         ///             },
         ///         },
@@ -408,7 +336,6 @@ namespace Pulumi.Mongodbatlas
         /// ```csharp
         /// using System.Collections.Generic;
         /// using System.Linq;
-        /// using System.Text.Json;
         /// using Pulumi;
         /// using Mongodbatlas = Pulumi.Mongodbatlas;
         /// 
@@ -475,28 +402,15 @@ namespace Pulumi.Mongodbatlas
         ///         ProjectId = projectId,
         ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "sampleProcessorName",
-        ///         Pipeline = JsonSerializer.Serialize(new[]
+        ///         Pipeline = Output.Tuple(example_sample.ConnectionName, example_cluster.ConnectionName).Apply(values =&gt;
         ///         {
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$source"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_sample.ConnectionName,
-        ///                 },
-        ///             },
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$emit"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
-        ///                     ["db"] = "sample",
-        ///                     ["coll"] = "solar",
-        ///                     ["timeseries"] = new Dictionary&lt;string, object?&gt;
-        ///                     {
-        ///                         ["timeField"] = "_ts",
-        ///                     },
-        ///                 },
-        ///             },
+        ///             var example-sampleConnectionName = values.Item1;
+        ///             var example-clusterConnectionName = values.Item2;
+        ///             return @$"[
+        ///   {{\""$source\"": {{\""connectionName\"": \""{example_sampleConnectionName}\""}}}},
+        ///   {{\""$emit\"": {{\""connectionName\"": \""{example_clusterConnectionName}\"", \""db\"": \""sample\"", \""coll\"": \""solar\"", \""timeseries\"": {{\""timeField\"": \""_ts\""}}}}}}
+        /// ]
+        /// ";
         ///         }),
         ///         State = "STARTED",
         ///         Tier = "SP30",
@@ -507,23 +421,15 @@ namespace Pulumi.Mongodbatlas
         ///         ProjectId = projectId,
         ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "clusterProcessorName",
-        ///         Pipeline = JsonSerializer.Serialize(new[]
+        ///         Pipeline = Output.Tuple(example_cluster.ConnectionName, example_kafka.ConnectionName).Apply(values =&gt;
         ///         {
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$source"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
-        ///                 },
-        ///             },
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$emit"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_kafka.ConnectionName,
-        ///                     ["topic"] = "topic_from_cluster",
-        ///                 },
-        ///             },
+        ///             var example-clusterConnectionName = values.Item1;
+        ///             var example-kafkaConnectionName = values.Item2;
+        ///             return @$"[
+        ///   {{\""$source\"": {{\""connectionName\"": \""{example_clusterConnectionName}\""}}}},
+        ///   {{\""$emit\"": {{\""connectionName\"": \""{example_kafkaConnectionName}\"", \""topic\"": \""topic_from_cluster\""}}}}
+        /// ]
+        /// ";
         ///         }),
         ///         State = "CREATED",
         ///     });
@@ -533,29 +439,15 @@ namespace Pulumi.Mongodbatlas
         ///         ProjectId = projectId,
         ///         WorkspaceName = example.InstanceName,
         ///         ProcessorName = "kafkaProcessorName",
-        ///         Pipeline = JsonSerializer.Serialize(new[]
+        ///         Pipeline = Output.Tuple(example_kafka.ConnectionName, example_cluster.ConnectionName).Apply(values =&gt;
         ///         {
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$source"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_kafka.ConnectionName,
-        ///                     ["topic"] = "topic_source",
-        ///                 },
-        ///             },
-        ///             new Dictionary&lt;string, object?&gt;
-        ///             {
-        ///                 ["$emit"] = new Dictionary&lt;string, object?&gt;
-        ///                 {
-        ///                     ["connectionName"] = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
-        ///                     ["db"] = "kafka",
-        ///                     ["coll"] = "topic_source",
-        ///                     ["timeseries"] = new Dictionary&lt;string, object?&gt;
-        ///                     {
-        ///                         ["timeField"] = "ts",
-        ///                     },
-        ///                 },
-        ///             },
+        ///             var example-kafkaConnectionName = values.Item1;
+        ///             var example-clusterConnectionName = values.Item2;
+        ///             return @$"[
+        ///   {{\""$source\"": {{\""connectionName\"": \""{example_kafkaConnectionName}\"", \""topic\"": \""topic_source\""}}}},
+        ///   {{\""$emit\"": {{\""connectionName\"": \""{example_clusterConnectionName}\"", \""db\"": \""kafka\"", \""coll\"": \""topic_source\"", \""timeseries\"": {{\""timeField\"": \""ts\""}}}}}}
+        /// ]
+        /// ";
         ///         }),
         ///         State = "CREATED",
         ///         Options = new Mongodbatlas.Inputs.StreamProcessorOptionsArgs
@@ -563,7 +455,7 @@ namespace Pulumi.Mongodbatlas
         ///             Dlq = new Mongodbatlas.Inputs.StreamProcessorOptionsDlqArgs
         ///             {
         ///                 Coll = "exampleColumn",
-        ///                 ConnectionName = mongodbatlasStreamConnection.Example_cluster.ConnectionName,
+        ///                 ConnectionName = example_cluster.ConnectionName,
         ///                 Db = "exampleDb",
         ///             },
         ///         },

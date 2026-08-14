@@ -21,7 +21,7 @@ import (
 //
 // import (
 //
-//	"encoding/json"
+//	"fmt"
 //
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -41,7 +41,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewStreamConnection(ctx, "example-sample", &mongodbatlas.StreamConnectionArgs{
+//			example_sample, err := mongodbatlas.NewStreamConnection(ctx, "example-sample", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
 //				WorkspaceName:  example.InstanceName,
 //				ConnectionName: pulumi.String("sample_stream_solar"),
@@ -50,7 +50,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewStreamConnection(ctx, "example-cluster", &mongodbatlas.StreamConnectionArgs{
+//			example_cluster, err := mongodbatlas.NewStreamConnection(ctx, "example-cluster", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
 //				WorkspaceName:  example.InstanceName,
 //				ConnectionName: pulumi.String("ClusterConnection"),
@@ -64,7 +64,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewStreamConnection(ctx, "example-kafka", &mongodbatlas.StreamConnectionArgs{
+//			example_kafka, err := mongodbatlas.NewStreamConnection(ctx, "example-kafka", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
 //				WorkspaceName:  example.InstanceName,
 //				ConnectionName: pulumi.String("KafkaPlaintextConnection"),
@@ -85,97 +85,49 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			tmpJSON0, err := json.Marshal([]interface{}{
-//				map[string]map[string]interface{}{
-//					"$source": map[string]interface{}{
-//						"connectionName": mongodbatlasStreamConnection.ExampleSample.ConnectionName,
-//					},
-//				},
-//				map[string]map[string]interface{}{
-//					"$emit": map[string]interface{}{
-//						"connectionName": mongodbatlasStreamConnection.ExampleCluster.ConnectionName,
-//						"db":             "sample",
-//						"coll":           "solar",
-//						"timeseries": map[string]string{
-//							"timeField": "_ts",
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json0 := string(tmpJSON0)
 //			stream_processor_sample_example, err := mongodbatlas.NewStreamProcessor(ctx, "stream-processor-sample-example", &mongodbatlas.StreamProcessorArgs{
 //				ProjectId:     pulumi.Any(projectId),
 //				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("sampleProcessorName"),
-//				Pipeline:      pulumi.String(json0),
-//				State:         pulumi.String("STARTED"),
-//				Tier:          pulumi.String("SP30"),
+//				Pipeline: pulumi.All(example_sample.ConnectionName, example_cluster.ConnectionName).ApplyT(func(_args []interface{}) (string, error) {
+//					example - sampleConnectionName := _args[0].(string)
+//					example - clusterConnectionName := _args[1].(string)
+//					return fmt.Sprintf("[\n  {\\\"$source\\\": {\\\"connectionName\\\": \\\"%v\\\"}},\n  {\\\"$emit\\\": {\\\"connectionName\\\": \\\"%v\\\", \\\"db\\\": \\\"sample\\\", \\\"coll\\\": \\\"solar\\\", \\\"timeseries\\\": {\\\"timeField\\\": \\\"_ts\\\"}}}\n]\n", example_sampleConnectionName, example_clusterConnectionName), nil
+//				}).(pulumi.StringOutput),
+//				State: pulumi.String("STARTED"),
+//				Tier:  pulumi.String("SP30"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			tmpJSON1, err := json.Marshal([]interface{}{
-//				map[string]map[string]interface{}{
-//					"$source": map[string]interface{}{
-//						"connectionName": mongodbatlasStreamConnection.ExampleCluster.ConnectionName,
-//					},
-//				},
-//				map[string]map[string]interface{}{
-//					"$emit": map[string]interface{}{
-//						"connectionName": mongodbatlasStreamConnection.ExampleKafka.ConnectionName,
-//						"topic":          "topic_from_cluster",
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json1 := string(tmpJSON1)
 //			_, err = mongodbatlas.NewStreamProcessor(ctx, "stream-processor-cluster-to-kafka-example", &mongodbatlas.StreamProcessorArgs{
 //				ProjectId:     pulumi.Any(projectId),
 //				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("clusterProcessorName"),
-//				Pipeline:      pulumi.String(json1),
-//				State:         pulumi.String("CREATED"),
+//				Pipeline: pulumi.All(example_cluster.ConnectionName, example_kafka.ConnectionName).ApplyT(func(_args []interface{}) (string, error) {
+//					example - clusterConnectionName := _args[0].(string)
+//					example - kafkaConnectionName := _args[1].(string)
+//					return fmt.Sprintf("[\n  {\\\"$source\\\": {\\\"connectionName\\\": \\\"%v\\\"}},\n  {\\\"$emit\\\": {\\\"connectionName\\\": \\\"%v\\\", \\\"topic\\\": \\\"topic_from_cluster\\\"}}\n]\n", example_clusterConnectionName, example_kafkaConnectionName), nil
+//				}).(pulumi.StringOutput),
+//				State: pulumi.String("CREATED"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			tmpJSON2, err := json.Marshal([]interface{}{
-//				map[string]map[string]interface{}{
-//					"$source": map[string]interface{}{
-//						"connectionName": mongodbatlasStreamConnection.ExampleKafka.ConnectionName,
-//						"topic":          "topic_source",
-//					},
-//				},
-//				map[string]map[string]interface{}{
-//					"$emit": map[string]interface{}{
-//						"connectionName": mongodbatlasStreamConnection.ExampleCluster.ConnectionName,
-//						"db":             "kafka",
-//						"coll":           "topic_source",
-//						"timeseries": map[string]string{
-//							"timeField": "ts",
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json2 := string(tmpJSON2)
 //			_, err = mongodbatlas.NewStreamProcessor(ctx, "stream-processor-kafka-to-cluster-example", &mongodbatlas.StreamProcessorArgs{
 //				ProjectId:     pulumi.Any(projectId),
 //				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("kafkaProcessorName"),
-//				Pipeline:      pulumi.String(json2),
-//				State:         pulumi.String("CREATED"),
+//				Pipeline: pulumi.All(example_kafka.ConnectionName, example_cluster.ConnectionName).ApplyT(func(_args []interface{}) (string, error) {
+//					example - kafkaConnectionName := _args[0].(string)
+//					example - clusterConnectionName := _args[1].(string)
+//					return fmt.Sprintf("[\n  {\\\"$source\\\": {\\\"connectionName\\\": \\\"%v\\\", \\\"topic\\\": \\\"topic_source\\\"}},\n  {\\\"$emit\\\": {\\\"connectionName\\\": \\\"%v\\\", \\\"db\\\": \\\"kafka\\\", \\\"coll\\\": \\\"topic_source\\\", \\\"timeseries\\\": {\\\"timeField\\\": \\\"ts\\\"}}}\n]\n", example_kafkaConnectionName, example_clusterConnectionName), nil
+//				}).(pulumi.StringOutput),
+//				State: pulumi.String("CREATED"),
 //				Options: &mongodbatlas.StreamProcessorOptionsArgs{
 //					Dlq: &mongodbatlas.StreamProcessorOptionsDlqArgs{
 //						Coll:           pulumi.String("exampleColumn"),
-//						ConnectionName: pulumi.Any(mongodbatlasStreamConnection.ExampleCluster.ConnectionName),
+//						ConnectionName: example_cluster.ConnectionName,
 //						Db:             pulumi.String("exampleDb"),
 //					},
 //				},

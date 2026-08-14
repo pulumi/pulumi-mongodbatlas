@@ -27,7 +27,7 @@ public final class StreamConnectionFailoverAuthentication {
      */
     private @Nullable String mechanism;
     /**
-     * @return SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+     * @return SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
      * 
      */
     private @Nullable String method;
@@ -95,7 +95,7 @@ public final class StreamConnectionFailoverAuthentication {
         return Optional.ofNullable(this.mechanism);
     }
     /**
-     * @return SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+     * @return SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
      * 
      */
     public Optional<String> method() {

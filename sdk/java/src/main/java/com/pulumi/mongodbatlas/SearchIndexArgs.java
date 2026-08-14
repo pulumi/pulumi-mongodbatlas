@@ -97,14 +97,14 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+     * Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
      * 
      */
     @Import(name="fields")
     private @Nullable Output<String> fields;
 
     /**
-     * @return Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+     * @return Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
      * 
      */
     public Optional<Output<String>> fields() {
@@ -438,7 +438,7 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param fields Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+         * @param fields Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
          * 
          * @return builder
          * 
@@ -449,7 +449,7 @@ public final class SearchIndexArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param fields Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+         * @param fields Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
          * 
          * @return builder
          * 

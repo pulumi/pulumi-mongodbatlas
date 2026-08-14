@@ -69,7 +69,7 @@ class SearchIndexArgs:
                }]
                EOF
                ```
-        :param pulumi.Input[_builtins.str] fields: Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+        :param pulumi.Input[_builtins.str] fields: Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
         :param pulumi.Input[_builtins.bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`. Mutually exclusive with `mappings_dynamic_config`.
         :param pulumi.Input[_builtins.str] mappings_dynamic_config: JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
         :param pulumi.Input[_builtins.str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
@@ -212,7 +212,7 @@ class SearchIndexArgs:
     @pulumi.getter
     def fields(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+        Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
         """
         return pulumi.get(self, "fields")
 
@@ -405,7 +405,7 @@ class _SearchIndexState:
         :param pulumi.Input[_builtins.str] cluster_name: The name of the cluster where you want to create the search index within.
         :param pulumi.Input[_builtins.str] collection_name: Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         :param pulumi.Input[_builtins.str] database: Name of the database the collection is in.
-        :param pulumi.Input[_builtins.str] fields: Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+        :param pulumi.Input[_builtins.str] fields: Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
         :param pulumi.Input[_builtins.str] index_id: The unique identifier of the Atlas Search index.
         :param pulumi.Input[_builtins.bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`. Mutually exclusive with `mappings_dynamic_config`.
         :param pulumi.Input[_builtins.str] mappings_dynamic_config: JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
@@ -547,7 +547,7 @@ class _SearchIndexState:
     @pulumi.getter
     def fields(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+        Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
         """
         return pulumi.get(self, "fields")
 
@@ -790,192 +790,27 @@ class SearchIndex(pulumi.CustomResource):
         \"\"\")
         ```
 
-        ### Advanced search index (with custom analyzers)
+        ### Vector index with automatically generated embeddings
         ```python
         import pulumi
         import pulumi_mongodbatlas as mongodbatlas
 
-        test_advanced_search_index = mongodbatlas.SearchIndex("test-advanced-search-index",
-            project_id="<PROJECT_ID>",
-            cluster_name="<CLUSTER_NAME>",
-            analyzer="lucene.standard",
-            collection_name="collection_test",
-            database="database_test",
-            mappings_dynamic=False,
-            mappings_fields=\"\"\"{
-              \\"address\\": {
-                \\"type\\": \\"document\\",
-                \\"fields\\": {
-                  \\"city\\": {
-                    \\"type\\": \\"string\\",
-                    \\"analyzer\\": \\"lucene.simple\\",
-                    \\"ignoreAbove\\": 255
-                  },
-                  \\"state\\": {
-                    \\"type\\": \\"string\\",
-                    \\"analyzer\\": \\"lucene.english\\"
-                  }
-                }
-              },
-              \\"company\\": {
-                \\"type\\": \\"string\\",
-                \\"analyzer\\": \\"lucene.whitespace\\",
-                \\"multi\\": {
-                  \\"mySecondaryAnalyzer\\": {
-                    \\"type\\": \\"string\\",
-                    \\"analyzer\\": \\"lucene.french\\"
-                  }
-                }
-              },
-              \\"employees\\": {
-                \\"type\\": \\"string\\",
-                \\"analyzer\\": \\"lucene.standard\\"
-              }
-        }
-        \"\"\",
-            name="test-advanced-search-index",
-            search_analyzer="lucene.standard",
-            analyzers=\"\"\" [{
-         \\"name\\": \\"index_analyzer_test_name\\",
-         \\"charFilters\\": [{
-        \\"type\\": \\"mapping\\",
-        \\"mappings\\": {\\"\\\\\\\\\\" : \\"/\\"}
-           \\t}],
-         \\"tokenizer\\": {
-         \\"type\\": \\"nGram\\",
-         \\"minGram\\": 2,
-         \\"maxGram\\": 5
-        \\t},
-         \\"tokenFilters\\": [{
-        \\"type\\": \\"length\\",
-        \\"min\\": 20,
-        \\"max\\": 33
-           \\t}]
-         }]
-        \"\"\",
-            synonyms=[{
-                "analyzer": "lucene.simple",
-                "name": "synonym_test",
-                "source_collection": "collection_test",
-            }])
-        ```
-
-        ### Configurable dynamic (typeSets + dynamic object)
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        conf_dynamic = mongodbatlas.SearchIndex("conf-dynamic",
+        test_auto_embed_vector_index = mongodbatlas.SearchIndex("test-auto-embed-vector-index",
             project_id="<PROJECT_ID>",
             cluster_name="<CLUSTER_NAME>",
             collection_name="collection_test",
             database="database_test",
-            name="conf-dynamic",
-            type="search",
-            mappings_dynamic_config="{ \\\\\\"typeSet\\\\\\": \\\\\\"type_set_name\\\\\\" }\\n",
-            type_sets=[{
-                "name": "type_set_name",
-                "types": \"\"\"[
-          { \\"type\\": \\"string\\" }
-        ]
-        \"\"\",
-            }])
-        ```
-
-        ## Import
-
-        You can import search indexes using `project_id`, `cluster_name`, and `index_id` as in the following example:
-
-        ```sh
-        $ pulumi import mongodbatlas:index/searchIndex:SearchIndex test {project_id}--{cluster_name}--{index_id}
-        ```
-
-
-        :param str resource_name: The name of the resource.
-        :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[_builtins.str] analyzer: [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
-        :param pulumi.Input[_builtins.str] analyzers: [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
-               ```
-               analyzers = <<-EOF
-               [{
-               "name": "index_analyzer_test_name",
-               "charFilters": [{
-               "type": "mapping",
-               "mappings": {"\\\\" : "/"}
-               }],
-               "tokenizer": {
-               "type": "nGram",
-               "minGram": 2,
-               "maxGram": 5
-               },
-               "tokenFilters": [{
-               "type": "length",
-               "min": 20,
-               "max": 33
-               }]
-               }]
-               EOF
-               ```
-        :param pulumi.Input[_builtins.str] cluster_name: The name of the cluster where you want to create the search index within.
-        :param pulumi.Input[_builtins.str] collection_name: Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
-        :param pulumi.Input[_builtins.str] database: Name of the database the collection is in.
-        :param pulumi.Input[_builtins.str] fields: Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
-        :param pulumi.Input[_builtins.bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`. Mutually exclusive with `mappings_dynamic_config`.
-        :param pulumi.Input[_builtins.str] mappings_dynamic_config: JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
-        :param pulumi.Input[_builtins.str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
-        :param pulumi.Input[_builtins.str] name: The name of the search index you want to create.
-        :param pulumi.Input[_builtins.int] num_partitions: Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
-        :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
-        :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
-        :param pulumi.Input[_builtins.str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]] synonyms: Synonyms mapping definition to use in this index.
-        :param pulumi.Input[_builtins.str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]] type_sets: One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
-        :param pulumi.Input[_builtins.bool] wait_for_index_build_completion: Wait for search index to achieve Active status before terraform considers resource built.
-        """
-        ...
-    @overload
-    def __init__(__self__,
-                 resource_name: str,
-                 args: SearchIndexArgs,
-                 opts: Optional[pulumi.ResourceOptions] = None):
-        """
-        `SearchIndex` provides a Search Index resource. This allows indexes to be created.
-
-        ## Example Usage
-
-        ### Basic search index
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_basic_search_index = mongodbatlas.SearchIndex("test-basic-search-index",
-            name="test-basic-search-index",
-            project_id="<PROJECT_ID>",
-            cluster_name="<CLUSTER_NAME>",
-            analyzer="lucene.standard",
-            collection_name="collection_test",
-            database="database_test",
-            mappings_dynamic=True,
-            search_analyzer="lucene.standard")
-        ```
-
-        ### Basic vector index
-        ```python
-        import pulumi
-        import pulumi_mongodbatlas as mongodbatlas
-
-        test_basic_search_vector = mongodbatlas.SearchIndex("test-basic-search-vector",
-            project_id="<PROJECT_ID>",
-            cluster_name="<CLUSTER_NAME>",
-            collection_name="collection_test",
-            database="database_test",
+            name="test-auto-embed-vector-index",
             type="vectorSearch",
             fields=\"\"\"[{
-              \\"type\\": \\"vector\\",
-              \\"path\\": \\"plot_embedding\\",
-              \\"numDimensions\\": 1536,
-              \\"similarity\\": \\"euclidean\\"
+              \\"type\\": \\"autoEmbed\\",
+              \\"path\\": \\"description\\",
+              \\"model\\": \\"voyage-4-lite\\",
+              \\"modality\\": \\"text\\"
+        },
+        {
+              \\"type\\": \\"filter\\",
+              \\"path\\": \\"property_type\\"
         }]
         \"\"\")
         ```
@@ -1071,6 +906,227 @@ class SearchIndex(pulumi.CustomResource):
         \"\"\",
             }])
         ```
+
+        ### Further Examples
+        - Search Index Examples
+
+        ## Import
+
+        You can import search indexes using `project_id`, `cluster_name`, and `index_id` as in the following example:
+
+        ```sh
+        $ pulumi import mongodbatlas:index/searchIndex:SearchIndex test {project_id}--{cluster_name}--{index_id}
+        ```
+
+
+        :param str resource_name: The name of the resource.
+        :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.str] analyzer: [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when creating the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        :param pulumi.Input[_builtins.str] analyzers: [Custom analyzers](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/custom/#std-label-custom-analyzers) to use in this index. This is an array of JSON objects.
+               ```
+               analyzers = <<-EOF
+               [{
+               "name": "index_analyzer_test_name",
+               "charFilters": [{
+               "type": "mapping",
+               "mappings": {"\\\\" : "/"}
+               }],
+               "tokenizer": {
+               "type": "nGram",
+               "minGram": 2,
+               "maxGram": 5
+               },
+               "tokenFilters": [{
+               "type": "length",
+               "min": 20,
+               "max": 33
+               }]
+               }]
+               EOF
+               ```
+        :param pulumi.Input[_builtins.str] cluster_name: The name of the cluster where you want to create the search index within.
+        :param pulumi.Input[_builtins.str] collection_name: Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
+        :param pulumi.Input[_builtins.str] database: Name of the database the collection is in.
+        :param pulumi.Input[_builtins.str] fields: Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
+        :param pulumi.Input[_builtins.bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`. Mutually exclusive with `mappings_dynamic_config`.
+        :param pulumi.Input[_builtins.str] mappings_dynamic_config: JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
+        :param pulumi.Input[_builtins.str] mappings_fields: attribute is required in search indexes when `mappings_dynamic` is false. This field needs to be a JSON string in order to be decoded correctly.
+        :param pulumi.Input[_builtins.str] name: The name of the search index you want to create.
+        :param pulumi.Input[_builtins.int] num_partitions: Number of index partitions. Allowed values are [1, 2, 4]. Default value is 1.
+        :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
+        :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
+        :param pulumi.Input[_builtins.str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]] synonyms: Synonyms mapping definition to use in this index.
+        :param pulumi.Input[_builtins.str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]] type_sets: One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+        :param pulumi.Input[_builtins.bool] wait_for_index_build_completion: Wait for search index to achieve Active status before terraform considers resource built.
+        """
+        ...
+    @overload
+    def __init__(__self__,
+                 resource_name: str,
+                 args: SearchIndexArgs,
+                 opts: Optional[pulumi.ResourceOptions] = None):
+        """
+        `SearchIndex` provides a Search Index resource. This allows indexes to be created.
+
+        ## Example Usage
+
+        ### Basic search index
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_basic_search_index = mongodbatlas.SearchIndex("test-basic-search-index",
+            name="test-basic-search-index",
+            project_id="<PROJECT_ID>",
+            cluster_name="<CLUSTER_NAME>",
+            analyzer="lucene.standard",
+            collection_name="collection_test",
+            database="database_test",
+            mappings_dynamic=True,
+            search_analyzer="lucene.standard")
+        ```
+
+        ### Basic vector index
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_basic_search_vector = mongodbatlas.SearchIndex("test-basic-search-vector",
+            project_id="<PROJECT_ID>",
+            cluster_name="<CLUSTER_NAME>",
+            collection_name="collection_test",
+            database="database_test",
+            type="vectorSearch",
+            fields=\"\"\"[{
+              \\"type\\": \\"vector\\",
+              \\"path\\": \\"plot_embedding\\",
+              \\"numDimensions\\": 1536,
+              \\"similarity\\": \\"euclidean\\"
+        }]
+        \"\"\")
+        ```
+
+        ### Vector index with automatically generated embeddings
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_auto_embed_vector_index = mongodbatlas.SearchIndex("test-auto-embed-vector-index",
+            project_id="<PROJECT_ID>",
+            cluster_name="<CLUSTER_NAME>",
+            collection_name="collection_test",
+            database="database_test",
+            name="test-auto-embed-vector-index",
+            type="vectorSearch",
+            fields=\"\"\"[{
+              \\"type\\": \\"autoEmbed\\",
+              \\"path\\": \\"description\\",
+              \\"model\\": \\"voyage-4-lite\\",
+              \\"modality\\": \\"text\\"
+        },
+        {
+              \\"type\\": \\"filter\\",
+              \\"path\\": \\"property_type\\"
+        }]
+        \"\"\")
+        ```
+
+        ### Advanced search index (with custom analyzers)
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test_advanced_search_index = mongodbatlas.SearchIndex("test-advanced-search-index",
+            project_id="<PROJECT_ID>",
+            cluster_name="<CLUSTER_NAME>",
+            analyzer="lucene.standard",
+            collection_name="collection_test",
+            database="database_test",
+            mappings_dynamic=False,
+            mappings_fields=\"\"\"{
+              \\"address\\": {
+                \\"type\\": \\"document\\",
+                \\"fields\\": {
+                  \\"city\\": {
+                    \\"type\\": \\"string\\",
+                    \\"analyzer\\": \\"lucene.simple\\",
+                    \\"ignoreAbove\\": 255
+                  },
+                  \\"state\\": {
+                    \\"type\\": \\"string\\",
+                    \\"analyzer\\": \\"lucene.english\\"
+                  }
+                }
+              },
+              \\"company\\": {
+                \\"type\\": \\"string\\",
+                \\"analyzer\\": \\"lucene.whitespace\\",
+                \\"multi\\": {
+                  \\"mySecondaryAnalyzer\\": {
+                    \\"type\\": \\"string\\",
+                    \\"analyzer\\": \\"lucene.french\\"
+                  }
+                }
+              },
+              \\"employees\\": {
+                \\"type\\": \\"string\\",
+                \\"analyzer\\": \\"lucene.standard\\"
+              }
+        }
+        \"\"\",
+            name="test-advanced-search-index",
+            search_analyzer="lucene.standard",
+            analyzers=\"\"\" [{
+         \\"name\\": \\"index_analyzer_test_name\\",
+         \\"charFilters\\": [{
+        \\"type\\": \\"mapping\\",
+        \\"mappings\\": {\\"\\\\\\\\\\" : \\"/\\"}
+           \\t}],
+         \\"tokenizer\\": {
+         \\"type\\": \\"nGram\\",
+         \\"minGram\\": 2,
+         \\"maxGram\\": 5
+        \\t},
+         \\"tokenFilters\\": [{
+        \\"type\\": \\"length\\",
+        \\"min\\": 20,
+        \\"max\\": 33
+           \\t}]
+         }]
+        \"\"\",
+            synonyms=[{
+                "analyzer": "lucene.simple",
+                "name": "synonym_test",
+                "source_collection": "collection_test",
+            }])
+        ```
+
+        ### Configurable dynamic (typeSets + dynamic object)
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        conf_dynamic = mongodbatlas.SearchIndex("conf-dynamic",
+            project_id="<PROJECT_ID>",
+            cluster_name="<CLUSTER_NAME>",
+            collection_name="collection_test",
+            database="database_test",
+            name="conf-dynamic",
+            type="search",
+            mappings_dynamic_config="{ \\\\\\"typeSet\\\\\\": \\\\\\"type_set_name\\\\\\" }\\n",
+            type_sets=[{
+                "name": "type_set_name",
+                "types": \"\"\"[
+          { \\"type\\": \\"string\\" }
+        ]
+        \"\"\",
+            }])
+        ```
+
+        ### Further Examples
+        - Search Index Examples
 
         ## Import
 
@@ -1214,7 +1270,7 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] cluster_name: The name of the cluster where you want to create the search index within.
         :param pulumi.Input[_builtins.str] collection_name: Name of the collection the index is on. **NOTE:** The collection must exist before creating the index.
         :param pulumi.Input[_builtins.str] database: Name of the database the collection is in.
-        :param pulumi.Input[_builtins.str] fields: Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+        :param pulumi.Input[_builtins.str] fields: Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
         :param pulumi.Input[_builtins.str] index_id: The unique identifier of the Atlas Search index.
         :param pulumi.Input[_builtins.bool] mappings_dynamic: Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappings_fields`. Mutually exclusive with `mappings_dynamic_config`.
         :param pulumi.Input[_builtins.str] mappings_dynamic_config: JSON object for `mappings.dynamic` when using configurable dynamic. See the MongoDB documentation for further information on [Static and Dynamic Mapping](https://www.mongodb.com/docs/atlas/atlas-search/define-field-mappings/#std-label-fts-field-mappings). Mutually exclusive with `mappings_dynamic`.
@@ -1321,7 +1377,7 @@ class SearchIndex(pulumi.CustomResource):
     @pulumi.getter
     def fields(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+        Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
         """
         return pulumi.get(self, "fields")
 
