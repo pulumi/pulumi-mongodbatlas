@@ -45,6 +45,19 @@
                     }
                 }
             },
+            "mongodbatlas_ai_model_api_key": {
+                "current": "mongodbatlas:index/aiModelApiKey:AiModelApiKey",
+                "majorVersion": 4
+            },
+            "mongodbatlas_ai_model_rate_limit": {
+                "current": "mongodbatlas:index/aiModelRateLimit:AiModelRateLimit",
+                "majorVersion": 4,
+                "fields": {
+                    "model_names": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_alert_configuration": {
                 "current": "mongodbatlas:index/alertConfiguration:AlertConfiguration",
                 "majorVersion": 4,
@@ -637,6 +650,21 @@
                     }
                 }
             },
+            "mongodbatlas_metric_integration": {
+                "current": "mongodbatlas:index/metricIntegration:MetricIntegration",
+                "majorVersion": 4,
+                "fields": {
+                    "headers": {
+                        "maxItemsOne": false
+                    },
+                    "headers_redacted": {
+                        "maxItemsOne": false
+                    },
+                    "metric_selection": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_mongodb_employee_access_grant": {
                 "current": "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant",
                 "majorVersion": 4
@@ -1091,6 +1119,82 @@
                                             }
                                         }
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "mongodbatlas_ai_model_api_key": {
+                "current": "mongodbatlas:index/getAiModelApiKey:getAiModelApiKey",
+                "majorVersion": 4
+            },
+            "mongodbatlas_ai_model_api_keys": {
+                "current": "mongodbatlas:index/getAiModelApiKeys:getAiModelApiKeys",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_ai_model_org_api_key": {
+                "current": "mongodbatlas:index/getAiModelOrgApiKey:getAiModelOrgApiKey",
+                "majorVersion": 4
+            },
+            "mongodbatlas_ai_model_org_api_keys": {
+                "current": "mongodbatlas:index/getAiModelOrgApiKeys:getAiModelOrgApiKeys",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_ai_model_org_rate_limit": {
+                "current": "mongodbatlas:index/getAiModelOrgRateLimit:getAiModelOrgRateLimit",
+                "majorVersion": 4,
+                "fields": {
+                    "model_names": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_ai_model_org_rate_limits": {
+                "current": "mongodbatlas:index/getAiModelOrgRateLimits:getAiModelOrgRateLimits",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "model_names": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "mongodbatlas_ai_model_rate_limit": {
+                "current": "mongodbatlas:index/getAiModelRateLimit:getAiModelRateLimit",
+                "majorVersion": 4,
+                "fields": {
+                    "model_names": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_ai_model_rate_limits": {
+                "current": "mongodbatlas:index/getAiModelRateLimits:getAiModelRateLimits",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "model_names": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -2354,6 +2458,37 @@
                     }
                 }
             },
+            "mongodbatlas_metric_integration": {
+                "current": "mongodbatlas:index/getMetricIntegration:getMetricIntegration",
+                "majorVersion": 4,
+                "fields": {
+                    "headers_redacted": {
+                        "maxItemsOne": false
+                    },
+                    "metric_selection": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_metric_integrations": {
+                "current": "mongodbatlas:index/getMetricIntegrations:getMetricIntegrations",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "headers_redacted": {
+                                    "maxItemsOne": false
+                                },
+                                "metric_selection": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "mongodbatlas_mongodb_employee_access_grant": {
                 "current": "mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant",
                 "majorVersion": 4
@@ -3310,6 +3445,16 @@
                     "kind": "missing"
                 }
             },
+            "mongodbatlas_ai_model_api_key": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_ai_model_rate_limit": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "mongodbatlas_alert_configuration": {},
             "mongodbatlas_api_key_project_assignment": {},
             "mongodbatlas_cloud_user_org_assignment": {
@@ -3332,6 +3477,11 @@
             "mongodbatlas_encryption_at_rest_private_endpoint": {},
             "mongodbatlas_flex_cluster": {},
             "mongodbatlas_log_integration": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_metric_integration": {
                 "computeID": {
                     "kind": "missing"
                 }
@@ -3399,6 +3549,8 @@
         "resources": {
             "mongodbatlas:index/accessListApiKey:AccessListApiKey": 0,
             "mongodbatlas:index/advancedCluster:AdvancedCluster": 1,
+            "mongodbatlas:index/aiModelApiKey:AiModelApiKey": 1,
+            "mongodbatlas:index/aiModelRateLimit:AiModelRateLimit": 1,
             "mongodbatlas:index/alertConfiguration:AlertConfiguration": 1,
             "mongodbatlas:index/apiKey:ApiKey": 0,
             "mongodbatlas:index/apiKeyProjectAssignment:ApiKeyProjectAssignment": 1,
@@ -3433,6 +3585,7 @@
             "mongodbatlas:index/ldapVerify:LdapVerify": 0,
             "mongodbatlas:index/logIntegration:LogIntegration": 1,
             "mongodbatlas:index/maintenanceWindow:MaintenanceWindow": 0,
+            "mongodbatlas:index/metricIntegration:MetricIntegration": 1,
             "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant": 1,
             "mongodbatlas:index/networkContainer:NetworkContainer": 0,
             "mongodbatlas:index/networkPeering:NetworkPeering": 0,
@@ -3475,6 +3628,14 @@
             "mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys": 0,
             "mongodbatlas:index/getAdvancedCluster:getAdvancedCluster": 1,
             "mongodbatlas:index/getAdvancedClusters:getAdvancedClusters": 1,
+            "mongodbatlas:index/getAiModelApiKey:getAiModelApiKey": 1,
+            "mongodbatlas:index/getAiModelApiKeys:getAiModelApiKeys": 1,
+            "mongodbatlas:index/getAiModelOrgApiKey:getAiModelOrgApiKey": 1,
+            "mongodbatlas:index/getAiModelOrgApiKeys:getAiModelOrgApiKeys": 1,
+            "mongodbatlas:index/getAiModelOrgRateLimit:getAiModelOrgRateLimit": 1,
+            "mongodbatlas:index/getAiModelOrgRateLimits:getAiModelOrgRateLimits": 1,
+            "mongodbatlas:index/getAiModelRateLimit:getAiModelRateLimit": 1,
+            "mongodbatlas:index/getAiModelRateLimits:getAiModelRateLimits": 1,
             "mongodbatlas:index/getAlertConfiguration:getAlertConfiguration": 1,
             "mongodbatlas:index/getAlertConfigurations:getAlertConfigurations": 1,
             "mongodbatlas:index/getApiKey:getApiKey": 0,
@@ -3535,6 +3696,8 @@
             "mongodbatlas:index/getLogIntegration:getLogIntegration": 1,
             "mongodbatlas:index/getLogIntegrations:getLogIntegrations": 1,
             "mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow": 0,
+            "mongodbatlas:index/getMetricIntegration:getMetricIntegration": 1,
+            "mongodbatlas:index/getMetricIntegrations:getMetricIntegrations": 1,
             "mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant": 1,
             "mongodbatlas:index/getNetworkContainer:getNetworkContainer": 0,
             "mongodbatlas:index/getNetworkContainers:getNetworkContainers": 0,
