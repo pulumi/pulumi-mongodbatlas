@@ -8,7 +8,7 @@ replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraf
 
 require (
 	github.com/mongodb/terraform-provider-mongodbatlas v1.30.0
-	github.com/pulumi/pulumi-terraform-bridge/v3 v3.136.0
+	github.com/pulumi/pulumi-terraform-bridge/v3 v3.137.0
 	github.com/pulumi/pulumi/sdk/v3 v3.256.0
 )
 
@@ -84,8 +84,8 @@ require (
 	github.com/fatih/color v1.19.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/go-git/gcfg/v2 v2.0.2 // indirect
-	github.com/go-git/go-billy/v6 v6.0.0-alpha.1 // indirect
-	github.com/go-git/go-git/v6 v6.0.0-alpha.4 // indirect
+	github.com/go-git/go-billy/v6 v6.0.0-alpha.2 // indirect
+	github.com/go-git/go-git/v6 v6.0.0-alpha.5 // indirect
 	github.com/go-jose/go-jose/v4 v4.1.4 // indirect
 	github.com/go-logr/logr v1.4.4 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
