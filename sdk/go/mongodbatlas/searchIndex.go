@@ -86,6 +86,50 @@ import (
 //
 // ```
 //
+// ### Vector index with automatically generated embeddings
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewSearchIndex(ctx, "test-auto-embed-vector-index", &mongodbatlas.SearchIndexArgs{
+//				ProjectId:      pulumi.String("<PROJECT_ID>"),
+//				ClusterName:    pulumi.String("<CLUSTER_NAME>"),
+//				CollectionName: pulumi.String("collection_test"),
+//				Database:       pulumi.String("database_test"),
+//				Name:           pulumi.String("test-auto-embed-vector-index"),
+//				Type:           pulumi.String("vectorSearch"),
+//				Fields: pulumi.String(`[{
+//	      \"type\": \"autoEmbed\",
+//	      \"path\": \"description\",
+//	      \"model\": \"voyage-4-lite\",
+//	      \"modality\": \"text\"
+//	},
+//
+//	{
+//	      \"type\": \"filter\",
+//	      \"path\": \"property_type\"
+//	}]
+//
+// `),
+//
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Advanced search index (with custom analyzers)
 // ```go
 // package main
@@ -221,6 +265,9 @@ import (
 //
 // ```
 //
+// ### Further Examples
+// - Search Index Examples
+//
 // ## Import
 //
 // You can import search indexes using `projectId`, `clusterName`, and `indexId` as in the following example:
@@ -241,7 +288,7 @@ type SearchIndex struct {
 	CollectionName pulumi.StringOutput `pulumi:"collectionName"`
 	// Name of the database the collection is in.
 	Database pulumi.StringOutput `pulumi:"database"`
-	// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+	// Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
 	Fields pulumi.StringPtrOutput `pulumi:"fields"`
 	// The unique identifier of the Atlas Search index.
 	IndexId pulumi.StringOutput `pulumi:"indexId"`
@@ -325,7 +372,7 @@ type searchIndexState struct {
 	CollectionName *string `pulumi:"collectionName"`
 	// Name of the database the collection is in.
 	Database *string `pulumi:"database"`
-	// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+	// Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
 	Fields *string `pulumi:"fields"`
 	// The unique identifier of the Atlas Search index.
 	IndexId *string `pulumi:"indexId"`
@@ -368,7 +415,7 @@ type SearchIndexState struct {
 	CollectionName pulumi.StringPtrInput
 	// Name of the database the collection is in.
 	Database pulumi.StringPtrInput
-	// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+	// Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
 	Fields pulumi.StringPtrInput
 	// The unique identifier of the Atlas Search index.
 	IndexId pulumi.StringPtrInput
@@ -415,7 +462,7 @@ type searchIndexArgs struct {
 	CollectionName string `pulumi:"collectionName"`
 	// Name of the database the collection is in.
 	Database string `pulumi:"database"`
-	// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+	// Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
 	Fields *string `pulumi:"fields"`
 	// Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
 	MappingsDynamic *bool `pulumi:"mappingsDynamic"`
@@ -455,7 +502,7 @@ type SearchIndexArgs struct {
 	CollectionName pulumi.StringInput
 	// Name of the database the collection is in.
 	Database pulumi.StringInput
-	// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+	// Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
 	Fields pulumi.StringPtrInput
 	// Indicates whether the search index uses dynamic or static mapping. For default dynamic mapping, set the value to `true`. For static mapping, specify the fields to index using `mappingsFields`. Mutually exclusive with `mappingsDynamicConfig`.
 	MappingsDynamic pulumi.BoolPtrInput
@@ -595,7 +642,7 @@ func (o SearchIndexOutput) Database() pulumi.StringOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringOutput { return v.Database }).(pulumi.StringOutput)
 }
 
-// Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+// Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
 func (o SearchIndexOutput) Fields() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *SearchIndex) pulumi.StringPtrOutput { return v.Fields }).(pulumi.StringPtrOutput)
 }

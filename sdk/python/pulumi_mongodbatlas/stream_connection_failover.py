@@ -41,15 +41,15 @@ class StreamConnectionFailoverArgs:
 
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection name.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-        :param pulumi.Input[_builtins.str] region: The connection's region.
-        :param pulumi.Input[_builtins.str] type: Type of the connection.
+        :param pulumi.Input[_builtins.str] region: Connection region.
+        :param pulumi.Input[_builtins.str] type: Connection type.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream workspace.
         :param pulumi.Input['StreamConnectionFailoverAuthenticationArgs'] authentication: Optional for type: Kafka. User credentials required to connect to a Kafka Cluster. Includes the authentication type, as well as the parameters for that authentication mode.
         :param pulumi.Input[_builtins.str] bootstrap_servers: Optional for type: Kafka. Comma separated list of server addresses.
         :param pulumi.Input[_builtins.str] cluster_name: Optional for type: Cluster. Name of the cluster configured for this connection.
         :param pulumi.Input[_builtins.str] cluster_project_id: Optional for type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
-        :param pulumi.Input['StreamConnectionFailoverDbRoleToExecuteArgs'] db_role_to_execute: Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
+        :param pulumi.Input['StreamConnectionFailoverDbRoleToExecuteArgs'] db_role_to_execute: Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input['StreamConnectionFailoverNetworkingArgs'] networking: Optional for type: Kafka. Networking configuration for Streams connections.
         :param pulumi.Input['StreamConnectionFailoverSecurityArgs'] security: Optional for type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
@@ -108,7 +108,7 @@ class StreamConnectionFailoverArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[_builtins.str]:
         """
-        The connection's region.
+        Connection region.
         """
         return pulumi.get(self, "region")
 
@@ -120,7 +120,7 @@ class StreamConnectionFailoverArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[_builtins.str]:
         """
-        Type of the connection.
+        Connection type.
         """
         return pulumi.get(self, "type")
 
@@ -192,7 +192,7 @@ class StreamConnectionFailoverArgs:
     @pulumi.getter
     def config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+        Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
         """
         return pulumi.get(self, "config")
 
@@ -204,7 +204,7 @@ class StreamConnectionFailoverArgs:
     @pulumi.getter(name="dbRoleToExecute")
     def db_role_to_execute(self) -> pulumi.Input[Optional['StreamConnectionFailoverDbRoleToExecuteArgs']]:
         """
-        Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+        Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
         """
         return pulumi.get(self, "db_role_to_execute")
 
@@ -285,17 +285,17 @@ class _StreamConnectionFailoverState:
         :param pulumi.Input[_builtins.str] bootstrap_servers: Optional for type: Kafka. Comma separated list of server addresses.
         :param pulumi.Input[_builtins.str] cluster_name: Optional for type: Cluster. Name of the cluster configured for this connection.
         :param pulumi.Input[_builtins.str] cluster_project_id: Optional for type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection name.
-        :param pulumi.Input['StreamConnectionFailoverDbRoleToExecuteArgs'] db_role_to_execute: Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+        :param pulumi.Input['StreamConnectionFailoverDbRoleToExecuteArgs'] db_role_to_execute: Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] failover_connection_id: Unique identifier of the connection.
         :param pulumi.Input['StreamConnectionFailoverNetworkingArgs'] networking: Optional for type: Kafka. Networking configuration for Streams connections.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-        :param pulumi.Input[_builtins.str] region: The connection's region.
+        :param pulumi.Input[_builtins.str] region: Connection region.
         :param pulumi.Input['StreamConnectionFailoverSecurityArgs'] security: Optional for type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
-        :param pulumi.Input[_builtins.str] state: The state of the connection.
-        :param pulumi.Input[_builtins.str] type: Type of the connection.
+        :param pulumi.Input[_builtins.str] state: Connection state.
+        :param pulumi.Input[_builtins.str] type: Connection type.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream workspace.
         """
         if authentication is not None:
@@ -385,7 +385,7 @@ class _StreamConnectionFailoverState:
     @pulumi.getter
     def config(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
         """
-        Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+        Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
         """
         return pulumi.get(self, "config")
 
@@ -409,7 +409,7 @@ class _StreamConnectionFailoverState:
     @pulumi.getter(name="dbRoleToExecute")
     def db_role_to_execute(self) -> pulumi.Input[Optional['StreamConnectionFailoverDbRoleToExecuteArgs']]:
         """
-        Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+        Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
         """
         return pulumi.get(self, "db_role_to_execute")
 
@@ -469,7 +469,7 @@ class _StreamConnectionFailoverState:
     @pulumi.getter
     def region(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The connection's region.
+        Connection region.
         """
         return pulumi.get(self, "region")
 
@@ -493,7 +493,7 @@ class _StreamConnectionFailoverState:
     @pulumi.getter
     def state(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        The state of the connection.
+        Connection state.
         """
         return pulumi.get(self, "state")
 
@@ -514,7 +514,7 @@ class _StreamConnectionFailoverState:
     @pulumi.getter
     def type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Type of the connection.
+        Connection type.
         """
         return pulumi.get(self, "type")
 
@@ -635,15 +635,15 @@ class StreamConnectionFailover(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] bootstrap_servers: Optional for type: Kafka. Comma separated list of server addresses.
         :param pulumi.Input[_builtins.str] cluster_name: Optional for type: Cluster. Name of the cluster configured for this connection.
         :param pulumi.Input[_builtins.str] cluster_project_id: Optional for type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection name.
-        :param pulumi.Input[Union['StreamConnectionFailoverDbRoleToExecuteArgs', 'StreamConnectionFailoverDbRoleToExecuteArgsDict']] db_role_to_execute: Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+        :param pulumi.Input[Union['StreamConnectionFailoverDbRoleToExecuteArgs', 'StreamConnectionFailoverDbRoleToExecuteArgsDict']] db_role_to_execute: Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[Union['StreamConnectionFailoverNetworkingArgs', 'StreamConnectionFailoverNetworkingArgsDict']] networking: Optional for type: Kafka. Networking configuration for Streams connections.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-        :param pulumi.Input[_builtins.str] region: The connection's region.
+        :param pulumi.Input[_builtins.str] region: Connection region.
         :param pulumi.Input[Union['StreamConnectionFailoverSecurityArgs', 'StreamConnectionFailoverSecurityArgsDict']] security: Optional for type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
-        :param pulumi.Input[_builtins.str] type: Type of the connection.
+        :param pulumi.Input[_builtins.str] type: Connection type.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream workspace.
         """
         ...
@@ -828,17 +828,17 @@ class StreamConnectionFailover(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] bootstrap_servers: Optional for type: Kafka. Comma separated list of server addresses.
         :param pulumi.Input[_builtins.str] cluster_name: Optional for type: Cluster. Name of the cluster configured for this connection.
         :param pulumi.Input[_builtins.str] cluster_project_id: Optional for type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
-        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection name.
-        :param pulumi.Input[Union['StreamConnectionFailoverDbRoleToExecuteArgs', 'StreamConnectionFailoverDbRoleToExecuteArgsDict']] db_role_to_execute: Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+        :param pulumi.Input[Union['StreamConnectionFailoverDbRoleToExecuteArgs', 'StreamConnectionFailoverDbRoleToExecuteArgsDict']] db_role_to_execute: Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] failover_connection_id: Unique identifier of the connection.
         :param pulumi.Input[Union['StreamConnectionFailoverNetworkingArgs', 'StreamConnectionFailoverNetworkingArgsDict']] networking: Optional for type: Kafka. Networking configuration for Streams connections.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-        :param pulumi.Input[_builtins.str] region: The connection's region.
+        :param pulumi.Input[_builtins.str] region: Connection region.
         :param pulumi.Input[Union['StreamConnectionFailoverSecurityArgs', 'StreamConnectionFailoverSecurityArgsDict']] security: Optional for type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
-        :param pulumi.Input[_builtins.str] state: The state of the connection.
-        :param pulumi.Input[_builtins.str] type: Type of the connection.
+        :param pulumi.Input[_builtins.str] state: Connection state.
+        :param pulumi.Input[_builtins.str] type: Connection type.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream workspace.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -900,7 +900,7 @@ class StreamConnectionFailover(pulumi.CustomResource):
     @pulumi.getter
     def config(self) -> pulumi.Output[Optional[Mapping[str, _builtins.str]]]:
         """
-        Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+        Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
         """
         return pulumi.get(self, "config")
 
@@ -916,7 +916,7 @@ class StreamConnectionFailover(pulumi.CustomResource):
     @pulumi.getter(name="dbRoleToExecute")
     def db_role_to_execute(self) -> pulumi.Output[Optional['outputs.StreamConnectionFailoverDbRoleToExecute']]:
         """
-        Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+        Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
         """
         return pulumi.get(self, "db_role_to_execute")
 
@@ -956,7 +956,7 @@ class StreamConnectionFailover(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[_builtins.str]:
         """
-        The connection's region.
+        Connection region.
         """
         return pulumi.get(self, "region")
 
@@ -972,7 +972,7 @@ class StreamConnectionFailover(pulumi.CustomResource):
     @pulumi.getter
     def state(self) -> pulumi.Output[_builtins.str]:
         """
-        The state of the connection.
+        Connection state.
         """
         return pulumi.get(self, "state")
 
@@ -985,7 +985,7 @@ class StreamConnectionFailover(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[_builtins.str]:
         """
-        Type of the connection.
+        Connection type.
         """
         return pulumi.get(self, "type")
 

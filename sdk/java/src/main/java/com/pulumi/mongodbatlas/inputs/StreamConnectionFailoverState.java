@@ -83,14 +83,14 @@ public final class StreamConnectionFailoverState extends com.pulumi.resources.Re
     }
 
     /**
-     * Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have &#39;.&#39; characters.
+     * Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have &#39;.&#39; characters.
      * 
      */
     @Import(name="config")
     private @Nullable Output<Map<String,String>> config;
 
     /**
-     * @return Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have &#39;.&#39; characters.
+     * @return Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have &#39;.&#39; characters.
      * 
      */
     public Optional<Output<Map<String,String>>> config() {
@@ -113,14 +113,14 @@ public final class StreamConnectionFailoverState extends com.pulumi.resources.Re
     }
 
     /**
-     * Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+     * Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
      * 
      */
     @Import(name="dbRoleToExecute")
     private @Nullable Output<StreamConnectionFailoverDbRoleToExecuteArgs> dbRoleToExecute;
 
     /**
-     * @return Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+     * @return Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
      * 
      */
     public Optional<Output<StreamConnectionFailoverDbRoleToExecuteArgs>> dbRoleToExecute() {
@@ -188,14 +188,14 @@ public final class StreamConnectionFailoverState extends com.pulumi.resources.Re
     }
 
     /**
-     * The connection&#39;s region.
+     * Connection region.
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return The connection&#39;s region.
+     * @return Connection region.
      * 
      */
     public Optional<Output<String>> region() {
@@ -218,14 +218,14 @@ public final class StreamConnectionFailoverState extends com.pulumi.resources.Re
     }
 
     /**
-     * The state of the connection.
+     * Connection state.
      * 
      */
     @Import(name="state")
     private @Nullable Output<String> state;
 
     /**
-     * @return The state of the connection.
+     * @return Connection state.
      * 
      */
     public Optional<Output<String>> state() {
@@ -240,14 +240,14 @@ public final class StreamConnectionFailoverState extends com.pulumi.resources.Re
     }
 
     /**
-     * Type of the connection.
+     * Connection type.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return Type of the connection.
+     * @return Connection type.
      * 
      */
     public Optional<Output<String>> type() {
@@ -394,7 +394,7 @@ public final class StreamConnectionFailoverState extends com.pulumi.resources.Re
         }
 
         /**
-         * @param config Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have &#39;.&#39; characters.
+         * @param config Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have &#39;.&#39; characters.
          * 
          * @return builder
          * 
@@ -405,7 +405,7 @@ public final class StreamConnectionFailoverState extends com.pulumi.resources.Re
         }
 
         /**
-         * @param config Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have &#39;.&#39; characters.
+         * @param config Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have &#39;.&#39; characters.
          * 
          * @return builder
          * 
@@ -436,7 +436,7 @@ public final class StreamConnectionFailoverState extends com.pulumi.resources.Re
         }
 
         /**
-         * @param dbRoleToExecute Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+         * @param dbRoleToExecute Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
          * 
          * @return builder
          * 
@@ -447,7 +447,7 @@ public final class StreamConnectionFailoverState extends com.pulumi.resources.Re
         }
 
         /**
-         * @param dbRoleToExecute Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+         * @param dbRoleToExecute Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
          * 
          * @return builder
          * 
@@ -541,7 +541,7 @@ public final class StreamConnectionFailoverState extends com.pulumi.resources.Re
         }
 
         /**
-         * @param region The connection&#39;s region.
+         * @param region Connection region.
          * 
          * @return builder
          * 
@@ -552,7 +552,7 @@ public final class StreamConnectionFailoverState extends com.pulumi.resources.Re
         }
 
         /**
-         * @param region The connection&#39;s region.
+         * @param region Connection region.
          * 
          * @return builder
          * 
@@ -583,7 +583,7 @@ public final class StreamConnectionFailoverState extends com.pulumi.resources.Re
         }
 
         /**
-         * @param state The state of the connection.
+         * @param state Connection state.
          * 
          * @return builder
          * 
@@ -594,7 +594,7 @@ public final class StreamConnectionFailoverState extends com.pulumi.resources.Re
         }
 
         /**
-         * @param state The state of the connection.
+         * @param state Connection state.
          * 
          * @return builder
          * 
@@ -613,7 +613,7 @@ public final class StreamConnectionFailoverState extends com.pulumi.resources.Re
         }
 
         /**
-         * @param type Type of the connection.
+         * @param type Connection type.
          * 
          * @return builder
          * 
@@ -624,7 +624,7 @@ public final class StreamConnectionFailoverState extends com.pulumi.resources.Re
         }
 
         /**
-         * @param type Type of the connection.
+         * @param type Connection type.
          * 
          * @return builder
          * 

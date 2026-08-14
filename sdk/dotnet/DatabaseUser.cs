@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `Products` database and a user has a role granting `Read` access on the products database, the user has that access on both clusters.
     /// 
-    /// &gt; **IMPORTANT WARNING:** Managing passwords with Terraform exposes sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices.
+    /// &gt; **IMPORTANT WARNING:** The `Password` argument is stored in Terraform state in plain text. To avoid this issue, you can use `PasswordWo` instead, which is a write-only argument and is never written to state or plan files. It requires Terraform 1.11 or later. See Terraform's best practices for handling sensitive data in state.
     /// 
     /// ## Example Usage
     /// 
@@ -191,9 +191,6 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
     /// 
-    /// ### Further Examples
-    /// - Database User
-    /// 
     /// ## Import
     /// 
     /// Database users can be imported using project ID, username, and auth database name in the format:
@@ -206,7 +203,7 @@ namespace Pulumi.Mongodbatlas
     /// terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
     /// ```
     /// 
-    /// &gt; **NOTE:** Terraform will want to change the password after importing the user if a `Password` argument is specified.
+    /// &gt; **NOTE:** Terraform will want to change the password after importing the user if a `Password` or `PasswordWo` argument is specified.
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/databaseUser:DatabaseUser")]
     public partial class DatabaseUser : global::Pulumi.CustomResource
@@ -255,10 +252,23 @@ namespace Pulumi.Mongodbatlas
         public Output<string> OidcAuthType { get; private set; } = null!;
 
         /// <summary>
-        /// User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+        /// User's initial password. Only applicable for password-based authentication. Conflicts with `PasswordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `PasswordWo` instead.
         /// </summary>
         [Output("password")]
         public Output<string?> Password { get; private set; } = null!;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `Password`. Requires Terraform 1.11 or later, and must be set together with `PasswordWoVersion`.
+        /// </summary>
+        [Output("passwordWo")]
+        public Output<string?> PasswordWo { get; private set; } = null!;
+
+        /// <summary>
+        /// Integer that triggers an update of `PasswordWo`. To rotate the password, change `PasswordWo` and increment this value in the same edit. Changing `PasswordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+        /// </summary>
+        [Output("passwordWoVersion")]
+        public Output<int?> PasswordWoVersion { get; private set; } = null!;
 
         /// <summary>
         /// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
@@ -316,6 +326,7 @@ namespace Pulumi.Mongodbatlas
                 AdditionalSecretOutputs =
                 {
                     "password",
+                    "passwordWo",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -392,7 +403,7 @@ namespace Pulumi.Mongodbatlas
         private Input<string>? _password;
 
         /// <summary>
-        /// User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+        /// User's initial password. Only applicable for password-based authentication. Conflicts with `PasswordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `PasswordWo` instead.
         /// </summary>
         public Input<string>? Password
         {
@@ -403,6 +414,29 @@ namespace Pulumi.Mongodbatlas
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `Password`. Requires Terraform 1.11 or later, and must be set together with `PasswordWoVersion`.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Integer that triggers an update of `PasswordWo`. To rotate the password, change `PasswordWo` and increment this value in the same edit. Changing `PasswordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
@@ -505,7 +539,7 @@ namespace Pulumi.Mongodbatlas
         private Input<string>? _password;
 
         /// <summary>
-        /// User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+        /// User's initial password. Only applicable for password-based authentication. Conflicts with `PasswordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `PasswordWo` instead.
         /// </summary>
         public Input<string>? Password
         {
@@ -516,6 +550,29 @@ namespace Pulumi.Mongodbatlas
                 _password = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
             }
         }
+
+        [Input("passwordWo")]
+        private Input<string>? _passwordWo;
+
+        /// <summary>
+        /// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        /// User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `Password`. Requires Terraform 1.11 or later, and must be set together with `PasswordWoVersion`.
+        /// </summary>
+        public Input<string>? PasswordWo
+        {
+            get => _passwordWo;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _passwordWo = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        /// <summary>
+        /// Integer that triggers an update of `PasswordWo`. To rotate the password, change `PasswordWo` and increment this value in the same edit. Changing `PasswordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+        /// </summary>
+        [Input("passwordWoVersion")]
+        public Input<int>? PasswordWoVersion { get; set; }
 
         /// <summary>
         /// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.

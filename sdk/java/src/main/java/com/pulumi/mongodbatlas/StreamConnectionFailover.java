@@ -190,14 +190,14 @@ public class StreamConnectionFailover extends com.pulumi.resources.CustomResourc
         return Codegen.optional(this.clusterProjectId);
     }
     /**
-     * Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have &#39;.&#39; characters.
+     * Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have &#39;.&#39; characters.
      * 
      */
     @Export(name="config", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> config;
 
     /**
-     * @return Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have &#39;.&#39; characters.
+     * @return Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have &#39;.&#39; characters.
      * 
      */
     public Output<Optional<Map<String,String>>> config() {
@@ -218,14 +218,14 @@ public class StreamConnectionFailover extends com.pulumi.resources.CustomResourc
         return this.connectionName;
     }
     /**
-     * Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+     * Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
      * 
      */
     @Export(name="dbRoleToExecute", refs={StreamConnectionFailoverDbRoleToExecute.class}, tree="[0]")
     private Output</* @Nullable */ StreamConnectionFailoverDbRoleToExecute> dbRoleToExecute;
 
     /**
-     * @return Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+     * @return Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
      * 
      */
     public Output<Optional<StreamConnectionFailoverDbRoleToExecute>> dbRoleToExecute() {
@@ -288,14 +288,14 @@ public class StreamConnectionFailover extends com.pulumi.resources.CustomResourc
         return this.projectId;
     }
     /**
-     * The connection&#39;s region.
+     * Connection region.
      * 
      */
     @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return The connection&#39;s region.
+     * @return Connection region.
      * 
      */
     public Output<String> region() {
@@ -316,14 +316,14 @@ public class StreamConnectionFailover extends com.pulumi.resources.CustomResourc
         return Codegen.optional(this.security);
     }
     /**
-     * The state of the connection.
+     * Connection state.
      * 
      */
     @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**
-     * @return The state of the connection.
+     * @return Connection state.
      * 
      */
     public Output<String> state() {
@@ -336,14 +336,14 @@ public class StreamConnectionFailover extends com.pulumi.resources.CustomResourc
         return Codegen.optional(this.timeouts);
     }
     /**
-     * Type of the connection.
+     * Connection type.
      * 
      */
     @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return Type of the connection.
+     * @return Connection type.
      * 
      */
     public Output<String> type() {

@@ -114,6 +114,8 @@ __all__ = [
     'LdapVerifyValidation',
     'LogIntegrationOtelSuppliedHeader',
     'MaintenanceWindowProtectedHours',
+    'MetricIntegrationHeader',
+    'MetricIntegrationHeadersRedacted',
     'OnlineArchiveCriteria',
     'OnlineArchiveDataExpirationRule',
     'OnlineArchiveDataProcessRegion',
@@ -201,6 +203,10 @@ __all__ = [
     'GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult',
+    'GetAiModelApiKeysResultResult',
+    'GetAiModelOrgApiKeysResultResult',
+    'GetAiModelOrgRateLimitsResultResult',
+    'GetAiModelRateLimitsResultResult',
     'GetAlertConfigurationMatcherResult',
     'GetAlertConfigurationMetricThresholdConfigResult',
     'GetAlertConfigurationNotificationResult',
@@ -371,6 +377,9 @@ __all__ = [
     'GetLogIntegrationsResultResult',
     'GetLogIntegrationsResultOtelSuppliedHeaderResult',
     'GetMaintenanceWindowProtectedHourResult',
+    'GetMetricIntegrationHeadersRedactedResult',
+    'GetMetricIntegrationsResultResult',
+    'GetMetricIntegrationsResultHeadersRedactedResult',
     'GetNetworkContainersResultResult',
     'GetNetworkPeeringsResultResult',
     'GetOnlineArchiveCriteriaResult',
@@ -1224,6 +1233,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         :param _builtins.int priority: Election priority of the region. For regions with only read-only nodes, set this value to 0.
                * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
                * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+               * If several `region_configs` objects share the same priority, such as regions with only read-only or analytics nodes that have a priority of 0, list them in reverse alphabetical order by `region_name`. See the note at the beginning of this section.
         :param _builtins.str provider_name: Cloud service provider on which the servers are provisioned.
                The possible values are:
                - `AWS` - Amazon AWS
@@ -1264,6 +1274,7 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         Election priority of the region. For regions with only read-only nodes, set this value to 0.
         * If you have multiple `region_configs` objects (your cluster is multi-region or multi-cloud), they must have priorities in descending order. The highest priority is 7.
         * If your region has set `region_configs[#].electable_specs.node_count` to 1 or higher, it must have a priority of exactly one (1) less than another region in the `replication_specs[#].region_configs[#]` array. The highest-priority region must have a priority of 7. The lowest possible priority is 1.
+        * If several `region_configs` objects share the same priority, such as regions with only read-only or analytics nodes that have a priority of 0, list them in reverse alphabetical order by `region_name`. See the note at the beginning of this section.
         """
         return pulumi.get(self, "priority")
 
@@ -7738,6 +7749,66 @@ class MaintenanceWindowProtectedHours(dict):
 
 
 @pulumi.output_type
+class MetricIntegrationHeader(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str name: Header name.
+        :param _builtins.str value: Header value.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Header name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Header value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class MetricIntegrationHeadersRedacted(dict):
+    def __init__(__self__, *,
+                 name: Optional[_builtins.str] = None,
+                 value: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str name: Header name.
+        :param _builtins.str value: Redacted header value.
+        """
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if value is not None:
+            pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[_builtins.str]:
+        """
+        Header name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> Optional[_builtins.str]:
+        """
+        Redacted header value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class OnlineArchiveCriteria(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -9551,7 +9622,7 @@ class StreamConnectionFailoverAuthentication(dict):
         :param _builtins.str client_id: OIDC client identifier for authentication to the Kafka cluster.
         :param _builtins.str client_secret: OIDC client secret for authentication to the Kafka cluster.
         :param _builtins.str mechanism: Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
-        :param _builtins.str method: SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        :param _builtins.str method: SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
         :param _builtins.str password: Password of the account to connect to the Kafka cluster.
         :param _builtins.str sasl_oauthbearer_extensions: SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
         :param _builtins.str scope: OIDC scope parameter defining the access permissions requested.
@@ -9614,7 +9685,7 @@ class StreamConnectionFailoverAuthentication(dict):
     @pulumi.getter
     def method(self) -> Optional[_builtins.str]:
         """
-        SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
         """
         return pulumi.get(self, "method")
 
@@ -13273,6 +13344,430 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(di
         Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         return pulumi.get(self, "node_count")
+
+
+@pulumi.output_type
+class GetAiModelApiKeysResultResult(dict):
+    def __init__(__self__, *,
+                 api_key_id: _builtins.str,
+                 cloud: _builtins.str,
+                 created_at: _builtins.str,
+                 created_by: _builtins.str,
+                 endpoint: _builtins.str,
+                 geography: _builtins.str,
+                 last_used_at: _builtins.str,
+                 masked_secret: _builtins.str,
+                 name: _builtins.str,
+                 project_id: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str api_key_id: Identifier used to reference this API key in admin API calls.
+        :param _builtins.str cloud: Cloud provider scope for this API key. Use "ANY" for cloud-agnostic scope.
+        :param _builtins.str created_at: UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
+        :param _builtins.str created_by: Name of the user that created this API key. If no user name is available, the user ID is returned.
+        :param _builtins.str endpoint: Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+        :param _builtins.str geography: Geography scope for this API key. Use "ANY" for geography-agnostic scope.
+        :param _builtins.str last_used_at: UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
+        :param _builtins.str masked_secret: A partially obfuscated version of the API key secret returned when the API key was created.
+        :param _builtins.str name: Arbitrary string identifier assigned to this API key for convenient identification.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+        :param _builtins.str status: A string describing the current status of the API key.
+        """
+        pulumi.set(__self__, "api_key_id", api_key_id)
+        pulumi.set(__self__, "cloud", cloud)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "endpoint", endpoint)
+        pulumi.set(__self__, "geography", geography)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "masked_secret", masked_secret)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKeyId")
+    def api_key_id(self) -> _builtins.str:
+        """
+        Identifier used to reference this API key in admin API calls.
+        """
+        return pulumi.get(self, "api_key_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def cloud(self) -> _builtins.str:
+        """
+        Cloud provider scope for this API key. Use "ANY" for cloud-agnostic scope.
+        """
+        return pulumi.get(self, "cloud")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> _builtins.str:
+        """
+        Name of the user that created this API key. If no user name is available, the user ID is returned.
+        """
+        return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> _builtins.str:
+        """
+        Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @_builtins.property
+    @pulumi.getter
+    def geography(self) -> _builtins.str:
+        """
+        Geography scope for this API key. Use "ANY" for geography-agnostic scope.
+        """
+        return pulumi.get(self, "geography")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="maskedSecret")
+    def masked_secret(self) -> _builtins.str:
+        """
+        A partially obfuscated version of the API key secret returned when the API key was created.
+        """
+        return pulumi.get(self, "masked_secret")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Arbitrary string identifier assigned to this API key for convenient identification.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        A string describing the current status of the API key.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetAiModelOrgApiKeysResultResult(dict):
+    def __init__(__self__, *,
+                 api_key_id: _builtins.str,
+                 cloud: _builtins.str,
+                 created_at: _builtins.str,
+                 created_by: _builtins.str,
+                 endpoint: _builtins.str,
+                 geography: _builtins.str,
+                 last_used_at: _builtins.str,
+                 masked_secret: _builtins.str,
+                 name: _builtins.str,
+                 project_id: _builtins.str,
+                 status: _builtins.str):
+        """
+        :param _builtins.str api_key_id: Identifier used to reference this API key in admin API calls.
+        :param _builtins.str cloud: Cloud provider scope for this API key. Use "ANY" for cloud-agnostic scope.
+        :param _builtins.str created_at: UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
+        :param _builtins.str created_by: Name of the user that created this API key. If no user name is available, the user ID is returned.
+        :param _builtins.str endpoint: Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+        :param _builtins.str geography: Geography scope for this API key. Use "ANY" for geography-agnostic scope.
+        :param _builtins.str last_used_at: UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
+        :param _builtins.str masked_secret: A partially obfuscated version of the API key secret returned when the API key was created.
+        :param _builtins.str name: Arbitrary string identifier assigned to this API key for convenient identification.
+        :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+        :param _builtins.str status: A string describing the current status of the API key.
+        """
+        pulumi.set(__self__, "api_key_id", api_key_id)
+        pulumi.set(__self__, "cloud", cloud)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "created_by", created_by)
+        pulumi.set(__self__, "endpoint", endpoint)
+        pulumi.set(__self__, "geography", geography)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "masked_secret", masked_secret)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "status", status)
+
+    @_builtins.property
+    @pulumi.getter(name="apiKeyId")
+    def api_key_id(self) -> _builtins.str:
+        """
+        Identifier used to reference this API key in admin API calls.
+        """
+        return pulumi.get(self, "api_key_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def cloud(self) -> _builtins.str:
+        """
+        Cloud provider scope for this API key. Use "ANY" for cloud-agnostic scope.
+        """
+        return pulumi.get(self, "cloud")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        UTC date when the API key was created. This parameter is formatted as an ISO 8601 timestamp.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="createdBy")
+    def created_by(self) -> _builtins.str:
+        """
+        Name of the user that created this API key. If no user name is available, the user ID is returned.
+        """
+        return pulumi.get(self, "created_by")
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> _builtins.str:
+        """
+        Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @_builtins.property
+    @pulumi.getter
+    def geography(self) -> _builtins.str:
+        """
+        Geography scope for this API key. Use "ANY" for geography-agnostic scope.
+        """
+        return pulumi.get(self, "geography")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        UTC date when the API key was last used. This parameter is formatted as an ISO 8601 timestamp.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="maskedSecret")
+    def masked_secret(self) -> _builtins.str:
+        """
+        A partially obfuscated version of the API key secret returned when the API key was created.
+        """
+        return pulumi.get(self, "masked_secret")
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Arbitrary string identifier assigned to this API key for convenient identification.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+        """
+        return pulumi.get(self, "project_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def status(self) -> _builtins.str:
+        """
+        A string describing the current status of the API key.
+        """
+        return pulumi.get(self, "status")
+
+
+@pulumi.output_type
+class GetAiModelOrgRateLimitsResultResult(dict):
+    def __init__(__self__, *,
+                 cloud: _builtins.str,
+                 endpoint: _builtins.str,
+                 geography: _builtins.str,
+                 model_group_name: _builtins.str,
+                 model_names: Sequence[_builtins.str],
+                 requests_per_minute_limit: _builtins.int,
+                 tokens_per_minute_limit: _builtins.int):
+        """
+        :param _builtins.str cloud: Cloud provider scope for this rate limit. Use "ANY" for cloud-agnostic scope.
+        :param _builtins.str endpoint: Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+        :param _builtins.str geography: Geography scope for this rate limit. Use "ANY" for geography-agnostic scope.
+        :param _builtins.str model_group_name: Identifier used to reference this model group.
+        :param Sequence[_builtins.str] model_names: List of embedding model names included in this model group.
+        :param _builtins.int requests_per_minute_limit: The number of requests per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+        :param _builtins.int tokens_per_minute_limit: The number of tokens per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+        """
+        pulumi.set(__self__, "cloud", cloud)
+        pulumi.set(__self__, "endpoint", endpoint)
+        pulumi.set(__self__, "geography", geography)
+        pulumi.set(__self__, "model_group_name", model_group_name)
+        pulumi.set(__self__, "model_names", model_names)
+        pulumi.set(__self__, "requests_per_minute_limit", requests_per_minute_limit)
+        pulumi.set(__self__, "tokens_per_minute_limit", tokens_per_minute_limit)
+
+    @_builtins.property
+    @pulumi.getter
+    def cloud(self) -> _builtins.str:
+        """
+        Cloud provider scope for this rate limit. Use "ANY" for cloud-agnostic scope.
+        """
+        return pulumi.get(self, "cloud")
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> _builtins.str:
+        """
+        Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @_builtins.property
+    @pulumi.getter
+    def geography(self) -> _builtins.str:
+        """
+        Geography scope for this rate limit. Use "ANY" for geography-agnostic scope.
+        """
+        return pulumi.get(self, "geography")
+
+    @_builtins.property
+    @pulumi.getter(name="modelGroupName")
+    def model_group_name(self) -> _builtins.str:
+        """
+        Identifier used to reference this model group.
+        """
+        return pulumi.get(self, "model_group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="modelNames")
+    def model_names(self) -> Sequence[_builtins.str]:
+        """
+        List of embedding model names included in this model group.
+        """
+        return pulumi.get(self, "model_names")
+
+    @_builtins.property
+    @pulumi.getter(name="requestsPerMinuteLimit")
+    def requests_per_minute_limit(self) -> _builtins.int:
+        """
+        The number of requests per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+        """
+        return pulumi.get(self, "requests_per_minute_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="tokensPerMinuteLimit")
+    def tokens_per_minute_limit(self) -> _builtins.int:
+        """
+        The number of tokens per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+        """
+        return pulumi.get(self, "tokens_per_minute_limit")
+
+
+@pulumi.output_type
+class GetAiModelRateLimitsResultResult(dict):
+    def __init__(__self__, *,
+                 cloud: _builtins.str,
+                 endpoint: _builtins.str,
+                 geography: _builtins.str,
+                 model_group_name: _builtins.str,
+                 model_names: Sequence[_builtins.str],
+                 requests_per_minute_limit: _builtins.int,
+                 tokens_per_minute_limit: _builtins.int):
+        """
+        :param _builtins.str cloud: Cloud provider scope for this rate limit. Use "ANY" for cloud-agnostic scope.
+        :param _builtins.str endpoint: Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+        :param _builtins.str geography: Geography scope for this rate limit. Use "ANY" for geography-agnostic scope.
+        :param _builtins.str model_group_name: Identifier used to reference this model group.
+        :param Sequence[_builtins.str] model_names: List of embedding model names included in this model group.
+        :param _builtins.int requests_per_minute_limit: The number of requests per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+        :param _builtins.int tokens_per_minute_limit: The number of tokens per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+        """
+        pulumi.set(__self__, "cloud", cloud)
+        pulumi.set(__self__, "endpoint", endpoint)
+        pulumi.set(__self__, "geography", geography)
+        pulumi.set(__self__, "model_group_name", model_group_name)
+        pulumi.set(__self__, "model_names", model_names)
+        pulumi.set(__self__, "requests_per_minute_limit", requests_per_minute_limit)
+        pulumi.set(__self__, "tokens_per_minute_limit", tokens_per_minute_limit)
+
+    @_builtins.property
+    @pulumi.getter
+    def cloud(self) -> _builtins.str:
+        """
+        Cloud provider scope for this rate limit. Use "ANY" for cloud-agnostic scope.
+        """
+        return pulumi.get(self, "cloud")
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> _builtins.str:
+        """
+        Server-computed endpoint hostname derived from `cloud` and `geography`. This field is read-only and must not be supplied in request bodies.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @_builtins.property
+    @pulumi.getter
+    def geography(self) -> _builtins.str:
+        """
+        Geography scope for this rate limit. Use "ANY" for geography-agnostic scope.
+        """
+        return pulumi.get(self, "geography")
+
+    @_builtins.property
+    @pulumi.getter(name="modelGroupName")
+    def model_group_name(self) -> _builtins.str:
+        """
+        Identifier used to reference this model group.
+        """
+        return pulumi.get(self, "model_group_name")
+
+    @_builtins.property
+    @pulumi.getter(name="modelNames")
+    def model_names(self) -> Sequence[_builtins.str]:
+        """
+        List of embedding model names included in this model group.
+        """
+        return pulumi.get(self, "model_names")
+
+    @_builtins.property
+    @pulumi.getter(name="requestsPerMinuteLimit")
+    def requests_per_minute_limit(self) -> _builtins.int:
+        """
+        The number of requests per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+        """
+        return pulumi.get(self, "requests_per_minute_limit")
+
+    @_builtins.property
+    @pulumi.getter(name="tokensPerMinuteLimit")
+    def tokens_per_minute_limit(self) -> _builtins.int:
+        """
+        The number of tokens per minute allowed for this model group. Must be a positive integer. Cannot be more than the organization level limit for this group model.
+        """
+        return pulumi.get(self, "tokens_per_minute_limit")
 
 
 @pulumi.output_type
@@ -23454,6 +23949,159 @@ class GetMaintenanceWindowProtectedHourResult(dict):
 
 
 @pulumi.output_type
+class GetMetricIntegrationHeadersRedactedResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str name: Header name.
+        :param _builtins.str value: Redacted header value.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Header name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Redacted header value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
+class GetMetricIntegrationsResultResult(dict):
+    def __init__(__self__, *,
+                 aggregation_temporality: _builtins.str,
+                 auth_type: _builtins.str,
+                 endpoint: _builtins.str,
+                 headers_redacteds: Sequence['outputs.GetMetricIntegrationsResultHeadersRedactedResult'],
+                 integration_type: _builtins.str,
+                 metric_integration_id: _builtins.str,
+                 metric_selections: Sequence[_builtins.str],
+                 provider_type: _builtins.str):
+        """
+        :param _builtins.str aggregation_temporality: The temporality to send to the metric integration.
+        :param _builtins.str auth_type: Authentication method the integration uses when exporting metrics to the endpoint.
+        :param _builtins.str endpoint: OpenTelemetry collector endpoint URL.
+        :param Sequence['GetMetricIntegrationsResultHeadersRedactedArgs'] headers_redacteds: HTTP headers for authentication and configuration. Values are redacted and never returned in plaintext.
+        :param _builtins.str integration_type: Type of metric integration. Identifies which protocol will be used for the integration.
+        :param _builtins.str metric_integration_id: Unique identifier of the metric integration configuration.
+        :param Sequence[_builtins.str] metric_selections: Array of metric categories to export. Determines which types of metrics are sent to the integration.
+        :param _builtins.str provider_type: The provider type for the metric integration. Identifies the third-party service provider.
+        """
+        pulumi.set(__self__, "aggregation_temporality", aggregation_temporality)
+        pulumi.set(__self__, "auth_type", auth_type)
+        pulumi.set(__self__, "endpoint", endpoint)
+        pulumi.set(__self__, "headers_redacteds", headers_redacteds)
+        pulumi.set(__self__, "integration_type", integration_type)
+        pulumi.set(__self__, "metric_integration_id", metric_integration_id)
+        pulumi.set(__self__, "metric_selections", metric_selections)
+        pulumi.set(__self__, "provider_type", provider_type)
+
+    @_builtins.property
+    @pulumi.getter(name="aggregationTemporality")
+    def aggregation_temporality(self) -> _builtins.str:
+        """
+        The temporality to send to the metric integration.
+        """
+        return pulumi.get(self, "aggregation_temporality")
+
+    @_builtins.property
+    @pulumi.getter(name="authType")
+    def auth_type(self) -> _builtins.str:
+        """
+        Authentication method the integration uses when exporting metrics to the endpoint.
+        """
+        return pulumi.get(self, "auth_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def endpoint(self) -> _builtins.str:
+        """
+        OpenTelemetry collector endpoint URL.
+        """
+        return pulumi.get(self, "endpoint")
+
+    @_builtins.property
+    @pulumi.getter(name="headersRedacteds")
+    def headers_redacteds(self) -> Sequence['outputs.GetMetricIntegrationsResultHeadersRedactedResult']:
+        """
+        HTTP headers for authentication and configuration. Values are redacted and never returned in plaintext.
+        """
+        return pulumi.get(self, "headers_redacteds")
+
+    @_builtins.property
+    @pulumi.getter(name="integrationType")
+    def integration_type(self) -> _builtins.str:
+        """
+        Type of metric integration. Identifies which protocol will be used for the integration.
+        """
+        return pulumi.get(self, "integration_type")
+
+    @_builtins.property
+    @pulumi.getter(name="metricIntegrationId")
+    def metric_integration_id(self) -> _builtins.str:
+        """
+        Unique identifier of the metric integration configuration.
+        """
+        return pulumi.get(self, "metric_integration_id")
+
+    @_builtins.property
+    @pulumi.getter(name="metricSelections")
+    def metric_selections(self) -> Sequence[_builtins.str]:
+        """
+        Array of metric categories to export. Determines which types of metrics are sent to the integration.
+        """
+        return pulumi.get(self, "metric_selections")
+
+    @_builtins.property
+    @pulumi.getter(name="providerType")
+    def provider_type(self) -> _builtins.str:
+        """
+        The provider type for the metric integration. Identifies the third-party service provider.
+        """
+        return pulumi.get(self, "provider_type")
+
+
+@pulumi.output_type
+class GetMetricIntegrationsResultHeadersRedactedResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str name: Header name.
+        :param _builtins.str value: Redacted header value.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Header name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Redacted header value.
+        """
+        return pulumi.get(self, "value")
+
+
+@pulumi.output_type
 class GetNetworkContainersResultResult(dict):
     def __init__(__self__, *,
                  atlas_cidr_block: _builtins.str,
@@ -28251,7 +28899,7 @@ class GetStreamConnectionFailoverAuthenticationResult(dict):
         :param _builtins.str client_id: OIDC client identifier for authentication to the Kafka cluster.
         :param _builtins.str client_secret: OIDC client secret for authentication to the Kafka cluster.
         :param _builtins.str mechanism: Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
-        :param _builtins.str method: SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        :param _builtins.str method: SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
         :param _builtins.str password: Password of the account to connect to the Kafka cluster.
         :param _builtins.str sasl_oauthbearer_extensions: SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
         :param _builtins.str scope: OIDC scope parameter defining the access permissions requested.
@@ -28302,7 +28950,7 @@ class GetStreamConnectionFailoverAuthenticationResult(dict):
     @pulumi.getter
     def method(self) -> _builtins.str:
         """
-        SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
         """
         return pulumi.get(self, "method")
 
@@ -28518,14 +29166,14 @@ class GetStreamConnectionFailoversResultResult(dict):
         :param _builtins.str bootstrap_servers: Applies to type: Kafka. Comma separated list of server addresses.
         :param _builtins.str cluster_name: Applies to type: Cluster. Name of the cluster configured for this connection.
         :param _builtins.str cluster_project_id: Applies to type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
-        :param Mapping[str, _builtins.str] config: Applies to type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
-        :param 'GetStreamConnectionFailoversResultDbRoleToExecuteArgs' db_role_to_execute: Applies to type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+        :param Mapping[str, _builtins.str] config: Applies to type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
+        :param 'GetStreamConnectionFailoversResultDbRoleToExecuteArgs' db_role_to_execute: Applies to type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
         :param _builtins.str failover_connection_id: Unique identifier of the connection.
         :param 'GetStreamConnectionFailoversResultNetworkingArgs' networking: Applies to type: Kafka. Networking configuration for Streams connections.
-        :param _builtins.str region: The connection's region.
+        :param _builtins.str region: Connection region.
         :param 'GetStreamConnectionFailoversResultSecurityArgs' security: Applies to type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
-        :param _builtins.str state: The state of the connection.
-        :param _builtins.str type: Type of the connection.
+        :param _builtins.str state: Connection state.
+        :param _builtins.str type: Connection type.
         """
         pulumi.set(__self__, "authentication", authentication)
         pulumi.set(__self__, "bootstrap_servers", bootstrap_servers)
@@ -28576,7 +29224,7 @@ class GetStreamConnectionFailoversResultResult(dict):
     @pulumi.getter
     def config(self) -> Mapping[str, _builtins.str]:
         """
-        Applies to type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+        Applies to type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
         """
         return pulumi.get(self, "config")
 
@@ -28584,7 +29232,7 @@ class GetStreamConnectionFailoversResultResult(dict):
     @pulumi.getter(name="dbRoleToExecute")
     def db_role_to_execute(self) -> 'outputs.GetStreamConnectionFailoversResultDbRoleToExecuteResult':
         """
-        Applies to type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+        Applies to type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
         """
         return pulumi.get(self, "db_role_to_execute")
 
@@ -28608,7 +29256,7 @@ class GetStreamConnectionFailoversResultResult(dict):
     @pulumi.getter
     def region(self) -> _builtins.str:
         """
-        The connection's region.
+        Connection region.
         """
         return pulumi.get(self, "region")
 
@@ -28624,7 +29272,7 @@ class GetStreamConnectionFailoversResultResult(dict):
     @pulumi.getter
     def state(self) -> _builtins.str:
         """
-        The state of the connection.
+        Connection state.
         """
         return pulumi.get(self, "state")
 
@@ -28632,7 +29280,7 @@ class GetStreamConnectionFailoversResultResult(dict):
     @pulumi.getter
     def type(self) -> _builtins.str:
         """
-        Type of the connection.
+        Connection type.
         """
         return pulumi.get(self, "type")
 
@@ -28656,7 +29304,7 @@ class GetStreamConnectionFailoversResultAuthenticationResult(dict):
         :param _builtins.str client_id: OIDC client identifier for authentication to the Kafka cluster.
         :param _builtins.str client_secret: OIDC client secret for authentication to the Kafka cluster.
         :param _builtins.str mechanism: Style of authentication. Can be one of PLAIN, SCRAM-256, SCRAM-512, or OAUTHBEARER.
-        :param _builtins.str method: SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        :param _builtins.str method: SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
         :param _builtins.str password: Password of the account to connect to the Kafka cluster.
         :param _builtins.str sasl_oauthbearer_extensions: SASL OAUTHBEARER extensions parameter for additional OAuth2 configuration.
         :param _builtins.str scope: OIDC scope parameter defining the access permissions requested.
@@ -28707,7 +29355,7 @@ class GetStreamConnectionFailoversResultAuthenticationResult(dict):
     @pulumi.getter
     def method(self) -> _builtins.str:
         """
-        SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
         """
         return pulumi.get(self, "method")
 
@@ -29856,11 +30504,11 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         :param _builtins.str provider_name: Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
         :param _builtins.str region: The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
         :param Sequence[_builtins.str] service_attachment_uris: List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
-        :param _builtins.str service_endpoint_id: For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+        :param _builtins.str service_endpoint_id: For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
         :param _builtins.str state: Status of the connection.
         :param _builtins.str vendor: Vendor that manages the endpoint. The following are the vendor values per provider:
                
-                   * **AWS**: MSK, CONFLUENT, and S3
+                   * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
                    
                    * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
                    
@@ -29992,7 +30640,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
     @pulumi.getter(name="serviceEndpointId")
     def service_endpoint_id(self) -> _builtins.str:
         """
-        For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+        For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
         """
         return pulumi.get(self, "service_endpoint_id")
 
@@ -30010,7 +30658,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         """
         Vendor that manages the endpoint. The following are the vendor values per provider:
 
-            * **AWS**: MSK, CONFLUENT, and S3
+            * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
             
             * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
             
@@ -30096,7 +30744,7 @@ class GetStreamProcessorsResultResult(dict):
         :param _builtins.str id: Unique 24-hexadecimal character string that identifies the stream processor.
         :param _builtins.str instance_name: Label that identifies the stream processing workspace.
         :param 'GetStreamProcessorsResultOptionsArgs' options: Optional configuration for the stream processor.
-        :param _builtins.str pipeline: Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        :param _builtins.str pipeline: Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         :param _builtins.str processor_name: Label that identifies the stream processor.
         :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param _builtins.str state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
@@ -30153,7 +30801,7 @@ class GetStreamProcessorsResultResult(dict):
     @pulumi.getter
     def pipeline(self) -> _builtins.str:
         """
-        Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         """
         return pulumi.get(self, "pipeline")
 

@@ -340,7 +340,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<string>> ServiceAttachmentUris { get; private set; } = null!;
 
         /// <summary>
-        /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+        /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
         /// </summary>
         [Output("serviceEndpointId")]
         public Output<string?> ServiceEndpointId { get; private set; } = null!;
@@ -354,7 +354,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Vendor that manages the endpoint. The following are the vendor values per provider:
         /// 
-        /// 	* **AWS**: MSK, CONFLUENT, and S3
+        /// 	* **AWS**: MSK, CONFLUENT, S3, and LAMBDA
         /// 
         /// 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
         /// 
@@ -474,7 +474,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+        /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
         /// </summary>
         [Input("serviceEndpointId")]
         public Input<string>? ServiceEndpointId { get; set; }
@@ -482,7 +482,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Vendor that manages the endpoint. The following are the vendor values per provider:
         /// 
-        /// 	* **AWS**: MSK, CONFLUENT, and S3
+        /// 	* **AWS**: MSK, CONFLUENT, S3, and LAMBDA
         /// 
         /// 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
         /// 
@@ -588,7 +588,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+        /// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
         /// </summary>
         [Input("serviceEndpointId")]
         public Input<string>? ServiceEndpointId { get; set; }
@@ -602,7 +602,7 @@ namespace Pulumi.Mongodbatlas
         /// <summary>
         /// Vendor that manages the endpoint. The following are the vendor values per provider:
         /// 
-        /// 	* **AWS**: MSK, CONFLUENT, and S3
+        /// 	* **AWS**: MSK, CONFLUENT, S3, and LAMBDA
         /// 
         /// 	* **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
         /// 

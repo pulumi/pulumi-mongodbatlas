@@ -203,16 +203,16 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string ProjectId;
         /// <summary>
-        /// The connection's region.
+        /// Connection region.
         /// </summary>
         public readonly string Region;
         public readonly Outputs.GetStreamConnectionFailoverSecurityResult Security;
         /// <summary>
-        /// The state of the connection.
+        /// Connection state.
         /// </summary>
         public readonly string State;
         /// <summary>
-        /// Type of the connection.
+        /// Connection type.
         /// </summary>
         public readonly string Type;
         /// <summary>

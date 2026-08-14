@@ -16,7 +16,7 @@ import (
 //
 // Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 //
-// > **IMPORTANT WARNING:** Managing passwords with Terraform exposes sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices.
+// > **IMPORTANT WARNING:** The `password` argument is stored in Terraform state in plain text. To avoid this issue, you can use `passwordWo` instead, which is a write-only argument and is never written to state or plan files. It requires Terraform 1.11 or later. See Terraform's best practices for handling sensitive data in state.
 //
 // ## Example Usage
 //
@@ -203,9 +203,6 @@ import (
 //
 // Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 //
-// ### Further Examples
-// - Database User
-//
 // ## Import
 //
 // Database users can be imported using project ID, username, and auth database name in the format:
@@ -218,7 +215,7 @@ import (
 // terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
 // ```
 //
-// > **NOTE:** Terraform will want to change the password after importing the user if a `password` argument is specified.
+// > **NOTE:** Terraform will want to change the password after importing the user if a `password` or `passwordWo` argument is specified.
 type DatabaseUser struct {
 	pulumi.CustomResourceState
 
@@ -243,8 +240,13 @@ type DatabaseUser struct {
 	// * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	// * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType pulumi.StringOutput `pulumi:"oidcAuthType"`
-	// User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+	// User's initial password. Only applicable for password-based authentication. Conflicts with `passwordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `passwordWo` instead.
 	Password pulumi.StringPtrOutput `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `passwordWoVersion`.
+	PasswordWo pulumi.StringPtrOutput `pulumi:"passwordWo"`
+	// Integer that triggers an update of `passwordWo`. To rotate the password, change `passwordWo` and increment this value in the same edit. Changing `passwordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+	PasswordWoVersion pulumi.IntPtrOutput `pulumi:"passwordWoVersion"`
 	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -281,8 +283,12 @@ func NewDatabaseUser(ctx *pulumi.Context,
 	if args.Password != nil {
 		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringPtrInput)
 	}
+	if args.PasswordWo != nil {
+		args.PasswordWo = pulumi.ToSecret(args.PasswordWo).(pulumi.StringPtrInput)
+	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",
+		"passwordWo",
 	})
 	opts = append(opts, secrets)
 	opts = internal.PkgResourceDefaultOpts(opts)
@@ -329,8 +335,13 @@ type databaseUserState struct {
 	// * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	// * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType *string `pulumi:"oidcAuthType"`
-	// User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+	// User's initial password. Only applicable for password-based authentication. Conflicts with `passwordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `passwordWo` instead.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `passwordWoVersion`.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Integer that triggers an update of `passwordWo`. To rotate the password, change `passwordWo` and increment this value in the same edit. Changing `passwordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -367,8 +378,13 @@ type DatabaseUserState struct {
 	// * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	// * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType pulumi.StringPtrInput
-	// User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+	// User's initial password. Only applicable for password-based authentication. Conflicts with `passwordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `passwordWo` instead.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `passwordWoVersion`.
+	PasswordWo pulumi.StringPtrInput
+	// Integer that triggers an update of `passwordWo`. To rotate the password, change `passwordWo` and increment this value in the same edit. Changing `passwordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -409,8 +425,13 @@ type databaseUserArgs struct {
 	// * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	// * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType *string `pulumi:"oidcAuthType"`
-	// User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+	// User's initial password. Only applicable for password-based authentication. Conflicts with `passwordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `passwordWo` instead.
 	Password *string `pulumi:"password"`
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `passwordWoVersion`.
+	PasswordWo *string `pulumi:"passwordWo"`
+	// Integer that triggers an update of `passwordWo`. To rotate the password, change `passwordWo` and increment this value in the same edit. Changing `passwordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+	PasswordWoVersion *int `pulumi:"passwordWoVersion"`
 	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -448,8 +469,13 @@ type DatabaseUserArgs struct {
 	// * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	// * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
 	OidcAuthType pulumi.StringPtrInput
-	// User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+	// User's initial password. Only applicable for password-based authentication. Conflicts with `passwordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `passwordWo` instead.
 	Password pulumi.StringPtrInput
+	// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+	// User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `passwordWoVersion`.
+	PasswordWo pulumi.StringPtrInput
+	// Integer that triggers an update of `passwordWo`. To rotate the password, change `passwordWo` and increment this value in the same edit. Changing `passwordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+	PasswordWoVersion pulumi.IntPtrInput
 	// The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
@@ -590,9 +616,20 @@ func (o DatabaseUserOutput) OidcAuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringOutput { return v.OidcAuthType }).(pulumi.StringOutput)
 }
 
-// User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+// User's initial password. Only applicable for password-based authentication. Conflicts with `passwordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `passwordWo` instead.
 func (o DatabaseUserOutput) Password() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.Password }).(pulumi.StringPtrOutput)
+}
+
+// **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+// User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `passwordWoVersion`.
+func (o DatabaseUserOutput) PasswordWo() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.StringPtrOutput { return v.PasswordWo }).(pulumi.StringPtrOutput)
+}
+
+// Integer that triggers an update of `passwordWo`. To rotate the password, change `passwordWo` and increment this value in the same edit. Changing `passwordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+func (o DatabaseUserOutput) PasswordWoVersion() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *DatabaseUser) pulumi.IntPtrOutput { return v.PasswordWoVersion }).(pulumi.IntPtrOutput)
 }
 
 // The unique ID for the project to create the database user, also known as `groupId` in the official documentation.

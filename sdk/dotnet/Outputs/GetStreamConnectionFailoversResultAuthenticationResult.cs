@@ -26,7 +26,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Mechanism;
         /// <summary>
-        /// SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+        /// SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
         /// </summary>
         public readonly string Method;
         /// <summary>

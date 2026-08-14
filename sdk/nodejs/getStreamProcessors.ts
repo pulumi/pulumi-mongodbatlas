@@ -63,23 +63,11 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  *     workspaceName: example.instanceName,
  *     processorName: "sampleProcessorName",
- *     pipeline: JSON.stringify([
- *         {
- *             $source: {
- *                 connectionName: mongodbatlasStreamConnection["example-sample"].connectionName,
- *             },
- *         },
- *         {
- *             $emit: {
- *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
- *                 db: "sample",
- *                 coll: "solar",
- *                 timeseries: {
- *                     timeField: "_ts",
- *                 },
- *             },
- *         },
- *     ]),
+ *     pipeline: pulumi.interpolate`[
+ *   {\"$source\": {\"connectionName\": \"${example_sample.connectionName}\"}},
+ *   {\"$emit\": {\"connectionName\": \"${example_cluster.connectionName}\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+ * ]
+ * `,
  *     state: "STARTED",
  *     tier: "SP30",
  * });
@@ -87,48 +75,27 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  *     workspaceName: example.instanceName,
  *     processorName: "clusterProcessorName",
- *     pipeline: JSON.stringify([
- *         {
- *             $source: {
- *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
- *             },
- *         },
- *         {
- *             $emit: {
- *                 connectionName: mongodbatlasStreamConnection["example-kafka"].connectionName,
- *                 topic: "topic_from_cluster",
- *             },
- *         },
- *     ]),
+ *     pipeline: pulumi.interpolate`[
+ *   {\"$source\": {\"connectionName\": \"${example_cluster.connectionName}\"}},
+ *   {\"$emit\": {\"connectionName\": \"${example_kafka.connectionName}\", \"topic\": \"topic_from_cluster\"}}
+ * ]
+ * `,
  *     state: "CREATED",
  * });
  * const stream_processor_kafka_to_cluster_example = new mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example", {
  *     projectId: projectId,
  *     workspaceName: example.instanceName,
  *     processorName: "kafkaProcessorName",
- *     pipeline: JSON.stringify([
- *         {
- *             $source: {
- *                 connectionName: mongodbatlasStreamConnection["example-kafka"].connectionName,
- *                 topic: "topic_source",
- *             },
- *         },
- *         {
- *             $emit: {
- *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
- *                 db: "kafka",
- *                 coll: "topic_source",
- *                 timeseries: {
- *                     timeField: "ts",
- *                 },
- *             },
- *         },
- *     ]),
+ *     pipeline: pulumi.interpolate`[
+ *   {\"$source\": {\"connectionName\": \"${example_kafka.connectionName}\", \"topic\": \"topic_source\"}},
+ *   {\"$emit\": {\"connectionName\": \"${example_cluster.connectionName}\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+ * ]
+ * `,
  *     state: "CREATED",
  *     options: {
  *         dlq: {
  *             coll: "exampleColumn",
- *             connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
+ *             connectionName: example_cluster.connectionName,
  *             db: "exampleDb",
  *         },
  *     },
@@ -255,23 +222,11 @@ export interface GetStreamProcessorsResult {
  *     projectId: projectId,
  *     workspaceName: example.instanceName,
  *     processorName: "sampleProcessorName",
- *     pipeline: JSON.stringify([
- *         {
- *             $source: {
- *                 connectionName: mongodbatlasStreamConnection["example-sample"].connectionName,
- *             },
- *         },
- *         {
- *             $emit: {
- *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
- *                 db: "sample",
- *                 coll: "solar",
- *                 timeseries: {
- *                     timeField: "_ts",
- *                 },
- *             },
- *         },
- *     ]),
+ *     pipeline: pulumi.interpolate`[
+ *   {\"$source\": {\"connectionName\": \"${example_sample.connectionName}\"}},
+ *   {\"$emit\": {\"connectionName\": \"${example_cluster.connectionName}\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+ * ]
+ * `,
  *     state: "STARTED",
  *     tier: "SP30",
  * });
@@ -279,48 +234,27 @@ export interface GetStreamProcessorsResult {
  *     projectId: projectId,
  *     workspaceName: example.instanceName,
  *     processorName: "clusterProcessorName",
- *     pipeline: JSON.stringify([
- *         {
- *             $source: {
- *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
- *             },
- *         },
- *         {
- *             $emit: {
- *                 connectionName: mongodbatlasStreamConnection["example-kafka"].connectionName,
- *                 topic: "topic_from_cluster",
- *             },
- *         },
- *     ]),
+ *     pipeline: pulumi.interpolate`[
+ *   {\"$source\": {\"connectionName\": \"${example_cluster.connectionName}\"}},
+ *   {\"$emit\": {\"connectionName\": \"${example_kafka.connectionName}\", \"topic\": \"topic_from_cluster\"}}
+ * ]
+ * `,
  *     state: "CREATED",
  * });
  * const stream_processor_kafka_to_cluster_example = new mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example", {
  *     projectId: projectId,
  *     workspaceName: example.instanceName,
  *     processorName: "kafkaProcessorName",
- *     pipeline: JSON.stringify([
- *         {
- *             $source: {
- *                 connectionName: mongodbatlasStreamConnection["example-kafka"].connectionName,
- *                 topic: "topic_source",
- *             },
- *         },
- *         {
- *             $emit: {
- *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
- *                 db: "kafka",
- *                 coll: "topic_source",
- *                 timeseries: {
- *                     timeField: "ts",
- *                 },
- *             },
- *         },
- *     ]),
+ *     pipeline: pulumi.interpolate`[
+ *   {\"$source\": {\"connectionName\": \"${example_kafka.connectionName}\", \"topic\": \"topic_source\"}},
+ *   {\"$emit\": {\"connectionName\": \"${example_cluster.connectionName}\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+ * ]
+ * `,
  *     state: "CREATED",
  *     options: {
  *         dlq: {
  *             coll: "exampleColumn",
- *             connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
+ *             connectionName: example_cluster.connectionName,
  *             db: "exampleDb",
  *         },
  *     },

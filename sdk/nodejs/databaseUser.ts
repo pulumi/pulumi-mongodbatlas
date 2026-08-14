@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
  *
- * > **IMPORTANT WARNING:** Managing passwords with Terraform exposes sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices.
+ * > **IMPORTANT WARNING:** The `password` argument is stored in Terraform state in plain text. To avoid this issue, you can use `passwordWo` instead, which is a write-only argument and is never written to state or plan files. It requires Terraform 1.11 or later. See Terraform's best practices for handling sensitive data in state.
  *
  * ## Example Usage
  *
@@ -122,9 +122,6 @@ import * as utilities from "./utilities";
  *
  * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
  *
- * ### Further Examples
- * - Database User
- *
  * ## Import
  *
  * Database users can be imported using project ID, username, and auth database name in the format:
@@ -137,7 +134,7 @@ import * as utilities from "./utilities";
  * terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
  * ```
  *
- * > **NOTE:** Terraform will want to change the password after importing the user if a `password` argument is specified.
+ * > **NOTE:** Terraform will want to change the password after importing the user if a `password` or `passwordWo` argument is specified.
  */
 export class DatabaseUser extends pulumi.CustomResource {
     /**
@@ -199,9 +196,18 @@ export class DatabaseUser extends pulumi.CustomResource {
      */
     declare public readonly oidcAuthType: pulumi.Output<string>;
     /**
-     * User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+     * User's initial password. Only applicable for password-based authentication. Conflicts with `passwordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `passwordWo` instead.
      */
     declare public readonly password: pulumi.Output<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `passwordWoVersion`.
+     */
+    declare public readonly passwordWo: pulumi.Output<string | undefined>;
+    /**
+     * Integer that triggers an update of `passwordWo`. To rotate the password, change `passwordWo` and increment this value in the same edit. Changing `passwordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+     */
+    declare public readonly passwordWoVersion: pulumi.Output<number | undefined>;
     /**
      * The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
      */
@@ -243,6 +249,8 @@ export class DatabaseUser extends pulumi.CustomResource {
             resourceInputs["ldapAuthType"] = state?.ldapAuthType;
             resourceInputs["oidcAuthType"] = state?.oidcAuthType;
             resourceInputs["password"] = state?.password;
+            resourceInputs["passwordWo"] = state?.passwordWo;
+            resourceInputs["passwordWoVersion"] = state?.passwordWoVersion;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["roles"] = state?.roles;
             resourceInputs["scopes"] = state?.scopes;
@@ -269,6 +277,8 @@ export class DatabaseUser extends pulumi.CustomResource {
             resourceInputs["ldapAuthType"] = args?.ldapAuthType;
             resourceInputs["oidcAuthType"] = args?.oidcAuthType;
             resourceInputs["password"] = args?.password ? pulumi.secret(args.password) : undefined;
+            resourceInputs["passwordWo"] = args?.passwordWo ? pulumi.secret(args.passwordWo) : undefined;
+            resourceInputs["passwordWoVersion"] = args?.passwordWoVersion;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["roles"] = args?.roles;
             resourceInputs["scopes"] = args?.scopes;
@@ -276,7 +286,7 @@ export class DatabaseUser extends pulumi.CustomResource {
             resourceInputs["x509Type"] = args?.x509Type;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["password"] };
+        const secretOpts = { additionalSecretOutputs: ["password", "passwordWo"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(DatabaseUser.__pulumiType, name, resourceInputs, opts);
     }
@@ -318,9 +328,18 @@ export interface DatabaseUserState {
      */
     oidcAuthType?: pulumi.Input<string | undefined>;
     /**
-     * User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+     * User's initial password. Only applicable for password-based authentication. Conflicts with `passwordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `passwordWo` instead.
      */
     password?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `passwordWoVersion`.
+     */
+    passwordWo?: pulumi.Input<string | undefined>;
+    /**
+     * Integer that triggers an update of `passwordWo`. To rotate the password, change `passwordWo` and increment this value in the same edit. Changing `passwordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+     */
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
      */
@@ -379,9 +398,18 @@ export interface DatabaseUserArgs {
      */
     oidcAuthType?: pulumi.Input<string | undefined>;
     /**
-     * User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+     * User's initial password. Only applicable for password-based authentication. Conflicts with `passwordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `passwordWo` instead.
      */
     password?: pulumi.Input<string | undefined>;
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `passwordWoVersion`.
+     */
+    passwordWo?: pulumi.Input<string | undefined>;
+    /**
+     * Integer that triggers an update of `passwordWo`. To rotate the password, change `passwordWo` and increment this value in the same edit. Changing `passwordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+     */
+    passwordWoVersion?: pulumi.Input<number | undefined>;
     /**
      * The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
      */

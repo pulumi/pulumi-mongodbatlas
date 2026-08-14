@@ -801,6 +801,36 @@ class StreamConnection(pulumi.CustomResource):
             })
         ```
 
+        ### Example AWSLambda Connection with Private Link
+
+        > **NOTE:** An AWS cluster must be provisioned in the same region before creating an AWS Lambda private endpoint.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        aws_lambda = mongodbatlas.StreamPrivatelinkEndpoint("aws_lambda",
+            project_id=project_id,
+            provider_name="AWS",
+            vendor="LAMBDA",
+            region="us-east-1",
+            service_endpoint_id="com.amazonaws.us-east-1.lambda")
+        example_aws_lambda_private_link = mongodbatlas.StreamConnection("example_aws_lambda_private_link",
+            project_id=project_id,
+            workspace_name=example["workspaceName"],
+            connection_name="AWSLambdaPLConnection",
+            type="AWSLambda",
+            aws={
+                "role_arn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/lambdaRole",
+            },
+            networking={
+                "access": {
+                    "type": "PRIVATE_LINK",
+                    "connection_id": aws_lambda.id,
+                },
+            })
+        ```
+
         ### Example GCPPubSub Connection
 
         ```python
@@ -1176,6 +1206,36 @@ class StreamConnection(pulumi.CustomResource):
             type="AWSLambda",
             aws={
                 "role_arn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/lambdaRole",
+            })
+        ```
+
+        ### Example AWSLambda Connection with Private Link
+
+        > **NOTE:** An AWS cluster must be provisioned in the same region before creating an AWS Lambda private endpoint.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        aws_lambda = mongodbatlas.StreamPrivatelinkEndpoint("aws_lambda",
+            project_id=project_id,
+            provider_name="AWS",
+            vendor="LAMBDA",
+            region="us-east-1",
+            service_endpoint_id="com.amazonaws.us-east-1.lambda")
+        example_aws_lambda_private_link = mongodbatlas.StreamConnection("example_aws_lambda_private_link",
+            project_id=project_id,
+            workspace_name=example["workspaceName"],
+            connection_name="AWSLambdaPLConnection",
+            type="AWSLambda",
+            aws={
+                "role_arn": "arn:aws:iam::<AWS_ACCOUNT_ID>:role/lambdaRole",
+            },
+            networking={
+                "access": {
+                    "type": "PRIVATE_LINK",
+                    "connection_id": aws_lambda.id,
+                },
             })
         ```
 

@@ -17,6 +17,22 @@ import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterArgs;
 import com.pulumi.mongodbatlas.inputs.GetAdvancedClusterPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersArgs;
 import com.pulumi.mongodbatlas.inputs.GetAdvancedClustersPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeyArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeyPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeysArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeysPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelOrgApiKeyArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelOrgApiKeyPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelOrgApiKeysArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelOrgApiKeysPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelOrgRateLimitArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelOrgRateLimitPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelOrgRateLimitsArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelOrgRateLimitsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitsArgs;
+import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationArgs;
 import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetAlertConfigurationsArgs;
@@ -135,6 +151,10 @@ import com.pulumi.mongodbatlas.inputs.GetLogIntegrationsArgs;
 import com.pulumi.mongodbatlas.inputs.GetLogIntegrationsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowArgs;
 import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetMetricIntegrationArgs;
+import com.pulumi.mongodbatlas.inputs.GetMetricIntegrationPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetMetricIntegrationsArgs;
+import com.pulumi.mongodbatlas.inputs.GetMetricIntegrationsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetMongodbEmployeeAccessGrantArgs;
 import com.pulumi.mongodbatlas.inputs.GetMongodbEmployeeAccessGrantPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetNetworkContainerArgs;
@@ -271,6 +291,14 @@ import com.pulumi.mongodbatlas.outputs.GetAccessListApiKeyResult;
 import com.pulumi.mongodbatlas.outputs.GetAccessListApiKeysInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClusterResult;
 import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetAiModelApiKeyResult;
+import com.pulumi.mongodbatlas.outputs.GetAiModelApiKeysInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetAiModelOrgApiKeyResult;
+import com.pulumi.mongodbatlas.outputs.GetAiModelOrgApiKeysInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetAiModelOrgRateLimitResult;
+import com.pulumi.mongodbatlas.outputs.GetAiModelOrgRateLimitsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetAiModelRateLimitResult;
+import com.pulumi.mongodbatlas.outputs.GetAiModelRateLimitsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationResult;
 import com.pulumi.mongodbatlas.outputs.GetAlertConfigurationsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetApiKeyProjectAssignmentResult;
@@ -331,6 +359,8 @@ import com.pulumi.mongodbatlas.outputs.GetLdapVerifyResult;
 import com.pulumi.mongodbatlas.outputs.GetLogIntegrationResult;
 import com.pulumi.mongodbatlas.outputs.GetLogIntegrationsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetMaintenanceWindowResult;
+import com.pulumi.mongodbatlas.outputs.GetMetricIntegrationResult;
+import com.pulumi.mongodbatlas.outputs.GetMetricIntegrationsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetMongodbEmployeeAccessGrantResult;
 import com.pulumi.mongodbatlas.outputs.GetNetworkContainerResult;
 import com.pulumi.mongodbatlas.outputs.GetNetworkContainersInvokeResult;
@@ -3146,6 +3176,2186 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetAdvancedClustersInvokeResult> getAdvancedClustersPlain(GetAdvancedClustersPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAdvancedClusters:getAdvancedClusters", TypeShape.of(GetAdvancedClustersInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.AiModelApiKey` describes an AI Model API Key.
+     * 
+     * &gt; **NOTE:** The `secret` attribute is not available through this data source as it is only returned during initial creation. To access the secret, use the resource.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelApiKey;
+     * import com.pulumi.mongodbatlas.AiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelApiKey = new AiModelApiKey("thisAiModelApiKey", AiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-ai-model-key")
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelApiKey(GetAiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .apiKeyId(thisAiModelApiKey.apiKeyId())
+     *             .build());
+     * 
+     *         final var thisGetAiModelApiKeys = MongodbatlasFunctions.getAiModelApiKeys(GetAiModelApiKeysArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelApiKeyId", thisAiModelApiKey.apiKeyId());
+     *         ctx.export("aiModelApiKeySecret", thisAiModelApiKey.secret());
+     *         ctx.export("aiModelApiKeyName", this_.applyValue(_this_ -> _this_.name()));
+     *         ctx.export("aiModelApiKeyEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelApiKeysResults", thisGetAiModelApiKeys.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelApiKeyResult> getAiModelApiKey(GetAiModelApiKeyArgs args) {
+        return getAiModelApiKey(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.AiModelApiKey` describes an AI Model API Key.
+     * 
+     * &gt; **NOTE:** The `secret` attribute is not available through this data source as it is only returned during initial creation. To access the secret, use the resource.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelApiKey;
+     * import com.pulumi.mongodbatlas.AiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelApiKey = new AiModelApiKey("thisAiModelApiKey", AiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-ai-model-key")
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelApiKey(GetAiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .apiKeyId(thisAiModelApiKey.apiKeyId())
+     *             .build());
+     * 
+     *         final var thisGetAiModelApiKeys = MongodbatlasFunctions.getAiModelApiKeys(GetAiModelApiKeysArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelApiKeyId", thisAiModelApiKey.apiKeyId());
+     *         ctx.export("aiModelApiKeySecret", thisAiModelApiKey.secret());
+     *         ctx.export("aiModelApiKeyName", this_.applyValue(_this_ -> _this_.name()));
+     *         ctx.export("aiModelApiKeyEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelApiKeysResults", thisGetAiModelApiKeys.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelApiKeyResult> getAiModelApiKeyPlain(GetAiModelApiKeyPlainArgs args) {
+        return getAiModelApiKeyPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.AiModelApiKey` describes an AI Model API Key.
+     * 
+     * &gt; **NOTE:** The `secret` attribute is not available through this data source as it is only returned during initial creation. To access the secret, use the resource.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelApiKey;
+     * import com.pulumi.mongodbatlas.AiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelApiKey = new AiModelApiKey("thisAiModelApiKey", AiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-ai-model-key")
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelApiKey(GetAiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .apiKeyId(thisAiModelApiKey.apiKeyId())
+     *             .build());
+     * 
+     *         final var thisGetAiModelApiKeys = MongodbatlasFunctions.getAiModelApiKeys(GetAiModelApiKeysArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelApiKeyId", thisAiModelApiKey.apiKeyId());
+     *         ctx.export("aiModelApiKeySecret", thisAiModelApiKey.secret());
+     *         ctx.export("aiModelApiKeyName", this_.applyValue(_this_ -> _this_.name()));
+     *         ctx.export("aiModelApiKeyEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelApiKeysResults", thisGetAiModelApiKeys.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelApiKeyResult> getAiModelApiKey(GetAiModelApiKeyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelApiKey:getAiModelApiKey", TypeShape.of(GetAiModelApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.AiModelApiKey` describes an AI Model API Key.
+     * 
+     * &gt; **NOTE:** The `secret` attribute is not available through this data source as it is only returned during initial creation. To access the secret, use the resource.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelApiKey;
+     * import com.pulumi.mongodbatlas.AiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelApiKey = new AiModelApiKey("thisAiModelApiKey", AiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-ai-model-key")
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelApiKey(GetAiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .apiKeyId(thisAiModelApiKey.apiKeyId())
+     *             .build());
+     * 
+     *         final var thisGetAiModelApiKeys = MongodbatlasFunctions.getAiModelApiKeys(GetAiModelApiKeysArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelApiKeyId", thisAiModelApiKey.apiKeyId());
+     *         ctx.export("aiModelApiKeySecret", thisAiModelApiKey.secret());
+     *         ctx.export("aiModelApiKeyName", this_.applyValue(_this_ -> _this_.name()));
+     *         ctx.export("aiModelApiKeyEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelApiKeysResults", thisGetAiModelApiKeys.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelApiKeyResult> getAiModelApiKey(GetAiModelApiKeyArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelApiKey:getAiModelApiKey", TypeShape.of(GetAiModelApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.AiModelApiKey` describes an AI Model API Key.
+     * 
+     * &gt; **NOTE:** The `secret` attribute is not available through this data source as it is only returned during initial creation. To access the secret, use the resource.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelApiKey;
+     * import com.pulumi.mongodbatlas.AiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelApiKey = new AiModelApiKey("thisAiModelApiKey", AiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-ai-model-key")
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelApiKey(GetAiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .apiKeyId(thisAiModelApiKey.apiKeyId())
+     *             .build());
+     * 
+     *         final var thisGetAiModelApiKeys = MongodbatlasFunctions.getAiModelApiKeys(GetAiModelApiKeysArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelApiKeyId", thisAiModelApiKey.apiKeyId());
+     *         ctx.export("aiModelApiKeySecret", thisAiModelApiKey.secret());
+     *         ctx.export("aiModelApiKeyName", this_.applyValue(_this_ -> _this_.name()));
+     *         ctx.export("aiModelApiKeyEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelApiKeysResults", thisGetAiModelApiKeys.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelApiKeyResult> getAiModelApiKeyPlain(GetAiModelApiKeyPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAiModelApiKey:getAiModelApiKey", TypeShape.of(GetAiModelApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelApiKeys` returns all AI Model API Keys for the specified project.
+     * 
+     * &gt; **NOTE:** The `secret` attribute is not available through this data source as it is only returned during initial creation. To access the secret, use the resource.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelApiKey;
+     * import com.pulumi.mongodbatlas.AiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelApiKey = new AiModelApiKey("thisAiModelApiKey", AiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-ai-model-key")
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelApiKey(GetAiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .apiKeyId(thisAiModelApiKey.apiKeyId())
+     *             .build());
+     * 
+     *         final var thisGetAiModelApiKeys = MongodbatlasFunctions.getAiModelApiKeys(GetAiModelApiKeysArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelApiKeyId", thisAiModelApiKey.apiKeyId());
+     *         ctx.export("aiModelApiKeySecret", thisAiModelApiKey.secret());
+     *         ctx.export("aiModelApiKeyName", this_.applyValue(_this_ -> _this_.name()));
+     *         ctx.export("aiModelApiKeyEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelApiKeysResults", thisGetAiModelApiKeys.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelApiKeysInvokeResult> getAiModelApiKeys(GetAiModelApiKeysArgs args) {
+        return getAiModelApiKeys(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAiModelApiKeys` returns all AI Model API Keys for the specified project.
+     * 
+     * &gt; **NOTE:** The `secret` attribute is not available through this data source as it is only returned during initial creation. To access the secret, use the resource.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelApiKey;
+     * import com.pulumi.mongodbatlas.AiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelApiKey = new AiModelApiKey("thisAiModelApiKey", AiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-ai-model-key")
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelApiKey(GetAiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .apiKeyId(thisAiModelApiKey.apiKeyId())
+     *             .build());
+     * 
+     *         final var thisGetAiModelApiKeys = MongodbatlasFunctions.getAiModelApiKeys(GetAiModelApiKeysArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelApiKeyId", thisAiModelApiKey.apiKeyId());
+     *         ctx.export("aiModelApiKeySecret", thisAiModelApiKey.secret());
+     *         ctx.export("aiModelApiKeyName", this_.applyValue(_this_ -> _this_.name()));
+     *         ctx.export("aiModelApiKeyEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelApiKeysResults", thisGetAiModelApiKeys.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelApiKeysInvokeResult> getAiModelApiKeysPlain(GetAiModelApiKeysPlainArgs args) {
+        return getAiModelApiKeysPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAiModelApiKeys` returns all AI Model API Keys for the specified project.
+     * 
+     * &gt; **NOTE:** The `secret` attribute is not available through this data source as it is only returned during initial creation. To access the secret, use the resource.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelApiKey;
+     * import com.pulumi.mongodbatlas.AiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelApiKey = new AiModelApiKey("thisAiModelApiKey", AiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-ai-model-key")
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelApiKey(GetAiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .apiKeyId(thisAiModelApiKey.apiKeyId())
+     *             .build());
+     * 
+     *         final var thisGetAiModelApiKeys = MongodbatlasFunctions.getAiModelApiKeys(GetAiModelApiKeysArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelApiKeyId", thisAiModelApiKey.apiKeyId());
+     *         ctx.export("aiModelApiKeySecret", thisAiModelApiKey.secret());
+     *         ctx.export("aiModelApiKeyName", this_.applyValue(_this_ -> _this_.name()));
+     *         ctx.export("aiModelApiKeyEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelApiKeysResults", thisGetAiModelApiKeys.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelApiKeysInvokeResult> getAiModelApiKeys(GetAiModelApiKeysArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelApiKeys:getAiModelApiKeys", TypeShape.of(GetAiModelApiKeysInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelApiKeys` returns all AI Model API Keys for the specified project.
+     * 
+     * &gt; **NOTE:** The `secret` attribute is not available through this data source as it is only returned during initial creation. To access the secret, use the resource.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelApiKey;
+     * import com.pulumi.mongodbatlas.AiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelApiKey = new AiModelApiKey("thisAiModelApiKey", AiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-ai-model-key")
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelApiKey(GetAiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .apiKeyId(thisAiModelApiKey.apiKeyId())
+     *             .build());
+     * 
+     *         final var thisGetAiModelApiKeys = MongodbatlasFunctions.getAiModelApiKeys(GetAiModelApiKeysArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelApiKeyId", thisAiModelApiKey.apiKeyId());
+     *         ctx.export("aiModelApiKeySecret", thisAiModelApiKey.secret());
+     *         ctx.export("aiModelApiKeyName", this_.applyValue(_this_ -> _this_.name()));
+     *         ctx.export("aiModelApiKeyEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelApiKeysResults", thisGetAiModelApiKeys.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelApiKeysInvokeResult> getAiModelApiKeys(GetAiModelApiKeysArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelApiKeys:getAiModelApiKeys", TypeShape.of(GetAiModelApiKeysInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelApiKeys` returns all AI Model API Keys for the specified project.
+     * 
+     * &gt; **NOTE:** The `secret` attribute is not available through this data source as it is only returned during initial creation. To access the secret, use the resource.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelApiKey;
+     * import com.pulumi.mongodbatlas.AiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeyArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelApiKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelApiKey = new AiModelApiKey("thisAiModelApiKey", AiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .name("example-ai-model-key")
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelApiKey(GetAiModelApiKeyArgs.builder()
+     *             .projectId(projectId)
+     *             .apiKeyId(thisAiModelApiKey.apiKeyId())
+     *             .build());
+     * 
+     *         final var thisGetAiModelApiKeys = MongodbatlasFunctions.getAiModelApiKeys(GetAiModelApiKeysArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelApiKeyId", thisAiModelApiKey.apiKeyId());
+     *         ctx.export("aiModelApiKeySecret", thisAiModelApiKey.secret());
+     *         ctx.export("aiModelApiKeyName", this_.applyValue(_this_ -> _this_.name()));
+     *         ctx.export("aiModelApiKeyEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelApiKeysResults", thisGetAiModelApiKeys.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelApiKeysInvokeResult> getAiModelApiKeysPlain(GetAiModelApiKeysPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAiModelApiKeys:getAiModelApiKeys", TypeShape.of(GetAiModelApiKeysInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgApiKey` describes an AI Model API Key at the organization level.
+     * 
+     * &gt; **NOTE:** AI Model API Keys are always associated with a specific project. This organization-level data source allows you to retrieve an API key from any project within the organization by specifying the `apiKeyId`.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgApiKeyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgApiKey(GetAiModelOrgApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .apiKeyId(apiKeyId)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelOrgApiKeyResult> getAiModelOrgApiKey(GetAiModelOrgApiKeyArgs args) {
+        return getAiModelOrgApiKey(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgApiKey` describes an AI Model API Key at the organization level.
+     * 
+     * &gt; **NOTE:** AI Model API Keys are always associated with a specific project. This organization-level data source allows you to retrieve an API key from any project within the organization by specifying the `apiKeyId`.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgApiKeyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgApiKey(GetAiModelOrgApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .apiKeyId(apiKeyId)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelOrgApiKeyResult> getAiModelOrgApiKeyPlain(GetAiModelOrgApiKeyPlainArgs args) {
+        return getAiModelOrgApiKeyPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgApiKey` describes an AI Model API Key at the organization level.
+     * 
+     * &gt; **NOTE:** AI Model API Keys are always associated with a specific project. This organization-level data source allows you to retrieve an API key from any project within the organization by specifying the `apiKeyId`.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgApiKeyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgApiKey(GetAiModelOrgApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .apiKeyId(apiKeyId)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelOrgApiKeyResult> getAiModelOrgApiKey(GetAiModelOrgApiKeyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelOrgApiKey:getAiModelOrgApiKey", TypeShape.of(GetAiModelOrgApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgApiKey` describes an AI Model API Key at the organization level.
+     * 
+     * &gt; **NOTE:** AI Model API Keys are always associated with a specific project. This organization-level data source allows you to retrieve an API key from any project within the organization by specifying the `apiKeyId`.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgApiKeyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgApiKey(GetAiModelOrgApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .apiKeyId(apiKeyId)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelOrgApiKeyResult> getAiModelOrgApiKey(GetAiModelOrgApiKeyArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelOrgApiKey:getAiModelOrgApiKey", TypeShape.of(GetAiModelOrgApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgApiKey` describes an AI Model API Key at the organization level.
+     * 
+     * &gt; **NOTE:** AI Model API Keys are always associated with a specific project. This organization-level data source allows you to retrieve an API key from any project within the organization by specifying the `apiKeyId`.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgApiKeyArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgApiKey(GetAiModelOrgApiKeyArgs.builder()
+     *             .orgId(orgId)
+     *             .apiKeyId(apiKeyId)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelOrgApiKeyResult> getAiModelOrgApiKeyPlain(GetAiModelOrgApiKeyPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAiModelOrgApiKey:getAiModelOrgApiKey", TypeShape.of(GetAiModelOrgApiKeyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgApiKeys` returns all AI Model API Keys across all projects in the specified organization.
+     * 
+     * &gt; **NOTE:** AI Model API Keys are always associated with a specific project. This organization-level data source provides a consolidated view of all API keys across all projects within the organization.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgApiKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgApiKeys(GetAiModelOrgApiKeysArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelOrgApiKeysInvokeResult> getAiModelOrgApiKeys(GetAiModelOrgApiKeysArgs args) {
+        return getAiModelOrgApiKeys(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgApiKeys` returns all AI Model API Keys across all projects in the specified organization.
+     * 
+     * &gt; **NOTE:** AI Model API Keys are always associated with a specific project. This organization-level data source provides a consolidated view of all API keys across all projects within the organization.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgApiKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgApiKeys(GetAiModelOrgApiKeysArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelOrgApiKeysInvokeResult> getAiModelOrgApiKeysPlain(GetAiModelOrgApiKeysPlainArgs args) {
+        return getAiModelOrgApiKeysPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgApiKeys` returns all AI Model API Keys across all projects in the specified organization.
+     * 
+     * &gt; **NOTE:** AI Model API Keys are always associated with a specific project. This organization-level data source provides a consolidated view of all API keys across all projects within the organization.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgApiKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgApiKeys(GetAiModelOrgApiKeysArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelOrgApiKeysInvokeResult> getAiModelOrgApiKeys(GetAiModelOrgApiKeysArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelOrgApiKeys:getAiModelOrgApiKeys", TypeShape.of(GetAiModelOrgApiKeysInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgApiKeys` returns all AI Model API Keys across all projects in the specified organization.
+     * 
+     * &gt; **NOTE:** AI Model API Keys are always associated with a specific project. This organization-level data source provides a consolidated view of all API keys across all projects within the organization.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgApiKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgApiKeys(GetAiModelOrgApiKeysArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelOrgApiKeysInvokeResult> getAiModelOrgApiKeys(GetAiModelOrgApiKeysArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelOrgApiKeys:getAiModelOrgApiKeys", TypeShape.of(GetAiModelOrgApiKeysInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgApiKeys` returns all AI Model API Keys across all projects in the specified organization.
+     * 
+     * &gt; **NOTE:** AI Model API Keys are always associated with a specific project. This organization-level data source provides a consolidated view of all API keys across all projects within the organization.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgApiKeysArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgApiKeys(GetAiModelOrgApiKeysArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelOrgApiKeysInvokeResult> getAiModelOrgApiKeysPlain(GetAiModelOrgApiKeysPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAiModelOrgApiKeys:getAiModelOrgApiKeys", TypeShape.of(GetAiModelOrgApiKeysInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgRateLimit` describes the organization-level AI Model Rate Limit for a specific model group.
+     * 
+     * &gt; **NOTE:** Organization-level rate limits represent the maximum allowed limits for all projects within the organization. These limits are determined by your organization&#39;s tier and cannot be modified. Project-level rate limits can be configured using the `mongodbatlas.AiModelRateLimit` resource but must not exceed the organization-level limits returned by this data source.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgRateLimitArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgRateLimit(GetAiModelOrgRateLimitArgs.builder()
+     *             .orgId(orgId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName("embed_large")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelOrgRateLimitResult> getAiModelOrgRateLimit(GetAiModelOrgRateLimitArgs args) {
+        return getAiModelOrgRateLimit(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgRateLimit` describes the organization-level AI Model Rate Limit for a specific model group.
+     * 
+     * &gt; **NOTE:** Organization-level rate limits represent the maximum allowed limits for all projects within the organization. These limits are determined by your organization&#39;s tier and cannot be modified. Project-level rate limits can be configured using the `mongodbatlas.AiModelRateLimit` resource but must not exceed the organization-level limits returned by this data source.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgRateLimitArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgRateLimit(GetAiModelOrgRateLimitArgs.builder()
+     *             .orgId(orgId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName("embed_large")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelOrgRateLimitResult> getAiModelOrgRateLimitPlain(GetAiModelOrgRateLimitPlainArgs args) {
+        return getAiModelOrgRateLimitPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgRateLimit` describes the organization-level AI Model Rate Limit for a specific model group.
+     * 
+     * &gt; **NOTE:** Organization-level rate limits represent the maximum allowed limits for all projects within the organization. These limits are determined by your organization&#39;s tier and cannot be modified. Project-level rate limits can be configured using the `mongodbatlas.AiModelRateLimit` resource but must not exceed the organization-level limits returned by this data source.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgRateLimitArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgRateLimit(GetAiModelOrgRateLimitArgs.builder()
+     *             .orgId(orgId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName("embed_large")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelOrgRateLimitResult> getAiModelOrgRateLimit(GetAiModelOrgRateLimitArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelOrgRateLimit:getAiModelOrgRateLimit", TypeShape.of(GetAiModelOrgRateLimitResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgRateLimit` describes the organization-level AI Model Rate Limit for a specific model group.
+     * 
+     * &gt; **NOTE:** Organization-level rate limits represent the maximum allowed limits for all projects within the organization. These limits are determined by your organization&#39;s tier and cannot be modified. Project-level rate limits can be configured using the `mongodbatlas.AiModelRateLimit` resource but must not exceed the organization-level limits returned by this data source.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgRateLimitArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgRateLimit(GetAiModelOrgRateLimitArgs.builder()
+     *             .orgId(orgId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName("embed_large")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelOrgRateLimitResult> getAiModelOrgRateLimit(GetAiModelOrgRateLimitArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelOrgRateLimit:getAiModelOrgRateLimit", TypeShape.of(GetAiModelOrgRateLimitResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgRateLimit` describes the organization-level AI Model Rate Limit for a specific model group.
+     * 
+     * &gt; **NOTE:** Organization-level rate limits represent the maximum allowed limits for all projects within the organization. These limits are determined by your organization&#39;s tier and cannot be modified. Project-level rate limits can be configured using the `mongodbatlas.AiModelRateLimit` resource but must not exceed the organization-level limits returned by this data source.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgRateLimitArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgRateLimit(GetAiModelOrgRateLimitArgs.builder()
+     *             .orgId(orgId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName("embed_large")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelOrgRateLimitResult> getAiModelOrgRateLimitPlain(GetAiModelOrgRateLimitPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAiModelOrgRateLimit:getAiModelOrgRateLimit", TypeShape.of(GetAiModelOrgRateLimitResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgRateLimits` returns all organization-level AI Model Rate Limits for the specified organization.
+     * 
+     * &gt; **NOTE:** Organization-level rate limits represent the maximum allowed limits for all projects within the organization. These limits are determined by your organization&#39;s tier and cannot be modified. Project-level rate limits can be configured using the `mongodbatlas.AiModelRateLimit` resource but must not exceed the organization-level limits returned by this data source.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgRateLimitsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgRateLimits(GetAiModelOrgRateLimitsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelOrgRateLimitsInvokeResult> getAiModelOrgRateLimits(GetAiModelOrgRateLimitsArgs args) {
+        return getAiModelOrgRateLimits(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgRateLimits` returns all organization-level AI Model Rate Limits for the specified organization.
+     * 
+     * &gt; **NOTE:** Organization-level rate limits represent the maximum allowed limits for all projects within the organization. These limits are determined by your organization&#39;s tier and cannot be modified. Project-level rate limits can be configured using the `mongodbatlas.AiModelRateLimit` resource but must not exceed the organization-level limits returned by this data source.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgRateLimitsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgRateLimits(GetAiModelOrgRateLimitsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelOrgRateLimitsInvokeResult> getAiModelOrgRateLimitsPlain(GetAiModelOrgRateLimitsPlainArgs args) {
+        return getAiModelOrgRateLimitsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgRateLimits` returns all organization-level AI Model Rate Limits for the specified organization.
+     * 
+     * &gt; **NOTE:** Organization-level rate limits represent the maximum allowed limits for all projects within the organization. These limits are determined by your organization&#39;s tier and cannot be modified. Project-level rate limits can be configured using the `mongodbatlas.AiModelRateLimit` resource but must not exceed the organization-level limits returned by this data source.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgRateLimitsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgRateLimits(GetAiModelOrgRateLimitsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelOrgRateLimitsInvokeResult> getAiModelOrgRateLimits(GetAiModelOrgRateLimitsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelOrgRateLimits:getAiModelOrgRateLimits", TypeShape.of(GetAiModelOrgRateLimitsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgRateLimits` returns all organization-level AI Model Rate Limits for the specified organization.
+     * 
+     * &gt; **NOTE:** Organization-level rate limits represent the maximum allowed limits for all projects within the organization. These limits are determined by your organization&#39;s tier and cannot be modified. Project-level rate limits can be configured using the `mongodbatlas.AiModelRateLimit` resource but must not exceed the organization-level limits returned by this data source.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgRateLimitsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgRateLimits(GetAiModelOrgRateLimitsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelOrgRateLimitsInvokeResult> getAiModelOrgRateLimits(GetAiModelOrgRateLimitsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelOrgRateLimits:getAiModelOrgRateLimits", TypeShape.of(GetAiModelOrgRateLimitsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelOrgRateLimits` returns all organization-level AI Model Rate Limits for the specified organization.
+     * 
+     * &gt; **NOTE:** Organization-level rate limits represent the maximum allowed limits for all projects within the organization. These limits are determined by your organization&#39;s tier and cannot be modified. Project-level rate limits can be configured using the `mongodbatlas.AiModelRateLimit` resource but must not exceed the organization-level limits returned by this data source.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelOrgRateLimitsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getAiModelOrgRateLimits(GetAiModelOrgRateLimitsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelOrgRateLimitsInvokeResult> getAiModelOrgRateLimitsPlain(GetAiModelOrgRateLimitsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAiModelOrgRateLimits:getAiModelOrgRateLimits", TypeShape.of(GetAiModelOrgRateLimitsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.AiModelRateLimit` describes an AI Model Rate Limit for a specific model group within a project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelRateLimit;
+     * import com.pulumi.mongodbatlas.AiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelRateLimit = new AiModelRateLimit("thisAiModelRateLimit", AiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName("embed_large")
+     *             .requestsPerMinuteLimit(100)
+     *             .tokensPerMinuteLimit(10000)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelRateLimit(GetAiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName(thisAiModelRateLimit.modelGroupName())
+     *             .build());
+     * 
+     *         final var thisGetAiModelRateLimits = MongodbatlasFunctions.getAiModelRateLimits(GetAiModelRateLimitsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelRateLimitRequestsPerMinute", thisAiModelRateLimit.requestsPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitTokensPerMinute", thisAiModelRateLimit.tokensPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitModelNames", this_.applyValue(_this_ -> _this_.modelNames()));
+     *         ctx.export("aiModelRateLimitEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelRateLimitsResults", thisGetAiModelRateLimits.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelRateLimitResult> getAiModelRateLimit(GetAiModelRateLimitArgs args) {
+        return getAiModelRateLimit(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.AiModelRateLimit` describes an AI Model Rate Limit for a specific model group within a project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelRateLimit;
+     * import com.pulumi.mongodbatlas.AiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelRateLimit = new AiModelRateLimit("thisAiModelRateLimit", AiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName("embed_large")
+     *             .requestsPerMinuteLimit(100)
+     *             .tokensPerMinuteLimit(10000)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelRateLimit(GetAiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName(thisAiModelRateLimit.modelGroupName())
+     *             .build());
+     * 
+     *         final var thisGetAiModelRateLimits = MongodbatlasFunctions.getAiModelRateLimits(GetAiModelRateLimitsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelRateLimitRequestsPerMinute", thisAiModelRateLimit.requestsPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitTokensPerMinute", thisAiModelRateLimit.tokensPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitModelNames", this_.applyValue(_this_ -> _this_.modelNames()));
+     *         ctx.export("aiModelRateLimitEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelRateLimitsResults", thisGetAiModelRateLimits.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelRateLimitResult> getAiModelRateLimitPlain(GetAiModelRateLimitPlainArgs args) {
+        return getAiModelRateLimitPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.AiModelRateLimit` describes an AI Model Rate Limit for a specific model group within a project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelRateLimit;
+     * import com.pulumi.mongodbatlas.AiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelRateLimit = new AiModelRateLimit("thisAiModelRateLimit", AiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName("embed_large")
+     *             .requestsPerMinuteLimit(100)
+     *             .tokensPerMinuteLimit(10000)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelRateLimit(GetAiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName(thisAiModelRateLimit.modelGroupName())
+     *             .build());
+     * 
+     *         final var thisGetAiModelRateLimits = MongodbatlasFunctions.getAiModelRateLimits(GetAiModelRateLimitsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelRateLimitRequestsPerMinute", thisAiModelRateLimit.requestsPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitTokensPerMinute", thisAiModelRateLimit.tokensPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitModelNames", this_.applyValue(_this_ -> _this_.modelNames()));
+     *         ctx.export("aiModelRateLimitEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelRateLimitsResults", thisGetAiModelRateLimits.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelRateLimitResult> getAiModelRateLimit(GetAiModelRateLimitArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelRateLimit:getAiModelRateLimit", TypeShape.of(GetAiModelRateLimitResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.AiModelRateLimit` describes an AI Model Rate Limit for a specific model group within a project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelRateLimit;
+     * import com.pulumi.mongodbatlas.AiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelRateLimit = new AiModelRateLimit("thisAiModelRateLimit", AiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName("embed_large")
+     *             .requestsPerMinuteLimit(100)
+     *             .tokensPerMinuteLimit(10000)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelRateLimit(GetAiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName(thisAiModelRateLimit.modelGroupName())
+     *             .build());
+     * 
+     *         final var thisGetAiModelRateLimits = MongodbatlasFunctions.getAiModelRateLimits(GetAiModelRateLimitsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelRateLimitRequestsPerMinute", thisAiModelRateLimit.requestsPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitTokensPerMinute", thisAiModelRateLimit.tokensPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitModelNames", this_.applyValue(_this_ -> _this_.modelNames()));
+     *         ctx.export("aiModelRateLimitEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelRateLimitsResults", thisGetAiModelRateLimits.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelRateLimitResult> getAiModelRateLimit(GetAiModelRateLimitArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelRateLimit:getAiModelRateLimit", TypeShape.of(GetAiModelRateLimitResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.AiModelRateLimit` describes an AI Model Rate Limit for a specific model group within a project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelRateLimit;
+     * import com.pulumi.mongodbatlas.AiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelRateLimit = new AiModelRateLimit("thisAiModelRateLimit", AiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName("embed_large")
+     *             .requestsPerMinuteLimit(100)
+     *             .tokensPerMinuteLimit(10000)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelRateLimit(GetAiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName(thisAiModelRateLimit.modelGroupName())
+     *             .build());
+     * 
+     *         final var thisGetAiModelRateLimits = MongodbatlasFunctions.getAiModelRateLimits(GetAiModelRateLimitsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelRateLimitRequestsPerMinute", thisAiModelRateLimit.requestsPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitTokensPerMinute", thisAiModelRateLimit.tokensPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitModelNames", this_.applyValue(_this_ -> _this_.modelNames()));
+     *         ctx.export("aiModelRateLimitEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelRateLimitsResults", thisGetAiModelRateLimits.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelRateLimitResult> getAiModelRateLimitPlain(GetAiModelRateLimitPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAiModelRateLimit:getAiModelRateLimit", TypeShape.of(GetAiModelRateLimitResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelRateLimits` returns all AI Model Rate Limits for the specified Project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelRateLimit;
+     * import com.pulumi.mongodbatlas.AiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelRateLimit = new AiModelRateLimit("thisAiModelRateLimit", AiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName("embed_large")
+     *             .requestsPerMinuteLimit(100)
+     *             .tokensPerMinuteLimit(10000)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelRateLimit(GetAiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName(thisAiModelRateLimit.modelGroupName())
+     *             .build());
+     * 
+     *         final var thisGetAiModelRateLimits = MongodbatlasFunctions.getAiModelRateLimits(GetAiModelRateLimitsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelRateLimitRequestsPerMinute", thisAiModelRateLimit.requestsPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitTokensPerMinute", thisAiModelRateLimit.tokensPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitModelNames", this_.applyValue(_this_ -> _this_.modelNames()));
+     *         ctx.export("aiModelRateLimitEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelRateLimitsResults", thisGetAiModelRateLimits.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelRateLimitsInvokeResult> getAiModelRateLimits(GetAiModelRateLimitsArgs args) {
+        return getAiModelRateLimits(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAiModelRateLimits` returns all AI Model Rate Limits for the specified Project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelRateLimit;
+     * import com.pulumi.mongodbatlas.AiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelRateLimit = new AiModelRateLimit("thisAiModelRateLimit", AiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName("embed_large")
+     *             .requestsPerMinuteLimit(100)
+     *             .tokensPerMinuteLimit(10000)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelRateLimit(GetAiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName(thisAiModelRateLimit.modelGroupName())
+     *             .build());
+     * 
+     *         final var thisGetAiModelRateLimits = MongodbatlasFunctions.getAiModelRateLimits(GetAiModelRateLimitsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelRateLimitRequestsPerMinute", thisAiModelRateLimit.requestsPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitTokensPerMinute", thisAiModelRateLimit.tokensPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitModelNames", this_.applyValue(_this_ -> _this_.modelNames()));
+     *         ctx.export("aiModelRateLimitEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelRateLimitsResults", thisGetAiModelRateLimits.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelRateLimitsInvokeResult> getAiModelRateLimitsPlain(GetAiModelRateLimitsPlainArgs args) {
+        return getAiModelRateLimitsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getAiModelRateLimits` returns all AI Model Rate Limits for the specified Project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelRateLimit;
+     * import com.pulumi.mongodbatlas.AiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelRateLimit = new AiModelRateLimit("thisAiModelRateLimit", AiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName("embed_large")
+     *             .requestsPerMinuteLimit(100)
+     *             .tokensPerMinuteLimit(10000)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelRateLimit(GetAiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName(thisAiModelRateLimit.modelGroupName())
+     *             .build());
+     * 
+     *         final var thisGetAiModelRateLimits = MongodbatlasFunctions.getAiModelRateLimits(GetAiModelRateLimitsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelRateLimitRequestsPerMinute", thisAiModelRateLimit.requestsPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitTokensPerMinute", thisAiModelRateLimit.tokensPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitModelNames", this_.applyValue(_this_ -> _this_.modelNames()));
+     *         ctx.export("aiModelRateLimitEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelRateLimitsResults", thisGetAiModelRateLimits.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelRateLimitsInvokeResult> getAiModelRateLimits(GetAiModelRateLimitsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelRateLimits:getAiModelRateLimits", TypeShape.of(GetAiModelRateLimitsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelRateLimits` returns all AI Model Rate Limits for the specified Project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelRateLimit;
+     * import com.pulumi.mongodbatlas.AiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelRateLimit = new AiModelRateLimit("thisAiModelRateLimit", AiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName("embed_large")
+     *             .requestsPerMinuteLimit(100)
+     *             .tokensPerMinuteLimit(10000)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelRateLimit(GetAiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName(thisAiModelRateLimit.modelGroupName())
+     *             .build());
+     * 
+     *         final var thisGetAiModelRateLimits = MongodbatlasFunctions.getAiModelRateLimits(GetAiModelRateLimitsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelRateLimitRequestsPerMinute", thisAiModelRateLimit.requestsPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitTokensPerMinute", thisAiModelRateLimit.tokensPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitModelNames", this_.applyValue(_this_ -> _this_.modelNames()));
+     *         ctx.export("aiModelRateLimitEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelRateLimitsResults", thisGetAiModelRateLimits.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetAiModelRateLimitsInvokeResult> getAiModelRateLimits(GetAiModelRateLimitsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getAiModelRateLimits:getAiModelRateLimits", TypeShape.of(GetAiModelRateLimitsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getAiModelRateLimits` returns all AI Model Rate Limits for the specified Project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AiModelRateLimit;
+     * import com.pulumi.mongodbatlas.AiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetAiModelRateLimitsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAiModelRateLimit = new AiModelRateLimit("thisAiModelRateLimit", AiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName("embed_large")
+     *             .requestsPerMinuteLimit(100)
+     *             .tokensPerMinuteLimit(10000)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getAiModelRateLimit(GetAiModelRateLimitArgs.builder()
+     *             .projectId(projectId)
+     *             .cloud("ANY")
+     *             .geography("ANY")
+     *             .modelGroupName(thisAiModelRateLimit.modelGroupName())
+     *             .build());
+     * 
+     *         final var thisGetAiModelRateLimits = MongodbatlasFunctions.getAiModelRateLimits(GetAiModelRateLimitsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("aiModelRateLimitRequestsPerMinute", thisAiModelRateLimit.requestsPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitTokensPerMinute", thisAiModelRateLimit.tokensPerMinuteLimit());
+     *         ctx.export("aiModelRateLimitModelNames", this_.applyValue(_this_ -> _this_.modelNames()));
+     *         ctx.export("aiModelRateLimitEndpoint", this_.applyValue(_this_ -> _this_.endpoint()));
+     *         ctx.export("aiModelRateLimitsResults", thisGetAiModelRateLimits.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetAiModelRateLimitsInvokeResult> getAiModelRateLimitsPlain(GetAiModelRateLimitsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getAiModelRateLimits:getAiModelRateLimits", TypeShape.of(GetAiModelRateLimitsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `mongodbatlas.AlertConfiguration` describes an Alert Configuration.
@@ -21637,6 +23847,176 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow", TypeShape.of(GetMaintenanceWindowResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.MetricIntegration` describes the configuration of a metric integration at the project level.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to read back a single integration by its metric integration ID and output its integration type.
+     * 
+     * ### Further Examples
+     * - Metric Integration Examples
+     * 
+     */
+    public static Output<GetMetricIntegrationResult> getMetricIntegration(GetMetricIntegrationArgs args) {
+        return getMetricIntegration(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.MetricIntegration` describes the configuration of a metric integration at the project level.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to read back a single integration by its metric integration ID and output its integration type.
+     * 
+     * ### Further Examples
+     * - Metric Integration Examples
+     * 
+     */
+    public static CompletableFuture<GetMetricIntegrationResult> getMetricIntegrationPlain(GetMetricIntegrationPlainArgs args) {
+        return getMetricIntegrationPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.MetricIntegration` describes the configuration of a metric integration at the project level.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to read back a single integration by its metric integration ID and output its integration type.
+     * 
+     * ### Further Examples
+     * - Metric Integration Examples
+     * 
+     */
+    public static Output<GetMetricIntegrationResult> getMetricIntegration(GetMetricIntegrationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getMetricIntegration:getMetricIntegration", TypeShape.of(GetMetricIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.MetricIntegration` describes the configuration of a metric integration at the project level.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to read back a single integration by its metric integration ID and output its integration type.
+     * 
+     * ### Further Examples
+     * - Metric Integration Examples
+     * 
+     */
+    public static Output<GetMetricIntegrationResult> getMetricIntegration(GetMetricIntegrationArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getMetricIntegration:getMetricIntegration", TypeShape.of(GetMetricIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.MetricIntegration` describes the configuration of a metric integration at the project level.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to read back a single integration by its metric integration ID and output its integration type.
+     * 
+     * ### Further Examples
+     * - Metric Integration Examples
+     * 
+     */
+    public static CompletableFuture<GetMetricIntegrationResult> getMetricIntegrationPlain(GetMetricIntegrationPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getMetricIntegration:getMetricIntegration", TypeShape.of(GetMetricIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getMetricIntegrations` describes all metric integrations configured at the project level.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
+     * 
+     * &gt; **Note:** `integrationType` and `providerType` are optional filters that must be specified together. If one is set, the other must also be set.
+     * 
+     * ## Example Usage
+     * 
+     * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to retrieve all metric integrations configured in the project and output their `metricIntegrationId` values.
+     * 
+     * ### Further Examples
+     * - Metric Integration Examples
+     * 
+     */
+    public static Output<GetMetricIntegrationsInvokeResult> getMetricIntegrations(GetMetricIntegrationsArgs args) {
+        return getMetricIntegrations(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getMetricIntegrations` describes all metric integrations configured at the project level.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
+     * 
+     * &gt; **Note:** `integrationType` and `providerType` are optional filters that must be specified together. If one is set, the other must also be set.
+     * 
+     * ## Example Usage
+     * 
+     * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to retrieve all metric integrations configured in the project and output their `metricIntegrationId` values.
+     * 
+     * ### Further Examples
+     * - Metric Integration Examples
+     * 
+     */
+    public static CompletableFuture<GetMetricIntegrationsInvokeResult> getMetricIntegrationsPlain(GetMetricIntegrationsPlainArgs args) {
+        return getMetricIntegrationsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getMetricIntegrations` describes all metric integrations configured at the project level.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
+     * 
+     * &gt; **Note:** `integrationType` and `providerType` are optional filters that must be specified together. If one is set, the other must also be set.
+     * 
+     * ## Example Usage
+     * 
+     * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to retrieve all metric integrations configured in the project and output their `metricIntegrationId` values.
+     * 
+     * ### Further Examples
+     * - Metric Integration Examples
+     * 
+     */
+    public static Output<GetMetricIntegrationsInvokeResult> getMetricIntegrations(GetMetricIntegrationsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getMetricIntegrations:getMetricIntegrations", TypeShape.of(GetMetricIntegrationsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getMetricIntegrations` describes all metric integrations configured at the project level.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
+     * 
+     * &gt; **Note:** `integrationType` and `providerType` are optional filters that must be specified together. If one is set, the other must also be set.
+     * 
+     * ## Example Usage
+     * 
+     * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to retrieve all metric integrations configured in the project and output their `metricIntegrationId` values.
+     * 
+     * ### Further Examples
+     * - Metric Integration Examples
+     * 
+     */
+    public static Output<GetMetricIntegrationsInvokeResult> getMetricIntegrations(GetMetricIntegrationsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getMetricIntegrations:getMetricIntegrations", TypeShape.of(GetMetricIntegrationsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getMetricIntegrations` describes all metric integrations configured at the project level.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
+     * 
+     * &gt; **Note:** `integrationType` and `providerType` are optional filters that must be specified together. If one is set, the other must also be set.
+     * 
+     * ## Example Usage
+     * 
+     * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to retrieve all metric integrations configured in the project and output their `metricIntegrationId` values.
+     * 
+     * ### Further Examples
+     * - Metric Integration Examples
+     * 
+     */
+    public static CompletableFuture<GetMetricIntegrationsInvokeResult> getMetricIntegrationsPlain(GetMetricIntegrationsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getMetricIntegrations:getMetricIntegrations", TypeShape.of(GetMetricIntegrationsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * `mongodbatlas.MongodbEmployeeAccessGrant` describes a MongoDB employee access grant.
      * 
      * ## Example Usage
@@ -39077,7 +41457,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
-     * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -39140,24 +41519,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "sample"),
-     *                             jsonProperty("coll", "solar"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "_ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-sampleConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     * ]
+     * ", example_sampleConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -39166,20 +41537,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_from_cluster")
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *                 var example-clusterConnectionName = values.t1;
+     *                 var example-kafkaConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     * ]
+     * ", example_clusterConnectionName,example_kafkaConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .build());
      * 
@@ -39187,30 +41554,21 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_source")
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "kafka"),
-     *                             jsonProperty("coll", "topic_source"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-kafkaConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     * ]
+     * ", example_kafkaConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
-     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
      *                     .build())
      *                 .build())
@@ -39266,7 +41624,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
-     * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -39329,24 +41686,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "sample"),
-     *                             jsonProperty("coll", "solar"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "_ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-sampleConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     * ]
+     * ", example_sampleConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -39355,20 +41704,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_from_cluster")
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *                 var example-clusterConnectionName = values.t1;
+     *                 var example-kafkaConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     * ]
+     * ", example_clusterConnectionName,example_kafkaConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .build());
      * 
@@ -39376,30 +41721,21 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_source")
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "kafka"),
-     *                             jsonProperty("coll", "topic_source"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-kafkaConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     * ]
+     * ", example_kafkaConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
-     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
      *                     .build())
      *                 .build())
@@ -39455,7 +41791,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
-     * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -39518,24 +41853,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "sample"),
-     *                             jsonProperty("coll", "solar"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "_ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-sampleConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     * ]
+     * ", example_sampleConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -39544,20 +41871,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_from_cluster")
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *                 var example-clusterConnectionName = values.t1;
+     *                 var example-kafkaConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     * ]
+     * ", example_clusterConnectionName,example_kafkaConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .build());
      * 
@@ -39565,30 +41888,21 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_source")
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "kafka"),
-     *                             jsonProperty("coll", "topic_source"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-kafkaConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     * ]
+     * ", example_kafkaConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
-     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
      *                     .build())
      *                 .build())
@@ -39644,7 +41958,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
-     * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -39707,24 +42020,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "sample"),
-     *                             jsonProperty("coll", "solar"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "_ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-sampleConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     * ]
+     * ", example_sampleConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -39733,20 +42038,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_from_cluster")
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *                 var example-clusterConnectionName = values.t1;
+     *                 var example-kafkaConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     * ]
+     * ", example_clusterConnectionName,example_kafkaConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .build());
      * 
@@ -39754,30 +42055,21 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_source")
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "kafka"),
-     *                             jsonProperty("coll", "topic_source"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-kafkaConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     * ]
+     * ", example_kafkaConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
-     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
      *                     .build())
      *                 .build())
@@ -39833,7 +42125,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
-     * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -39896,24 +42187,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "sample"),
-     *                             jsonProperty("coll", "solar"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "_ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-sampleConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     * ]
+     * ", example_sampleConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -39922,20 +42205,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_from_cluster")
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *                 var example-clusterConnectionName = values.t1;
+     *                 var example-kafkaConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     * ]
+     * ", example_clusterConnectionName,example_kafkaConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .build());
      * 
@@ -39943,30 +42222,21 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_source")
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "kafka"),
-     *                             jsonProperty("coll", "topic_source"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-kafkaConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     * ]
+     * ", example_kafkaConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
-     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
      *                     .build())
      *                 .build())
@@ -40022,7 +42292,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
-     * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -40085,24 +42354,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "sample"),
-     *                             jsonProperty("coll", "solar"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "_ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-sampleConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     * ]
+     * ", example_sampleConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -40111,20 +42372,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_from_cluster")
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *                 var example-clusterConnectionName = values.t1;
+     *                 var example-kafkaConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     * ]
+     * ", example_clusterConnectionName,example_kafkaConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .build());
      * 
@@ -40132,30 +42389,21 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_source")
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "kafka"),
-     *                             jsonProperty("coll", "topic_source"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-kafkaConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     * ]
+     * ", example_kafkaConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
-     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
      *                     .build())
      *                 .build())
@@ -40211,7 +42459,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
-     * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -40274,24 +42521,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "sample"),
-     *                             jsonProperty("coll", "solar"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "_ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-sampleConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     * ]
+     * ", example_sampleConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -40300,20 +42539,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_from_cluster")
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *                 var example-clusterConnectionName = values.t1;
+     *                 var example-kafkaConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     * ]
+     * ", example_clusterConnectionName,example_kafkaConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .build());
      * 
@@ -40321,30 +42556,21 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_source")
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "kafka"),
-     *                             jsonProperty("coll", "topic_source"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-kafkaConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     * ]
+     * ", example_kafkaConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
-     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
      *                     .build())
      *                 .build())
@@ -40400,7 +42626,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
-     * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -40463,24 +42688,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "sample"),
-     *                             jsonProperty("coll", "solar"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "_ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-sampleConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     * ]
+     * ", example_sampleConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -40489,20 +42706,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_from_cluster")
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *                 var example-clusterConnectionName = values.t1;
+     *                 var example-kafkaConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     * ]
+     * ", example_clusterConnectionName,example_kafkaConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .build());
      * 
@@ -40510,30 +42723,21 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_source")
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "kafka"),
-     *                             jsonProperty("coll", "topic_source"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-kafkaConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     * ]
+     * ", example_kafkaConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
-     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
      *                     .build())
      *                 .build())
@@ -40589,7 +42793,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
-     * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -40652,24 +42855,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "sample"),
-     *                             jsonProperty("coll", "solar"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "_ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-sampleConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     * ]
+     * ", example_sampleConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -40678,20 +42873,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_from_cluster")
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *                 var example-clusterConnectionName = values.t1;
+     *                 var example-kafkaConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     * ]
+     * ", example_clusterConnectionName,example_kafkaConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .build());
      * 
@@ -40699,30 +42890,21 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_source")
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "kafka"),
-     *                             jsonProperty("coll", "topic_source"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-kafkaConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     * ]
+     * ", example_kafkaConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
-     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
      *                     .build())
      *                 .build())
@@ -40778,7 +42960,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
-     * import static com.pulumi.codegen.internal.Serialization.*;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -40841,24 +43022,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("sampleProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "sample"),
-     *                             jsonProperty("coll", "solar"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "_ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-sampleConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+     * ]
+     * ", example_sampleConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("STARTED")
      *             .tier("SP30")
      *             .build());
@@ -40867,20 +43040,16 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("clusterProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_from_cluster")
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+     *                 var example-clusterConnectionName = values.t1;
+     *                 var example-kafkaConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+     * ]
+     * ", example_clusterConnectionName,example_kafkaConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .build());
      * 
@@ -40888,30 +43057,21 @@ public final class MongodbatlasFunctions {
      *             .projectId(projectId)
      *             .workspaceName(example.instanceName())
      *             .processorName("kafkaProcessorName")
-     *             .pipeline(serializeJson(
-     *                 jsonArray(
-     *                     jsonObject(
-     *                         jsonProperty("$source", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
-     *                             jsonProperty("topic", "topic_source")
-     *                         ))
-     *                     ), 
-     *                     jsonObject(
-     *                         jsonProperty("$emit", jsonObject(
-     *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
-     *                             jsonProperty("db", "kafka"),
-     *                             jsonProperty("coll", "topic_source"),
-     *                             jsonProperty("timeseries", jsonObject(
-     *                                 jsonProperty("timeField", "ts")
-     *                             ))
-     *                         ))
-     *                     )
-     *                 )))
+     *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+     *                 var example-kafkaConnectionName = values.t1;
+     *                 var example-clusterConnectionName = values.t2;
+     *                 return """
+     * [
+     *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
+     *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+     * ]
+     * ", example_kafkaConnectionName,example_clusterConnectionName);
+     *             }))
      *             .state("CREATED")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
-     *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+     *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
      *                     .build())
      *                 .build())

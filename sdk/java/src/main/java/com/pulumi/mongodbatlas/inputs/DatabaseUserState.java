@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.DatabaseUserLabelArgs;
 import com.pulumi.mongodbatlas.inputs.DatabaseUserRoleArgs;
 import com.pulumi.mongodbatlas.inputs.DatabaseUserScopeArgs;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -122,18 +123,50 @@ public final class DatabaseUserState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * User&#39;s initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+     * User&#39;s initial password. Only applicable for password-based authentication. Conflicts with `passwordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `passwordWo` instead.
      * 
      */
     @Import(name="password")
     private @Nullable Output<String> password;
 
     /**
-     * @return User&#39;s initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+     * @return User&#39;s initial password. Only applicable for password-based authentication. Conflicts with `passwordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `passwordWo` instead.
      * 
      */
     public Optional<Output<String>> password() {
         return Optional.ofNullable(this.password);
+    }
+
+    /**
+     * **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * User&#39;s password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `passwordWoVersion`.
+     * 
+     */
+    @Import(name="passwordWo")
+    private @Nullable Output<String> passwordWo;
+
+    /**
+     * @return **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+     * User&#39;s password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `passwordWoVersion`.
+     * 
+     */
+    public Optional<Output<String>> passwordWo() {
+        return Optional.ofNullable(this.passwordWo);
+    }
+
+    /**
+     * Integer that triggers an update of `passwordWo`. To rotate the password, change `passwordWo` and increment this value in the same edit. Changing `passwordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+     * 
+     */
+    @Import(name="passwordWoVersion")
+    private @Nullable Output<Integer> passwordWoVersion;
+
+    /**
+     * @return Integer that triggers an update of `passwordWo`. To rotate the password, change `passwordWo` and increment this value in the same edit. Changing `passwordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+     * 
+     */
+    public Optional<Output<Integer>> passwordWoVersion() {
+        return Optional.ofNullable(this.passwordWoVersion);
     }
 
     /**
@@ -219,6 +252,8 @@ public final class DatabaseUserState extends com.pulumi.resources.ResourceArgs {
         this.ldapAuthType = $.ldapAuthType;
         this.oidcAuthType = $.oidcAuthType;
         this.password = $.password;
+        this.passwordWo = $.passwordWo;
+        this.passwordWoVersion = $.passwordWoVersion;
         this.projectId = $.projectId;
         this.roles = $.roles;
         this.scopes = $.scopes;
@@ -383,7 +418,7 @@ public final class DatabaseUserState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param password User&#39;s initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+         * @param password User&#39;s initial password. Only applicable for password-based authentication. Conflicts with `passwordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `passwordWo` instead.
          * 
          * @return builder
          * 
@@ -394,13 +429,57 @@ public final class DatabaseUserState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param password User&#39;s initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+         * @param password User&#39;s initial password. Only applicable for password-based authentication. Conflicts with `passwordWo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `passwordWo` instead.
          * 
          * @return builder
          * 
          */
         public Builder password(String password) {
             return password(Output.of(password));
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * User&#39;s password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `passwordWoVersion`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(@Nullable Output<String> passwordWo) {
+            $.passwordWo = passwordWo;
+            return this;
+        }
+
+        /**
+         * @param passwordWo **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+         * User&#39;s password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `passwordWoVersion`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWo(String passwordWo) {
+            return passwordWo(Output.of(passwordWo));
+        }
+
+        /**
+         * @param passwordWoVersion Integer that triggers an update of `passwordWo`. To rotate the password, change `passwordWo` and increment this value in the same edit. Changing `passwordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(@Nullable Output<Integer> passwordWoVersion) {
+            $.passwordWoVersion = passwordWoVersion;
+            return this;
+        }
+
+        /**
+         * @param passwordWoVersion Integer that triggers an update of `passwordWo`. To rotate the password, change `passwordWo` and increment this value in the same edit. Changing `passwordWo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder passwordWoVersion(Integer passwordWoVersion) {
+            return passwordWoVersion(Output.of(passwordWoVersion));
         }
 
         /**

@@ -176,6 +176,38 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Example AWSLambda Connection with Private Link
+ *
+ * > **NOTE:** An AWS cluster must be provisioned in the same region before creating an AWS Lambda private endpoint.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const awsLambda = new mongodbatlas.StreamPrivatelinkEndpoint("aws_lambda", {
+ *     projectId: projectId,
+ *     providerName: "AWS",
+ *     vendor: "LAMBDA",
+ *     region: "us-east-1",
+ *     serviceEndpointId: "com.amazonaws.us-east-1.lambda",
+ * });
+ * const exampleAwsLambdaPrivateLink = new mongodbatlas.StreamConnection("example_aws_lambda_private_link", {
+ *     projectId: projectId,
+ *     workspaceName: example.workspaceName,
+ *     connectionName: "AWSLambdaPLConnection",
+ *     type: "AWSLambda",
+ *     aws: {
+ *         roleArn: "arn:aws:iam::<AWS_ACCOUNT_ID>:role/lambdaRole",
+ *     },
+ *     networking: {
+ *         access: {
+ *             type: "PRIVATE_LINK",
+ *             connectionId: awsLambda.id,
+ *         },
+ *     },
+ * });
+ * ```
+ *
  * ### Example GCPPubSub Connection
  *
  * ```typescript

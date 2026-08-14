@@ -14,6 +14,10 @@ import * as utilities from "./utilities";
  * 2. The update will be performed while the processor is in `STOPPED` state
  * 3. If the processor was originally in `STARTED` state, it will be restarted after the update
  *
+ * ## Pipeline field ordering
+ *
+ * > **IMPORTANT:** MongoDB documents are ordered, and several pipeline constructs depend on the order of keys within a document: sort specifications, where key order is sort precedence; equality comparisons against a document literal, which match by exact field order; and `$addFields`/`$project` specifications, whose key order becomes the field order of the documents the processor writes. Do not build `pipeline` with `jsonencode()`: it emits object keys in lexicographic order, so a sort written as `{"region": 1, "city": 1}` reaches Atlas as `{"city": 1, "region": 1}`, reversing the sort precedence and silently changing what your processor does. Author `pipeline` as a raw JSON string instead — a heredoc, `file("pipeline.json")`, or `templatefile("pipeline.json", { ... })` when the pipeline needs values interpolated into it — which Terraform passes through unchanged. Beware that `jsonencode(jsondecode(...))`, sometimes used to pull a pipeline out of a larger JSON document, sorts the keys for the same reason `jsonencode()` does; keep the pipeline in a file of its own so it can be read as a string. Note that `pulumi preview` still displays the attribute alphabetized and rendered as `jsonencode(...)`; that is how Terraform renders any JSON-string attribute and does not reflect what is sent to Atlas. To confirm the order that was applied, inspect the request body with `TF_LOG=DEBUG`, or run `sp.listStreamProcessors()` against the workspace.
+ *
  * ## Example Usage
  *
  * ### S
@@ -69,23 +73,11 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  *     workspaceName: example.instanceName,
  *     processorName: "sampleProcessorName",
- *     pipeline: JSON.stringify([
- *         {
- *             $source: {
- *                 connectionName: mongodbatlasStreamConnection["example-sample"].connectionName,
- *             },
- *         },
- *         {
- *             $emit: {
- *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
- *                 db: "sample",
- *                 coll: "solar",
- *                 timeseries: {
- *                     timeField: "_ts",
- *                 },
- *             },
- *         },
- *     ]),
+ *     pipeline: pulumi.interpolate`[
+ *   {\"$source\": {\"connectionName\": \"${example_sample.connectionName}\"}},
+ *   {\"$emit\": {\"connectionName\": \"${example_cluster.connectionName}\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+ * ]
+ * `,
  *     state: "STARTED",
  *     tier: "SP30",
  * });
@@ -93,48 +85,27 @@ import * as utilities from "./utilities";
  *     projectId: projectId,
  *     workspaceName: example.instanceName,
  *     processorName: "clusterProcessorName",
- *     pipeline: JSON.stringify([
- *         {
- *             $source: {
- *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
- *             },
- *         },
- *         {
- *             $emit: {
- *                 connectionName: mongodbatlasStreamConnection["example-kafka"].connectionName,
- *                 topic: "topic_from_cluster",
- *             },
- *         },
- *     ]),
+ *     pipeline: pulumi.interpolate`[
+ *   {\"$source\": {\"connectionName\": \"${example_cluster.connectionName}\"}},
+ *   {\"$emit\": {\"connectionName\": \"${example_kafka.connectionName}\", \"topic\": \"topic_from_cluster\"}}
+ * ]
+ * `,
  *     state: "CREATED",
  * });
  * const stream_processor_kafka_to_cluster_example = new mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example", {
  *     projectId: projectId,
  *     workspaceName: example.instanceName,
  *     processorName: "kafkaProcessorName",
- *     pipeline: JSON.stringify([
- *         {
- *             $source: {
- *                 connectionName: mongodbatlasStreamConnection["example-kafka"].connectionName,
- *                 topic: "topic_source",
- *             },
- *         },
- *         {
- *             $emit: {
- *                 connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
- *                 db: "kafka",
- *                 coll: "topic_source",
- *                 timeseries: {
- *                     timeField: "ts",
- *                 },
- *             },
- *         },
- *     ]),
+ *     pipeline: pulumi.interpolate`[
+ *   {\"$source\": {\"connectionName\": \"${example_kafka.connectionName}\", \"topic\": \"topic_source\"}},
+ *   {\"$emit\": {\"connectionName\": \"${example_cluster.connectionName}\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+ * ]
+ * `,
  *     state: "CREATED",
  *     options: {
  *         dlq: {
  *             coll: "exampleColumn",
- *             connectionName: mongodbatlasStreamConnection["example-cluster"].connectionName,
+ *             connectionName: example_cluster.connectionName,
  *             db: "exampleDb",
  *         },
  *     },
@@ -208,7 +179,7 @@ export class StreamProcessor extends pulumi.CustomResource {
      */
     declare public readonly options: pulumi.Output<outputs.StreamProcessorOptions | undefined>;
     /**
-     * Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+     * Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
      */
     declare public readonly pipeline: pulumi.Output<string>;
     /**
@@ -314,7 +285,7 @@ export interface StreamProcessorState {
      */
     options?: pulumi.Input<inputs.StreamProcessorOptions | undefined>;
     /**
-     * Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+     * Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
      */
     pipeline?: pulumi.Input<string | undefined>;
     /**
@@ -367,7 +338,7 @@ export interface StreamProcessorArgs {
      */
     options?: pulumi.Input<inputs.StreamProcessorOptions | undefined>;
     /**
-     * Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+     * Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
      */
     pipeline: pulumi.Input<string>;
     /**

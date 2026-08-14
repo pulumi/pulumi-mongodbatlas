@@ -461,14 +461,14 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
         return Codegen.optional(this.serviceAttachmentUris);
     }
     /**
-     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+     * For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
      * 
      */
     @Export(name="serviceEndpointId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> serviceEndpointId;
 
     /**
-     * @return For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+     * @return For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
      * 
      */
     public Output<Optional<String>> serviceEndpointId() {
@@ -491,7 +491,7 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
     /**
      * Vendor that manages the endpoint. The following are the vendor values per provider:
      * 
-     *     * **AWS**: MSK, CONFLUENT, and S3
+     *     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
      *     
      *     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
      *     
@@ -504,7 +504,7 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
     /**
      * @return Vendor that manages the endpoint. The following are the vendor values per provider:
      * 
-     *     * **AWS**: MSK, CONFLUENT, and S3
+     *     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
      *     
      *     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
      *     

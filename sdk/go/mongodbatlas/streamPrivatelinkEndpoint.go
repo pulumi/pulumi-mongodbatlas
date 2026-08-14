@@ -292,13 +292,13 @@ type StreamPrivatelinkEndpoint struct {
 	Region pulumi.StringOutput `pulumi:"region"`
 	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
 	ServiceAttachmentUris pulumi.StringArrayOutput `pulumi:"serviceAttachmentUris"`
-	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
 	ServiceEndpointId pulumi.StringPtrOutput `pulumi:"serviceEndpointId"`
 	// Status of the connection.
 	State pulumi.StringOutput `pulumi:"state"`
 	// Vendor that manages the endpoint. The following are the vendor values per provider:
 	//
-	//     * **AWS**: MSK, CONFLUENT, and S3
+	//     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
 	//
 	//     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
 	//
@@ -377,13 +377,13 @@ type streamPrivatelinkEndpointState struct {
 	Region *string `pulumi:"region"`
 	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
 	ServiceAttachmentUris []string `pulumi:"serviceAttachmentUris"`
-	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
 	ServiceEndpointId *string `pulumi:"serviceEndpointId"`
 	// Status of the connection.
 	State *string `pulumi:"state"`
 	// Vendor that manages the endpoint. The following are the vendor values per provider:
 	//
-	//     * **AWS**: MSK, CONFLUENT, and S3
+	//     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
 	//
 	//     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
 	//
@@ -424,13 +424,13 @@ type StreamPrivatelinkEndpointState struct {
 	Region pulumi.StringPtrInput
 	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
 	ServiceAttachmentUris pulumi.StringArrayInput
-	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
 	ServiceEndpointId pulumi.StringPtrInput
 	// Status of the connection.
 	State pulumi.StringPtrInput
 	// Vendor that manages the endpoint. The following are the vendor values per provider:
 	//
-	//     * **AWS**: MSK, CONFLUENT, and S3
+	//     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
 	//
 	//     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
 	//
@@ -467,11 +467,11 @@ type streamPrivatelinkEndpointArgs struct {
 	Region *string `pulumi:"region"`
 	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
 	ServiceAttachmentUris []string `pulumi:"serviceAttachmentUris"`
-	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
 	ServiceEndpointId *string `pulumi:"serviceEndpointId"`
 	// Vendor that manages the endpoint. The following are the vendor values per provider:
 	//
-	//     * **AWS**: MSK, CONFLUENT, and S3
+	//     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
 	//
 	//     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
 	//
@@ -505,11 +505,11 @@ type StreamPrivatelinkEndpointArgs struct {
 	Region pulumi.StringPtrInput
 	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
 	ServiceAttachmentUris pulumi.StringArrayInput
-	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
 	ServiceEndpointId pulumi.StringPtrInput
 	// Vendor that manages the endpoint. The following are the vendor values per provider:
 	//
-	//     * **AWS**: MSK, CONFLUENT, and S3
+	//     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
 	//
 	//     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
 	//
@@ -669,7 +669,7 @@ func (o StreamPrivatelinkEndpointOutput) ServiceAttachmentUris() pulumi.StringAr
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringArrayOutput { return v.ServiceAttachmentUris }).(pulumi.StringArrayOutput)
 }
 
-// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
 func (o StreamPrivatelinkEndpointOutput) ServiceEndpointId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringPtrOutput { return v.ServiceEndpointId }).(pulumi.StringPtrOutput)
 }
@@ -681,7 +681,7 @@ func (o StreamPrivatelinkEndpointOutput) State() pulumi.StringOutput {
 
 // Vendor that manages the endpoint. The following are the vendor values per provider:
 //
-//   - **AWS**: MSK, CONFLUENT, and S3
+//   - **AWS**: MSK, CONFLUENT, S3, and LAMBDA
 //
 //   - **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
 //

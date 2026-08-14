@@ -31,6 +31,8 @@ class DatabaseUserArgs:
                  ldap_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  oidc_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  scopes: pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]] = None,
                  x509_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -54,7 +56,10 @@ class DatabaseUserArgs:
                * `NONE` -	The user does not use OIDC federated authentication.
                * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
-        :param pulumi.Input[_builtins.str] password: User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+        :param pulumi.Input[_builtins.str] password: User's initial password. Only applicable for password-based authentication. Conflicts with `password_wo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `password_wo` instead.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `password_wo_version`.
+        :param pulumi.Input[_builtins.int] password_wo_version: Integer that triggers an update of `password_wo`. To rotate the password, change `password_wo` and increment this value in the same edit. Changing `password_wo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
         :param pulumi.Input[_builtins.str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
                * `NONE` -	The user does not use X.509 authentication.
                * `MANAGED` - The user is being created for use with Atlas-managed X.509.Externally authenticated users can only be created on the `$external` database.
@@ -76,6 +81,10 @@ class DatabaseUserArgs:
             pulumi.set(__self__, "oidc_auth_type", oidc_auth_type)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if scopes is not None:
             pulumi.set(__self__, "scopes", scopes)
         if x509_type is not None:
@@ -200,13 +209,38 @@ class DatabaseUserArgs:
     @pulumi.getter
     def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+        User's initial password. Only applicable for password-based authentication. Conflicts with `password_wo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `password_wo` instead.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Integer that triggers an update of `password_wo`. To rotate the password, change `password_wo` and increment this value in the same edit. Changing `password_wo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter
@@ -243,6 +277,8 @@ class _DatabaseUserState:
                  ldap_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  oidc_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserRoleArgs']]]] = None,
                  scopes: pulumi.Input[Optional[Sequence[pulumi.Input['DatabaseUserScopeArgs']]]] = None,
@@ -266,7 +302,10 @@ class _DatabaseUserState:
                * `NONE` -	The user does not use OIDC federated authentication.
                * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
-        :param pulumi.Input[_builtins.str] password: User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+        :param pulumi.Input[_builtins.str] password: User's initial password. Only applicable for password-based authentication. Conflicts with `password_wo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `password_wo` instead.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `password_wo_version`.
+        :param pulumi.Input[_builtins.int] password_wo_version: Integer that triggers an update of `password_wo`. To rotate the password, change `password_wo` and increment this value in the same edit. Changing `password_wo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseUserRoleArgs']]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[_builtins.str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
@@ -289,6 +328,10 @@ class _DatabaseUserState:
             pulumi.set(__self__, "oidc_auth_type", oidc_auth_type)
         if password is not None:
             pulumi.set(__self__, "password", password)
+        if password_wo is not None:
+            pulumi.set(__self__, "password_wo", password_wo)
+        if password_wo_version is not None:
+            pulumi.set(__self__, "password_wo_version", password_wo_version)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if roles is not None:
@@ -383,13 +426,38 @@ class _DatabaseUserState:
     @pulumi.getter
     def password(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+        User's initial password. Only applicable for password-based authentication. Conflicts with `password_wo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `password_wo` instead.
         """
         return pulumi.get(self, "password")
 
     @password.setter
     def password(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "password", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @password_wo.setter
+    def password_wo(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "password_wo", value)
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Integer that triggers an update of `password_wo`. To rotate the password, change `password_wo` and increment this value in the same edit. Changing `password_wo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+        """
+        return pulumi.get(self, "password_wo_version")
+
+    @password_wo_version.setter
+    def password_wo_version(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "password_wo_version", value)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -465,6 +533,8 @@ class DatabaseUser(pulumi.CustomResource):
                  ldap_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  oidc_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]]] = None,
                  scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict']]]]] = None,
@@ -476,7 +546,7 @@ class DatabaseUser(pulumi.CustomResource):
 
         Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 
-        > **IMPORTANT WARNING:** Managing passwords with Terraform exposes sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices.
+        > **IMPORTANT WARNING:** The `password` argument is stored in Terraform state in plain text. To avoid this issue, you can use `password_wo` instead, which is a write-only argument and is never written to state or plan files. It requires Terraform 1.11 or later. See Terraform's best practices for handling sensitive data in state.
 
         ## Example Usage
 
@@ -583,9 +653,6 @@ class DatabaseUser(pulumi.CustomResource):
 
         Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 
-        ### Further Examples
-        - Database User
-
         ## Import
 
         Database users can be imported using project ID, username, and auth database name in the format:
@@ -598,7 +665,7 @@ class DatabaseUser(pulumi.CustomResource):
         terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
         ```
 
-        > **NOTE:** Terraform will want to change the password after importing the user if a `password` argument is specified.
+        > **NOTE:** Terraform will want to change the password after importing the user if a `password` or `password_wo` argument is specified.
 
 
         :param str resource_name: The name of the resource.
@@ -618,7 +685,10 @@ class DatabaseUser(pulumi.CustomResource):
                * `NONE` -	The user does not use OIDC federated authentication.
                * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
-        :param pulumi.Input[_builtins.str] password: User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+        :param pulumi.Input[_builtins.str] password: User's initial password. Only applicable for password-based authentication. Conflicts with `password_wo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `password_wo` instead.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `password_wo_version`.
+        :param pulumi.Input[_builtins.int] password_wo_version: Integer that triggers an update of `password_wo`. To rotate the password, change `password_wo` and increment this value in the same edit. Changing `password_wo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[_builtins.str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
@@ -638,7 +708,7 @@ class DatabaseUser(pulumi.CustomResource):
 
         Each user has a set of roles that provide access to the project’s databases. User's roles apply to all the clusters in the project: if two clusters have a `products` database and a user has a role granting `read` access on the products database, the user has that access on both clusters.
 
-        > **IMPORTANT WARNING:** Managing passwords with Terraform exposes sensitive organizational secrets in Terraform's state. We suggest following Terraform's best practices.
+        > **IMPORTANT WARNING:** The `password` argument is stored in Terraform state in plain text. To avoid this issue, you can use `password_wo` instead, which is a write-only argument and is never written to state or plan files. It requires Terraform 1.11 or later. See Terraform's best practices for handling sensitive data in state.
 
         ## Example Usage
 
@@ -745,9 +815,6 @@ class DatabaseUser(pulumi.CustomResource):
 
         Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 
-        ### Further Examples
-        - Database User
-
         ## Import
 
         Database users can be imported using project ID, username, and auth database name in the format:
@@ -760,7 +827,7 @@ class DatabaseUser(pulumi.CustomResource):
         terraform import mongodbatlas_database_user.my_user 1112222b3bf99403840e8934/my-username-dash/my-db-name # (2)
         ```
 
-        > **NOTE:** Terraform will want to change the password after importing the user if a `password` argument is specified.
+        > **NOTE:** Terraform will want to change the password after importing the user if a `password` or `password_wo` argument is specified.
 
 
         :param str resource_name: The name of the resource.
@@ -785,6 +852,8 @@ class DatabaseUser(pulumi.CustomResource):
                  ldap_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  oidc_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+                 password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]]] = None,
                  scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict']]]]] = None,
@@ -808,6 +877,8 @@ class DatabaseUser(pulumi.CustomResource):
             __props__.__dict__["ldap_auth_type"] = ldap_auth_type
             __props__.__dict__["oidc_auth_type"] = oidc_auth_type
             __props__.__dict__["password"] = None if password is None else pulumi.Output.secret(password)
+            __props__.__dict__["password_wo"] = None if password_wo is None else pulumi.Output.secret(password_wo)
+            __props__.__dict__["password_wo_version"] = password_wo_version
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -819,7 +890,7 @@ class DatabaseUser(pulumi.CustomResource):
                 raise TypeError("Missing required property 'username'")
             __props__.__dict__["username"] = username
             __props__.__dict__["x509_type"] = x509_type
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["password", "passwordWo"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(DatabaseUser, __self__).__init__(
             'mongodbatlas:index/databaseUser:DatabaseUser',
@@ -838,6 +909,8 @@ class DatabaseUser(pulumi.CustomResource):
             ldap_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
             oidc_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
             password: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo: pulumi.Input[Optional[_builtins.str]] = None,
+            password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]]] = None,
             scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict']]]]] = None,
@@ -865,7 +938,10 @@ class DatabaseUser(pulumi.CustomResource):
                * `NONE` -	The user does not use OIDC federated authentication.
                * `IDP_GROUP` - OIDC Workforce federated authentication group. To learn more about OIDC federated authentication, see [Set up Workforce Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
                * `USER` - OIDC Workload federated authentication user. To learn more about OIDC federated authentication, see [Set up Workload Identity Federation with OIDC](https://www.mongodb.com/docs/atlas/security-oidc/).
-        :param pulumi.Input[_builtins.str] password: User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+        :param pulumi.Input[_builtins.str] password: User's initial password. Only applicable for password-based authentication. Conflicts with `password_wo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `password_wo` instead.
+        :param pulumi.Input[_builtins.str] password_wo: **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+               User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `password_wo_version`.
+        :param pulumi.Input[_builtins.int] password_wo_version: Integer that triggers an update of `password_wo`. To rotate the password, change `password_wo` and increment this value in the same edit. Changing `password_wo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[_builtins.str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
@@ -885,6 +961,8 @@ class DatabaseUser(pulumi.CustomResource):
         __props__.__dict__["ldap_auth_type"] = ldap_auth_type
         __props__.__dict__["oidc_auth_type"] = oidc_auth_type
         __props__.__dict__["password"] = password
+        __props__.__dict__["password_wo"] = password_wo
+        __props__.__dict__["password_wo_version"] = password_wo_version
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["roles"] = roles
         __props__.__dict__["scopes"] = scopes
@@ -951,9 +1029,26 @@ class DatabaseUser(pulumi.CustomResource):
     @pulumi.getter
     def password(self) -> pulumi.Output[Optional[_builtins.str]]:
         """
-        User's initial password. Only applicable for password-based authentication. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text.
+        User's initial password. Only applicable for password-based authentication. Conflicts with `password_wo`. You can remove this argument from your Terraform configuration after user creation without impacting the user, password, or Terraform management. If you change your password management to outside of Terraform, we advise removing the argument from the Terraform configuration. **IMPORTANT:** The Terraform state file stores passwords as plain text, we recommend using `password_wo` instead.
         """
         return pulumi.get(self, "password")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWo")
+    def password_wo(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        **NOTE:** This field is write-only and its value will not be updated in state as part of read operations.
+        User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `password_wo_version`.
+        """
+        return pulumi.get(self, "password_wo")
+
+    @_builtins.property
+    @pulumi.getter(name="passwordWoVersion")
+    def password_wo_version(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Integer that triggers an update of `password_wo`. To rotate the password, change `password_wo` and increment this value in the same edit. Changing `password_wo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
+        """
+        return pulumi.get(self, "password_wo_version")
 
     @_builtins.property
     @pulumi.getter(name="projectId")

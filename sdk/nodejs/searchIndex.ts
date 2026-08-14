@@ -49,6 +49,32 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Vector index with automatically generated embeddings
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test_auto_embed_vector_index = new mongodbatlas.SearchIndex("test-auto-embed-vector-index", {
+ *     projectId: "<PROJECT_ID>",
+ *     clusterName: "<CLUSTER_NAME>",
+ *     collectionName: "collection_test",
+ *     database: "database_test",
+ *     name: "test-auto-embed-vector-index",
+ *     type: "vectorSearch",
+ *     fields: `[{
+ *       \\"type\\": \\"autoEmbed\\",
+ *       \\"path\\": \\"description\\",
+ *       \\"model\\": \\"voyage-4-lite\\",
+ *       \\"modality\\": \\"text\\"
+ * },
+ * {
+ *       \\"type\\": \\"filter\\",
+ *       \\"path\\": \\"property_type\\"
+ * }]
+ * `,
+ * });
+ * ```
+ *
  * ### Advanced search index (with custom analyzers)
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -143,6 +169,9 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Further Examples
+ * - Search Index Examples
+ *
  * ## Import
  *
  * You can import search indexes using `projectId`, `clusterName`, and `indexId` as in the following example:
@@ -221,7 +250,7 @@ export class SearchIndex extends pulumi.CustomResource {
      */
     declare public readonly database: pulumi.Output<string>;
     /**
-     * Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+     * Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
      */
     declare public readonly fields: pulumi.Output<string | undefined>;
     /**
@@ -400,7 +429,7 @@ export interface SearchIndexState {
      */
     database?: pulumi.Input<string | undefined>;
     /**
-     * Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+     * Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
      */
     fields?: pulumi.Input<string | undefined>;
     /**
@@ -507,7 +536,7 @@ export interface SearchIndexArgs {
      */
     database: pulumi.Input<string>;
     /**
-     * Array of [Fields](https://www.mongodb.com/docs/atlas/atlas-search/field-types/knn-vector/#std-label-fts-data-types-knn-vector) to configure this `vectorSearch` index. It is mandatory for vector searches and it must contain at least one `vector` type field. This field needs to be a JSON string in order to be decoded correctly.
+     * Array of [fields](https://www.mongodb.com/docs/atlas/atlas-vector-search/vector-search-type/) that define this `vectorSearch` index. This property is required for vector search indexes and must include at least one field with the type `vector` or `autoEmbed`. For more information, see [Automated Embedding](https://www.mongodb.com/docs/vector-search/crud-embeddings/automated-embedding/). Provide this value as a JSON string so it can be decoded correctly.
      */
     fields?: pulumi.Input<string | undefined>;
     /**

@@ -19,6 +19,10 @@ import (
 // 2. The update will be performed while the processor is in `STOPPED` state
 // 3. If the processor was originally in `STARTED` state, it will be restarted after the update
 //
+// ## Pipeline field ordering
+//
+// > **IMPORTANT:** MongoDB documents are ordered, and several pipeline constructs depend on the order of keys within a document: sort specifications, where key order is sort precedence; equality comparisons against a document literal, which match by exact field order; and `$addFields`/`$project` specifications, whose key order becomes the field order of the documents the processor writes. Do not build `pipeline` with `jsonencode()`: it emits object keys in lexicographic order, so a sort written as `{"region": 1, "city": 1}` reaches Atlas as `{"city": 1, "region": 1}`, reversing the sort precedence and silently changing what your processor does. Author `pipeline` as a raw JSON string instead — a heredoc, `file("pipeline.json")`, or `templatefile("pipeline.json", { ... })` when the pipeline needs values interpolated into it — which Terraform passes through unchanged. Beware that `jsonencode(jsondecode(...))`, sometimes used to pull a pipeline out of a larger JSON document, sorts the keys for the same reason `jsonencode()` does; keep the pipeline in a file of its own so it can be read as a string. Note that `pulumi preview` still displays the attribute alphabetized and rendered as `jsonencode(...)`; that is how Terraform renders any JSON-string attribute and does not reflect what is sent to Atlas. To confirm the order that was applied, inspect the request body with `TF_LOG=DEBUG`, or run `sp.listStreamProcessors()` against the workspace.
+//
 // ## Example Usage
 //
 // ### S
@@ -28,7 +32,7 @@ import (
 //
 // import (
 //
-//	"encoding/json"
+//	"fmt"
 //
 //	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -48,7 +52,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewStreamConnection(ctx, "example-sample", &mongodbatlas.StreamConnectionArgs{
+//			example_sample, err := mongodbatlas.NewStreamConnection(ctx, "example-sample", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
 //				WorkspaceName:  example.InstanceName,
 //				ConnectionName: pulumi.String("sample_stream_solar"),
@@ -57,7 +61,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewStreamConnection(ctx, "example-cluster", &mongodbatlas.StreamConnectionArgs{
+//			example_cluster, err := mongodbatlas.NewStreamConnection(ctx, "example-cluster", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
 //				WorkspaceName:  example.InstanceName,
 //				ConnectionName: pulumi.String("ClusterConnection"),
@@ -71,7 +75,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = mongodbatlas.NewStreamConnection(ctx, "example-kafka", &mongodbatlas.StreamConnectionArgs{
+//			example_kafka, err := mongodbatlas.NewStreamConnection(ctx, "example-kafka", &mongodbatlas.StreamConnectionArgs{
 //				ProjectId:      pulumi.Any(projectId),
 //				WorkspaceName:  example.InstanceName,
 //				ConnectionName: pulumi.String("KafkaPlaintextConnection"),
@@ -92,97 +96,49 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			tmpJSON0, err := json.Marshal([]interface{}{
-//				map[string]map[string]interface{}{
-//					"$source": map[string]interface{}{
-//						"connectionName": mongodbatlasStreamConnection.ExampleSample.ConnectionName,
-//					},
-//				},
-//				map[string]map[string]interface{}{
-//					"$emit": map[string]interface{}{
-//						"connectionName": mongodbatlasStreamConnection.ExampleCluster.ConnectionName,
-//						"db":             "sample",
-//						"coll":           "solar",
-//						"timeseries": map[string]string{
-//							"timeField": "_ts",
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json0 := string(tmpJSON0)
 //			stream_processor_sample_example, err := mongodbatlas.NewStreamProcessor(ctx, "stream-processor-sample-example", &mongodbatlas.StreamProcessorArgs{
 //				ProjectId:     pulumi.Any(projectId),
 //				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("sampleProcessorName"),
-//				Pipeline:      pulumi.String(json0),
-//				State:         pulumi.String("STARTED"),
-//				Tier:          pulumi.String("SP30"),
+//				Pipeline: pulumi.All(example_sample.ConnectionName, example_cluster.ConnectionName).ApplyT(func(_args []interface{}) (string, error) {
+//					example - sampleConnectionName := _args[0].(string)
+//					example - clusterConnectionName := _args[1].(string)
+//					return fmt.Sprintf("[\n  {\\\"$source\\\": {\\\"connectionName\\\": \\\"%v\\\"}},\n  {\\\"$emit\\\": {\\\"connectionName\\\": \\\"%v\\\", \\\"db\\\": \\\"sample\\\", \\\"coll\\\": \\\"solar\\\", \\\"timeseries\\\": {\\\"timeField\\\": \\\"_ts\\\"}}}\n]\n", example_sampleConnectionName, example_clusterConnectionName), nil
+//				}).(pulumi.StringOutput),
+//				State: pulumi.String("STARTED"),
+//				Tier:  pulumi.String("SP30"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			tmpJSON1, err := json.Marshal([]interface{}{
-//				map[string]map[string]interface{}{
-//					"$source": map[string]interface{}{
-//						"connectionName": mongodbatlasStreamConnection.ExampleCluster.ConnectionName,
-//					},
-//				},
-//				map[string]map[string]interface{}{
-//					"$emit": map[string]interface{}{
-//						"connectionName": mongodbatlasStreamConnection.ExampleKafka.ConnectionName,
-//						"topic":          "topic_from_cluster",
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json1 := string(tmpJSON1)
 //			_, err = mongodbatlas.NewStreamProcessor(ctx, "stream-processor-cluster-to-kafka-example", &mongodbatlas.StreamProcessorArgs{
 //				ProjectId:     pulumi.Any(projectId),
 //				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("clusterProcessorName"),
-//				Pipeline:      pulumi.String(json1),
-//				State:         pulumi.String("CREATED"),
+//				Pipeline: pulumi.All(example_cluster.ConnectionName, example_kafka.ConnectionName).ApplyT(func(_args []interface{}) (string, error) {
+//					example - clusterConnectionName := _args[0].(string)
+//					example - kafkaConnectionName := _args[1].(string)
+//					return fmt.Sprintf("[\n  {\\\"$source\\\": {\\\"connectionName\\\": \\\"%v\\\"}},\n  {\\\"$emit\\\": {\\\"connectionName\\\": \\\"%v\\\", \\\"topic\\\": \\\"topic_from_cluster\\\"}}\n]\n", example_clusterConnectionName, example_kafkaConnectionName), nil
+//				}).(pulumi.StringOutput),
+//				State: pulumi.String("CREATED"),
 //			})
 //			if err != nil {
 //				return err
 //			}
-//			tmpJSON2, err := json.Marshal([]interface{}{
-//				map[string]map[string]interface{}{
-//					"$source": map[string]interface{}{
-//						"connectionName": mongodbatlasStreamConnection.ExampleKafka.ConnectionName,
-//						"topic":          "topic_source",
-//					},
-//				},
-//				map[string]map[string]interface{}{
-//					"$emit": map[string]interface{}{
-//						"connectionName": mongodbatlasStreamConnection.ExampleCluster.ConnectionName,
-//						"db":             "kafka",
-//						"coll":           "topic_source",
-//						"timeseries": map[string]string{
-//							"timeField": "ts",
-//						},
-//					},
-//				},
-//			})
-//			if err != nil {
-//				return err
-//			}
-//			json2 := string(tmpJSON2)
 //			_, err = mongodbatlas.NewStreamProcessor(ctx, "stream-processor-kafka-to-cluster-example", &mongodbatlas.StreamProcessorArgs{
 //				ProjectId:     pulumi.Any(projectId),
 //				WorkspaceName: example.InstanceName,
 //				ProcessorName: pulumi.String("kafkaProcessorName"),
-//				Pipeline:      pulumi.String(json2),
-//				State:         pulumi.String("CREATED"),
+//				Pipeline: pulumi.All(example_kafka.ConnectionName, example_cluster.ConnectionName).ApplyT(func(_args []interface{}) (string, error) {
+//					example - kafkaConnectionName := _args[0].(string)
+//					example - clusterConnectionName := _args[1].(string)
+//					return fmt.Sprintf("[\n  {\\\"$source\\\": {\\\"connectionName\\\": \\\"%v\\\", \\\"topic\\\": \\\"topic_source\\\"}},\n  {\\\"$emit\\\": {\\\"connectionName\\\": \\\"%v\\\", \\\"db\\\": \\\"kafka\\\", \\\"coll\\\": \\\"topic_source\\\", \\\"timeseries\\\": {\\\"timeField\\\": \\\"ts\\\"}}}\n]\n", example_kafkaConnectionName, example_clusterConnectionName), nil
+//				}).(pulumi.StringOutput),
+//				State: pulumi.String("CREATED"),
 //				Options: &mongodbatlas.StreamProcessorOptionsArgs{
 //					Dlq: &mongodbatlas.StreamProcessorOptionsDlqArgs{
 //						Coll:           pulumi.String("exampleColumn"),
-//						ConnectionName: pulumi.Any(mongodbatlasStreamConnection.ExampleCluster.ConnectionName),
+//						ConnectionName: example_cluster.ConnectionName,
 //						Db:             pulumi.String("exampleDb"),
 //					},
 //				},
@@ -230,7 +186,7 @@ type StreamProcessor struct {
 	InstanceName pulumi.StringPtrOutput `pulumi:"instanceName"`
 	// Optional configuration for the stream processor.
 	Options StreamProcessorOptionsPtrOutput `pulumi:"options"`
-	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 	Pipeline pulumi.StringOutput `pulumi:"pipeline"`
 	// Label that identifies the stream processor.
 	ProcessorName pulumi.StringOutput `pulumi:"processorName"`
@@ -296,7 +252,7 @@ type streamProcessorState struct {
 	InstanceName *string `pulumi:"instanceName"`
 	// Optional configuration for the stream processor.
 	Options *StreamProcessorOptions `pulumi:"options"`
-	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 	Pipeline *string `pulumi:"pipeline"`
 	// Label that identifies the stream processor.
 	ProcessorName *string `pulumi:"processorName"`
@@ -324,7 +280,7 @@ type StreamProcessorState struct {
 	InstanceName pulumi.StringPtrInput
 	// Optional configuration for the stream processor.
 	Options StreamProcessorOptionsPtrInput
-	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 	Pipeline pulumi.StringPtrInput
 	// Label that identifies the stream processor.
 	ProcessorName pulumi.StringPtrInput
@@ -356,7 +312,7 @@ type streamProcessorArgs struct {
 	InstanceName *string `pulumi:"instanceName"`
 	// Optional configuration for the stream processor.
 	Options *StreamProcessorOptions `pulumi:"options"`
-	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 	Pipeline string `pulumi:"pipeline"`
 	// Label that identifies the stream processor.
 	ProcessorName string `pulumi:"processorName"`
@@ -383,7 +339,7 @@ type StreamProcessorArgs struct {
 	InstanceName pulumi.StringPtrInput
 	// Optional configuration for the stream processor.
 	Options StreamProcessorOptionsPtrInput
-	// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 	Pipeline pulumi.StringInput
 	// Label that identifies the stream processor.
 	ProcessorName pulumi.StringInput
@@ -507,7 +463,7 @@ func (o StreamProcessorOutput) Options() StreamProcessorOptionsPtrOutput {
 	return o.ApplyT(func(v *StreamProcessor) StreamProcessorOptionsPtrOutput { return v.Options }).(StreamProcessorOptionsPtrOutput)
 }
 
-// Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 func (o StreamProcessorOutput) Pipeline() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.Pipeline }).(pulumi.StringOutput)
 }

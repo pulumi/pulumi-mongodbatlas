@@ -26,7 +26,7 @@ public final class GetStreamConnectionFailoverAuthentication {
      */
     private String mechanism;
     /**
-     * @return SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+     * @return SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
      * 
      */
     private String method;
@@ -94,7 +94,7 @@ public final class GetStreamConnectionFailoverAuthentication {
         return this.mechanism;
     }
     /**
-     * @return SASL OAUTHBEARER authentication method. Can only be OIDC currently.
+     * @return SASL OAUTHBEARER authentication method. Currently, only OIDC is supported.
      * 
      */
     public String method() {

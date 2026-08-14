@@ -35,7 +35,7 @@ class StreamProcessorArgs:
         """
         The set of arguments for constructing a StreamProcessor resource.
 
-        :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         :param pulumi.Input[_builtins.str] processor_name: Label that identifies the stream processor.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
@@ -73,7 +73,7 @@ class StreamProcessorArgs:
     @pulumi.getter
     def pipeline(self) -> pulumi.Input[_builtins.str]:
         """
-        Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         """
         return pulumi.get(self, "pipeline")
 
@@ -222,7 +222,7 @@ class _StreamProcessorState:
         :param pulumi.Input[_builtins.bool] failover_enabled: Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace.
         :param pulumi.Input['StreamProcessorOptionsArgs'] options: Optional configuration for the stream processor.
-        :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         :param pulumi.Input[_builtins.str] processor_name: Label that identifies the stream processor.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
@@ -311,7 +311,7 @@ class _StreamProcessorState:
     @pulumi.getter
     def pipeline(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         """
         return pulumi.get(self, "pipeline")
 
@@ -427,13 +427,16 @@ class StreamProcessor(pulumi.CustomResource):
         2. The update will be performed while the processor is in `STOPPED` state
         3. If the processor was originally in `STARTED` state, it will be restarted after the update
 
+        ## Pipeline field ordering
+
+        > **IMPORTANT:** MongoDB documents are ordered, and several pipeline constructs depend on the order of keys within a document: sort specifications, where key order is sort precedence; equality comparisons against a document literal, which match by exact field order; and `$addFields`/`$project` specifications, whose key order becomes the field order of the documents the processor writes. Do not build `pipeline` with `jsonencode()`: it emits object keys in lexicographic order, so a sort written as `{"region": 1, "city": 1}` reaches Atlas as `{"city": 1, "region": 1}`, reversing the sort precedence and silently changing what your processor does. Author `pipeline` as a raw JSON string instead — a heredoc, `file("pipeline.json")`, or `templatefile("pipeline.json", { ... })` when the pipeline needs values interpolated into it — which Terraform passes through unchanged. Beware that `jsonencode(jsondecode(...))`, sometimes used to pull a pipeline out of a larger JSON document, sorts the keys for the same reason `jsonencode()` does; keep the pipeline in a file of its own so it can be read as a string. Note that `pulumi preview` still displays the attribute alphabetized and rendered as `jsonencode(...)`; that is how Terraform renders any JSON-string attribute and does not reflect what is sent to Atlas. To confirm the order that was applied, inspect the request body with `TF_LOG=DEBUG`, or run `sp.listStreamProcessors()` against the workspace.
+
         ## Example Usage
 
         ### S
 
         ```python
         import pulumi
-        import json
         import pulumi_mongodbatlas as mongodbatlas
 
         example = mongodbatlas.StreamInstance("example",
@@ -479,70 +482,49 @@ class StreamProcessor(pulumi.CustomResource):
             project_id=project_id,
             workspace_name=example.instance_name,
             processor_name="sampleProcessorName",
-            pipeline=json.dumps([
-                {
-                    "$source": {
-                        "connectionName": mongodbatlas_stream_connection["example-sample"]["connectionName"],
-                    },
-                },
-                {
-                    "$emit": {
-                        "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
-                        "db": "sample",
-                        "coll": "solar",
-                        "timeseries": {
-                            "timeField": "_ts",
-                        },
-                    },
-                },
-            ]),
+            pipeline=pulumi.Output.all(
+                example-sampleConnection_name=example_sample.connection_name,
+                example-clusterConnection_name=example_cluster.connection_name
+        ).apply(lambda resolved_outputs: f\"\"\"[
+          {{\\"$source\\": {{\\"connectionName\\": \\"{resolved_outputs['example-sampleConnection_name']}\\"}}}},
+          {{\\"$emit\\": {{\\"connectionName\\": \\"{resolved_outputs['example-clusterConnection_name']}\\", \\"db\\": \\"sample\\", \\"coll\\": \\"solar\\", \\"timeseries\\": {{\\"timeField\\": \\"_ts\\"}}}}}}
+        ]
+        \"\"\")
+        ,
             state="STARTED",
             tier="SP30")
         stream_processor_cluster_to_kafka_example = mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example",
             project_id=project_id,
             workspace_name=example.instance_name,
             processor_name="clusterProcessorName",
-            pipeline=json.dumps([
-                {
-                    "$source": {
-                        "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
-                    },
-                },
-                {
-                    "$emit": {
-                        "connectionName": mongodbatlas_stream_connection["example-kafka"]["connectionName"],
-                        "topic": "topic_from_cluster",
-                    },
-                },
-            ]),
+            pipeline=pulumi.Output.all(
+                example-clusterConnection_name=example_cluster.connection_name,
+                example-kafkaConnection_name=example_kafka.connection_name
+        ).apply(lambda resolved_outputs: f\"\"\"[
+          {{\\"$source\\": {{\\"connectionName\\": \\"{resolved_outputs['example-clusterConnection_name']}\\"}}}},
+          {{\\"$emit\\": {{\\"connectionName\\": \\"{resolved_outputs['example-kafkaConnection_name']}\\", \\"topic\\": \\"topic_from_cluster\\"}}}}
+        ]
+        \"\"\")
+        ,
             state="CREATED")
         stream_processor_kafka_to_cluster_example = mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example",
             project_id=project_id,
             workspace_name=example.instance_name,
             processor_name="kafkaProcessorName",
-            pipeline=json.dumps([
-                {
-                    "$source": {
-                        "connectionName": mongodbatlas_stream_connection["example-kafka"]["connectionName"],
-                        "topic": "topic_source",
-                    },
-                },
-                {
-                    "$emit": {
-                        "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
-                        "db": "kafka",
-                        "coll": "topic_source",
-                        "timeseries": {
-                            "timeField": "ts",
-                        },
-                    },
-                },
-            ]),
+            pipeline=pulumi.Output.all(
+                example-kafkaConnection_name=example_kafka.connection_name,
+                example-clusterConnection_name=example_cluster.connection_name
+        ).apply(lambda resolved_outputs: f\"\"\"[
+          {{\\"$source\\": {{\\"connectionName\\": \\"{resolved_outputs['example-kafkaConnection_name']}\\", \\"topic\\": \\"topic_source\\"}}}},
+          {{\\"$emit\\": {{\\"connectionName\\": \\"{resolved_outputs['example-clusterConnection_name']}\\", \\"db\\": \\"kafka\\", \\"coll\\": \\"topic_source\\", \\"timeseries\\": {{\\"timeField\\": \\"ts\\"}}}}}}
+        ]
+        \"\"\")
+        ,
             state="CREATED",
             options={
                 "dlq": {
                     "coll": "exampleColumn",
-                    "connection_name": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
+                    "connection_name": example_cluster.connection_name,
                     "db": "exampleDb",
                 },
             })
@@ -571,7 +553,7 @@ class StreamProcessor(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] failover_enabled: Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace.
         :param pulumi.Input[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']] options: Optional configuration for the stream processor.
-        :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         :param pulumi.Input[_builtins.str] processor_name: Label that identifies the stream processor.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
@@ -592,13 +574,16 @@ class StreamProcessor(pulumi.CustomResource):
         2. The update will be performed while the processor is in `STOPPED` state
         3. If the processor was originally in `STARTED` state, it will be restarted after the update
 
+        ## Pipeline field ordering
+
+        > **IMPORTANT:** MongoDB documents are ordered, and several pipeline constructs depend on the order of keys within a document: sort specifications, where key order is sort precedence; equality comparisons against a document literal, which match by exact field order; and `$addFields`/`$project` specifications, whose key order becomes the field order of the documents the processor writes. Do not build `pipeline` with `jsonencode()`: it emits object keys in lexicographic order, so a sort written as `{"region": 1, "city": 1}` reaches Atlas as `{"city": 1, "region": 1}`, reversing the sort precedence and silently changing what your processor does. Author `pipeline` as a raw JSON string instead — a heredoc, `file("pipeline.json")`, or `templatefile("pipeline.json", { ... })` when the pipeline needs values interpolated into it — which Terraform passes through unchanged. Beware that `jsonencode(jsondecode(...))`, sometimes used to pull a pipeline out of a larger JSON document, sorts the keys for the same reason `jsonencode()` does; keep the pipeline in a file of its own so it can be read as a string. Note that `pulumi preview` still displays the attribute alphabetized and rendered as `jsonencode(...)`; that is how Terraform renders any JSON-string attribute and does not reflect what is sent to Atlas. To confirm the order that was applied, inspect the request body with `TF_LOG=DEBUG`, or run `sp.listStreamProcessors()` against the workspace.
+
         ## Example Usage
 
         ### S
 
         ```python
         import pulumi
-        import json
         import pulumi_mongodbatlas as mongodbatlas
 
         example = mongodbatlas.StreamInstance("example",
@@ -644,70 +629,49 @@ class StreamProcessor(pulumi.CustomResource):
             project_id=project_id,
             workspace_name=example.instance_name,
             processor_name="sampleProcessorName",
-            pipeline=json.dumps([
-                {
-                    "$source": {
-                        "connectionName": mongodbatlas_stream_connection["example-sample"]["connectionName"],
-                    },
-                },
-                {
-                    "$emit": {
-                        "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
-                        "db": "sample",
-                        "coll": "solar",
-                        "timeseries": {
-                            "timeField": "_ts",
-                        },
-                    },
-                },
-            ]),
+            pipeline=pulumi.Output.all(
+                example-sampleConnection_name=example_sample.connection_name,
+                example-clusterConnection_name=example_cluster.connection_name
+        ).apply(lambda resolved_outputs: f\"\"\"[
+          {{\\"$source\\": {{\\"connectionName\\": \\"{resolved_outputs['example-sampleConnection_name']}\\"}}}},
+          {{\\"$emit\\": {{\\"connectionName\\": \\"{resolved_outputs['example-clusterConnection_name']}\\", \\"db\\": \\"sample\\", \\"coll\\": \\"solar\\", \\"timeseries\\": {{\\"timeField\\": \\"_ts\\"}}}}}}
+        ]
+        \"\"\")
+        ,
             state="STARTED",
             tier="SP30")
         stream_processor_cluster_to_kafka_example = mongodbatlas.StreamProcessor("stream-processor-cluster-to-kafka-example",
             project_id=project_id,
             workspace_name=example.instance_name,
             processor_name="clusterProcessorName",
-            pipeline=json.dumps([
-                {
-                    "$source": {
-                        "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
-                    },
-                },
-                {
-                    "$emit": {
-                        "connectionName": mongodbatlas_stream_connection["example-kafka"]["connectionName"],
-                        "topic": "topic_from_cluster",
-                    },
-                },
-            ]),
+            pipeline=pulumi.Output.all(
+                example-clusterConnection_name=example_cluster.connection_name,
+                example-kafkaConnection_name=example_kafka.connection_name
+        ).apply(lambda resolved_outputs: f\"\"\"[
+          {{\\"$source\\": {{\\"connectionName\\": \\"{resolved_outputs['example-clusterConnection_name']}\\"}}}},
+          {{\\"$emit\\": {{\\"connectionName\\": \\"{resolved_outputs['example-kafkaConnection_name']}\\", \\"topic\\": \\"topic_from_cluster\\"}}}}
+        ]
+        \"\"\")
+        ,
             state="CREATED")
         stream_processor_kafka_to_cluster_example = mongodbatlas.StreamProcessor("stream-processor-kafka-to-cluster-example",
             project_id=project_id,
             workspace_name=example.instance_name,
             processor_name="kafkaProcessorName",
-            pipeline=json.dumps([
-                {
-                    "$source": {
-                        "connectionName": mongodbatlas_stream_connection["example-kafka"]["connectionName"],
-                        "topic": "topic_source",
-                    },
-                },
-                {
-                    "$emit": {
-                        "connectionName": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
-                        "db": "kafka",
-                        "coll": "topic_source",
-                        "timeseries": {
-                            "timeField": "ts",
-                        },
-                    },
-                },
-            ]),
+            pipeline=pulumi.Output.all(
+                example-kafkaConnection_name=example_kafka.connection_name,
+                example-clusterConnection_name=example_cluster.connection_name
+        ).apply(lambda resolved_outputs: f\"\"\"[
+          {{\\"$source\\": {{\\"connectionName\\": \\"{resolved_outputs['example-kafkaConnection_name']}\\", \\"topic\\": \\"topic_source\\"}}}},
+          {{\\"$emit\\": {{\\"connectionName\\": \\"{resolved_outputs['example-clusterConnection_name']}\\", \\"db\\": \\"kafka\\", \\"coll\\": \\"topic_source\\", \\"timeseries\\": {{\\"timeField\\": \\"ts\\"}}}}}}
+        ]
+        \"\"\")
+        ,
             state="CREATED",
             options={
                 "dlq": {
                     "coll": "exampleColumn",
-                    "connection_name": mongodbatlas_stream_connection["example-cluster"]["connectionName"],
+                    "connection_name": example_cluster.connection_name,
                     "db": "exampleDb",
                 },
             })
@@ -816,7 +780,7 @@ class StreamProcessor(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] failover_enabled: Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace.
         :param pulumi.Input[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']] options: Optional configuration for the stream processor.
-        :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         :param pulumi.Input[_builtins.str] processor_name: Label that identifies the stream processor.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
@@ -879,7 +843,7 @@ class StreamProcessor(pulumi.CustomResource):
     @pulumi.getter
     def pipeline(self) -> pulumi.Output[_builtins.str]:
         """
-        Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+        Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         """
         return pulumi.get(self, "pipeline")
 

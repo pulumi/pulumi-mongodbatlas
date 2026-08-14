@@ -82,12 +82,12 @@ type LookupStreamConnectionFailoverResult struct {
 	Networking           GetStreamConnectionFailoverNetworking `pulumi:"networking"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
-	// The connection's region.
+	// Connection region.
 	Region   string                              `pulumi:"region"`
 	Security GetStreamConnectionFailoverSecurity `pulumi:"security"`
-	// The state of the connection.
+	// Connection state.
 	State string `pulumi:"state"`
-	// Type of the connection.
+	// Connection type.
 	Type string `pulumi:"type"`
 	// Label that identifies the stream workspace.
 	WorkspaceName string `pulumi:"workspaceName"`
@@ -182,7 +182,7 @@ func (o LookupStreamConnectionFailoverResultOutput) ProjectId() pulumi.StringOut
 	return o.ApplyT(func(v LookupStreamConnectionFailoverResult) string { return v.ProjectId }).(pulumi.StringOutput)
 }
 
-// The connection's region.
+// Connection region.
 func (o LookupStreamConnectionFailoverResultOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionFailoverResult) string { return v.Region }).(pulumi.StringOutput)
 }
@@ -191,12 +191,12 @@ func (o LookupStreamConnectionFailoverResultOutput) Security() GetStreamConnecti
 	return o.ApplyT(func(v LookupStreamConnectionFailoverResult) GetStreamConnectionFailoverSecurity { return v.Security }).(GetStreamConnectionFailoverSecurityOutput)
 }
 
-// The state of the connection.
+// Connection state.
 func (o LookupStreamConnectionFailoverResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionFailoverResult) string { return v.State }).(pulumi.StringOutput)
 }
 
-// Type of the connection.
+// Connection type.
 func (o LookupStreamConnectionFailoverResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamConnectionFailoverResult) string { return v.Type }).(pulumi.StringOutput)
 }

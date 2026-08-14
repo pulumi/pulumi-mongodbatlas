@@ -25,6 +25,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &AccessListApiKey{}
 	case "mongodbatlas:index/advancedCluster:AdvancedCluster":
 		r = &AdvancedCluster{}
+	case "mongodbatlas:index/aiModelApiKey:AiModelApiKey":
+		r = &AiModelApiKey{}
+	case "mongodbatlas:index/aiModelRateLimit:AiModelRateLimit":
+		r = &AiModelRateLimit{}
 	case "mongodbatlas:index/alertConfiguration:AlertConfiguration":
 		r = &AlertConfiguration{}
 	case "mongodbatlas:index/apiKey:ApiKey":
@@ -93,6 +97,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LogIntegration{}
 	case "mongodbatlas:index/maintenanceWindow:MaintenanceWindow":
 		r = &MaintenanceWindow{}
+	case "mongodbatlas:index/metricIntegration:MetricIntegration":
+		r = &MetricIntegration{}
 	case "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant":
 		r = &MongodbEmployeeAccessGrant{}
 	case "mongodbatlas:index/networkContainer:NetworkContainer":
@@ -204,6 +210,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/advancedCluster",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/aiModelApiKey",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/aiModelRateLimit",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -374,6 +390,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/maintenanceWindow",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/metricIntegration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

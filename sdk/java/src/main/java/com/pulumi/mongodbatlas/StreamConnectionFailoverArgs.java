@@ -84,14 +84,14 @@ public final class StreamConnectionFailoverArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have &#39;.&#39; characters.
+     * Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have &#39;.&#39; characters.
      * 
      */
     @Import(name="config")
     private @Nullable Output<Map<String,String>> config;
 
     /**
-     * @return Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have &#39;.&#39; characters.
+     * @return Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have &#39;.&#39; characters.
      * 
      */
     public Optional<Output<Map<String,String>>> config() {
@@ -114,14 +114,14 @@ public final class StreamConnectionFailoverArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+     * Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
      * 
      */
     @Import(name="dbRoleToExecute")
     private @Nullable Output<StreamConnectionFailoverDbRoleToExecuteArgs> dbRoleToExecute;
 
     /**
-     * @return Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+     * @return Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
      * 
      */
     public Optional<Output<StreamConnectionFailoverDbRoleToExecuteArgs>> dbRoleToExecute() {
@@ -174,14 +174,14 @@ public final class StreamConnectionFailoverArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * The connection&#39;s region.
+     * Connection region.
      * 
      */
     @Import(name="region", required=true)
     private Output<String> region;
 
     /**
-     * @return The connection&#39;s region.
+     * @return Connection region.
      * 
      */
     public Output<String> region() {
@@ -211,14 +211,14 @@ public final class StreamConnectionFailoverArgs extends com.pulumi.resources.Res
     }
 
     /**
-     * Type of the connection.
+     * Connection type.
      * 
      */
     @Import(name="type", required=true)
     private Output<String> type;
 
     /**
-     * @return Type of the connection.
+     * @return Connection type.
      * 
      */
     public Output<String> type() {
@@ -363,7 +363,7 @@ public final class StreamConnectionFailoverArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param config Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have &#39;.&#39; characters.
+         * @param config Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have &#39;.&#39; characters.
          * 
          * @return builder
          * 
@@ -374,7 +374,7 @@ public final class StreamConnectionFailoverArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param config Optional for type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have &#39;.&#39; characters.
+         * @param config Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have &#39;.&#39; characters.
          * 
          * @return builder
          * 
@@ -405,7 +405,7 @@ public final class StreamConnectionFailoverArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param dbRoleToExecute Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+         * @param dbRoleToExecute Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
          * 
          * @return builder
          * 
@@ -416,7 +416,7 @@ public final class StreamConnectionFailoverArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param dbRoleToExecute Optional for type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+         * @param dbRoleToExecute Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
          * 
          * @return builder
          * 
@@ -489,7 +489,7 @@ public final class StreamConnectionFailoverArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param region The connection&#39;s region.
+         * @param region Connection region.
          * 
          * @return builder
          * 
@@ -500,7 +500,7 @@ public final class StreamConnectionFailoverArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param region The connection&#39;s region.
+         * @param region Connection region.
          * 
          * @return builder
          * 
@@ -540,7 +540,7 @@ public final class StreamConnectionFailoverArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param type Type of the connection.
+         * @param type Connection type.
          * 
          * @return builder
          * 
@@ -551,7 +551,7 @@ public final class StreamConnectionFailoverArgs extends com.pulumi.resources.Res
         }
 
         /**
-         * @param type Type of the connection.
+         * @param type Connection type.
          * 
          * @return builder
          * 

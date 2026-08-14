@@ -22,14 +22,14 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
     public static final ProjectArgs Empty = new ProjectArgs();
 
     /**
-     * Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters.
+     * Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters. By default, this flag is set to true.
      * 
      */
     @Import(name="isClusterAiAssistantEnabled")
     private @Nullable Output<Boolean> isClusterAiAssistantEnabled;
 
     /**
-     * @return Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters.
+     * @return Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters. By default, this flag is set to true.
      * 
      */
     public Optional<Output<Boolean>> isClusterAiAssistantEnabled() {
@@ -67,14 +67,14 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+     * Flag that indicates whether to enable generative AI features in the Data Explorer for the project. By default, this flag is set to true.
      * 
      */
     @Import(name="isDataExplorerGenAiFeaturesEnabled")
     private @Nullable Output<Boolean> isDataExplorerGenAiFeaturesEnabled;
 
     /**
-     * @return Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+     * @return Flag that indicates whether to enable generative AI features in the Data Explorer for the project. By default, this flag is set to true.
      * 
      */
     public Optional<Output<Boolean>> isDataExplorerGenAiFeaturesEnabled() {
@@ -82,14 +82,14 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+     * Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project. By default, this flag is set to false.
      * 
      */
     @Import(name="isDataExplorerGenAiSampleDocumentPassingEnabled")
     private @Nullable Output<Boolean> isDataExplorerGenAiSampleDocumentPassingEnabled;
 
     /**
-     * @return Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+     * @return Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project. By default, this flag is set to false.
      * 
      */
     public Optional<Output<Boolean>> isDataExplorerGenAiSampleDocumentPassingEnabled() {
@@ -112,14 +112,14 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+     * Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project. By default, this flag is set to false.
      * 
      */
     @Import(name="isNativeRerankingEnabled")
     private @Nullable Output<Boolean> isNativeRerankingEnabled;
 
     /**
-     * @return Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+     * @return Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project. By default, this flag is set to false.
      * 
      */
     public Optional<Output<Boolean>> isNativeRerankingEnabled() {
@@ -353,7 +353,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param isClusterAiAssistantEnabled Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters.
+         * @param isClusterAiAssistantEnabled Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters. By default, this flag is set to true.
          * 
          * @return builder
          * 
@@ -364,7 +364,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param isClusterAiAssistantEnabled Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters.
+         * @param isClusterAiAssistantEnabled Flag that indicates whether to enable the AI Assistant for the project&#39;s clusters. By default, this flag is set to true.
          * 
          * @return builder
          * 
@@ -416,7 +416,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param isDataExplorerGenAiFeaturesEnabled Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+         * @param isDataExplorerGenAiFeaturesEnabled Flag that indicates whether to enable generative AI features in the Data Explorer for the project. By default, this flag is set to true.
          * 
          * @return builder
          * 
@@ -427,7 +427,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param isDataExplorerGenAiFeaturesEnabled Flag that indicates whether to enable generative AI features in the Data Explorer for the project.
+         * @param isDataExplorerGenAiFeaturesEnabled Flag that indicates whether to enable generative AI features in the Data Explorer for the project. By default, this flag is set to true.
          * 
          * @return builder
          * 
@@ -437,7 +437,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param isDataExplorerGenAiSampleDocumentPassingEnabled Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+         * @param isDataExplorerGenAiSampleDocumentPassingEnabled Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project. By default, this flag is set to false.
          * 
          * @return builder
          * 
@@ -448,7 +448,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param isDataExplorerGenAiSampleDocumentPassingEnabled Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project.
+         * @param isDataExplorerGenAiSampleDocumentPassingEnabled Flag that indicates whether to enable passing sample documents to generative AI features in the Data Explorer for the project. By default, this flag is set to false.
          * 
          * @return builder
          * 
@@ -479,7 +479,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param isNativeRerankingEnabled Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+         * @param isNativeRerankingEnabled Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project. By default, this flag is set to false.
          * 
          * @return builder
          * 
@@ -490,7 +490,7 @@ public final class ProjectArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param isNativeRerankingEnabled Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project.
+         * @param isNativeRerankingEnabled Flag that indicates whether to enable Native Reranking with Voyage AI models in the Aggregation Pipeline for the project. By default, this flag is set to false.
          * 
          * @return builder
          * 

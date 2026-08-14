@@ -36,12 +36,12 @@ public final class GetStreamConnectionFailoversResult {
      */
     private String clusterProjectId;
     /**
-     * @return Applies to type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have &#39;.&#39; characters.
+     * @return Applies to type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have &#39;.&#39; characters.
      * 
      */
     private Map<String,String> config;
     /**
-     * @return Applies to type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+     * @return Applies to type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
      * 
      */
     private GetStreamConnectionFailoversResultDbRoleToExecute dbRoleToExecute;
@@ -56,7 +56,7 @@ public final class GetStreamConnectionFailoversResult {
      */
     private GetStreamConnectionFailoversResultNetworking networking;
     /**
-     * @return The connection&#39;s region.
+     * @return Connection region.
      * 
      */
     private String region;
@@ -66,12 +66,12 @@ public final class GetStreamConnectionFailoversResult {
      */
     private GetStreamConnectionFailoversResultSecurity security;
     /**
-     * @return The state of the connection.
+     * @return Connection state.
      * 
      */
     private String state;
     /**
-     * @return Type of the connection.
+     * @return Connection type.
      * 
      */
     private String type;
@@ -106,14 +106,14 @@ public final class GetStreamConnectionFailoversResult {
         return this.clusterProjectId;
     }
     /**
-     * @return Applies to type: Kafka. A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have &#39;.&#39; characters.
+     * @return Applies to type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have &#39;.&#39; characters.
      * 
      */
     public Map<String,String> config() {
         return this.config;
     }
     /**
-     * @return Applies to type: Cluster. The name of a Built in or Custom DB Role to connect to an Atlas Cluster.
+     * @return Applies to type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
      * 
      */
     public GetStreamConnectionFailoversResultDbRoleToExecute dbRoleToExecute() {
@@ -134,7 +134,7 @@ public final class GetStreamConnectionFailoversResult {
         return this.networking;
     }
     /**
-     * @return The connection&#39;s region.
+     * @return Connection region.
      * 
      */
     public String region() {
@@ -148,14 +148,14 @@ public final class GetStreamConnectionFailoversResult {
         return this.security;
     }
     /**
-     * @return The state of the connection.
+     * @return Connection state.
      * 
      */
     public String state() {
         return this.state;
     }
     /**
-     * @return Type of the connection.
+     * @return Connection type.
      * 
      */
     public String type() {

@@ -38,18 +38,18 @@ public final class GetStreamConnectionFailoverResult {
      */
     private String projectId;
     /**
-     * @return The connection&#39;s region.
+     * @return Connection region.
      * 
      */
     private String region;
     private GetStreamConnectionFailoverSecurity security;
     /**
-     * @return The state of the connection.
+     * @return Connection state.
      * 
      */
     private String state;
     /**
-     * @return Type of the connection.
+     * @return Connection type.
      * 
      */
     private String type;
@@ -103,7 +103,7 @@ public final class GetStreamConnectionFailoverResult {
         return this.projectId;
     }
     /**
-     * @return The connection&#39;s region.
+     * @return Connection region.
      * 
      */
     public String region() {
@@ -113,14 +113,14 @@ public final class GetStreamConnectionFailoverResult {
         return this.security;
     }
     /**
-     * @return The state of the connection.
+     * @return Connection state.
      * 
      */
     public String state() {
         return this.state;
     }
     /**
-     * @return Type of the connection.
+     * @return Connection type.
      * 
      */
     public String type() {

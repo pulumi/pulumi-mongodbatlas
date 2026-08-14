@@ -25,6 +25,10 @@ import javax.annotation.Nullable;
  * 2. The update will be performed while the processor is in `STOPPED` state
  * 3. If the processor was originally in `STARTED` state, it will be restarted after the update
  * 
+ * ## Pipeline field ordering
+ * 
+ * &gt; **IMPORTANT:** MongoDB documents are ordered, and several pipeline constructs depend on the order of keys within a document: sort specifications, where key order is sort precedence; equality comparisons against a document literal, which match by exact field order; and `$addFields`/`$project` specifications, whose key order becomes the field order of the documents the processor writes. Do not build `pipeline` with `jsonencode()`: it emits object keys in lexicographic order, so a sort written as `{&#34;region&#34;: 1, &#34;city&#34;: 1}` reaches Atlas as `{&#34;city&#34;: 1, &#34;region&#34;: 1}`, reversing the sort precedence and silently changing what your processor does. Author `pipeline` as a raw JSON string instead — a heredoc, `file(&#34;pipeline.json&#34;)`, or `templatefile(&#34;pipeline.json&#34;, { ... })` when the pipeline needs values interpolated into it — which Terraform passes through unchanged. Beware that `jsonencode(jsondecode(...))`, sometimes used to pull a pipeline out of a larger JSON document, sorts the keys for the same reason `jsonencode()` does; keep the pipeline in a file of its own so it can be read as a string. Note that `pulumi preview` still displays the attribute alphabetized and rendered as `jsonencode(...)`; that is how Terraform renders any JSON-string attribute and does not reflect what is sent to Atlas. To confirm the order that was applied, inspect the request body with `TF_LOG=DEBUG`, or run `sp.listStreamProcessors()` against the workspace.
+ * 
  * ## Example Usage
  * 
  * ### S
@@ -51,7 +55,6 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
  * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
  * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
- * import static com.pulumi.codegen.internal.Serialization.*;
  * import java.util.ArrayList;
  * import java.util.Arrays;
  * import java.util.Map;
@@ -114,24 +117,16 @@ import javax.annotation.Nullable;
  *             .projectId(projectId)
  *             .workspaceName(example.instanceName())
  *             .processorName("sampleProcessorName")
- *             .pipeline(serializeJson(
- *                 jsonArray(
- *                     jsonObject(
- *                         jsonProperty("$source", jsonObject(
- *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-sample().connectionName())
- *                         ))
- *                     ), 
- *                     jsonObject(
- *                         jsonProperty("$emit", jsonObject(
- *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
- *                             jsonProperty("db", "sample"),
- *                             jsonProperty("coll", "solar"),
- *                             jsonProperty("timeseries", jsonObject(
- *                                 jsonProperty("timeField", "_ts")
- *                             ))
- *                         ))
- *                     )
- *                 )))
+ *             .pipeline(Output.tuple(example_sample.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+ *                 var example-sampleConnectionName = values.t1;
+ *                 var example-clusterConnectionName = values.t2;
+ *                 return """
+ * [
+ *   {\"$source\": {\"connectionName\": \"%s\"}},
+ *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"sample\", \"coll\": \"solar\", \"timeseries\": {\"timeField\": \"_ts\"}}}
+ * ]
+ * ", example_sampleConnectionName,example_clusterConnectionName);
+ *             }))
  *             .state("STARTED")
  *             .tier("SP30")
  *             .build());
@@ -140,20 +135,16 @@ import javax.annotation.Nullable;
  *             .projectId(projectId)
  *             .workspaceName(example.instanceName())
  *             .processorName("clusterProcessorName")
- *             .pipeline(serializeJson(
- *                 jsonArray(
- *                     jsonObject(
- *                         jsonProperty("$source", jsonObject(
- *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName())
- *                         ))
- *                     ), 
- *                     jsonObject(
- *                         jsonProperty("$emit", jsonObject(
- *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
- *                             jsonProperty("topic", "topic_from_cluster")
- *                         ))
- *                     )
- *                 )))
+ *             .pipeline(Output.tuple(example_cluster.connectionName(), example_kafka.connectionName()).applyValue(values -> {
+ *                 var example-clusterConnectionName = values.t1;
+ *                 var example-kafkaConnectionName = values.t2;
+ *                 return """
+ * [
+ *   {\"$source\": {\"connectionName\": \"%s\"}},
+ *   {\"$emit\": {\"connectionName\": \"%s\", \"topic\": \"topic_from_cluster\"}}
+ * ]
+ * ", example_clusterConnectionName,example_kafkaConnectionName);
+ *             }))
  *             .state("CREATED")
  *             .build());
  * 
@@ -161,30 +152,21 @@ import javax.annotation.Nullable;
  *             .projectId(projectId)
  *             .workspaceName(example.instanceName())
  *             .processorName("kafkaProcessorName")
- *             .pipeline(serializeJson(
- *                 jsonArray(
- *                     jsonObject(
- *                         jsonProperty("$source", jsonObject(
- *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-kafka().connectionName()),
- *                             jsonProperty("topic", "topic_source")
- *                         ))
- *                     ), 
- *                     jsonObject(
- *                         jsonProperty("$emit", jsonObject(
- *                             jsonProperty("connectionName", mongodbatlasStreamConnection.example-cluster().connectionName()),
- *                             jsonProperty("db", "kafka"),
- *                             jsonProperty("coll", "topic_source"),
- *                             jsonProperty("timeseries", jsonObject(
- *                                 jsonProperty("timeField", "ts")
- *                             ))
- *                         ))
- *                     )
- *                 )))
+ *             .pipeline(Output.tuple(example_kafka.connectionName(), example_cluster.connectionName()).applyValue(values -> {
+ *                 var example-kafkaConnectionName = values.t1;
+ *                 var example-clusterConnectionName = values.t2;
+ *                 return """
+ * [
+ *   {\"$source\": {\"connectionName\": \"%s\", \"topic\": \"topic_source\"}},
+ *   {\"$emit\": {\"connectionName\": \"%s\", \"db\": \"kafka\", \"coll\": \"topic_source\", \"timeseries\": {\"timeField\": \"ts\"}}}
+ * ]
+ * ", example_kafkaConnectionName,example_clusterConnectionName);
+ *             }))
  *             .state("CREATED")
  *             .options(StreamProcessorOptionsArgs.builder()
  *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
  *                     .coll("exampleColumn")
- *                     .connectionName(mongodbatlasStreamConnection.example-cluster().connectionName())
+ *                     .connectionName(example_cluster.connectionName())
  *                     .db("exampleDb")
  *                     .build())
  *                 .build())
@@ -281,14 +263,14 @@ public class StreamProcessor extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.options);
     }
     /**
-     * Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+     * Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file(&#34;pipeline.json&#34;)`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
      * 
      */
     @Export(name="pipeline", refs={String.class}, tree="[0]")
     private Output<String> pipeline;
 
     /**
-     * @return Stream aggregation pipeline you want to apply to your streaming data. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. Using jsonencode is recommended when setting this attribute. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/)
+     * @return Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file(&#34;pipeline.json&#34;)`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
      * 
      */
     public Output<String> pipeline() {
