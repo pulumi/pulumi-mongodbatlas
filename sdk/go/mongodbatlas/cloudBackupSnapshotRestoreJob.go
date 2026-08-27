@@ -213,7 +213,6 @@ import (
 //			var testCloudBackupSnapshotRestoreJob []*mongodbatlas.CloudBackupSnapshotRestoreJob
 //			for index := 0; index < tmp0; index++ {
 //				key0 := index
-//				_ := index
 //				__res, err := mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, fmt.Sprintf("test-%v", key0), &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
 //					ProjectId:   test.ProjectId,
 //					ClusterName: test.ClusterName,

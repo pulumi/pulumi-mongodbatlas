@@ -84,12 +84,8 @@ type LookupAiModelApiKeysResult struct {
 }
 
 func LookupAiModelApiKeysOutput(ctx *pulumi.Context, args LookupAiModelApiKeysOutputArgs, opts ...pulumi.InvokeOption) LookupAiModelApiKeysResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupAiModelApiKeysResultOutput, error) {
-			args := v.(LookupAiModelApiKeysArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getAiModelApiKeys:getAiModelApiKeys", args, LookupAiModelApiKeysResultOutput{}, options).(LookupAiModelApiKeysResultOutput), nil
-		}).(LookupAiModelApiKeysResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getAiModelApiKeys:getAiModelApiKeys", args, LookupAiModelApiKeysResultOutput{}, options).(LookupAiModelApiKeysResultOutput)
 }
 
 // A collection of arguments for invoking getAiModelApiKeys.

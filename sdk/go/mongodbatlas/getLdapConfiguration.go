@@ -95,12 +95,8 @@ type LookupLdapConfigurationResult struct {
 }
 
 func LookupLdapConfigurationOutput(ctx *pulumi.Context, args LookupLdapConfigurationOutputArgs, opts ...pulumi.InvokeOption) LookupLdapConfigurationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupLdapConfigurationResultOutput, error) {
-			args := v.(LookupLdapConfigurationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", args, LookupLdapConfigurationResultOutput{}, options).(LookupLdapConfigurationResultOutput), nil
-		}).(LookupLdapConfigurationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getLdapConfiguration:getLdapConfiguration", args, LookupLdapConfigurationResultOutput{}, options).(LookupLdapConfigurationResultOutput)
 }
 
 // A collection of arguments for invoking getLdapConfiguration.

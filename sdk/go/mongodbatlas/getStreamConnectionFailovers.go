@@ -49,12 +49,8 @@ type LookupStreamConnectionFailoversResult struct {
 }
 
 func LookupStreamConnectionFailoversOutput(ctx *pulumi.Context, args LookupStreamConnectionFailoversOutputArgs, opts ...pulumi.InvokeOption) LookupStreamConnectionFailoversResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupStreamConnectionFailoversResultOutput, error) {
-			args := v.(LookupStreamConnectionFailoversArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getStreamConnectionFailovers:getStreamConnectionFailovers", args, LookupStreamConnectionFailoversResultOutput{}, options).(LookupStreamConnectionFailoversResultOutput), nil
-		}).(LookupStreamConnectionFailoversResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getStreamConnectionFailovers:getStreamConnectionFailovers", args, LookupStreamConnectionFailoversResultOutput{}, options).(LookupStreamConnectionFailoversResultOutput)
 }
 
 // A collection of arguments for invoking getStreamConnectionFailovers.

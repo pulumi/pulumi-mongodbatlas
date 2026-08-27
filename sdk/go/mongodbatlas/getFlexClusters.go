@@ -43,12 +43,8 @@ type LookupFlexClustersResult struct {
 }
 
 func LookupFlexClustersOutput(ctx *pulumi.Context, args LookupFlexClustersOutputArgs, opts ...pulumi.InvokeOption) LookupFlexClustersResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupFlexClustersResultOutput, error) {
-			args := v.(LookupFlexClustersArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getFlexClusters:getFlexClusters", args, LookupFlexClustersResultOutput{}, options).(LookupFlexClustersResultOutput), nil
-		}).(LookupFlexClustersResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getFlexClusters:getFlexClusters", args, LookupFlexClustersResultOutput{}, options).(LookupFlexClustersResultOutput)
 }
 
 // A collection of arguments for invoking getFlexClusters.

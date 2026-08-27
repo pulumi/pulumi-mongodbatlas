@@ -54,12 +54,8 @@ type LookupOrgInvitationResult struct {
 }
 
 func LookupOrgInvitationOutput(ctx *pulumi.Context, args LookupOrgInvitationOutputArgs, opts ...pulumi.InvokeOption) LookupOrgInvitationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupOrgInvitationResultOutput, error) {
-			args := v.(LookupOrgInvitationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getOrgInvitation:getOrgInvitation", args, LookupOrgInvitationResultOutput{}, options).(LookupOrgInvitationResultOutput), nil
-		}).(LookupOrgInvitationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getOrgInvitation:getOrgInvitation", args, LookupOrgInvitationResultOutput{}, options).(LookupOrgInvitationResultOutput)
 }
 
 // A collection of arguments for invoking getOrgInvitation.

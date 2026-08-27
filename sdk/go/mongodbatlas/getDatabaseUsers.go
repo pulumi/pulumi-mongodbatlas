@@ -134,12 +134,8 @@ type LookupDatabaseUsersResult struct {
 }
 
 func LookupDatabaseUsersOutput(ctx *pulumi.Context, args LookupDatabaseUsersOutputArgs, opts ...pulumi.InvokeOption) LookupDatabaseUsersResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupDatabaseUsersResultOutput, error) {
-			args := v.(LookupDatabaseUsersArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", args, LookupDatabaseUsersResultOutput{}, options).(LookupDatabaseUsersResultOutput), nil
-		}).(LookupDatabaseUsersResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", args, LookupDatabaseUsersResultOutput{}, options).(LookupDatabaseUsersResultOutput)
 }
 
 // A collection of arguments for invoking getDatabaseUsers.

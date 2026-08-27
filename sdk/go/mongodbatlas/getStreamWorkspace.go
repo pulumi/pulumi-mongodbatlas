@@ -78,12 +78,8 @@ type LookupStreamWorkspaceResult struct {
 }
 
 func LookupStreamWorkspaceOutput(ctx *pulumi.Context, args LookupStreamWorkspaceOutputArgs, opts ...pulumi.InvokeOption) LookupStreamWorkspaceResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupStreamWorkspaceResultOutput, error) {
-			args := v.(LookupStreamWorkspaceArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getStreamWorkspace:getStreamWorkspace", args, LookupStreamWorkspaceResultOutput{}, options).(LookupStreamWorkspaceResultOutput), nil
-		}).(LookupStreamWorkspaceResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getStreamWorkspace:getStreamWorkspace", args, LookupStreamWorkspaceResultOutput{}, options).(LookupStreamWorkspaceResultOutput)
 }
 
 // A collection of arguments for invoking getStreamWorkspace.

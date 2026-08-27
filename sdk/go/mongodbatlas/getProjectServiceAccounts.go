@@ -41,12 +41,8 @@ type LookupProjectServiceAccountsResult struct {
 }
 
 func LookupProjectServiceAccountsOutput(ctx *pulumi.Context, args LookupProjectServiceAccountsOutputArgs, opts ...pulumi.InvokeOption) LookupProjectServiceAccountsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupProjectServiceAccountsResultOutput, error) {
-			args := v.(LookupProjectServiceAccountsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts", args, LookupProjectServiceAccountsResultOutput{}, options).(LookupProjectServiceAccountsResultOutput), nil
-		}).(LookupProjectServiceAccountsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts", args, LookupProjectServiceAccountsResultOutput{}, options).(LookupProjectServiceAccountsResultOutput)
 }
 
 // A collection of arguments for invoking getProjectServiceAccounts.

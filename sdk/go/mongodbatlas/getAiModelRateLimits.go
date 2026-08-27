@@ -86,12 +86,8 @@ type LookupAiModelRateLimitsResult struct {
 }
 
 func LookupAiModelRateLimitsOutput(ctx *pulumi.Context, args LookupAiModelRateLimitsOutputArgs, opts ...pulumi.InvokeOption) LookupAiModelRateLimitsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupAiModelRateLimitsResultOutput, error) {
-			args := v.(LookupAiModelRateLimitsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getAiModelRateLimits:getAiModelRateLimits", args, LookupAiModelRateLimitsResultOutput{}, options).(LookupAiModelRateLimitsResultOutput), nil
-		}).(LookupAiModelRateLimitsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getAiModelRateLimits:getAiModelRateLimits", args, LookupAiModelRateLimitsResultOutput{}, options).(LookupAiModelRateLimitsResultOutput)
 }
 
 // A collection of arguments for invoking getAiModelRateLimits.

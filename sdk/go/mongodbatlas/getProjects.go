@@ -85,12 +85,8 @@ type LookupProjectsResult struct {
 }
 
 func LookupProjectsOutput(ctx *pulumi.Context, args LookupProjectsOutputArgs, opts ...pulumi.InvokeOption) LookupProjectsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupProjectsResultOutput, error) {
-			args := v.(LookupProjectsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getProjects:getProjects", args, LookupProjectsResultOutput{}, options).(LookupProjectsResultOutput), nil
-		}).(LookupProjectsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getProjects:getProjects", args, LookupProjectsResultOutput{}, options).(LookupProjectsResultOutput)
 }
 
 // A collection of arguments for invoking getProjects.

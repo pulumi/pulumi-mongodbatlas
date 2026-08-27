@@ -44,12 +44,8 @@ type LookupFederatedDatabaseInstancesResult struct {
 }
 
 func LookupFederatedDatabaseInstancesOutput(ctx *pulumi.Context, args LookupFederatedDatabaseInstancesOutputArgs, opts ...pulumi.InvokeOption) LookupFederatedDatabaseInstancesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupFederatedDatabaseInstancesResultOutput, error) {
-			args := v.(LookupFederatedDatabaseInstancesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", args, LookupFederatedDatabaseInstancesResultOutput{}, options).(LookupFederatedDatabaseInstancesResultOutput), nil
-		}).(LookupFederatedDatabaseInstancesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", args, LookupFederatedDatabaseInstancesResultOutput{}, options).(LookupFederatedDatabaseInstancesResultOutput)
 }
 
 // A collection of arguments for invoking getFederatedDatabaseInstances.

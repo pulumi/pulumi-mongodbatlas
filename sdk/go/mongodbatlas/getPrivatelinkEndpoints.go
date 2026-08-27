@@ -78,12 +78,8 @@ type LookupPrivatelinkEndpointsResult struct {
 }
 
 func LookupPrivatelinkEndpointsOutput(ctx *pulumi.Context, args LookupPrivatelinkEndpointsOutputArgs, opts ...pulumi.InvokeOption) LookupPrivatelinkEndpointsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPrivatelinkEndpointsResultOutput, error) {
-			args := v.(LookupPrivatelinkEndpointsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", args, LookupPrivatelinkEndpointsResultOutput{}, options).(LookupPrivatelinkEndpointsResultOutput), nil
-		}).(LookupPrivatelinkEndpointsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getPrivatelinkEndpoints:getPrivatelinkEndpoints", args, LookupPrivatelinkEndpointsResultOutput{}, options).(LookupPrivatelinkEndpointsResultOutput)
 }
 
 // A collection of arguments for invoking getPrivatelinkEndpoints.

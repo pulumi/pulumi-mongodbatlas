@@ -45,12 +45,8 @@ type LookupFlexSnapshotsResult struct {
 }
 
 func LookupFlexSnapshotsOutput(ctx *pulumi.Context, args LookupFlexSnapshotsOutputArgs, opts ...pulumi.InvokeOption) LookupFlexSnapshotsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupFlexSnapshotsResultOutput, error) {
-			args := v.(LookupFlexSnapshotsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getFlexSnapshots:getFlexSnapshots", args, LookupFlexSnapshotsResultOutput{}, options).(LookupFlexSnapshotsResultOutput), nil
-		}).(LookupFlexSnapshotsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getFlexSnapshots:getFlexSnapshots", args, LookupFlexSnapshotsResultOutput{}, options).(LookupFlexSnapshotsResultOutput)
 }
 
 // A collection of arguments for invoking getFlexSnapshots.

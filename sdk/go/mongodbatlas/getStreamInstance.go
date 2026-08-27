@@ -111,12 +111,8 @@ type LookupStreamInstanceResult struct {
 }
 
 func LookupStreamInstanceOutput(ctx *pulumi.Context, args LookupStreamInstanceOutputArgs, opts ...pulumi.InvokeOption) LookupStreamInstanceResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupStreamInstanceResultOutput, error) {
-			args := v.(LookupStreamInstanceArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getStreamInstance:getStreamInstance", args, LookupStreamInstanceResultOutput{}, options).(LookupStreamInstanceResultOutput), nil
-		}).(LookupStreamInstanceResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getStreamInstance:getStreamInstance", args, LookupStreamInstanceResultOutput{}, options).(LookupStreamInstanceResultOutput)
 }
 
 // A collection of arguments for invoking getStreamInstance.

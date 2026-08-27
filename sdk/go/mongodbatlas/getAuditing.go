@@ -76,12 +76,8 @@ type LookupAuditingResult struct {
 }
 
 func LookupAuditingOutput(ctx *pulumi.Context, args LookupAuditingOutputArgs, opts ...pulumi.InvokeOption) LookupAuditingResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupAuditingResultOutput, error) {
-			args := v.(LookupAuditingArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getAuditing:getAuditing", args, LookupAuditingResultOutput{}, options).(LookupAuditingResultOutput), nil
-		}).(LookupAuditingResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getAuditing:getAuditing", args, LookupAuditingResultOutput{}, options).(LookupAuditingResultOutput)
 }
 
 // A collection of arguments for invoking getAuditing.

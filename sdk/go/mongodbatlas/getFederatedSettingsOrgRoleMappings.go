@@ -98,12 +98,8 @@ type LookupFederatedSettingsOrgRoleMappingsResult struct {
 }
 
 func LookupFederatedSettingsOrgRoleMappingsOutput(ctx *pulumi.Context, args LookupFederatedSettingsOrgRoleMappingsOutputArgs, opts ...pulumi.InvokeOption) LookupFederatedSettingsOrgRoleMappingsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupFederatedSettingsOrgRoleMappingsResultOutput, error) {
-			args := v.(LookupFederatedSettingsOrgRoleMappingsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", args, LookupFederatedSettingsOrgRoleMappingsResultOutput{}, options).(LookupFederatedSettingsOrgRoleMappingsResultOutput), nil
-		}).(LookupFederatedSettingsOrgRoleMappingsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getFederatedSettingsOrgRoleMappings:getFederatedSettingsOrgRoleMappings", args, LookupFederatedSettingsOrgRoleMappingsResultOutput{}, options).(LookupFederatedSettingsOrgRoleMappingsResultOutput)
 }
 
 // A collection of arguments for invoking getFederatedSettingsOrgRoleMappings.

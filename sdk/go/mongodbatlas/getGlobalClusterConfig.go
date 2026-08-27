@@ -156,12 +156,8 @@ type LookupGlobalClusterConfigResult struct {
 }
 
 func LookupGlobalClusterConfigOutput(ctx *pulumi.Context, args LookupGlobalClusterConfigOutputArgs, opts ...pulumi.InvokeOption) LookupGlobalClusterConfigResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupGlobalClusterConfigResultOutput, error) {
-			args := v.(LookupGlobalClusterConfigArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", args, LookupGlobalClusterConfigResultOutput{}, options).(LookupGlobalClusterConfigResultOutput), nil
-		}).(LookupGlobalClusterConfigResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getGlobalClusterConfig:getGlobalClusterConfig", args, LookupGlobalClusterConfigResultOutput{}, options).(LookupGlobalClusterConfigResultOutput)
 }
 
 // A collection of arguments for invoking getGlobalClusterConfig.

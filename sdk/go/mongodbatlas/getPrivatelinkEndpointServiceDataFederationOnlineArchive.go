@@ -90,12 +90,8 @@ type LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResult struct {
 }
 
 func LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveOutput(ctx *pulumi.Context, args LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveOutputArgs, opts ...pulumi.InvokeOption) LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput, error) {
-			args := v.(LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", args, LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput{}, options).(LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput), nil
-		}).(LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getPrivatelinkEndpointServiceDataFederationOnlineArchive:getPrivatelinkEndpointServiceDataFederationOnlineArchive", args, LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput{}, options).(LookupPrivatelinkEndpointServiceDataFederationOnlineArchiveResultOutput)
 }
 
 // A collection of arguments for invoking getPrivatelinkEndpointServiceDataFederationOnlineArchive.

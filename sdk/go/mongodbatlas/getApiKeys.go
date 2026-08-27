@@ -45,12 +45,8 @@ type LookupApiKeysResult struct {
 }
 
 func LookupApiKeysOutput(ctx *pulumi.Context, args LookupApiKeysOutputArgs, opts ...pulumi.InvokeOption) LookupApiKeysResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupApiKeysResultOutput, error) {
-			args := v.(LookupApiKeysArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getApiKeys:getApiKeys", args, LookupApiKeysResultOutput{}, options).(LookupApiKeysResultOutput), nil
-		}).(LookupApiKeysResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getApiKeys:getApiKeys", args, LookupApiKeysResultOutput{}, options).(LookupApiKeysResultOutput)
 }
 
 // A collection of arguments for invoking getApiKeys.

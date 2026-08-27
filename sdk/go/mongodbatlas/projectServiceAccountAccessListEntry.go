@@ -77,7 +77,7 @@ import (
 //				ClientId:  thisProjectServiceAccount.ClientId,
 //			}, nil)
 //			ctx.Export("allAccessListEntries", thisGetProjectServiceAccountAccessListEntries.ApplyT(func(thisGetProjectServiceAccountAccessListEntries mongodbatlas.GetProjectServiceAccountAccessListEntriesResult) ([]mongodbatlas.GetProjectServiceAccountAccessListEntriesResult, error) {
-//				return []mongodbatlas.GetProjectServiceAccountAccessListEntriesResult(thisGetProjectServiceAccountAccessListEntries.Results), nil
+//				return thisGetProjectServiceAccountAccessListEntries.Results.([]mongodbatlas.GetProjectServiceAccountAccessListEntriesResult), nil
 //			}).(pulumi.ArrayOutput))
 //			return nil
 //		})

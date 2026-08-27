@@ -146,7 +146,7 @@ import (
 //			}, nil)
 //			ctx.Export("streamProcessorsState", example_stream_processor.State())
 //			ctx.Export("streamProcessorsResults", example_stream_processors.ApplyT(func(example_stream_processors mongodbatlas.GetStreamProcessorsResult) ([]mongodbatlas.GetStreamProcessorsResult, error) {
-//				return []mongodbatlas.GetStreamProcessorsResult(example_stream_processors.Results), nil
+//				return example_stream_processors.Results.([]mongodbatlas.GetStreamProcessorsResult), nil
 //			}).(pulumi.ArrayOutput))
 //			return nil
 //		})
@@ -190,12 +190,8 @@ type LookupStreamProcessorsResult struct {
 }
 
 func LookupStreamProcessorsOutput(ctx *pulumi.Context, args LookupStreamProcessorsOutputArgs, opts ...pulumi.InvokeOption) LookupStreamProcessorsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupStreamProcessorsResultOutput, error) {
-			args := v.(LookupStreamProcessorsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getStreamProcessors:getStreamProcessors", args, LookupStreamProcessorsResultOutput{}, options).(LookupStreamProcessorsResultOutput), nil
-		}).(LookupStreamProcessorsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getStreamProcessors:getStreamProcessors", args, LookupStreamProcessorsResultOutput{}, options).(LookupStreamProcessorsResultOutput)
 }
 
 // A collection of arguments for invoking getStreamProcessors.

@@ -71,12 +71,8 @@ type LookupPrivateEndpointRegionalModeResult struct {
 }
 
 func LookupPrivateEndpointRegionalModeOutput(ctx *pulumi.Context, args LookupPrivateEndpointRegionalModeOutputArgs, opts ...pulumi.InvokeOption) LookupPrivateEndpointRegionalModeResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPrivateEndpointRegionalModeResultOutput, error) {
-			args := v.(LookupPrivateEndpointRegionalModeArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", args, LookupPrivateEndpointRegionalModeResultOutput{}, options).(LookupPrivateEndpointRegionalModeResultOutput), nil
-		}).(LookupPrivateEndpointRegionalModeResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode", args, LookupPrivateEndpointRegionalModeResultOutput{}, options).(LookupPrivateEndpointRegionalModeResultOutput)
 }
 
 // A collection of arguments for invoking getPrivateEndpointRegionalMode.

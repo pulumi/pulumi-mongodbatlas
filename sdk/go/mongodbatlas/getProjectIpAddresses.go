@@ -65,12 +65,8 @@ type LookupProjectIpAddressesResult struct {
 }
 
 func LookupProjectIpAddressesOutput(ctx *pulumi.Context, args LookupProjectIpAddressesOutputArgs, opts ...pulumi.InvokeOption) LookupProjectIpAddressesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupProjectIpAddressesResultOutput, error) {
-			args := v.(LookupProjectIpAddressesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", args, LookupProjectIpAddressesResultOutput{}, options).(LookupProjectIpAddressesResultOutput), nil
-		}).(LookupProjectIpAddressesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", args, LookupProjectIpAddressesResultOutput{}, options).(LookupProjectIpAddressesResultOutput)
 }
 
 // A collection of arguments for invoking getProjectIpAddresses.

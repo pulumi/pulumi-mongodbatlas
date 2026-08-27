@@ -265,12 +265,8 @@ type LookupStreamPrivatelinkEndpointsResult struct {
 }
 
 func LookupStreamPrivatelinkEndpointsOutput(ctx *pulumi.Context, args LookupStreamPrivatelinkEndpointsOutputArgs, opts ...pulumi.InvokeOption) LookupStreamPrivatelinkEndpointsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupStreamPrivatelinkEndpointsResultOutput, error) {
-			args := v.(LookupStreamPrivatelinkEndpointsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints", args, LookupStreamPrivatelinkEndpointsResultOutput{}, options).(LookupStreamPrivatelinkEndpointsResultOutput), nil
-		}).(LookupStreamPrivatelinkEndpointsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getStreamPrivatelinkEndpoints:getStreamPrivatelinkEndpoints", args, LookupStreamPrivatelinkEndpointsResultOutput{}, options).(LookupStreamPrivatelinkEndpointsResultOutput)
 }
 
 // A collection of arguments for invoking getStreamPrivatelinkEndpoints.

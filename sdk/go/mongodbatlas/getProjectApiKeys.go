@@ -77,12 +77,8 @@ type LookupProjectApiKeysResult struct {
 }
 
 func LookupProjectApiKeysOutput(ctx *pulumi.Context, args LookupProjectApiKeysOutputArgs, opts ...pulumi.InvokeOption) LookupProjectApiKeysResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupProjectApiKeysResultOutput, error) {
-			args := v.(LookupProjectApiKeysArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", args, LookupProjectApiKeysResultOutput{}, options).(LookupProjectApiKeysResultOutput), nil
-		}).(LookupProjectApiKeysResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getProjectApiKeys:getProjectApiKeys", args, LookupProjectApiKeysResultOutput{}, options).(LookupProjectApiKeysResultOutput)
 }
 
 // A collection of arguments for invoking getProjectApiKeys.

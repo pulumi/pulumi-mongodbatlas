@@ -88,12 +88,8 @@ type LookupProjectInvitationResult struct {
 }
 
 func LookupProjectInvitationOutput(ctx *pulumi.Context, args LookupProjectInvitationOutputArgs, opts ...pulumi.InvokeOption) LookupProjectInvitationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupProjectInvitationResultOutput, error) {
-			args := v.(LookupProjectInvitationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args, LookupProjectInvitationResultOutput{}, options).(LookupProjectInvitationResultOutput), nil
-		}).(LookupProjectInvitationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getProjectInvitation:getProjectInvitation", args, LookupProjectInvitationResultOutput{}, options).(LookupProjectInvitationResultOutput)
 }
 
 // A collection of arguments for invoking getProjectInvitation.

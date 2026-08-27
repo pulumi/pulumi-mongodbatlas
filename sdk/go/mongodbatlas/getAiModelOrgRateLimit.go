@@ -88,12 +88,8 @@ type GetAiModelOrgRateLimitResult struct {
 }
 
 func GetAiModelOrgRateLimitOutput(ctx *pulumi.Context, args GetAiModelOrgRateLimitOutputArgs, opts ...pulumi.InvokeOption) GetAiModelOrgRateLimitResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetAiModelOrgRateLimitResultOutput, error) {
-			args := v.(GetAiModelOrgRateLimitArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getAiModelOrgRateLimit:getAiModelOrgRateLimit", args, GetAiModelOrgRateLimitResultOutput{}, options).(GetAiModelOrgRateLimitResultOutput), nil
-		}).(GetAiModelOrgRateLimitResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getAiModelOrgRateLimit:getAiModelOrgRateLimit", args, GetAiModelOrgRateLimitResultOutput{}, options).(GetAiModelOrgRateLimitResultOutput)
 }
 
 // A collection of arguments for invoking getAiModelOrgRateLimit.

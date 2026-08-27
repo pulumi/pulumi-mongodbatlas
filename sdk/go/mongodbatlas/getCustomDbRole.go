@@ -94,12 +94,8 @@ type LookupCustomDbRoleResult struct {
 }
 
 func LookupCustomDbRoleOutput(ctx *pulumi.Context, args LookupCustomDbRoleOutputArgs, opts ...pulumi.InvokeOption) LookupCustomDbRoleResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupCustomDbRoleResultOutput, error) {
-			args := v.(LookupCustomDbRoleArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getCustomDbRole:getCustomDbRole", args, LookupCustomDbRoleResultOutput{}, options).(LookupCustomDbRoleResultOutput), nil
-		}).(LookupCustomDbRoleResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getCustomDbRole:getCustomDbRole", args, LookupCustomDbRoleResultOutput{}, options).(LookupCustomDbRoleResultOutput)
 }
 
 // A collection of arguments for invoking getCustomDbRole.

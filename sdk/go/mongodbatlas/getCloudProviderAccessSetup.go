@@ -158,12 +158,8 @@ type LookupCloudProviderAccessSetupResult struct {
 }
 
 func LookupCloudProviderAccessSetupOutput(ctx *pulumi.Context, args LookupCloudProviderAccessSetupOutputArgs, opts ...pulumi.InvokeOption) LookupCloudProviderAccessSetupResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupCloudProviderAccessSetupResultOutput, error) {
-			args := v.(LookupCloudProviderAccessSetupArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", args, LookupCloudProviderAccessSetupResultOutput{}, options).(LookupCloudProviderAccessSetupResultOutput), nil
-		}).(LookupCloudProviderAccessSetupResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getCloudProviderAccessSetup:getCloudProviderAccessSetup", args, LookupCloudProviderAccessSetupResultOutput{}, options).(LookupCloudProviderAccessSetupResultOutput)
 }
 
 // A collection of arguments for invoking getCloudProviderAccessSetup.

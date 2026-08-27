@@ -77,12 +77,8 @@ type LookupNetworkContainersResult struct {
 }
 
 func LookupNetworkContainersOutput(ctx *pulumi.Context, args LookupNetworkContainersOutputArgs, opts ...pulumi.InvokeOption) LookupNetworkContainersResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNetworkContainersResultOutput, error) {
-			args := v.(LookupNetworkContainersArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getNetworkContainers:getNetworkContainers", args, LookupNetworkContainersResultOutput{}, options).(LookupNetworkContainersResultOutput), nil
-		}).(LookupNetworkContainersResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getNetworkContainers:getNetworkContainers", args, LookupNetworkContainersResultOutput{}, options).(LookupNetworkContainersResultOutput)
 }
 
 // A collection of arguments for invoking getNetworkContainers.

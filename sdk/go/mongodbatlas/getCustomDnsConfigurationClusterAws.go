@@ -68,12 +68,8 @@ type LookupCustomDnsConfigurationClusterAwsResult struct {
 }
 
 func LookupCustomDnsConfigurationClusterAwsOutput(ctx *pulumi.Context, args LookupCustomDnsConfigurationClusterAwsOutputArgs, opts ...pulumi.InvokeOption) LookupCustomDnsConfigurationClusterAwsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupCustomDnsConfigurationClusterAwsResultOutput, error) {
-			args := v.(LookupCustomDnsConfigurationClusterAwsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", args, LookupCustomDnsConfigurationClusterAwsResultOutput{}, options).(LookupCustomDnsConfigurationClusterAwsResultOutput), nil
-		}).(LookupCustomDnsConfigurationClusterAwsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getCustomDnsConfigurationClusterAws:getCustomDnsConfigurationClusterAws", args, LookupCustomDnsConfigurationClusterAwsResultOutput{}, options).(LookupCustomDnsConfigurationClusterAwsResultOutput)
 }
 
 // A collection of arguments for invoking getCustomDnsConfigurationClusterAws.

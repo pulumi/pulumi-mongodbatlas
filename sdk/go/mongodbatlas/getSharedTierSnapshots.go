@@ -38,12 +38,8 @@ type LookupSharedTierSnapshotsResult struct {
 }
 
 func LookupSharedTierSnapshotsOutput(ctx *pulumi.Context, args LookupSharedTierSnapshotsOutputArgs, opts ...pulumi.InvokeOption) LookupSharedTierSnapshotsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupSharedTierSnapshotsResultOutput, error) {
-			args := v.(LookupSharedTierSnapshotsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", args, LookupSharedTierSnapshotsResultOutput{}, options).(LookupSharedTierSnapshotsResultOutput), nil
-		}).(LookupSharedTierSnapshotsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getSharedTierSnapshots:getSharedTierSnapshots", args, LookupSharedTierSnapshotsResultOutput{}, options).(LookupSharedTierSnapshotsResultOutput)
 }
 
 // A collection of arguments for invoking getSharedTierSnapshots.

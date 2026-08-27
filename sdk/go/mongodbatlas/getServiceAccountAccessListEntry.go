@@ -76,7 +76,7 @@ import (
 //				ClientId: thisServiceAccount.ClientId,
 //			}, nil)
 //			ctx.Export("allAccessListEntries", thisGetServiceAccountAccessListEntries.ApplyT(func(thisGetServiceAccountAccessListEntries mongodbatlas.GetServiceAccountAccessListEntriesResult) ([]mongodbatlas.GetServiceAccountAccessListEntriesResult, error) {
-//				return []mongodbatlas.GetServiceAccountAccessListEntriesResult(thisGetServiceAccountAccessListEntries.Results), nil
+//				return thisGetServiceAccountAccessListEntries.Results.([]mongodbatlas.GetServiceAccountAccessListEntriesResult), nil
 //			}).(pulumi.ArrayOutput))
 //			return nil
 //		})
@@ -126,12 +126,8 @@ type LookupServiceAccountAccessListEntryResult struct {
 }
 
 func LookupServiceAccountAccessListEntryOutput(ctx *pulumi.Context, args LookupServiceAccountAccessListEntryOutputArgs, opts ...pulumi.InvokeOption) LookupServiceAccountAccessListEntryResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupServiceAccountAccessListEntryResultOutput, error) {
-			args := v.(LookupServiceAccountAccessListEntryArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getServiceAccountAccessListEntry:getServiceAccountAccessListEntry", args, LookupServiceAccountAccessListEntryResultOutput{}, options).(LookupServiceAccountAccessListEntryResultOutput), nil
-		}).(LookupServiceAccountAccessListEntryResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getServiceAccountAccessListEntry:getServiceAccountAccessListEntry", args, LookupServiceAccountAccessListEntryResultOutput{}, options).(LookupServiceAccountAccessListEntryResultOutput)
 }
 
 // A collection of arguments for invoking getServiceAccountAccessListEntry.

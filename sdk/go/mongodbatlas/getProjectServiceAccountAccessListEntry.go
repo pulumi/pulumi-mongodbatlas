@@ -76,7 +76,7 @@ import (
 //				ClientId:  thisProjectServiceAccount.ClientId,
 //			}, nil)
 //			ctx.Export("allAccessListEntries", thisGetProjectServiceAccountAccessListEntries.ApplyT(func(thisGetProjectServiceAccountAccessListEntries mongodbatlas.GetProjectServiceAccountAccessListEntriesResult) ([]mongodbatlas.GetProjectServiceAccountAccessListEntriesResult, error) {
-//				return []mongodbatlas.GetProjectServiceAccountAccessListEntriesResult(thisGetProjectServiceAccountAccessListEntries.Results), nil
+//				return thisGetProjectServiceAccountAccessListEntries.Results.([]mongodbatlas.GetProjectServiceAccountAccessListEntriesResult), nil
 //			}).(pulumi.ArrayOutput))
 //			return nil
 //		})
@@ -126,12 +126,8 @@ type LookupProjectServiceAccountAccessListEntryResult struct {
 }
 
 func LookupProjectServiceAccountAccessListEntryOutput(ctx *pulumi.Context, args LookupProjectServiceAccountAccessListEntryOutputArgs, opts ...pulumi.InvokeOption) LookupProjectServiceAccountAccessListEntryResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupProjectServiceAccountAccessListEntryResultOutput, error) {
-			args := v.(LookupProjectServiceAccountAccessListEntryArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getProjectServiceAccountAccessListEntry:getProjectServiceAccountAccessListEntry", args, LookupProjectServiceAccountAccessListEntryResultOutput{}, options).(LookupProjectServiceAccountAccessListEntryResultOutput), nil
-		}).(LookupProjectServiceAccountAccessListEntryResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getProjectServiceAccountAccessListEntry:getProjectServiceAccountAccessListEntry", args, LookupProjectServiceAccountAccessListEntryResultOutput{}, options).(LookupProjectServiceAccountAccessListEntryResultOutput)
 }
 
 // A collection of arguments for invoking getProjectServiceAccountAccessListEntry.

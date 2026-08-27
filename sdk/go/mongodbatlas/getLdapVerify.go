@@ -119,12 +119,8 @@ type LookupLdapVerifyResult struct {
 }
 
 func LookupLdapVerifyOutput(ctx *pulumi.Context, args LookupLdapVerifyOutputArgs, opts ...pulumi.InvokeOption) LookupLdapVerifyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupLdapVerifyResultOutput, error) {
-			args := v.(LookupLdapVerifyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getLdapVerify:getLdapVerify", args, LookupLdapVerifyResultOutput{}, options).(LookupLdapVerifyResultOutput), nil
-		}).(LookupLdapVerifyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getLdapVerify:getLdapVerify", args, LookupLdapVerifyResultOutput{}, options).(LookupLdapVerifyResultOutput)
 }
 
 // A collection of arguments for invoking getLdapVerify.

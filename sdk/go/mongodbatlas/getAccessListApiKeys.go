@@ -84,12 +84,8 @@ type LookupAccessListApiKeysResult struct {
 }
 
 func LookupAccessListApiKeysOutput(ctx *pulumi.Context, args LookupAccessListApiKeysOutputArgs, opts ...pulumi.InvokeOption) LookupAccessListApiKeysResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupAccessListApiKeysResultOutput, error) {
-			args := v.(LookupAccessListApiKeysArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", args, LookupAccessListApiKeysResultOutput{}, options).(LookupAccessListApiKeysResultOutput), nil
-		}).(LookupAccessListApiKeysResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getAccessListApiKeys:getAccessListApiKeys", args, LookupAccessListApiKeysResultOutput{}, options).(LookupAccessListApiKeysResultOutput)
 }
 
 // A collection of arguments for invoking getAccessListApiKeys.

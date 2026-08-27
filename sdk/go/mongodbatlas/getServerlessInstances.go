@@ -69,12 +69,8 @@ type LookupServerlessInstancesResult struct {
 }
 
 func LookupServerlessInstancesOutput(ctx *pulumi.Context, args LookupServerlessInstancesOutputArgs, opts ...pulumi.InvokeOption) LookupServerlessInstancesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupServerlessInstancesResultOutput, error) {
-			args := v.(LookupServerlessInstancesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getServerlessInstances:getServerlessInstances", args, LookupServerlessInstancesResultOutput{}, options).(LookupServerlessInstancesResultOutput), nil
-		}).(LookupServerlessInstancesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getServerlessInstances:getServerlessInstances", args, LookupServerlessInstancesResultOutput{}, options).(LookupServerlessInstancesResultOutput)
 }
 
 // A collection of arguments for invoking getServerlessInstances.
