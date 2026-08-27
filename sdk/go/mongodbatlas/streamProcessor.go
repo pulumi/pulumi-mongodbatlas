@@ -157,7 +157,7 @@ import (
 //			}, nil)
 //			ctx.Export("streamProcessorsState", example_stream_processor.State())
 //			ctx.Export("streamProcessorsResults", example_stream_processors.ApplyT(func(example_stream_processors mongodbatlas.GetStreamProcessorsResult) ([]mongodbatlas.GetStreamProcessorsResult, error) {
-//				return []mongodbatlas.GetStreamProcessorsResult(example_stream_processors.Results), nil
+//				return example_stream_processors.Results.([]mongodbatlas.GetStreamProcessorsResult), nil
 //			}).(pulumi.ArrayOutput))
 //			return nil
 //		})

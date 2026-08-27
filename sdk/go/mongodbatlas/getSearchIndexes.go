@@ -80,12 +80,8 @@ type LookupSearchIndexesResult struct {
 }
 
 func LookupSearchIndexesOutput(ctx *pulumi.Context, args LookupSearchIndexesOutputArgs, opts ...pulumi.InvokeOption) LookupSearchIndexesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupSearchIndexesResultOutput, error) {
-			args := v.(LookupSearchIndexesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args, LookupSearchIndexesResultOutput{}, options).(LookupSearchIndexesResultOutput), nil
-		}).(LookupSearchIndexesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getSearchIndexes:getSearchIndexes", args, LookupSearchIndexesResultOutput{}, options).(LookupSearchIndexesResultOutput)
 }
 
 // A collection of arguments for invoking getSearchIndexes.

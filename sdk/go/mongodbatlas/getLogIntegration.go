@@ -90,12 +90,8 @@ type LookupLogIntegrationResult struct {
 }
 
 func LookupLogIntegrationOutput(ctx *pulumi.Context, args LookupLogIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupLogIntegrationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupLogIntegrationResultOutput, error) {
-			args := v.(LookupLogIntegrationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getLogIntegration:getLogIntegration", args, LookupLogIntegrationResultOutput{}, options).(LookupLogIntegrationResultOutput), nil
-		}).(LookupLogIntegrationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getLogIntegration:getLogIntegration", args, LookupLogIntegrationResultOutput{}, options).(LookupLogIntegrationResultOutput)
 }
 
 // A collection of arguments for invoking getLogIntegration.

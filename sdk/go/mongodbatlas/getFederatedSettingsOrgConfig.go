@@ -101,12 +101,8 @@ type LookupFederatedSettingsOrgConfigResult struct {
 }
 
 func LookupFederatedSettingsOrgConfigOutput(ctx *pulumi.Context, args LookupFederatedSettingsOrgConfigOutputArgs, opts ...pulumi.InvokeOption) LookupFederatedSettingsOrgConfigResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupFederatedSettingsOrgConfigResultOutput, error) {
-			args := v.(LookupFederatedSettingsOrgConfigArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig", args, LookupFederatedSettingsOrgConfigResultOutput{}, options).(LookupFederatedSettingsOrgConfigResultOutput), nil
-		}).(LookupFederatedSettingsOrgConfigResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getFederatedSettingsOrgConfig:getFederatedSettingsOrgConfig", args, LookupFederatedSettingsOrgConfigResultOutput{}, options).(LookupFederatedSettingsOrgConfigResultOutput)
 }
 
 // A collection of arguments for invoking getFederatedSettingsOrgConfig.

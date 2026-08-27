@@ -86,12 +86,8 @@ type GetStreamAccountDetailsResult struct {
 }
 
 func GetStreamAccountDetailsOutput(ctx *pulumi.Context, args GetStreamAccountDetailsOutputArgs, opts ...pulumi.InvokeOption) GetStreamAccountDetailsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetStreamAccountDetailsResultOutput, error) {
-			args := v.(GetStreamAccountDetailsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getStreamAccountDetails:getStreamAccountDetails", args, GetStreamAccountDetailsResultOutput{}, options).(GetStreamAccountDetailsResultOutput), nil
-		}).(GetStreamAccountDetailsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getStreamAccountDetails:getStreamAccountDetails", args, GetStreamAccountDetailsResultOutput{}, options).(GetStreamAccountDetailsResultOutput)
 }
 
 // A collection of arguments for invoking getStreamAccountDetails.

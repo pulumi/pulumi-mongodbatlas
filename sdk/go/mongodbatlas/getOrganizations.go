@@ -70,12 +70,8 @@ type LookupOrganizationsResult struct {
 }
 
 func LookupOrganizationsOutput(ctx *pulumi.Context, args LookupOrganizationsOutputArgs, opts ...pulumi.InvokeOption) LookupOrganizationsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupOrganizationsResultOutput, error) {
-			args := v.(LookupOrganizationsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getOrganizations:getOrganizations", args, LookupOrganizationsResultOutput{}, options).(LookupOrganizationsResultOutput), nil
-		}).(LookupOrganizationsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getOrganizations:getOrganizations", args, LookupOrganizationsResultOutput{}, options).(LookupOrganizationsResultOutput)
 }
 
 // A collection of arguments for invoking getOrganizations.

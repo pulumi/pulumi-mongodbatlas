@@ -129,12 +129,8 @@ type LookupFederatedSettingsIdentityProviderResult struct {
 }
 
 func LookupFederatedSettingsIdentityProviderOutput(ctx *pulumi.Context, args LookupFederatedSettingsIdentityProviderOutputArgs, opts ...pulumi.InvokeOption) LookupFederatedSettingsIdentityProviderResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupFederatedSettingsIdentityProviderResultOutput, error) {
-			args := v.(LookupFederatedSettingsIdentityProviderArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider", args, LookupFederatedSettingsIdentityProviderResultOutput{}, options).(LookupFederatedSettingsIdentityProviderResultOutput), nil
-		}).(LookupFederatedSettingsIdentityProviderResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getFederatedSettingsIdentityProvider:getFederatedSettingsIdentityProvider", args, LookupFederatedSettingsIdentityProviderResultOutput{}, options).(LookupFederatedSettingsIdentityProviderResultOutput)
 }
 
 // A collection of arguments for invoking getFederatedSettingsIdentityProvider.

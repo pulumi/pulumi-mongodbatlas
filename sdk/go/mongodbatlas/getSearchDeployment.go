@@ -117,12 +117,8 @@ type LookupSearchDeploymentResult struct {
 }
 
 func LookupSearchDeploymentOutput(ctx *pulumi.Context, args LookupSearchDeploymentOutputArgs, opts ...pulumi.InvokeOption) LookupSearchDeploymentResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupSearchDeploymentResultOutput, error) {
-			args := v.(LookupSearchDeploymentArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getSearchDeployment:getSearchDeployment", args, LookupSearchDeploymentResultOutput{}, options).(LookupSearchDeploymentResultOutput), nil
-		}).(LookupSearchDeploymentResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getSearchDeployment:getSearchDeployment", args, LookupSearchDeploymentResultOutput{}, options).(LookupSearchDeploymentResultOutput)
 }
 
 // A collection of arguments for invoking getSearchDeployment.

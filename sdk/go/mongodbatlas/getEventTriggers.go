@@ -42,12 +42,8 @@ type LookupEventTriggersResult struct {
 }
 
 func LookupEventTriggersOutput(ctx *pulumi.Context, args LookupEventTriggersOutputArgs, opts ...pulumi.InvokeOption) LookupEventTriggersResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupEventTriggersResultOutput, error) {
-			args := v.(LookupEventTriggersArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getEventTriggers:getEventTriggers", args, LookupEventTriggersResultOutput{}, options).(LookupEventTriggersResultOutput), nil
-		}).(LookupEventTriggersResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getEventTriggers:getEventTriggers", args, LookupEventTriggersResultOutput{}, options).(LookupEventTriggersResultOutput)
 }
 
 // A collection of arguments for invoking getEventTriggers.

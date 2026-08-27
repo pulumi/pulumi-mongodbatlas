@@ -67,12 +67,8 @@ type GetFlexRestoreJobResult struct {
 }
 
 func GetFlexRestoreJobOutput(ctx *pulumi.Context, args GetFlexRestoreJobOutputArgs, opts ...pulumi.InvokeOption) GetFlexRestoreJobResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetFlexRestoreJobResultOutput, error) {
-			args := v.(GetFlexRestoreJobArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getFlexRestoreJob:getFlexRestoreJob", args, GetFlexRestoreJobResultOutput{}, options).(GetFlexRestoreJobResultOutput), nil
-		}).(GetFlexRestoreJobResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getFlexRestoreJob:getFlexRestoreJob", args, GetFlexRestoreJobResultOutput{}, options).(GetFlexRestoreJobResultOutput)
 }
 
 // A collection of arguments for invoking getFlexRestoreJob.

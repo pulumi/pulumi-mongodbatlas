@@ -63,7 +63,7 @@ import (
 //			}, nil)
 //			ctx.Export("serviceAccountProjectRoles", this.Roles())
 //			ctx.Export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.ApplyT(func(thisGetServiceAccountProjectAssignments mongodbatlas.GetServiceAccountProjectAssignmentsResult) ([]mongodbatlas.GetServiceAccountProjectAssignmentsResult, error) {
-//				return []mongodbatlas.GetServiceAccountProjectAssignmentsResult(thisGetServiceAccountProjectAssignments.Results), nil
+//				return thisGetServiceAccountProjectAssignments.Results.([]mongodbatlas.GetServiceAccountProjectAssignmentsResult), nil
 //			}).(pulumi.ArrayOutput))
 //			return nil
 //		})
@@ -99,12 +99,8 @@ type LookupServiceAccountProjectAssignmentResult struct {
 }
 
 func LookupServiceAccountProjectAssignmentOutput(ctx *pulumi.Context, args LookupServiceAccountProjectAssignmentOutputArgs, opts ...pulumi.InvokeOption) LookupServiceAccountProjectAssignmentResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupServiceAccountProjectAssignmentResultOutput, error) {
-			args := v.(LookupServiceAccountProjectAssignmentArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getServiceAccountProjectAssignment:getServiceAccountProjectAssignment", args, LookupServiceAccountProjectAssignmentResultOutput{}, options).(LookupServiceAccountProjectAssignmentResultOutput), nil
-		}).(LookupServiceAccountProjectAssignmentResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getServiceAccountProjectAssignment:getServiceAccountProjectAssignment", args, LookupServiceAccountProjectAssignmentResultOutput{}, options).(LookupServiceAccountProjectAssignmentResultOutput)
 }
 
 // A collection of arguments for invoking getServiceAccountProjectAssignment.

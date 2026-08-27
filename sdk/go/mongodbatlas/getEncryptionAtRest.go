@@ -217,12 +217,8 @@ type LookupEncryptionAtRestResult struct {
 }
 
 func LookupEncryptionAtRestOutput(ctx *pulumi.Context, args LookupEncryptionAtRestOutputArgs, opts ...pulumi.InvokeOption) LookupEncryptionAtRestResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupEncryptionAtRestResultOutput, error) {
-			args := v.(LookupEncryptionAtRestArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest", args, LookupEncryptionAtRestResultOutput{}, options).(LookupEncryptionAtRestResultOutput), nil
-		}).(LookupEncryptionAtRestResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getEncryptionAtRest:getEncryptionAtRest", args, LookupEncryptionAtRestResultOutput{}, options).(LookupEncryptionAtRestResultOutput)
 }
 
 // A collection of arguments for invoking getEncryptionAtRest.

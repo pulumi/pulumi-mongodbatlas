@@ -64,7 +64,7 @@ import (
 //			}, nil)
 //			ctx.Export("serviceAccountProjectRoles", this.Roles())
 //			ctx.Export("serviceAccountAssignedProjects", thisGetServiceAccountProjectAssignments.ApplyT(func(thisGetServiceAccountProjectAssignments mongodbatlas.GetServiceAccountProjectAssignmentsResult) ([]mongodbatlas.GetServiceAccountProjectAssignmentsResult, error) {
-//				return []mongodbatlas.GetServiceAccountProjectAssignmentsResult(thisGetServiceAccountProjectAssignments.Results), nil
+//				return thisGetServiceAccountProjectAssignments.Results.([]mongodbatlas.GetServiceAccountProjectAssignmentsResult), nil
 //			}).(pulumi.ArrayOutput))
 //			return nil
 //		})

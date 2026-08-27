@@ -76,7 +76,7 @@ import (
 //				ClientId:  thisProjectServiceAccount.ClientId,
 //			}, nil)
 //			ctx.Export("allAccessListEntries", thisGetProjectServiceAccountAccessListEntries.ApplyT(func(thisGetProjectServiceAccountAccessListEntries mongodbatlas.GetProjectServiceAccountAccessListEntriesResult) ([]mongodbatlas.GetProjectServiceAccountAccessListEntriesResult, error) {
-//				return []mongodbatlas.GetProjectServiceAccountAccessListEntriesResult(thisGetProjectServiceAccountAccessListEntries.Results), nil
+//				return thisGetProjectServiceAccountAccessListEntries.Results.([]mongodbatlas.GetProjectServiceAccountAccessListEntriesResult), nil
 //			}).(pulumi.ArrayOutput))
 //			return nil
 //		})
@@ -112,12 +112,8 @@ type LookupProjectServiceAccountAccessListEntriesResult struct {
 }
 
 func LookupProjectServiceAccountAccessListEntriesOutput(ctx *pulumi.Context, args LookupProjectServiceAccountAccessListEntriesOutputArgs, opts ...pulumi.InvokeOption) LookupProjectServiceAccountAccessListEntriesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupProjectServiceAccountAccessListEntriesResultOutput, error) {
-			args := v.(LookupProjectServiceAccountAccessListEntriesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getProjectServiceAccountAccessListEntries:getProjectServiceAccountAccessListEntries", args, LookupProjectServiceAccountAccessListEntriesResultOutput{}, options).(LookupProjectServiceAccountAccessListEntriesResultOutput), nil
-		}).(LookupProjectServiceAccountAccessListEntriesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getProjectServiceAccountAccessListEntries:getProjectServiceAccountAccessListEntries", args, LookupProjectServiceAccountAccessListEntriesResultOutput{}, options).(LookupProjectServiceAccountAccessListEntriesResultOutput)
 }
 
 // A collection of arguments for invoking getProjectServiceAccountAccessListEntries.

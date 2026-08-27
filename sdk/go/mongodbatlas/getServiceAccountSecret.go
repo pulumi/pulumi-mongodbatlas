@@ -101,12 +101,8 @@ type LookupServiceAccountSecretResult struct {
 }
 
 func LookupServiceAccountSecretOutput(ctx *pulumi.Context, args LookupServiceAccountSecretOutputArgs, opts ...pulumi.InvokeOption) LookupServiceAccountSecretResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupServiceAccountSecretResultOutput, error) {
-			args := v.(LookupServiceAccountSecretArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getServiceAccountSecret:getServiceAccountSecret", args, LookupServiceAccountSecretResultOutput{}, options).(LookupServiceAccountSecretResultOutput), nil
-		}).(LookupServiceAccountSecretResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getServiceAccountSecret:getServiceAccountSecret", args, LookupServiceAccountSecretResultOutput{}, options).(LookupServiceAccountSecretResultOutput)
 }
 
 // A collection of arguments for invoking getServiceAccountSecret.

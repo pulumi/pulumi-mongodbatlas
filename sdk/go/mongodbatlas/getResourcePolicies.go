@@ -41,12 +41,8 @@ type LookupResourcePoliciesResult struct {
 }
 
 func LookupResourcePoliciesOutput(ctx *pulumi.Context, args LookupResourcePoliciesOutputArgs, opts ...pulumi.InvokeOption) LookupResourcePoliciesResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupResourcePoliciesResultOutput, error) {
-			args := v.(LookupResourcePoliciesArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getResourcePolicies:getResourcePolicies", args, LookupResourcePoliciesResultOutput{}, options).(LookupResourcePoliciesResultOutput), nil
-		}).(LookupResourcePoliciesResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getResourcePolicies:getResourcePolicies", args, LookupResourcePoliciesResultOutput{}, options).(LookupResourcePoliciesResultOutput)
 }
 
 // A collection of arguments for invoking getResourcePolicies.

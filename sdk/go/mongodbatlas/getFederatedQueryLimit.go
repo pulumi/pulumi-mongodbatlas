@@ -86,12 +86,8 @@ type LookupFederatedQueryLimitResult struct {
 }
 
 func LookupFederatedQueryLimitOutput(ctx *pulumi.Context, args LookupFederatedQueryLimitOutputArgs, opts ...pulumi.InvokeOption) LookupFederatedQueryLimitResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupFederatedQueryLimitResultOutput, error) {
-			args := v.(LookupFederatedQueryLimitArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit", args, LookupFederatedQueryLimitResultOutput{}, options).(LookupFederatedQueryLimitResultOutput), nil
-		}).(LookupFederatedQueryLimitResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getFederatedQueryLimit:getFederatedQueryLimit", args, LookupFederatedQueryLimitResultOutput{}, options).(LookupFederatedQueryLimitResultOutput)
 }
 
 // A collection of arguments for invoking getFederatedQueryLimit.

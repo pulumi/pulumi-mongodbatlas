@@ -107,12 +107,8 @@ type LookupPushBasedLogExportResult struct {
 }
 
 func LookupPushBasedLogExportOutput(ctx *pulumi.Context, args LookupPushBasedLogExportOutputArgs, opts ...pulumi.InvokeOption) LookupPushBasedLogExportResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupPushBasedLogExportResultOutput, error) {
-			args := v.(LookupPushBasedLogExportArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", args, LookupPushBasedLogExportResultOutput{}, options).(LookupPushBasedLogExportResultOutput), nil
-		}).(LookupPushBasedLogExportResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getPushBasedLogExport:getPushBasedLogExport", args, LookupPushBasedLogExportResultOutput{}, options).(LookupPushBasedLogExportResultOutput)
 }
 
 // A collection of arguments for invoking getPushBasedLogExport.

@@ -86,12 +86,8 @@ type LookupClusterOutageSimulationResult struct {
 }
 
 func LookupClusterOutageSimulationOutput(ctx *pulumi.Context, args LookupClusterOutageSimulationOutputArgs, opts ...pulumi.InvokeOption) LookupClusterOutageSimulationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupClusterOutageSimulationResultOutput, error) {
-			args := v.(LookupClusterOutageSimulationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", args, LookupClusterOutageSimulationResultOutput{}, options).(LookupClusterOutageSimulationResultOutput), nil
-		}).(LookupClusterOutageSimulationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", args, LookupClusterOutageSimulationResultOutput{}, options).(LookupClusterOutageSimulationResultOutput)
 }
 
 // A collection of arguments for invoking getClusterOutageSimulation.

@@ -75,12 +75,8 @@ type LookupNetworkPeeringsResult struct {
 }
 
 func LookupNetworkPeeringsOutput(ctx *pulumi.Context, args LookupNetworkPeeringsOutputArgs, opts ...pulumi.InvokeOption) LookupNetworkPeeringsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupNetworkPeeringsResultOutput, error) {
-			args := v.(LookupNetworkPeeringsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", args, LookupNetworkPeeringsResultOutput{}, options).(LookupNetworkPeeringsResultOutput), nil
-		}).(LookupNetworkPeeringsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getNetworkPeerings:getNetworkPeerings", args, LookupNetworkPeeringsResultOutput{}, options).(LookupNetworkPeeringsResultOutput)
 }
 
 // A collection of arguments for invoking getNetworkPeerings.

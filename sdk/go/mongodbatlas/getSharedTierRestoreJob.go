@@ -48,12 +48,8 @@ type GetSharedTierRestoreJobResult struct {
 }
 
 func GetSharedTierRestoreJobOutput(ctx *pulumi.Context, args GetSharedTierRestoreJobOutputArgs, opts ...pulumi.InvokeOption) GetSharedTierRestoreJobResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (GetSharedTierRestoreJobResultOutput, error) {
-			args := v.(GetSharedTierRestoreJobArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob", args, GetSharedTierRestoreJobResultOutput{}, options).(GetSharedTierRestoreJobResultOutput), nil
-		}).(GetSharedTierRestoreJobResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getSharedTierRestoreJob:getSharedTierRestoreJob", args, GetSharedTierRestoreJobResultOutput{}, options).(GetSharedTierRestoreJobResultOutput)
 }
 
 // A collection of arguments for invoking getSharedTierRestoreJob.

@@ -146,12 +146,8 @@ type LookupX509AuthenticationDatabaseUserResult struct {
 }
 
 func LookupX509AuthenticationDatabaseUserOutput(ctx *pulumi.Context, args LookupX509AuthenticationDatabaseUserOutputArgs, opts ...pulumi.InvokeOption) LookupX509AuthenticationDatabaseUserResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupX509AuthenticationDatabaseUserResultOutput, error) {
-			args := v.(LookupX509AuthenticationDatabaseUserArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser", args, LookupX509AuthenticationDatabaseUserResultOutput{}, options).(LookupX509AuthenticationDatabaseUserResultOutput), nil
-		}).(LookupX509AuthenticationDatabaseUserResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getX509AuthenticationDatabaseUser:getX509AuthenticationDatabaseUser", args, LookupX509AuthenticationDatabaseUserResultOutput{}, options).(LookupX509AuthenticationDatabaseUserResultOutput)
 }
 
 // A collection of arguments for invoking getX509AuthenticationDatabaseUser.

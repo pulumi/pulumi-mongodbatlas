@@ -93,12 +93,8 @@ type LookupClustersResult struct {
 }
 
 func LookupClustersOutput(ctx *pulumi.Context, args LookupClustersOutputArgs, opts ...pulumi.InvokeOption) LookupClustersResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupClustersResultOutput, error) {
-			args := v.(LookupClustersArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getClusters:getClusters", args, LookupClustersResultOutput{}, options).(LookupClustersResultOutput), nil
-		}).(LookupClustersResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getClusters:getClusters", args, LookupClustersResultOutput{}, options).(LookupClustersResultOutput)
 }
 
 // A collection of arguments for invoking getClusters.

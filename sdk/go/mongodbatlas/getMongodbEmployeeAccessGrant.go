@@ -82,12 +82,8 @@ type LookupMongodbEmployeeAccessGrantResult struct {
 }
 
 func LookupMongodbEmployeeAccessGrantOutput(ctx *pulumi.Context, args LookupMongodbEmployeeAccessGrantOutputArgs, opts ...pulumi.InvokeOption) LookupMongodbEmployeeAccessGrantResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupMongodbEmployeeAccessGrantResultOutput, error) {
-			args := v.(LookupMongodbEmployeeAccessGrantArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant", args, LookupMongodbEmployeeAccessGrantResultOutput{}, options).(LookupMongodbEmployeeAccessGrantResultOutput), nil
-		}).(LookupMongodbEmployeeAccessGrantResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant", args, LookupMongodbEmployeeAccessGrantResultOutput{}, options).(LookupMongodbEmployeeAccessGrantResultOutput)
 }
 
 // A collection of arguments for invoking getMongodbEmployeeAccessGrant.

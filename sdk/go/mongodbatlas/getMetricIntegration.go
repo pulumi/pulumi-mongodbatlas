@@ -62,12 +62,8 @@ type LookupMetricIntegrationResult struct {
 }
 
 func LookupMetricIntegrationOutput(ctx *pulumi.Context, args LookupMetricIntegrationOutputArgs, opts ...pulumi.InvokeOption) LookupMetricIntegrationResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupMetricIntegrationResultOutput, error) {
-			args := v.(LookupMetricIntegrationArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getMetricIntegration:getMetricIntegration", args, LookupMetricIntegrationResultOutput{}, options).(LookupMetricIntegrationResultOutput), nil
-		}).(LookupMetricIntegrationResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getMetricIntegration:getMetricIntegration", args, LookupMetricIntegrationResultOutput{}, options).(LookupMetricIntegrationResultOutput)
 }
 
 // A collection of arguments for invoking getMetricIntegration.

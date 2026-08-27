@@ -213,12 +213,8 @@ type LookupBackupCompliancePolicyResult struct {
 }
 
 func LookupBackupCompliancePolicyOutput(ctx *pulumi.Context, args LookupBackupCompliancePolicyOutputArgs, opts ...pulumi.InvokeOption) LookupBackupCompliancePolicyResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupBackupCompliancePolicyResultOutput, error) {
-			args := v.(LookupBackupCompliancePolicyArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", args, LookupBackupCompliancePolicyResultOutput{}, options).(LookupBackupCompliancePolicyResultOutput), nil
-		}).(LookupBackupCompliancePolicyResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", args, LookupBackupCompliancePolicyResultOutput{}, options).(LookupBackupCompliancePolicyResultOutput)
 }
 
 // A collection of arguments for invoking getBackupCompliancePolicy.

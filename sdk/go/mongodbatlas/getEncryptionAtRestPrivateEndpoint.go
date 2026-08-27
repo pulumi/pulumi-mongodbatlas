@@ -115,12 +115,8 @@ type LookupEncryptionAtRestPrivateEndpointResult struct {
 }
 
 func LookupEncryptionAtRestPrivateEndpointOutput(ctx *pulumi.Context, args LookupEncryptionAtRestPrivateEndpointOutputArgs, opts ...pulumi.InvokeOption) LookupEncryptionAtRestPrivateEndpointResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupEncryptionAtRestPrivateEndpointResultOutput, error) {
-			args := v.(LookupEncryptionAtRestPrivateEndpointArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint", args, LookupEncryptionAtRestPrivateEndpointResultOutput{}, options).(LookupEncryptionAtRestPrivateEndpointResultOutput), nil
-		}).(LookupEncryptionAtRestPrivateEndpointResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getEncryptionAtRestPrivateEndpoint:getEncryptionAtRestPrivateEndpoint", args, LookupEncryptionAtRestPrivateEndpointResultOutput{}, options).(LookupEncryptionAtRestPrivateEndpointResultOutput)
 }
 
 // A collection of arguments for invoking getEncryptionAtRestPrivateEndpoint.

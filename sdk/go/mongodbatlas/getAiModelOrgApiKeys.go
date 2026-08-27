@@ -67,12 +67,8 @@ type LookupAiModelOrgApiKeysResult struct {
 }
 
 func LookupAiModelOrgApiKeysOutput(ctx *pulumi.Context, args LookupAiModelOrgApiKeysOutputArgs, opts ...pulumi.InvokeOption) LookupAiModelOrgApiKeysResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupAiModelOrgApiKeysResultOutput, error) {
-			args := v.(LookupAiModelOrgApiKeysArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getAiModelOrgApiKeys:getAiModelOrgApiKeys", args, LookupAiModelOrgApiKeysResultOutput{}, options).(LookupAiModelOrgApiKeysResultOutput), nil
-		}).(LookupAiModelOrgApiKeysResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getAiModelOrgApiKeys:getAiModelOrgApiKeys", args, LookupAiModelOrgApiKeysResultOutput{}, options).(LookupAiModelOrgApiKeysResultOutput)
 }
 
 // A collection of arguments for invoking getAiModelOrgApiKeys.

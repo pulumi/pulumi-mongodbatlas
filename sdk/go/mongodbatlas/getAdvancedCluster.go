@@ -308,12 +308,8 @@ type LookupAdvancedClusterResult struct {
 }
 
 func LookupAdvancedClusterOutput(ctx *pulumi.Context, args LookupAdvancedClusterOutputArgs, opts ...pulumi.InvokeOption) LookupAdvancedClusterResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupAdvancedClusterResultOutput, error) {
-			args := v.(LookupAdvancedClusterArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", args, LookupAdvancedClusterResultOutput{}, options).(LookupAdvancedClusterResultOutput), nil
-		}).(LookupAdvancedClusterResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getAdvancedCluster:getAdvancedCluster", args, LookupAdvancedClusterResultOutput{}, options).(LookupAdvancedClusterResultOutput)
 }
 
 // A collection of arguments for invoking getAdvancedCluster.

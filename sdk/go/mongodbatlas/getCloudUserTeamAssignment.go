@@ -115,12 +115,8 @@ type LookupCloudUserTeamAssignmentResult struct {
 }
 
 func LookupCloudUserTeamAssignmentOutput(ctx *pulumi.Context, args LookupCloudUserTeamAssignmentOutputArgs, opts ...pulumi.InvokeOption) LookupCloudUserTeamAssignmentResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupCloudUserTeamAssignmentResultOutput, error) {
-			args := v.(LookupCloudUserTeamAssignmentArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getCloudUserTeamAssignment:getCloudUserTeamAssignment", args, LookupCloudUserTeamAssignmentResultOutput{}, options).(LookupCloudUserTeamAssignmentResultOutput), nil
-		}).(LookupCloudUserTeamAssignmentResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getCloudUserTeamAssignment:getCloudUserTeamAssignment", args, LookupCloudUserTeamAssignmentResultOutput{}, options).(LookupCloudUserTeamAssignmentResultOutput)
 }
 
 // A collection of arguments for invoking getCloudUserTeamAssignment.

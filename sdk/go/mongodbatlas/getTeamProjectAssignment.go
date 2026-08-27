@@ -78,12 +78,8 @@ type LookupTeamProjectAssignmentResult struct {
 }
 
 func LookupTeamProjectAssignmentOutput(ctx *pulumi.Context, args LookupTeamProjectAssignmentOutputArgs, opts ...pulumi.InvokeOption) LookupTeamProjectAssignmentResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupTeamProjectAssignmentResultOutput, error) {
-			args := v.(LookupTeamProjectAssignmentArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getTeamProjectAssignment:getTeamProjectAssignment", args, LookupTeamProjectAssignmentResultOutput{}, options).(LookupTeamProjectAssignmentResultOutput), nil
-		}).(LookupTeamProjectAssignmentResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getTeamProjectAssignment:getTeamProjectAssignment", args, LookupTeamProjectAssignmentResultOutput{}, options).(LookupTeamProjectAssignmentResultOutput)
 }
 
 // A collection of arguments for invoking getTeamProjectAssignment.

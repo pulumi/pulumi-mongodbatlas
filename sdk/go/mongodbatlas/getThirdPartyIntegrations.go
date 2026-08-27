@@ -80,12 +80,8 @@ type LookupThirdPartyIntegrationsResult struct {
 }
 
 func LookupThirdPartyIntegrationsOutput(ctx *pulumi.Context, args LookupThirdPartyIntegrationsOutputArgs, opts ...pulumi.InvokeOption) LookupThirdPartyIntegrationsResultOutput {
-	return pulumi.ToOutputWithContext(ctx.Context(), args).
-		ApplyT(func(v interface{}) (LookupThirdPartyIntegrationsResultOutput, error) {
-			args := v.(LookupThirdPartyIntegrationsArgs)
-			options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-			return ctx.InvokeOutput("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", args, LookupThirdPartyIntegrationsResultOutput{}, options).(LookupThirdPartyIntegrationsResultOutput), nil
-		}).(LookupThirdPartyIntegrationsResultOutput)
+	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
+	return ctx.InvokeOutput("mongodbatlas:index/getThirdPartyIntegrations:getThirdPartyIntegrations", args, LookupThirdPartyIntegrationsResultOutput{}, options).(LookupThirdPartyIntegrationsResultOutput)
 }
 
 // A collection of arguments for invoking getThirdPartyIntegrations.
