@@ -92,11 +92,16 @@ import * as utilities from "./utilities";
  * ]
  * `,
  *     state: "CREATED",
+ *     tier: "SP10",
  *     options: {
  *         dlq: {
  *             coll: "exampleColumn",
  *             connectionName: example_cluster.connectionName,
  *             db: "exampleDb",
+ *         },
+ *         autoscaling: {
+ *             minTier: "SP10",
+ *             maxTier: "SP50",
  *         },
  *     },
  * });
@@ -251,11 +256,16 @@ export interface GetStreamProcessorsResult {
  * ]
  * `,
  *     state: "CREATED",
+ *     tier: "SP10",
  *     options: {
  *         dlq: {
  *             coll: "exampleColumn",
  *             connectionName: example_cluster.connectionName,
  *             db: "exampleDb",
+ *         },
+ *         autoscaling: {
+ *             minTier: "SP10",
+ *             maxTier: "SP50",
  *         },
  *     },
  * });

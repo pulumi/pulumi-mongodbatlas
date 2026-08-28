@@ -124,11 +124,16 @@ import (
 //					return fmt.Sprintf("[\n  {\\\"$source\\\": {\\\"connectionName\\\": \\\"%v\\\", \\\"topic\\\": \\\"topic_source\\\"}},\n  {\\\"$emit\\\": {\\\"connectionName\\\": \\\"%v\\\", \\\"db\\\": \\\"kafka\\\", \\\"coll\\\": \\\"topic_source\\\", \\\"timeseries\\\": {\\\"timeField\\\": \\\"ts\\\"}}}\n]\n", example_kafkaConnectionName, example_clusterConnectionName), nil
 //				}).(pulumi.StringOutput),
 //				State: pulumi.String("CREATED"),
+//				Tier:  pulumi.String("SP10"),
 //				Options: &mongodbatlas.StreamProcessorOptionsArgs{
 //					Dlq: &mongodbatlas.StreamProcessorOptionsDlqArgs{
 //						Coll:           pulumi.String("exampleColumn"),
 //						ConnectionName: example_cluster.ConnectionName,
 //						Db:             pulumi.String("exampleDb"),
+//					},
+//					Autoscaling: &mongodbatlas.StreamProcessorOptionsAutoscalingArgs{
+//						MinTier: pulumi.String("SP10"),
+//						MaxTier: pulumi.String("SP50"),
 //					},
 //				},
 //			})
@@ -179,6 +184,8 @@ type LookupStreamProcessorArgs struct {
 
 // A collection of values returned by getStreamProcessor.
 type LookupStreamProcessorResult struct {
+	// Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+	EffectiveTier string `pulumi:"effectiveTier"`
 	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
 	FailoverEnabled bool `pulumi:"failoverEnabled"`
 	// Unique 24-hexadecimal character string that identifies the stream processor.
@@ -187,7 +194,7 @@ type LookupStreamProcessorResult struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName *string `pulumi:"instanceName"`
-	// Optional configuration for the stream processor.
+	// Optional configuration for the stream processor. Empty `options` objects are not supported.
 	Options GetStreamProcessorOptions `pulumi:"options"`
 	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 	Pipeline string `pulumi:"pipeline"`
@@ -241,6 +248,11 @@ func (o LookupStreamProcessorResultOutput) ToLookupStreamProcessorResultOutputWi
 	return o
 }
 
+// Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+func (o LookupStreamProcessorResultOutput) EffectiveTier() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStreamProcessorResult) string { return v.EffectiveTier }).(pulumi.StringOutput)
+}
+
 // Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
 func (o LookupStreamProcessorResultOutput) FailoverEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupStreamProcessorResult) bool { return v.FailoverEnabled }).(pulumi.BoolOutput)
@@ -258,7 +270,7 @@ func (o LookupStreamProcessorResultOutput) InstanceName() pulumi.StringPtrOutput
 	return o.ApplyT(func(v LookupStreamProcessorResult) *string { return v.InstanceName }).(pulumi.StringPtrOutput)
 }
 
-// Optional configuration for the stream processor.
+// Optional configuration for the stream processor. Empty `options` objects are not supported.
 func (o LookupStreamProcessorResultOutput) Options() GetStreamProcessorOptionsOutput {
 	return o.ApplyT(func(v LookupStreamProcessorResult) GetStreamProcessorOptions { return v.Options }).(GetStreamProcessorOptionsOutput)
 }

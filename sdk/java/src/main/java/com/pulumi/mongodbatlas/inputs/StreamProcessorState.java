@@ -34,6 +34,21 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+     * 
+     */
+    @Import(name="effectiveTier")
+    private @Nullable Output<String> effectiveTier;
+
+    /**
+     * @return Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+     * 
+     */
+    public Optional<Output<String>> effectiveTier() {
+        return Optional.ofNullable(this.effectiveTier);
+    }
+
+    /**
      * Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace&#39;s `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
      * 
      */
@@ -72,14 +87,14 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Optional configuration for the stream processor.
+     * Optional configuration for the stream processor. Empty `options` objects are not supported.
      * 
      */
     @Import(name="options")
     private @Nullable Output<StreamProcessorOptionsArgs> options;
 
     /**
-     * @return Optional configuration for the stream processor.
+     * @return Optional configuration for the stream processor. Empty `options` objects are not supported.
      * 
      */
     public Optional<Output<StreamProcessorOptionsArgs>> options() {
@@ -162,14 +177,14 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
     }
 
     /**
-     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
      * 
      */
     @Import(name="tier")
     private @Nullable Output<String> tier;
 
     /**
-     * @return Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * @return Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
      * 
      */
     public Optional<Output<String>> tier() {
@@ -202,6 +217,7 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
 
     private StreamProcessorState(StreamProcessorState $) {
         this.deleteOnCreateTimeout = $.deleteOnCreateTimeout;
+        this.effectiveTier = $.effectiveTier;
         this.failoverEnabled = $.failoverEnabled;
         this.instanceName = $.instanceName;
         this.options = $.options;
@@ -255,6 +271,27 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         }
 
         /**
+         * @param effectiveTier Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder effectiveTier(@Nullable Output<String> effectiveTier) {
+            $.effectiveTier = effectiveTier;
+            return this;
+        }
+
+        /**
+         * @param effectiveTier Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder effectiveTier(String effectiveTier) {
+            return effectiveTier(Output.of(effectiveTier));
+        }
+
+        /**
          * @param failoverEnabled Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace&#39;s `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
          * 
          * @return builder
@@ -305,7 +342,7 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param options Optional configuration for the stream processor.
+         * @param options Optional configuration for the stream processor. Empty `options` objects are not supported.
          * 
          * @return builder
          * 
@@ -316,7 +353,7 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param options Optional configuration for the stream processor.
+         * @param options Optional configuration for the stream processor. Empty `options` objects are not supported.
          * 
          * @return builder
          * 
@@ -431,7 +468,7 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tier Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+         * @param tier Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
          * 
          * @return builder
          * 
@@ -442,7 +479,7 @@ public final class StreamProcessorState extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param tier Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+         * @param tier Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
          * 
          * @return builder
          * 

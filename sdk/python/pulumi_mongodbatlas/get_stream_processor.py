@@ -27,7 +27,10 @@ class GetStreamProcessorResult:
     """
     A collection of values returned by getStreamProcessor.
     """
-    def __init__(__self__, failover_enabled=None, id=None, instance_name=None, options=None, pipeline=None, processor_name=None, project_id=None, state=None, stats=None, tier=None, workspace_name=None):
+    def __init__(__self__, effective_tier=None, failover_enabled=None, id=None, instance_name=None, options=None, pipeline=None, processor_name=None, project_id=None, state=None, stats=None, tier=None, workspace_name=None):
+        if effective_tier and not isinstance(effective_tier, str):
+            raise TypeError("Expected argument 'effective_tier' to be a str")
+        pulumi.set(__self__, "effective_tier", effective_tier)
         if failover_enabled and not isinstance(failover_enabled, bool):
             raise TypeError("Expected argument 'failover_enabled' to be a bool")
         pulumi.set(__self__, "failover_enabled", failover_enabled)
@@ -63,6 +66,14 @@ class GetStreamProcessorResult:
         pulumi.set(__self__, "workspace_name", workspace_name)
 
     @_builtins.property
+    @pulumi.getter(name="effectiveTier")
+    def effective_tier(self) -> _builtins.str:
+        """
+        Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+        """
+        return pulumi.get(self, "effective_tier")
+
+    @_builtins.property
     @pulumi.getter(name="failoverEnabled")
     def failover_enabled(self) -> _builtins.bool:
         """
@@ -91,7 +102,7 @@ class GetStreamProcessorResult:
     @pulumi.getter
     def options(self) -> 'outputs.GetStreamProcessorOptionsResult':
         """
-        Optional configuration for the stream processor.
+        Optional configuration for the stream processor. Empty `options` objects are not supported.
         """
         return pulumi.get(self, "options")
 
@@ -152,6 +163,7 @@ class AwaitableGetStreamProcessorResult(GetStreamProcessorResult):
         if False:
             yield self
         return GetStreamProcessorResult(
+            effective_tier=self.effective_tier,
             failover_enabled=self.failover_enabled,
             id=self.id,
             instance_name=self.instance_name,
@@ -262,11 +274,16 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
     \"\"\")
     ,
         state="CREATED",
+        tier="SP10",
         options={
             "dlq": {
                 "coll": "exampleColumn",
                 "connection_name": example_cluster.connection_name,
                 "db": "exampleDb",
+            },
+            "autoscaling": {
+                "min_tier": "SP10",
+                "max_tier": "SP50",
             },
         })
     example_stream_processors = mongodbatlas.get_stream_processors_output(project_id=project_id,
@@ -293,6 +310,7 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getStreamProcessor:getStreamProcessor', __args__, opts=opts, typ=GetStreamProcessorResult).value
 
     return AwaitableGetStreamProcessorResult(
+        effective_tier=pulumi.get(__ret__, 'effective_tier'),
         failover_enabled=pulumi.get(__ret__, 'failover_enabled'),
         id=pulumi.get(__ret__, 'id'),
         instance_name=pulumi.get(__ret__, 'instance_name'),
@@ -401,11 +419,16 @@ def get_stream_processor_output(instance_name: pulumi.Input[Optional[Optional[_b
     \"\"\")
     ,
         state="CREATED",
+        tier="SP10",
         options={
             "dlq": {
                 "coll": "exampleColumn",
                 "connection_name": example_cluster.connection_name,
                 "db": "exampleDb",
+            },
+            "autoscaling": {
+                "min_tier": "SP10",
+                "max_tier": "SP50",
             },
         })
     example_stream_processors = mongodbatlas.get_stream_processors_output(project_id=project_id,
@@ -431,6 +454,7 @@ def get_stream_processor_output(instance_name: pulumi.Input[Optional[Optional[_b
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamProcessor:getStreamProcessor', __args__, opts=opts, typ=GetStreamProcessorResult)
     return __ret__.apply(lambda __response__: GetStreamProcessorResult(
+        effective_tier=pulumi.get(__response__, 'effective_tier'),
         failover_enabled=pulumi.get(__response__, 'failover_enabled'),
         id=pulumi.get(__response__, 'id'),
         instance_name=pulumi.get(__response__, 'instance_name'),

@@ -769,6 +769,7 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetStreamPrivatelinkEndpointResult
     {
         public readonly string Arn;
+        public readonly string AuthenticationScheme;
         public readonly string DnsDomain;
         public readonly ImmutableArray<string> DnsSubDomains;
         public readonly string ErrorMessage;
@@ -787,6 +788,8 @@ namespace Pulumi.Mongodbatlas
         [OutputConstructor]
         private GetStreamPrivatelinkEndpointResult(
             string arn,
+
+            string authenticationScheme,
 
             string dnsDomain,
 
@@ -817,6 +820,7 @@ namespace Pulumi.Mongodbatlas
             string vendor)
         {
             Arn = arn;
+            AuthenticationScheme = authenticationScheme;
             DnsDomain = dnsDomain;
             DnsSubDomains = dnsSubDomains;
             ErrorMessage = errorMessage;

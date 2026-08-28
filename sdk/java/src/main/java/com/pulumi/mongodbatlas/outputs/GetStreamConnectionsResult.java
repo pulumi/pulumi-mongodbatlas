@@ -26,7 +26,7 @@ public final class GetStreamConnectionsResult {
      */
     private GetStreamConnectionsResultAuthentication authentication;
     /**
-     * @return The configuration for S3 connection. See AWS.
+     * @return AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
      * 
      */
     private GetStreamConnectionsResultAws aws;
@@ -144,7 +144,7 @@ public final class GetStreamConnectionsResult {
         return this.authentication;
     }
     /**
-     * @return The configuration for S3 connection. See AWS.
+     * @return AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
      * 
      */
     public GetStreamConnectionsResultAws aws() {

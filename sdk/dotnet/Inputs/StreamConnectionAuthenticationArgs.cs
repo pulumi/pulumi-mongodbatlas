@@ -13,6 +13,12 @@ namespace Pulumi.Mongodbatlas.Inputs
     public sealed class StreamConnectionAuthenticationArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
+        /// AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+        /// </summary>
+        [Input("aws")]
+        public Input<Inputs.StreamConnectionAuthenticationAwsArgs>? Aws { get; set; }
+
+        /// <summary>
         /// Public identifier for the Kafka client.
         /// </summary>
         [Input("clientId")]
@@ -35,7 +41,7 @@ namespace Pulumi.Mongodbatlas.Inputs
         }
 
         /// <summary>
-        /// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+        /// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
         /// </summary>
         [Input("mechanism")]
         public Input<string>? Mechanism { get; set; }

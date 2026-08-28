@@ -23,6 +23,7 @@ class StreamPrivatelinkEndpointArgs:
                  provider_name: pulumi.Input[_builtins.str],
                  vendor: pulumi.Input[_builtins.str],
                  arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 authentication_scheme: pulumi.Input[Optional[_builtins.str]] = None,
                  dns_domain: pulumi.Input[Optional[_builtins.str]] = None,
                  dns_sub_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
@@ -41,6 +42,7 @@ class StreamPrivatelinkEndpointArgs:
                    
                    * **GCP**: CONFLUENT and PUBSUB
         :param pulumi.Input[_builtins.str] arn: Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
+        :param pulumi.Input[_builtins.str] authentication_scheme: Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
         :param pulumi.Input[_builtins.str] dns_domain: The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
                
                    * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -62,6 +64,8 @@ class StreamPrivatelinkEndpointArgs:
         pulumi.set(__self__, "vendor", vendor)
         if arn is not None:
             pulumi.set(__self__, "arn", arn)
+        if authentication_scheme is not None:
+            pulumi.set(__self__, "authentication_scheme", authentication_scheme)
         if dns_domain is not None:
             pulumi.set(__self__, "dns_domain", dns_domain)
         if dns_sub_domains is not None:
@@ -126,6 +130,18 @@ class StreamPrivatelinkEndpointArgs:
     @arn.setter
     def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "arn", value)
+
+    @_builtins.property
+    @pulumi.getter(name="authenticationScheme")
+    def authentication_scheme(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+        """
+        return pulumi.get(self, "authentication_scheme")
+
+    @authentication_scheme.setter
+    def authentication_scheme(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "authentication_scheme", value)
 
     @_builtins.property
     @pulumi.getter(name="dnsDomain")
@@ -202,6 +218,7 @@ class StreamPrivatelinkEndpointArgs:
 class _StreamPrivatelinkEndpointState:
     def __init__(__self__, *,
                  arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 authentication_scheme: pulumi.Input[Optional[_builtins.str]] = None,
                  dns_domain: pulumi.Input[Optional[_builtins.str]] = None,
                  dns_sub_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  error_message: pulumi.Input[Optional[_builtins.str]] = None,
@@ -219,6 +236,7 @@ class _StreamPrivatelinkEndpointState:
         Input properties used for looking up and filtering StreamPrivatelinkEndpoint resources.
 
         :param pulumi.Input[_builtins.str] arn: Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
+        :param pulumi.Input[_builtins.str] authentication_scheme: Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
         :param pulumi.Input[_builtins.str] dns_domain: The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
                
                    * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -251,6 +269,8 @@ class _StreamPrivatelinkEndpointState:
         """
         if arn is not None:
             pulumi.set(__self__, "arn", arn)
+        if authentication_scheme is not None:
+            pulumi.set(__self__, "authentication_scheme", authentication_scheme)
         if dns_domain is not None:
             pulumi.set(__self__, "dns_domain", dns_domain)
         if dns_sub_domains is not None:
@@ -289,6 +309,18 @@ class _StreamPrivatelinkEndpointState:
     @arn.setter
     def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "arn", value)
+
+    @_builtins.property
+    @pulumi.getter(name="authenticationScheme")
+    def authentication_scheme(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+        """
+        return pulumi.get(self, "authentication_scheme")
+
+    @authentication_scheme.setter
+    def authentication_scheme(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "authentication_scheme", value)
 
     @_builtins.property
     @pulumi.getter(name="dnsDomain")
@@ -470,6 +502,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 authentication_scheme: pulumi.Input[Optional[_builtins.str]] = None,
                  dns_domain: pulumi.Input[Optional[_builtins.str]] = None,
                  dns_sub_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -628,6 +661,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] arn: Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
+        :param pulumi.Input[_builtins.str] authentication_scheme: Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
         :param pulumi.Input[_builtins.str] dns_domain: The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
                
                    * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -821,6 +855,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 authentication_scheme: pulumi.Input[Optional[_builtins.str]] = None,
                  dns_domain: pulumi.Input[Optional[_builtins.str]] = None,
                  dns_sub_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -839,6 +874,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
             __props__ = StreamPrivatelinkEndpointArgs.__new__(StreamPrivatelinkEndpointArgs)
 
             __props__.__dict__["arn"] = arn
+            __props__.__dict__["authentication_scheme"] = authentication_scheme
             __props__.__dict__["dns_domain"] = dns_domain
             __props__.__dict__["dns_sub_domains"] = dns_sub_domains
             if project_id is None and not opts.urn:
@@ -869,6 +905,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             arn: pulumi.Input[Optional[_builtins.str]] = None,
+            authentication_scheme: pulumi.Input[Optional[_builtins.str]] = None,
             dns_domain: pulumi.Input[Optional[_builtins.str]] = None,
             dns_sub_domains: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             error_message: pulumi.Input[Optional[_builtins.str]] = None,
@@ -890,6 +927,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] arn: Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
+        :param pulumi.Input[_builtins.str] authentication_scheme: Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
         :param pulumi.Input[_builtins.str] dns_domain: The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
                
                    * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -925,6 +963,7 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
         __props__ = _StreamPrivatelinkEndpointState.__new__(_StreamPrivatelinkEndpointState)
 
         __props__.__dict__["arn"] = arn
+        __props__.__dict__["authentication_scheme"] = authentication_scheme
         __props__.__dict__["dns_domain"] = dns_domain
         __props__.__dict__["dns_sub_domains"] = dns_sub_domains
         __props__.__dict__["error_message"] = error_message
@@ -947,6 +986,14 @@ class StreamPrivatelinkEndpoint(pulumi.CustomResource):
         Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
         """
         return pulumi.get(self, "arn")
+
+    @_builtins.property
+    @pulumi.getter(name="authenticationScheme")
+    def authentication_scheme(self) -> pulumi.Output[_builtins.str]:
+        """
+        Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+        """
+        return pulumi.get(self, "authentication_scheme")
 
     @_builtins.property
     @pulumi.getter(name="dnsDomain")

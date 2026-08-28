@@ -102,11 +102,16 @@ import * as utilities from "./utilities";
  * ]
  * `,
  *     state: "CREATED",
+ *     tier: "SP10",
  *     options: {
  *         dlq: {
  *             coll: "exampleColumn",
  *             connectionName: example_cluster.connectionName,
  *             db: "exampleDb",
+ *         },
+ *         autoscaling: {
+ *             minTier: "SP10",
+ *             maxTier: "SP50",
  *         },
  *     },
  * });
@@ -165,6 +170,10 @@ export class StreamProcessor extends pulumi.CustomResource {
      */
     declare public readonly deleteOnCreateTimeout: pulumi.Output<boolean>;
     /**
+     * Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+     */
+    declare public /*out*/ readonly effectiveTier: pulumi.Output<string>;
+    /**
      * Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
      */
     declare public readonly failoverEnabled: pulumi.Output<boolean | undefined>;
@@ -175,7 +184,7 @@ export class StreamProcessor extends pulumi.CustomResource {
      */
     declare public readonly instanceName: pulumi.Output<string | undefined>;
     /**
-     * Optional configuration for the stream processor.
+     * Optional configuration for the stream processor. Empty `options` objects are not supported.
      */
     declare public readonly options: pulumi.Output<outputs.StreamProcessorOptions | undefined>;
     /**
@@ -199,7 +208,7 @@ export class StreamProcessor extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly stats: pulumi.Output<string>;
     /**
-     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
      */
     declare public readonly tier: pulumi.Output<string>;
     declare public readonly timeouts: pulumi.Output<outputs.StreamProcessorTimeouts | undefined>;
@@ -222,6 +231,7 @@ export class StreamProcessor extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as StreamProcessorState | undefined;
             resourceInputs["deleteOnCreateTimeout"] = state?.deleteOnCreateTimeout;
+            resourceInputs["effectiveTier"] = state?.effectiveTier;
             resourceInputs["failoverEnabled"] = state?.failoverEnabled;
             resourceInputs["instanceName"] = state?.instanceName;
             resourceInputs["options"] = state?.options;
@@ -255,6 +265,7 @@ export class StreamProcessor extends pulumi.CustomResource {
             resourceInputs["tier"] = args?.tier;
             resourceInputs["timeouts"] = args?.timeouts;
             resourceInputs["workspaceName"] = args?.workspaceName;
+            resourceInputs["effectiveTier"] = undefined /*out*/;
             resourceInputs["stats"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -271,6 +282,10 @@ export interface StreamProcessorState {
      */
     deleteOnCreateTimeout?: pulumi.Input<boolean | undefined>;
     /**
+     * Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+     */
+    effectiveTier?: pulumi.Input<string | undefined>;
+    /**
      * Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
      */
     failoverEnabled?: pulumi.Input<boolean | undefined>;
@@ -281,7 +296,7 @@ export interface StreamProcessorState {
      */
     instanceName?: pulumi.Input<string | undefined>;
     /**
-     * Optional configuration for the stream processor.
+     * Optional configuration for the stream processor. Empty `options` objects are not supported.
      */
     options?: pulumi.Input<inputs.StreamProcessorOptions | undefined>;
     /**
@@ -305,7 +320,7 @@ export interface StreamProcessorState {
      */
     stats?: pulumi.Input<string | undefined>;
     /**
-     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
      */
     tier?: pulumi.Input<string | undefined>;
     timeouts?: pulumi.Input<inputs.StreamProcessorTimeouts | undefined>;
@@ -334,7 +349,7 @@ export interface StreamProcessorArgs {
      */
     instanceName?: pulumi.Input<string | undefined>;
     /**
-     * Optional configuration for the stream processor.
+     * Optional configuration for the stream processor. Empty `options` objects are not supported.
      */
     options?: pulumi.Input<inputs.StreamProcessorOptions | undefined>;
     /**
@@ -354,7 +369,7 @@ export interface StreamProcessorArgs {
      */
     state?: pulumi.Input<string | undefined>;
     /**
-     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
      */
     tier?: pulumi.Input<string | undefined>;
     timeouts?: pulumi.Input<inputs.StreamProcessorTimeouts | undefined>;

@@ -5,11 +5,17 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.mongodbatlas.outputs.GetStreamProcessorsResultOptionsAutoscaling;
 import com.pulumi.mongodbatlas.outputs.GetStreamProcessorsResultOptionsDlq;
 import java.util.Objects;
 
 @CustomType
 public final class GetStreamProcessorsResultOptions {
+    /**
+     * @return Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+     * 
+     */
+    private GetStreamProcessorsResultOptionsAutoscaling autoscaling;
     /**
      * @return Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
      * 
@@ -17,6 +23,13 @@ public final class GetStreamProcessorsResultOptions {
     private GetStreamProcessorsResultOptionsDlq dlq;
 
     private GetStreamProcessorsResultOptions() {}
+    /**
+     * @return Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+     * 
+     */
+    public GetStreamProcessorsResultOptionsAutoscaling autoscaling() {
+        return this.autoscaling;
+    }
     /**
      * @return Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
      * 
@@ -34,13 +47,23 @@ public final class GetStreamProcessorsResultOptions {
     }
     @CustomType.Builder
     public static final class Builder {
+        private GetStreamProcessorsResultOptionsAutoscaling autoscaling;
         private GetStreamProcessorsResultOptionsDlq dlq;
         public Builder() {}
         public Builder(GetStreamProcessorsResultOptions defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.autoscaling = defaults.autoscaling;
     	      this.dlq = defaults.dlq;
         }
 
+        @CustomType.Setter
+        public Builder autoscaling(GetStreamProcessorsResultOptionsAutoscaling autoscaling) {
+            if (autoscaling == null) {
+              throw new MissingRequiredPropertyException("GetStreamProcessorsResultOptions", "autoscaling");
+            }
+            this.autoscaling = autoscaling;
+            return this;
+        }
         @CustomType.Setter
         public Builder dlq(GetStreamProcessorsResultOptionsDlq dlq) {
             if (dlq == null) {
@@ -51,6 +74,7 @@ public final class GetStreamProcessorsResultOptions {
         }
         public GetStreamProcessorsResultOptions build() {
             final var _resultValue = new GetStreamProcessorsResultOptions();
+            _resultValue.autoscaling = autoscaling;
             _resultValue.dlq = dlq;
             return _resultValue;
         }

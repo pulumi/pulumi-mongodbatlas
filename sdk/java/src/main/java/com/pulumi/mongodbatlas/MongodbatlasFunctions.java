@@ -53,9 +53,21 @@ import com.pulumi.mongodbatlas.inputs.GetAuditingArgs;
 import com.pulumi.mongodbatlas.inputs.GetAuditingPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyArgs;
 import com.pulumi.mongodbatlas.inputs.GetBackupCompliancePolicyPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetCloudBackupCollectionRestoreJobArgs;
+import com.pulumi.mongodbatlas.inputs.GetCloudBackupCollectionRestoreJobCollectionArgs;
+import com.pulumi.mongodbatlas.inputs.GetCloudBackupCollectionRestoreJobCollectionPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetCloudBackupCollectionRestoreJobCollectionsArgs;
+import com.pulumi.mongodbatlas.inputs.GetCloudBackupCollectionRestoreJobCollectionsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetCloudBackupCollectionRestoreJobPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetCloudBackupCollectionRestoreJobsArgs;
+import com.pulumi.mongodbatlas.inputs.GetCloudBackupCollectionRestoreJobsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupSchedulePlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotArgs;
+import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotDatabaseCollectionsArgs;
+import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotDatabaseCollectionsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotDatabasesArgs;
+import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotDatabasesPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportBucketArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportBucketPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudBackupSnapshotExportBucketsArgs;
@@ -309,7 +321,13 @@ import com.pulumi.mongodbatlas.outputs.GetAtlasUserResult;
 import com.pulumi.mongodbatlas.outputs.GetAtlasUsersInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetAuditingResult;
 import com.pulumi.mongodbatlas.outputs.GetBackupCompliancePolicyResult;
+import com.pulumi.mongodbatlas.outputs.GetCloudBackupCollectionRestoreJobCollectionResult;
+import com.pulumi.mongodbatlas.outputs.GetCloudBackupCollectionRestoreJobCollectionsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetCloudBackupCollectionRestoreJobResult;
+import com.pulumi.mongodbatlas.outputs.GetCloudBackupCollectionRestoreJobsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupScheduleResult;
+import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotDatabaseCollectionsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotDatabasesInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotExportBucketResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotExportBucketsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudBackupSnapshotExportJobResult;
@@ -8689,6 +8707,406 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy", TypeShape.of(GetBackupCompliancePolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.CloudBackupCollectionRestoreJob` describes a collection restore job for a cluster.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists collection restore jobs on a cluster, then reads one job by `jobId`. When `jobId` is omitted, the example defaults to the last job from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static Output<GetCloudBackupCollectionRestoreJobResult> getCloudBackupCollectionRestoreJob(GetCloudBackupCollectionRestoreJobArgs args) {
+        return getCloudBackupCollectionRestoreJob(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.CloudBackupCollectionRestoreJob` describes a collection restore job for a cluster.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists collection restore jobs on a cluster, then reads one job by `jobId`. When `jobId` is omitted, the example defaults to the last job from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static CompletableFuture<GetCloudBackupCollectionRestoreJobResult> getCloudBackupCollectionRestoreJobPlain(GetCloudBackupCollectionRestoreJobPlainArgs args) {
+        return getCloudBackupCollectionRestoreJobPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.CloudBackupCollectionRestoreJob` describes a collection restore job for a cluster.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists collection restore jobs on a cluster, then reads one job by `jobId`. When `jobId` is omitted, the example defaults to the last job from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static Output<GetCloudBackupCollectionRestoreJobResult> getCloudBackupCollectionRestoreJob(GetCloudBackupCollectionRestoreJobArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupCollectionRestoreJob:getCloudBackupCollectionRestoreJob", TypeShape.of(GetCloudBackupCollectionRestoreJobResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.CloudBackupCollectionRestoreJob` describes a collection restore job for a cluster.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists collection restore jobs on a cluster, then reads one job by `jobId`. When `jobId` is omitted, the example defaults to the last job from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static Output<GetCloudBackupCollectionRestoreJobResult> getCloudBackupCollectionRestoreJob(GetCloudBackupCollectionRestoreJobArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupCollectionRestoreJob:getCloudBackupCollectionRestoreJob", TypeShape.of(GetCloudBackupCollectionRestoreJobResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.CloudBackupCollectionRestoreJob` describes a collection restore job for a cluster.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists collection restore jobs on a cluster, then reads one job by `jobId`. When `jobId` is omitted, the example defaults to the last job from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static CompletableFuture<GetCloudBackupCollectionRestoreJobResult> getCloudBackupCollectionRestoreJobPlain(GetCloudBackupCollectionRestoreJobPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudBackupCollectionRestoreJob:getCloudBackupCollectionRestoreJob", TypeShape.of(GetCloudBackupCollectionRestoreJobResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getCloudBackupCollectionRestoreJobCollection` describes the restore state of one collection in a collection restore job.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * &gt; **Note:** This data source returns no collection state while the job is `INITIALIZING`. Collection states exist after the job enters `IN_PROGRESS`.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists per-collection restore state for a job, then reads one collection by `sourceNamespace`. When `sourceNamespace` is omitted, the example defaults to the last namespace from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static Output<GetCloudBackupCollectionRestoreJobCollectionResult> getCloudBackupCollectionRestoreJobCollection(GetCloudBackupCollectionRestoreJobCollectionArgs args) {
+        return getCloudBackupCollectionRestoreJobCollection(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getCloudBackupCollectionRestoreJobCollection` describes the restore state of one collection in a collection restore job.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * &gt; **Note:** This data source returns no collection state while the job is `INITIALIZING`. Collection states exist after the job enters `IN_PROGRESS`.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists per-collection restore state for a job, then reads one collection by `sourceNamespace`. When `sourceNamespace` is omitted, the example defaults to the last namespace from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static CompletableFuture<GetCloudBackupCollectionRestoreJobCollectionResult> getCloudBackupCollectionRestoreJobCollectionPlain(GetCloudBackupCollectionRestoreJobCollectionPlainArgs args) {
+        return getCloudBackupCollectionRestoreJobCollectionPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getCloudBackupCollectionRestoreJobCollection` describes the restore state of one collection in a collection restore job.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * &gt; **Note:** This data source returns no collection state while the job is `INITIALIZING`. Collection states exist after the job enters `IN_PROGRESS`.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists per-collection restore state for a job, then reads one collection by `sourceNamespace`. When `sourceNamespace` is omitted, the example defaults to the last namespace from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static Output<GetCloudBackupCollectionRestoreJobCollectionResult> getCloudBackupCollectionRestoreJobCollection(GetCloudBackupCollectionRestoreJobCollectionArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupCollectionRestoreJobCollection:getCloudBackupCollectionRestoreJobCollection", TypeShape.of(GetCloudBackupCollectionRestoreJobCollectionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getCloudBackupCollectionRestoreJobCollection` describes the restore state of one collection in a collection restore job.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * &gt; **Note:** This data source returns no collection state while the job is `INITIALIZING`. Collection states exist after the job enters `IN_PROGRESS`.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists per-collection restore state for a job, then reads one collection by `sourceNamespace`. When `sourceNamespace` is omitted, the example defaults to the last namespace from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static Output<GetCloudBackupCollectionRestoreJobCollectionResult> getCloudBackupCollectionRestoreJobCollection(GetCloudBackupCollectionRestoreJobCollectionArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupCollectionRestoreJobCollection:getCloudBackupCollectionRestoreJobCollection", TypeShape.of(GetCloudBackupCollectionRestoreJobCollectionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getCloudBackupCollectionRestoreJobCollection` describes the restore state of one collection in a collection restore job.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * &gt; **Note:** This data source returns no collection state while the job is `INITIALIZING`. Collection states exist after the job enters `IN_PROGRESS`.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists per-collection restore state for a job, then reads one collection by `sourceNamespace`. When `sourceNamespace` is omitted, the example defaults to the last namespace from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static CompletableFuture<GetCloudBackupCollectionRestoreJobCollectionResult> getCloudBackupCollectionRestoreJobCollectionPlain(GetCloudBackupCollectionRestoreJobCollectionPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudBackupCollectionRestoreJobCollection:getCloudBackupCollectionRestoreJobCollection", TypeShape.of(GetCloudBackupCollectionRestoreJobCollectionResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getCloudBackupCollectionRestoreJobCollections` describes the restore state of each collection in a collection restore job.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * &gt; **Note:** Results are empty while the job is `INITIALIZING`. Collection states exist after the job enters `IN_PROGRESS`.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists per-collection restore state for a job, then reads one collection by `sourceNamespace`. When `sourceNamespace` is omitted, the example defaults to the last namespace from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static Output<GetCloudBackupCollectionRestoreJobCollectionsInvokeResult> getCloudBackupCollectionRestoreJobCollections(GetCloudBackupCollectionRestoreJobCollectionsArgs args) {
+        return getCloudBackupCollectionRestoreJobCollections(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getCloudBackupCollectionRestoreJobCollections` describes the restore state of each collection in a collection restore job.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * &gt; **Note:** Results are empty while the job is `INITIALIZING`. Collection states exist after the job enters `IN_PROGRESS`.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists per-collection restore state for a job, then reads one collection by `sourceNamespace`. When `sourceNamespace` is omitted, the example defaults to the last namespace from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static CompletableFuture<GetCloudBackupCollectionRestoreJobCollectionsInvokeResult> getCloudBackupCollectionRestoreJobCollectionsPlain(GetCloudBackupCollectionRestoreJobCollectionsPlainArgs args) {
+        return getCloudBackupCollectionRestoreJobCollectionsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getCloudBackupCollectionRestoreJobCollections` describes the restore state of each collection in a collection restore job.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * &gt; **Note:** Results are empty while the job is `INITIALIZING`. Collection states exist after the job enters `IN_PROGRESS`.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists per-collection restore state for a job, then reads one collection by `sourceNamespace`. When `sourceNamespace` is omitted, the example defaults to the last namespace from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static Output<GetCloudBackupCollectionRestoreJobCollectionsInvokeResult> getCloudBackupCollectionRestoreJobCollections(GetCloudBackupCollectionRestoreJobCollectionsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupCollectionRestoreJobCollections:getCloudBackupCollectionRestoreJobCollections", TypeShape.of(GetCloudBackupCollectionRestoreJobCollectionsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getCloudBackupCollectionRestoreJobCollections` describes the restore state of each collection in a collection restore job.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * &gt; **Note:** Results are empty while the job is `INITIALIZING`. Collection states exist after the job enters `IN_PROGRESS`.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists per-collection restore state for a job, then reads one collection by `sourceNamespace`. When `sourceNamespace` is omitted, the example defaults to the last namespace from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static Output<GetCloudBackupCollectionRestoreJobCollectionsInvokeResult> getCloudBackupCollectionRestoreJobCollections(GetCloudBackupCollectionRestoreJobCollectionsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupCollectionRestoreJobCollections:getCloudBackupCollectionRestoreJobCollections", TypeShape.of(GetCloudBackupCollectionRestoreJobCollectionsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getCloudBackupCollectionRestoreJobCollections` describes the restore state of each collection in a collection restore job.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * &gt; **Note:** Results are empty while the job is `INITIALIZING`. Collection states exist after the job enters `IN_PROGRESS`.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists per-collection restore state for a job, then reads one collection by `sourceNamespace`. When `sourceNamespace` is omitted, the example defaults to the last namespace from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static CompletableFuture<GetCloudBackupCollectionRestoreJobCollectionsInvokeResult> getCloudBackupCollectionRestoreJobCollectionsPlain(GetCloudBackupCollectionRestoreJobCollectionsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudBackupCollectionRestoreJobCollections:getCloudBackupCollectionRestoreJobCollections", TypeShape.of(GetCloudBackupCollectionRestoreJobCollectionsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getCloudBackupCollectionRestoreJobs` describes all collection restore jobs for a cluster.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists collection restore jobs on a cluster, then reads one job by `jobId`. When `jobId` is omitted, the example defaults to the last job from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static Output<GetCloudBackupCollectionRestoreJobsInvokeResult> getCloudBackupCollectionRestoreJobs(GetCloudBackupCollectionRestoreJobsArgs args) {
+        return getCloudBackupCollectionRestoreJobs(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getCloudBackupCollectionRestoreJobs` describes all collection restore jobs for a cluster.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists collection restore jobs on a cluster, then reads one job by `jobId`. When `jobId` is omitted, the example defaults to the last job from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static CompletableFuture<GetCloudBackupCollectionRestoreJobsInvokeResult> getCloudBackupCollectionRestoreJobsPlain(GetCloudBackupCollectionRestoreJobsPlainArgs args) {
+        return getCloudBackupCollectionRestoreJobsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getCloudBackupCollectionRestoreJobs` describes all collection restore jobs for a cluster.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists collection restore jobs on a cluster, then reads one job by `jobId`. When `jobId` is omitted, the example defaults to the last job from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static Output<GetCloudBackupCollectionRestoreJobsInvokeResult> getCloudBackupCollectionRestoreJobs(GetCloudBackupCollectionRestoreJobsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupCollectionRestoreJobs:getCloudBackupCollectionRestoreJobs", TypeShape.of(GetCloudBackupCollectionRestoreJobsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getCloudBackupCollectionRestoreJobs` describes all collection restore jobs for a cluster.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists collection restore jobs on a cluster, then reads one job by `jobId`. When `jobId` is omitted, the example defaults to the last job from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static Output<GetCloudBackupCollectionRestoreJobsInvokeResult> getCloudBackupCollectionRestoreJobs(GetCloudBackupCollectionRestoreJobsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupCollectionRestoreJobs:getCloudBackupCollectionRestoreJobs", TypeShape.of(GetCloudBackupCollectionRestoreJobsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getCloudBackupCollectionRestoreJobs` describes all collection restore jobs for a cluster.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * The following example lists collection restore jobs on a cluster, then reads one job by `jobId`. When `jobId` is omitted, the example defaults to the last job from the plural data source.
+     * 
+     * ### Further Examples
+     * - Restore job inspection
+     * - Snapshot restore
+     * - Point-in-time restore
+     * - Snapshot discovery
+     * 
+     */
+    public static CompletableFuture<GetCloudBackupCollectionRestoreJobsInvokeResult> getCloudBackupCollectionRestoreJobsPlain(GetCloudBackupCollectionRestoreJobsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudBackupCollectionRestoreJobs:getCloudBackupCollectionRestoreJobs", TypeShape.of(GetCloudBackupCollectionRestoreJobsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * `mongodbatlas.CloudBackupSchedule` provides a Cloud Backup Schedule datasource. An Atlas Cloud Backup Schedule provides the current cloud backup schedule for the cluster.
      * 
      * &gt; **NOTE:** To delete an Atlas cluster that has an associated `mongodbatlas.CloudBackupSchedule` resource and an enabled Backup Compliance Policy, first instruct Terraform to remove the `mongodbatlas.CloudBackupSchedule` resource from the state and then use Terraform to delete the cluster. To learn more, see Delete a Cluster with a Backup Compliance Policy.
@@ -9422,6 +9840,96 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetCloudBackupSnapshotResult> getCloudBackupSnapshotPlain(GetCloudBackupSnapshotPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudBackupSnapshot:getCloudBackupSnapshot", TypeShape.of(GetCloudBackupSnapshotResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getCloudBackupSnapshotDatabaseCollections` describes the collections in a database contained in a Cloud Backup snapshot. Use this data source to discover namespaces before creating a collection restore job. Point-in-time restores have no snapshot ID, so this data source does not apply to PIT restores.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     */
+    public static Output<GetCloudBackupSnapshotDatabaseCollectionsInvokeResult> getCloudBackupSnapshotDatabaseCollections(GetCloudBackupSnapshotDatabaseCollectionsArgs args) {
+        return getCloudBackupSnapshotDatabaseCollections(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getCloudBackupSnapshotDatabaseCollections` describes the collections in a database contained in a Cloud Backup snapshot. Use this data source to discover namespaces before creating a collection restore job. Point-in-time restores have no snapshot ID, so this data source does not apply to PIT restores.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     */
+    public static CompletableFuture<GetCloudBackupSnapshotDatabaseCollectionsInvokeResult> getCloudBackupSnapshotDatabaseCollectionsPlain(GetCloudBackupSnapshotDatabaseCollectionsPlainArgs args) {
+        return getCloudBackupSnapshotDatabaseCollectionsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getCloudBackupSnapshotDatabaseCollections` describes the collections in a database contained in a Cloud Backup snapshot. Use this data source to discover namespaces before creating a collection restore job. Point-in-time restores have no snapshot ID, so this data source does not apply to PIT restores.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     */
+    public static Output<GetCloudBackupSnapshotDatabaseCollectionsInvokeResult> getCloudBackupSnapshotDatabaseCollections(GetCloudBackupSnapshotDatabaseCollectionsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotDatabaseCollections:getCloudBackupSnapshotDatabaseCollections", TypeShape.of(GetCloudBackupSnapshotDatabaseCollectionsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getCloudBackupSnapshotDatabaseCollections` describes the collections in a database contained in a Cloud Backup snapshot. Use this data source to discover namespaces before creating a collection restore job. Point-in-time restores have no snapshot ID, so this data source does not apply to PIT restores.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     */
+    public static Output<GetCloudBackupSnapshotDatabaseCollectionsInvokeResult> getCloudBackupSnapshotDatabaseCollections(GetCloudBackupSnapshotDatabaseCollectionsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotDatabaseCollections:getCloudBackupSnapshotDatabaseCollections", TypeShape.of(GetCloudBackupSnapshotDatabaseCollectionsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getCloudBackupSnapshotDatabaseCollections` describes the collections in a database contained in a Cloud Backup snapshot. Use this data source to discover namespaces before creating a collection restore job. Point-in-time restores have no snapshot ID, so this data source does not apply to PIT restores.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     */
+    public static CompletableFuture<GetCloudBackupSnapshotDatabaseCollectionsInvokeResult> getCloudBackupSnapshotDatabaseCollectionsPlain(GetCloudBackupSnapshotDatabaseCollectionsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudBackupSnapshotDatabaseCollections:getCloudBackupSnapshotDatabaseCollections", TypeShape.of(GetCloudBackupSnapshotDatabaseCollectionsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getCloudBackupSnapshotDatabases` describes the databases contained in a Cloud Backup snapshot. Use this data source to discover namespaces before creating a collection restore job. Point-in-time restores have no snapshot ID, so this data source does not apply to PIT restores.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     */
+    public static Output<GetCloudBackupSnapshotDatabasesInvokeResult> getCloudBackupSnapshotDatabases(GetCloudBackupSnapshotDatabasesArgs args) {
+        return getCloudBackupSnapshotDatabases(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getCloudBackupSnapshotDatabases` describes the databases contained in a Cloud Backup snapshot. Use this data source to discover namespaces before creating a collection restore job. Point-in-time restores have no snapshot ID, so this data source does not apply to PIT restores.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     */
+    public static CompletableFuture<GetCloudBackupSnapshotDatabasesInvokeResult> getCloudBackupSnapshotDatabasesPlain(GetCloudBackupSnapshotDatabasesPlainArgs args) {
+        return getCloudBackupSnapshotDatabasesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getCloudBackupSnapshotDatabases` describes the databases contained in a Cloud Backup snapshot. Use this data source to discover namespaces before creating a collection restore job. Point-in-time restores have no snapshot ID, so this data source does not apply to PIT restores.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     */
+    public static Output<GetCloudBackupSnapshotDatabasesInvokeResult> getCloudBackupSnapshotDatabases(GetCloudBackupSnapshotDatabasesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotDatabases:getCloudBackupSnapshotDatabases", TypeShape.of(GetCloudBackupSnapshotDatabasesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getCloudBackupSnapshotDatabases` describes the databases contained in a Cloud Backup snapshot. Use this data source to discover namespaces before creating a collection restore job. Point-in-time restores have no snapshot ID, so this data source does not apply to PIT restores.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     */
+    public static Output<GetCloudBackupSnapshotDatabasesInvokeResult> getCloudBackupSnapshotDatabases(GetCloudBackupSnapshotDatabasesArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getCloudBackupSnapshotDatabases:getCloudBackupSnapshotDatabases", TypeShape.of(GetCloudBackupSnapshotDatabasesInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getCloudBackupSnapshotDatabases` describes the databases contained in a Cloud Backup snapshot. Use this data source to discover namespaces before creating a collection restore job. Point-in-time restores have no snapshot ID, so this data source does not apply to PIT restores.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Backup Manager or Project Owner role.
+     * 
+     */
+    public static CompletableFuture<GetCloudBackupSnapshotDatabasesInvokeResult> getCloudBackupSnapshotDatabasesPlain(GetCloudBackupSnapshotDatabasesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCloudBackupSnapshotDatabases:getCloudBackupSnapshotDatabases", TypeShape.of(GetCloudBackupSnapshotDatabasesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `mongodbatlas.CloudBackupSnapshotExportBucket` datasource allows you to retrieve all the buckets for the specified project.
@@ -41454,6 +41962,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamProcessorArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsAutoscalingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
@@ -41565,11 +42074,16 @@ public final class MongodbatlasFunctions {
      * ", example_kafkaConnectionName,example_clusterConnectionName);
      *             }))
      *             .state("CREATED")
+     *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
      *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
+     *                     .build())
+     *                 .autoscaling(StreamProcessorOptionsAutoscalingArgs.builder()
+     *                     .minTier("SP10")
+     *                     .maxTier("SP50")
      *                     .build())
      *                 .build())
      *             .build());
@@ -41621,6 +42135,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamProcessorArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsAutoscalingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
@@ -41732,11 +42247,16 @@ public final class MongodbatlasFunctions {
      * ", example_kafkaConnectionName,example_clusterConnectionName);
      *             }))
      *             .state("CREATED")
+     *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
      *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
+     *                     .build())
+     *                 .autoscaling(StreamProcessorOptionsAutoscalingArgs.builder()
+     *                     .minTier("SP10")
+     *                     .maxTier("SP50")
      *                     .build())
      *                 .build())
      *             .build());
@@ -41788,6 +42308,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamProcessorArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsAutoscalingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
@@ -41899,11 +42420,16 @@ public final class MongodbatlasFunctions {
      * ", example_kafkaConnectionName,example_clusterConnectionName);
      *             }))
      *             .state("CREATED")
+     *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
      *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
+     *                     .build())
+     *                 .autoscaling(StreamProcessorOptionsAutoscalingArgs.builder()
+     *                     .minTier("SP10")
+     *                     .maxTier("SP50")
      *                     .build())
      *                 .build())
      *             .build());
@@ -41955,6 +42481,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamProcessorArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsAutoscalingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
@@ -42066,11 +42593,16 @@ public final class MongodbatlasFunctions {
      * ", example_kafkaConnectionName,example_clusterConnectionName);
      *             }))
      *             .state("CREATED")
+     *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
      *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
+     *                     .build())
+     *                 .autoscaling(StreamProcessorOptionsAutoscalingArgs.builder()
+     *                     .minTier("SP10")
+     *                     .maxTier("SP50")
      *                     .build())
      *                 .build())
      *             .build());
@@ -42122,6 +42654,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamProcessorArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsAutoscalingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
@@ -42233,11 +42766,16 @@ public final class MongodbatlasFunctions {
      * ", example_kafkaConnectionName,example_clusterConnectionName);
      *             }))
      *             .state("CREATED")
+     *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
      *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
+     *                     .build())
+     *                 .autoscaling(StreamProcessorOptionsAutoscalingArgs.builder()
+     *                     .minTier("SP10")
+     *                     .maxTier("SP50")
      *                     .build())
      *                 .build())
      *             .build());
@@ -42289,6 +42827,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamProcessorArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsAutoscalingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
@@ -42400,11 +42939,16 @@ public final class MongodbatlasFunctions {
      * ", example_kafkaConnectionName,example_clusterConnectionName);
      *             }))
      *             .state("CREATED")
+     *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
      *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
+     *                     .build())
+     *                 .autoscaling(StreamProcessorOptionsAutoscalingArgs.builder()
+     *                     .minTier("SP10")
+     *                     .maxTier("SP50")
      *                     .build())
      *                 .build())
      *             .build());
@@ -42456,6 +43000,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamProcessorArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsAutoscalingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
@@ -42567,11 +43112,16 @@ public final class MongodbatlasFunctions {
      * ", example_kafkaConnectionName,example_clusterConnectionName);
      *             }))
      *             .state("CREATED")
+     *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
      *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
+     *                     .build())
+     *                 .autoscaling(StreamProcessorOptionsAutoscalingArgs.builder()
+     *                     .minTier("SP10")
+     *                     .maxTier("SP50")
      *                     .build())
      *                 .build())
      *             .build());
@@ -42623,6 +43173,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamProcessorArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsAutoscalingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
@@ -42734,11 +43285,16 @@ public final class MongodbatlasFunctions {
      * ", example_kafkaConnectionName,example_clusterConnectionName);
      *             }))
      *             .state("CREATED")
+     *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
      *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
+     *                     .build())
+     *                 .autoscaling(StreamProcessorOptionsAutoscalingArgs.builder()
+     *                     .minTier("SP10")
+     *                     .maxTier("SP50")
      *                     .build())
      *                 .build())
      *             .build());
@@ -42790,6 +43346,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamProcessorArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsAutoscalingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
@@ -42901,11 +43458,16 @@ public final class MongodbatlasFunctions {
      * ", example_kafkaConnectionName,example_clusterConnectionName);
      *             }))
      *             .state("CREATED")
+     *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
      *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
+     *                     .build())
+     *                 .autoscaling(StreamProcessorOptionsAutoscalingArgs.builder()
+     *                     .minTier("SP10")
+     *                     .maxTier("SP50")
      *                     .build())
      *                 .build())
      *             .build());
@@ -42957,6 +43519,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.StreamProcessorArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsArgs;
      * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+     * import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsAutoscalingArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorsArgs;
      * import com.pulumi.mongodbatlas.inputs.GetStreamProcessorArgs;
@@ -43068,11 +43631,16 @@ public final class MongodbatlasFunctions {
      * ", example_kafkaConnectionName,example_clusterConnectionName);
      *             }))
      *             .state("CREATED")
+     *             .tier("SP10")
      *             .options(StreamProcessorOptionsArgs.builder()
      *                 .dlq(StreamProcessorOptionsDlqArgs.builder()
      *                     .coll("exampleColumn")
      *                     .connectionName(example_cluster.connectionName())
      *                     .db("exampleDb")
+     *                     .build())
+     *                 .autoscaling(StreamProcessorOptionsAutoscalingArgs.builder()
+     *                     .minTier("SP10")
+     *                     .maxTier("SP50")
      *                     .build())
      *                 .build())
      *             .build());

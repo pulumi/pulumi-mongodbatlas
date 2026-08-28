@@ -5023,6 +5023,511 @@ func (o BackupCompliancePolicyPolicyItemYearlyArrayOutput) Index(i pulumi.IntInp
 	}).(BackupCompliancePolicyPolicyItemYearlyOutput)
 }
 
+type CloudBackupCollectionRestoreJobCollection struct {
+	// Collection requested to restore, as `database.collection`.
+	SourceNamespace string `pulumi:"sourceNamespace"`
+	// Requested target collection as `database.collection`; if empty, source namespace is used.
+	TargetNamespace *string `pulumi:"targetNamespace"`
+}
+
+// CloudBackupCollectionRestoreJobCollectionInput is an input type that accepts CloudBackupCollectionRestoreJobCollectionArgs and CloudBackupCollectionRestoreJobCollectionOutput values.
+// You can construct a concrete instance of `CloudBackupCollectionRestoreJobCollectionInput` via:
+//
+//	CloudBackupCollectionRestoreJobCollectionArgs{...}
+type CloudBackupCollectionRestoreJobCollectionInput interface {
+	pulumi.Input
+
+	ToCloudBackupCollectionRestoreJobCollectionOutput() CloudBackupCollectionRestoreJobCollectionOutput
+	ToCloudBackupCollectionRestoreJobCollectionOutputWithContext(context.Context) CloudBackupCollectionRestoreJobCollectionOutput
+}
+
+type CloudBackupCollectionRestoreJobCollectionArgs struct {
+	// Collection requested to restore, as `database.collection`.
+	SourceNamespace pulumi.StringInput `pulumi:"sourceNamespace"`
+	// Requested target collection as `database.collection`; if empty, source namespace is used.
+	TargetNamespace pulumi.StringPtrInput `pulumi:"targetNamespace"`
+}
+
+func (CloudBackupCollectionRestoreJobCollectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupCollectionRestoreJobCollection)(nil)).Elem()
+}
+
+func (i CloudBackupCollectionRestoreJobCollectionArgs) ToCloudBackupCollectionRestoreJobCollectionOutput() CloudBackupCollectionRestoreJobCollectionOutput {
+	return i.ToCloudBackupCollectionRestoreJobCollectionOutputWithContext(context.Background())
+}
+
+func (i CloudBackupCollectionRestoreJobCollectionArgs) ToCloudBackupCollectionRestoreJobCollectionOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobCollectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupCollectionRestoreJobCollectionOutput)
+}
+
+// CloudBackupCollectionRestoreJobCollectionArrayInput is an input type that accepts CloudBackupCollectionRestoreJobCollectionArray and CloudBackupCollectionRestoreJobCollectionArrayOutput values.
+// You can construct a concrete instance of `CloudBackupCollectionRestoreJobCollectionArrayInput` via:
+//
+//	CloudBackupCollectionRestoreJobCollectionArray{ CloudBackupCollectionRestoreJobCollectionArgs{...} }
+type CloudBackupCollectionRestoreJobCollectionArrayInput interface {
+	pulumi.Input
+
+	ToCloudBackupCollectionRestoreJobCollectionArrayOutput() CloudBackupCollectionRestoreJobCollectionArrayOutput
+	ToCloudBackupCollectionRestoreJobCollectionArrayOutputWithContext(context.Context) CloudBackupCollectionRestoreJobCollectionArrayOutput
+}
+
+type CloudBackupCollectionRestoreJobCollectionArray []CloudBackupCollectionRestoreJobCollectionInput
+
+func (CloudBackupCollectionRestoreJobCollectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupCollectionRestoreJobCollection)(nil)).Elem()
+}
+
+func (i CloudBackupCollectionRestoreJobCollectionArray) ToCloudBackupCollectionRestoreJobCollectionArrayOutput() CloudBackupCollectionRestoreJobCollectionArrayOutput {
+	return i.ToCloudBackupCollectionRestoreJobCollectionArrayOutputWithContext(context.Background())
+}
+
+func (i CloudBackupCollectionRestoreJobCollectionArray) ToCloudBackupCollectionRestoreJobCollectionArrayOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobCollectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupCollectionRestoreJobCollectionArrayOutput)
+}
+
+type CloudBackupCollectionRestoreJobCollectionOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupCollectionRestoreJobCollectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupCollectionRestoreJobCollection)(nil)).Elem()
+}
+
+func (o CloudBackupCollectionRestoreJobCollectionOutput) ToCloudBackupCollectionRestoreJobCollectionOutput() CloudBackupCollectionRestoreJobCollectionOutput {
+	return o
+}
+
+func (o CloudBackupCollectionRestoreJobCollectionOutput) ToCloudBackupCollectionRestoreJobCollectionOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobCollectionOutput {
+	return o
+}
+
+// Collection requested to restore, as `database.collection`.
+func (o CloudBackupCollectionRestoreJobCollectionOutput) SourceNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudBackupCollectionRestoreJobCollection) string { return v.SourceNamespace }).(pulumi.StringOutput)
+}
+
+// Requested target collection as `database.collection`; if empty, source namespace is used.
+func (o CloudBackupCollectionRestoreJobCollectionOutput) TargetNamespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupCollectionRestoreJobCollection) *string { return v.TargetNamespace }).(pulumi.StringPtrOutput)
+}
+
+type CloudBackupCollectionRestoreJobCollectionArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupCollectionRestoreJobCollectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupCollectionRestoreJobCollection)(nil)).Elem()
+}
+
+func (o CloudBackupCollectionRestoreJobCollectionArrayOutput) ToCloudBackupCollectionRestoreJobCollectionArrayOutput() CloudBackupCollectionRestoreJobCollectionArrayOutput {
+	return o
+}
+
+func (o CloudBackupCollectionRestoreJobCollectionArrayOutput) ToCloudBackupCollectionRestoreJobCollectionArrayOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobCollectionArrayOutput {
+	return o
+}
+
+func (o CloudBackupCollectionRestoreJobCollectionArrayOutput) Index(i pulumi.IntInput) CloudBackupCollectionRestoreJobCollectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudBackupCollectionRestoreJobCollection {
+		return vs[0].([]CloudBackupCollectionRestoreJobCollection)[vs[1].(int)]
+	}).(CloudBackupCollectionRestoreJobCollectionOutput)
+}
+
+type CloudBackupCollectionRestoreJobDatabase struct {
+	// Database name requested to restore.
+	SourceNamespace string `pulumi:"sourceNamespace"`
+	// Requested target database name; if empty, source database name is used.
+	TargetNamespace *string `pulumi:"targetNamespace"`
+}
+
+// CloudBackupCollectionRestoreJobDatabaseInput is an input type that accepts CloudBackupCollectionRestoreJobDatabaseArgs and CloudBackupCollectionRestoreJobDatabaseOutput values.
+// You can construct a concrete instance of `CloudBackupCollectionRestoreJobDatabaseInput` via:
+//
+//	CloudBackupCollectionRestoreJobDatabaseArgs{...}
+type CloudBackupCollectionRestoreJobDatabaseInput interface {
+	pulumi.Input
+
+	ToCloudBackupCollectionRestoreJobDatabaseOutput() CloudBackupCollectionRestoreJobDatabaseOutput
+	ToCloudBackupCollectionRestoreJobDatabaseOutputWithContext(context.Context) CloudBackupCollectionRestoreJobDatabaseOutput
+}
+
+type CloudBackupCollectionRestoreJobDatabaseArgs struct {
+	// Database name requested to restore.
+	SourceNamespace pulumi.StringInput `pulumi:"sourceNamespace"`
+	// Requested target database name; if empty, source database name is used.
+	TargetNamespace pulumi.StringPtrInput `pulumi:"targetNamespace"`
+}
+
+func (CloudBackupCollectionRestoreJobDatabaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupCollectionRestoreJobDatabase)(nil)).Elem()
+}
+
+func (i CloudBackupCollectionRestoreJobDatabaseArgs) ToCloudBackupCollectionRestoreJobDatabaseOutput() CloudBackupCollectionRestoreJobDatabaseOutput {
+	return i.ToCloudBackupCollectionRestoreJobDatabaseOutputWithContext(context.Background())
+}
+
+func (i CloudBackupCollectionRestoreJobDatabaseArgs) ToCloudBackupCollectionRestoreJobDatabaseOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobDatabaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupCollectionRestoreJobDatabaseOutput)
+}
+
+// CloudBackupCollectionRestoreJobDatabaseArrayInput is an input type that accepts CloudBackupCollectionRestoreJobDatabaseArray and CloudBackupCollectionRestoreJobDatabaseArrayOutput values.
+// You can construct a concrete instance of `CloudBackupCollectionRestoreJobDatabaseArrayInput` via:
+//
+//	CloudBackupCollectionRestoreJobDatabaseArray{ CloudBackupCollectionRestoreJobDatabaseArgs{...} }
+type CloudBackupCollectionRestoreJobDatabaseArrayInput interface {
+	pulumi.Input
+
+	ToCloudBackupCollectionRestoreJobDatabaseArrayOutput() CloudBackupCollectionRestoreJobDatabaseArrayOutput
+	ToCloudBackupCollectionRestoreJobDatabaseArrayOutputWithContext(context.Context) CloudBackupCollectionRestoreJobDatabaseArrayOutput
+}
+
+type CloudBackupCollectionRestoreJobDatabaseArray []CloudBackupCollectionRestoreJobDatabaseInput
+
+func (CloudBackupCollectionRestoreJobDatabaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupCollectionRestoreJobDatabase)(nil)).Elem()
+}
+
+func (i CloudBackupCollectionRestoreJobDatabaseArray) ToCloudBackupCollectionRestoreJobDatabaseArrayOutput() CloudBackupCollectionRestoreJobDatabaseArrayOutput {
+	return i.ToCloudBackupCollectionRestoreJobDatabaseArrayOutputWithContext(context.Background())
+}
+
+func (i CloudBackupCollectionRestoreJobDatabaseArray) ToCloudBackupCollectionRestoreJobDatabaseArrayOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobDatabaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupCollectionRestoreJobDatabaseArrayOutput)
+}
+
+type CloudBackupCollectionRestoreJobDatabaseOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupCollectionRestoreJobDatabaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupCollectionRestoreJobDatabase)(nil)).Elem()
+}
+
+func (o CloudBackupCollectionRestoreJobDatabaseOutput) ToCloudBackupCollectionRestoreJobDatabaseOutput() CloudBackupCollectionRestoreJobDatabaseOutput {
+	return o
+}
+
+func (o CloudBackupCollectionRestoreJobDatabaseOutput) ToCloudBackupCollectionRestoreJobDatabaseOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobDatabaseOutput {
+	return o
+}
+
+// Database name requested to restore.
+func (o CloudBackupCollectionRestoreJobDatabaseOutput) SourceNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudBackupCollectionRestoreJobDatabase) string { return v.SourceNamespace }).(pulumi.StringOutput)
+}
+
+// Requested target database name; if empty, source database name is used.
+func (o CloudBackupCollectionRestoreJobDatabaseOutput) TargetNamespace() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupCollectionRestoreJobDatabase) *string { return v.TargetNamespace }).(pulumi.StringPtrOutput)
+}
+
+type CloudBackupCollectionRestoreJobDatabaseArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupCollectionRestoreJobDatabaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupCollectionRestoreJobDatabase)(nil)).Elem()
+}
+
+func (o CloudBackupCollectionRestoreJobDatabaseArrayOutput) ToCloudBackupCollectionRestoreJobDatabaseArrayOutput() CloudBackupCollectionRestoreJobDatabaseArrayOutput {
+	return o
+}
+
+func (o CloudBackupCollectionRestoreJobDatabaseArrayOutput) ToCloudBackupCollectionRestoreJobDatabaseArrayOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobDatabaseArrayOutput {
+	return o
+}
+
+func (o CloudBackupCollectionRestoreJobDatabaseArrayOutput) Index(i pulumi.IntInput) CloudBackupCollectionRestoreJobDatabaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudBackupCollectionRestoreJobDatabase {
+		return vs[0].([]CloudBackupCollectionRestoreJobDatabase)[vs[1].(int)]
+	}).(CloudBackupCollectionRestoreJobDatabaseOutput)
+}
+
+type CloudBackupCollectionRestoreJobIndexStatus struct {
+	// Number of collections that failed to build indexes.
+	FailedCollectionCount *int `pulumi:"failedCollectionCount"`
+	// Index build state indicating the status of index creation during or after a restore operation.
+	State *string `pulumi:"state"`
+}
+
+// CloudBackupCollectionRestoreJobIndexStatusInput is an input type that accepts CloudBackupCollectionRestoreJobIndexStatusArgs and CloudBackupCollectionRestoreJobIndexStatusOutput values.
+// You can construct a concrete instance of `CloudBackupCollectionRestoreJobIndexStatusInput` via:
+//
+//	CloudBackupCollectionRestoreJobIndexStatusArgs{...}
+type CloudBackupCollectionRestoreJobIndexStatusInput interface {
+	pulumi.Input
+
+	ToCloudBackupCollectionRestoreJobIndexStatusOutput() CloudBackupCollectionRestoreJobIndexStatusOutput
+	ToCloudBackupCollectionRestoreJobIndexStatusOutputWithContext(context.Context) CloudBackupCollectionRestoreJobIndexStatusOutput
+}
+
+type CloudBackupCollectionRestoreJobIndexStatusArgs struct {
+	// Number of collections that failed to build indexes.
+	FailedCollectionCount pulumi.IntPtrInput `pulumi:"failedCollectionCount"`
+	// Index build state indicating the status of index creation during or after a restore operation.
+	State pulumi.StringPtrInput `pulumi:"state"`
+}
+
+func (CloudBackupCollectionRestoreJobIndexStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupCollectionRestoreJobIndexStatus)(nil)).Elem()
+}
+
+func (i CloudBackupCollectionRestoreJobIndexStatusArgs) ToCloudBackupCollectionRestoreJobIndexStatusOutput() CloudBackupCollectionRestoreJobIndexStatusOutput {
+	return i.ToCloudBackupCollectionRestoreJobIndexStatusOutputWithContext(context.Background())
+}
+
+func (i CloudBackupCollectionRestoreJobIndexStatusArgs) ToCloudBackupCollectionRestoreJobIndexStatusOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobIndexStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupCollectionRestoreJobIndexStatusOutput)
+}
+
+func (i CloudBackupCollectionRestoreJobIndexStatusArgs) ToCloudBackupCollectionRestoreJobIndexStatusPtrOutput() CloudBackupCollectionRestoreJobIndexStatusPtrOutput {
+	return i.ToCloudBackupCollectionRestoreJobIndexStatusPtrOutputWithContext(context.Background())
+}
+
+func (i CloudBackupCollectionRestoreJobIndexStatusArgs) ToCloudBackupCollectionRestoreJobIndexStatusPtrOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobIndexStatusPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupCollectionRestoreJobIndexStatusOutput).ToCloudBackupCollectionRestoreJobIndexStatusPtrOutputWithContext(ctx)
+}
+
+// CloudBackupCollectionRestoreJobIndexStatusPtrInput is an input type that accepts CloudBackupCollectionRestoreJobIndexStatusArgs, CloudBackupCollectionRestoreJobIndexStatusPtr and CloudBackupCollectionRestoreJobIndexStatusPtrOutput values.
+// You can construct a concrete instance of `CloudBackupCollectionRestoreJobIndexStatusPtrInput` via:
+//
+//	        CloudBackupCollectionRestoreJobIndexStatusArgs{...}
+//
+//	or:
+//
+//	        nil
+type CloudBackupCollectionRestoreJobIndexStatusPtrInput interface {
+	pulumi.Input
+
+	ToCloudBackupCollectionRestoreJobIndexStatusPtrOutput() CloudBackupCollectionRestoreJobIndexStatusPtrOutput
+	ToCloudBackupCollectionRestoreJobIndexStatusPtrOutputWithContext(context.Context) CloudBackupCollectionRestoreJobIndexStatusPtrOutput
+}
+
+type cloudBackupCollectionRestoreJobIndexStatusPtrType CloudBackupCollectionRestoreJobIndexStatusArgs
+
+func CloudBackupCollectionRestoreJobIndexStatusPtr(v *CloudBackupCollectionRestoreJobIndexStatusArgs) CloudBackupCollectionRestoreJobIndexStatusPtrInput {
+	return (*cloudBackupCollectionRestoreJobIndexStatusPtrType)(v)
+}
+
+func (*cloudBackupCollectionRestoreJobIndexStatusPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupCollectionRestoreJobIndexStatus)(nil)).Elem()
+}
+
+func (i *cloudBackupCollectionRestoreJobIndexStatusPtrType) ToCloudBackupCollectionRestoreJobIndexStatusPtrOutput() CloudBackupCollectionRestoreJobIndexStatusPtrOutput {
+	return i.ToCloudBackupCollectionRestoreJobIndexStatusPtrOutputWithContext(context.Background())
+}
+
+func (i *cloudBackupCollectionRestoreJobIndexStatusPtrType) ToCloudBackupCollectionRestoreJobIndexStatusPtrOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobIndexStatusPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupCollectionRestoreJobIndexStatusPtrOutput)
+}
+
+type CloudBackupCollectionRestoreJobIndexStatusOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupCollectionRestoreJobIndexStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupCollectionRestoreJobIndexStatus)(nil)).Elem()
+}
+
+func (o CloudBackupCollectionRestoreJobIndexStatusOutput) ToCloudBackupCollectionRestoreJobIndexStatusOutput() CloudBackupCollectionRestoreJobIndexStatusOutput {
+	return o
+}
+
+func (o CloudBackupCollectionRestoreJobIndexStatusOutput) ToCloudBackupCollectionRestoreJobIndexStatusOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobIndexStatusOutput {
+	return o
+}
+
+func (o CloudBackupCollectionRestoreJobIndexStatusOutput) ToCloudBackupCollectionRestoreJobIndexStatusPtrOutput() CloudBackupCollectionRestoreJobIndexStatusPtrOutput {
+	return o.ToCloudBackupCollectionRestoreJobIndexStatusPtrOutputWithContext(context.Background())
+}
+
+func (o CloudBackupCollectionRestoreJobIndexStatusOutput) ToCloudBackupCollectionRestoreJobIndexStatusPtrOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobIndexStatusPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CloudBackupCollectionRestoreJobIndexStatus) *CloudBackupCollectionRestoreJobIndexStatus {
+		return &v
+	}).(CloudBackupCollectionRestoreJobIndexStatusPtrOutput)
+}
+
+// Number of collections that failed to build indexes.
+func (o CloudBackupCollectionRestoreJobIndexStatusOutput) FailedCollectionCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CloudBackupCollectionRestoreJobIndexStatus) *int { return v.FailedCollectionCount }).(pulumi.IntPtrOutput)
+}
+
+// Index build state indicating the status of index creation during or after a restore operation.
+func (o CloudBackupCollectionRestoreJobIndexStatusOutput) State() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupCollectionRestoreJobIndexStatus) *string { return v.State }).(pulumi.StringPtrOutput)
+}
+
+type CloudBackupCollectionRestoreJobIndexStatusPtrOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupCollectionRestoreJobIndexStatusPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupCollectionRestoreJobIndexStatus)(nil)).Elem()
+}
+
+func (o CloudBackupCollectionRestoreJobIndexStatusPtrOutput) ToCloudBackupCollectionRestoreJobIndexStatusPtrOutput() CloudBackupCollectionRestoreJobIndexStatusPtrOutput {
+	return o
+}
+
+func (o CloudBackupCollectionRestoreJobIndexStatusPtrOutput) ToCloudBackupCollectionRestoreJobIndexStatusPtrOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobIndexStatusPtrOutput {
+	return o
+}
+
+func (o CloudBackupCollectionRestoreJobIndexStatusPtrOutput) Elem() CloudBackupCollectionRestoreJobIndexStatusOutput {
+	return o.ApplyT(func(v *CloudBackupCollectionRestoreJobIndexStatus) CloudBackupCollectionRestoreJobIndexStatus {
+		if v != nil {
+			return *v
+		}
+		var ret CloudBackupCollectionRestoreJobIndexStatus
+		return ret
+	}).(CloudBackupCollectionRestoreJobIndexStatusOutput)
+}
+
+// Number of collections that failed to build indexes.
+func (o CloudBackupCollectionRestoreJobIndexStatusPtrOutput) FailedCollectionCount() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *CloudBackupCollectionRestoreJobIndexStatus) *int {
+		if v == nil {
+			return nil
+		}
+		return v.FailedCollectionCount
+	}).(pulumi.IntPtrOutput)
+}
+
+// Index build state indicating the status of index creation during or after a restore operation.
+func (o CloudBackupCollectionRestoreJobIndexStatusPtrOutput) State() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupCollectionRestoreJobIndexStatus) *string {
+		if v == nil {
+			return nil
+		}
+		return v.State
+	}).(pulumi.StringPtrOutput)
+}
+
+type CloudBackupCollectionRestoreJobTimeouts struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create *string `pulumi:"create"`
+}
+
+// CloudBackupCollectionRestoreJobTimeoutsInput is an input type that accepts CloudBackupCollectionRestoreJobTimeoutsArgs and CloudBackupCollectionRestoreJobTimeoutsOutput values.
+// You can construct a concrete instance of `CloudBackupCollectionRestoreJobTimeoutsInput` via:
+//
+//	CloudBackupCollectionRestoreJobTimeoutsArgs{...}
+type CloudBackupCollectionRestoreJobTimeoutsInput interface {
+	pulumi.Input
+
+	ToCloudBackupCollectionRestoreJobTimeoutsOutput() CloudBackupCollectionRestoreJobTimeoutsOutput
+	ToCloudBackupCollectionRestoreJobTimeoutsOutputWithContext(context.Context) CloudBackupCollectionRestoreJobTimeoutsOutput
+}
+
+type CloudBackupCollectionRestoreJobTimeoutsArgs struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create pulumi.StringPtrInput `pulumi:"create"`
+}
+
+func (CloudBackupCollectionRestoreJobTimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupCollectionRestoreJobTimeouts)(nil)).Elem()
+}
+
+func (i CloudBackupCollectionRestoreJobTimeoutsArgs) ToCloudBackupCollectionRestoreJobTimeoutsOutput() CloudBackupCollectionRestoreJobTimeoutsOutput {
+	return i.ToCloudBackupCollectionRestoreJobTimeoutsOutputWithContext(context.Background())
+}
+
+func (i CloudBackupCollectionRestoreJobTimeoutsArgs) ToCloudBackupCollectionRestoreJobTimeoutsOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobTimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupCollectionRestoreJobTimeoutsOutput)
+}
+
+func (i CloudBackupCollectionRestoreJobTimeoutsArgs) ToCloudBackupCollectionRestoreJobTimeoutsPtrOutput() CloudBackupCollectionRestoreJobTimeoutsPtrOutput {
+	return i.ToCloudBackupCollectionRestoreJobTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i CloudBackupCollectionRestoreJobTimeoutsArgs) ToCloudBackupCollectionRestoreJobTimeoutsPtrOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupCollectionRestoreJobTimeoutsOutput).ToCloudBackupCollectionRestoreJobTimeoutsPtrOutputWithContext(ctx)
+}
+
+// CloudBackupCollectionRestoreJobTimeoutsPtrInput is an input type that accepts CloudBackupCollectionRestoreJobTimeoutsArgs, CloudBackupCollectionRestoreJobTimeoutsPtr and CloudBackupCollectionRestoreJobTimeoutsPtrOutput values.
+// You can construct a concrete instance of `CloudBackupCollectionRestoreJobTimeoutsPtrInput` via:
+//
+//	        CloudBackupCollectionRestoreJobTimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CloudBackupCollectionRestoreJobTimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToCloudBackupCollectionRestoreJobTimeoutsPtrOutput() CloudBackupCollectionRestoreJobTimeoutsPtrOutput
+	ToCloudBackupCollectionRestoreJobTimeoutsPtrOutputWithContext(context.Context) CloudBackupCollectionRestoreJobTimeoutsPtrOutput
+}
+
+type cloudBackupCollectionRestoreJobTimeoutsPtrType CloudBackupCollectionRestoreJobTimeoutsArgs
+
+func CloudBackupCollectionRestoreJobTimeoutsPtr(v *CloudBackupCollectionRestoreJobTimeoutsArgs) CloudBackupCollectionRestoreJobTimeoutsPtrInput {
+	return (*cloudBackupCollectionRestoreJobTimeoutsPtrType)(v)
+}
+
+func (*cloudBackupCollectionRestoreJobTimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupCollectionRestoreJobTimeouts)(nil)).Elem()
+}
+
+func (i *cloudBackupCollectionRestoreJobTimeoutsPtrType) ToCloudBackupCollectionRestoreJobTimeoutsPtrOutput() CloudBackupCollectionRestoreJobTimeoutsPtrOutput {
+	return i.ToCloudBackupCollectionRestoreJobTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *cloudBackupCollectionRestoreJobTimeoutsPtrType) ToCloudBackupCollectionRestoreJobTimeoutsPtrOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupCollectionRestoreJobTimeoutsPtrOutput)
+}
+
+type CloudBackupCollectionRestoreJobTimeoutsOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupCollectionRestoreJobTimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupCollectionRestoreJobTimeouts)(nil)).Elem()
+}
+
+func (o CloudBackupCollectionRestoreJobTimeoutsOutput) ToCloudBackupCollectionRestoreJobTimeoutsOutput() CloudBackupCollectionRestoreJobTimeoutsOutput {
+	return o
+}
+
+func (o CloudBackupCollectionRestoreJobTimeoutsOutput) ToCloudBackupCollectionRestoreJobTimeoutsOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobTimeoutsOutput {
+	return o
+}
+
+func (o CloudBackupCollectionRestoreJobTimeoutsOutput) ToCloudBackupCollectionRestoreJobTimeoutsPtrOutput() CloudBackupCollectionRestoreJobTimeoutsPtrOutput {
+	return o.ToCloudBackupCollectionRestoreJobTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o CloudBackupCollectionRestoreJobTimeoutsOutput) ToCloudBackupCollectionRestoreJobTimeoutsPtrOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobTimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CloudBackupCollectionRestoreJobTimeouts) *CloudBackupCollectionRestoreJobTimeouts {
+		return &v
+	}).(CloudBackupCollectionRestoreJobTimeoutsPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o CloudBackupCollectionRestoreJobTimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupCollectionRestoreJobTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+type CloudBackupCollectionRestoreJobTimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupCollectionRestoreJobTimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CloudBackupCollectionRestoreJobTimeouts)(nil)).Elem()
+}
+
+func (o CloudBackupCollectionRestoreJobTimeoutsPtrOutput) ToCloudBackupCollectionRestoreJobTimeoutsPtrOutput() CloudBackupCollectionRestoreJobTimeoutsPtrOutput {
+	return o
+}
+
+func (o CloudBackupCollectionRestoreJobTimeoutsPtrOutput) ToCloudBackupCollectionRestoreJobTimeoutsPtrOutputWithContext(ctx context.Context) CloudBackupCollectionRestoreJobTimeoutsPtrOutput {
+	return o
+}
+
+func (o CloudBackupCollectionRestoreJobTimeoutsPtrOutput) Elem() CloudBackupCollectionRestoreJobTimeoutsOutput {
+	return o.ApplyT(func(v *CloudBackupCollectionRestoreJobTimeouts) CloudBackupCollectionRestoreJobTimeouts {
+		if v != nil {
+			return *v
+		}
+		var ret CloudBackupCollectionRestoreJobTimeouts
+		return ret
+	}).(CloudBackupCollectionRestoreJobTimeoutsOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o CloudBackupCollectionRestoreJobTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *CloudBackupCollectionRestoreJobTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
 type CloudBackupScheduleCopySetting struct {
 	// Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
 	CloudProvider *string `pulumi:"cloudProvider"`
@@ -20140,11 +20645,13 @@ func (o ServiceAccountSecretTypeArrayOutput) Index(i pulumi.IntInput) ServiceAcc
 }
 
 type StreamConnectionAuthentication struct {
+	// AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+	Aws *StreamConnectionAuthenticationAws `pulumi:"aws"`
 	// Public identifier for the Kafka client.
 	ClientId *string `pulumi:"clientId"`
 	// Secret known only to the Kafka client and the authorization server.
 	ClientSecret *string `pulumi:"clientSecret"`
-	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
 	Mechanism *string `pulumi:"mechanism"`
 	// SASL OAUTHBEARER authentication method. Value must be OIDC.
 	Method *string `pulumi:"method"`
@@ -20172,11 +20679,13 @@ type StreamConnectionAuthenticationInput interface {
 }
 
 type StreamConnectionAuthenticationArgs struct {
+	// AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+	Aws StreamConnectionAuthenticationAwsPtrInput `pulumi:"aws"`
 	// Public identifier for the Kafka client.
 	ClientId pulumi.StringPtrInput `pulumi:"clientId"`
 	// Secret known only to the Kafka client and the authorization server.
 	ClientSecret pulumi.StringPtrInput `pulumi:"clientSecret"`
-	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
 	Mechanism pulumi.StringPtrInput `pulumi:"mechanism"`
 	// SASL OAUTHBEARER authentication method. Value must be OIDC.
 	Method pulumi.StringPtrInput `pulumi:"method"`
@@ -20269,6 +20778,11 @@ func (o StreamConnectionAuthenticationOutput) ToStreamConnectionAuthenticationPt
 	}).(StreamConnectionAuthenticationPtrOutput)
 }
 
+// AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+func (o StreamConnectionAuthenticationOutput) Aws() StreamConnectionAuthenticationAwsPtrOutput {
+	return o.ApplyT(func(v StreamConnectionAuthentication) *StreamConnectionAuthenticationAws { return v.Aws }).(StreamConnectionAuthenticationAwsPtrOutput)
+}
+
 // Public identifier for the Kafka client.
 func (o StreamConnectionAuthenticationOutput) ClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StreamConnectionAuthentication) *string { return v.ClientId }).(pulumi.StringPtrOutput)
@@ -20279,7 +20793,7 @@ func (o StreamConnectionAuthenticationOutput) ClientSecret() pulumi.StringPtrOut
 	return o.ApplyT(func(v StreamConnectionAuthentication) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
 }
 
-// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
 func (o StreamConnectionAuthenticationOutput) Mechanism() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v StreamConnectionAuthentication) *string { return v.Mechanism }).(pulumi.StringPtrOutput)
 }
@@ -20338,6 +20852,16 @@ func (o StreamConnectionAuthenticationPtrOutput) Elem() StreamConnectionAuthenti
 	}).(StreamConnectionAuthenticationOutput)
 }
 
+// AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+func (o StreamConnectionAuthenticationPtrOutput) Aws() StreamConnectionAuthenticationAwsPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionAuthentication) *StreamConnectionAuthenticationAws {
+		if v == nil {
+			return nil
+		}
+		return v.Aws
+	}).(StreamConnectionAuthenticationAwsPtrOutput)
+}
+
 // Public identifier for the Kafka client.
 func (o StreamConnectionAuthenticationPtrOutput) ClientId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionAuthentication) *string {
@@ -20358,7 +20882,7 @@ func (o StreamConnectionAuthenticationPtrOutput) ClientSecret() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
-// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
 func (o StreamConnectionAuthenticationPtrOutput) Mechanism() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamConnectionAuthentication) *string {
 		if v == nil {
@@ -20425,6 +20949,143 @@ func (o StreamConnectionAuthenticationPtrOutput) Username() pulumi.StringPtrOutp
 			return nil
 		}
 		return v.Username
+	}).(pulumi.StringPtrOutput)
+}
+
+type StreamConnectionAuthenticationAws struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn string `pulumi:"roleArn"`
+}
+
+// StreamConnectionAuthenticationAwsInput is an input type that accepts StreamConnectionAuthenticationAwsArgs and StreamConnectionAuthenticationAwsOutput values.
+// You can construct a concrete instance of `StreamConnectionAuthenticationAwsInput` via:
+//
+//	StreamConnectionAuthenticationAwsArgs{...}
+type StreamConnectionAuthenticationAwsInput interface {
+	pulumi.Input
+
+	ToStreamConnectionAuthenticationAwsOutput() StreamConnectionAuthenticationAwsOutput
+	ToStreamConnectionAuthenticationAwsOutputWithContext(context.Context) StreamConnectionAuthenticationAwsOutput
+}
+
+type StreamConnectionAuthenticationAwsArgs struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn pulumi.StringInput `pulumi:"roleArn"`
+}
+
+func (StreamConnectionAuthenticationAwsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionAuthenticationAws)(nil)).Elem()
+}
+
+func (i StreamConnectionAuthenticationAwsArgs) ToStreamConnectionAuthenticationAwsOutput() StreamConnectionAuthenticationAwsOutput {
+	return i.ToStreamConnectionAuthenticationAwsOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionAuthenticationAwsArgs) ToStreamConnectionAuthenticationAwsOutputWithContext(ctx context.Context) StreamConnectionAuthenticationAwsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionAuthenticationAwsOutput)
+}
+
+func (i StreamConnectionAuthenticationAwsArgs) ToStreamConnectionAuthenticationAwsPtrOutput() StreamConnectionAuthenticationAwsPtrOutput {
+	return i.ToStreamConnectionAuthenticationAwsPtrOutputWithContext(context.Background())
+}
+
+func (i StreamConnectionAuthenticationAwsArgs) ToStreamConnectionAuthenticationAwsPtrOutputWithContext(ctx context.Context) StreamConnectionAuthenticationAwsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionAuthenticationAwsOutput).ToStreamConnectionAuthenticationAwsPtrOutputWithContext(ctx)
+}
+
+// StreamConnectionAuthenticationAwsPtrInput is an input type that accepts StreamConnectionAuthenticationAwsArgs, StreamConnectionAuthenticationAwsPtr and StreamConnectionAuthenticationAwsPtrOutput values.
+// You can construct a concrete instance of `StreamConnectionAuthenticationAwsPtrInput` via:
+//
+//	        StreamConnectionAuthenticationAwsArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamConnectionAuthenticationAwsPtrInput interface {
+	pulumi.Input
+
+	ToStreamConnectionAuthenticationAwsPtrOutput() StreamConnectionAuthenticationAwsPtrOutput
+	ToStreamConnectionAuthenticationAwsPtrOutputWithContext(context.Context) StreamConnectionAuthenticationAwsPtrOutput
+}
+
+type streamConnectionAuthenticationAwsPtrType StreamConnectionAuthenticationAwsArgs
+
+func StreamConnectionAuthenticationAwsPtr(v *StreamConnectionAuthenticationAwsArgs) StreamConnectionAuthenticationAwsPtrInput {
+	return (*streamConnectionAuthenticationAwsPtrType)(v)
+}
+
+func (*streamConnectionAuthenticationAwsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionAuthenticationAws)(nil)).Elem()
+}
+
+func (i *streamConnectionAuthenticationAwsPtrType) ToStreamConnectionAuthenticationAwsPtrOutput() StreamConnectionAuthenticationAwsPtrOutput {
+	return i.ToStreamConnectionAuthenticationAwsPtrOutputWithContext(context.Background())
+}
+
+func (i *streamConnectionAuthenticationAwsPtrType) ToStreamConnectionAuthenticationAwsPtrOutputWithContext(ctx context.Context) StreamConnectionAuthenticationAwsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamConnectionAuthenticationAwsPtrOutput)
+}
+
+type StreamConnectionAuthenticationAwsOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionAuthenticationAwsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamConnectionAuthenticationAws)(nil)).Elem()
+}
+
+func (o StreamConnectionAuthenticationAwsOutput) ToStreamConnectionAuthenticationAwsOutput() StreamConnectionAuthenticationAwsOutput {
+	return o
+}
+
+func (o StreamConnectionAuthenticationAwsOutput) ToStreamConnectionAuthenticationAwsOutputWithContext(ctx context.Context) StreamConnectionAuthenticationAwsOutput {
+	return o
+}
+
+func (o StreamConnectionAuthenticationAwsOutput) ToStreamConnectionAuthenticationAwsPtrOutput() StreamConnectionAuthenticationAwsPtrOutput {
+	return o.ToStreamConnectionAuthenticationAwsPtrOutputWithContext(context.Background())
+}
+
+func (o StreamConnectionAuthenticationAwsOutput) ToStreamConnectionAuthenticationAwsPtrOutputWithContext(ctx context.Context) StreamConnectionAuthenticationAwsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamConnectionAuthenticationAws) *StreamConnectionAuthenticationAws {
+		return &v
+	}).(StreamConnectionAuthenticationAwsPtrOutput)
+}
+
+// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+func (o StreamConnectionAuthenticationAwsOutput) RoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v StreamConnectionAuthenticationAws) string { return v.RoleArn }).(pulumi.StringOutput)
+}
+
+type StreamConnectionAuthenticationAwsPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamConnectionAuthenticationAwsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamConnectionAuthenticationAws)(nil)).Elem()
+}
+
+func (o StreamConnectionAuthenticationAwsPtrOutput) ToStreamConnectionAuthenticationAwsPtrOutput() StreamConnectionAuthenticationAwsPtrOutput {
+	return o
+}
+
+func (o StreamConnectionAuthenticationAwsPtrOutput) ToStreamConnectionAuthenticationAwsPtrOutputWithContext(ctx context.Context) StreamConnectionAuthenticationAwsPtrOutput {
+	return o
+}
+
+func (o StreamConnectionAuthenticationAwsPtrOutput) Elem() StreamConnectionAuthenticationAwsOutput {
+	return o.ApplyT(func(v *StreamConnectionAuthenticationAws) StreamConnectionAuthenticationAws {
+		if v != nil {
+			return *v
+		}
+		var ret StreamConnectionAuthenticationAws
+		return ret
+	}).(StreamConnectionAuthenticationAwsOutput)
+}
+
+// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+func (o StreamConnectionAuthenticationAwsPtrOutput) RoleArn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamConnectionAuthenticationAws) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RoleArn
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -23317,8 +23978,10 @@ func (o StreamInstanceStreamConfigPtrOutput) Tier() pulumi.StringPtrOutput {
 }
 
 type StreamProcessorOptions struct {
+	// Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+	Autoscaling *StreamProcessorOptionsAutoscaling `pulumi:"autoscaling"`
 	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
-	Dlq StreamProcessorOptionsDlq `pulumi:"dlq"`
+	Dlq *StreamProcessorOptionsDlq `pulumi:"dlq"`
 }
 
 // StreamProcessorOptionsInput is an input type that accepts StreamProcessorOptionsArgs and StreamProcessorOptionsOutput values.
@@ -23333,8 +23996,10 @@ type StreamProcessorOptionsInput interface {
 }
 
 type StreamProcessorOptionsArgs struct {
+	// Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+	Autoscaling StreamProcessorOptionsAutoscalingPtrInput `pulumi:"autoscaling"`
 	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
-	Dlq StreamProcessorOptionsDlqInput `pulumi:"dlq"`
+	Dlq StreamProcessorOptionsDlqPtrInput `pulumi:"dlq"`
 }
 
 func (StreamProcessorOptionsArgs) ElementType() reflect.Type {
@@ -23414,9 +24079,14 @@ func (o StreamProcessorOptionsOutput) ToStreamProcessorOptionsPtrOutputWithConte
 	}).(StreamProcessorOptionsPtrOutput)
 }
 
+// Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+func (o StreamProcessorOptionsOutput) Autoscaling() StreamProcessorOptionsAutoscalingPtrOutput {
+	return o.ApplyT(func(v StreamProcessorOptions) *StreamProcessorOptionsAutoscaling { return v.Autoscaling }).(StreamProcessorOptionsAutoscalingPtrOutput)
+}
+
 // Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
-func (o StreamProcessorOptionsOutput) Dlq() StreamProcessorOptionsDlqOutput {
-	return o.ApplyT(func(v StreamProcessorOptions) StreamProcessorOptionsDlq { return v.Dlq }).(StreamProcessorOptionsDlqOutput)
+func (o StreamProcessorOptionsOutput) Dlq() StreamProcessorOptionsDlqPtrOutput {
+	return o.ApplyT(func(v StreamProcessorOptions) *StreamProcessorOptionsDlq { return v.Dlq }).(StreamProcessorOptionsDlqPtrOutput)
 }
 
 type StreamProcessorOptionsPtrOutput struct{ *pulumi.OutputState }
@@ -23443,14 +24113,180 @@ func (o StreamProcessorOptionsPtrOutput) Elem() StreamProcessorOptionsOutput {
 	}).(StreamProcessorOptionsOutput)
 }
 
+// Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+func (o StreamProcessorOptionsPtrOutput) Autoscaling() StreamProcessorOptionsAutoscalingPtrOutput {
+	return o.ApplyT(func(v *StreamProcessorOptions) *StreamProcessorOptionsAutoscaling {
+		if v == nil {
+			return nil
+		}
+		return v.Autoscaling
+	}).(StreamProcessorOptionsAutoscalingPtrOutput)
+}
+
 // Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
 func (o StreamProcessorOptionsPtrOutput) Dlq() StreamProcessorOptionsDlqPtrOutput {
 	return o.ApplyT(func(v *StreamProcessorOptions) *StreamProcessorOptionsDlq {
 		if v == nil {
 			return nil
 		}
-		return &v.Dlq
+		return v.Dlq
 	}).(StreamProcessorOptionsDlqPtrOutput)
+}
+
+type StreamProcessorOptionsAutoscaling struct {
+	// Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+	MaxTier *string `pulumi:"maxTier"`
+	// Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+	MinTier *string `pulumi:"minTier"`
+}
+
+// StreamProcessorOptionsAutoscalingInput is an input type that accepts StreamProcessorOptionsAutoscalingArgs and StreamProcessorOptionsAutoscalingOutput values.
+// You can construct a concrete instance of `StreamProcessorOptionsAutoscalingInput` via:
+//
+//	StreamProcessorOptionsAutoscalingArgs{...}
+type StreamProcessorOptionsAutoscalingInput interface {
+	pulumi.Input
+
+	ToStreamProcessorOptionsAutoscalingOutput() StreamProcessorOptionsAutoscalingOutput
+	ToStreamProcessorOptionsAutoscalingOutputWithContext(context.Context) StreamProcessorOptionsAutoscalingOutput
+}
+
+type StreamProcessorOptionsAutoscalingArgs struct {
+	// Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+	MaxTier pulumi.StringPtrInput `pulumi:"maxTier"`
+	// Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+	MinTier pulumi.StringPtrInput `pulumi:"minTier"`
+}
+
+func (StreamProcessorOptionsAutoscalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamProcessorOptionsAutoscaling)(nil)).Elem()
+}
+
+func (i StreamProcessorOptionsAutoscalingArgs) ToStreamProcessorOptionsAutoscalingOutput() StreamProcessorOptionsAutoscalingOutput {
+	return i.ToStreamProcessorOptionsAutoscalingOutputWithContext(context.Background())
+}
+
+func (i StreamProcessorOptionsAutoscalingArgs) ToStreamProcessorOptionsAutoscalingOutputWithContext(ctx context.Context) StreamProcessorOptionsAutoscalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamProcessorOptionsAutoscalingOutput)
+}
+
+func (i StreamProcessorOptionsAutoscalingArgs) ToStreamProcessorOptionsAutoscalingPtrOutput() StreamProcessorOptionsAutoscalingPtrOutput {
+	return i.ToStreamProcessorOptionsAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i StreamProcessorOptionsAutoscalingArgs) ToStreamProcessorOptionsAutoscalingPtrOutputWithContext(ctx context.Context) StreamProcessorOptionsAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamProcessorOptionsAutoscalingOutput).ToStreamProcessorOptionsAutoscalingPtrOutputWithContext(ctx)
+}
+
+// StreamProcessorOptionsAutoscalingPtrInput is an input type that accepts StreamProcessorOptionsAutoscalingArgs, StreamProcessorOptionsAutoscalingPtr and StreamProcessorOptionsAutoscalingPtrOutput values.
+// You can construct a concrete instance of `StreamProcessorOptionsAutoscalingPtrInput` via:
+//
+//	        StreamProcessorOptionsAutoscalingArgs{...}
+//
+//	or:
+//
+//	        nil
+type StreamProcessorOptionsAutoscalingPtrInput interface {
+	pulumi.Input
+
+	ToStreamProcessorOptionsAutoscalingPtrOutput() StreamProcessorOptionsAutoscalingPtrOutput
+	ToStreamProcessorOptionsAutoscalingPtrOutputWithContext(context.Context) StreamProcessorOptionsAutoscalingPtrOutput
+}
+
+type streamProcessorOptionsAutoscalingPtrType StreamProcessorOptionsAutoscalingArgs
+
+func StreamProcessorOptionsAutoscalingPtr(v *StreamProcessorOptionsAutoscalingArgs) StreamProcessorOptionsAutoscalingPtrInput {
+	return (*streamProcessorOptionsAutoscalingPtrType)(v)
+}
+
+func (*streamProcessorOptionsAutoscalingPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamProcessorOptionsAutoscaling)(nil)).Elem()
+}
+
+func (i *streamProcessorOptionsAutoscalingPtrType) ToStreamProcessorOptionsAutoscalingPtrOutput() StreamProcessorOptionsAutoscalingPtrOutput {
+	return i.ToStreamProcessorOptionsAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (i *streamProcessorOptionsAutoscalingPtrType) ToStreamProcessorOptionsAutoscalingPtrOutputWithContext(ctx context.Context) StreamProcessorOptionsAutoscalingPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StreamProcessorOptionsAutoscalingPtrOutput)
+}
+
+type StreamProcessorOptionsAutoscalingOutput struct{ *pulumi.OutputState }
+
+func (StreamProcessorOptionsAutoscalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StreamProcessorOptionsAutoscaling)(nil)).Elem()
+}
+
+func (o StreamProcessorOptionsAutoscalingOutput) ToStreamProcessorOptionsAutoscalingOutput() StreamProcessorOptionsAutoscalingOutput {
+	return o
+}
+
+func (o StreamProcessorOptionsAutoscalingOutput) ToStreamProcessorOptionsAutoscalingOutputWithContext(ctx context.Context) StreamProcessorOptionsAutoscalingOutput {
+	return o
+}
+
+func (o StreamProcessorOptionsAutoscalingOutput) ToStreamProcessorOptionsAutoscalingPtrOutput() StreamProcessorOptionsAutoscalingPtrOutput {
+	return o.ToStreamProcessorOptionsAutoscalingPtrOutputWithContext(context.Background())
+}
+
+func (o StreamProcessorOptionsAutoscalingOutput) ToStreamProcessorOptionsAutoscalingPtrOutputWithContext(ctx context.Context) StreamProcessorOptionsAutoscalingPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StreamProcessorOptionsAutoscaling) *StreamProcessorOptionsAutoscaling {
+		return &v
+	}).(StreamProcessorOptionsAutoscalingPtrOutput)
+}
+
+// Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+func (o StreamProcessorOptionsAutoscalingOutput) MaxTier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamProcessorOptionsAutoscaling) *string { return v.MaxTier }).(pulumi.StringPtrOutput)
+}
+
+// Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+func (o StreamProcessorOptionsAutoscalingOutput) MinTier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v StreamProcessorOptionsAutoscaling) *string { return v.MinTier }).(pulumi.StringPtrOutput)
+}
+
+type StreamProcessorOptionsAutoscalingPtrOutput struct{ *pulumi.OutputState }
+
+func (StreamProcessorOptionsAutoscalingPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StreamProcessorOptionsAutoscaling)(nil)).Elem()
+}
+
+func (o StreamProcessorOptionsAutoscalingPtrOutput) ToStreamProcessorOptionsAutoscalingPtrOutput() StreamProcessorOptionsAutoscalingPtrOutput {
+	return o
+}
+
+func (o StreamProcessorOptionsAutoscalingPtrOutput) ToStreamProcessorOptionsAutoscalingPtrOutputWithContext(ctx context.Context) StreamProcessorOptionsAutoscalingPtrOutput {
+	return o
+}
+
+func (o StreamProcessorOptionsAutoscalingPtrOutput) Elem() StreamProcessorOptionsAutoscalingOutput {
+	return o.ApplyT(func(v *StreamProcessorOptionsAutoscaling) StreamProcessorOptionsAutoscaling {
+		if v != nil {
+			return *v
+		}
+		var ret StreamProcessorOptionsAutoscaling
+		return ret
+	}).(StreamProcessorOptionsAutoscalingOutput)
+}
+
+// Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+func (o StreamProcessorOptionsAutoscalingPtrOutput) MaxTier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamProcessorOptionsAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MaxTier
+	}).(pulumi.StringPtrOutput)
+}
+
+// Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+func (o StreamProcessorOptionsAutoscalingPtrOutput) MinTier() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *StreamProcessorOptionsAutoscaling) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinTier
+	}).(pulumi.StringPtrOutput)
 }
 
 type StreamProcessorOptionsDlq struct {
@@ -32934,6 +33770,1121 @@ func (o GetBackupCompliancePolicyPolicyItemYearlyArrayOutput) Index(i pulumi.Int
 	}).(GetBackupCompliancePolicyPolicyItemYearlyOutput)
 }
 
+type GetCloudBackupCollectionRestoreJobCollection struct {
+	// Collection requested to restore, as `database.collection`.
+	SourceNamespace string `pulumi:"sourceNamespace"`
+	// Requested target collection as `database.collection`; if empty, source namespace is used.
+	TargetNamespace string `pulumi:"targetNamespace"`
+}
+
+// GetCloudBackupCollectionRestoreJobCollectionInput is an input type that accepts GetCloudBackupCollectionRestoreJobCollectionArgs and GetCloudBackupCollectionRestoreJobCollectionOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobCollectionInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobCollectionArgs{...}
+type GetCloudBackupCollectionRestoreJobCollectionInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobCollectionOutput() GetCloudBackupCollectionRestoreJobCollectionOutput
+	ToGetCloudBackupCollectionRestoreJobCollectionOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobCollectionOutput
+}
+
+type GetCloudBackupCollectionRestoreJobCollectionArgs struct {
+	// Collection requested to restore, as `database.collection`.
+	SourceNamespace pulumi.StringInput `pulumi:"sourceNamespace"`
+	// Requested target collection as `database.collection`; if empty, source namespace is used.
+	TargetNamespace pulumi.StringInput `pulumi:"targetNamespace"`
+}
+
+func (GetCloudBackupCollectionRestoreJobCollectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobCollection)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobCollectionArgs) ToGetCloudBackupCollectionRestoreJobCollectionOutput() GetCloudBackupCollectionRestoreJobCollectionOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobCollectionOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobCollectionArgs) ToGetCloudBackupCollectionRestoreJobCollectionOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobCollectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobCollectionOutput)
+}
+
+// GetCloudBackupCollectionRestoreJobCollectionArrayInput is an input type that accepts GetCloudBackupCollectionRestoreJobCollectionArray and GetCloudBackupCollectionRestoreJobCollectionArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobCollectionArrayInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobCollectionArray{ GetCloudBackupCollectionRestoreJobCollectionArgs{...} }
+type GetCloudBackupCollectionRestoreJobCollectionArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobCollectionArrayOutput() GetCloudBackupCollectionRestoreJobCollectionArrayOutput
+	ToGetCloudBackupCollectionRestoreJobCollectionArrayOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobCollectionArrayOutput
+}
+
+type GetCloudBackupCollectionRestoreJobCollectionArray []GetCloudBackupCollectionRestoreJobCollectionInput
+
+func (GetCloudBackupCollectionRestoreJobCollectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupCollectionRestoreJobCollection)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobCollectionArray) ToGetCloudBackupCollectionRestoreJobCollectionArrayOutput() GetCloudBackupCollectionRestoreJobCollectionArrayOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobCollectionArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobCollectionArray) ToGetCloudBackupCollectionRestoreJobCollectionArrayOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobCollectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobCollectionArrayOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobCollectionOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobCollectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobCollection)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobCollectionOutput) ToGetCloudBackupCollectionRestoreJobCollectionOutput() GetCloudBackupCollectionRestoreJobCollectionOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobCollectionOutput) ToGetCloudBackupCollectionRestoreJobCollectionOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobCollectionOutput {
+	return o
+}
+
+// Collection requested to restore, as `database.collection`.
+func (o GetCloudBackupCollectionRestoreJobCollectionOutput) SourceNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobCollection) string { return v.SourceNamespace }).(pulumi.StringOutput)
+}
+
+// Requested target collection as `database.collection`; if empty, source namespace is used.
+func (o GetCloudBackupCollectionRestoreJobCollectionOutput) TargetNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobCollection) string { return v.TargetNamespace }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobCollectionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobCollectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupCollectionRestoreJobCollection)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobCollectionArrayOutput) ToGetCloudBackupCollectionRestoreJobCollectionArrayOutput() GetCloudBackupCollectionRestoreJobCollectionArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobCollectionArrayOutput) ToGetCloudBackupCollectionRestoreJobCollectionArrayOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobCollectionArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobCollectionArrayOutput) Index(i pulumi.IntInput) GetCloudBackupCollectionRestoreJobCollectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupCollectionRestoreJobCollection {
+		return vs[0].([]GetCloudBackupCollectionRestoreJobCollection)[vs[1].(int)]
+	}).(GetCloudBackupCollectionRestoreJobCollectionOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobCollectionIndexStatus struct {
+	// Error message if index build failed.
+	ErrorMessage string `pulumi:"errorMessage"`
+	// List of index specifications that failed to build (up to 64 items).
+	FailedIndexes []string `pulumi:"failedIndexes"`
+	// Index build state indicating the status of index creation during or after a restore operation.
+	State string `pulumi:"state"`
+}
+
+// GetCloudBackupCollectionRestoreJobCollectionIndexStatusInput is an input type that accepts GetCloudBackupCollectionRestoreJobCollectionIndexStatusArgs and GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobCollectionIndexStatusInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobCollectionIndexStatusArgs{...}
+type GetCloudBackupCollectionRestoreJobCollectionIndexStatusInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput() GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput
+	ToGetCloudBackupCollectionRestoreJobCollectionIndexStatusOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput
+}
+
+type GetCloudBackupCollectionRestoreJobCollectionIndexStatusArgs struct {
+	// Error message if index build failed.
+	ErrorMessage pulumi.StringInput `pulumi:"errorMessage"`
+	// List of index specifications that failed to build (up to 64 items).
+	FailedIndexes pulumi.StringArrayInput `pulumi:"failedIndexes"`
+	// Index build state indicating the status of index creation during or after a restore operation.
+	State pulumi.StringInput `pulumi:"state"`
+}
+
+func (GetCloudBackupCollectionRestoreJobCollectionIndexStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobCollectionIndexStatus)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobCollectionIndexStatusArgs) ToGetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput() GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobCollectionIndexStatusOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobCollectionIndexStatusArgs) ToGetCloudBackupCollectionRestoreJobCollectionIndexStatusOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobCollectionIndexStatus)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput) ToGetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput() GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput) ToGetCloudBackupCollectionRestoreJobCollectionIndexStatusOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput {
+	return o
+}
+
+// Error message if index build failed.
+func (o GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput) ErrorMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobCollectionIndexStatus) string { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+// List of index specifications that failed to build (up to 64 items).
+func (o GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput) FailedIndexes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobCollectionIndexStatus) []string { return v.FailedIndexes }).(pulumi.StringArrayOutput)
+}
+
+// Index build state indicating the status of index creation during or after a restore operation.
+func (o GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobCollectionIndexStatus) string { return v.State }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobCollectionsResult struct {
+	// Actual target namespace after restore (e.g. after conflict rename).
+	EffectiveTargetNamespace string `pulumi:"effectiveTargetNamespace"`
+	// Index build status for a collection within a restore job.
+	IndexStatus GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatus `pulumi:"indexStatus"`
+	// Number of documents restored so far.
+	RestoredDocuments int `pulumi:"restoredDocuments"`
+	// Source namespace that was requested to restore.
+	SourceNamespace string `pulumi:"sourceNamespace"`
+	// Current state of this collection within the restore job.
+	State string `pulumi:"state"`
+	// Requested target namespace for the restored collection.
+	TargetNamespace string `pulumi:"targetNamespace"`
+	// Total document count for this collection.
+	TotalDocuments int `pulumi:"totalDocuments"`
+}
+
+// GetCloudBackupCollectionRestoreJobCollectionsResultInput is an input type that accepts GetCloudBackupCollectionRestoreJobCollectionsResultArgs and GetCloudBackupCollectionRestoreJobCollectionsResultOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobCollectionsResultInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobCollectionsResultArgs{...}
+type GetCloudBackupCollectionRestoreJobCollectionsResultInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobCollectionsResultOutput() GetCloudBackupCollectionRestoreJobCollectionsResultOutput
+	ToGetCloudBackupCollectionRestoreJobCollectionsResultOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobCollectionsResultOutput
+}
+
+type GetCloudBackupCollectionRestoreJobCollectionsResultArgs struct {
+	// Actual target namespace after restore (e.g. after conflict rename).
+	EffectiveTargetNamespace pulumi.StringInput `pulumi:"effectiveTargetNamespace"`
+	// Index build status for a collection within a restore job.
+	IndexStatus GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusInput `pulumi:"indexStatus"`
+	// Number of documents restored so far.
+	RestoredDocuments pulumi.IntInput `pulumi:"restoredDocuments"`
+	// Source namespace that was requested to restore.
+	SourceNamespace pulumi.StringInput `pulumi:"sourceNamespace"`
+	// Current state of this collection within the restore job.
+	State pulumi.StringInput `pulumi:"state"`
+	// Requested target namespace for the restored collection.
+	TargetNamespace pulumi.StringInput `pulumi:"targetNamespace"`
+	// Total document count for this collection.
+	TotalDocuments pulumi.IntInput `pulumi:"totalDocuments"`
+}
+
+func (GetCloudBackupCollectionRestoreJobCollectionsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobCollectionsResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobCollectionsResultArgs) ToGetCloudBackupCollectionRestoreJobCollectionsResultOutput() GetCloudBackupCollectionRestoreJobCollectionsResultOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobCollectionsResultOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobCollectionsResultArgs) ToGetCloudBackupCollectionRestoreJobCollectionsResultOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobCollectionsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobCollectionsResultOutput)
+}
+
+// GetCloudBackupCollectionRestoreJobCollectionsResultArrayInput is an input type that accepts GetCloudBackupCollectionRestoreJobCollectionsResultArray and GetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobCollectionsResultArrayInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobCollectionsResultArray{ GetCloudBackupCollectionRestoreJobCollectionsResultArgs{...} }
+type GetCloudBackupCollectionRestoreJobCollectionsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput() GetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput
+	ToGetCloudBackupCollectionRestoreJobCollectionsResultArrayOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput
+}
+
+type GetCloudBackupCollectionRestoreJobCollectionsResultArray []GetCloudBackupCollectionRestoreJobCollectionsResultInput
+
+func (GetCloudBackupCollectionRestoreJobCollectionsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupCollectionRestoreJobCollectionsResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobCollectionsResultArray) ToGetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput() GetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobCollectionsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobCollectionsResultArray) ToGetCloudBackupCollectionRestoreJobCollectionsResultArrayOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobCollectionsResultOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobCollectionsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobCollectionsResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultOutput) ToGetCloudBackupCollectionRestoreJobCollectionsResultOutput() GetCloudBackupCollectionRestoreJobCollectionsResultOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultOutput) ToGetCloudBackupCollectionRestoreJobCollectionsResultOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobCollectionsResultOutput {
+	return o
+}
+
+// Actual target namespace after restore (e.g. after conflict rename).
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultOutput) EffectiveTargetNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobCollectionsResult) string { return v.EffectiveTargetNamespace }).(pulumi.StringOutput)
+}
+
+// Index build status for a collection within a restore job.
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultOutput) IndexStatus() GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobCollectionsResult) GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatus {
+		return v.IndexStatus
+	}).(GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput)
+}
+
+// Number of documents restored so far.
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultOutput) RestoredDocuments() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobCollectionsResult) int { return v.RestoredDocuments }).(pulumi.IntOutput)
+}
+
+// Source namespace that was requested to restore.
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultOutput) SourceNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobCollectionsResult) string { return v.SourceNamespace }).(pulumi.StringOutput)
+}
+
+// Current state of this collection within the restore job.
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobCollectionsResult) string { return v.State }).(pulumi.StringOutput)
+}
+
+// Requested target namespace for the restored collection.
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultOutput) TargetNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobCollectionsResult) string { return v.TargetNamespace }).(pulumi.StringOutput)
+}
+
+// Total document count for this collection.
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultOutput) TotalDocuments() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobCollectionsResult) int { return v.TotalDocuments }).(pulumi.IntOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupCollectionRestoreJobCollectionsResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput) ToGetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput() GetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput) ToGetCloudBackupCollectionRestoreJobCollectionsResultArrayOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput) Index(i pulumi.IntInput) GetCloudBackupCollectionRestoreJobCollectionsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupCollectionRestoreJobCollectionsResult {
+		return vs[0].([]GetCloudBackupCollectionRestoreJobCollectionsResult)[vs[1].(int)]
+	}).(GetCloudBackupCollectionRestoreJobCollectionsResultOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatus struct {
+	// Error message if index build failed.
+	ErrorMessage string `pulumi:"errorMessage"`
+	// List of index specifications that failed to build (up to 64 items).
+	FailedIndexes []string `pulumi:"failedIndexes"`
+	// Index build state indicating the status of index creation during or after a restore operation.
+	State string `pulumi:"state"`
+}
+
+// GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusInput is an input type that accepts GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusArgs and GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusArgs{...}
+type GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput() GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput
+	ToGetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput
+}
+
+type GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusArgs struct {
+	// Error message if index build failed.
+	ErrorMessage pulumi.StringInput `pulumi:"errorMessage"`
+	// List of index specifications that failed to build (up to 64 items).
+	FailedIndexes pulumi.StringArrayInput `pulumi:"failedIndexes"`
+	// Index build state indicating the status of index creation during or after a restore operation.
+	State pulumi.StringInput `pulumi:"state"`
+}
+
+func (GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatus)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusArgs) ToGetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput() GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusArgs) ToGetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatus)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput) ToGetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput() GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput) ToGetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput {
+	return o
+}
+
+// Error message if index build failed.
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput) ErrorMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatus) string { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+// List of index specifications that failed to build (up to 64 items).
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput) FailedIndexes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatus) []string {
+		return v.FailedIndexes
+	}).(pulumi.StringArrayOutput)
+}
+
+// Index build state indicating the status of index creation during or after a restore operation.
+func (o GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatus) string { return v.State }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobDatabase struct {
+	// Database name requested to restore.
+	SourceNamespace string `pulumi:"sourceNamespace"`
+	// Requested target database name; if empty, source database name is used.
+	TargetNamespace string `pulumi:"targetNamespace"`
+}
+
+// GetCloudBackupCollectionRestoreJobDatabaseInput is an input type that accepts GetCloudBackupCollectionRestoreJobDatabaseArgs and GetCloudBackupCollectionRestoreJobDatabaseOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobDatabaseInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobDatabaseArgs{...}
+type GetCloudBackupCollectionRestoreJobDatabaseInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobDatabaseOutput() GetCloudBackupCollectionRestoreJobDatabaseOutput
+	ToGetCloudBackupCollectionRestoreJobDatabaseOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobDatabaseOutput
+}
+
+type GetCloudBackupCollectionRestoreJobDatabaseArgs struct {
+	// Database name requested to restore.
+	SourceNamespace pulumi.StringInput `pulumi:"sourceNamespace"`
+	// Requested target database name; if empty, source database name is used.
+	TargetNamespace pulumi.StringInput `pulumi:"targetNamespace"`
+}
+
+func (GetCloudBackupCollectionRestoreJobDatabaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobDatabase)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobDatabaseArgs) ToGetCloudBackupCollectionRestoreJobDatabaseOutput() GetCloudBackupCollectionRestoreJobDatabaseOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobDatabaseOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobDatabaseArgs) ToGetCloudBackupCollectionRestoreJobDatabaseOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobDatabaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobDatabaseOutput)
+}
+
+// GetCloudBackupCollectionRestoreJobDatabaseArrayInput is an input type that accepts GetCloudBackupCollectionRestoreJobDatabaseArray and GetCloudBackupCollectionRestoreJobDatabaseArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobDatabaseArrayInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobDatabaseArray{ GetCloudBackupCollectionRestoreJobDatabaseArgs{...} }
+type GetCloudBackupCollectionRestoreJobDatabaseArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobDatabaseArrayOutput() GetCloudBackupCollectionRestoreJobDatabaseArrayOutput
+	ToGetCloudBackupCollectionRestoreJobDatabaseArrayOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobDatabaseArrayOutput
+}
+
+type GetCloudBackupCollectionRestoreJobDatabaseArray []GetCloudBackupCollectionRestoreJobDatabaseInput
+
+func (GetCloudBackupCollectionRestoreJobDatabaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupCollectionRestoreJobDatabase)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobDatabaseArray) ToGetCloudBackupCollectionRestoreJobDatabaseArrayOutput() GetCloudBackupCollectionRestoreJobDatabaseArrayOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobDatabaseArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobDatabaseArray) ToGetCloudBackupCollectionRestoreJobDatabaseArrayOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobDatabaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobDatabaseArrayOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobDatabaseOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobDatabaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobDatabase)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobDatabaseOutput) ToGetCloudBackupCollectionRestoreJobDatabaseOutput() GetCloudBackupCollectionRestoreJobDatabaseOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobDatabaseOutput) ToGetCloudBackupCollectionRestoreJobDatabaseOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobDatabaseOutput {
+	return o
+}
+
+// Database name requested to restore.
+func (o GetCloudBackupCollectionRestoreJobDatabaseOutput) SourceNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobDatabase) string { return v.SourceNamespace }).(pulumi.StringOutput)
+}
+
+// Requested target database name; if empty, source database name is used.
+func (o GetCloudBackupCollectionRestoreJobDatabaseOutput) TargetNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobDatabase) string { return v.TargetNamespace }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobDatabaseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobDatabaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupCollectionRestoreJobDatabase)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobDatabaseArrayOutput) ToGetCloudBackupCollectionRestoreJobDatabaseArrayOutput() GetCloudBackupCollectionRestoreJobDatabaseArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobDatabaseArrayOutput) ToGetCloudBackupCollectionRestoreJobDatabaseArrayOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobDatabaseArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobDatabaseArrayOutput) Index(i pulumi.IntInput) GetCloudBackupCollectionRestoreJobDatabaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupCollectionRestoreJobDatabase {
+		return vs[0].([]GetCloudBackupCollectionRestoreJobDatabase)[vs[1].(int)]
+	}).(GetCloudBackupCollectionRestoreJobDatabaseOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobIndexStatus struct {
+	// Number of collections that failed to build indexes.
+	FailedCollectionCount int `pulumi:"failedCollectionCount"`
+	// Index build state indicating the status of index creation during or after a restore operation.
+	State string `pulumi:"state"`
+}
+
+// GetCloudBackupCollectionRestoreJobIndexStatusInput is an input type that accepts GetCloudBackupCollectionRestoreJobIndexStatusArgs and GetCloudBackupCollectionRestoreJobIndexStatusOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobIndexStatusInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobIndexStatusArgs{...}
+type GetCloudBackupCollectionRestoreJobIndexStatusInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobIndexStatusOutput() GetCloudBackupCollectionRestoreJobIndexStatusOutput
+	ToGetCloudBackupCollectionRestoreJobIndexStatusOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobIndexStatusOutput
+}
+
+type GetCloudBackupCollectionRestoreJobIndexStatusArgs struct {
+	// Number of collections that failed to build indexes.
+	FailedCollectionCount pulumi.IntInput `pulumi:"failedCollectionCount"`
+	// Index build state indicating the status of index creation during or after a restore operation.
+	State pulumi.StringInput `pulumi:"state"`
+}
+
+func (GetCloudBackupCollectionRestoreJobIndexStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobIndexStatus)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobIndexStatusArgs) ToGetCloudBackupCollectionRestoreJobIndexStatusOutput() GetCloudBackupCollectionRestoreJobIndexStatusOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobIndexStatusOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobIndexStatusArgs) ToGetCloudBackupCollectionRestoreJobIndexStatusOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobIndexStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobIndexStatusOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobIndexStatusOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobIndexStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobIndexStatus)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobIndexStatusOutput) ToGetCloudBackupCollectionRestoreJobIndexStatusOutput() GetCloudBackupCollectionRestoreJobIndexStatusOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobIndexStatusOutput) ToGetCloudBackupCollectionRestoreJobIndexStatusOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobIndexStatusOutput {
+	return o
+}
+
+// Number of collections that failed to build indexes.
+func (o GetCloudBackupCollectionRestoreJobIndexStatusOutput) FailedCollectionCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobIndexStatus) int { return v.FailedCollectionCount }).(pulumi.IntOutput)
+}
+
+// Index build state indicating the status of index creation during or after a restore operation.
+func (o GetCloudBackupCollectionRestoreJobIndexStatusOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobIndexStatus) string { return v.State }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobsResult struct {
+	// Suffix applied to restored collection names.
+	CollectionSuffix string `pulumi:"collectionSuffix"`
+	// List of collections in the restore scope (up to 100 items).
+	Collections []GetCloudBackupCollectionRestoreJobsResultCollection `pulumi:"collections"`
+	// Date and time when the restore job was created (ISO 8601 format in UTC).
+	CreatedAt string `pulumi:"createdAt"`
+	// Suffix applied to restored database names.
+	DatabaseSuffix string `pulumi:"databaseSuffix"`
+	// List of databases in the restore scope (up to 100 items).
+	Databases []GetCloudBackupCollectionRestoreJobsResultDatabase `pulumi:"databases"`
+	// Error message when the job has failed or been canceled.
+	ErrorMessage string `pulumi:"errorMessage"`
+	// Date and time when the restore job finished (ISO 8601 format in UTC).
+	FinishedAt string `pulumi:"finishedAt"`
+	// Overall index build status for a collection restore job.
+	IndexStatus GetCloudBackupCollectionRestoreJobsResultIndexStatus `pulumi:"indexStatus"`
+	// Strategy for restoring indexes (all, none, or all except TTL).
+	IndexStrategy string `pulumi:"indexStrategy"`
+	// Unique 24-hexadecimal digit string that identifies the collection restore job.
+	JobId string `pulumi:"jobId"`
+	// Oplog increment for point-in-time restore.
+	OplogInc int `pulumi:"oplogInc"`
+	// Oplog timestamp (seconds part) for point-in-time restore.
+	OplogTs int `pulumi:"oplogTs"`
+	// Point-in-time restore time in seconds since UNIX epoch.
+	PointInTimeUtcSeconds int `pulumi:"pointInTimeUtcSeconds"`
+	// Number of documents restored so far across all supported collections.
+	RestoredDocuments int `pulumi:"restoredDocuments"`
+	// Unique 24-hexadecimal digit string that identifies the snapshot being restored.
+	SnapshotId string `pulumi:"snapshotId"`
+	// Current state of the collection restore job.
+	State string `pulumi:"state"`
+	// Human-readable label that identifies the target cluster.
+	TargetClusterName string `pulumi:"targetClusterName"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	TargetProjectId string `pulumi:"targetProjectId"`
+	// Total number of documents across all supported collections in the restore job. This value may initially reflect an estimate based on collection metadata and can change as accurate document counts become available during the restore.
+	TotalDocuments int `pulumi:"totalDocuments"`
+	// Strategy for writing data on the target (create as new or overwrite existing). With `OVERWRITE_EXISTING`, any writes to the affected databases or collections during the restore will be lost when the existing namespaces are dropped and replaced. To avoid data loss, stop writes to the affected namespaces before starting the restore.
+	WriteStrategy string `pulumi:"writeStrategy"`
+}
+
+// GetCloudBackupCollectionRestoreJobsResultInput is an input type that accepts GetCloudBackupCollectionRestoreJobsResultArgs and GetCloudBackupCollectionRestoreJobsResultOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobsResultInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobsResultArgs{...}
+type GetCloudBackupCollectionRestoreJobsResultInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobsResultOutput() GetCloudBackupCollectionRestoreJobsResultOutput
+	ToGetCloudBackupCollectionRestoreJobsResultOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobsResultOutput
+}
+
+type GetCloudBackupCollectionRestoreJobsResultArgs struct {
+	// Suffix applied to restored collection names.
+	CollectionSuffix pulumi.StringInput `pulumi:"collectionSuffix"`
+	// List of collections in the restore scope (up to 100 items).
+	Collections GetCloudBackupCollectionRestoreJobsResultCollectionArrayInput `pulumi:"collections"`
+	// Date and time when the restore job was created (ISO 8601 format in UTC).
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Suffix applied to restored database names.
+	DatabaseSuffix pulumi.StringInput `pulumi:"databaseSuffix"`
+	// List of databases in the restore scope (up to 100 items).
+	Databases GetCloudBackupCollectionRestoreJobsResultDatabaseArrayInput `pulumi:"databases"`
+	// Error message when the job has failed or been canceled.
+	ErrorMessage pulumi.StringInput `pulumi:"errorMessage"`
+	// Date and time when the restore job finished (ISO 8601 format in UTC).
+	FinishedAt pulumi.StringInput `pulumi:"finishedAt"`
+	// Overall index build status for a collection restore job.
+	IndexStatus GetCloudBackupCollectionRestoreJobsResultIndexStatusInput `pulumi:"indexStatus"`
+	// Strategy for restoring indexes (all, none, or all except TTL).
+	IndexStrategy pulumi.StringInput `pulumi:"indexStrategy"`
+	// Unique 24-hexadecimal digit string that identifies the collection restore job.
+	JobId pulumi.StringInput `pulumi:"jobId"`
+	// Oplog increment for point-in-time restore.
+	OplogInc pulumi.IntInput `pulumi:"oplogInc"`
+	// Oplog timestamp (seconds part) for point-in-time restore.
+	OplogTs pulumi.IntInput `pulumi:"oplogTs"`
+	// Point-in-time restore time in seconds since UNIX epoch.
+	PointInTimeUtcSeconds pulumi.IntInput `pulumi:"pointInTimeUtcSeconds"`
+	// Number of documents restored so far across all supported collections.
+	RestoredDocuments pulumi.IntInput `pulumi:"restoredDocuments"`
+	// Unique 24-hexadecimal digit string that identifies the snapshot being restored.
+	SnapshotId pulumi.StringInput `pulumi:"snapshotId"`
+	// Current state of the collection restore job.
+	State pulumi.StringInput `pulumi:"state"`
+	// Human-readable label that identifies the target cluster.
+	TargetClusterName pulumi.StringInput `pulumi:"targetClusterName"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	TargetProjectId pulumi.StringInput `pulumi:"targetProjectId"`
+	// Total number of documents across all supported collections in the restore job. This value may initially reflect an estimate based on collection metadata and can change as accurate document counts become available during the restore.
+	TotalDocuments pulumi.IntInput `pulumi:"totalDocuments"`
+	// Strategy for writing data on the target (create as new or overwrite existing). With `OVERWRITE_EXISTING`, any writes to the affected databases or collections during the restore will be lost when the existing namespaces are dropped and replaced. To avoid data loss, stop writes to the affected namespaces before starting the restore.
+	WriteStrategy pulumi.StringInput `pulumi:"writeStrategy"`
+}
+
+func (GetCloudBackupCollectionRestoreJobsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobsResultArgs) ToGetCloudBackupCollectionRestoreJobsResultOutput() GetCloudBackupCollectionRestoreJobsResultOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobsResultOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobsResultArgs) ToGetCloudBackupCollectionRestoreJobsResultOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobsResultOutput)
+}
+
+// GetCloudBackupCollectionRestoreJobsResultArrayInput is an input type that accepts GetCloudBackupCollectionRestoreJobsResultArray and GetCloudBackupCollectionRestoreJobsResultArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobsResultArrayInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobsResultArray{ GetCloudBackupCollectionRestoreJobsResultArgs{...} }
+type GetCloudBackupCollectionRestoreJobsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobsResultArrayOutput() GetCloudBackupCollectionRestoreJobsResultArrayOutput
+	ToGetCloudBackupCollectionRestoreJobsResultArrayOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobsResultArrayOutput
+}
+
+type GetCloudBackupCollectionRestoreJobsResultArray []GetCloudBackupCollectionRestoreJobsResultInput
+
+func (GetCloudBackupCollectionRestoreJobsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupCollectionRestoreJobsResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobsResultArray) ToGetCloudBackupCollectionRestoreJobsResultArrayOutput() GetCloudBackupCollectionRestoreJobsResultArrayOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobsResultArray) ToGetCloudBackupCollectionRestoreJobsResultArrayOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobsResultArrayOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobsResultOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) ToGetCloudBackupCollectionRestoreJobsResultOutput() GetCloudBackupCollectionRestoreJobsResultOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) ToGetCloudBackupCollectionRestoreJobsResultOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobsResultOutput {
+	return o
+}
+
+// Suffix applied to restored collection names.
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) CollectionSuffix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) string { return v.CollectionSuffix }).(pulumi.StringOutput)
+}
+
+// List of collections in the restore scope (up to 100 items).
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) Collections() GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) []GetCloudBackupCollectionRestoreJobsResultCollection {
+		return v.Collections
+	}).(GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput)
+}
+
+// Date and time when the restore job was created (ISO 8601 format in UTC).
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Suffix applied to restored database names.
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) DatabaseSuffix() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) string { return v.DatabaseSuffix }).(pulumi.StringOutput)
+}
+
+// List of databases in the restore scope (up to 100 items).
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) Databases() GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) []GetCloudBackupCollectionRestoreJobsResultDatabase {
+		return v.Databases
+	}).(GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput)
+}
+
+// Error message when the job has failed or been canceled.
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) ErrorMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+// Date and time when the restore job finished (ISO 8601 format in UTC).
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) FinishedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) string { return v.FinishedAt }).(pulumi.StringOutput)
+}
+
+// Overall index build status for a collection restore job.
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) IndexStatus() GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) GetCloudBackupCollectionRestoreJobsResultIndexStatus {
+		return v.IndexStatus
+	}).(GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput)
+}
+
+// Strategy for restoring indexes (all, none, or all except TTL).
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) IndexStrategy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) string { return v.IndexStrategy }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the collection restore job.
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) JobId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) string { return v.JobId }).(pulumi.StringOutput)
+}
+
+// Oplog increment for point-in-time restore.
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) OplogInc() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) int { return v.OplogInc }).(pulumi.IntOutput)
+}
+
+// Oplog timestamp (seconds part) for point-in-time restore.
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) OplogTs() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) int { return v.OplogTs }).(pulumi.IntOutput)
+}
+
+// Point-in-time restore time in seconds since UNIX epoch.
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) PointInTimeUtcSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) int { return v.PointInTimeUtcSeconds }).(pulumi.IntOutput)
+}
+
+// Number of documents restored so far across all supported collections.
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) RestoredDocuments() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) int { return v.RestoredDocuments }).(pulumi.IntOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the snapshot being restored.
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) SnapshotId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) string { return v.SnapshotId }).(pulumi.StringOutput)
+}
+
+// Current state of the collection restore job.
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) string { return v.State }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the target cluster.
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) TargetClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) string { return v.TargetClusterName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) TargetProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) string { return v.TargetProjectId }).(pulumi.StringOutput)
+}
+
+// Total number of documents across all supported collections in the restore job. This value may initially reflect an estimate based on collection metadata and can change as accurate document counts become available during the restore.
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) TotalDocuments() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) int { return v.TotalDocuments }).(pulumi.IntOutput)
+}
+
+// Strategy for writing data on the target (create as new or overwrite existing). With `OVERWRITE_EXISTING`, any writes to the affected databases or collections during the restore will be lost when the existing namespaces are dropped and replaced. To avoid data loss, stop writes to the affected namespaces before starting the restore.
+func (o GetCloudBackupCollectionRestoreJobsResultOutput) WriteStrategy() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResult) string { return v.WriteStrategy }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupCollectionRestoreJobsResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultArrayOutput) ToGetCloudBackupCollectionRestoreJobsResultArrayOutput() GetCloudBackupCollectionRestoreJobsResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultArrayOutput) ToGetCloudBackupCollectionRestoreJobsResultArrayOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobsResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultArrayOutput) Index(i pulumi.IntInput) GetCloudBackupCollectionRestoreJobsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupCollectionRestoreJobsResult {
+		return vs[0].([]GetCloudBackupCollectionRestoreJobsResult)[vs[1].(int)]
+	}).(GetCloudBackupCollectionRestoreJobsResultOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobsResultCollection struct {
+	// Collection requested to restore, as `database.collection`.
+	SourceNamespace string `pulumi:"sourceNamespace"`
+	// Requested target collection as `database.collection`; if empty, source namespace is used.
+	TargetNamespace string `pulumi:"targetNamespace"`
+}
+
+// GetCloudBackupCollectionRestoreJobsResultCollectionInput is an input type that accepts GetCloudBackupCollectionRestoreJobsResultCollectionArgs and GetCloudBackupCollectionRestoreJobsResultCollectionOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobsResultCollectionInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobsResultCollectionArgs{...}
+type GetCloudBackupCollectionRestoreJobsResultCollectionInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobsResultCollectionOutput() GetCloudBackupCollectionRestoreJobsResultCollectionOutput
+	ToGetCloudBackupCollectionRestoreJobsResultCollectionOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobsResultCollectionOutput
+}
+
+type GetCloudBackupCollectionRestoreJobsResultCollectionArgs struct {
+	// Collection requested to restore, as `database.collection`.
+	SourceNamespace pulumi.StringInput `pulumi:"sourceNamespace"`
+	// Requested target collection as `database.collection`; if empty, source namespace is used.
+	TargetNamespace pulumi.StringInput `pulumi:"targetNamespace"`
+}
+
+func (GetCloudBackupCollectionRestoreJobsResultCollectionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResultCollection)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobsResultCollectionArgs) ToGetCloudBackupCollectionRestoreJobsResultCollectionOutput() GetCloudBackupCollectionRestoreJobsResultCollectionOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobsResultCollectionOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobsResultCollectionArgs) ToGetCloudBackupCollectionRestoreJobsResultCollectionOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobsResultCollectionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobsResultCollectionOutput)
+}
+
+// GetCloudBackupCollectionRestoreJobsResultCollectionArrayInput is an input type that accepts GetCloudBackupCollectionRestoreJobsResultCollectionArray and GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobsResultCollectionArrayInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobsResultCollectionArray{ GetCloudBackupCollectionRestoreJobsResultCollectionArgs{...} }
+type GetCloudBackupCollectionRestoreJobsResultCollectionArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput() GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput
+	ToGetCloudBackupCollectionRestoreJobsResultCollectionArrayOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput
+}
+
+type GetCloudBackupCollectionRestoreJobsResultCollectionArray []GetCloudBackupCollectionRestoreJobsResultCollectionInput
+
+func (GetCloudBackupCollectionRestoreJobsResultCollectionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupCollectionRestoreJobsResultCollection)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobsResultCollectionArray) ToGetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput() GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobsResultCollectionArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobsResultCollectionArray) ToGetCloudBackupCollectionRestoreJobsResultCollectionArrayOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobsResultCollectionOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobsResultCollectionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResultCollection)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultCollectionOutput) ToGetCloudBackupCollectionRestoreJobsResultCollectionOutput() GetCloudBackupCollectionRestoreJobsResultCollectionOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultCollectionOutput) ToGetCloudBackupCollectionRestoreJobsResultCollectionOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobsResultCollectionOutput {
+	return o
+}
+
+// Collection requested to restore, as `database.collection`.
+func (o GetCloudBackupCollectionRestoreJobsResultCollectionOutput) SourceNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResultCollection) string { return v.SourceNamespace }).(pulumi.StringOutput)
+}
+
+// Requested target collection as `database.collection`; if empty, source namespace is used.
+func (o GetCloudBackupCollectionRestoreJobsResultCollectionOutput) TargetNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResultCollection) string { return v.TargetNamespace }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupCollectionRestoreJobsResultCollection)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput) ToGetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput() GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput) ToGetCloudBackupCollectionRestoreJobsResultCollectionArrayOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput) Index(i pulumi.IntInput) GetCloudBackupCollectionRestoreJobsResultCollectionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupCollectionRestoreJobsResultCollection {
+		return vs[0].([]GetCloudBackupCollectionRestoreJobsResultCollection)[vs[1].(int)]
+	}).(GetCloudBackupCollectionRestoreJobsResultCollectionOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobsResultDatabase struct {
+	// Database name requested to restore.
+	SourceNamespace string `pulumi:"sourceNamespace"`
+	// Requested target database name; if empty, source database name is used.
+	TargetNamespace string `pulumi:"targetNamespace"`
+}
+
+// GetCloudBackupCollectionRestoreJobsResultDatabaseInput is an input type that accepts GetCloudBackupCollectionRestoreJobsResultDatabaseArgs and GetCloudBackupCollectionRestoreJobsResultDatabaseOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobsResultDatabaseInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobsResultDatabaseArgs{...}
+type GetCloudBackupCollectionRestoreJobsResultDatabaseInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobsResultDatabaseOutput() GetCloudBackupCollectionRestoreJobsResultDatabaseOutput
+	ToGetCloudBackupCollectionRestoreJobsResultDatabaseOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobsResultDatabaseOutput
+}
+
+type GetCloudBackupCollectionRestoreJobsResultDatabaseArgs struct {
+	// Database name requested to restore.
+	SourceNamespace pulumi.StringInput `pulumi:"sourceNamespace"`
+	// Requested target database name; if empty, source database name is used.
+	TargetNamespace pulumi.StringInput `pulumi:"targetNamespace"`
+}
+
+func (GetCloudBackupCollectionRestoreJobsResultDatabaseArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResultDatabase)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobsResultDatabaseArgs) ToGetCloudBackupCollectionRestoreJobsResultDatabaseOutput() GetCloudBackupCollectionRestoreJobsResultDatabaseOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobsResultDatabaseOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobsResultDatabaseArgs) ToGetCloudBackupCollectionRestoreJobsResultDatabaseOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobsResultDatabaseOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobsResultDatabaseOutput)
+}
+
+// GetCloudBackupCollectionRestoreJobsResultDatabaseArrayInput is an input type that accepts GetCloudBackupCollectionRestoreJobsResultDatabaseArray and GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobsResultDatabaseArrayInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobsResultDatabaseArray{ GetCloudBackupCollectionRestoreJobsResultDatabaseArgs{...} }
+type GetCloudBackupCollectionRestoreJobsResultDatabaseArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput() GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput
+	ToGetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput
+}
+
+type GetCloudBackupCollectionRestoreJobsResultDatabaseArray []GetCloudBackupCollectionRestoreJobsResultDatabaseInput
+
+func (GetCloudBackupCollectionRestoreJobsResultDatabaseArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupCollectionRestoreJobsResultDatabase)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobsResultDatabaseArray) ToGetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput() GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobsResultDatabaseArray) ToGetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobsResultDatabaseOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobsResultDatabaseOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResultDatabase)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultDatabaseOutput) ToGetCloudBackupCollectionRestoreJobsResultDatabaseOutput() GetCloudBackupCollectionRestoreJobsResultDatabaseOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultDatabaseOutput) ToGetCloudBackupCollectionRestoreJobsResultDatabaseOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobsResultDatabaseOutput {
+	return o
+}
+
+// Database name requested to restore.
+func (o GetCloudBackupCollectionRestoreJobsResultDatabaseOutput) SourceNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResultDatabase) string { return v.SourceNamespace }).(pulumi.StringOutput)
+}
+
+// Requested target database name; if empty, source database name is used.
+func (o GetCloudBackupCollectionRestoreJobsResultDatabaseOutput) TargetNamespace() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResultDatabase) string { return v.TargetNamespace }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupCollectionRestoreJobsResultDatabase)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput) ToGetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput() GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput) ToGetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput) Index(i pulumi.IntInput) GetCloudBackupCollectionRestoreJobsResultDatabaseOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupCollectionRestoreJobsResultDatabase {
+		return vs[0].([]GetCloudBackupCollectionRestoreJobsResultDatabase)[vs[1].(int)]
+	}).(GetCloudBackupCollectionRestoreJobsResultDatabaseOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobsResultIndexStatus struct {
+	// Number of collections that failed to build indexes.
+	FailedCollectionCount int `pulumi:"failedCollectionCount"`
+	// Index build state indicating the status of index creation during or after a restore operation.
+	State string `pulumi:"state"`
+}
+
+// GetCloudBackupCollectionRestoreJobsResultIndexStatusInput is an input type that accepts GetCloudBackupCollectionRestoreJobsResultIndexStatusArgs and GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput values.
+// You can construct a concrete instance of `GetCloudBackupCollectionRestoreJobsResultIndexStatusInput` via:
+//
+//	GetCloudBackupCollectionRestoreJobsResultIndexStatusArgs{...}
+type GetCloudBackupCollectionRestoreJobsResultIndexStatusInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupCollectionRestoreJobsResultIndexStatusOutput() GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput
+	ToGetCloudBackupCollectionRestoreJobsResultIndexStatusOutputWithContext(context.Context) GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput
+}
+
+type GetCloudBackupCollectionRestoreJobsResultIndexStatusArgs struct {
+	// Number of collections that failed to build indexes.
+	FailedCollectionCount pulumi.IntInput `pulumi:"failedCollectionCount"`
+	// Index build state indicating the status of index creation during or after a restore operation.
+	State pulumi.StringInput `pulumi:"state"`
+}
+
+func (GetCloudBackupCollectionRestoreJobsResultIndexStatusArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResultIndexStatus)(nil)).Elem()
+}
+
+func (i GetCloudBackupCollectionRestoreJobsResultIndexStatusArgs) ToGetCloudBackupCollectionRestoreJobsResultIndexStatusOutput() GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput {
+	return i.ToGetCloudBackupCollectionRestoreJobsResultIndexStatusOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupCollectionRestoreJobsResultIndexStatusArgs) ToGetCloudBackupCollectionRestoreJobsResultIndexStatusOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput)
+}
+
+type GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResultIndexStatus)(nil)).Elem()
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput) ToGetCloudBackupCollectionRestoreJobsResultIndexStatusOutput() GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput {
+	return o
+}
+
+func (o GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput) ToGetCloudBackupCollectionRestoreJobsResultIndexStatusOutputWithContext(ctx context.Context) GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput {
+	return o
+}
+
+// Number of collections that failed to build indexes.
+func (o GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput) FailedCollectionCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResultIndexStatus) int { return v.FailedCollectionCount }).(pulumi.IntOutput)
+}
+
+// Index build state indicating the status of index creation during or after a restore operation.
+func (o GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupCollectionRestoreJobsResultIndexStatus) string { return v.State }).(pulumi.StringOutput)
+}
+
 type GetCloudBackupScheduleCopySetting struct {
 	// Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
 	CloudProvider string `pulumi:"cloudProvider"`
@@ -33836,6 +35787,200 @@ func (o GetCloudBackupSchedulePolicyItemYearlyArrayOutput) Index(i pulumi.IntInp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSchedulePolicyItemYearly {
 		return vs[0].([]GetCloudBackupSchedulePolicyItemYearly)[vs[1].(int)]
 	}).(GetCloudBackupSchedulePolicyItemYearlyOutput)
+}
+
+type GetCloudBackupSnapshotDatabaseCollectionsResult struct {
+	// Human-readable label that identifies the collection in the database within the snapshot.
+	Name string `pulumi:"name"`
+}
+
+// GetCloudBackupSnapshotDatabaseCollectionsResultInput is an input type that accepts GetCloudBackupSnapshotDatabaseCollectionsResultArgs and GetCloudBackupSnapshotDatabaseCollectionsResultOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotDatabaseCollectionsResultInput` via:
+//
+//	GetCloudBackupSnapshotDatabaseCollectionsResultArgs{...}
+type GetCloudBackupSnapshotDatabaseCollectionsResultInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotDatabaseCollectionsResultOutput() GetCloudBackupSnapshotDatabaseCollectionsResultOutput
+	ToGetCloudBackupSnapshotDatabaseCollectionsResultOutputWithContext(context.Context) GetCloudBackupSnapshotDatabaseCollectionsResultOutput
+}
+
+type GetCloudBackupSnapshotDatabaseCollectionsResultArgs struct {
+	// Human-readable label that identifies the collection in the database within the snapshot.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetCloudBackupSnapshotDatabaseCollectionsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotDatabaseCollectionsResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotDatabaseCollectionsResultArgs) ToGetCloudBackupSnapshotDatabaseCollectionsResultOutput() GetCloudBackupSnapshotDatabaseCollectionsResultOutput {
+	return i.ToGetCloudBackupSnapshotDatabaseCollectionsResultOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotDatabaseCollectionsResultArgs) ToGetCloudBackupSnapshotDatabaseCollectionsResultOutputWithContext(ctx context.Context) GetCloudBackupSnapshotDatabaseCollectionsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotDatabaseCollectionsResultOutput)
+}
+
+// GetCloudBackupSnapshotDatabaseCollectionsResultArrayInput is an input type that accepts GetCloudBackupSnapshotDatabaseCollectionsResultArray and GetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotDatabaseCollectionsResultArrayInput` via:
+//
+//	GetCloudBackupSnapshotDatabaseCollectionsResultArray{ GetCloudBackupSnapshotDatabaseCollectionsResultArgs{...} }
+type GetCloudBackupSnapshotDatabaseCollectionsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput() GetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput
+	ToGetCloudBackupSnapshotDatabaseCollectionsResultArrayOutputWithContext(context.Context) GetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput
+}
+
+type GetCloudBackupSnapshotDatabaseCollectionsResultArray []GetCloudBackupSnapshotDatabaseCollectionsResultInput
+
+func (GetCloudBackupSnapshotDatabaseCollectionsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotDatabaseCollectionsResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotDatabaseCollectionsResultArray) ToGetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput() GetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput {
+	return i.ToGetCloudBackupSnapshotDatabaseCollectionsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotDatabaseCollectionsResultArray) ToGetCloudBackupSnapshotDatabaseCollectionsResultArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput)
+}
+
+type GetCloudBackupSnapshotDatabaseCollectionsResultOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotDatabaseCollectionsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotDatabaseCollectionsResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotDatabaseCollectionsResultOutput) ToGetCloudBackupSnapshotDatabaseCollectionsResultOutput() GetCloudBackupSnapshotDatabaseCollectionsResultOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotDatabaseCollectionsResultOutput) ToGetCloudBackupSnapshotDatabaseCollectionsResultOutputWithContext(ctx context.Context) GetCloudBackupSnapshotDatabaseCollectionsResultOutput {
+	return o
+}
+
+// Human-readable label that identifies the collection in the database within the snapshot.
+func (o GetCloudBackupSnapshotDatabaseCollectionsResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotDatabaseCollectionsResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotDatabaseCollectionsResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput) ToGetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput() GetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput) ToGetCloudBackupSnapshotDatabaseCollectionsResultArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSnapshotDatabaseCollectionsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSnapshotDatabaseCollectionsResult {
+		return vs[0].([]GetCloudBackupSnapshotDatabaseCollectionsResult)[vs[1].(int)]
+	}).(GetCloudBackupSnapshotDatabaseCollectionsResultOutput)
+}
+
+type GetCloudBackupSnapshotDatabasesResult struct {
+	// Human-readable label that identifies the database within the snapshot.
+	Name string `pulumi:"name"`
+}
+
+// GetCloudBackupSnapshotDatabasesResultInput is an input type that accepts GetCloudBackupSnapshotDatabasesResultArgs and GetCloudBackupSnapshotDatabasesResultOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotDatabasesResultInput` via:
+//
+//	GetCloudBackupSnapshotDatabasesResultArgs{...}
+type GetCloudBackupSnapshotDatabasesResultInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotDatabasesResultOutput() GetCloudBackupSnapshotDatabasesResultOutput
+	ToGetCloudBackupSnapshotDatabasesResultOutputWithContext(context.Context) GetCloudBackupSnapshotDatabasesResultOutput
+}
+
+type GetCloudBackupSnapshotDatabasesResultArgs struct {
+	// Human-readable label that identifies the database within the snapshot.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetCloudBackupSnapshotDatabasesResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotDatabasesResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotDatabasesResultArgs) ToGetCloudBackupSnapshotDatabasesResultOutput() GetCloudBackupSnapshotDatabasesResultOutput {
+	return i.ToGetCloudBackupSnapshotDatabasesResultOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotDatabasesResultArgs) ToGetCloudBackupSnapshotDatabasesResultOutputWithContext(ctx context.Context) GetCloudBackupSnapshotDatabasesResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotDatabasesResultOutput)
+}
+
+// GetCloudBackupSnapshotDatabasesResultArrayInput is an input type that accepts GetCloudBackupSnapshotDatabasesResultArray and GetCloudBackupSnapshotDatabasesResultArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupSnapshotDatabasesResultArrayInput` via:
+//
+//	GetCloudBackupSnapshotDatabasesResultArray{ GetCloudBackupSnapshotDatabasesResultArgs{...} }
+type GetCloudBackupSnapshotDatabasesResultArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupSnapshotDatabasesResultArrayOutput() GetCloudBackupSnapshotDatabasesResultArrayOutput
+	ToGetCloudBackupSnapshotDatabasesResultArrayOutputWithContext(context.Context) GetCloudBackupSnapshotDatabasesResultArrayOutput
+}
+
+type GetCloudBackupSnapshotDatabasesResultArray []GetCloudBackupSnapshotDatabasesResultInput
+
+func (GetCloudBackupSnapshotDatabasesResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotDatabasesResult)(nil)).Elem()
+}
+
+func (i GetCloudBackupSnapshotDatabasesResultArray) ToGetCloudBackupSnapshotDatabasesResultArrayOutput() GetCloudBackupSnapshotDatabasesResultArrayOutput {
+	return i.ToGetCloudBackupSnapshotDatabasesResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupSnapshotDatabasesResultArray) ToGetCloudBackupSnapshotDatabasesResultArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotDatabasesResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupSnapshotDatabasesResultArrayOutput)
+}
+
+type GetCloudBackupSnapshotDatabasesResultOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotDatabasesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupSnapshotDatabasesResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotDatabasesResultOutput) ToGetCloudBackupSnapshotDatabasesResultOutput() GetCloudBackupSnapshotDatabasesResultOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotDatabasesResultOutput) ToGetCloudBackupSnapshotDatabasesResultOutputWithContext(ctx context.Context) GetCloudBackupSnapshotDatabasesResultOutput {
+	return o
+}
+
+// Human-readable label that identifies the database within the snapshot.
+func (o GetCloudBackupSnapshotDatabasesResultOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupSnapshotDatabasesResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetCloudBackupSnapshotDatabasesResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupSnapshotDatabasesResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupSnapshotDatabasesResult)(nil)).Elem()
+}
+
+func (o GetCloudBackupSnapshotDatabasesResultArrayOutput) ToGetCloudBackupSnapshotDatabasesResultArrayOutput() GetCloudBackupSnapshotDatabasesResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotDatabasesResultArrayOutput) ToGetCloudBackupSnapshotDatabasesResultArrayOutputWithContext(ctx context.Context) GetCloudBackupSnapshotDatabasesResultArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupSnapshotDatabasesResultArrayOutput) Index(i pulumi.IntInput) GetCloudBackupSnapshotDatabasesResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupSnapshotDatabasesResult {
+		return vs[0].([]GetCloudBackupSnapshotDatabasesResult)[vs[1].(int)]
+	}).(GetCloudBackupSnapshotDatabasesResultOutput)
 }
 
 type GetCloudBackupSnapshotExportBucketsResult struct {
@@ -61390,11 +63535,13 @@ func (o GetSharedTierSnapshotsResultArrayOutput) Index(i pulumi.IntInput) GetSha
 }
 
 type GetStreamConnectionAuthentication struct {
+	// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+	Aws GetStreamConnectionAuthenticationAws `pulumi:"aws"`
 	// Public identifier for the Kafka client.
 	ClientId string `pulumi:"clientId"`
 	// Secret known only to the Kafka client and the authorization server.
 	ClientSecret string `pulumi:"clientSecret"`
-	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
 	Mechanism string `pulumi:"mechanism"`
 	// SASL OAUTHBEARER authentication method. Value must be OIDC.
 	Method string `pulumi:"method"`
@@ -61422,11 +63569,13 @@ type GetStreamConnectionAuthenticationInput interface {
 }
 
 type GetStreamConnectionAuthenticationArgs struct {
+	// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+	Aws GetStreamConnectionAuthenticationAwsInput `pulumi:"aws"`
 	// Public identifier for the Kafka client.
 	ClientId pulumi.StringInput `pulumi:"clientId"`
 	// Secret known only to the Kafka client and the authorization server.
 	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
-	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
 	Mechanism pulumi.StringInput `pulumi:"mechanism"`
 	// SASL OAUTHBEARER authentication method. Value must be OIDC.
 	Method pulumi.StringInput `pulumi:"method"`
@@ -61468,6 +63617,11 @@ func (o GetStreamConnectionAuthenticationOutput) ToGetStreamConnectionAuthentica
 	return o
 }
 
+// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+func (o GetStreamConnectionAuthenticationOutput) Aws() GetStreamConnectionAuthenticationAwsOutput {
+	return o.ApplyT(func(v GetStreamConnectionAuthentication) GetStreamConnectionAuthenticationAws { return v.Aws }).(GetStreamConnectionAuthenticationAwsOutput)
+}
+
 // Public identifier for the Kafka client.
 func (o GetStreamConnectionAuthenticationOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionAuthentication) string { return v.ClientId }).(pulumi.StringOutput)
@@ -61478,7 +63632,7 @@ func (o GetStreamConnectionAuthenticationOutput) ClientSecret() pulumi.StringOut
 	return o.ApplyT(func(v GetStreamConnectionAuthentication) string { return v.ClientSecret }).(pulumi.StringOutput)
 }
 
-// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
 func (o GetStreamConnectionAuthenticationOutput) Mechanism() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionAuthentication) string { return v.Mechanism }).(pulumi.StringOutput)
 }
@@ -61511,6 +63665,58 @@ func (o GetStreamConnectionAuthenticationOutput) TokenEndpointUrl() pulumi.Strin
 // Username for the Schema Registry. Required when `type` is `USER_INFO`.
 func (o GetStreamConnectionAuthenticationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionAuthentication) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionAuthenticationAws struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn string `pulumi:"roleArn"`
+}
+
+// GetStreamConnectionAuthenticationAwsInput is an input type that accepts GetStreamConnectionAuthenticationAwsArgs and GetStreamConnectionAuthenticationAwsOutput values.
+// You can construct a concrete instance of `GetStreamConnectionAuthenticationAwsInput` via:
+//
+//	GetStreamConnectionAuthenticationAwsArgs{...}
+type GetStreamConnectionAuthenticationAwsInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionAuthenticationAwsOutput() GetStreamConnectionAuthenticationAwsOutput
+	ToGetStreamConnectionAuthenticationAwsOutputWithContext(context.Context) GetStreamConnectionAuthenticationAwsOutput
+}
+
+type GetStreamConnectionAuthenticationAwsArgs struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn pulumi.StringInput `pulumi:"roleArn"`
+}
+
+func (GetStreamConnectionAuthenticationAwsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionAuthenticationAws)(nil)).Elem()
+}
+
+func (i GetStreamConnectionAuthenticationAwsArgs) ToGetStreamConnectionAuthenticationAwsOutput() GetStreamConnectionAuthenticationAwsOutput {
+	return i.ToGetStreamConnectionAuthenticationAwsOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionAuthenticationAwsArgs) ToGetStreamConnectionAuthenticationAwsOutputWithContext(ctx context.Context) GetStreamConnectionAuthenticationAwsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionAuthenticationAwsOutput)
+}
+
+type GetStreamConnectionAuthenticationAwsOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionAuthenticationAwsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionAuthenticationAws)(nil)).Elem()
+}
+
+func (o GetStreamConnectionAuthenticationAwsOutput) ToGetStreamConnectionAuthenticationAwsOutput() GetStreamConnectionAuthenticationAwsOutput {
+	return o
+}
+
+func (o GetStreamConnectionAuthenticationAwsOutput) ToGetStreamConnectionAuthenticationAwsOutputWithContext(ctx context.Context) GetStreamConnectionAuthenticationAwsOutput {
+	return o
+}
+
+// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+func (o GetStreamConnectionAuthenticationAwsOutput) RoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionAuthenticationAws) string { return v.RoleArn }).(pulumi.StringOutput)
 }
 
 type GetStreamConnectionAws struct {
@@ -63029,7 +65235,7 @@ func (o GetStreamConnectionSecurityOutput) Protocol() pulumi.StringOutput {
 type GetStreamConnectionsResult struct {
 	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
 	Authentication GetStreamConnectionsResultAuthentication `pulumi:"authentication"`
-	// The configuration for S3 connection. See AWS.
+	// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
 	Aws GetStreamConnectionsResultAws `pulumi:"aws"`
 	// The configuration for Azure Blob Storage connection. See Azure.
 	Azure GetStreamConnectionsResultAzure `pulumi:"azure"`
@@ -63092,7 +65298,7 @@ type GetStreamConnectionsResultInput interface {
 type GetStreamConnectionsResultArgs struct {
 	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
 	Authentication GetStreamConnectionsResultAuthenticationInput `pulumi:"authentication"`
-	// The configuration for S3 connection. See AWS.
+	// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
 	Aws GetStreamConnectionsResultAwsInput `pulumi:"aws"`
 	// The configuration for Azure Blob Storage connection. See Azure.
 	Azure GetStreamConnectionsResultAzureInput `pulumi:"azure"`
@@ -63197,7 +65403,7 @@ func (o GetStreamConnectionsResultOutput) Authentication() GetStreamConnectionsR
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAuthentication { return v.Authentication }).(GetStreamConnectionsResultAuthenticationOutput)
 }
 
-// The configuration for S3 connection. See AWS.
+// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
 func (o GetStreamConnectionsResultOutput) Aws() GetStreamConnectionsResultAwsOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAws { return v.Aws }).(GetStreamConnectionsResultAwsOutput)
 }
@@ -63330,11 +65536,13 @@ func (o GetStreamConnectionsResultArrayOutput) Index(i pulumi.IntInput) GetStrea
 }
 
 type GetStreamConnectionsResultAuthentication struct {
+	// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+	Aws GetStreamConnectionsResultAuthenticationAws `pulumi:"aws"`
 	// Public identifier for the Kafka client.
 	ClientId string `pulumi:"clientId"`
 	// Secret known only to the Kafka client and the authorization server.
 	ClientSecret string `pulumi:"clientSecret"`
-	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
 	Mechanism string `pulumi:"mechanism"`
 	// SASL OAUTHBEARER authentication method. Value must be OIDC.
 	Method string `pulumi:"method"`
@@ -63362,11 +65570,13 @@ type GetStreamConnectionsResultAuthenticationInput interface {
 }
 
 type GetStreamConnectionsResultAuthenticationArgs struct {
+	// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+	Aws GetStreamConnectionsResultAuthenticationAwsInput `pulumi:"aws"`
 	// Public identifier for the Kafka client.
 	ClientId pulumi.StringInput `pulumi:"clientId"`
 	// Secret known only to the Kafka client and the authorization server.
 	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
-	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
 	Mechanism pulumi.StringInput `pulumi:"mechanism"`
 	// SASL OAUTHBEARER authentication method. Value must be OIDC.
 	Method pulumi.StringInput `pulumi:"method"`
@@ -63408,6 +65618,13 @@ func (o GetStreamConnectionsResultAuthenticationOutput) ToGetStreamConnectionsRe
 	return o
 }
 
+// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+func (o GetStreamConnectionsResultAuthenticationOutput) Aws() GetStreamConnectionsResultAuthenticationAwsOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) GetStreamConnectionsResultAuthenticationAws {
+		return v.Aws
+	}).(GetStreamConnectionsResultAuthenticationAwsOutput)
+}
+
 // Public identifier for the Kafka client.
 func (o GetStreamConnectionsResultAuthenticationOutput) ClientId() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.ClientId }).(pulumi.StringOutput)
@@ -63418,7 +65635,7 @@ func (o GetStreamConnectionsResultAuthenticationOutput) ClientSecret() pulumi.St
 	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.ClientSecret }).(pulumi.StringOutput)
 }
 
-// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
 func (o GetStreamConnectionsResultAuthenticationOutput) Mechanism() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Mechanism }).(pulumi.StringOutput)
 }
@@ -63451,6 +65668,58 @@ func (o GetStreamConnectionsResultAuthenticationOutput) TokenEndpointUrl() pulum
 // Username for the Schema Registry. Required when `type` is `USER_INFO`.
 func (o GetStreamConnectionsResultAuthenticationOutput) Username() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultAuthenticationAws struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn string `pulumi:"roleArn"`
+}
+
+// GetStreamConnectionsResultAuthenticationAwsInput is an input type that accepts GetStreamConnectionsResultAuthenticationAwsArgs and GetStreamConnectionsResultAuthenticationAwsOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultAuthenticationAwsInput` via:
+//
+//	GetStreamConnectionsResultAuthenticationAwsArgs{...}
+type GetStreamConnectionsResultAuthenticationAwsInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultAuthenticationAwsOutput() GetStreamConnectionsResultAuthenticationAwsOutput
+	ToGetStreamConnectionsResultAuthenticationAwsOutputWithContext(context.Context) GetStreamConnectionsResultAuthenticationAwsOutput
+}
+
+type GetStreamConnectionsResultAuthenticationAwsArgs struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn pulumi.StringInput `pulumi:"roleArn"`
+}
+
+func (GetStreamConnectionsResultAuthenticationAwsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAuthenticationAws)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultAuthenticationAwsArgs) ToGetStreamConnectionsResultAuthenticationAwsOutput() GetStreamConnectionsResultAuthenticationAwsOutput {
+	return i.ToGetStreamConnectionsResultAuthenticationAwsOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultAuthenticationAwsArgs) ToGetStreamConnectionsResultAuthenticationAwsOutputWithContext(ctx context.Context) GetStreamConnectionsResultAuthenticationAwsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultAuthenticationAwsOutput)
+}
+
+type GetStreamConnectionsResultAuthenticationAwsOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultAuthenticationAwsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAuthenticationAws)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultAuthenticationAwsOutput) ToGetStreamConnectionsResultAuthenticationAwsOutput() GetStreamConnectionsResultAuthenticationAwsOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultAuthenticationAwsOutput) ToGetStreamConnectionsResultAuthenticationAwsOutputWithContext(ctx context.Context) GetStreamConnectionsResultAuthenticationAwsOutput {
+	return o
+}
+
+// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+func (o GetStreamConnectionsResultAuthenticationAwsOutput) RoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthenticationAws) string { return v.RoleArn }).(pulumi.StringOutput)
 }
 
 type GetStreamConnectionsResultAws struct {
@@ -64332,6 +66601,8 @@ func (o GetStreamInstancesResultStreamConfigOutput) Tier() pulumi.StringOutput {
 type GetStreamPrivatelinkEndpointsResult struct {
 	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn string `pulumi:"arn"`
+	// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+	AuthenticationScheme string `pulumi:"authenticationScheme"`
 	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 	//
 	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -64392,6 +66663,8 @@ type GetStreamPrivatelinkEndpointsResultInput interface {
 type GetStreamPrivatelinkEndpointsResultArgs struct {
 	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn pulumi.StringInput `pulumi:"arn"`
+	// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+	AuthenticationScheme pulumi.StringInput `pulumi:"authenticationScheme"`
 	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 	//
 	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -64492,6 +66765,11 @@ func (o GetStreamPrivatelinkEndpointsResultOutput) ToGetStreamPrivatelinkEndpoin
 // Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 func (o GetStreamPrivatelinkEndpointsResultOutput) Arn() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Arn }).(pulumi.StringOutput)
+}
+
+// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+func (o GetStreamPrivatelinkEndpointsResultOutput) AuthenticationScheme() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.AuthenticationScheme }).(pulumi.StringOutput)
 }
 
 // The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
@@ -64601,6 +66879,8 @@ func (o GetStreamPrivatelinkEndpointsResultArrayOutput) Index(i pulumi.IntInput)
 }
 
 type GetStreamProcessorOptions struct {
+	// Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+	Autoscaling GetStreamProcessorOptionsAutoscaling `pulumi:"autoscaling"`
 	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
 	Dlq GetStreamProcessorOptionsDlq `pulumi:"dlq"`
 }
@@ -64617,6 +66897,8 @@ type GetStreamProcessorOptionsInput interface {
 }
 
 type GetStreamProcessorOptionsArgs struct {
+	// Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+	Autoscaling GetStreamProcessorOptionsAutoscalingInput `pulumi:"autoscaling"`
 	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
 	Dlq GetStreamProcessorOptionsDlqInput `pulumi:"dlq"`
 }
@@ -64647,9 +66929,75 @@ func (o GetStreamProcessorOptionsOutput) ToGetStreamProcessorOptionsOutputWithCo
 	return o
 }
 
+// Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+func (o GetStreamProcessorOptionsOutput) Autoscaling() GetStreamProcessorOptionsAutoscalingOutput {
+	return o.ApplyT(func(v GetStreamProcessorOptions) GetStreamProcessorOptionsAutoscaling { return v.Autoscaling }).(GetStreamProcessorOptionsAutoscalingOutput)
+}
+
 // Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
 func (o GetStreamProcessorOptionsOutput) Dlq() GetStreamProcessorOptionsDlqOutput {
 	return o.ApplyT(func(v GetStreamProcessorOptions) GetStreamProcessorOptionsDlq { return v.Dlq }).(GetStreamProcessorOptionsDlqOutput)
+}
+
+type GetStreamProcessorOptionsAutoscaling struct {
+	// Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+	MaxTier string `pulumi:"maxTier"`
+	// Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+	MinTier string `pulumi:"minTier"`
+}
+
+// GetStreamProcessorOptionsAutoscalingInput is an input type that accepts GetStreamProcessorOptionsAutoscalingArgs and GetStreamProcessorOptionsAutoscalingOutput values.
+// You can construct a concrete instance of `GetStreamProcessorOptionsAutoscalingInput` via:
+//
+//	GetStreamProcessorOptionsAutoscalingArgs{...}
+type GetStreamProcessorOptionsAutoscalingInput interface {
+	pulumi.Input
+
+	ToGetStreamProcessorOptionsAutoscalingOutput() GetStreamProcessorOptionsAutoscalingOutput
+	ToGetStreamProcessorOptionsAutoscalingOutputWithContext(context.Context) GetStreamProcessorOptionsAutoscalingOutput
+}
+
+type GetStreamProcessorOptionsAutoscalingArgs struct {
+	// Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+	MaxTier pulumi.StringInput `pulumi:"maxTier"`
+	// Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+	MinTier pulumi.StringInput `pulumi:"minTier"`
+}
+
+func (GetStreamProcessorOptionsAutoscalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorOptionsAutoscaling)(nil)).Elem()
+}
+
+func (i GetStreamProcessorOptionsAutoscalingArgs) ToGetStreamProcessorOptionsAutoscalingOutput() GetStreamProcessorOptionsAutoscalingOutput {
+	return i.ToGetStreamProcessorOptionsAutoscalingOutputWithContext(context.Background())
+}
+
+func (i GetStreamProcessorOptionsAutoscalingArgs) ToGetStreamProcessorOptionsAutoscalingOutputWithContext(ctx context.Context) GetStreamProcessorOptionsAutoscalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorOptionsAutoscalingOutput)
+}
+
+type GetStreamProcessorOptionsAutoscalingOutput struct{ *pulumi.OutputState }
+
+func (GetStreamProcessorOptionsAutoscalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorOptionsAutoscaling)(nil)).Elem()
+}
+
+func (o GetStreamProcessorOptionsAutoscalingOutput) ToGetStreamProcessorOptionsAutoscalingOutput() GetStreamProcessorOptionsAutoscalingOutput {
+	return o
+}
+
+func (o GetStreamProcessorOptionsAutoscalingOutput) ToGetStreamProcessorOptionsAutoscalingOutputWithContext(ctx context.Context) GetStreamProcessorOptionsAutoscalingOutput {
+	return o
+}
+
+// Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+func (o GetStreamProcessorOptionsAutoscalingOutput) MaxTier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorOptionsAutoscaling) string { return v.MaxTier }).(pulumi.StringOutput)
+}
+
+// Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+func (o GetStreamProcessorOptionsAutoscalingOutput) MinTier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorOptionsAutoscaling) string { return v.MinTier }).(pulumi.StringOutput)
 }
 
 type GetStreamProcessorOptionsDlq struct {
@@ -64723,6 +67071,8 @@ func (o GetStreamProcessorOptionsDlqOutput) Db() pulumi.StringOutput {
 }
 
 type GetStreamProcessorsResult struct {
+	// Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+	EffectiveTier string `pulumi:"effectiveTier"`
 	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
 	FailoverEnabled bool `pulumi:"failoverEnabled"`
 	// Unique 24-hexadecimal character string that identifies the stream processor.
@@ -64731,7 +67081,7 @@ type GetStreamProcessorsResult struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName string `pulumi:"instanceName"`
-	// Optional configuration for the stream processor.
+	// Optional configuration for the stream processor. Empty `options` objects are not supported.
 	Options GetStreamProcessorsResultOptions `pulumi:"options"`
 	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 	Pipeline string `pulumi:"pipeline"`
@@ -64743,7 +67093,7 @@ type GetStreamProcessorsResult struct {
 	State string `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
 	Stats string `pulumi:"stats"`
-	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
 	Tier string `pulumi:"tier"`
 	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 	WorkspaceName string `pulumi:"workspaceName"`
@@ -64761,6 +67111,8 @@ type GetStreamProcessorsResultInput interface {
 }
 
 type GetStreamProcessorsResultArgs struct {
+	// Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+	EffectiveTier pulumi.StringInput `pulumi:"effectiveTier"`
 	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
 	FailoverEnabled pulumi.BoolInput `pulumi:"failoverEnabled"`
 	// Unique 24-hexadecimal character string that identifies the stream processor.
@@ -64769,7 +67121,7 @@ type GetStreamProcessorsResultArgs struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName pulumi.StringInput `pulumi:"instanceName"`
-	// Optional configuration for the stream processor.
+	// Optional configuration for the stream processor. Empty `options` objects are not supported.
 	Options GetStreamProcessorsResultOptionsInput `pulumi:"options"`
 	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 	Pipeline pulumi.StringInput `pulumi:"pipeline"`
@@ -64781,7 +67133,7 @@ type GetStreamProcessorsResultArgs struct {
 	State pulumi.StringInput `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
 	Stats pulumi.StringInput `pulumi:"stats"`
-	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
 	Tier pulumi.StringInput `pulumi:"tier"`
 	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
 	WorkspaceName pulumi.StringInput `pulumi:"workspaceName"`
@@ -64838,6 +67190,11 @@ func (o GetStreamProcessorsResultOutput) ToGetStreamProcessorsResultOutputWithCo
 	return o
 }
 
+// Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+func (o GetStreamProcessorsResultOutput) EffectiveTier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.EffectiveTier }).(pulumi.StringOutput)
+}
+
 // Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
 func (o GetStreamProcessorsResultOutput) FailoverEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetStreamProcessorsResult) bool { return v.FailoverEnabled }).(pulumi.BoolOutput)
@@ -64855,7 +67212,7 @@ func (o GetStreamProcessorsResultOutput) InstanceName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.InstanceName }).(pulumi.StringOutput)
 }
 
-// Optional configuration for the stream processor.
+// Optional configuration for the stream processor. Empty `options` objects are not supported.
 func (o GetStreamProcessorsResultOutput) Options() GetStreamProcessorsResultOptionsOutput {
 	return o.ApplyT(func(v GetStreamProcessorsResult) GetStreamProcessorsResultOptions { return v.Options }).(GetStreamProcessorsResultOptionsOutput)
 }
@@ -64885,7 +67242,7 @@ func (o GetStreamProcessorsResultOutput) Stats() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.Stats }).(pulumi.StringOutput)
 }
 
-// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
 func (o GetStreamProcessorsResultOutput) Tier() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.Tier }).(pulumi.StringOutput)
 }
@@ -64913,1534 +67270,6 @@ func (o GetStreamProcessorsResultArrayOutput) Index(i pulumi.IntInput) GetStream
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamProcessorsResult {
 		return vs[0].([]GetStreamProcessorsResult)[vs[1].(int)]
 	}).(GetStreamProcessorsResultOutput)
-}
-
-type GetStreamProcessorsResultOptions struct {
-	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
-	Dlq GetStreamProcessorsResultOptionsDlq `pulumi:"dlq"`
-}
-
-// GetStreamProcessorsResultOptionsInput is an input type that accepts GetStreamProcessorsResultOptionsArgs and GetStreamProcessorsResultOptionsOutput values.
-// You can construct a concrete instance of `GetStreamProcessorsResultOptionsInput` via:
-//
-//	GetStreamProcessorsResultOptionsArgs{...}
-type GetStreamProcessorsResultOptionsInput interface {
-	pulumi.Input
-
-	ToGetStreamProcessorsResultOptionsOutput() GetStreamProcessorsResultOptionsOutput
-	ToGetStreamProcessorsResultOptionsOutputWithContext(context.Context) GetStreamProcessorsResultOptionsOutput
-}
-
-type GetStreamProcessorsResultOptionsArgs struct {
-	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
-	Dlq GetStreamProcessorsResultOptionsDlqInput `pulumi:"dlq"`
-}
-
-func (GetStreamProcessorsResultOptionsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamProcessorsResultOptions)(nil)).Elem()
-}
-
-func (i GetStreamProcessorsResultOptionsArgs) ToGetStreamProcessorsResultOptionsOutput() GetStreamProcessorsResultOptionsOutput {
-	return i.ToGetStreamProcessorsResultOptionsOutputWithContext(context.Background())
-}
-
-func (i GetStreamProcessorsResultOptionsArgs) ToGetStreamProcessorsResultOptionsOutputWithContext(ctx context.Context) GetStreamProcessorsResultOptionsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorsResultOptionsOutput)
-}
-
-type GetStreamProcessorsResultOptionsOutput struct{ *pulumi.OutputState }
-
-func (GetStreamProcessorsResultOptionsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamProcessorsResultOptions)(nil)).Elem()
-}
-
-func (o GetStreamProcessorsResultOptionsOutput) ToGetStreamProcessorsResultOptionsOutput() GetStreamProcessorsResultOptionsOutput {
-	return o
-}
-
-func (o GetStreamProcessorsResultOptionsOutput) ToGetStreamProcessorsResultOptionsOutputWithContext(ctx context.Context) GetStreamProcessorsResultOptionsOutput {
-	return o
-}
-
-// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
-func (o GetStreamProcessorsResultOptionsOutput) Dlq() GetStreamProcessorsResultOptionsDlqOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResultOptions) GetStreamProcessorsResultOptionsDlq { return v.Dlq }).(GetStreamProcessorsResultOptionsDlqOutput)
-}
-
-type GetStreamProcessorsResultOptionsDlq struct {
-	// Name of the collection to use for the DLQ.
-	Coll string `pulumi:"coll"`
-	// Name of the connection to write DLQ messages to. Must be an Atlas connection.
-	ConnectionName string `pulumi:"connectionName"`
-	// Name of the database to use for the DLQ.
-	Db string `pulumi:"db"`
-}
-
-// GetStreamProcessorsResultOptionsDlqInput is an input type that accepts GetStreamProcessorsResultOptionsDlqArgs and GetStreamProcessorsResultOptionsDlqOutput values.
-// You can construct a concrete instance of `GetStreamProcessorsResultOptionsDlqInput` via:
-//
-//	GetStreamProcessorsResultOptionsDlqArgs{...}
-type GetStreamProcessorsResultOptionsDlqInput interface {
-	pulumi.Input
-
-	ToGetStreamProcessorsResultOptionsDlqOutput() GetStreamProcessorsResultOptionsDlqOutput
-	ToGetStreamProcessorsResultOptionsDlqOutputWithContext(context.Context) GetStreamProcessorsResultOptionsDlqOutput
-}
-
-type GetStreamProcessorsResultOptionsDlqArgs struct {
-	// Name of the collection to use for the DLQ.
-	Coll pulumi.StringInput `pulumi:"coll"`
-	// Name of the connection to write DLQ messages to. Must be an Atlas connection.
-	ConnectionName pulumi.StringInput `pulumi:"connectionName"`
-	// Name of the database to use for the DLQ.
-	Db pulumi.StringInput `pulumi:"db"`
-}
-
-func (GetStreamProcessorsResultOptionsDlqArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamProcessorsResultOptionsDlq)(nil)).Elem()
-}
-
-func (i GetStreamProcessorsResultOptionsDlqArgs) ToGetStreamProcessorsResultOptionsDlqOutput() GetStreamProcessorsResultOptionsDlqOutput {
-	return i.ToGetStreamProcessorsResultOptionsDlqOutputWithContext(context.Background())
-}
-
-func (i GetStreamProcessorsResultOptionsDlqArgs) ToGetStreamProcessorsResultOptionsDlqOutputWithContext(ctx context.Context) GetStreamProcessorsResultOptionsDlqOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorsResultOptionsDlqOutput)
-}
-
-type GetStreamProcessorsResultOptionsDlqOutput struct{ *pulumi.OutputState }
-
-func (GetStreamProcessorsResultOptionsDlqOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamProcessorsResultOptionsDlq)(nil)).Elem()
-}
-
-func (o GetStreamProcessorsResultOptionsDlqOutput) ToGetStreamProcessorsResultOptionsDlqOutput() GetStreamProcessorsResultOptionsDlqOutput {
-	return o
-}
-
-func (o GetStreamProcessorsResultOptionsDlqOutput) ToGetStreamProcessorsResultOptionsDlqOutputWithContext(ctx context.Context) GetStreamProcessorsResultOptionsDlqOutput {
-	return o
-}
-
-// Name of the collection to use for the DLQ.
-func (o GetStreamProcessorsResultOptionsDlqOutput) Coll() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResultOptionsDlq) string { return v.Coll }).(pulumi.StringOutput)
-}
-
-// Name of the connection to write DLQ messages to. Must be an Atlas connection.
-func (o GetStreamProcessorsResultOptionsDlqOutput) ConnectionName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResultOptionsDlq) string { return v.ConnectionName }).(pulumi.StringOutput)
-}
-
-// Name of the database to use for the DLQ.
-func (o GetStreamProcessorsResultOptionsDlqOutput) Db() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResultOptionsDlq) string { return v.Db }).(pulumi.StringOutput)
-}
-
-type GetStreamWorkspaceDataProcessRegion struct {
-	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	CloudProvider string `pulumi:"cloudProvider"`
-	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	Region string `pulumi:"region"`
-}
-
-// GetStreamWorkspaceDataProcessRegionInput is an input type that accepts GetStreamWorkspaceDataProcessRegionArgs and GetStreamWorkspaceDataProcessRegionOutput values.
-// You can construct a concrete instance of `GetStreamWorkspaceDataProcessRegionInput` via:
-//
-//	GetStreamWorkspaceDataProcessRegionArgs{...}
-type GetStreamWorkspaceDataProcessRegionInput interface {
-	pulumi.Input
-
-	ToGetStreamWorkspaceDataProcessRegionOutput() GetStreamWorkspaceDataProcessRegionOutput
-	ToGetStreamWorkspaceDataProcessRegionOutputWithContext(context.Context) GetStreamWorkspaceDataProcessRegionOutput
-}
-
-type GetStreamWorkspaceDataProcessRegionArgs struct {
-	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	Region pulumi.StringInput `pulumi:"region"`
-}
-
-func (GetStreamWorkspaceDataProcessRegionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamWorkspaceDataProcessRegion)(nil)).Elem()
-}
-
-func (i GetStreamWorkspaceDataProcessRegionArgs) ToGetStreamWorkspaceDataProcessRegionOutput() GetStreamWorkspaceDataProcessRegionOutput {
-	return i.ToGetStreamWorkspaceDataProcessRegionOutputWithContext(context.Background())
-}
-
-func (i GetStreamWorkspaceDataProcessRegionArgs) ToGetStreamWorkspaceDataProcessRegionOutputWithContext(ctx context.Context) GetStreamWorkspaceDataProcessRegionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspaceDataProcessRegionOutput)
-}
-
-type GetStreamWorkspaceDataProcessRegionOutput struct{ *pulumi.OutputState }
-
-func (GetStreamWorkspaceDataProcessRegionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamWorkspaceDataProcessRegion)(nil)).Elem()
-}
-
-func (o GetStreamWorkspaceDataProcessRegionOutput) ToGetStreamWorkspaceDataProcessRegionOutput() GetStreamWorkspaceDataProcessRegionOutput {
-	return o
-}
-
-func (o GetStreamWorkspaceDataProcessRegionOutput) ToGetStreamWorkspaceDataProcessRegionOutputWithContext(ctx context.Context) GetStreamWorkspaceDataProcessRegionOutput {
-	return o
-}
-
-// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-func (o GetStreamWorkspaceDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamWorkspaceDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
-}
-
-// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-func (o GetStreamWorkspaceDataProcessRegionOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamWorkspaceDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
-}
-
-type GetStreamWorkspaceFailoverRegion struct {
-	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	CloudProvider string `pulumi:"cloudProvider"`
-	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	Region string `pulumi:"region"`
-}
-
-// GetStreamWorkspaceFailoverRegionInput is an input type that accepts GetStreamWorkspaceFailoverRegionArgs and GetStreamWorkspaceFailoverRegionOutput values.
-// You can construct a concrete instance of `GetStreamWorkspaceFailoverRegionInput` via:
-//
-//	GetStreamWorkspaceFailoverRegionArgs{...}
-type GetStreamWorkspaceFailoverRegionInput interface {
-	pulumi.Input
-
-	ToGetStreamWorkspaceFailoverRegionOutput() GetStreamWorkspaceFailoverRegionOutput
-	ToGetStreamWorkspaceFailoverRegionOutputWithContext(context.Context) GetStreamWorkspaceFailoverRegionOutput
-}
-
-type GetStreamWorkspaceFailoverRegionArgs struct {
-	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	Region pulumi.StringInput `pulumi:"region"`
-}
-
-func (GetStreamWorkspaceFailoverRegionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamWorkspaceFailoverRegion)(nil)).Elem()
-}
-
-func (i GetStreamWorkspaceFailoverRegionArgs) ToGetStreamWorkspaceFailoverRegionOutput() GetStreamWorkspaceFailoverRegionOutput {
-	return i.ToGetStreamWorkspaceFailoverRegionOutputWithContext(context.Background())
-}
-
-func (i GetStreamWorkspaceFailoverRegionArgs) ToGetStreamWorkspaceFailoverRegionOutputWithContext(ctx context.Context) GetStreamWorkspaceFailoverRegionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspaceFailoverRegionOutput)
-}
-
-// GetStreamWorkspaceFailoverRegionArrayInput is an input type that accepts GetStreamWorkspaceFailoverRegionArray and GetStreamWorkspaceFailoverRegionArrayOutput values.
-// You can construct a concrete instance of `GetStreamWorkspaceFailoverRegionArrayInput` via:
-//
-//	GetStreamWorkspaceFailoverRegionArray{ GetStreamWorkspaceFailoverRegionArgs{...} }
-type GetStreamWorkspaceFailoverRegionArrayInput interface {
-	pulumi.Input
-
-	ToGetStreamWorkspaceFailoverRegionArrayOutput() GetStreamWorkspaceFailoverRegionArrayOutput
-	ToGetStreamWorkspaceFailoverRegionArrayOutputWithContext(context.Context) GetStreamWorkspaceFailoverRegionArrayOutput
-}
-
-type GetStreamWorkspaceFailoverRegionArray []GetStreamWorkspaceFailoverRegionInput
-
-func (GetStreamWorkspaceFailoverRegionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetStreamWorkspaceFailoverRegion)(nil)).Elem()
-}
-
-func (i GetStreamWorkspaceFailoverRegionArray) ToGetStreamWorkspaceFailoverRegionArrayOutput() GetStreamWorkspaceFailoverRegionArrayOutput {
-	return i.ToGetStreamWorkspaceFailoverRegionArrayOutputWithContext(context.Background())
-}
-
-func (i GetStreamWorkspaceFailoverRegionArray) ToGetStreamWorkspaceFailoverRegionArrayOutputWithContext(ctx context.Context) GetStreamWorkspaceFailoverRegionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspaceFailoverRegionArrayOutput)
-}
-
-type GetStreamWorkspaceFailoverRegionOutput struct{ *pulumi.OutputState }
-
-func (GetStreamWorkspaceFailoverRegionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamWorkspaceFailoverRegion)(nil)).Elem()
-}
-
-func (o GetStreamWorkspaceFailoverRegionOutput) ToGetStreamWorkspaceFailoverRegionOutput() GetStreamWorkspaceFailoverRegionOutput {
-	return o
-}
-
-func (o GetStreamWorkspaceFailoverRegionOutput) ToGetStreamWorkspaceFailoverRegionOutputWithContext(ctx context.Context) GetStreamWorkspaceFailoverRegionOutput {
-	return o
-}
-
-// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-func (o GetStreamWorkspaceFailoverRegionOutput) CloudProvider() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamWorkspaceFailoverRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
-}
-
-// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-func (o GetStreamWorkspaceFailoverRegionOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamWorkspaceFailoverRegion) string { return v.Region }).(pulumi.StringOutput)
-}
-
-type GetStreamWorkspaceFailoverRegionArrayOutput struct{ *pulumi.OutputState }
-
-func (GetStreamWorkspaceFailoverRegionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetStreamWorkspaceFailoverRegion)(nil)).Elem()
-}
-
-func (o GetStreamWorkspaceFailoverRegionArrayOutput) ToGetStreamWorkspaceFailoverRegionArrayOutput() GetStreamWorkspaceFailoverRegionArrayOutput {
-	return o
-}
-
-func (o GetStreamWorkspaceFailoverRegionArrayOutput) ToGetStreamWorkspaceFailoverRegionArrayOutputWithContext(ctx context.Context) GetStreamWorkspaceFailoverRegionArrayOutput {
-	return o
-}
-
-func (o GetStreamWorkspaceFailoverRegionArrayOutput) Index(i pulumi.IntInput) GetStreamWorkspaceFailoverRegionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamWorkspaceFailoverRegion {
-		return vs[0].([]GetStreamWorkspaceFailoverRegion)[vs[1].(int)]
-	}).(GetStreamWorkspaceFailoverRegionOutput)
-}
-
-type GetStreamWorkspaceStreamConfig struct {
-	MaxTierSize string `pulumi:"maxTierSize"`
-	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	Tier string `pulumi:"tier"`
-}
-
-// GetStreamWorkspaceStreamConfigInput is an input type that accepts GetStreamWorkspaceStreamConfigArgs and GetStreamWorkspaceStreamConfigOutput values.
-// You can construct a concrete instance of `GetStreamWorkspaceStreamConfigInput` via:
-//
-//	GetStreamWorkspaceStreamConfigArgs{...}
-type GetStreamWorkspaceStreamConfigInput interface {
-	pulumi.Input
-
-	ToGetStreamWorkspaceStreamConfigOutput() GetStreamWorkspaceStreamConfigOutput
-	ToGetStreamWorkspaceStreamConfigOutputWithContext(context.Context) GetStreamWorkspaceStreamConfigOutput
-}
-
-type GetStreamWorkspaceStreamConfigArgs struct {
-	MaxTierSize pulumi.StringInput `pulumi:"maxTierSize"`
-	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	Tier pulumi.StringInput `pulumi:"tier"`
-}
-
-func (GetStreamWorkspaceStreamConfigArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamWorkspaceStreamConfig)(nil)).Elem()
-}
-
-func (i GetStreamWorkspaceStreamConfigArgs) ToGetStreamWorkspaceStreamConfigOutput() GetStreamWorkspaceStreamConfigOutput {
-	return i.ToGetStreamWorkspaceStreamConfigOutputWithContext(context.Background())
-}
-
-func (i GetStreamWorkspaceStreamConfigArgs) ToGetStreamWorkspaceStreamConfigOutputWithContext(ctx context.Context) GetStreamWorkspaceStreamConfigOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspaceStreamConfigOutput)
-}
-
-type GetStreamWorkspaceStreamConfigOutput struct{ *pulumi.OutputState }
-
-func (GetStreamWorkspaceStreamConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamWorkspaceStreamConfig)(nil)).Elem()
-}
-
-func (o GetStreamWorkspaceStreamConfigOutput) ToGetStreamWorkspaceStreamConfigOutput() GetStreamWorkspaceStreamConfigOutput {
-	return o
-}
-
-func (o GetStreamWorkspaceStreamConfigOutput) ToGetStreamWorkspaceStreamConfigOutputWithContext(ctx context.Context) GetStreamWorkspaceStreamConfigOutput {
-	return o
-}
-
-func (o GetStreamWorkspaceStreamConfigOutput) MaxTierSize() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamWorkspaceStreamConfig) string { return v.MaxTierSize }).(pulumi.StringOutput)
-}
-
-// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-func (o GetStreamWorkspaceStreamConfigOutput) Tier() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamWorkspaceStreamConfig) string { return v.Tier }).(pulumi.StringOutput)
-}
-
-type GetStreamWorkspacesResult struct {
-	// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
-	DataProcessRegion GetStreamWorkspacesResultDataProcessRegion `pulumi:"dataProcessRegion"`
-	FailoverRegions   []GetStreamWorkspacesResultFailoverRegion  `pulumi:"failoverRegions"`
-	// List that contains the hostnames assigned to the stream workspace.
-	Hostnames []string `pulumi:"hostnames"`
-	Id        string   `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-	ProjectId string `pulumi:"projectId"`
-	// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
-	StreamConfig GetStreamWorkspacesResultStreamConfig `pulumi:"streamConfig"`
-	// Label that identifies the stream workspace.
-	WorkspaceName string `pulumi:"workspaceName"`
-}
-
-// GetStreamWorkspacesResultInput is an input type that accepts GetStreamWorkspacesResultArgs and GetStreamWorkspacesResultOutput values.
-// You can construct a concrete instance of `GetStreamWorkspacesResultInput` via:
-//
-//	GetStreamWorkspacesResultArgs{...}
-type GetStreamWorkspacesResultInput interface {
-	pulumi.Input
-
-	ToGetStreamWorkspacesResultOutput() GetStreamWorkspacesResultOutput
-	ToGetStreamWorkspacesResultOutputWithContext(context.Context) GetStreamWorkspacesResultOutput
-}
-
-type GetStreamWorkspacesResultArgs struct {
-	// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
-	DataProcessRegion GetStreamWorkspacesResultDataProcessRegionInput   `pulumi:"dataProcessRegion"`
-	FailoverRegions   GetStreamWorkspacesResultFailoverRegionArrayInput `pulumi:"failoverRegions"`
-	// List that contains the hostnames assigned to the stream workspace.
-	Hostnames pulumi.StringArrayInput `pulumi:"hostnames"`
-	Id        pulumi.StringInput      `pulumi:"id"`
-	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
-	StreamConfig GetStreamWorkspacesResultStreamConfigInput `pulumi:"streamConfig"`
-	// Label that identifies the stream workspace.
-	WorkspaceName pulumi.StringInput `pulumi:"workspaceName"`
-}
-
-func (GetStreamWorkspacesResultArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamWorkspacesResult)(nil)).Elem()
-}
-
-func (i GetStreamWorkspacesResultArgs) ToGetStreamWorkspacesResultOutput() GetStreamWorkspacesResultOutput {
-	return i.ToGetStreamWorkspacesResultOutputWithContext(context.Background())
-}
-
-func (i GetStreamWorkspacesResultArgs) ToGetStreamWorkspacesResultOutputWithContext(ctx context.Context) GetStreamWorkspacesResultOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspacesResultOutput)
-}
-
-// GetStreamWorkspacesResultArrayInput is an input type that accepts GetStreamWorkspacesResultArray and GetStreamWorkspacesResultArrayOutput values.
-// You can construct a concrete instance of `GetStreamWorkspacesResultArrayInput` via:
-//
-//	GetStreamWorkspacesResultArray{ GetStreamWorkspacesResultArgs{...} }
-type GetStreamWorkspacesResultArrayInput interface {
-	pulumi.Input
-
-	ToGetStreamWorkspacesResultArrayOutput() GetStreamWorkspacesResultArrayOutput
-	ToGetStreamWorkspacesResultArrayOutputWithContext(context.Context) GetStreamWorkspacesResultArrayOutput
-}
-
-type GetStreamWorkspacesResultArray []GetStreamWorkspacesResultInput
-
-func (GetStreamWorkspacesResultArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetStreamWorkspacesResult)(nil)).Elem()
-}
-
-func (i GetStreamWorkspacesResultArray) ToGetStreamWorkspacesResultArrayOutput() GetStreamWorkspacesResultArrayOutput {
-	return i.ToGetStreamWorkspacesResultArrayOutputWithContext(context.Background())
-}
-
-func (i GetStreamWorkspacesResultArray) ToGetStreamWorkspacesResultArrayOutputWithContext(ctx context.Context) GetStreamWorkspacesResultArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspacesResultArrayOutput)
-}
-
-type GetStreamWorkspacesResultOutput struct{ *pulumi.OutputState }
-
-func (GetStreamWorkspacesResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamWorkspacesResult)(nil)).Elem()
-}
-
-func (o GetStreamWorkspacesResultOutput) ToGetStreamWorkspacesResultOutput() GetStreamWorkspacesResultOutput {
-	return o
-}
-
-func (o GetStreamWorkspacesResultOutput) ToGetStreamWorkspacesResultOutputWithContext(ctx context.Context) GetStreamWorkspacesResultOutput {
-	return o
-}
-
-// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
-func (o GetStreamWorkspacesResultOutput) DataProcessRegion() GetStreamWorkspacesResultDataProcessRegionOutput {
-	return o.ApplyT(func(v GetStreamWorkspacesResult) GetStreamWorkspacesResultDataProcessRegion {
-		return v.DataProcessRegion
-	}).(GetStreamWorkspacesResultDataProcessRegionOutput)
-}
-
-func (o GetStreamWorkspacesResultOutput) FailoverRegions() GetStreamWorkspacesResultFailoverRegionArrayOutput {
-	return o.ApplyT(func(v GetStreamWorkspacesResult) []GetStreamWorkspacesResultFailoverRegion { return v.FailoverRegions }).(GetStreamWorkspacesResultFailoverRegionArrayOutput)
-}
-
-// List that contains the hostnames assigned to the stream workspace.
-func (o GetStreamWorkspacesResultOutput) Hostnames() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetStreamWorkspacesResult) []string { return v.Hostnames }).(pulumi.StringArrayOutput)
-}
-
-func (o GetStreamWorkspacesResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamWorkspacesResult) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-func (o GetStreamWorkspacesResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamWorkspacesResult) string { return v.ProjectId }).(pulumi.StringOutput)
-}
-
-// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
-func (o GetStreamWorkspacesResultOutput) StreamConfig() GetStreamWorkspacesResultStreamConfigOutput {
-	return o.ApplyT(func(v GetStreamWorkspacesResult) GetStreamWorkspacesResultStreamConfig { return v.StreamConfig }).(GetStreamWorkspacesResultStreamConfigOutput)
-}
-
-// Label that identifies the stream workspace.
-func (o GetStreamWorkspacesResultOutput) WorkspaceName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamWorkspacesResult) string { return v.WorkspaceName }).(pulumi.StringOutput)
-}
-
-type GetStreamWorkspacesResultArrayOutput struct{ *pulumi.OutputState }
-
-func (GetStreamWorkspacesResultArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetStreamWorkspacesResult)(nil)).Elem()
-}
-
-func (o GetStreamWorkspacesResultArrayOutput) ToGetStreamWorkspacesResultArrayOutput() GetStreamWorkspacesResultArrayOutput {
-	return o
-}
-
-func (o GetStreamWorkspacesResultArrayOutput) ToGetStreamWorkspacesResultArrayOutputWithContext(ctx context.Context) GetStreamWorkspacesResultArrayOutput {
-	return o
-}
-
-func (o GetStreamWorkspacesResultArrayOutput) Index(i pulumi.IntInput) GetStreamWorkspacesResultOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamWorkspacesResult {
-		return vs[0].([]GetStreamWorkspacesResult)[vs[1].(int)]
-	}).(GetStreamWorkspacesResultOutput)
-}
-
-type GetStreamWorkspacesResultDataProcessRegion struct {
-	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	CloudProvider string `pulumi:"cloudProvider"`
-	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	Region string `pulumi:"region"`
-}
-
-// GetStreamWorkspacesResultDataProcessRegionInput is an input type that accepts GetStreamWorkspacesResultDataProcessRegionArgs and GetStreamWorkspacesResultDataProcessRegionOutput values.
-// You can construct a concrete instance of `GetStreamWorkspacesResultDataProcessRegionInput` via:
-//
-//	GetStreamWorkspacesResultDataProcessRegionArgs{...}
-type GetStreamWorkspacesResultDataProcessRegionInput interface {
-	pulumi.Input
-
-	ToGetStreamWorkspacesResultDataProcessRegionOutput() GetStreamWorkspacesResultDataProcessRegionOutput
-	ToGetStreamWorkspacesResultDataProcessRegionOutputWithContext(context.Context) GetStreamWorkspacesResultDataProcessRegionOutput
-}
-
-type GetStreamWorkspacesResultDataProcessRegionArgs struct {
-	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	Region pulumi.StringInput `pulumi:"region"`
-}
-
-func (GetStreamWorkspacesResultDataProcessRegionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamWorkspacesResultDataProcessRegion)(nil)).Elem()
-}
-
-func (i GetStreamWorkspacesResultDataProcessRegionArgs) ToGetStreamWorkspacesResultDataProcessRegionOutput() GetStreamWorkspacesResultDataProcessRegionOutput {
-	return i.ToGetStreamWorkspacesResultDataProcessRegionOutputWithContext(context.Background())
-}
-
-func (i GetStreamWorkspacesResultDataProcessRegionArgs) ToGetStreamWorkspacesResultDataProcessRegionOutputWithContext(ctx context.Context) GetStreamWorkspacesResultDataProcessRegionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspacesResultDataProcessRegionOutput)
-}
-
-type GetStreamWorkspacesResultDataProcessRegionOutput struct{ *pulumi.OutputState }
-
-func (GetStreamWorkspacesResultDataProcessRegionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamWorkspacesResultDataProcessRegion)(nil)).Elem()
-}
-
-func (o GetStreamWorkspacesResultDataProcessRegionOutput) ToGetStreamWorkspacesResultDataProcessRegionOutput() GetStreamWorkspacesResultDataProcessRegionOutput {
-	return o
-}
-
-func (o GetStreamWorkspacesResultDataProcessRegionOutput) ToGetStreamWorkspacesResultDataProcessRegionOutputWithContext(ctx context.Context) GetStreamWorkspacesResultDataProcessRegionOutput {
-	return o
-}
-
-// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-func (o GetStreamWorkspacesResultDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamWorkspacesResultDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
-}
-
-// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-func (o GetStreamWorkspacesResultDataProcessRegionOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamWorkspacesResultDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
-}
-
-type GetStreamWorkspacesResultFailoverRegion struct {
-	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	CloudProvider string `pulumi:"cloudProvider"`
-	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	Region string `pulumi:"region"`
-}
-
-// GetStreamWorkspacesResultFailoverRegionInput is an input type that accepts GetStreamWorkspacesResultFailoverRegionArgs and GetStreamWorkspacesResultFailoverRegionOutput values.
-// You can construct a concrete instance of `GetStreamWorkspacesResultFailoverRegionInput` via:
-//
-//	GetStreamWorkspacesResultFailoverRegionArgs{...}
-type GetStreamWorkspacesResultFailoverRegionInput interface {
-	pulumi.Input
-
-	ToGetStreamWorkspacesResultFailoverRegionOutput() GetStreamWorkspacesResultFailoverRegionOutput
-	ToGetStreamWorkspacesResultFailoverRegionOutputWithContext(context.Context) GetStreamWorkspacesResultFailoverRegionOutput
-}
-
-type GetStreamWorkspacesResultFailoverRegionArgs struct {
-	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	Region pulumi.StringInput `pulumi:"region"`
-}
-
-func (GetStreamWorkspacesResultFailoverRegionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamWorkspacesResultFailoverRegion)(nil)).Elem()
-}
-
-func (i GetStreamWorkspacesResultFailoverRegionArgs) ToGetStreamWorkspacesResultFailoverRegionOutput() GetStreamWorkspacesResultFailoverRegionOutput {
-	return i.ToGetStreamWorkspacesResultFailoverRegionOutputWithContext(context.Background())
-}
-
-func (i GetStreamWorkspacesResultFailoverRegionArgs) ToGetStreamWorkspacesResultFailoverRegionOutputWithContext(ctx context.Context) GetStreamWorkspacesResultFailoverRegionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspacesResultFailoverRegionOutput)
-}
-
-// GetStreamWorkspacesResultFailoverRegionArrayInput is an input type that accepts GetStreamWorkspacesResultFailoverRegionArray and GetStreamWorkspacesResultFailoverRegionArrayOutput values.
-// You can construct a concrete instance of `GetStreamWorkspacesResultFailoverRegionArrayInput` via:
-//
-//	GetStreamWorkspacesResultFailoverRegionArray{ GetStreamWorkspacesResultFailoverRegionArgs{...} }
-type GetStreamWorkspacesResultFailoverRegionArrayInput interface {
-	pulumi.Input
-
-	ToGetStreamWorkspacesResultFailoverRegionArrayOutput() GetStreamWorkspacesResultFailoverRegionArrayOutput
-	ToGetStreamWorkspacesResultFailoverRegionArrayOutputWithContext(context.Context) GetStreamWorkspacesResultFailoverRegionArrayOutput
-}
-
-type GetStreamWorkspacesResultFailoverRegionArray []GetStreamWorkspacesResultFailoverRegionInput
-
-func (GetStreamWorkspacesResultFailoverRegionArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetStreamWorkspacesResultFailoverRegion)(nil)).Elem()
-}
-
-func (i GetStreamWorkspacesResultFailoverRegionArray) ToGetStreamWorkspacesResultFailoverRegionArrayOutput() GetStreamWorkspacesResultFailoverRegionArrayOutput {
-	return i.ToGetStreamWorkspacesResultFailoverRegionArrayOutputWithContext(context.Background())
-}
-
-func (i GetStreamWorkspacesResultFailoverRegionArray) ToGetStreamWorkspacesResultFailoverRegionArrayOutputWithContext(ctx context.Context) GetStreamWorkspacesResultFailoverRegionArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspacesResultFailoverRegionArrayOutput)
-}
-
-type GetStreamWorkspacesResultFailoverRegionOutput struct{ *pulumi.OutputState }
-
-func (GetStreamWorkspacesResultFailoverRegionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamWorkspacesResultFailoverRegion)(nil)).Elem()
-}
-
-func (o GetStreamWorkspacesResultFailoverRegionOutput) ToGetStreamWorkspacesResultFailoverRegionOutput() GetStreamWorkspacesResultFailoverRegionOutput {
-	return o
-}
-
-func (o GetStreamWorkspacesResultFailoverRegionOutput) ToGetStreamWorkspacesResultFailoverRegionOutputWithContext(ctx context.Context) GetStreamWorkspacesResultFailoverRegionOutput {
-	return o
-}
-
-// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-func (o GetStreamWorkspacesResultFailoverRegionOutput) CloudProvider() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamWorkspacesResultFailoverRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
-}
-
-// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-func (o GetStreamWorkspacesResultFailoverRegionOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamWorkspacesResultFailoverRegion) string { return v.Region }).(pulumi.StringOutput)
-}
-
-type GetStreamWorkspacesResultFailoverRegionArrayOutput struct{ *pulumi.OutputState }
-
-func (GetStreamWorkspacesResultFailoverRegionArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetStreamWorkspacesResultFailoverRegion)(nil)).Elem()
-}
-
-func (o GetStreamWorkspacesResultFailoverRegionArrayOutput) ToGetStreamWorkspacesResultFailoverRegionArrayOutput() GetStreamWorkspacesResultFailoverRegionArrayOutput {
-	return o
-}
-
-func (o GetStreamWorkspacesResultFailoverRegionArrayOutput) ToGetStreamWorkspacesResultFailoverRegionArrayOutputWithContext(ctx context.Context) GetStreamWorkspacesResultFailoverRegionArrayOutput {
-	return o
-}
-
-func (o GetStreamWorkspacesResultFailoverRegionArrayOutput) Index(i pulumi.IntInput) GetStreamWorkspacesResultFailoverRegionOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamWorkspacesResultFailoverRegion {
-		return vs[0].([]GetStreamWorkspacesResultFailoverRegion)[vs[1].(int)]
-	}).(GetStreamWorkspacesResultFailoverRegionOutput)
-}
-
-type GetStreamWorkspacesResultStreamConfig struct {
-	MaxTierSize string `pulumi:"maxTierSize"`
-	// Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	Tier string `pulumi:"tier"`
-}
-
-// GetStreamWorkspacesResultStreamConfigInput is an input type that accepts GetStreamWorkspacesResultStreamConfigArgs and GetStreamWorkspacesResultStreamConfigOutput values.
-// You can construct a concrete instance of `GetStreamWorkspacesResultStreamConfigInput` via:
-//
-//	GetStreamWorkspacesResultStreamConfigArgs{...}
-type GetStreamWorkspacesResultStreamConfigInput interface {
-	pulumi.Input
-
-	ToGetStreamWorkspacesResultStreamConfigOutput() GetStreamWorkspacesResultStreamConfigOutput
-	ToGetStreamWorkspacesResultStreamConfigOutputWithContext(context.Context) GetStreamWorkspacesResultStreamConfigOutput
-}
-
-type GetStreamWorkspacesResultStreamConfigArgs struct {
-	MaxTierSize pulumi.StringInput `pulumi:"maxTierSize"`
-	// Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-	Tier pulumi.StringInput `pulumi:"tier"`
-}
-
-func (GetStreamWorkspacesResultStreamConfigArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamWorkspacesResultStreamConfig)(nil)).Elem()
-}
-
-func (i GetStreamWorkspacesResultStreamConfigArgs) ToGetStreamWorkspacesResultStreamConfigOutput() GetStreamWorkspacesResultStreamConfigOutput {
-	return i.ToGetStreamWorkspacesResultStreamConfigOutputWithContext(context.Background())
-}
-
-func (i GetStreamWorkspacesResultStreamConfigArgs) ToGetStreamWorkspacesResultStreamConfigOutputWithContext(ctx context.Context) GetStreamWorkspacesResultStreamConfigOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamWorkspacesResultStreamConfigOutput)
-}
-
-type GetStreamWorkspacesResultStreamConfigOutput struct{ *pulumi.OutputState }
-
-func (GetStreamWorkspacesResultStreamConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamWorkspacesResultStreamConfig)(nil)).Elem()
-}
-
-func (o GetStreamWorkspacesResultStreamConfigOutput) ToGetStreamWorkspacesResultStreamConfigOutput() GetStreamWorkspacesResultStreamConfigOutput {
-	return o
-}
-
-func (o GetStreamWorkspacesResultStreamConfigOutput) ToGetStreamWorkspacesResultStreamConfigOutputWithContext(ctx context.Context) GetStreamWorkspacesResultStreamConfigOutput {
-	return o
-}
-
-func (o GetStreamWorkspacesResultStreamConfigOutput) MaxTierSize() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamWorkspacesResultStreamConfig) string { return v.MaxTierSize }).(pulumi.StringOutput)
-}
-
-// Selected tier for the Stream Workspace. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/creategroupstreamworkspace) describes the valid values.
-func (o GetStreamWorkspacesResultStreamConfigOutput) Tier() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamWorkspacesResultStreamConfig) string { return v.Tier }).(pulumi.StringOutput)
-}
-
-type GetTeamUser struct {
-	// Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
-	Country string `pulumi:"country"`
-	// Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
-	CreatedAt string `pulumi:"createdAt"`
-	// First or given name that belongs to the MongoDB Cloud user.
-	FirstName string `pulumi:"firstName"`
-	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-	Id string `pulumi:"id"`
-	// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
-	InvitationCreatedAt string `pulumi:"invitationCreatedAt"`
-	// Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
-	InvitationExpiresAt string `pulumi:"invitationExpiresAt"`
-	// Username of the MongoDB Cloud user who sent the invitation to join the organization.
-	InviterUsername string `pulumi:"inviterUsername"`
-	// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
-	LastAuth string `pulumi:"lastAuth"`
-	// Last name, family name, or surname that belongs to the MongoDB Cloud user.
-	LastName string `pulumi:"lastName"`
-	// Mobile phone number that belongs to the MongoDB Cloud user.
-	MobileNumber string `pulumi:"mobileNumber"`
-	// String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or are already active in the organization.
-	OrgMembershipStatus string `pulumi:"orgMembershipStatus"`
-	// Organization and project-level roles assigned to one MongoDB Cloud user within one organization.
-	Roles []GetTeamUserRole `pulumi:"roles"`
-	// List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
-	TeamIds []string `pulumi:"teamIds"`
-	// Email address that represents the username of the MongoDB Cloud user.
-	Username string `pulumi:"username"`
-}
-
-// GetTeamUserInput is an input type that accepts GetTeamUserArgs and GetTeamUserOutput values.
-// You can construct a concrete instance of `GetTeamUserInput` via:
-//
-//	GetTeamUserArgs{...}
-type GetTeamUserInput interface {
-	pulumi.Input
-
-	ToGetTeamUserOutput() GetTeamUserOutput
-	ToGetTeamUserOutputWithContext(context.Context) GetTeamUserOutput
-}
-
-type GetTeamUserArgs struct {
-	// Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
-	Country pulumi.StringInput `pulumi:"country"`
-	// Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
-	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
-	// First or given name that belongs to the MongoDB Cloud user.
-	FirstName pulumi.StringInput `pulumi:"firstName"`
-	// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
-	InvitationCreatedAt pulumi.StringInput `pulumi:"invitationCreatedAt"`
-	// Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
-	InvitationExpiresAt pulumi.StringInput `pulumi:"invitationExpiresAt"`
-	// Username of the MongoDB Cloud user who sent the invitation to join the organization.
-	InviterUsername pulumi.StringInput `pulumi:"inviterUsername"`
-	// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
-	LastAuth pulumi.StringInput `pulumi:"lastAuth"`
-	// Last name, family name, or surname that belongs to the MongoDB Cloud user.
-	LastName pulumi.StringInput `pulumi:"lastName"`
-	// Mobile phone number that belongs to the MongoDB Cloud user.
-	MobileNumber pulumi.StringInput `pulumi:"mobileNumber"`
-	// String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or are already active in the organization.
-	OrgMembershipStatus pulumi.StringInput `pulumi:"orgMembershipStatus"`
-	// Organization and project-level roles assigned to one MongoDB Cloud user within one organization.
-	Roles GetTeamUserRoleArrayInput `pulumi:"roles"`
-	// List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
-	TeamIds pulumi.StringArrayInput `pulumi:"teamIds"`
-	// Email address that represents the username of the MongoDB Cloud user.
-	Username pulumi.StringInput `pulumi:"username"`
-}
-
-func (GetTeamUserArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetTeamUser)(nil)).Elem()
-}
-
-func (i GetTeamUserArgs) ToGetTeamUserOutput() GetTeamUserOutput {
-	return i.ToGetTeamUserOutputWithContext(context.Background())
-}
-
-func (i GetTeamUserArgs) ToGetTeamUserOutputWithContext(ctx context.Context) GetTeamUserOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetTeamUserOutput)
-}
-
-// GetTeamUserArrayInput is an input type that accepts GetTeamUserArray and GetTeamUserArrayOutput values.
-// You can construct a concrete instance of `GetTeamUserArrayInput` via:
-//
-//	GetTeamUserArray{ GetTeamUserArgs{...} }
-type GetTeamUserArrayInput interface {
-	pulumi.Input
-
-	ToGetTeamUserArrayOutput() GetTeamUserArrayOutput
-	ToGetTeamUserArrayOutputWithContext(context.Context) GetTeamUserArrayOutput
-}
-
-type GetTeamUserArray []GetTeamUserInput
-
-func (GetTeamUserArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetTeamUser)(nil)).Elem()
-}
-
-func (i GetTeamUserArray) ToGetTeamUserArrayOutput() GetTeamUserArrayOutput {
-	return i.ToGetTeamUserArrayOutputWithContext(context.Background())
-}
-
-func (i GetTeamUserArray) ToGetTeamUserArrayOutputWithContext(ctx context.Context) GetTeamUserArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetTeamUserArrayOutput)
-}
-
-type GetTeamUserOutput struct{ *pulumi.OutputState }
-
-func (GetTeamUserOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetTeamUser)(nil)).Elem()
-}
-
-func (o GetTeamUserOutput) ToGetTeamUserOutput() GetTeamUserOutput {
-	return o
-}
-
-func (o GetTeamUserOutput) ToGetTeamUserOutputWithContext(ctx context.Context) GetTeamUserOutput {
-	return o
-}
-
-// Two-character alphabetical string that identifies the MongoDB Cloud user's geographic location. This parameter uses the ISO 3166-1a2 code format.
-func (o GetTeamUserOutput) Country() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamUser) string { return v.Country }).(pulumi.StringOutput)
-}
-
-// Date and time when MongoDB Cloud created the current account. This value is in the ISO 8601 timestamp format in UTC.
-func (o GetTeamUserOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamUser) string { return v.CreatedAt }).(pulumi.StringOutput)
-}
-
-// First or given name that belongs to the MongoDB Cloud user.
-func (o GetTeamUserOutput) FirstName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamUser) string { return v.FirstName }).(pulumi.StringOutput)
-}
-
-// Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
-func (o GetTeamUserOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamUser) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Date and time when MongoDB Cloud sent the invitation. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
-func (o GetTeamUserOutput) InvitationCreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamUser) string { return v.InvitationCreatedAt }).(pulumi.StringOutput)
-}
-
-// Date and time when the invitation from MongoDB Cloud expires. MongoDB Cloud represents this timestamp in ISO 8601 format in UTC.
-func (o GetTeamUserOutput) InvitationExpiresAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamUser) string { return v.InvitationExpiresAt }).(pulumi.StringOutput)
-}
-
-// Username of the MongoDB Cloud user who sent the invitation to join the organization.
-func (o GetTeamUserOutput) InviterUsername() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamUser) string { return v.InviterUsername }).(pulumi.StringOutput)
-}
-
-// Date and time when the current account last authenticated. This value is in the ISO 8601 timestamp format in UTC.
-func (o GetTeamUserOutput) LastAuth() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamUser) string { return v.LastAuth }).(pulumi.StringOutput)
-}
-
-// Last name, family name, or surname that belongs to the MongoDB Cloud user.
-func (o GetTeamUserOutput) LastName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamUser) string { return v.LastName }).(pulumi.StringOutput)
-}
-
-// Mobile phone number that belongs to the MongoDB Cloud user.
-func (o GetTeamUserOutput) MobileNumber() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamUser) string { return v.MobileNumber }).(pulumi.StringOutput)
-}
-
-// String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or are already active in the organization.
-func (o GetTeamUserOutput) OrgMembershipStatus() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamUser) string { return v.OrgMembershipStatus }).(pulumi.StringOutput)
-}
-
-// Organization and project-level roles assigned to one MongoDB Cloud user within one organization.
-func (o GetTeamUserOutput) Roles() GetTeamUserRoleArrayOutput {
-	return o.ApplyT(func(v GetTeamUser) []GetTeamUserRole { return v.Roles }).(GetTeamUserRoleArrayOutput)
-}
-
-// List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
-func (o GetTeamUserOutput) TeamIds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetTeamUser) []string { return v.TeamIds }).(pulumi.StringArrayOutput)
-}
-
-// Email address that represents the username of the MongoDB Cloud user.
-func (o GetTeamUserOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamUser) string { return v.Username }).(pulumi.StringOutput)
-}
-
-type GetTeamUserArrayOutput struct{ *pulumi.OutputState }
-
-func (GetTeamUserArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetTeamUser)(nil)).Elem()
-}
-
-func (o GetTeamUserArrayOutput) ToGetTeamUserArrayOutput() GetTeamUserArrayOutput {
-	return o
-}
-
-func (o GetTeamUserArrayOutput) ToGetTeamUserArrayOutputWithContext(ctx context.Context) GetTeamUserArrayOutput {
-	return o
-}
-
-func (o GetTeamUserArrayOutput) Index(i pulumi.IntInput) GetTeamUserOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamUser {
-		return vs[0].([]GetTeamUser)[vs[1].(int)]
-	}).(GetTeamUserOutput)
-}
-
-type GetTeamUserRole struct {
-	OrgRoles               []string                               `pulumi:"orgRoles"`
-	ProjectRoleAssignments []GetTeamUserRoleProjectRoleAssignment `pulumi:"projectRoleAssignments"`
-}
-
-// GetTeamUserRoleInput is an input type that accepts GetTeamUserRoleArgs and GetTeamUserRoleOutput values.
-// You can construct a concrete instance of `GetTeamUserRoleInput` via:
-//
-//	GetTeamUserRoleArgs{...}
-type GetTeamUserRoleInput interface {
-	pulumi.Input
-
-	ToGetTeamUserRoleOutput() GetTeamUserRoleOutput
-	ToGetTeamUserRoleOutputWithContext(context.Context) GetTeamUserRoleOutput
-}
-
-type GetTeamUserRoleArgs struct {
-	OrgRoles               pulumi.StringArrayInput                        `pulumi:"orgRoles"`
-	ProjectRoleAssignments GetTeamUserRoleProjectRoleAssignmentArrayInput `pulumi:"projectRoleAssignments"`
-}
-
-func (GetTeamUserRoleArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetTeamUserRole)(nil)).Elem()
-}
-
-func (i GetTeamUserRoleArgs) ToGetTeamUserRoleOutput() GetTeamUserRoleOutput {
-	return i.ToGetTeamUserRoleOutputWithContext(context.Background())
-}
-
-func (i GetTeamUserRoleArgs) ToGetTeamUserRoleOutputWithContext(ctx context.Context) GetTeamUserRoleOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetTeamUserRoleOutput)
-}
-
-// GetTeamUserRoleArrayInput is an input type that accepts GetTeamUserRoleArray and GetTeamUserRoleArrayOutput values.
-// You can construct a concrete instance of `GetTeamUserRoleArrayInput` via:
-//
-//	GetTeamUserRoleArray{ GetTeamUserRoleArgs{...} }
-type GetTeamUserRoleArrayInput interface {
-	pulumi.Input
-
-	ToGetTeamUserRoleArrayOutput() GetTeamUserRoleArrayOutput
-	ToGetTeamUserRoleArrayOutputWithContext(context.Context) GetTeamUserRoleArrayOutput
-}
-
-type GetTeamUserRoleArray []GetTeamUserRoleInput
-
-func (GetTeamUserRoleArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetTeamUserRole)(nil)).Elem()
-}
-
-func (i GetTeamUserRoleArray) ToGetTeamUserRoleArrayOutput() GetTeamUserRoleArrayOutput {
-	return i.ToGetTeamUserRoleArrayOutputWithContext(context.Background())
-}
-
-func (i GetTeamUserRoleArray) ToGetTeamUserRoleArrayOutputWithContext(ctx context.Context) GetTeamUserRoleArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetTeamUserRoleArrayOutput)
-}
-
-type GetTeamUserRoleOutput struct{ *pulumi.OutputState }
-
-func (GetTeamUserRoleOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetTeamUserRole)(nil)).Elem()
-}
-
-func (o GetTeamUserRoleOutput) ToGetTeamUserRoleOutput() GetTeamUserRoleOutput {
-	return o
-}
-
-func (o GetTeamUserRoleOutput) ToGetTeamUserRoleOutputWithContext(ctx context.Context) GetTeamUserRoleOutput {
-	return o
-}
-
-func (o GetTeamUserRoleOutput) OrgRoles() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetTeamUserRole) []string { return v.OrgRoles }).(pulumi.StringArrayOutput)
-}
-
-func (o GetTeamUserRoleOutput) ProjectRoleAssignments() GetTeamUserRoleProjectRoleAssignmentArrayOutput {
-	return o.ApplyT(func(v GetTeamUserRole) []GetTeamUserRoleProjectRoleAssignment { return v.ProjectRoleAssignments }).(GetTeamUserRoleProjectRoleAssignmentArrayOutput)
-}
-
-type GetTeamUserRoleArrayOutput struct{ *pulumi.OutputState }
-
-func (GetTeamUserRoleArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetTeamUserRole)(nil)).Elem()
-}
-
-func (o GetTeamUserRoleArrayOutput) ToGetTeamUserRoleArrayOutput() GetTeamUserRoleArrayOutput {
-	return o
-}
-
-func (o GetTeamUserRoleArrayOutput) ToGetTeamUserRoleArrayOutputWithContext(ctx context.Context) GetTeamUserRoleArrayOutput {
-	return o
-}
-
-func (o GetTeamUserRoleArrayOutput) Index(i pulumi.IntInput) GetTeamUserRoleOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamUserRole {
-		return vs[0].([]GetTeamUserRole)[vs[1].(int)]
-	}).(GetTeamUserRoleOutput)
-}
-
-type GetTeamUserRoleProjectRoleAssignment struct {
-	ProjectId    string   `pulumi:"projectId"`
-	ProjectRoles []string `pulumi:"projectRoles"`
-}
-
-// GetTeamUserRoleProjectRoleAssignmentInput is an input type that accepts GetTeamUserRoleProjectRoleAssignmentArgs and GetTeamUserRoleProjectRoleAssignmentOutput values.
-// You can construct a concrete instance of `GetTeamUserRoleProjectRoleAssignmentInput` via:
-//
-//	GetTeamUserRoleProjectRoleAssignmentArgs{...}
-type GetTeamUserRoleProjectRoleAssignmentInput interface {
-	pulumi.Input
-
-	ToGetTeamUserRoleProjectRoleAssignmentOutput() GetTeamUserRoleProjectRoleAssignmentOutput
-	ToGetTeamUserRoleProjectRoleAssignmentOutputWithContext(context.Context) GetTeamUserRoleProjectRoleAssignmentOutput
-}
-
-type GetTeamUserRoleProjectRoleAssignmentArgs struct {
-	ProjectId    pulumi.StringInput      `pulumi:"projectId"`
-	ProjectRoles pulumi.StringArrayInput `pulumi:"projectRoles"`
-}
-
-func (GetTeamUserRoleProjectRoleAssignmentArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetTeamUserRoleProjectRoleAssignment)(nil)).Elem()
-}
-
-func (i GetTeamUserRoleProjectRoleAssignmentArgs) ToGetTeamUserRoleProjectRoleAssignmentOutput() GetTeamUserRoleProjectRoleAssignmentOutput {
-	return i.ToGetTeamUserRoleProjectRoleAssignmentOutputWithContext(context.Background())
-}
-
-func (i GetTeamUserRoleProjectRoleAssignmentArgs) ToGetTeamUserRoleProjectRoleAssignmentOutputWithContext(ctx context.Context) GetTeamUserRoleProjectRoleAssignmentOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetTeamUserRoleProjectRoleAssignmentOutput)
-}
-
-// GetTeamUserRoleProjectRoleAssignmentArrayInput is an input type that accepts GetTeamUserRoleProjectRoleAssignmentArray and GetTeamUserRoleProjectRoleAssignmentArrayOutput values.
-// You can construct a concrete instance of `GetTeamUserRoleProjectRoleAssignmentArrayInput` via:
-//
-//	GetTeamUserRoleProjectRoleAssignmentArray{ GetTeamUserRoleProjectRoleAssignmentArgs{...} }
-type GetTeamUserRoleProjectRoleAssignmentArrayInput interface {
-	pulumi.Input
-
-	ToGetTeamUserRoleProjectRoleAssignmentArrayOutput() GetTeamUserRoleProjectRoleAssignmentArrayOutput
-	ToGetTeamUserRoleProjectRoleAssignmentArrayOutputWithContext(context.Context) GetTeamUserRoleProjectRoleAssignmentArrayOutput
-}
-
-type GetTeamUserRoleProjectRoleAssignmentArray []GetTeamUserRoleProjectRoleAssignmentInput
-
-func (GetTeamUserRoleProjectRoleAssignmentArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetTeamUserRoleProjectRoleAssignment)(nil)).Elem()
-}
-
-func (i GetTeamUserRoleProjectRoleAssignmentArray) ToGetTeamUserRoleProjectRoleAssignmentArrayOutput() GetTeamUserRoleProjectRoleAssignmentArrayOutput {
-	return i.ToGetTeamUserRoleProjectRoleAssignmentArrayOutputWithContext(context.Background())
-}
-
-func (i GetTeamUserRoleProjectRoleAssignmentArray) ToGetTeamUserRoleProjectRoleAssignmentArrayOutputWithContext(ctx context.Context) GetTeamUserRoleProjectRoleAssignmentArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetTeamUserRoleProjectRoleAssignmentArrayOutput)
-}
-
-type GetTeamUserRoleProjectRoleAssignmentOutput struct{ *pulumi.OutputState }
-
-func (GetTeamUserRoleProjectRoleAssignmentOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetTeamUserRoleProjectRoleAssignment)(nil)).Elem()
-}
-
-func (o GetTeamUserRoleProjectRoleAssignmentOutput) ToGetTeamUserRoleProjectRoleAssignmentOutput() GetTeamUserRoleProjectRoleAssignmentOutput {
-	return o
-}
-
-func (o GetTeamUserRoleProjectRoleAssignmentOutput) ToGetTeamUserRoleProjectRoleAssignmentOutputWithContext(ctx context.Context) GetTeamUserRoleProjectRoleAssignmentOutput {
-	return o
-}
-
-func (o GetTeamUserRoleProjectRoleAssignmentOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetTeamUserRoleProjectRoleAssignment) string { return v.ProjectId }).(pulumi.StringOutput)
-}
-
-func (o GetTeamUserRoleProjectRoleAssignmentOutput) ProjectRoles() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetTeamUserRoleProjectRoleAssignment) []string { return v.ProjectRoles }).(pulumi.StringArrayOutput)
-}
-
-type GetTeamUserRoleProjectRoleAssignmentArrayOutput struct{ *pulumi.OutputState }
-
-func (GetTeamUserRoleProjectRoleAssignmentArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetTeamUserRoleProjectRoleAssignment)(nil)).Elem()
-}
-
-func (o GetTeamUserRoleProjectRoleAssignmentArrayOutput) ToGetTeamUserRoleProjectRoleAssignmentArrayOutput() GetTeamUserRoleProjectRoleAssignmentArrayOutput {
-	return o
-}
-
-func (o GetTeamUserRoleProjectRoleAssignmentArrayOutput) ToGetTeamUserRoleProjectRoleAssignmentArrayOutputWithContext(ctx context.Context) GetTeamUserRoleProjectRoleAssignmentArrayOutput {
-	return o
-}
-
-func (o GetTeamUserRoleProjectRoleAssignmentArrayOutput) Index(i pulumi.IntInput) GetTeamUserRoleProjectRoleAssignmentOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTeamUserRoleProjectRoleAssignment {
-		return vs[0].([]GetTeamUserRoleProjectRoleAssignment)[vs[1].(int)]
-	}).(GetTeamUserRoleProjectRoleAssignmentOutput)
-}
-
-type GetThirdPartyIntegrationsResult struct {
-	AccountId string `pulumi:"accountId"`
-	// Your API Key.
-	ApiKey      string `pulumi:"apiKey"`
-	ChannelName string `pulumi:"channelName"`
-	// Whether your cluster has Prometheus enabled.
-	Enabled bool `pulumi:"enabled"`
-	// Unique identifier of the integration.
-	Id string `pulumi:"id"`
-	// Your Microsoft Teams incoming webhook URL.
-	// * `PROMETHEUS`
-	MicrosoftTeamsWebhookUrl string `pulumi:"microsoftTeamsWebhookUrl"`
-	// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
-	ProjectId string `pulumi:"projectId"`
-	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
-	// * `VICTOR_OPS`
-	Region string `pulumi:"region"`
-	// An optional field for your Routing Key.
-	// * `WEBHOOK`
-	RoutingKey string `pulumi:"routingKey"`
-	// An optional field for your webhook secret.
-	// * `MICROSOFT_TEAMS`
-	Secret string `pulumi:"secret"`
-	// Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
-	SendCollectionLatencyMetrics bool `pulumi:"sendCollectionLatencyMetrics"`
-	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-	SendDatabaseMetrics bool `pulumi:"sendDatabaseMetrics"`
-	// Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
-	// * `OPS_GENIE`
-	SendQueryStatsMetrics bool `pulumi:"sendQueryStatsMetrics"`
-	// Toggle sending user provided group and cluster resource tags with the Datadog metrics.
-	SendUserProvidedResourceTags bool `pulumi:"sendUserProvidedResourceTags"`
-	// Indicates which service discovery method is used, either file or http.
-	ServiceDiscovery string `pulumi:"serviceDiscovery"`
-	// Your Service Key.
-	// * `DATADOG`
-	ServiceKey string `pulumi:"serviceKey"`
-	TeamName   string `pulumi:"teamName"`
-	// Third-Party service integration type.
-	Type string `pulumi:"type"`
-	// Your webhook URL.
-	Url string `pulumi:"url"`
-	// Your Prometheus username.
-	UserName string `pulumi:"userName"`
-}
-
-// GetThirdPartyIntegrationsResultInput is an input type that accepts GetThirdPartyIntegrationsResultArgs and GetThirdPartyIntegrationsResultOutput values.
-// You can construct a concrete instance of `GetThirdPartyIntegrationsResultInput` via:
-//
-//	GetThirdPartyIntegrationsResultArgs{...}
-type GetThirdPartyIntegrationsResultInput interface {
-	pulumi.Input
-
-	ToGetThirdPartyIntegrationsResultOutput() GetThirdPartyIntegrationsResultOutput
-	ToGetThirdPartyIntegrationsResultOutputWithContext(context.Context) GetThirdPartyIntegrationsResultOutput
-}
-
-type GetThirdPartyIntegrationsResultArgs struct {
-	AccountId pulumi.StringInput `pulumi:"accountId"`
-	// Your API Key.
-	ApiKey      pulumi.StringInput `pulumi:"apiKey"`
-	ChannelName pulumi.StringInput `pulumi:"channelName"`
-	// Whether your cluster has Prometheus enabled.
-	Enabled pulumi.BoolInput `pulumi:"enabled"`
-	// Unique identifier of the integration.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Your Microsoft Teams incoming webhook URL.
-	// * `PROMETHEUS`
-	MicrosoftTeamsWebhookUrl pulumi.StringInput `pulumi:"microsoftTeamsWebhookUrl"`
-	// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
-	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
-	// * `VICTOR_OPS`
-	Region pulumi.StringInput `pulumi:"region"`
-	// An optional field for your Routing Key.
-	// * `WEBHOOK`
-	RoutingKey pulumi.StringInput `pulumi:"routingKey"`
-	// An optional field for your webhook secret.
-	// * `MICROSOFT_TEAMS`
-	Secret pulumi.StringInput `pulumi:"secret"`
-	// Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
-	SendCollectionLatencyMetrics pulumi.BoolInput `pulumi:"sendCollectionLatencyMetrics"`
-	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-	SendDatabaseMetrics pulumi.BoolInput `pulumi:"sendDatabaseMetrics"`
-	// Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
-	// * `OPS_GENIE`
-	SendQueryStatsMetrics pulumi.BoolInput `pulumi:"sendQueryStatsMetrics"`
-	// Toggle sending user provided group and cluster resource tags with the Datadog metrics.
-	SendUserProvidedResourceTags pulumi.BoolInput `pulumi:"sendUserProvidedResourceTags"`
-	// Indicates which service discovery method is used, either file or http.
-	ServiceDiscovery pulumi.StringInput `pulumi:"serviceDiscovery"`
-	// Your Service Key.
-	// * `DATADOG`
-	ServiceKey pulumi.StringInput `pulumi:"serviceKey"`
-	TeamName   pulumi.StringInput `pulumi:"teamName"`
-	// Third-Party service integration type.
-	Type pulumi.StringInput `pulumi:"type"`
-	// Your webhook URL.
-	Url pulumi.StringInput `pulumi:"url"`
-	// Your Prometheus username.
-	UserName pulumi.StringInput `pulumi:"userName"`
-}
-
-func (GetThirdPartyIntegrationsResultArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetThirdPartyIntegrationsResult)(nil)).Elem()
-}
-
-func (i GetThirdPartyIntegrationsResultArgs) ToGetThirdPartyIntegrationsResultOutput() GetThirdPartyIntegrationsResultOutput {
-	return i.ToGetThirdPartyIntegrationsResultOutputWithContext(context.Background())
-}
-
-func (i GetThirdPartyIntegrationsResultArgs) ToGetThirdPartyIntegrationsResultOutputWithContext(ctx context.Context) GetThirdPartyIntegrationsResultOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetThirdPartyIntegrationsResultOutput)
-}
-
-// GetThirdPartyIntegrationsResultArrayInput is an input type that accepts GetThirdPartyIntegrationsResultArray and GetThirdPartyIntegrationsResultArrayOutput values.
-// You can construct a concrete instance of `GetThirdPartyIntegrationsResultArrayInput` via:
-//
-//	GetThirdPartyIntegrationsResultArray{ GetThirdPartyIntegrationsResultArgs{...} }
-type GetThirdPartyIntegrationsResultArrayInput interface {
-	pulumi.Input
-
-	ToGetThirdPartyIntegrationsResultArrayOutput() GetThirdPartyIntegrationsResultArrayOutput
-	ToGetThirdPartyIntegrationsResultArrayOutputWithContext(context.Context) GetThirdPartyIntegrationsResultArrayOutput
-}
-
-type GetThirdPartyIntegrationsResultArray []GetThirdPartyIntegrationsResultInput
-
-func (GetThirdPartyIntegrationsResultArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetThirdPartyIntegrationsResult)(nil)).Elem()
-}
-
-func (i GetThirdPartyIntegrationsResultArray) ToGetThirdPartyIntegrationsResultArrayOutput() GetThirdPartyIntegrationsResultArrayOutput {
-	return i.ToGetThirdPartyIntegrationsResultArrayOutputWithContext(context.Background())
-}
-
-func (i GetThirdPartyIntegrationsResultArray) ToGetThirdPartyIntegrationsResultArrayOutputWithContext(ctx context.Context) GetThirdPartyIntegrationsResultArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetThirdPartyIntegrationsResultArrayOutput)
-}
-
-type GetThirdPartyIntegrationsResultOutput struct{ *pulumi.OutputState }
-
-func (GetThirdPartyIntegrationsResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetThirdPartyIntegrationsResult)(nil)).Elem()
-}
-
-func (o GetThirdPartyIntegrationsResultOutput) ToGetThirdPartyIntegrationsResultOutput() GetThirdPartyIntegrationsResultOutput {
-	return o
-}
-
-func (o GetThirdPartyIntegrationsResultOutput) ToGetThirdPartyIntegrationsResultOutputWithContext(ctx context.Context) GetThirdPartyIntegrationsResultOutput {
-	return o
-}
-
-func (o GetThirdPartyIntegrationsResultOutput) AccountId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.AccountId }).(pulumi.StringOutput)
-}
-
-// Your API Key.
-func (o GetThirdPartyIntegrationsResultOutput) ApiKey() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ApiKey }).(pulumi.StringOutput)
-}
-
-func (o GetThirdPartyIntegrationsResultOutput) ChannelName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ChannelName }).(pulumi.StringOutput)
-}
-
-// Whether your cluster has Prometheus enabled.
-func (o GetThirdPartyIntegrationsResultOutput) Enabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.Enabled }).(pulumi.BoolOutput)
-}
-
-// Unique identifier of the integration.
-func (o GetThirdPartyIntegrationsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Your Microsoft Teams incoming webhook URL.
-// * `PROMETHEUS`
-func (o GetThirdPartyIntegrationsResultOutput) MicrosoftTeamsWebhookUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.MicrosoftTeamsWebhookUrl }).(pulumi.StringOutput)
-}
-
-// The unique ID for the project to get all Third-Party service integrations, also known as `groupId` in the official documentation
-func (o GetThirdPartyIntegrationsResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ProjectId }).(pulumi.StringOutput)
-}
-
-// Two-letter code that indicates which API URL to use. See the `region` response field of [MongoDB API Third-Party Service Integration documentation](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getthirdpartyintegration) for more details. Opsgenie will use US by default.
-// * `VICTOR_OPS`
-func (o GetThirdPartyIntegrationsResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Region }).(pulumi.StringOutput)
-}
-
-// An optional field for your Routing Key.
-// * `WEBHOOK`
-func (o GetThirdPartyIntegrationsResultOutput) RoutingKey() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.RoutingKey }).(pulumi.StringOutput)
-}
-
-// An optional field for your webhook secret.
-// * `MICROSOFT_TEAMS`
-func (o GetThirdPartyIntegrationsResultOutput) Secret() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Secret }).(pulumi.StringOutput)
-}
-
-// Toggle sending collection latency metrics that includes database names and collection names and latency metrics on reads, writes, commands, and transactions.
-func (o GetThirdPartyIntegrationsResultOutput) SendCollectionLatencyMetrics() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.SendCollectionLatencyMetrics }).(pulumi.BoolOutput)
-}
-
-// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
-func (o GetThirdPartyIntegrationsResultOutput) SendDatabaseMetrics() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.SendDatabaseMetrics }).(pulumi.BoolOutput)
-}
-
-// Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
-// * `OPS_GENIE`
-func (o GetThirdPartyIntegrationsResultOutput) SendQueryStatsMetrics() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.SendQueryStatsMetrics }).(pulumi.BoolOutput)
-}
-
-// Toggle sending user provided group and cluster resource tags with the Datadog metrics.
-func (o GetThirdPartyIntegrationsResultOutput) SendUserProvidedResourceTags() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.SendUserProvidedResourceTags }).(pulumi.BoolOutput)
-}
-
-// Indicates which service discovery method is used, either file or http.
-func (o GetThirdPartyIntegrationsResultOutput) ServiceDiscovery() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ServiceDiscovery }).(pulumi.StringOutput)
-}
-
-// Your Service Key.
-// * `DATADOG`
-func (o GetThirdPartyIntegrationsResultOutput) ServiceKey() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.ServiceKey }).(pulumi.StringOutput)
-}
-
-func (o GetThirdPartyIntegrationsResultOutput) TeamName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.TeamName }).(pulumi.StringOutput)
-}
-
-// Third-Party service integration type.
-func (o GetThirdPartyIntegrationsResultOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Type }).(pulumi.StringOutput)
-}
-
-// Your webhook URL.
-func (o GetThirdPartyIntegrationsResultOutput) Url() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.Url }).(pulumi.StringOutput)
-}
-
-// Your Prometheus username.
-func (o GetThirdPartyIntegrationsResultOutput) UserName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) string { return v.UserName }).(pulumi.StringOutput)
-}
-
-type GetThirdPartyIntegrationsResultArrayOutput struct{ *pulumi.OutputState }
-
-func (GetThirdPartyIntegrationsResultArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetThirdPartyIntegrationsResult)(nil)).Elem()
-}
-
-func (o GetThirdPartyIntegrationsResultArrayOutput) ToGetThirdPartyIntegrationsResultArrayOutput() GetThirdPartyIntegrationsResultArrayOutput {
-	return o
-}
-
-func (o GetThirdPartyIntegrationsResultArrayOutput) ToGetThirdPartyIntegrationsResultArrayOutputWithContext(ctx context.Context) GetThirdPartyIntegrationsResultArrayOutput {
-	return o
-}
-
-func (o GetThirdPartyIntegrationsResultArrayOutput) Index(i pulumi.IntInput) GetThirdPartyIntegrationsResultOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetThirdPartyIntegrationsResult {
-		return vs[0].([]GetThirdPartyIntegrationsResult)[vs[1].(int)]
-	}).(GetThirdPartyIntegrationsResultOutput)
-}
-
-type GetX509AuthenticationDatabaseUserCertificate struct {
-	CreatedAt string `pulumi:"createdAt"`
-	GroupId   string `pulumi:"groupId"`
-	Id        int    `pulumi:"id"`
-	NotAfter  string `pulumi:"notAfter"`
-	Subject   string `pulumi:"subject"`
-}
-
-// GetX509AuthenticationDatabaseUserCertificateInput is an input type that accepts GetX509AuthenticationDatabaseUserCertificateArgs and GetX509AuthenticationDatabaseUserCertificateOutput values.
-// You can construct a concrete instance of `GetX509AuthenticationDatabaseUserCertificateInput` via:
-//
-//	GetX509AuthenticationDatabaseUserCertificateArgs{...}
-type GetX509AuthenticationDatabaseUserCertificateInput interface {
-	pulumi.Input
-
-	ToGetX509AuthenticationDatabaseUserCertificateOutput() GetX509AuthenticationDatabaseUserCertificateOutput
-	ToGetX509AuthenticationDatabaseUserCertificateOutputWithContext(context.Context) GetX509AuthenticationDatabaseUserCertificateOutput
-}
-
-type GetX509AuthenticationDatabaseUserCertificateArgs struct {
-	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
-	GroupId   pulumi.StringInput `pulumi:"groupId"`
-	Id        pulumi.IntInput    `pulumi:"id"`
-	NotAfter  pulumi.StringInput `pulumi:"notAfter"`
-	Subject   pulumi.StringInput `pulumi:"subject"`
-}
-
-func (GetX509AuthenticationDatabaseUserCertificateArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetX509AuthenticationDatabaseUserCertificate)(nil)).Elem()
-}
-
-func (i GetX509AuthenticationDatabaseUserCertificateArgs) ToGetX509AuthenticationDatabaseUserCertificateOutput() GetX509AuthenticationDatabaseUserCertificateOutput {
-	return i.ToGetX509AuthenticationDatabaseUserCertificateOutputWithContext(context.Background())
-}
-
-func (i GetX509AuthenticationDatabaseUserCertificateArgs) ToGetX509AuthenticationDatabaseUserCertificateOutputWithContext(ctx context.Context) GetX509AuthenticationDatabaseUserCertificateOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetX509AuthenticationDatabaseUserCertificateOutput)
-}
-
-// GetX509AuthenticationDatabaseUserCertificateArrayInput is an input type that accepts GetX509AuthenticationDatabaseUserCertificateArray and GetX509AuthenticationDatabaseUserCertificateArrayOutput values.
-// You can construct a concrete instance of `GetX509AuthenticationDatabaseUserCertificateArrayInput` via:
-//
-//	GetX509AuthenticationDatabaseUserCertificateArray{ GetX509AuthenticationDatabaseUserCertificateArgs{...} }
-type GetX509AuthenticationDatabaseUserCertificateArrayInput interface {
-	pulumi.Input
-
-	ToGetX509AuthenticationDatabaseUserCertificateArrayOutput() GetX509AuthenticationDatabaseUserCertificateArrayOutput
-	ToGetX509AuthenticationDatabaseUserCertificateArrayOutputWithContext(context.Context) GetX509AuthenticationDatabaseUserCertificateArrayOutput
-}
-
-type GetX509AuthenticationDatabaseUserCertificateArray []GetX509AuthenticationDatabaseUserCertificateInput
-
-func (GetX509AuthenticationDatabaseUserCertificateArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetX509AuthenticationDatabaseUserCertificate)(nil)).Elem()
-}
-
-func (i GetX509AuthenticationDatabaseUserCertificateArray) ToGetX509AuthenticationDatabaseUserCertificateArrayOutput() GetX509AuthenticationDatabaseUserCertificateArrayOutput {
-	return i.ToGetX509AuthenticationDatabaseUserCertificateArrayOutputWithContext(context.Background())
-}
-
-func (i GetX509AuthenticationDatabaseUserCertificateArray) ToGetX509AuthenticationDatabaseUserCertificateArrayOutputWithContext(ctx context.Context) GetX509AuthenticationDatabaseUserCertificateArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetX509AuthenticationDatabaseUserCertificateArrayOutput)
-}
-
-type GetX509AuthenticationDatabaseUserCertificateOutput struct{ *pulumi.OutputState }
-
-func (GetX509AuthenticationDatabaseUserCertificateOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetX509AuthenticationDatabaseUserCertificate)(nil)).Elem()
-}
-
-func (o GetX509AuthenticationDatabaseUserCertificateOutput) ToGetX509AuthenticationDatabaseUserCertificateOutput() GetX509AuthenticationDatabaseUserCertificateOutput {
-	return o
-}
-
-func (o GetX509AuthenticationDatabaseUserCertificateOutput) ToGetX509AuthenticationDatabaseUserCertificateOutputWithContext(ctx context.Context) GetX509AuthenticationDatabaseUserCertificateOutput {
-	return o
-}
-
-func (o GetX509AuthenticationDatabaseUserCertificateOutput) CreatedAt() pulumi.StringOutput {
-	return o.ApplyT(func(v GetX509AuthenticationDatabaseUserCertificate) string { return v.CreatedAt }).(pulumi.StringOutput)
-}
-
-func (o GetX509AuthenticationDatabaseUserCertificateOutput) GroupId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetX509AuthenticationDatabaseUserCertificate) string { return v.GroupId }).(pulumi.StringOutput)
-}
-
-func (o GetX509AuthenticationDatabaseUserCertificateOutput) Id() pulumi.IntOutput {
-	return o.ApplyT(func(v GetX509AuthenticationDatabaseUserCertificate) int { return v.Id }).(pulumi.IntOutput)
-}
-
-func (o GetX509AuthenticationDatabaseUserCertificateOutput) NotAfter() pulumi.StringOutput {
-	return o.ApplyT(func(v GetX509AuthenticationDatabaseUserCertificate) string { return v.NotAfter }).(pulumi.StringOutput)
-}
-
-func (o GetX509AuthenticationDatabaseUserCertificateOutput) Subject() pulumi.StringOutput {
-	return o.ApplyT(func(v GetX509AuthenticationDatabaseUserCertificate) string { return v.Subject }).(pulumi.StringOutput)
-}
-
-type GetX509AuthenticationDatabaseUserCertificateArrayOutput struct{ *pulumi.OutputState }
-
-func (GetX509AuthenticationDatabaseUserCertificateArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetX509AuthenticationDatabaseUserCertificate)(nil)).Elem()
-}
-
-func (o GetX509AuthenticationDatabaseUserCertificateArrayOutput) ToGetX509AuthenticationDatabaseUserCertificateArrayOutput() GetX509AuthenticationDatabaseUserCertificateArrayOutput {
-	return o
-}
-
-func (o GetX509AuthenticationDatabaseUserCertificateArrayOutput) ToGetX509AuthenticationDatabaseUserCertificateArrayOutputWithContext(ctx context.Context) GetX509AuthenticationDatabaseUserCertificateArrayOutput {
-	return o
-}
-
-func (o GetX509AuthenticationDatabaseUserCertificateArrayOutput) Index(i pulumi.IntInput) GetX509AuthenticationDatabaseUserCertificateOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetX509AuthenticationDatabaseUserCertificate {
-		return vs[0].([]GetX509AuthenticationDatabaseUserCertificate)[vs[1].(int)]
-	}).(GetX509AuthenticationDatabaseUserCertificateOutput)
 }
 
 func init() {
@@ -66492,6 +67321,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemWeeklyArrayInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemWeeklyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemYearlyInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemYearlyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackupCompliancePolicyPolicyItemYearlyArrayInput)(nil)).Elem(), BackupCompliancePolicyPolicyItemYearlyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupCollectionRestoreJobCollectionInput)(nil)).Elem(), CloudBackupCollectionRestoreJobCollectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupCollectionRestoreJobCollectionArrayInput)(nil)).Elem(), CloudBackupCollectionRestoreJobCollectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupCollectionRestoreJobDatabaseInput)(nil)).Elem(), CloudBackupCollectionRestoreJobDatabaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupCollectionRestoreJobDatabaseArrayInput)(nil)).Elem(), CloudBackupCollectionRestoreJobDatabaseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupCollectionRestoreJobIndexStatusInput)(nil)).Elem(), CloudBackupCollectionRestoreJobIndexStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupCollectionRestoreJobIndexStatusPtrInput)(nil)).Elem(), CloudBackupCollectionRestoreJobIndexStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupCollectionRestoreJobTimeoutsInput)(nil)).Elem(), CloudBackupCollectionRestoreJobTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupCollectionRestoreJobTimeoutsPtrInput)(nil)).Elem(), CloudBackupCollectionRestoreJobTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleCopySettingInput)(nil)).Elem(), CloudBackupScheduleCopySettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleCopySettingArrayInput)(nil)).Elem(), CloudBackupScheduleCopySettingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleExportInput)(nil)).Elem(), CloudBackupScheduleExportArgs{})
@@ -66704,6 +67541,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceAccountSecretTypeArrayInput)(nil)).Elem(), ServiceAccountSecretTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAuthenticationInput)(nil)).Elem(), StreamConnectionAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAuthenticationPtrInput)(nil)).Elem(), StreamConnectionAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAuthenticationAwsInput)(nil)).Elem(), StreamConnectionAuthenticationAwsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAuthenticationAwsPtrInput)(nil)).Elem(), StreamConnectionAuthenticationAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAwsInput)(nil)).Elem(), StreamConnectionAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAwsPtrInput)(nil)).Elem(), StreamConnectionAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamConnectionAzureInput)(nil)).Elem(), StreamConnectionAzureArgs{})
@@ -66740,6 +67579,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamInstanceStreamConfigPtrInput)(nil)).Elem(), StreamInstanceStreamConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamProcessorOptionsInput)(nil)).Elem(), StreamProcessorOptionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamProcessorOptionsPtrInput)(nil)).Elem(), StreamProcessorOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamProcessorOptionsAutoscalingInput)(nil)).Elem(), StreamProcessorOptionsAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StreamProcessorOptionsAutoscalingPtrInput)(nil)).Elem(), StreamProcessorOptionsAutoscalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamProcessorOptionsDlqInput)(nil)).Elem(), StreamProcessorOptionsDlqArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamProcessorOptionsDlqPtrInput)(nil)).Elem(), StreamProcessorOptionsDlqArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StreamProcessorTimeoutsInput)(nil)).Elem(), StreamProcessorTimeoutsArgs{})
@@ -66854,6 +67695,22 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemWeeklyArrayInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemWeeklyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemYearlyInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemYearlyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetBackupCompliancePolicyPolicyItemYearlyArrayInput)(nil)).Elem(), GetBackupCompliancePolicyPolicyItemYearlyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobCollectionInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobCollectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobCollectionArrayInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobCollectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobCollectionIndexStatusInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobCollectionIndexStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobCollectionsResultInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobCollectionsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobCollectionsResultArrayInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobCollectionsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobDatabaseInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobDatabaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobDatabaseArrayInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobDatabaseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobIndexStatusInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobIndexStatusArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResultInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResultArrayInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResultCollectionInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobsResultCollectionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResultCollectionArrayInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobsResultCollectionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResultDatabaseInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobsResultDatabaseArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResultDatabaseArrayInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobsResultDatabaseArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResultIndexStatusInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobsResultIndexStatusArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleCopySettingInput)(nil)).Elem(), GetCloudBackupScheduleCopySettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleCopySettingArrayInput)(nil)).Elem(), GetCloudBackupScheduleCopySettingArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleExportInput)(nil)).Elem(), GetCloudBackupScheduleExportArgs{})
@@ -66868,6 +67725,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemWeeklyArrayInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemWeeklyArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemYearlyInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemYearlyArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemYearlyArrayInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemYearlyArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotDatabaseCollectionsResultInput)(nil)).Elem(), GetCloudBackupSnapshotDatabaseCollectionsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotDatabaseCollectionsResultArrayInput)(nil)).Elem(), GetCloudBackupSnapshotDatabaseCollectionsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotDatabasesResultInput)(nil)).Elem(), GetCloudBackupSnapshotDatabasesResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotDatabasesResultArrayInput)(nil)).Elem(), GetCloudBackupSnapshotDatabasesResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportBucketsResultInput)(nil)).Elem(), GetCloudBackupSnapshotExportBucketsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportBucketsResultArrayInput)(nil)).Elem(), GetCloudBackupSnapshotExportBucketsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSnapshotExportJobComponentInput)(nil)).Elem(), GetCloudBackupSnapshotExportJobComponentArgs{})
@@ -67278,6 +68139,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierSnapshotsResultInput)(nil)).Elem(), GetSharedTierSnapshotsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetSharedTierSnapshotsResultArrayInput)(nil)).Elem(), GetSharedTierSnapshotsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionAuthenticationInput)(nil)).Elem(), GetStreamConnectionAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionAuthenticationAwsInput)(nil)).Elem(), GetStreamConnectionAuthenticationAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionAwsInput)(nil)).Elem(), GetStreamConnectionAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionAzureInput)(nil)).Elem(), GetStreamConnectionAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionDbRoleToExecuteArgs{})
@@ -67301,6 +68163,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultInput)(nil)).Elem(), GetStreamConnectionsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultArrayInput)(nil)).Elem(), GetStreamConnectionsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAuthenticationInput)(nil)).Elem(), GetStreamConnectionsResultAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAuthenticationAwsInput)(nil)).Elem(), GetStreamConnectionsResultAuthenticationAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAwsInput)(nil)).Elem(), GetStreamConnectionsResultAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAzureInput)(nil)).Elem(), GetStreamConnectionsResultAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionsResultDbRoleToExecuteArgs{})
@@ -67318,31 +68181,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamPrivatelinkEndpointsResultInput)(nil)).Elem(), GetStreamPrivatelinkEndpointsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamPrivatelinkEndpointsResultArrayInput)(nil)).Elem(), GetStreamPrivatelinkEndpointsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorOptionsInput)(nil)).Elem(), GetStreamProcessorOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorOptionsAutoscalingInput)(nil)).Elem(), GetStreamProcessorOptionsAutoscalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorOptionsDlqInput)(nil)).Elem(), GetStreamProcessorOptionsDlqArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultInput)(nil)).Elem(), GetStreamProcessorsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultArrayInput)(nil)).Elem(), GetStreamProcessorsResultArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultOptionsInput)(nil)).Elem(), GetStreamProcessorsResultOptionsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultOptionsDlqInput)(nil)).Elem(), GetStreamProcessorsResultOptionsDlqArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspaceDataProcessRegionInput)(nil)).Elem(), GetStreamWorkspaceDataProcessRegionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspaceFailoverRegionInput)(nil)).Elem(), GetStreamWorkspaceFailoverRegionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspaceFailoverRegionArrayInput)(nil)).Elem(), GetStreamWorkspaceFailoverRegionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspaceStreamConfigInput)(nil)).Elem(), GetStreamWorkspaceStreamConfigArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacesResultInput)(nil)).Elem(), GetStreamWorkspacesResultArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacesResultArrayInput)(nil)).Elem(), GetStreamWorkspacesResultArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacesResultDataProcessRegionInput)(nil)).Elem(), GetStreamWorkspacesResultDataProcessRegionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacesResultFailoverRegionInput)(nil)).Elem(), GetStreamWorkspacesResultFailoverRegionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacesResultFailoverRegionArrayInput)(nil)).Elem(), GetStreamWorkspacesResultFailoverRegionArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamWorkspacesResultStreamConfigInput)(nil)).Elem(), GetStreamWorkspacesResultStreamConfigArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamUserInput)(nil)).Elem(), GetTeamUserArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamUserArrayInput)(nil)).Elem(), GetTeamUserArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamUserRoleInput)(nil)).Elem(), GetTeamUserRoleArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamUserRoleArrayInput)(nil)).Elem(), GetTeamUserRoleArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamUserRoleProjectRoleAssignmentInput)(nil)).Elem(), GetTeamUserRoleProjectRoleAssignmentArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetTeamUserRoleProjectRoleAssignmentArrayInput)(nil)).Elem(), GetTeamUserRoleProjectRoleAssignmentArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultArrayInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetX509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), GetX509AuthenticationDatabaseUserCertificateArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetX509AuthenticationDatabaseUserCertificateArrayInput)(nil)).Elem(), GetX509AuthenticationDatabaseUserCertificateArray{})
 	pulumi.RegisterOutputType(AdvancedClusterAdvancedConfigurationOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterAdvancedConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterBiConnectorConfigOutput{})
@@ -67391,6 +68233,14 @@ func init() {
 	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemWeeklyArrayOutput{})
 	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemYearlyOutput{})
 	pulumi.RegisterOutputType(BackupCompliancePolicyPolicyItemYearlyArrayOutput{})
+	pulumi.RegisterOutputType(CloudBackupCollectionRestoreJobCollectionOutput{})
+	pulumi.RegisterOutputType(CloudBackupCollectionRestoreJobCollectionArrayOutput{})
+	pulumi.RegisterOutputType(CloudBackupCollectionRestoreJobDatabaseOutput{})
+	pulumi.RegisterOutputType(CloudBackupCollectionRestoreJobDatabaseArrayOutput{})
+	pulumi.RegisterOutputType(CloudBackupCollectionRestoreJobIndexStatusOutput{})
+	pulumi.RegisterOutputType(CloudBackupCollectionRestoreJobIndexStatusPtrOutput{})
+	pulumi.RegisterOutputType(CloudBackupCollectionRestoreJobTimeoutsOutput{})
+	pulumi.RegisterOutputType(CloudBackupCollectionRestoreJobTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleCopySettingOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleCopySettingArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleExportOutput{})
@@ -67603,6 +68453,8 @@ func init() {
 	pulumi.RegisterOutputType(ServiceAccountSecretTypeArrayOutput{})
 	pulumi.RegisterOutputType(StreamConnectionAuthenticationOutput{})
 	pulumi.RegisterOutputType(StreamConnectionAuthenticationPtrOutput{})
+	pulumi.RegisterOutputType(StreamConnectionAuthenticationAwsOutput{})
+	pulumi.RegisterOutputType(StreamConnectionAuthenticationAwsPtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionAwsOutput{})
 	pulumi.RegisterOutputType(StreamConnectionAwsPtrOutput{})
 	pulumi.RegisterOutputType(StreamConnectionAzureOutput{})
@@ -67639,6 +68491,8 @@ func init() {
 	pulumi.RegisterOutputType(StreamInstanceStreamConfigPtrOutput{})
 	pulumi.RegisterOutputType(StreamProcessorOptionsOutput{})
 	pulumi.RegisterOutputType(StreamProcessorOptionsPtrOutput{})
+	pulumi.RegisterOutputType(StreamProcessorOptionsAutoscalingOutput{})
+	pulumi.RegisterOutputType(StreamProcessorOptionsAutoscalingPtrOutput{})
 	pulumi.RegisterOutputType(StreamProcessorOptionsDlqOutput{})
 	pulumi.RegisterOutputType(StreamProcessorOptionsDlqPtrOutput{})
 	pulumi.RegisterOutputType(StreamProcessorTimeoutsOutput{})
@@ -67753,6 +68607,22 @@ func init() {
 	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemWeeklyArrayOutput{})
 	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemYearlyOutput{})
 	pulumi.RegisterOutputType(GetBackupCompliancePolicyPolicyItemYearlyArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobCollectionOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobCollectionArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobCollectionIndexStatusOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobCollectionsResultOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobCollectionsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobDatabaseOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobDatabaseArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobIndexStatusOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobsResultOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobsResultCollectionOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobsResultCollectionArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobsResultDatabaseOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobsResultDatabaseArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleCopySettingOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleCopySettingArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleExportOutput{})
@@ -67767,6 +68637,10 @@ func init() {
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemWeeklyArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemYearlyOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemYearlyArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotDatabaseCollectionsResultOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotDatabaseCollectionsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotDatabasesResultOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupSnapshotDatabasesResultArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportBucketsResultOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportBucketsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSnapshotExportJobComponentOutput{})
@@ -68177,6 +69051,7 @@ func init() {
 	pulumi.RegisterOutputType(GetSharedTierSnapshotsResultOutput{})
 	pulumi.RegisterOutputType(GetSharedTierSnapshotsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionAuthenticationOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionAuthenticationAwsOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionAwsOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionAzureOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionDbRoleToExecuteOutput{})
@@ -68200,6 +69075,7 @@ func init() {
 	pulumi.RegisterOutputType(GetStreamConnectionsResultOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultAuthenticationOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultAuthenticationAwsOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultAwsOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultAzureOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultDbRoleToExecuteOutput{})
@@ -68217,29 +69093,8 @@ func init() {
 	pulumi.RegisterOutputType(GetStreamPrivatelinkEndpointsResultOutput{})
 	pulumi.RegisterOutputType(GetStreamPrivatelinkEndpointsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamProcessorOptionsOutput{})
+	pulumi.RegisterOutputType(GetStreamProcessorOptionsAutoscalingOutput{})
 	pulumi.RegisterOutputType(GetStreamProcessorOptionsDlqOutput{})
 	pulumi.RegisterOutputType(GetStreamProcessorsResultOutput{})
 	pulumi.RegisterOutputType(GetStreamProcessorsResultArrayOutput{})
-	pulumi.RegisterOutputType(GetStreamProcessorsResultOptionsOutput{})
-	pulumi.RegisterOutputType(GetStreamProcessorsResultOptionsDlqOutput{})
-	pulumi.RegisterOutputType(GetStreamWorkspaceDataProcessRegionOutput{})
-	pulumi.RegisterOutputType(GetStreamWorkspaceFailoverRegionOutput{})
-	pulumi.RegisterOutputType(GetStreamWorkspaceFailoverRegionArrayOutput{})
-	pulumi.RegisterOutputType(GetStreamWorkspaceStreamConfigOutput{})
-	pulumi.RegisterOutputType(GetStreamWorkspacesResultOutput{})
-	pulumi.RegisterOutputType(GetStreamWorkspacesResultArrayOutput{})
-	pulumi.RegisterOutputType(GetStreamWorkspacesResultDataProcessRegionOutput{})
-	pulumi.RegisterOutputType(GetStreamWorkspacesResultFailoverRegionOutput{})
-	pulumi.RegisterOutputType(GetStreamWorkspacesResultFailoverRegionArrayOutput{})
-	pulumi.RegisterOutputType(GetStreamWorkspacesResultStreamConfigOutput{})
-	pulumi.RegisterOutputType(GetTeamUserOutput{})
-	pulumi.RegisterOutputType(GetTeamUserArrayOutput{})
-	pulumi.RegisterOutputType(GetTeamUserRoleOutput{})
-	pulumi.RegisterOutputType(GetTeamUserRoleArrayOutput{})
-	pulumi.RegisterOutputType(GetTeamUserRoleProjectRoleAssignmentOutput{})
-	pulumi.RegisterOutputType(GetTeamUserRoleProjectRoleAssignmentArrayOutput{})
-	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultOutput{})
-	pulumi.RegisterOutputType(GetThirdPartyIntegrationsResultArrayOutput{})
-	pulumi.RegisterOutputType(GetX509AuthenticationDatabaseUserCertificateOutput{})
-	pulumi.RegisterOutputType(GetX509AuthenticationDatabaseUserCertificateArrayOutput{})
 }

@@ -15,6 +15,7 @@ from .api_key import *
 from .api_key_project_assignment import *
 from .auditing import *
 from .backup_compliance_policy import *
+from .cloud_backup_collection_restore_job import *
 from .cloud_backup_schedule import *
 from .cloud_backup_snapshot import *
 from .cloud_backup_snapshot_export_bucket import *
@@ -61,8 +62,14 @@ from .get_atlas_user import *
 from .get_atlas_users import *
 from .get_auditing import *
 from .get_backup_compliance_policy import *
+from .get_cloud_backup_collection_restore_job import *
+from .get_cloud_backup_collection_restore_job_collection import *
+from .get_cloud_backup_collection_restore_job_collections import *
+from .get_cloud_backup_collection_restore_jobs import *
 from .get_cloud_backup_schedule import *
 from .get_cloud_backup_snapshot import *
+from .get_cloud_backup_snapshot_database_collections import *
+from .get_cloud_backup_snapshot_databases import *
 from .get_cloud_backup_snapshot_export_bucket import *
 from .get_cloud_backup_snapshot_export_buckets import *
 from .get_cloud_backup_snapshot_export_job import *
@@ -306,6 +313,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy": "BackupCompliancePolicy"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/cloudBackupCollectionRestoreJob",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/cloudBackupCollectionRestoreJob:CloudBackupCollectionRestoreJob": "CloudBackupCollectionRestoreJob"
   }
  },
  {

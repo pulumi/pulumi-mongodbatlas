@@ -134,6 +134,7 @@ namespace Pulumi.Mongodbatlas
         /// ";
         ///         }),
         ///         State = "CREATED",
+        ///         Tier = "SP10",
         ///         Options = new Mongodbatlas.Inputs.StreamProcessorOptionsArgs
         ///         {
         ///             Dlq = new Mongodbatlas.Inputs.StreamProcessorOptionsDlqArgs
@@ -141,6 +142,11 @@ namespace Pulumi.Mongodbatlas
         ///                 Coll = "exampleColumn",
         ///                 ConnectionName = example_cluster.ConnectionName,
         ///                 Db = "exampleDb",
+        ///             },
+        ///             Autoscaling = new Mongodbatlas.Inputs.StreamProcessorOptionsAutoscalingArgs
+        ///             {
+        ///                 MinTier = "SP10",
+        ///                 MaxTier = "SP50",
         ///             },
         ///         },
         ///     });
@@ -292,6 +298,7 @@ namespace Pulumi.Mongodbatlas
         /// ";
         ///         }),
         ///         State = "CREATED",
+        ///         Tier = "SP10",
         ///         Options = new Mongodbatlas.Inputs.StreamProcessorOptionsArgs
         ///         {
         ///             Dlq = new Mongodbatlas.Inputs.StreamProcessorOptionsDlqArgs
@@ -299,6 +306,11 @@ namespace Pulumi.Mongodbatlas
         ///                 Coll = "exampleColumn",
         ///                 ConnectionName = example_cluster.ConnectionName,
         ///                 Db = "exampleDb",
+        ///             },
+        ///             Autoscaling = new Mongodbatlas.Inputs.StreamProcessorOptionsAutoscalingArgs
+        ///             {
+        ///                 MinTier = "SP10",
+        ///                 MaxTier = "SP50",
         ///             },
         ///         },
         ///     });
@@ -450,6 +462,7 @@ namespace Pulumi.Mongodbatlas
         /// ";
         ///         }),
         ///         State = "CREATED",
+        ///         Tier = "SP10",
         ///         Options = new Mongodbatlas.Inputs.StreamProcessorOptionsArgs
         ///         {
         ///             Dlq = new Mongodbatlas.Inputs.StreamProcessorOptionsDlqArgs
@@ -457,6 +470,11 @@ namespace Pulumi.Mongodbatlas
         ///                 Coll = "exampleColumn",
         ///                 ConnectionName = example_cluster.ConnectionName,
         ///                 Db = "exampleDb",
+        ///             },
+        ///             Autoscaling = new Mongodbatlas.Inputs.StreamProcessorOptionsAutoscalingArgs
+        ///             {
+        ///                 MinTier = "SP10",
+        ///                 MaxTier = "SP50",
         ///             },
         ///         },
         ///     });
@@ -556,6 +574,10 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetStreamProcessorResult
     {
         /// <summary>
+        /// Tier the stream processor is currently running on. When autoscaling is disabled this equals `Tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+        /// </summary>
+        public readonly string EffectiveTier;
+        /// <summary>
         /// Indicates whether this stream processor is eligible for failover. When `True`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `FailoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `FailoverRegions` configured on the workspace.
         /// </summary>
         public readonly bool FailoverEnabled;
@@ -568,7 +590,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly string? InstanceName;
         /// <summary>
-        /// Optional configuration for the stream processor.
+        /// Optional configuration for the stream processor. Empty `Options` objects are not supported.
         /// </summary>
         public readonly Outputs.GetStreamProcessorOptionsResult Options;
         /// <summary>
@@ -596,6 +618,8 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetStreamProcessorResult(
+            string effectiveTier,
+
             bool failoverEnabled,
 
             string id,
@@ -618,6 +642,7 @@ namespace Pulumi.Mongodbatlas
 
             string? workspaceName)
         {
+            EffectiveTier = effectiveTier;
             FailoverEnabled = failoverEnabled;
             Id = id;
             InstanceName = instanceName;

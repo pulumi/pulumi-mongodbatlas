@@ -135,11 +135,16 @@ import (
 //					return fmt.Sprintf("[\n  {\\\"$source\\\": {\\\"connectionName\\\": \\\"%v\\\", \\\"topic\\\": \\\"topic_source\\\"}},\n  {\\\"$emit\\\": {\\\"connectionName\\\": \\\"%v\\\", \\\"db\\\": \\\"kafka\\\", \\\"coll\\\": \\\"topic_source\\\", \\\"timeseries\\\": {\\\"timeField\\\": \\\"ts\\\"}}}\n]\n", example_kafkaConnectionName, example_clusterConnectionName), nil
 //				}).(pulumi.StringOutput),
 //				State: pulumi.String("CREATED"),
+//				Tier:  pulumi.String("SP10"),
 //				Options: &mongodbatlas.StreamProcessorOptionsArgs{
 //					Dlq: &mongodbatlas.StreamProcessorOptionsDlqArgs{
 //						Coll:           pulumi.String("exampleColumn"),
 //						ConnectionName: example_cluster.ConnectionName,
 //						Db:             pulumi.String("exampleDb"),
+//					},
+//					Autoscaling: &mongodbatlas.StreamProcessorOptionsAutoscalingArgs{
+//						MinTier: pulumi.String("SP10"),
+//						MaxTier: pulumi.String("SP50"),
 //					},
 //				},
 //			})
@@ -178,13 +183,15 @@ type StreamProcessor struct {
 
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout pulumi.BoolOutput `pulumi:"deleteOnCreateTimeout"`
+	// Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+	EffectiveTier pulumi.StringOutput `pulumi:"effectiveTier"`
 	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
 	FailoverEnabled pulumi.BoolPtrOutput `pulumi:"failoverEnabled"`
 	// Label that identifies the stream processing workspace.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName pulumi.StringPtrOutput `pulumi:"instanceName"`
-	// Optional configuration for the stream processor.
+	// Optional configuration for the stream processor. Empty `options` objects are not supported.
 	Options StreamProcessorOptionsPtrOutput `pulumi:"options"`
 	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 	Pipeline pulumi.StringOutput `pulumi:"pipeline"`
@@ -196,7 +203,7 @@ type StreamProcessor struct {
 	State pulumi.StringOutput `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
 	Stats pulumi.StringOutput `pulumi:"stats"`
-	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
 	Tier     pulumi.StringOutput              `pulumi:"tier"`
 	Timeouts StreamProcessorTimeoutsPtrOutput `pulumi:"timeouts"`
 	// Label that identifies the stream processing workspace.
@@ -244,13 +251,15 @@ func GetStreamProcessor(ctx *pulumi.Context,
 type streamProcessorState struct {
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout *bool `pulumi:"deleteOnCreateTimeout"`
+	// Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+	EffectiveTier *string `pulumi:"effectiveTier"`
 	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
 	FailoverEnabled *bool `pulumi:"failoverEnabled"`
 	// Label that identifies the stream processing workspace.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName *string `pulumi:"instanceName"`
-	// Optional configuration for the stream processor.
+	// Optional configuration for the stream processor. Empty `options` objects are not supported.
 	Options *StreamProcessorOptions `pulumi:"options"`
 	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 	Pipeline *string `pulumi:"pipeline"`
@@ -262,7 +271,7 @@ type streamProcessorState struct {
 	State *string `pulumi:"state"`
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
 	Stats *string `pulumi:"stats"`
-	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
 	Tier     *string                  `pulumi:"tier"`
 	Timeouts *StreamProcessorTimeouts `pulumi:"timeouts"`
 	// Label that identifies the stream processing workspace.
@@ -272,13 +281,15 @@ type streamProcessorState struct {
 type StreamProcessorState struct {
 	// Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
 	DeleteOnCreateTimeout pulumi.BoolPtrInput
+	// Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+	EffectiveTier pulumi.StringPtrInput
 	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
 	FailoverEnabled pulumi.BoolPtrInput
 	// Label that identifies the stream processing workspace.
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName pulumi.StringPtrInput
-	// Optional configuration for the stream processor.
+	// Optional configuration for the stream processor. Empty `options` objects are not supported.
 	Options StreamProcessorOptionsPtrInput
 	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 	Pipeline pulumi.StringPtrInput
@@ -290,7 +301,7 @@ type StreamProcessorState struct {
 	State pulumi.StringPtrInput
 	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
 	Stats pulumi.StringPtrInput
-	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
 	Tier     pulumi.StringPtrInput
 	Timeouts StreamProcessorTimeoutsPtrInput
 	// Label that identifies the stream processing workspace.
@@ -310,7 +321,7 @@ type streamProcessorArgs struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName *string `pulumi:"instanceName"`
-	// Optional configuration for the stream processor.
+	// Optional configuration for the stream processor. Empty `options` objects are not supported.
 	Options *StreamProcessorOptions `pulumi:"options"`
 	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 	Pipeline string `pulumi:"pipeline"`
@@ -320,7 +331,7 @@ type streamProcessorArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
 	State *string `pulumi:"state"`
-	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
 	Tier     *string                  `pulumi:"tier"`
 	Timeouts *StreamProcessorTimeouts `pulumi:"timeouts"`
 	// Label that identifies the stream processing workspace.
@@ -337,7 +348,7 @@ type StreamProcessorArgs struct {
 	//
 	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
 	InstanceName pulumi.StringPtrInput
-	// Optional configuration for the stream processor.
+	// Optional configuration for the stream processor. Empty `options` objects are not supported.
 	Options StreamProcessorOptionsPtrInput
 	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
 	Pipeline pulumi.StringInput
@@ -347,7 +358,7 @@ type StreamProcessorArgs struct {
 	ProjectId pulumi.StringInput
 	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
 	State pulumi.StringPtrInput
-	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
 	Tier     pulumi.StringPtrInput
 	Timeouts StreamProcessorTimeoutsPtrInput
 	// Label that identifies the stream processing workspace.
@@ -446,6 +457,11 @@ func (o StreamProcessorOutput) DeleteOnCreateTimeout() pulumi.BoolOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.BoolOutput { return v.DeleteOnCreateTimeout }).(pulumi.BoolOutput)
 }
 
+// Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+func (o StreamProcessorOutput) EffectiveTier() pulumi.StringOutput {
+	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.EffectiveTier }).(pulumi.StringOutput)
+}
+
 // Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
 func (o StreamProcessorOutput) FailoverEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.BoolPtrOutput { return v.FailoverEnabled }).(pulumi.BoolPtrOutput)
@@ -458,7 +474,7 @@ func (o StreamProcessorOutput) InstanceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.StringPtrOutput { return v.InstanceName }).(pulumi.StringPtrOutput)
 }
 
-// Optional configuration for the stream processor.
+// Optional configuration for the stream processor. Empty `options` objects are not supported.
 func (o StreamProcessorOutput) Options() StreamProcessorOptionsPtrOutput {
 	return o.ApplyT(func(v *StreamProcessor) StreamProcessorOptionsPtrOutput { return v.Options }).(StreamProcessorOptionsPtrOutput)
 }
@@ -488,7 +504,7 @@ func (o StreamProcessorOutput) Stats() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.Stats }).(pulumi.StringOutput)
 }
 
-// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
 func (o StreamProcessorOutput) Tier() pulumi.StringOutput {
 	return o.ApplyT(func(v *StreamProcessor) pulumi.StringOutput { return v.Tier }).(pulumi.StringOutput)
 }

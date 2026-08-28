@@ -739,6 +739,46 @@ export interface BackupCompliancePolicyPolicyItemYearly {
     retentionValue: pulumi.Input<number>;
 }
 
+export interface CloudBackupCollectionRestoreJobCollection {
+    /**
+     * Collection requested to restore, as `database.collection`.
+     */
+    sourceNamespace: pulumi.Input<string>;
+    /**
+     * Requested target collection as `database.collection`; if empty, source namespace is used.
+     */
+    targetNamespace?: pulumi.Input<string | undefined>;
+}
+
+export interface CloudBackupCollectionRestoreJobDatabase {
+    /**
+     * Database name requested to restore.
+     */
+    sourceNamespace: pulumi.Input<string>;
+    /**
+     * Requested target database name; if empty, source database name is used.
+     */
+    targetNamespace?: pulumi.Input<string | undefined>;
+}
+
+export interface CloudBackupCollectionRestoreJobIndexStatus {
+    /**
+     * Number of collections that failed to build indexes.
+     */
+    failedCollectionCount?: pulumi.Input<number | undefined>;
+    /**
+     * Index build state indicating the status of index creation during or after a restore operation.
+     */
+    state?: pulumi.Input<string | undefined>;
+}
+
+export interface CloudBackupCollectionRestoreJobTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    create?: pulumi.Input<string | undefined>;
+}
+
 export interface CloudBackupScheduleCopySetting {
     /**
      * Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
@@ -2512,6 +2552,10 @@ export interface ServiceAccountSecret {
 
 export interface StreamConnectionAuthentication {
     /**
+     * AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+     */
+    aws?: pulumi.Input<inputs.StreamConnectionAuthenticationAws | undefined>;
+    /**
      * Public identifier for the Kafka client.
      */
     clientId?: pulumi.Input<string | undefined>;
@@ -2520,7 +2564,7 @@ export interface StreamConnectionAuthentication {
      */
     clientSecret?: pulumi.Input<string | undefined>;
     /**
-     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
      */
     mechanism?: pulumi.Input<string | undefined>;
     /**
@@ -2547,6 +2591,13 @@ export interface StreamConnectionAuthentication {
      * Username of the account to connect to the Kafka cluster.
      */
     username?: pulumi.Input<string | undefined>;
+}
+
+export interface StreamConnectionAuthenticationAws {
+    /**
+     * Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+     */
+    roleArn: pulumi.Input<string>;
 }
 
 export interface StreamConnectionAws {
@@ -2788,9 +2839,24 @@ export interface StreamInstanceStreamConfig {
 
 export interface StreamProcessorOptions {
     /**
+     * Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+     */
+    autoscaling?: pulumi.Input<inputs.StreamProcessorOptionsAutoscaling | undefined>;
+    /**
      * Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
      */
-    dlq: pulumi.Input<inputs.StreamProcessorOptionsDlq>;
+    dlq?: pulumi.Input<inputs.StreamProcessorOptionsDlq | undefined>;
+}
+
+export interface StreamProcessorOptionsAutoscaling {
+    /**
+     * Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+     */
+    maxTier?: pulumi.Input<string | undefined>;
+    /**
+     * Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+     */
+    minTier?: pulumi.Input<string | undefined>;
 }
 
 export interface StreamProcessorOptionsDlq {

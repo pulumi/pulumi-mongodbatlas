@@ -63,6 +63,14 @@ __all__ = [
     'BackupCompliancePolicyPolicyItemWeeklyArgsDict',
     'BackupCompliancePolicyPolicyItemYearlyArgs',
     'BackupCompliancePolicyPolicyItemYearlyArgsDict',
+    'CloudBackupCollectionRestoreJobCollectionArgs',
+    'CloudBackupCollectionRestoreJobCollectionArgsDict',
+    'CloudBackupCollectionRestoreJobDatabaseArgs',
+    'CloudBackupCollectionRestoreJobDatabaseArgsDict',
+    'CloudBackupCollectionRestoreJobIndexStatusArgs',
+    'CloudBackupCollectionRestoreJobIndexStatusArgsDict',
+    'CloudBackupCollectionRestoreJobTimeoutsArgs',
+    'CloudBackupCollectionRestoreJobTimeoutsArgsDict',
     'CloudBackupScheduleCopySettingArgs',
     'CloudBackupScheduleCopySettingArgsDict',
     'CloudBackupScheduleExportArgs',
@@ -275,6 +283,8 @@ __all__ = [
     'ServiceAccountSecretArgsDict',
     'StreamConnectionAuthenticationArgs',
     'StreamConnectionAuthenticationArgsDict',
+    'StreamConnectionAuthenticationAwsArgs',
+    'StreamConnectionAuthenticationAwsArgsDict',
     'StreamConnectionAwsArgs',
     'StreamConnectionAwsArgsDict',
     'StreamConnectionAzureArgs',
@@ -311,6 +321,8 @@ __all__ = [
     'StreamInstanceStreamConfigArgsDict',
     'StreamProcessorOptionsArgs',
     'StreamProcessorOptionsArgsDict',
+    'StreamProcessorOptionsAutoscalingArgs',
+    'StreamProcessorOptionsAutoscalingArgsDict',
     'StreamProcessorOptionsDlqArgs',
     'StreamProcessorOptionsDlqArgsDict',
     'StreamProcessorTimeoutsArgs',
@@ -3639,6 +3651,180 @@ class BackupCompliancePolicyPolicyItemYearlyArgs:
     @id.setter
     def id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "id", value)
+
+
+class CloudBackupCollectionRestoreJobCollectionArgsDict(TypedDict):
+    source_namespace: pulumi.Input[_builtins.str]
+    """
+    Collection requested to restore, as `database.collection`.
+    """
+    target_namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Requested target collection as `database.collection`; if empty, source namespace is used.
+    """
+
+@pulumi.input_type
+class CloudBackupCollectionRestoreJobCollectionArgs:
+    def __init__(__self__, *,
+                 source_namespace: pulumi.Input[_builtins.str],
+                 target_namespace: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] source_namespace: Collection requested to restore, as `database.collection`.
+        :param pulumi.Input[_builtins.str] target_namespace: Requested target collection as `database.collection`; if empty, source namespace is used.
+        """
+        pulumi.set(__self__, "source_namespace", source_namespace)
+        if target_namespace is not None:
+            pulumi.set(__self__, "target_namespace", target_namespace)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceNamespace")
+    def source_namespace(self) -> pulumi.Input[_builtins.str]:
+        """
+        Collection requested to restore, as `database.collection`.
+        """
+        return pulumi.get(self, "source_namespace")
+
+    @source_namespace.setter
+    def source_namespace(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "source_namespace", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetNamespace")
+    def target_namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Requested target collection as `database.collection`; if empty, source namespace is used.
+        """
+        return pulumi.get(self, "target_namespace")
+
+    @target_namespace.setter
+    def target_namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "target_namespace", value)
+
+
+class CloudBackupCollectionRestoreJobDatabaseArgsDict(TypedDict):
+    source_namespace: pulumi.Input[_builtins.str]
+    """
+    Database name requested to restore.
+    """
+    target_namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Requested target database name; if empty, source database name is used.
+    """
+
+@pulumi.input_type
+class CloudBackupCollectionRestoreJobDatabaseArgs:
+    def __init__(__self__, *,
+                 source_namespace: pulumi.Input[_builtins.str],
+                 target_namespace: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] source_namespace: Database name requested to restore.
+        :param pulumi.Input[_builtins.str] target_namespace: Requested target database name; if empty, source database name is used.
+        """
+        pulumi.set(__self__, "source_namespace", source_namespace)
+        if target_namespace is not None:
+            pulumi.set(__self__, "target_namespace", target_namespace)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceNamespace")
+    def source_namespace(self) -> pulumi.Input[_builtins.str]:
+        """
+        Database name requested to restore.
+        """
+        return pulumi.get(self, "source_namespace")
+
+    @source_namespace.setter
+    def source_namespace(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "source_namespace", value)
+
+    @_builtins.property
+    @pulumi.getter(name="targetNamespace")
+    def target_namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Requested target database name; if empty, source database name is used.
+        """
+        return pulumi.get(self, "target_namespace")
+
+    @target_namespace.setter
+    def target_namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "target_namespace", value)
+
+
+class CloudBackupCollectionRestoreJobIndexStatusArgsDict(TypedDict):
+    failed_collection_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Number of collections that failed to build indexes.
+    """
+    state: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Index build state indicating the status of index creation during or after a restore operation.
+    """
+
+@pulumi.input_type
+class CloudBackupCollectionRestoreJobIndexStatusArgs:
+    def __init__(__self__, *,
+                 failed_collection_count: pulumi.Input[Optional[_builtins.int]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.int] failed_collection_count: Number of collections that failed to build indexes.
+        :param pulumi.Input[_builtins.str] state: Index build state indicating the status of index creation during or after a restore operation.
+        """
+        if failed_collection_count is not None:
+            pulumi.set(__self__, "failed_collection_count", failed_collection_count)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+
+    @_builtins.property
+    @pulumi.getter(name="failedCollectionCount")
+    def failed_collection_count(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Number of collections that failed to build indexes.
+        """
+        return pulumi.get(self, "failed_collection_count")
+
+    @failed_collection_count.setter
+    def failed_collection_count(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "failed_collection_count", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Index build state indicating the status of index creation during or after a restore operation.
+        """
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "state", value)
+
+
+class CloudBackupCollectionRestoreJobTimeoutsArgsDict(TypedDict):
+    create: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+    """
+
+@pulumi.input_type
+class CloudBackupCollectionRestoreJobTimeoutsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "create", value)
 
 
 class CloudBackupScheduleCopySettingArgsDict(TypedDict):
@@ -11197,6 +11383,10 @@ class ServiceAccountSecretArgs:
 
 
 class StreamConnectionAuthenticationArgsDict(TypedDict):
+    aws: NotRequired[pulumi.Input[Optional['StreamConnectionAuthenticationAwsArgsDict']]]
+    """
+    AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+    """
     client_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Public identifier for the Kafka client.
@@ -11207,7 +11397,7 @@ class StreamConnectionAuthenticationArgsDict(TypedDict):
     """
     mechanism: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+    Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
     """
     method: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -11237,6 +11427,7 @@ class StreamConnectionAuthenticationArgsDict(TypedDict):
 @pulumi.input_type
 class StreamConnectionAuthenticationArgs:
     def __init__(__self__, *,
+                 aws: pulumi.Input[Optional['StreamConnectionAuthenticationAwsArgs']] = None,
                  client_id: pulumi.Input[Optional[_builtins.str]] = None,
                  client_secret: pulumi.Input[Optional[_builtins.str]] = None,
                  mechanism: pulumi.Input[Optional[_builtins.str]] = None,
@@ -11247,9 +11438,10 @@ class StreamConnectionAuthenticationArgs:
                  token_endpoint_url: pulumi.Input[Optional[_builtins.str]] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None):
         """
+        :param pulumi.Input['StreamConnectionAuthenticationAwsArgs'] aws: AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
         :param pulumi.Input[_builtins.str] client_id: Public identifier for the Kafka client.
         :param pulumi.Input[_builtins.str] client_secret: Secret known only to the Kafka client and the authorization server.
-        :param pulumi.Input[_builtins.str] mechanism: Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+        :param pulumi.Input[_builtins.str] mechanism: Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
         :param pulumi.Input[_builtins.str] method: SASL OAUTHBEARER authentication method. Value must be OIDC.
         :param pulumi.Input[_builtins.str] password: Password of the account to connect to the Kafka cluster.
         :param pulumi.Input[_builtins.str] sasl_oauthbearer_extensions: Additional information to provide to the Kafka broker.
@@ -11257,6 +11449,8 @@ class StreamConnectionAuthenticationArgs:
         :param pulumi.Input[_builtins.str] token_endpoint_url: OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
         :param pulumi.Input[_builtins.str] username: Username of the account to connect to the Kafka cluster.
         """
+        if aws is not None:
+            pulumi.set(__self__, "aws", aws)
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
@@ -11275,6 +11469,18 @@ class StreamConnectionAuthenticationArgs:
             pulumi.set(__self__, "token_endpoint_url", token_endpoint_url)
         if username is not None:
             pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def aws(self) -> pulumi.Input[Optional['StreamConnectionAuthenticationAwsArgs']]:
+        """
+        AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+        """
+        return pulumi.get(self, "aws")
+
+    @aws.setter
+    def aws(self, value: pulumi.Input[Optional['StreamConnectionAuthenticationAwsArgs']]):
+        pulumi.set(self, "aws", value)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -11304,7 +11510,7 @@ class StreamConnectionAuthenticationArgs:
     @pulumi.getter
     def mechanism(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+        Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
         """
         return pulumi.get(self, "mechanism")
 
@@ -11383,6 +11589,34 @@ class StreamConnectionAuthenticationArgs:
     @username.setter
     def username(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "username", value)
+
+
+class StreamConnectionAuthenticationAwsArgsDict(TypedDict):
+    role_arn: pulumi.Input[_builtins.str]
+    """
+    Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+    """
+
+@pulumi.input_type
+class StreamConnectionAuthenticationAwsArgs:
+    def __init__(__self__, *,
+                 role_arn: pulumi.Input[_builtins.str]):
+        """
+        :param pulumi.Input[_builtins.str] role_arn: Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+        """
+        pulumi.set(__self__, "role_arn", role_arn)
+
+    @_builtins.property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> pulumi.Input[_builtins.str]:
+        """
+        Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+        """
+        return pulumi.get(self, "role_arn")
+
+    @role_arn.setter
+    def role_arn(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "role_arn", value)
 
 
 class StreamConnectionAwsArgsDict(TypedDict):
@@ -12453,7 +12687,11 @@ class StreamInstanceStreamConfigArgs:
 
 
 class StreamProcessorOptionsArgsDict(TypedDict):
-    dlq: pulumi.Input['StreamProcessorOptionsDlqArgsDict']
+    autoscaling: NotRequired[pulumi.Input[Optional['StreamProcessorOptionsAutoscalingArgsDict']]]
+    """
+    Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `min_tier` and `max_tier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effective_tier`. To disable autoscaling, remove this block.
+    """
+    dlq: NotRequired[pulumi.Input[Optional['StreamProcessorOptionsDlqArgsDict']]]
     """
     Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
     """
@@ -12461,23 +12699,89 @@ class StreamProcessorOptionsArgsDict(TypedDict):
 @pulumi.input_type
 class StreamProcessorOptionsArgs:
     def __init__(__self__, *,
-                 dlq: pulumi.Input['StreamProcessorOptionsDlqArgs']):
+                 autoscaling: pulumi.Input[Optional['StreamProcessorOptionsAutoscalingArgs']] = None,
+                 dlq: pulumi.Input[Optional['StreamProcessorOptionsDlqArgs']] = None):
         """
+        :param pulumi.Input['StreamProcessorOptionsAutoscalingArgs'] autoscaling: Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `min_tier` and `max_tier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effective_tier`. To disable autoscaling, remove this block.
         :param pulumi.Input['StreamProcessorOptionsDlqArgs'] dlq: Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
         """
-        pulumi.set(__self__, "dlq", dlq)
+        if autoscaling is not None:
+            pulumi.set(__self__, "autoscaling", autoscaling)
+        if dlq is not None:
+            pulumi.set(__self__, "dlq", dlq)
 
     @_builtins.property
     @pulumi.getter
-    def dlq(self) -> pulumi.Input['StreamProcessorOptionsDlqArgs']:
+    def autoscaling(self) -> pulumi.Input[Optional['StreamProcessorOptionsAutoscalingArgs']]:
+        """
+        Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `min_tier` and `max_tier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effective_tier`. To disable autoscaling, remove this block.
+        """
+        return pulumi.get(self, "autoscaling")
+
+    @autoscaling.setter
+    def autoscaling(self, value: pulumi.Input[Optional['StreamProcessorOptionsAutoscalingArgs']]):
+        pulumi.set(self, "autoscaling", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def dlq(self) -> pulumi.Input[Optional['StreamProcessorOptionsDlqArgs']]:
         """
         Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
         """
         return pulumi.get(self, "dlq")
 
     @dlq.setter
-    def dlq(self, value: pulumi.Input['StreamProcessorOptionsDlqArgs']):
+    def dlq(self, value: pulumi.Input[Optional['StreamProcessorOptionsDlqArgs']]):
         pulumi.set(self, "dlq", value)
+
+
+class StreamProcessorOptionsAutoscalingArgsDict(TypedDict):
+    max_tier: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+    """
+    min_tier: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+    """
+
+@pulumi.input_type
+class StreamProcessorOptionsAutoscalingArgs:
+    def __init__(__self__, *,
+                 max_tier: pulumi.Input[Optional[_builtins.str]] = None,
+                 min_tier: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] max_tier: Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+        :param pulumi.Input[_builtins.str] min_tier: Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+        """
+        if max_tier is not None:
+            pulumi.set(__self__, "max_tier", max_tier)
+        if min_tier is not None:
+            pulumi.set(__self__, "min_tier", min_tier)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTier")
+    def max_tier(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+        """
+        return pulumi.get(self, "max_tier")
+
+    @max_tier.setter
+    def max_tier(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "max_tier", value)
+
+    @_builtins.property
+    @pulumi.getter(name="minTier")
+    def min_tier(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+        """
+        return pulumi.get(self, "min_tier")
+
+    @min_tier.setter
+    def min_tier(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "min_tier", value)
 
 
 class StreamProcessorOptionsDlqArgsDict(TypedDict):

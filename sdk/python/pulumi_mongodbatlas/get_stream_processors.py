@@ -183,11 +183,16 @@ def get_stream_processors(instance_name: Optional[_builtins.str] = None,
     \"\"\")
     ,
         state="CREATED",
+        tier="SP10",
         options={
             "dlq": {
                 "coll": "exampleColumn",
                 "connection_name": example_cluster.connection_name,
                 "db": "exampleDb",
+            },
+            "autoscaling": {
+                "min_tier": "SP10",
+                "max_tier": "SP50",
             },
         })
     example_stream_processors = mongodbatlas.get_stream_processors_output(project_id=project_id,
@@ -312,11 +317,16 @@ def get_stream_processors_output(instance_name: pulumi.Input[Optional[Optional[_
     \"\"\")
     ,
         state="CREATED",
+        tier="SP10",
         options={
             "dlq": {
                 "coll": "exampleColumn",
                 "connection_name": example_cluster.connection_name,
                 "db": "exampleDb",
+            },
+            "autoscaling": {
+                "min_tier": "SP10",
+                "max_tier": "SP50",
             },
         })
     example_stream_processors = mongodbatlas.get_stream_processors_output(project_id=project_id,

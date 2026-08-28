@@ -17,6 +17,11 @@ public final class GetStreamPrivatelinkEndpointsResult {
      */
     private String arn;
     /**
+     * @return Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+     * 
+     */
+    private String authenticationScheme;
+    /**
      * @return The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
      * 
      *     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -110,6 +115,13 @@ public final class GetStreamPrivatelinkEndpointsResult {
      */
     public String arn() {
         return this.arn;
+    }
+    /**
+     * @return Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+     * 
+     */
+    public String authenticationScheme() {
+        return this.authenticationScheme;
     }
     /**
      * @return The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
@@ -236,6 +248,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
     @CustomType.Builder
     public static final class Builder {
         private String arn;
+        private String authenticationScheme;
         private String dnsDomain;
         private List<String> dnsSubDomains;
         private String errorMessage;
@@ -254,6 +267,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
         public Builder(GetStreamPrivatelinkEndpointsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.arn = defaults.arn;
+    	      this.authenticationScheme = defaults.authenticationScheme;
     	      this.dnsDomain = defaults.dnsDomain;
     	      this.dnsSubDomains = defaults.dnsSubDomains;
     	      this.errorMessage = defaults.errorMessage;
@@ -276,6 +290,14 @@ public final class GetStreamPrivatelinkEndpointsResult {
               throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointsResult", "arn");
             }
             this.arn = arn;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder authenticationScheme(String authenticationScheme) {
+            if (authenticationScheme == null) {
+              throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointsResult", "authenticationScheme");
+            }
+            this.authenticationScheme = authenticationScheme;
             return this;
         }
         @CustomType.Setter
@@ -399,6 +421,7 @@ public final class GetStreamPrivatelinkEndpointsResult {
         public GetStreamPrivatelinkEndpointsResult build() {
             final var _resultValue = new GetStreamPrivatelinkEndpointsResult();
             _resultValue.arn = arn;
+            _resultValue.authenticationScheme = authenticationScheme;
             _resultValue.dnsDomain = dnsDomain;
             _resultValue.dnsSubDomains = dnsSubDomains;
             _resultValue.errorMessage = errorMessage;

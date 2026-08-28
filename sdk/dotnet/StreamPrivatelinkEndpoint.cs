@@ -270,6 +270,12 @@ namespace Pulumi.Mongodbatlas
         public Output<string?> Arn { get; private set; } = null!;
 
         /// <summary>
+        /// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+        /// </summary>
+        [Output("authenticationScheme")]
+        public Output<string> AuthenticationScheme { get; private set; } = null!;
+
+        /// <summary>
         /// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
         /// 
         /// 	* AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -416,6 +422,12 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Arn { get; set; }
 
         /// <summary>
+        /// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+        /// </summary>
+        [Input("authenticationScheme")]
+        public Input<string>? AuthenticationScheme { get; set; }
+
+        /// <summary>
         /// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
         /// 
         /// 	* AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -504,6 +516,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("arn")]
         public Input<string>? Arn { get; set; }
+
+        /// <summary>
+        /// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+        /// </summary>
+        [Input("authenticationScheme")]
+        public Input<string>? AuthenticationScheme { get; set; }
 
         /// <summary>
         /// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:

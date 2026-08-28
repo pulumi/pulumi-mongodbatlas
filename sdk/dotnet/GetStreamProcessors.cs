@@ -134,6 +134,7 @@ namespace Pulumi.Mongodbatlas
         /// ";
         ///         }),
         ///         State = "CREATED",
+        ///         Tier = "SP10",
         ///         Options = new Mongodbatlas.Inputs.StreamProcessorOptionsArgs
         ///         {
         ///             Dlq = new Mongodbatlas.Inputs.StreamProcessorOptionsDlqArgs
@@ -141,6 +142,11 @@ namespace Pulumi.Mongodbatlas
         ///                 Coll = "exampleColumn",
         ///                 ConnectionName = example_cluster.ConnectionName,
         ///                 Db = "exampleDb",
+        ///             },
+        ///             Autoscaling = new Mongodbatlas.Inputs.StreamProcessorOptionsAutoscalingArgs
+        ///             {
+        ///                 MinTier = "SP10",
+        ///                 MaxTier = "SP50",
         ///             },
         ///         },
         ///     });
@@ -292,6 +298,7 @@ namespace Pulumi.Mongodbatlas
         /// ";
         ///         }),
         ///         State = "CREATED",
+        ///         Tier = "SP10",
         ///         Options = new Mongodbatlas.Inputs.StreamProcessorOptionsArgs
         ///         {
         ///             Dlq = new Mongodbatlas.Inputs.StreamProcessorOptionsDlqArgs
@@ -299,6 +306,11 @@ namespace Pulumi.Mongodbatlas
         ///                 Coll = "exampleColumn",
         ///                 ConnectionName = example_cluster.ConnectionName,
         ///                 Db = "exampleDb",
+        ///             },
+        ///             Autoscaling = new Mongodbatlas.Inputs.StreamProcessorOptionsAutoscalingArgs
+        ///             {
+        ///                 MinTier = "SP10",
+        ///                 MaxTier = "SP50",
         ///             },
         ///         },
         ///     });
@@ -450,6 +462,7 @@ namespace Pulumi.Mongodbatlas
         /// ";
         ///         }),
         ///         State = "CREATED",
+        ///         Tier = "SP10",
         ///         Options = new Mongodbatlas.Inputs.StreamProcessorOptionsArgs
         ///         {
         ///             Dlq = new Mongodbatlas.Inputs.StreamProcessorOptionsDlqArgs
@@ -457,6 +470,11 @@ namespace Pulumi.Mongodbatlas
         ///                 Coll = "exampleColumn",
         ///                 ConnectionName = example_cluster.ConnectionName,
         ///                 Db = "exampleDb",
+        ///             },
+        ///             Autoscaling = new Mongodbatlas.Inputs.StreamProcessorOptionsAutoscalingArgs
+        ///             {
+        ///                 MinTier = "SP10",
+        ///                 MaxTier = "SP50",
         ///             },
         ///         },
         ///     });

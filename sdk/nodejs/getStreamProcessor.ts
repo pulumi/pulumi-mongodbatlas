@@ -92,11 +92,16 @@ import * as utilities from "./utilities";
  * ]
  * `,
  *     state: "CREATED",
+ *     tier: "SP10",
  *     options: {
  *         dlq: {
  *             coll: "exampleColumn",
  *             connectionName: example_cluster.connectionName,
  *             db: "exampleDb",
+ *         },
+ *         autoscaling: {
+ *             minTier: "SP10",
+ *             maxTier: "SP50",
  *         },
  *     },
  * });
@@ -152,6 +157,10 @@ export interface GetStreamProcessorArgs {
  */
 export interface GetStreamProcessorResult {
     /**
+     * Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+     */
+    readonly effectiveTier: string;
+    /**
      * Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
      */
     readonly failoverEnabled: boolean;
@@ -166,7 +175,7 @@ export interface GetStreamProcessorResult {
      */
     readonly instanceName?: string;
     /**
-     * Optional configuration for the stream processor.
+     * Optional configuration for the stream processor. Empty `options` objects are not supported.
      */
     readonly options: outputs.GetStreamProcessorOptions;
     /**
@@ -278,11 +287,16 @@ export interface GetStreamProcessorResult {
  * ]
  * `,
  *     state: "CREATED",
+ *     tier: "SP10",
  *     options: {
  *         dlq: {
  *             coll: "exampleColumn",
  *             connectionName: example_cluster.connectionName,
  *             db: "exampleDb",
+ *         },
+ *         autoscaling: {
+ *             minTier: "SP10",
+ *             maxTier: "SP50",
  *         },
  *     },
  * });

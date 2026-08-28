@@ -14,6 +14,10 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetStreamProcessorsResultResult
     {
         /// <summary>
+        /// Tier the stream processor is currently running on. When autoscaling is disabled this equals `Tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+        /// </summary>
+        public readonly string EffectiveTier;
+        /// <summary>
         /// Indicates whether this stream processor is eligible for failover. When `True`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `FailoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `FailoverRegions` configured on the workspace.
         /// </summary>
         public readonly bool FailoverEnabled;
@@ -26,7 +30,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string InstanceName;
         /// <summary>
-        /// Optional configuration for the stream processor.
+        /// Optional configuration for the stream processor. Empty `Options` objects are not supported.
         /// </summary>
         public readonly Outputs.GetStreamProcessorsResultOptionsResult Options;
         /// <summary>
@@ -50,7 +54,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Stats;
         /// <summary>
-        /// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+        /// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `EffectiveTier`.
         /// </summary>
         public readonly string Tier;
         /// <summary>
@@ -60,6 +64,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetStreamProcessorsResultResult(
+            string effectiveTier,
+
             bool failoverEnabled,
 
             string id,
@@ -82,6 +88,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string workspaceName)
         {
+            EffectiveTier = effectiveTier;
             FailoverEnabled = failoverEnabled;
             Id = id;
             InstanceName = instanceName;

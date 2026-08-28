@@ -5,11 +5,17 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.mongodbatlas.outputs.GetStreamConnectionAuthenticationAws;
 import java.lang.String;
 import java.util.Objects;
 
 @CustomType
 public final class GetStreamConnectionAuthentication {
+    /**
+     * @return AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+     * 
+     */
+    private GetStreamConnectionAuthenticationAws aws;
     /**
      * @return Public identifier for the Kafka client.
      * 
@@ -21,7 +27,7 @@ public final class GetStreamConnectionAuthentication {
      */
     private String clientSecret;
     /**
-     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
      * 
      */
     private String mechanism;
@@ -58,6 +64,13 @@ public final class GetStreamConnectionAuthentication {
 
     private GetStreamConnectionAuthentication() {}
     /**
+     * @return AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+     * 
+     */
+    public GetStreamConnectionAuthenticationAws aws() {
+        return this.aws;
+    }
+    /**
      * @return Public identifier for the Kafka client.
      * 
      */
@@ -72,7 +85,7 @@ public final class GetStreamConnectionAuthentication {
         return this.clientSecret;
     }
     /**
-     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
      * 
      */
     public String mechanism() {
@@ -130,6 +143,7 @@ public final class GetStreamConnectionAuthentication {
     }
     @CustomType.Builder
     public static final class Builder {
+        private GetStreamConnectionAuthenticationAws aws;
         private String clientId;
         private String clientSecret;
         private String mechanism;
@@ -142,6 +156,7 @@ public final class GetStreamConnectionAuthentication {
         public Builder() {}
         public Builder(GetStreamConnectionAuthentication defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.aws = defaults.aws;
     	      this.clientId = defaults.clientId;
     	      this.clientSecret = defaults.clientSecret;
     	      this.mechanism = defaults.mechanism;
@@ -153,6 +168,14 @@ public final class GetStreamConnectionAuthentication {
     	      this.username = defaults.username;
         }
 
+        @CustomType.Setter
+        public Builder aws(GetStreamConnectionAuthenticationAws aws) {
+            if (aws == null) {
+              throw new MissingRequiredPropertyException("GetStreamConnectionAuthentication", "aws");
+            }
+            this.aws = aws;
+            return this;
+        }
         @CustomType.Setter
         public Builder clientId(String clientId) {
             if (clientId == null) {
@@ -227,6 +250,7 @@ public final class GetStreamConnectionAuthentication {
         }
         public GetStreamConnectionAuthentication build() {
             final var _resultValue = new GetStreamConnectionAuthentication();
+            _resultValue.aws = aws;
             _resultValue.clientId = clientId;
             _resultValue.clientSecret = clientSecret;
             _resultValue.mechanism = mechanism;

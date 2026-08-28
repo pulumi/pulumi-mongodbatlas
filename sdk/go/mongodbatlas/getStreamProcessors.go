@@ -124,11 +124,16 @@ import (
 //					return fmt.Sprintf("[\n  {\\\"$source\\\": {\\\"connectionName\\\": \\\"%v\\\", \\\"topic\\\": \\\"topic_source\\\"}},\n  {\\\"$emit\\\": {\\\"connectionName\\\": \\\"%v\\\", \\\"db\\\": \\\"kafka\\\", \\\"coll\\\": \\\"topic_source\\\", \\\"timeseries\\\": {\\\"timeField\\\": \\\"ts\\\"}}}\n]\n", example_kafkaConnectionName, example_clusterConnectionName), nil
 //				}).(pulumi.StringOutput),
 //				State: pulumi.String("CREATED"),
+//				Tier:  pulumi.String("SP10"),
 //				Options: &mongodbatlas.StreamProcessorOptionsArgs{
 //					Dlq: &mongodbatlas.StreamProcessorOptionsDlqArgs{
 //						Coll:           pulumi.String("exampleColumn"),
 //						ConnectionName: example_cluster.ConnectionName,
 //						Db:             pulumi.String("exampleDb"),
+//					},
+//					Autoscaling: &mongodbatlas.StreamProcessorOptionsAutoscalingArgs{
+//						MinTier: pulumi.String("SP10"),
+//						MaxTier: pulumi.String("SP50"),
 //					},
 //				},
 //			})

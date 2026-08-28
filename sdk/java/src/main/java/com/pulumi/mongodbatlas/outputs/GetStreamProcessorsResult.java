@@ -13,6 +13,11 @@ import java.util.Objects;
 @CustomType
 public final class GetStreamProcessorsResult {
     /**
+     * @return Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+     * 
+     */
+    private String effectiveTier;
+    /**
      * @return Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace&#39;s `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
      * 
      */
@@ -32,7 +37,7 @@ public final class GetStreamProcessorsResult {
     @Deprecated /* This parameter is deprecated. Please transition to workspace_name. */
     private String instanceName;
     /**
-     * @return Optional configuration for the stream processor.
+     * @return Optional configuration for the stream processor. Empty `options` objects are not supported.
      * 
      */
     private GetStreamProcessorsResultOptions options;
@@ -62,7 +67,7 @@ public final class GetStreamProcessorsResult {
      */
     private String stats;
     /**
-     * @return Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * @return Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
      * 
      */
     private String tier;
@@ -73,6 +78,13 @@ public final class GetStreamProcessorsResult {
     private String workspaceName;
 
     private GetStreamProcessorsResult() {}
+    /**
+     * @return Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+     * 
+     */
+    public String effectiveTier() {
+        return this.effectiveTier;
+    }
     /**
      * @return Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace&#39;s `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
      * 
@@ -99,7 +111,7 @@ public final class GetStreamProcessorsResult {
         return this.instanceName;
     }
     /**
-     * @return Optional configuration for the stream processor.
+     * @return Optional configuration for the stream processor. Empty `options` objects are not supported.
      * 
      */
     public GetStreamProcessorsResultOptions options() {
@@ -141,7 +153,7 @@ public final class GetStreamProcessorsResult {
         return this.stats;
     }
     /**
-     * @return Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * @return Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
      * 
      */
     public String tier() {
@@ -164,6 +176,7 @@ public final class GetStreamProcessorsResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private String effectiveTier;
         private Boolean failoverEnabled;
         private String id;
         private String instanceName;
@@ -178,6 +191,7 @@ public final class GetStreamProcessorsResult {
         public Builder() {}
         public Builder(GetStreamProcessorsResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.effectiveTier = defaults.effectiveTier;
     	      this.failoverEnabled = defaults.failoverEnabled;
     	      this.id = defaults.id;
     	      this.instanceName = defaults.instanceName;
@@ -191,6 +205,14 @@ public final class GetStreamProcessorsResult {
     	      this.workspaceName = defaults.workspaceName;
         }
 
+        @CustomType.Setter
+        public Builder effectiveTier(String effectiveTier) {
+            if (effectiveTier == null) {
+              throw new MissingRequiredPropertyException("GetStreamProcessorsResult", "effectiveTier");
+            }
+            this.effectiveTier = effectiveTier;
+            return this;
+        }
         @CustomType.Setter
         public Builder failoverEnabled(Boolean failoverEnabled) {
             if (failoverEnabled == null) {
@@ -281,6 +303,7 @@ public final class GetStreamProcessorsResult {
         }
         public GetStreamProcessorsResult build() {
             final var _resultValue = new GetStreamProcessorsResult();
+            _resultValue.effectiveTier = effectiveTier;
             _resultValue.failoverEnabled = failoverEnabled;
             _resultValue.id = id;
             _resultValue.instanceName = instanceName;

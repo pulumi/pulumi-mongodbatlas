@@ -4,25 +4,39 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.mongodbatlas.outputs.StreamProcessorOptionsAutoscaling;
 import com.pulumi.mongodbatlas.outputs.StreamProcessorOptionsDlq;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class StreamProcessorOptions {
     /**
-     * @return Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+     * @return Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
      * 
      */
-    private StreamProcessorOptionsDlq dlq;
-
-    private StreamProcessorOptions() {}
+    private @Nullable StreamProcessorOptionsAutoscaling autoscaling;
     /**
      * @return Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
      * 
      */
-    public StreamProcessorOptionsDlq dlq() {
-        return this.dlq;
+    private @Nullable StreamProcessorOptionsDlq dlq;
+
+    private StreamProcessorOptions() {}
+    /**
+     * @return Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+     * 
+     */
+    public Optional<StreamProcessorOptionsAutoscaling> autoscaling() {
+        return Optional.ofNullable(this.autoscaling);
+    }
+    /**
+     * @return Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+     * 
+     */
+    public Optional<StreamProcessorOptionsDlq> dlq() {
+        return Optional.ofNullable(this.dlq);
     }
 
     public static Builder builder() {
@@ -34,23 +48,30 @@ public final class StreamProcessorOptions {
     }
     @CustomType.Builder
     public static final class Builder {
-        private StreamProcessorOptionsDlq dlq;
+        private @Nullable StreamProcessorOptionsAutoscaling autoscaling;
+        private @Nullable StreamProcessorOptionsDlq dlq;
         public Builder() {}
         public Builder(StreamProcessorOptions defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.autoscaling = defaults.autoscaling;
     	      this.dlq = defaults.dlq;
         }
 
         @CustomType.Setter
-        public Builder dlq(StreamProcessorOptionsDlq dlq) {
-            if (dlq == null) {
-              throw new MissingRequiredPropertyException("StreamProcessorOptions", "dlq");
-            }
+        public Builder autoscaling(@Nullable StreamProcessorOptionsAutoscaling autoscaling) {
+
+            this.autoscaling = autoscaling;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder dlq(@Nullable StreamProcessorOptionsDlq dlq) {
+
             this.dlq = dlq;
             return this;
         }
         public StreamProcessorOptions build() {
             final var _resultValue = new StreamProcessorOptions();
+            _resultValue.autoscaling = autoscaling;
             _resultValue.dlq = dlq;
             return _resultValue;
         }

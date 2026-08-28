@@ -80,7 +80,7 @@ export interface GetStreamConnectionResult {
      */
     readonly authentication: outputs.GetStreamConnectionAuthentication;
     /**
-     * The configuration for S3 connection. See AWS.
+     * AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
      */
     readonly aws: outputs.GetStreamConnectionAws;
     /**
