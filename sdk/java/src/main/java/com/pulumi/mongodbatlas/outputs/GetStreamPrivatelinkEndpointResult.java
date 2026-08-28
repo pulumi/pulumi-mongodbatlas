@@ -12,6 +12,7 @@ import java.util.Objects;
 @CustomType
 public final class GetStreamPrivatelinkEndpointResult {
     private String arn;
+    private String authenticationScheme;
     private String dnsDomain;
     private List<String> dnsSubDomains;
     private String errorMessage;
@@ -30,6 +31,9 @@ public final class GetStreamPrivatelinkEndpointResult {
     private GetStreamPrivatelinkEndpointResult() {}
     public String arn() {
         return this.arn;
+    }
+    public String authenticationScheme() {
+        return this.authenticationScheme;
     }
     public String dnsDomain() {
         return this.dnsDomain;
@@ -84,6 +88,7 @@ public final class GetStreamPrivatelinkEndpointResult {
     @CustomType.Builder
     public static final class Builder {
         private String arn;
+        private String authenticationScheme;
         private String dnsDomain;
         private List<String> dnsSubDomains;
         private String errorMessage;
@@ -102,6 +107,7 @@ public final class GetStreamPrivatelinkEndpointResult {
         public Builder(GetStreamPrivatelinkEndpointResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.arn = defaults.arn;
+    	      this.authenticationScheme = defaults.authenticationScheme;
     	      this.dnsDomain = defaults.dnsDomain;
     	      this.dnsSubDomains = defaults.dnsSubDomains;
     	      this.errorMessage = defaults.errorMessage;
@@ -124,6 +130,14 @@ public final class GetStreamPrivatelinkEndpointResult {
               throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointResult", "arn");
             }
             this.arn = arn;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder authenticationScheme(String authenticationScheme) {
+            if (authenticationScheme == null) {
+              throw new MissingRequiredPropertyException("GetStreamPrivatelinkEndpointResult", "authenticationScheme");
+            }
+            this.authenticationScheme = authenticationScheme;
             return this;
         }
         @CustomType.Setter
@@ -247,6 +261,7 @@ public final class GetStreamPrivatelinkEndpointResult {
         public GetStreamPrivatelinkEndpointResult build() {
             final var _resultValue = new GetStreamPrivatelinkEndpointResult();
             _resultValue.arn = arn;
+            _resultValue.authenticationScheme = authenticationScheme;
             _resultValue.dnsDomain = dnsDomain;
             _resultValue.dnsSubDomains = dnsSubDomains;
             _resultValue.errorMessage = errorMessage;

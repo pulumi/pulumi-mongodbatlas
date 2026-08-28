@@ -739,6 +739,46 @@ export interface BackupCompliancePolicyPolicyItemYearly {
     retentionValue: number;
 }
 
+export interface CloudBackupCollectionRestoreJobCollection {
+    /**
+     * Collection requested to restore, as `database.collection`.
+     */
+    sourceNamespace: string;
+    /**
+     * Requested target collection as `database.collection`; if empty, source namespace is used.
+     */
+    targetNamespace: string;
+}
+
+export interface CloudBackupCollectionRestoreJobDatabase {
+    /**
+     * Database name requested to restore.
+     */
+    sourceNamespace: string;
+    /**
+     * Requested target database name; if empty, source database name is used.
+     */
+    targetNamespace: string;
+}
+
+export interface CloudBackupCollectionRestoreJobIndexStatus {
+    /**
+     * Number of collections that failed to build indexes.
+     */
+    failedCollectionCount: number;
+    /**
+     * Index build state indicating the status of index creation during or after a restore operation.
+     */
+    state: string;
+}
+
+export interface CloudBackupCollectionRestoreJobTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    create?: string;
+}
+
 export interface CloudBackupScheduleCopySetting {
     /**
      * Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
@@ -3650,6 +3690,216 @@ export interface GetBackupCompliancePolicyPolicyItemYearly {
     retentionValue: number;
 }
 
+export interface GetCloudBackupCollectionRestoreJobCollection {
+    /**
+     * Collection requested to restore, as `database.collection`.
+     */
+    sourceNamespace: string;
+    /**
+     * Requested target collection as `database.collection`; if empty, source namespace is used.
+     */
+    targetNamespace: string;
+}
+
+export interface GetCloudBackupCollectionRestoreJobCollectionIndexStatus {
+    /**
+     * Error message if index build failed.
+     */
+    errorMessage: string;
+    /**
+     * List of index specifications that failed to build (up to 64 items).
+     */
+    failedIndexes: string[];
+    /**
+     * Index build state indicating the status of index creation during or after a restore operation.
+     */
+    state: string;
+}
+
+export interface GetCloudBackupCollectionRestoreJobCollectionsResult {
+    /**
+     * Actual target namespace after restore (e.g. after conflict rename).
+     */
+    effectiveTargetNamespace: string;
+    /**
+     * Index build status for a collection within a restore job.
+     */
+    indexStatus: outputs.GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatus;
+    /**
+     * Number of documents restored so far.
+     */
+    restoredDocuments: number;
+    /**
+     * Source namespace that was requested to restore.
+     */
+    sourceNamespace: string;
+    /**
+     * Current state of this collection within the restore job.
+     */
+    state: string;
+    /**
+     * Requested target namespace for the restored collection.
+     */
+    targetNamespace: string;
+    /**
+     * Total document count for this collection.
+     */
+    totalDocuments: number;
+}
+
+export interface GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatus {
+    /**
+     * Error message if index build failed.
+     */
+    errorMessage: string;
+    /**
+     * List of index specifications that failed to build (up to 64 items).
+     */
+    failedIndexes: string[];
+    /**
+     * Index build state indicating the status of index creation during or after a restore operation.
+     */
+    state: string;
+}
+
+export interface GetCloudBackupCollectionRestoreJobDatabase {
+    /**
+     * Database name requested to restore.
+     */
+    sourceNamespace: string;
+    /**
+     * Requested target database name; if empty, source database name is used.
+     */
+    targetNamespace: string;
+}
+
+export interface GetCloudBackupCollectionRestoreJobIndexStatus {
+    /**
+     * Number of collections that failed to build indexes.
+     */
+    failedCollectionCount: number;
+    /**
+     * Index build state indicating the status of index creation during or after a restore operation.
+     */
+    state: string;
+}
+
+export interface GetCloudBackupCollectionRestoreJobsResult {
+    /**
+     * Suffix applied to restored collection names.
+     */
+    collectionSuffix: string;
+    /**
+     * List of collections in the restore scope (up to 100 items).
+     */
+    collections: outputs.GetCloudBackupCollectionRestoreJobsResultCollection[];
+    /**
+     * Date and time when the restore job was created (ISO 8601 format in UTC).
+     */
+    createdAt: string;
+    /**
+     * Suffix applied to restored database names.
+     */
+    databaseSuffix: string;
+    /**
+     * List of databases in the restore scope (up to 100 items).
+     */
+    databases: outputs.GetCloudBackupCollectionRestoreJobsResultDatabase[];
+    /**
+     * Error message when the job has failed or been canceled.
+     */
+    errorMessage: string;
+    /**
+     * Date and time when the restore job finished (ISO 8601 format in UTC).
+     */
+    finishedAt: string;
+    /**
+     * Overall index build status for a collection restore job.
+     */
+    indexStatus: outputs.GetCloudBackupCollectionRestoreJobsResultIndexStatus;
+    /**
+     * Strategy for restoring indexes (all, none, or all except TTL).
+     */
+    indexStrategy: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the collection restore job.
+     */
+    jobId: string;
+    /**
+     * Oplog increment for point-in-time restore.
+     */
+    oplogInc: number;
+    /**
+     * Oplog timestamp (seconds part) for point-in-time restore.
+     */
+    oplogTs: number;
+    /**
+     * Point-in-time restore time in seconds since UNIX epoch.
+     */
+    pointInTimeUtcSeconds: number;
+    /**
+     * Number of documents restored so far across all supported collections.
+     */
+    restoredDocuments: number;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the snapshot being restored.
+     */
+    snapshotId: string;
+    /**
+     * Current state of the collection restore job.
+     */
+    state: string;
+    /**
+     * Human-readable label that identifies the target cluster.
+     */
+    targetClusterName: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+     */
+    targetProjectId: string;
+    /**
+     * Total number of documents across all supported collections in the restore job. This value may initially reflect an estimate based on collection metadata and can change as accurate document counts become available during the restore.
+     */
+    totalDocuments: number;
+    /**
+     * Strategy for writing data on the target (create as new or overwrite existing). With `OVERWRITE_EXISTING`, any writes to the affected databases or collections during the restore will be lost when the existing namespaces are dropped and replaced. To avoid data loss, stop writes to the affected namespaces before starting the restore.
+     */
+    writeStrategy: string;
+}
+
+export interface GetCloudBackupCollectionRestoreJobsResultCollection {
+    /**
+     * Collection requested to restore, as `database.collection`.
+     */
+    sourceNamespace: string;
+    /**
+     * Requested target collection as `database.collection`; if empty, source namespace is used.
+     */
+    targetNamespace: string;
+}
+
+export interface GetCloudBackupCollectionRestoreJobsResultDatabase {
+    /**
+     * Database name requested to restore.
+     */
+    sourceNamespace: string;
+    /**
+     * Requested target database name; if empty, source database name is used.
+     */
+    targetNamespace: string;
+}
+
+export interface GetCloudBackupCollectionRestoreJobsResultIndexStatus {
+    /**
+     * Number of collections that failed to build indexes.
+     */
+    failedCollectionCount: number;
+    /**
+     * Index build state indicating the status of index creation during or after a restore operation.
+     */
+    state: string;
+}
+
 export interface GetCloudBackupScheduleCopySetting {
     /**
      * Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
@@ -3797,6 +4047,20 @@ export interface GetCloudBackupSchedulePolicyItemYearly {
      * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
      */
     retentionValue: number;
+}
+
+export interface GetCloudBackupSnapshotDatabaseCollectionsResult {
+    /**
+     * Human-readable label that identifies the collection in the database within the snapshot.
+     */
+    name: string;
+}
+
+export interface GetCloudBackupSnapshotDatabasesResult {
+    /**
+     * Human-readable label that identifies the database within the snapshot.
+     */
+    name: string;
 }
 
 export interface GetCloudBackupSnapshotExportBucketsResult {
@@ -8134,6 +8398,10 @@ export interface GetSharedTierSnapshotsResult {
 
 export interface GetStreamConnectionAuthentication {
     /**
+     * AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+     */
+    aws: outputs.GetStreamConnectionAuthenticationAws;
+    /**
      * Public identifier for the Kafka client.
      */
     clientId: string;
@@ -8142,7 +8410,7 @@ export interface GetStreamConnectionAuthentication {
      */
     clientSecret: string;
     /**
-     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
      */
     mechanism: string;
     /**
@@ -8169,6 +8437,13 @@ export interface GetStreamConnectionAuthentication {
      * Username for the Schema Registry. Required when `type` is `USER_INFO`.
      */
     username: string;
+}
+
+export interface GetStreamConnectionAuthenticationAws {
+    /**
+     * Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+     */
+    roleArn: string;
 }
 
 export interface GetStreamConnectionAws {
@@ -8516,7 +8791,7 @@ export interface GetStreamConnectionsResult {
      */
     authentication: outputs.GetStreamConnectionsResultAuthentication;
     /**
-     * The configuration for S3 connection. See AWS.
+     * AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
      */
     aws: outputs.GetStreamConnectionsResultAws;
     /**
@@ -8606,6 +8881,10 @@ export interface GetStreamConnectionsResult {
 
 export interface GetStreamConnectionsResultAuthentication {
     /**
+     * AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+     */
+    aws: outputs.GetStreamConnectionsResultAuthenticationAws;
+    /**
      * Public identifier for the Kafka client.
      */
     clientId: string;
@@ -8614,7 +8893,7 @@ export interface GetStreamConnectionsResultAuthentication {
      */
     clientSecret: string;
     /**
-     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
      */
     mechanism: string;
     /**
@@ -8641,6 +8920,13 @@ export interface GetStreamConnectionsResultAuthentication {
      * Username for the Schema Registry. Required when `type` is `USER_INFO`.
      */
     username: string;
+}
+
+export interface GetStreamConnectionsResultAuthenticationAws {
+    /**
+     * Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+     */
+    roleArn: string;
 }
 
 export interface GetStreamConnectionsResultAws {
@@ -8801,6 +9087,10 @@ export interface GetStreamPrivatelinkEndpointsResult {
      */
     arn: string;
     /**
+     * Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+     */
+    authenticationScheme: string;
+    /**
      * The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
      *
      *     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -8876,9 +9166,24 @@ export interface GetStreamPrivatelinkEndpointsResult {
 
 export interface GetStreamProcessorOptions {
     /**
+     * Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+     */
+    autoscaling: outputs.GetStreamProcessorOptionsAutoscaling;
+    /**
      * Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
      */
     dlq: outputs.GetStreamProcessorOptionsDlq;
+}
+
+export interface GetStreamProcessorOptionsAutoscaling {
+    /**
+     * Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+     */
+    maxTier: string;
+    /**
+     * Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+     */
+    minTier: string;
 }
 
 export interface GetStreamProcessorOptionsDlq {
@@ -8898,6 +9203,10 @@ export interface GetStreamProcessorOptionsDlq {
 
 export interface GetStreamProcessorsResult {
     /**
+     * Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+     */
+    effectiveTier: string;
+    /**
      * Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
      */
     failoverEnabled: boolean;
@@ -8912,7 +9221,7 @@ export interface GetStreamProcessorsResult {
      */
     instanceName: string;
     /**
-     * Optional configuration for the stream processor.
+     * Optional configuration for the stream processor. Empty `options` objects are not supported.
      */
     options: outputs.GetStreamProcessorsResultOptions;
     /**
@@ -8936,7 +9245,7 @@ export interface GetStreamProcessorsResult {
      */
     stats: string;
     /**
-     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
      */
     tier: string;
     /**
@@ -8947,9 +9256,24 @@ export interface GetStreamProcessorsResult {
 
 export interface GetStreamProcessorsResultOptions {
     /**
+     * Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+     */
+    autoscaling: outputs.GetStreamProcessorsResultOptionsAutoscaling;
+    /**
      * Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
      */
     dlq: outputs.GetStreamProcessorsResultOptionsDlq;
+}
+
+export interface GetStreamProcessorsResultOptionsAutoscaling {
+    /**
+     * Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+     */
+    maxTier: string;
+    /**
+     * Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+     */
+    minTier: string;
 }
 
 export interface GetStreamProcessorsResultOptionsDlq {
@@ -9718,6 +10042,10 @@ export interface ServiceAccountSecret {
 
 export interface StreamConnectionAuthentication {
     /**
+     * AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+     */
+    aws?: outputs.StreamConnectionAuthenticationAws;
+    /**
      * Public identifier for the Kafka client.
      */
     clientId?: string;
@@ -9726,7 +10054,7 @@ export interface StreamConnectionAuthentication {
      */
     clientSecret?: string;
     /**
-     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
      */
     mechanism?: string;
     /**
@@ -9753,6 +10081,13 @@ export interface StreamConnectionAuthentication {
      * Username of the account to connect to the Kafka cluster.
      */
     username?: string;
+}
+
+export interface StreamConnectionAuthenticationAws {
+    /**
+     * Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+     */
+    roleArn: string;
 }
 
 export interface StreamConnectionAws {
@@ -9994,9 +10329,24 @@ export interface StreamInstanceStreamConfig {
 
 export interface StreamProcessorOptions {
     /**
+     * Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+     */
+    autoscaling?: outputs.StreamProcessorOptionsAutoscaling;
+    /**
      * Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
      */
-    dlq: outputs.StreamProcessorOptionsDlq;
+    dlq?: outputs.StreamProcessorOptionsDlq;
+}
+
+export interface StreamProcessorOptionsAutoscaling {
+    /**
+     * Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+     */
+    maxTier: string;
+    /**
+     * Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+     */
+    minTier: string;
 }
 
 export interface StreamProcessorOptionsDlq {

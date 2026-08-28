@@ -107,7 +107,7 @@ class GetStreamConnectionResult:
     @pulumi.getter
     def aws(self) -> 'outputs.GetStreamConnectionAwsResult':
         """
-        The configuration for S3 connection. See AWS.
+        AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
         """
         return pulumi.get(self, "aws")
 

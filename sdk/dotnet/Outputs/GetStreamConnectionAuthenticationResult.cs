@@ -14,6 +14,10 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetStreamConnectionAuthenticationResult
     {
         /// <summary>
+        /// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+        /// </summary>
+        public readonly Outputs.GetStreamConnectionAuthenticationAwsResult Aws;
+        /// <summary>
         /// Public identifier for the Kafka client.
         /// </summary>
         public readonly string ClientId;
@@ -22,7 +26,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string ClientSecret;
         /// <summary>
-        /// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+        /// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
         /// </summary>
         public readonly string Mechanism;
         /// <summary>
@@ -52,6 +56,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
         [OutputConstructor]
         private GetStreamConnectionAuthenticationResult(
+            Outputs.GetStreamConnectionAuthenticationAwsResult aws,
+
             string clientId,
 
             string clientSecret,
@@ -70,6 +76,7 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string username)
         {
+            Aws = aws;
             ClientId = clientId;
             ClientSecret = clientSecret;
             Mechanism = mechanism;

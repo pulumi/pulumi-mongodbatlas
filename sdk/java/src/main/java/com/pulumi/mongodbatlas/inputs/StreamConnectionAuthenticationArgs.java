@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.StreamConnectionAuthenticationAwsArgs;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -14,6 +15,21 @@ import javax.annotation.Nullable;
 public final class StreamConnectionAuthenticationArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final StreamConnectionAuthenticationArgs Empty = new StreamConnectionAuthenticationArgs();
+
+    /**
+     * AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+     * 
+     */
+    @Import(name="aws")
+    private @Nullable Output<StreamConnectionAuthenticationAwsArgs> aws;
+
+    /**
+     * @return AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+     * 
+     */
+    public Optional<Output<StreamConnectionAuthenticationAwsArgs>> aws() {
+        return Optional.ofNullable(this.aws);
+    }
 
     /**
      * Public identifier for the Kafka client.
@@ -46,14 +62,14 @@ public final class StreamConnectionAuthenticationArgs extends com.pulumi.resourc
     }
 
     /**
-     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+     * Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
      * 
      */
     @Import(name="mechanism")
     private @Nullable Output<String> mechanism;
 
     /**
-     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
      * 
      */
     public Optional<Output<String>> mechanism() {
@@ -153,6 +169,7 @@ public final class StreamConnectionAuthenticationArgs extends com.pulumi.resourc
     private StreamConnectionAuthenticationArgs() {}
 
     private StreamConnectionAuthenticationArgs(StreamConnectionAuthenticationArgs $) {
+        this.aws = $.aws;
         this.clientId = $.clientId;
         this.clientSecret = $.clientSecret;
         this.mechanism = $.mechanism;
@@ -180,6 +197,27 @@ public final class StreamConnectionAuthenticationArgs extends com.pulumi.resourc
 
         public Builder(StreamConnectionAuthenticationArgs defaults) {
             $ = new StreamConnectionAuthenticationArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param aws AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder aws(@Nullable Output<StreamConnectionAuthenticationAwsArgs> aws) {
+            $.aws = aws;
+            return this;
+        }
+
+        /**
+         * @param aws AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder aws(StreamConnectionAuthenticationAwsArgs aws) {
+            return aws(Output.of(aws));
         }
 
         /**
@@ -225,7 +263,7 @@ public final class StreamConnectionAuthenticationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param mechanism Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+         * @param mechanism Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
          * 
          * @return builder
          * 
@@ -236,7 +274,7 @@ public final class StreamConnectionAuthenticationArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param mechanism Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+         * @param mechanism Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
          * 
          * @return builder
          * 

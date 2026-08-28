@@ -228,7 +228,7 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly Outputs.GetStreamConnectionAuthenticationResult Authentication;
         /// <summary>
-        /// The configuration for S3 connection. See AWS.
+        /// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
         /// </summary>
         public readonly Outputs.GetStreamConnectionAwsResult Aws;
         /// <summary>

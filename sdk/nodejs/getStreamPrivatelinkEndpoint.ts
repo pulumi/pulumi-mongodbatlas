@@ -172,6 +172,7 @@ export interface GetStreamPrivatelinkEndpointArgs {
  */
 export interface GetStreamPrivatelinkEndpointResult {
     readonly arn: string;
+    readonly authenticationScheme: string;
     readonly dnsDomain: string;
     readonly dnsSubDomains: string[];
     readonly errorMessage: string;

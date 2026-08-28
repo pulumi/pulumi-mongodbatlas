@@ -197,6 +197,10 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
      */
     declare public readonly arn: pulumi.Output<string | undefined>;
     /**
+     * Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+     */
+    declare public readonly authenticationScheme: pulumi.Output<string>;
+    /**
      * The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
      *
      *     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -279,6 +283,7 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as StreamPrivatelinkEndpointState | undefined;
             resourceInputs["arn"] = state?.arn;
+            resourceInputs["authenticationScheme"] = state?.authenticationScheme;
             resourceInputs["dnsDomain"] = state?.dnsDomain;
             resourceInputs["dnsSubDomains"] = state?.dnsSubDomains;
             resourceInputs["errorMessage"] = state?.errorMessage;
@@ -304,6 +309,7 @@ export class StreamPrivatelinkEndpoint extends pulumi.CustomResource {
                 throw new Error("Missing required property 'vendor'");
             }
             resourceInputs["arn"] = args?.arn;
+            resourceInputs["authenticationScheme"] = args?.authenticationScheme;
             resourceInputs["dnsDomain"] = args?.dnsDomain;
             resourceInputs["dnsSubDomains"] = args?.dnsSubDomains;
             resourceInputs["projectId"] = args?.projectId;
@@ -331,6 +337,10 @@ export interface StreamPrivatelinkEndpointState {
      * Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
      */
     arn?: pulumi.Input<string | undefined>;
+    /**
+     * Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+     */
+    authenticationScheme?: pulumi.Input<string | undefined>;
     /**
      * The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
      *
@@ -409,6 +419,10 @@ export interface StreamPrivatelinkEndpointArgs {
      * Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
      */
     arn?: pulumi.Input<string | undefined>;
+    /**
+     * Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+     */
+    authenticationScheme?: pulumi.Input<string | undefined>;
     /**
      * The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
      *

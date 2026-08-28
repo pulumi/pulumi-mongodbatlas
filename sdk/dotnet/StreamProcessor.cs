@@ -142,6 +142,7 @@ namespace Pulumi.Mongodbatlas
     /// ";
     ///         }),
     ///         State = "CREATED",
+    ///         Tier = "SP10",
     ///         Options = new Mongodbatlas.Inputs.StreamProcessorOptionsArgs
     ///         {
     ///             Dlq = new Mongodbatlas.Inputs.StreamProcessorOptionsDlqArgs
@@ -149,6 +150,11 @@ namespace Pulumi.Mongodbatlas
     ///                 Coll = "exampleColumn",
     ///                 ConnectionName = example_cluster.ConnectionName,
     ///                 Db = "exampleDb",
+    ///             },
+    ///             Autoscaling = new Mongodbatlas.Inputs.StreamProcessorOptionsAutoscalingArgs
+    ///             {
+    ///                 MinTier = "SP10",
+    ///                 MaxTier = "SP50",
     ///             },
     ///         },
     ///     });
@@ -193,6 +199,12 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> DeleteOnCreateTimeout { get; private set; } = null!;
 
         /// <summary>
+        /// Tier the stream processor is currently running on. When autoscaling is disabled this equals `Tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+        /// </summary>
+        [Output("effectiveTier")]
+        public Output<string> EffectiveTier { get; private set; } = null!;
+
+        /// <summary>
         /// Indicates whether this stream processor is eligible for failover. When `True`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `FailoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `FailoverRegions` configured on the workspace.
         /// </summary>
         [Output("failoverEnabled")]
@@ -205,7 +217,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string?> InstanceName { get; private set; } = null!;
 
         /// <summary>
-        /// Optional configuration for the stream processor.
+        /// Optional configuration for the stream processor. Empty `Options` objects are not supported.
         /// </summary>
         [Output("options")]
         public Output<Outputs.StreamProcessorOptions?> Options { get; private set; } = null!;
@@ -241,7 +253,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> Stats { get; private set; } = null!;
 
         /// <summary>
-        /// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+        /// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `EffectiveTier`.
         /// </summary>
         [Output("tier")]
         public Output<string> Tier { get; private set; } = null!;
@@ -320,7 +332,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? InstanceName { get; set; }
 
         /// <summary>
-        /// Optional configuration for the stream processor.
+        /// Optional configuration for the stream processor. Empty `Options` objects are not supported.
         /// </summary>
         [Input("options")]
         public Input<Inputs.StreamProcessorOptionsArgs>? Options { get; set; }
@@ -350,7 +362,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? State { get; set; }
 
         /// <summary>
-        /// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+        /// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `EffectiveTier`.
         /// </summary>
         [Input("tier")]
         public Input<string>? Tier { get; set; }
@@ -379,6 +391,12 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? DeleteOnCreateTimeout { get; set; }
 
         /// <summary>
+        /// Tier the stream processor is currently running on. When autoscaling is disabled this equals `Tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+        /// </summary>
+        [Input("effectiveTier")]
+        public Input<string>? EffectiveTier { get; set; }
+
+        /// <summary>
         /// Indicates whether this stream processor is eligible for failover. When `True`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `FailoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `FailoverRegions` configured on the workspace.
         /// </summary>
         [Input("failoverEnabled")]
@@ -391,7 +409,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? InstanceName { get; set; }
 
         /// <summary>
-        /// Optional configuration for the stream processor.
+        /// Optional configuration for the stream processor. Empty `Options` objects are not supported.
         /// </summary>
         [Input("options")]
         public Input<Inputs.StreamProcessorOptionsGetArgs>? Options { get; set; }
@@ -427,7 +445,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? Stats { get; set; }
 
         /// <summary>
-        /// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+        /// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `EffectiveTier`.
         /// </summary>
         [Input("tier")]
         public Input<string>? Tier { get; set; }

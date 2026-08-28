@@ -262,6 +262,8 @@ type StreamPrivatelinkEndpoint struct {
 
 	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn pulumi.StringPtrOutput `pulumi:"arn"`
+	// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+	AuthenticationScheme pulumi.StringOutput `pulumi:"authenticationScheme"`
 	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 	//
 	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -347,6 +349,8 @@ func GetStreamPrivatelinkEndpoint(ctx *pulumi.Context,
 type streamPrivatelinkEndpointState struct {
 	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn *string `pulumi:"arn"`
+	// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+	AuthenticationScheme *string `pulumi:"authenticationScheme"`
 	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 	//
 	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -394,6 +398,8 @@ type streamPrivatelinkEndpointState struct {
 type StreamPrivatelinkEndpointState struct {
 	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn pulumi.StringPtrInput
+	// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+	AuthenticationScheme pulumi.StringPtrInput
 	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 	//
 	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -445,6 +451,8 @@ func (StreamPrivatelinkEndpointState) ElementType() reflect.Type {
 type streamPrivatelinkEndpointArgs struct {
 	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn *string `pulumi:"arn"`
+	// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+	AuthenticationScheme *string `pulumi:"authenticationScheme"`
 	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 	//
 	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -483,6 +491,8 @@ type streamPrivatelinkEndpointArgs struct {
 type StreamPrivatelinkEndpointArgs struct {
 	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 	Arn pulumi.StringPtrInput
+	// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+	AuthenticationScheme pulumi.StringPtrInput
 	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
 	//
 	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -607,6 +617,11 @@ func (o StreamPrivatelinkEndpointOutput) ToStreamPrivatelinkEndpointOutputWithCo
 // Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
 func (o StreamPrivatelinkEndpointOutput) Arn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringPtrOutput { return v.Arn }).(pulumi.StringPtrOutput)
+}
+
+// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+func (o StreamPrivatelinkEndpointOutput) AuthenticationScheme() pulumi.StringOutput {
+	return o.ApplyT(func(v *StreamPrivatelinkEndpoint) pulumi.StringOutput { return v.AuthenticationScheme }).(pulumi.StringOutput)
 }
 
 // The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:

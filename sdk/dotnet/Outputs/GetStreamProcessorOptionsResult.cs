@@ -14,13 +14,21 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetStreamProcessorOptionsResult
     {
         /// <summary>
+        /// Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `MinTier` and `MaxTier` based on load; `Tier` is used only as the initial/baseline tier and the running tier is reported by `EffectiveTier`. To disable autoscaling, remove this block.
+        /// </summary>
+        public readonly Outputs.GetStreamProcessorOptionsAutoscalingResult Autoscaling;
+        /// <summary>
         /// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
         /// </summary>
         public readonly Outputs.GetStreamProcessorOptionsDlqResult Dlq;
 
         [OutputConstructor]
-        private GetStreamProcessorOptionsResult(Outputs.GetStreamProcessorOptionsDlqResult dlq)
+        private GetStreamProcessorOptionsResult(
+            Outputs.GetStreamProcessorOptionsAutoscalingResult autoscaling,
+
+            Outputs.GetStreamProcessorOptionsDlqResult dlq)
         {
+            Autoscaling = autoscaling;
             Dlq = dlq;
         }
     }

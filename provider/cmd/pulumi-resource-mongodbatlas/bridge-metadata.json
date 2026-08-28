@@ -129,6 +129,18 @@
                     }
                 }
             },
+            "mongodbatlas_cloud_backup_collection_restore_job": {
+                "current": "mongodbatlas:index/cloudBackupCollectionRestoreJob:CloudBackupCollectionRestoreJob",
+                "majorVersion": 4,
+                "fields": {
+                    "collections": {
+                        "maxItemsOne": false
+                    },
+                    "databases": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
             "mongodbatlas_cloud_backup_schedule": {
                 "current": "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule",
                 "majorVersion": 4,
@@ -1385,6 +1397,70 @@
                     }
                 }
             },
+            "mongodbatlas_cloud_backup_collection_restore_job": {
+                "current": "mongodbatlas:index/getCloudBackupCollectionRestoreJob:getCloudBackupCollectionRestoreJob",
+                "majorVersion": 4,
+                "fields": {
+                    "collections": {
+                        "maxItemsOne": false
+                    },
+                    "databases": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_cloud_backup_collection_restore_job_collection": {
+                "current": "mongodbatlas:index/getCloudBackupCollectionRestoreJobCollection:getCloudBackupCollectionRestoreJobCollection",
+                "majorVersion": 4,
+                "fields": {
+                    "index_status": {
+                        "fields": {
+                            "failed_indexes": {
+                                "maxItemsOne": false
+                            }
+                        }
+                    }
+                }
+            },
+            "mongodbatlas_cloud_backup_collection_restore_job_collections": {
+                "current": "mongodbatlas:index/getCloudBackupCollectionRestoreJobCollections:getCloudBackupCollectionRestoreJobCollections",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "index_status": {
+                                    "fields": {
+                                        "failed_indexes": {
+                                            "maxItemsOne": false
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "mongodbatlas_cloud_backup_collection_restore_jobs": {
+                "current": "mongodbatlas:index/getCloudBackupCollectionRestoreJobs:getCloudBackupCollectionRestoreJobs",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "collections": {
+                                    "maxItemsOne": false
+                                },
+                                "databases": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "mongodbatlas_cloud_backup_schedule": {
                 "current": "mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule",
                 "majorVersion": 4,
@@ -1427,6 +1503,24 @@
                         "maxItemsOne": false
                     },
                     "snapshot_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_cloud_backup_snapshot_database_collections": {
+                "current": "mongodbatlas:index/getCloudBackupSnapshotDatabaseCollections:getCloudBackupSnapshotDatabaseCollections",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_cloud_backup_snapshot_databases": {
+                "current": "mongodbatlas:index/getCloudBackupSnapshotDatabases:getCloudBackupSnapshotDatabases",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
                         "maxItemsOne": false
                     }
                 }
@@ -3457,6 +3551,11 @@
             },
             "mongodbatlas_alert_configuration": {},
             "mongodbatlas_api_key_project_assignment": {},
+            "mongodbatlas_cloud_backup_collection_restore_job": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "mongodbatlas_cloud_user_org_assignment": {
                 "computeID": {
                     "kind": "missing"
@@ -3556,6 +3655,7 @@
             "mongodbatlas:index/apiKeyProjectAssignment:ApiKeyProjectAssignment": 1,
             "mongodbatlas:index/auditing:Auditing": 0,
             "mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy": 0,
+            "mongodbatlas:index/cloudBackupCollectionRestoreJob:CloudBackupCollectionRestoreJob": 1,
             "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule": 0,
             "mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot": 0,
             "mongodbatlas:index/cloudBackupSnapshotExportBucket:CloudBackupSnapshotExportBucket": 0,
@@ -3646,8 +3746,14 @@
             "mongodbatlas:index/getAtlasUsers:getAtlasUsers": 1,
             "mongodbatlas:index/getAuditing:getAuditing": 0,
             "mongodbatlas:index/getBackupCompliancePolicy:getBackupCompliancePolicy": 0,
+            "mongodbatlas:index/getCloudBackupCollectionRestoreJob:getCloudBackupCollectionRestoreJob": 1,
+            "mongodbatlas:index/getCloudBackupCollectionRestoreJobCollection:getCloudBackupCollectionRestoreJobCollection": 1,
+            "mongodbatlas:index/getCloudBackupCollectionRestoreJobCollections:getCloudBackupCollectionRestoreJobCollections": 1,
+            "mongodbatlas:index/getCloudBackupCollectionRestoreJobs:getCloudBackupCollectionRestoreJobs": 1,
             "mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule": 0,
             "mongodbatlas:index/getCloudBackupSnapshot:getCloudBackupSnapshot": 0,
+            "mongodbatlas:index/getCloudBackupSnapshotDatabaseCollections:getCloudBackupSnapshotDatabaseCollections": 1,
+            "mongodbatlas:index/getCloudBackupSnapshotDatabases:getCloudBackupSnapshotDatabases": 1,
             "mongodbatlas:index/getCloudBackupSnapshotExportBucket:getCloudBackupSnapshotExportBucket": 0,
             "mongodbatlas:index/getCloudBackupSnapshotExportBuckets:getCloudBackupSnapshotExportBuckets": 0,
             "mongodbatlas:index/getCloudBackupSnapshotExportJob:getCloudBackupSnapshotExportJob": 0,

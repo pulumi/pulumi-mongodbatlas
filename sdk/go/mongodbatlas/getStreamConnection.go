@@ -98,7 +98,7 @@ type LookupStreamConnectionArgs struct {
 type LookupStreamConnectionResult struct {
 	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
 	Authentication GetStreamConnectionAuthentication `pulumi:"authentication"`
-	// The configuration for S3 connection. See AWS.
+	// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
 	Aws GetStreamConnectionAws `pulumi:"aws"`
 	// The configuration for Azure Blob Storage connection. See Azure.
 	Azure GetStreamConnectionAzure `pulumi:"azure"`
@@ -185,7 +185,7 @@ func (o LookupStreamConnectionResultOutput) Authentication() GetStreamConnection
 	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionAuthentication { return v.Authentication }).(GetStreamConnectionAuthenticationOutput)
 }
 
-// The configuration for S3 connection. See AWS.
+// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
 func (o LookupStreamConnectionResultOutput) Aws() GetStreamConnectionAwsOutput {
 	return o.ApplyT(func(v LookupStreamConnectionResult) GetStreamConnectionAws { return v.Aws }).(GetStreamConnectionAwsOutput)
 }

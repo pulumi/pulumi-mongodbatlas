@@ -32,6 +32,21 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
     }
 
     /**
+     * Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+     * 
+     */
+    @Import(name="authenticationScheme")
+    private @Nullable Output<String> authenticationScheme;
+
+    /**
+     * @return Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+     * 
+     */
+    public Optional<Output<String>> authenticationScheme() {
+        return Optional.ofNullable(this.authenticationScheme);
+    }
+
+    /**
      * The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
      * 
      *     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -262,6 +277,7 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
 
     private StreamPrivatelinkEndpointState(StreamPrivatelinkEndpointState $) {
         this.arn = $.arn;
+        this.authenticationScheme = $.authenticationScheme;
         this.dnsDomain = $.dnsDomain;
         this.dnsSubDomains = $.dnsSubDomains;
         this.errorMessage = $.errorMessage;
@@ -314,6 +330,27 @@ public final class StreamPrivatelinkEndpointState extends com.pulumi.resources.R
          */
         public Builder arn(String arn) {
             return arn(Output.of(arn));
+        }
+
+        /**
+         * @param authenticationScheme Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authenticationScheme(@Nullable Output<String> authenticationScheme) {
+            $.authenticationScheme = authenticationScheme;
+            return this;
+        }
+
+        /**
+         * @param authenticationScheme Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder authenticationScheme(String authenticationScheme) {
+            return authenticationScheme(Output.of(authenticationScheme));
         }
 
         /**

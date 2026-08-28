@@ -40,6 +40,10 @@ __all__ = [
     'BackupCompliancePolicyPolicyItemMonthly',
     'BackupCompliancePolicyPolicyItemWeekly',
     'BackupCompliancePolicyPolicyItemYearly',
+    'CloudBackupCollectionRestoreJobCollection',
+    'CloudBackupCollectionRestoreJobDatabase',
+    'CloudBackupCollectionRestoreJobIndexStatus',
+    'CloudBackupCollectionRestoreJobTimeouts',
     'CloudBackupScheduleCopySetting',
     'CloudBackupScheduleExport',
     'CloudBackupSchedulePolicyItemDaily',
@@ -145,6 +149,7 @@ __all__ = [
     'ServerlessInstanceTag',
     'ServiceAccountSecret',
     'StreamConnectionAuthentication',
+    'StreamConnectionAuthenticationAws',
     'StreamConnectionAws',
     'StreamConnectionAzure',
     'StreamConnectionDbRoleToExecute',
@@ -163,6 +168,7 @@ __all__ = [
     'StreamInstanceDataProcessRegion',
     'StreamInstanceStreamConfig',
     'StreamProcessorOptions',
+    'StreamProcessorOptionsAutoscaling',
     'StreamProcessorOptionsDlq',
     'StreamProcessorTimeouts',
     'StreamWorkspaceDataProcessRegion',
@@ -232,6 +238,16 @@ __all__ = [
     'GetBackupCompliancePolicyPolicyItemMonthlyResult',
     'GetBackupCompliancePolicyPolicyItemWeeklyResult',
     'GetBackupCompliancePolicyPolicyItemYearlyResult',
+    'GetCloudBackupCollectionRestoreJobCollectionResult',
+    'GetCloudBackupCollectionRestoreJobCollectionIndexStatusResult',
+    'GetCloudBackupCollectionRestoreJobCollectionsResultResult',
+    'GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusResult',
+    'GetCloudBackupCollectionRestoreJobDatabaseResult',
+    'GetCloudBackupCollectionRestoreJobIndexStatusResult',
+    'GetCloudBackupCollectionRestoreJobsResultResult',
+    'GetCloudBackupCollectionRestoreJobsResultCollectionResult',
+    'GetCloudBackupCollectionRestoreJobsResultDatabaseResult',
+    'GetCloudBackupCollectionRestoreJobsResultIndexStatusResult',
     'GetCloudBackupScheduleCopySettingResult',
     'GetCloudBackupScheduleExportResult',
     'GetCloudBackupSchedulePolicyItemDailyResult',
@@ -239,6 +255,8 @@ __all__ = [
     'GetCloudBackupSchedulePolicyItemMonthlyResult',
     'GetCloudBackupSchedulePolicyItemWeeklyResult',
     'GetCloudBackupSchedulePolicyItemYearlyResult',
+    'GetCloudBackupSnapshotDatabaseCollectionsResultResult',
+    'GetCloudBackupSnapshotDatabasesResultResult',
     'GetCloudBackupSnapshotExportBucketsResultResult',
     'GetCloudBackupSnapshotExportJobComponentResult',
     'GetCloudBackupSnapshotExportJobCustomDataResult',
@@ -456,6 +474,7 @@ __all__ = [
     'GetSharedTierRestoreJobsResultResult',
     'GetSharedTierSnapshotsResultResult',
     'GetStreamConnectionAuthenticationResult',
+    'GetStreamConnectionAuthenticationAwsResult',
     'GetStreamConnectionAwsResult',
     'GetStreamConnectionAzureResult',
     'GetStreamConnectionDbRoleToExecuteResult',
@@ -477,6 +496,7 @@ __all__ = [
     'GetStreamConnectionSecurityResult',
     'GetStreamConnectionsResultResult',
     'GetStreamConnectionsResultAuthenticationResult',
+    'GetStreamConnectionsResultAuthenticationAwsResult',
     'GetStreamConnectionsResultAwsResult',
     'GetStreamConnectionsResultAzureResult',
     'GetStreamConnectionsResultDbRoleToExecuteResult',
@@ -492,9 +512,11 @@ __all__ = [
     'GetStreamInstancesResultStreamConfigResult',
     'GetStreamPrivatelinkEndpointsResultResult',
     'GetStreamProcessorOptionsResult',
+    'GetStreamProcessorOptionsAutoscalingResult',
     'GetStreamProcessorOptionsDlqResult',
     'GetStreamProcessorsResultResult',
     'GetStreamProcessorsResultOptionsResult',
+    'GetStreamProcessorsResultOptionsAutoscalingResult',
     'GetStreamProcessorsResultOptionsDlqResult',
     'GetStreamWorkspaceDataProcessRegionResult',
     'GetStreamWorkspaceFailoverRegionResult',
@@ -3092,6 +3114,171 @@ class BackupCompliancePolicyPolicyItemYearly(dict):
         Unique identifier of the backup policy item.
         """
         return pulumi.get(self, "id")
+
+
+@pulumi.output_type
+class CloudBackupCollectionRestoreJobCollection(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sourceNamespace":
+            suggest = "source_namespace"
+        elif key == "targetNamespace":
+            suggest = "target_namespace"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudBackupCollectionRestoreJobCollection. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudBackupCollectionRestoreJobCollection.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudBackupCollectionRestoreJobCollection.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 source_namespace: _builtins.str,
+                 target_namespace: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str source_namespace: Collection requested to restore, as `database.collection`.
+        :param _builtins.str target_namespace: Requested target collection as `database.collection`; if empty, source namespace is used.
+        """
+        pulumi.set(__self__, "source_namespace", source_namespace)
+        if target_namespace is not None:
+            pulumi.set(__self__, "target_namespace", target_namespace)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceNamespace")
+    def source_namespace(self) -> _builtins.str:
+        """
+        Collection requested to restore, as `database.collection`.
+        """
+        return pulumi.get(self, "source_namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="targetNamespace")
+    def target_namespace(self) -> Optional[_builtins.str]:
+        """
+        Requested target collection as `database.collection`; if empty, source namespace is used.
+        """
+        return pulumi.get(self, "target_namespace")
+
+
+@pulumi.output_type
+class CloudBackupCollectionRestoreJobDatabase(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "sourceNamespace":
+            suggest = "source_namespace"
+        elif key == "targetNamespace":
+            suggest = "target_namespace"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudBackupCollectionRestoreJobDatabase. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudBackupCollectionRestoreJobDatabase.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudBackupCollectionRestoreJobDatabase.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 source_namespace: _builtins.str,
+                 target_namespace: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str source_namespace: Database name requested to restore.
+        :param _builtins.str target_namespace: Requested target database name; if empty, source database name is used.
+        """
+        pulumi.set(__self__, "source_namespace", source_namespace)
+        if target_namespace is not None:
+            pulumi.set(__self__, "target_namespace", target_namespace)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceNamespace")
+    def source_namespace(self) -> _builtins.str:
+        """
+        Database name requested to restore.
+        """
+        return pulumi.get(self, "source_namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="targetNamespace")
+    def target_namespace(self) -> Optional[_builtins.str]:
+        """
+        Requested target database name; if empty, source database name is used.
+        """
+        return pulumi.get(self, "target_namespace")
+
+
+@pulumi.output_type
+class CloudBackupCollectionRestoreJobIndexStatus(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "failedCollectionCount":
+            suggest = "failed_collection_count"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudBackupCollectionRestoreJobIndexStatus. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudBackupCollectionRestoreJobIndexStatus.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudBackupCollectionRestoreJobIndexStatus.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 failed_collection_count: Optional[_builtins.int] = None,
+                 state: Optional[_builtins.str] = None):
+        """
+        :param _builtins.int failed_collection_count: Number of collections that failed to build indexes.
+        :param _builtins.str state: Index build state indicating the status of index creation during or after a restore operation.
+        """
+        if failed_collection_count is not None:
+            pulumi.set(__self__, "failed_collection_count", failed_collection_count)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+
+    @_builtins.property
+    @pulumi.getter(name="failedCollectionCount")
+    def failed_collection_count(self) -> Optional[_builtins.int]:
+        """
+        Number of collections that failed to build indexes.
+        """
+        return pulumi.get(self, "failed_collection_count")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> Optional[_builtins.str]:
+        """
+        Index build state indicating the status of index creation during or after a restore operation.
+        """
+        return pulumi.get(self, "state")
+
+
+@pulumi.output_type
+class CloudBackupCollectionRestoreJobTimeouts(dict):
+    def __init__(__self__, *,
+                 create: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
 
 
 @pulumi.output_type
@@ -9338,6 +9525,7 @@ class StreamConnectionAuthentication(dict):
         return super().get(key, default)
 
     def __init__(__self__, *,
+                 aws: Optional['outputs.StreamConnectionAuthenticationAws'] = None,
                  client_id: Optional[_builtins.str] = None,
                  client_secret: Optional[_builtins.str] = None,
                  mechanism: Optional[_builtins.str] = None,
@@ -9348,9 +9536,10 @@ class StreamConnectionAuthentication(dict):
                  token_endpoint_url: Optional[_builtins.str] = None,
                  username: Optional[_builtins.str] = None):
         """
+        :param 'StreamConnectionAuthenticationAwsArgs' aws: AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
         :param _builtins.str client_id: Public identifier for the Kafka client.
         :param _builtins.str client_secret: Secret known only to the Kafka client and the authorization server.
-        :param _builtins.str mechanism: Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+        :param _builtins.str mechanism: Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
         :param _builtins.str method: SASL OAUTHBEARER authentication method. Value must be OIDC.
         :param _builtins.str password: Password of the account to connect to the Kafka cluster.
         :param _builtins.str sasl_oauthbearer_extensions: Additional information to provide to the Kafka broker.
@@ -9358,6 +9547,8 @@ class StreamConnectionAuthentication(dict):
         :param _builtins.str token_endpoint_url: OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
         :param _builtins.str username: Username of the account to connect to the Kafka cluster.
         """
+        if aws is not None:
+            pulumi.set(__self__, "aws", aws)
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
         if client_secret is not None:
@@ -9376,6 +9567,14 @@ class StreamConnectionAuthentication(dict):
             pulumi.set(__self__, "token_endpoint_url", token_endpoint_url)
         if username is not None:
             pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def aws(self) -> Optional['outputs.StreamConnectionAuthenticationAws']:
+        """
+        AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+        """
+        return pulumi.get(self, "aws")
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -9397,7 +9596,7 @@ class StreamConnectionAuthentication(dict):
     @pulumi.getter
     def mechanism(self) -> Optional[_builtins.str]:
         """
-        Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+        Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
         """
         return pulumi.get(self, "mechanism")
 
@@ -9448,6 +9647,41 @@ class StreamConnectionAuthentication(dict):
         Username of the account to connect to the Kafka cluster.
         """
         return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class StreamConnectionAuthenticationAws(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "roleArn":
+            suggest = "role_arn"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StreamConnectionAuthenticationAws. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StreamConnectionAuthenticationAws.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StreamConnectionAuthenticationAws.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 role_arn: _builtins.str):
+        """
+        :param _builtins.str role_arn: Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+        """
+        pulumi.set(__self__, "role_arn", role_arn)
+
+    @_builtins.property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> _builtins.str:
+        """
+        Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+        """
+        return pulumi.get(self, "role_arn")
 
 
 @pulumi.output_type
@@ -10302,19 +10536,82 @@ class StreamInstanceStreamConfig(dict):
 @pulumi.output_type
 class StreamProcessorOptions(dict):
     def __init__(__self__, *,
-                 dlq: 'outputs.StreamProcessorOptionsDlq'):
+                 autoscaling: Optional['outputs.StreamProcessorOptionsAutoscaling'] = None,
+                 dlq: Optional['outputs.StreamProcessorOptionsDlq'] = None):
         """
+        :param 'StreamProcessorOptionsAutoscalingArgs' autoscaling: Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `min_tier` and `max_tier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effective_tier`. To disable autoscaling, remove this block.
         :param 'StreamProcessorOptionsDlqArgs' dlq: Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
         """
-        pulumi.set(__self__, "dlq", dlq)
+        if autoscaling is not None:
+            pulumi.set(__self__, "autoscaling", autoscaling)
+        if dlq is not None:
+            pulumi.set(__self__, "dlq", dlq)
 
     @_builtins.property
     @pulumi.getter
-    def dlq(self) -> 'outputs.StreamProcessorOptionsDlq':
+    def autoscaling(self) -> Optional['outputs.StreamProcessorOptionsAutoscaling']:
+        """
+        Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `min_tier` and `max_tier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effective_tier`. To disable autoscaling, remove this block.
+        """
+        return pulumi.get(self, "autoscaling")
+
+    @_builtins.property
+    @pulumi.getter
+    def dlq(self) -> Optional['outputs.StreamProcessorOptionsDlq']:
         """
         Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
         """
         return pulumi.get(self, "dlq")
+
+
+@pulumi.output_type
+class StreamProcessorOptionsAutoscaling(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "maxTier":
+            suggest = "max_tier"
+        elif key == "minTier":
+            suggest = "min_tier"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StreamProcessorOptionsAutoscaling. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StreamProcessorOptionsAutoscaling.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StreamProcessorOptionsAutoscaling.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 max_tier: Optional[_builtins.str] = None,
+                 min_tier: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str max_tier: Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+        :param _builtins.str min_tier: Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+        """
+        if max_tier is not None:
+            pulumi.set(__self__, "max_tier", max_tier)
+        if min_tier is not None:
+            pulumi.set(__self__, "min_tier", min_tier)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTier")
+    def max_tier(self) -> Optional[_builtins.str]:
+        """
+        Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+        """
+        return pulumi.get(self, "max_tier")
+
+    @_builtins.property
+    @pulumi.getter(name="minTier")
+    def min_tier(self) -> Optional[_builtins.str]:
+        """
+        Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+        """
+        return pulumi.get(self, "min_tier")
 
 
 @pulumi.output_type
@@ -15721,6 +16018,571 @@ class GetBackupCompliancePolicyPolicyItemYearlyResult(dict):
 
 
 @pulumi.output_type
+class GetCloudBackupCollectionRestoreJobCollectionResult(dict):
+    def __init__(__self__, *,
+                 source_namespace: _builtins.str,
+                 target_namespace: _builtins.str):
+        """
+        :param _builtins.str source_namespace: Collection requested to restore, as `database.collection`.
+        :param _builtins.str target_namespace: Requested target collection as `database.collection`; if empty, source namespace is used.
+        """
+        pulumi.set(__self__, "source_namespace", source_namespace)
+        pulumi.set(__self__, "target_namespace", target_namespace)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceNamespace")
+    def source_namespace(self) -> _builtins.str:
+        """
+        Collection requested to restore, as `database.collection`.
+        """
+        return pulumi.get(self, "source_namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="targetNamespace")
+    def target_namespace(self) -> _builtins.str:
+        """
+        Requested target collection as `database.collection`; if empty, source namespace is used.
+        """
+        return pulumi.get(self, "target_namespace")
+
+
+@pulumi.output_type
+class GetCloudBackupCollectionRestoreJobCollectionIndexStatusResult(dict):
+    def __init__(__self__, *,
+                 error_message: _builtins.str,
+                 failed_indexes: Sequence[_builtins.str],
+                 state: _builtins.str):
+        """
+        :param _builtins.str error_message: Error message if index build failed.
+        :param Sequence[_builtins.str] failed_indexes: List of index specifications that failed to build (up to 64 items).
+        :param _builtins.str state: Index build state indicating the status of index creation during or after a restore operation.
+        """
+        pulumi.set(__self__, "error_message", error_message)
+        pulumi.set(__self__, "failed_indexes", failed_indexes)
+        pulumi.set(__self__, "state", state)
+
+    @_builtins.property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> _builtins.str:
+        """
+        Error message if index build failed.
+        """
+        return pulumi.get(self, "error_message")
+
+    @_builtins.property
+    @pulumi.getter(name="failedIndexes")
+    def failed_indexes(self) -> Sequence[_builtins.str]:
+        """
+        List of index specifications that failed to build (up to 64 items).
+        """
+        return pulumi.get(self, "failed_indexes")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        Index build state indicating the status of index creation during or after a restore operation.
+        """
+        return pulumi.get(self, "state")
+
+
+@pulumi.output_type
+class GetCloudBackupCollectionRestoreJobCollectionsResultResult(dict):
+    def __init__(__self__, *,
+                 effective_target_namespace: _builtins.str,
+                 index_status: 'outputs.GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusResult',
+                 restored_documents: _builtins.int,
+                 source_namespace: _builtins.str,
+                 state: _builtins.str,
+                 target_namespace: _builtins.str,
+                 total_documents: _builtins.int):
+        """
+        :param _builtins.str effective_target_namespace: Actual target namespace after restore (e.g. after conflict rename).
+        :param 'GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusArgs' index_status: Index build status for a collection within a restore job.
+        :param _builtins.int restored_documents: Number of documents restored so far.
+        :param _builtins.str source_namespace: Source namespace that was requested to restore.
+        :param _builtins.str state: Current state of this collection within the restore job.
+        :param _builtins.str target_namespace: Requested target namespace for the restored collection.
+        :param _builtins.int total_documents: Total document count for this collection.
+        """
+        pulumi.set(__self__, "effective_target_namespace", effective_target_namespace)
+        pulumi.set(__self__, "index_status", index_status)
+        pulumi.set(__self__, "restored_documents", restored_documents)
+        pulumi.set(__self__, "source_namespace", source_namespace)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "target_namespace", target_namespace)
+        pulumi.set(__self__, "total_documents", total_documents)
+
+    @_builtins.property
+    @pulumi.getter(name="effectiveTargetNamespace")
+    def effective_target_namespace(self) -> _builtins.str:
+        """
+        Actual target namespace after restore (e.g. after conflict rename).
+        """
+        return pulumi.get(self, "effective_target_namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="indexStatus")
+    def index_status(self) -> 'outputs.GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusResult':
+        """
+        Index build status for a collection within a restore job.
+        """
+        return pulumi.get(self, "index_status")
+
+    @_builtins.property
+    @pulumi.getter(name="restoredDocuments")
+    def restored_documents(self) -> _builtins.int:
+        """
+        Number of documents restored so far.
+        """
+        return pulumi.get(self, "restored_documents")
+
+    @_builtins.property
+    @pulumi.getter(name="sourceNamespace")
+    def source_namespace(self) -> _builtins.str:
+        """
+        Source namespace that was requested to restore.
+        """
+        return pulumi.get(self, "source_namespace")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        Current state of this collection within the restore job.
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter(name="targetNamespace")
+    def target_namespace(self) -> _builtins.str:
+        """
+        Requested target namespace for the restored collection.
+        """
+        return pulumi.get(self, "target_namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="totalDocuments")
+    def total_documents(self) -> _builtins.int:
+        """
+        Total document count for this collection.
+        """
+        return pulumi.get(self, "total_documents")
+
+
+@pulumi.output_type
+class GetCloudBackupCollectionRestoreJobCollectionsResultIndexStatusResult(dict):
+    def __init__(__self__, *,
+                 error_message: _builtins.str,
+                 failed_indexes: Sequence[_builtins.str],
+                 state: _builtins.str):
+        """
+        :param _builtins.str error_message: Error message if index build failed.
+        :param Sequence[_builtins.str] failed_indexes: List of index specifications that failed to build (up to 64 items).
+        :param _builtins.str state: Index build state indicating the status of index creation during or after a restore operation.
+        """
+        pulumi.set(__self__, "error_message", error_message)
+        pulumi.set(__self__, "failed_indexes", failed_indexes)
+        pulumi.set(__self__, "state", state)
+
+    @_builtins.property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> _builtins.str:
+        """
+        Error message if index build failed.
+        """
+        return pulumi.get(self, "error_message")
+
+    @_builtins.property
+    @pulumi.getter(name="failedIndexes")
+    def failed_indexes(self) -> Sequence[_builtins.str]:
+        """
+        List of index specifications that failed to build (up to 64 items).
+        """
+        return pulumi.get(self, "failed_indexes")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        Index build state indicating the status of index creation during or after a restore operation.
+        """
+        return pulumi.get(self, "state")
+
+
+@pulumi.output_type
+class GetCloudBackupCollectionRestoreJobDatabaseResult(dict):
+    def __init__(__self__, *,
+                 source_namespace: _builtins.str,
+                 target_namespace: _builtins.str):
+        """
+        :param _builtins.str source_namespace: Database name requested to restore.
+        :param _builtins.str target_namespace: Requested target database name; if empty, source database name is used.
+        """
+        pulumi.set(__self__, "source_namespace", source_namespace)
+        pulumi.set(__self__, "target_namespace", target_namespace)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceNamespace")
+    def source_namespace(self) -> _builtins.str:
+        """
+        Database name requested to restore.
+        """
+        return pulumi.get(self, "source_namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="targetNamespace")
+    def target_namespace(self) -> _builtins.str:
+        """
+        Requested target database name; if empty, source database name is used.
+        """
+        return pulumi.get(self, "target_namespace")
+
+
+@pulumi.output_type
+class GetCloudBackupCollectionRestoreJobIndexStatusResult(dict):
+    def __init__(__self__, *,
+                 failed_collection_count: _builtins.int,
+                 state: _builtins.str):
+        """
+        :param _builtins.int failed_collection_count: Number of collections that failed to build indexes.
+        :param _builtins.str state: Index build state indicating the status of index creation during or after a restore operation.
+        """
+        pulumi.set(__self__, "failed_collection_count", failed_collection_count)
+        pulumi.set(__self__, "state", state)
+
+    @_builtins.property
+    @pulumi.getter(name="failedCollectionCount")
+    def failed_collection_count(self) -> _builtins.int:
+        """
+        Number of collections that failed to build indexes.
+        """
+        return pulumi.get(self, "failed_collection_count")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        Index build state indicating the status of index creation during or after a restore operation.
+        """
+        return pulumi.get(self, "state")
+
+
+@pulumi.output_type
+class GetCloudBackupCollectionRestoreJobsResultResult(dict):
+    def __init__(__self__, *,
+                 collection_suffix: _builtins.str,
+                 collections: Sequence['outputs.GetCloudBackupCollectionRestoreJobsResultCollectionResult'],
+                 created_at: _builtins.str,
+                 database_suffix: _builtins.str,
+                 databases: Sequence['outputs.GetCloudBackupCollectionRestoreJobsResultDatabaseResult'],
+                 error_message: _builtins.str,
+                 finished_at: _builtins.str,
+                 index_status: 'outputs.GetCloudBackupCollectionRestoreJobsResultIndexStatusResult',
+                 index_strategy: _builtins.str,
+                 job_id: _builtins.str,
+                 oplog_inc: _builtins.int,
+                 oplog_ts: _builtins.int,
+                 point_in_time_utc_seconds: _builtins.int,
+                 restored_documents: _builtins.int,
+                 snapshot_id: _builtins.str,
+                 state: _builtins.str,
+                 target_cluster_name: _builtins.str,
+                 target_project_id: _builtins.str,
+                 total_documents: _builtins.int,
+                 write_strategy: _builtins.str):
+        """
+        :param _builtins.str collection_suffix: Suffix applied to restored collection names.
+        :param Sequence['GetCloudBackupCollectionRestoreJobsResultCollectionArgs'] collections: List of collections in the restore scope (up to 100 items).
+        :param _builtins.str created_at: Date and time when the restore job was created (ISO 8601 format in UTC).
+        :param _builtins.str database_suffix: Suffix applied to restored database names.
+        :param Sequence['GetCloudBackupCollectionRestoreJobsResultDatabaseArgs'] databases: List of databases in the restore scope (up to 100 items).
+        :param _builtins.str error_message: Error message when the job has failed or been canceled.
+        :param _builtins.str finished_at: Date and time when the restore job finished (ISO 8601 format in UTC).
+        :param 'GetCloudBackupCollectionRestoreJobsResultIndexStatusArgs' index_status: Overall index build status for a collection restore job.
+        :param _builtins.str index_strategy: Strategy for restoring indexes (all, none, or all except TTL).
+        :param _builtins.str job_id: Unique 24-hexadecimal digit string that identifies the collection restore job.
+        :param _builtins.int oplog_inc: Oplog increment for point-in-time restore.
+        :param _builtins.int oplog_ts: Oplog timestamp (seconds part) for point-in-time restore.
+        :param _builtins.int point_in_time_utc_seconds: Point-in-time restore time in seconds since UNIX epoch.
+        :param _builtins.int restored_documents: Number of documents restored so far across all supported collections.
+        :param _builtins.str snapshot_id: Unique 24-hexadecimal digit string that identifies the snapshot being restored.
+        :param _builtins.str state: Current state of the collection restore job.
+        :param _builtins.str target_cluster_name: Human-readable label that identifies the target cluster.
+        :param _builtins.str target_project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+        :param _builtins.int total_documents: Total number of documents across all supported collections in the restore job. This value may initially reflect an estimate based on collection metadata and can change as accurate document counts become available during the restore.
+        :param _builtins.str write_strategy: Strategy for writing data on the target (create as new or overwrite existing). With `OVERWRITE_EXISTING`, any writes to the affected databases or collections during the restore will be lost when the existing namespaces are dropped and replaced. To avoid data loss, stop writes to the affected namespaces before starting the restore.
+        """
+        pulumi.set(__self__, "collection_suffix", collection_suffix)
+        pulumi.set(__self__, "collections", collections)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "database_suffix", database_suffix)
+        pulumi.set(__self__, "databases", databases)
+        pulumi.set(__self__, "error_message", error_message)
+        pulumi.set(__self__, "finished_at", finished_at)
+        pulumi.set(__self__, "index_status", index_status)
+        pulumi.set(__self__, "index_strategy", index_strategy)
+        pulumi.set(__self__, "job_id", job_id)
+        pulumi.set(__self__, "oplog_inc", oplog_inc)
+        pulumi.set(__self__, "oplog_ts", oplog_ts)
+        pulumi.set(__self__, "point_in_time_utc_seconds", point_in_time_utc_seconds)
+        pulumi.set(__self__, "restored_documents", restored_documents)
+        pulumi.set(__self__, "snapshot_id", snapshot_id)
+        pulumi.set(__self__, "state", state)
+        pulumi.set(__self__, "target_cluster_name", target_cluster_name)
+        pulumi.set(__self__, "target_project_id", target_project_id)
+        pulumi.set(__self__, "total_documents", total_documents)
+        pulumi.set(__self__, "write_strategy", write_strategy)
+
+    @_builtins.property
+    @pulumi.getter(name="collectionSuffix")
+    def collection_suffix(self) -> _builtins.str:
+        """
+        Suffix applied to restored collection names.
+        """
+        return pulumi.get(self, "collection_suffix")
+
+    @_builtins.property
+    @pulumi.getter
+    def collections(self) -> Sequence['outputs.GetCloudBackupCollectionRestoreJobsResultCollectionResult']:
+        """
+        List of collections in the restore scope (up to 100 items).
+        """
+        return pulumi.get(self, "collections")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Date and time when the restore job was created (ISO 8601 format in UTC).
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="databaseSuffix")
+    def database_suffix(self) -> _builtins.str:
+        """
+        Suffix applied to restored database names.
+        """
+        return pulumi.get(self, "database_suffix")
+
+    @_builtins.property
+    @pulumi.getter
+    def databases(self) -> Sequence['outputs.GetCloudBackupCollectionRestoreJobsResultDatabaseResult']:
+        """
+        List of databases in the restore scope (up to 100 items).
+        """
+        return pulumi.get(self, "databases")
+
+    @_builtins.property
+    @pulumi.getter(name="errorMessage")
+    def error_message(self) -> _builtins.str:
+        """
+        Error message when the job has failed or been canceled.
+        """
+        return pulumi.get(self, "error_message")
+
+    @_builtins.property
+    @pulumi.getter(name="finishedAt")
+    def finished_at(self) -> _builtins.str:
+        """
+        Date and time when the restore job finished (ISO 8601 format in UTC).
+        """
+        return pulumi.get(self, "finished_at")
+
+    @_builtins.property
+    @pulumi.getter(name="indexStatus")
+    def index_status(self) -> 'outputs.GetCloudBackupCollectionRestoreJobsResultIndexStatusResult':
+        """
+        Overall index build status for a collection restore job.
+        """
+        return pulumi.get(self, "index_status")
+
+    @_builtins.property
+    @pulumi.getter(name="indexStrategy")
+    def index_strategy(self) -> _builtins.str:
+        """
+        Strategy for restoring indexes (all, none, or all except TTL).
+        """
+        return pulumi.get(self, "index_strategy")
+
+    @_builtins.property
+    @pulumi.getter(name="jobId")
+    def job_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the collection restore job.
+        """
+        return pulumi.get(self, "job_id")
+
+    @_builtins.property
+    @pulumi.getter(name="oplogInc")
+    def oplog_inc(self) -> _builtins.int:
+        """
+        Oplog increment for point-in-time restore.
+        """
+        return pulumi.get(self, "oplog_inc")
+
+    @_builtins.property
+    @pulumi.getter(name="oplogTs")
+    def oplog_ts(self) -> _builtins.int:
+        """
+        Oplog timestamp (seconds part) for point-in-time restore.
+        """
+        return pulumi.get(self, "oplog_ts")
+
+    @_builtins.property
+    @pulumi.getter(name="pointInTimeUtcSeconds")
+    def point_in_time_utc_seconds(self) -> _builtins.int:
+        """
+        Point-in-time restore time in seconds since UNIX epoch.
+        """
+        return pulumi.get(self, "point_in_time_utc_seconds")
+
+    @_builtins.property
+    @pulumi.getter(name="restoredDocuments")
+    def restored_documents(self) -> _builtins.int:
+        """
+        Number of documents restored so far across all supported collections.
+        """
+        return pulumi.get(self, "restored_documents")
+
+    @_builtins.property
+    @pulumi.getter(name="snapshotId")
+    def snapshot_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the snapshot being restored.
+        """
+        return pulumi.get(self, "snapshot_id")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        Current state of the collection restore job.
+        """
+        return pulumi.get(self, "state")
+
+    @_builtins.property
+    @pulumi.getter(name="targetClusterName")
+    def target_cluster_name(self) -> _builtins.str:
+        """
+        Human-readable label that identifies the target cluster.
+        """
+        return pulumi.get(self, "target_cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="targetProjectId")
+    def target_project_id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+        """
+        return pulumi.get(self, "target_project_id")
+
+    @_builtins.property
+    @pulumi.getter(name="totalDocuments")
+    def total_documents(self) -> _builtins.int:
+        """
+        Total number of documents across all supported collections in the restore job. This value may initially reflect an estimate based on collection metadata and can change as accurate document counts become available during the restore.
+        """
+        return pulumi.get(self, "total_documents")
+
+    @_builtins.property
+    @pulumi.getter(name="writeStrategy")
+    def write_strategy(self) -> _builtins.str:
+        """
+        Strategy for writing data on the target (create as new or overwrite existing). With `OVERWRITE_EXISTING`, any writes to the affected databases or collections during the restore will be lost when the existing namespaces are dropped and replaced. To avoid data loss, stop writes to the affected namespaces before starting the restore.
+        """
+        return pulumi.get(self, "write_strategy")
+
+
+@pulumi.output_type
+class GetCloudBackupCollectionRestoreJobsResultCollectionResult(dict):
+    def __init__(__self__, *,
+                 source_namespace: _builtins.str,
+                 target_namespace: _builtins.str):
+        """
+        :param _builtins.str source_namespace: Collection requested to restore, as `database.collection`.
+        :param _builtins.str target_namespace: Requested target collection as `database.collection`; if empty, source namespace is used.
+        """
+        pulumi.set(__self__, "source_namespace", source_namespace)
+        pulumi.set(__self__, "target_namespace", target_namespace)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceNamespace")
+    def source_namespace(self) -> _builtins.str:
+        """
+        Collection requested to restore, as `database.collection`.
+        """
+        return pulumi.get(self, "source_namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="targetNamespace")
+    def target_namespace(self) -> _builtins.str:
+        """
+        Requested target collection as `database.collection`; if empty, source namespace is used.
+        """
+        return pulumi.get(self, "target_namespace")
+
+
+@pulumi.output_type
+class GetCloudBackupCollectionRestoreJobsResultDatabaseResult(dict):
+    def __init__(__self__, *,
+                 source_namespace: _builtins.str,
+                 target_namespace: _builtins.str):
+        """
+        :param _builtins.str source_namespace: Database name requested to restore.
+        :param _builtins.str target_namespace: Requested target database name; if empty, source database name is used.
+        """
+        pulumi.set(__self__, "source_namespace", source_namespace)
+        pulumi.set(__self__, "target_namespace", target_namespace)
+
+    @_builtins.property
+    @pulumi.getter(name="sourceNamespace")
+    def source_namespace(self) -> _builtins.str:
+        """
+        Database name requested to restore.
+        """
+        return pulumi.get(self, "source_namespace")
+
+    @_builtins.property
+    @pulumi.getter(name="targetNamespace")
+    def target_namespace(self) -> _builtins.str:
+        """
+        Requested target database name; if empty, source database name is used.
+        """
+        return pulumi.get(self, "target_namespace")
+
+
+@pulumi.output_type
+class GetCloudBackupCollectionRestoreJobsResultIndexStatusResult(dict):
+    def __init__(__self__, *,
+                 failed_collection_count: _builtins.int,
+                 state: _builtins.str):
+        """
+        :param _builtins.int failed_collection_count: Number of collections that failed to build indexes.
+        :param _builtins.str state: Index build state indicating the status of index creation during or after a restore operation.
+        """
+        pulumi.set(__self__, "failed_collection_count", failed_collection_count)
+        pulumi.set(__self__, "state", state)
+
+    @_builtins.property
+    @pulumi.getter(name="failedCollectionCount")
+    def failed_collection_count(self) -> _builtins.int:
+        """
+        Number of collections that failed to build indexes.
+        """
+        return pulumi.get(self, "failed_collection_count")
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> _builtins.str:
+        """
+        Index build state indicating the status of index creation during or after a restore operation.
+        """
+        return pulumi.get(self, "state")
+
+
+@pulumi.output_type
 class GetCloudBackupScheduleCopySettingResult(dict):
     def __init__(__self__, *,
                  cloud_provider: _builtins.str,
@@ -16119,6 +16981,42 @@ class GetCloudBackupSchedulePolicyItemYearlyResult(dict):
         Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
         """
         return pulumi.get(self, "retention_value")
+
+
+@pulumi.output_type
+class GetCloudBackupSnapshotDatabaseCollectionsResultResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str):
+        """
+        :param _builtins.str name: Human-readable label that identifies the collection in the database within the snapshot.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Human-readable label that identifies the collection in the database within the snapshot.
+        """
+        return pulumi.get(self, "name")
+
+
+@pulumi.output_type
+class GetCloudBackupSnapshotDatabasesResultResult(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str):
+        """
+        :param _builtins.str name: Human-readable label that identifies the database within the snapshot.
+        """
+        pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Human-readable label that identifies the database within the snapshot.
+        """
+        return pulumi.get(self, "name")
 
 
 @pulumi.output_type
@@ -28686,6 +29584,7 @@ class GetSharedTierSnapshotsResultResult(dict):
 @pulumi.output_type
 class GetStreamConnectionAuthenticationResult(dict):
     def __init__(__self__, *,
+                 aws: 'outputs.GetStreamConnectionAuthenticationAwsResult',
                  client_id: _builtins.str,
                  client_secret: _builtins.str,
                  mechanism: _builtins.str,
@@ -28696,9 +29595,10 @@ class GetStreamConnectionAuthenticationResult(dict):
                  token_endpoint_url: _builtins.str,
                  username: _builtins.str):
         """
+        :param 'GetStreamConnectionAuthenticationAwsArgs' aws: AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
         :param _builtins.str client_id: Public identifier for the Kafka client.
         :param _builtins.str client_secret: Secret known only to the Kafka client and the authorization server.
-        :param _builtins.str mechanism: Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+        :param _builtins.str mechanism: Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
         :param _builtins.str method: SASL OAUTHBEARER authentication method. Value must be OIDC.
         :param _builtins.str password: Password for the Schema Registry. Required when `type` is `USER_INFO`.
         :param _builtins.str sasl_oauthbearer_extensions: Additional information to provide to the Kafka broker.
@@ -28706,6 +29606,7 @@ class GetStreamConnectionAuthenticationResult(dict):
         :param _builtins.str token_endpoint_url: OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
         :param _builtins.str username: Username for the Schema Registry. Required when `type` is `USER_INFO`.
         """
+        pulumi.set(__self__, "aws", aws)
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "mechanism", mechanism)
@@ -28715,6 +29616,14 @@ class GetStreamConnectionAuthenticationResult(dict):
         pulumi.set(__self__, "scope", scope)
         pulumi.set(__self__, "token_endpoint_url", token_endpoint_url)
         pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def aws(self) -> 'outputs.GetStreamConnectionAuthenticationAwsResult':
+        """
+        AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+        """
+        return pulumi.get(self, "aws")
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -28736,7 +29645,7 @@ class GetStreamConnectionAuthenticationResult(dict):
     @pulumi.getter
     def mechanism(self) -> _builtins.str:
         """
-        Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+        Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
         """
         return pulumi.get(self, "mechanism")
 
@@ -28787,6 +29696,24 @@ class GetStreamConnectionAuthenticationResult(dict):
         Username for the Schema Registry. Required when `type` is `USER_INFO`.
         """
         return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetStreamConnectionAuthenticationAwsResult(dict):
+    def __init__(__self__, *,
+                 role_arn: _builtins.str):
+        """
+        :param _builtins.str role_arn: Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+        """
+        pulumi.set(__self__, "role_arn", role_arn)
+
+    @_builtins.property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> _builtins.str:
+        """
+        Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+        """
+        return pulumi.get(self, "role_arn")
 
 
 @pulumi.output_type
@@ -29720,7 +30647,7 @@ class GetStreamConnectionsResultResult(dict):
                  workspace_name: _builtins.str):
         """
         :param 'GetStreamConnectionsResultAuthenticationArgs' authentication: User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
-        :param 'GetStreamConnectionsResultAwsArgs' aws: The configuration for S3 connection. See AWS.
+        :param 'GetStreamConnectionsResultAwsArgs' aws: AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
         :param 'GetStreamConnectionsResultAzureArgs' azure: The configuration for Azure Blob Storage connection. See Azure.
         :param _builtins.str bootstrap_servers: Comma separated list of server addresses.
         :param _builtins.str cluster_name: Name of the cluster configured for this connection.
@@ -29780,7 +30707,7 @@ class GetStreamConnectionsResultResult(dict):
     @pulumi.getter
     def aws(self) -> 'outputs.GetStreamConnectionsResultAwsResult':
         """
-        The configuration for S3 connection. See AWS.
+        AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
         """
         return pulumi.get(self, "aws")
 
@@ -29950,6 +30877,7 @@ class GetStreamConnectionsResultResult(dict):
 @pulumi.output_type
 class GetStreamConnectionsResultAuthenticationResult(dict):
     def __init__(__self__, *,
+                 aws: 'outputs.GetStreamConnectionsResultAuthenticationAwsResult',
                  client_id: _builtins.str,
                  client_secret: _builtins.str,
                  mechanism: _builtins.str,
@@ -29960,9 +30888,10 @@ class GetStreamConnectionsResultAuthenticationResult(dict):
                  token_endpoint_url: _builtins.str,
                  username: _builtins.str):
         """
+        :param 'GetStreamConnectionsResultAuthenticationAwsArgs' aws: AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
         :param _builtins.str client_id: Public identifier for the Kafka client.
         :param _builtins.str client_secret: Secret known only to the Kafka client and the authorization server.
-        :param _builtins.str mechanism: Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+        :param _builtins.str mechanism: Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
         :param _builtins.str method: SASL OAUTHBEARER authentication method. Value must be OIDC.
         :param _builtins.str password: Password for the Schema Registry. Required when `type` is `USER_INFO`.
         :param _builtins.str sasl_oauthbearer_extensions: Additional information to provide to the Kafka broker.
@@ -29970,6 +30899,7 @@ class GetStreamConnectionsResultAuthenticationResult(dict):
         :param _builtins.str token_endpoint_url: OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
         :param _builtins.str username: Username for the Schema Registry. Required when `type` is `USER_INFO`.
         """
+        pulumi.set(__self__, "aws", aws)
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "client_secret", client_secret)
         pulumi.set(__self__, "mechanism", mechanism)
@@ -29979,6 +30909,14 @@ class GetStreamConnectionsResultAuthenticationResult(dict):
         pulumi.set(__self__, "scope", scope)
         pulumi.set(__self__, "token_endpoint_url", token_endpoint_url)
         pulumi.set(__self__, "username", username)
+
+    @_builtins.property
+    @pulumi.getter
+    def aws(self) -> 'outputs.GetStreamConnectionsResultAuthenticationAwsResult':
+        """
+        AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+        """
+        return pulumi.get(self, "aws")
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -30000,7 +30938,7 @@ class GetStreamConnectionsResultAuthenticationResult(dict):
     @pulumi.getter
     def mechanism(self) -> _builtins.str:
         """
-        Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+        Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
         """
         return pulumi.get(self, "mechanism")
 
@@ -30051,6 +30989,24 @@ class GetStreamConnectionsResultAuthenticationResult(dict):
         Username for the Schema Registry. Required when `type` is `USER_INFO`.
         """
         return pulumi.get(self, "username")
+
+
+@pulumi.output_type
+class GetStreamConnectionsResultAuthenticationAwsResult(dict):
+    def __init__(__self__, *,
+                 role_arn: _builtins.str):
+        """
+        :param _builtins.str role_arn: Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+        """
+        pulumi.set(__self__, "role_arn", role_arn)
+
+    @_builtins.property
+    @pulumi.getter(name="roleArn")
+    def role_arn(self) -> _builtins.str:
+        """
+        Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+        """
+        return pulumi.get(self, "role_arn")
 
 
 @pulumi.output_type
@@ -30467,6 +31423,7 @@ class GetStreamInstancesResultStreamConfigResult(dict):
 class GetStreamPrivatelinkEndpointsResultResult(dict):
     def __init__(__self__, *,
                  arn: _builtins.str,
+                 authentication_scheme: _builtins.str,
                  dns_domain: _builtins.str,
                  dns_sub_domains: Sequence[_builtins.str],
                  error_message: _builtins.str,
@@ -30483,6 +31440,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
                  vendor: _builtins.str):
         """
         :param _builtins.str arn: Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
+        :param _builtins.str authentication_scheme: Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
         :param _builtins.str dns_domain: The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
                
                    * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -30515,6 +31473,7 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
                    * **GCP**: CONFLUENT and PUBSUB
         """
         pulumi.set(__self__, "arn", arn)
+        pulumi.set(__self__, "authentication_scheme", authentication_scheme)
         pulumi.set(__self__, "dns_domain", dns_domain)
         pulumi.set(__self__, "dns_sub_domains", dns_sub_domains)
         pulumi.set(__self__, "error_message", error_message)
@@ -30537,6 +31496,14 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
         Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
         """
         return pulumi.get(self, "arn")
+
+    @_builtins.property
+    @pulumi.getter(name="authenticationScheme")
+    def authentication_scheme(self) -> _builtins.str:
+        """
+        Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+        """
+        return pulumi.get(self, "authentication_scheme")
 
     @_builtins.property
     @pulumi.getter(name="dnsDomain")
@@ -30670,11 +31637,22 @@ class GetStreamPrivatelinkEndpointsResultResult(dict):
 @pulumi.output_type
 class GetStreamProcessorOptionsResult(dict):
     def __init__(__self__, *,
+                 autoscaling: 'outputs.GetStreamProcessorOptionsAutoscalingResult',
                  dlq: 'outputs.GetStreamProcessorOptionsDlqResult'):
         """
+        :param 'GetStreamProcessorOptionsAutoscalingArgs' autoscaling: Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `min_tier` and `max_tier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effective_tier`. To disable autoscaling, remove this block.
         :param 'GetStreamProcessorOptionsDlqArgs' dlq: Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
         """
+        pulumi.set(__self__, "autoscaling", autoscaling)
         pulumi.set(__self__, "dlq", dlq)
+
+    @_builtins.property
+    @pulumi.getter
+    def autoscaling(self) -> 'outputs.GetStreamProcessorOptionsAutoscalingResult':
+        """
+        Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `min_tier` and `max_tier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effective_tier`. To disable autoscaling, remove this block.
+        """
+        return pulumi.get(self, "autoscaling")
 
     @_builtins.property
     @pulumi.getter
@@ -30683,6 +31661,35 @@ class GetStreamProcessorOptionsResult(dict):
         Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
         """
         return pulumi.get(self, "dlq")
+
+
+@pulumi.output_type
+class GetStreamProcessorOptionsAutoscalingResult(dict):
+    def __init__(__self__, *,
+                 max_tier: _builtins.str,
+                 min_tier: _builtins.str):
+        """
+        :param _builtins.str max_tier: Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+        :param _builtins.str min_tier: Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+        """
+        pulumi.set(__self__, "max_tier", max_tier)
+        pulumi.set(__self__, "min_tier", min_tier)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTier")
+    def max_tier(self) -> _builtins.str:
+        """
+        Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+        """
+        return pulumi.get(self, "max_tier")
+
+    @_builtins.property
+    @pulumi.getter(name="minTier")
+    def min_tier(self) -> _builtins.str:
+        """
+        Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+        """
+        return pulumi.get(self, "min_tier")
 
 
 @pulumi.output_type
@@ -30728,6 +31735,7 @@ class GetStreamProcessorOptionsDlqResult(dict):
 @pulumi.output_type
 class GetStreamProcessorsResultResult(dict):
     def __init__(__self__, *,
+                 effective_tier: _builtins.str,
                  failover_enabled: _builtins.bool,
                  id: _builtins.str,
                  instance_name: _builtins.str,
@@ -30740,18 +31748,20 @@ class GetStreamProcessorsResultResult(dict):
                  tier: _builtins.str,
                  workspace_name: _builtins.str):
         """
+        :param _builtins.str effective_tier: Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
         :param _builtins.bool failover_enabled: Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
         :param _builtins.str id: Unique 24-hexadecimal character string that identifies the stream processor.
         :param _builtins.str instance_name: Label that identifies the stream processing workspace.
-        :param 'GetStreamProcessorsResultOptionsArgs' options: Optional configuration for the stream processor.
+        :param 'GetStreamProcessorsResultOptionsArgs' options: Optional configuration for the stream processor. Empty `options` objects are not supported.
         :param _builtins.str pipeline: Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         :param _builtins.str processor_name: Label that identifies the stream processor.
         :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param _builtins.str state: The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
         :param _builtins.str stats: The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
-        :param _builtins.str tier: Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+        :param _builtins.str tier: Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effective_tier`.
         :param _builtins.str workspace_name: Label that identifies the stream processing workspace. Conflicts with `instance_name`.
         """
+        pulumi.set(__self__, "effective_tier", effective_tier)
         pulumi.set(__self__, "failover_enabled", failover_enabled)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "instance_name", instance_name)
@@ -30763,6 +31773,14 @@ class GetStreamProcessorsResultResult(dict):
         pulumi.set(__self__, "stats", stats)
         pulumi.set(__self__, "tier", tier)
         pulumi.set(__self__, "workspace_name", workspace_name)
+
+    @_builtins.property
+    @pulumi.getter(name="effectiveTier")
+    def effective_tier(self) -> _builtins.str:
+        """
+        Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+        """
+        return pulumi.get(self, "effective_tier")
 
     @_builtins.property
     @pulumi.getter(name="failoverEnabled")
@@ -30793,7 +31811,7 @@ class GetStreamProcessorsResultResult(dict):
     @pulumi.getter
     def options(self) -> 'outputs.GetStreamProcessorsResultOptionsResult':
         """
-        Optional configuration for the stream processor.
+        Optional configuration for the stream processor. Empty `options` objects are not supported.
         """
         return pulumi.get(self, "options")
 
@@ -30841,7 +31859,7 @@ class GetStreamProcessorsResultResult(dict):
     @pulumi.getter
     def tier(self) -> _builtins.str:
         """
-        Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+        Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effective_tier`.
         """
         return pulumi.get(self, "tier")
 
@@ -30857,11 +31875,22 @@ class GetStreamProcessorsResultResult(dict):
 @pulumi.output_type
 class GetStreamProcessorsResultOptionsResult(dict):
     def __init__(__self__, *,
+                 autoscaling: 'outputs.GetStreamProcessorsResultOptionsAutoscalingResult',
                  dlq: 'outputs.GetStreamProcessorsResultOptionsDlqResult'):
         """
+        :param 'GetStreamProcessorsResultOptionsAutoscalingArgs' autoscaling: Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `min_tier` and `max_tier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effective_tier`. To disable autoscaling, remove this block.
         :param 'GetStreamProcessorsResultOptionsDlqArgs' dlq: Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
         """
+        pulumi.set(__self__, "autoscaling", autoscaling)
         pulumi.set(__self__, "dlq", dlq)
+
+    @_builtins.property
+    @pulumi.getter
+    def autoscaling(self) -> 'outputs.GetStreamProcessorsResultOptionsAutoscalingResult':
+        """
+        Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `min_tier` and `max_tier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effective_tier`. To disable autoscaling, remove this block.
+        """
+        return pulumi.get(self, "autoscaling")
 
     @_builtins.property
     @pulumi.getter
@@ -30870,6 +31899,35 @@ class GetStreamProcessorsResultOptionsResult(dict):
         Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
         """
         return pulumi.get(self, "dlq")
+
+
+@pulumi.output_type
+class GetStreamProcessorsResultOptionsAutoscalingResult(dict):
+    def __init__(__self__, *,
+                 max_tier: _builtins.str,
+                 min_tier: _builtins.str):
+        """
+        :param _builtins.str max_tier: Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+        :param _builtins.str min_tier: Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+        """
+        pulumi.set(__self__, "max_tier", max_tier)
+        pulumi.set(__self__, "min_tier", min_tier)
+
+    @_builtins.property
+    @pulumi.getter(name="maxTier")
+    def max_tier(self) -> _builtins.str:
+        """
+        Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+        """
+        return pulumi.get(self, "max_tier")
+
+    @_builtins.property
+    @pulumi.getter(name="minTier")
+    def min_tier(self) -> _builtins.str:
+        """
+        Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+        """
+        return pulumi.get(self, "min_tier")
 
 
 @pulumi.output_type

@@ -50,6 +50,11 @@ export type BackupCompliancePolicy = import("./backupCompliancePolicy").BackupCo
 export const BackupCompliancePolicy: typeof import("./backupCompliancePolicy").BackupCompliancePolicy = null as any;
 utilities.lazyLoad(exports, ["BackupCompliancePolicy"], () => require("./backupCompliancePolicy"));
 
+export { CloudBackupCollectionRestoreJobArgs, CloudBackupCollectionRestoreJobState } from "./cloudBackupCollectionRestoreJob";
+export type CloudBackupCollectionRestoreJob = import("./cloudBackupCollectionRestoreJob").CloudBackupCollectionRestoreJob;
+export const CloudBackupCollectionRestoreJob: typeof import("./cloudBackupCollectionRestoreJob").CloudBackupCollectionRestoreJob = null as any;
+utilities.lazyLoad(exports, ["CloudBackupCollectionRestoreJob"], () => require("./cloudBackupCollectionRestoreJob"));
+
 export { CloudBackupScheduleArgs, CloudBackupScheduleState } from "./cloudBackupSchedule";
 export type CloudBackupSchedule = import("./cloudBackupSchedule").CloudBackupSchedule;
 export const CloudBackupSchedule: typeof import("./cloudBackupSchedule").CloudBackupSchedule = null as any;
@@ -280,6 +285,26 @@ export const getBackupCompliancePolicy: typeof import("./getBackupCompliancePoli
 export const getBackupCompliancePolicyOutput: typeof import("./getBackupCompliancePolicy").getBackupCompliancePolicyOutput = null as any;
 utilities.lazyLoad(exports, ["getBackupCompliancePolicy","getBackupCompliancePolicyOutput"], () => require("./getBackupCompliancePolicy"));
 
+export { GetCloudBackupCollectionRestoreJobArgs, GetCloudBackupCollectionRestoreJobResult, GetCloudBackupCollectionRestoreJobOutputArgs } from "./getCloudBackupCollectionRestoreJob";
+export const getCloudBackupCollectionRestoreJob: typeof import("./getCloudBackupCollectionRestoreJob").getCloudBackupCollectionRestoreJob = null as any;
+export const getCloudBackupCollectionRestoreJobOutput: typeof import("./getCloudBackupCollectionRestoreJob").getCloudBackupCollectionRestoreJobOutput = null as any;
+utilities.lazyLoad(exports, ["getCloudBackupCollectionRestoreJob","getCloudBackupCollectionRestoreJobOutput"], () => require("./getCloudBackupCollectionRestoreJob"));
+
+export { GetCloudBackupCollectionRestoreJobCollectionArgs, GetCloudBackupCollectionRestoreJobCollectionResult, GetCloudBackupCollectionRestoreJobCollectionOutputArgs } from "./getCloudBackupCollectionRestoreJobCollection";
+export const getCloudBackupCollectionRestoreJobCollection: typeof import("./getCloudBackupCollectionRestoreJobCollection").getCloudBackupCollectionRestoreJobCollection = null as any;
+export const getCloudBackupCollectionRestoreJobCollectionOutput: typeof import("./getCloudBackupCollectionRestoreJobCollection").getCloudBackupCollectionRestoreJobCollectionOutput = null as any;
+utilities.lazyLoad(exports, ["getCloudBackupCollectionRestoreJobCollection","getCloudBackupCollectionRestoreJobCollectionOutput"], () => require("./getCloudBackupCollectionRestoreJobCollection"));
+
+export { GetCloudBackupCollectionRestoreJobCollectionsArgs, GetCloudBackupCollectionRestoreJobCollectionsResult, GetCloudBackupCollectionRestoreJobCollectionsOutputArgs } from "./getCloudBackupCollectionRestoreJobCollections";
+export const getCloudBackupCollectionRestoreJobCollections: typeof import("./getCloudBackupCollectionRestoreJobCollections").getCloudBackupCollectionRestoreJobCollections = null as any;
+export const getCloudBackupCollectionRestoreJobCollectionsOutput: typeof import("./getCloudBackupCollectionRestoreJobCollections").getCloudBackupCollectionRestoreJobCollectionsOutput = null as any;
+utilities.lazyLoad(exports, ["getCloudBackupCollectionRestoreJobCollections","getCloudBackupCollectionRestoreJobCollectionsOutput"], () => require("./getCloudBackupCollectionRestoreJobCollections"));
+
+export { GetCloudBackupCollectionRestoreJobsArgs, GetCloudBackupCollectionRestoreJobsResult, GetCloudBackupCollectionRestoreJobsOutputArgs } from "./getCloudBackupCollectionRestoreJobs";
+export const getCloudBackupCollectionRestoreJobs: typeof import("./getCloudBackupCollectionRestoreJobs").getCloudBackupCollectionRestoreJobs = null as any;
+export const getCloudBackupCollectionRestoreJobsOutput: typeof import("./getCloudBackupCollectionRestoreJobs").getCloudBackupCollectionRestoreJobsOutput = null as any;
+utilities.lazyLoad(exports, ["getCloudBackupCollectionRestoreJobs","getCloudBackupCollectionRestoreJobsOutput"], () => require("./getCloudBackupCollectionRestoreJobs"));
+
 export { GetCloudBackupScheduleArgs, GetCloudBackupScheduleResult, GetCloudBackupScheduleOutputArgs } from "./getCloudBackupSchedule";
 export const getCloudBackupSchedule: typeof import("./getCloudBackupSchedule").getCloudBackupSchedule = null as any;
 export const getCloudBackupScheduleOutput: typeof import("./getCloudBackupSchedule").getCloudBackupScheduleOutput = null as any;
@@ -289,6 +314,16 @@ export { GetCloudBackupSnapshotArgs, GetCloudBackupSnapshotResult, GetCloudBacku
 export const getCloudBackupSnapshot: typeof import("./getCloudBackupSnapshot").getCloudBackupSnapshot = null as any;
 export const getCloudBackupSnapshotOutput: typeof import("./getCloudBackupSnapshot").getCloudBackupSnapshotOutput = null as any;
 utilities.lazyLoad(exports, ["getCloudBackupSnapshot","getCloudBackupSnapshotOutput"], () => require("./getCloudBackupSnapshot"));
+
+export { GetCloudBackupSnapshotDatabaseCollectionsArgs, GetCloudBackupSnapshotDatabaseCollectionsResult, GetCloudBackupSnapshotDatabaseCollectionsOutputArgs } from "./getCloudBackupSnapshotDatabaseCollections";
+export const getCloudBackupSnapshotDatabaseCollections: typeof import("./getCloudBackupSnapshotDatabaseCollections").getCloudBackupSnapshotDatabaseCollections = null as any;
+export const getCloudBackupSnapshotDatabaseCollectionsOutput: typeof import("./getCloudBackupSnapshotDatabaseCollections").getCloudBackupSnapshotDatabaseCollectionsOutput = null as any;
+utilities.lazyLoad(exports, ["getCloudBackupSnapshotDatabaseCollections","getCloudBackupSnapshotDatabaseCollectionsOutput"], () => require("./getCloudBackupSnapshotDatabaseCollections"));
+
+export { GetCloudBackupSnapshotDatabasesArgs, GetCloudBackupSnapshotDatabasesResult, GetCloudBackupSnapshotDatabasesOutputArgs } from "./getCloudBackupSnapshotDatabases";
+export const getCloudBackupSnapshotDatabases: typeof import("./getCloudBackupSnapshotDatabases").getCloudBackupSnapshotDatabases = null as any;
+export const getCloudBackupSnapshotDatabasesOutput: typeof import("./getCloudBackupSnapshotDatabases").getCloudBackupSnapshotDatabasesOutput = null as any;
+utilities.lazyLoad(exports, ["getCloudBackupSnapshotDatabases","getCloudBackupSnapshotDatabasesOutput"], () => require("./getCloudBackupSnapshotDatabases"));
 
 export { GetCloudBackupSnapshotExportBucketArgs, GetCloudBackupSnapshotExportBucketResult, GetCloudBackupSnapshotExportBucketOutputArgs } from "./getCloudBackupSnapshotExportBucket";
 export const getCloudBackupSnapshotExportBucket: typeof import("./getCloudBackupSnapshotExportBucket").getCloudBackupSnapshotExportBucket = null as any;
@@ -1120,6 +1155,8 @@ const _module = {
                 return new Auditing(name, <any>undefined, { urn })
             case "mongodbatlas:index/backupCompliancePolicy:BackupCompliancePolicy":
                 return new BackupCompliancePolicy(name, <any>undefined, { urn })
+            case "mongodbatlas:index/cloudBackupCollectionRestoreJob:CloudBackupCollectionRestoreJob":
+                return new CloudBackupCollectionRestoreJob(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudBackupSchedule:CloudBackupSchedule":
                 return new CloudBackupSchedule(name, <any>undefined, { urn })
             case "mongodbatlas:index/cloudBackupSnapshot:CloudBackupSnapshot":
@@ -1266,6 +1303,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/apiKey", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/apiKeyProjectAssignment", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/auditing", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/backupCompliancePolicy", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupCollectionRestoreJob", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSchedule", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSnapshot", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudBackupSnapshotExportBucket", _module)

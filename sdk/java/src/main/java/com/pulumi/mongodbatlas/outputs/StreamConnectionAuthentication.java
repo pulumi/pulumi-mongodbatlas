@@ -4,6 +4,7 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.mongodbatlas.outputs.StreamConnectionAuthenticationAws;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -11,6 +12,11 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class StreamConnectionAuthentication {
+    /**
+     * @return AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+     * 
+     */
+    private @Nullable StreamConnectionAuthenticationAws aws;
     /**
      * @return Public identifier for the Kafka client.
      * 
@@ -22,7 +28,7 @@ public final class StreamConnectionAuthentication {
      */
     private @Nullable String clientSecret;
     /**
-     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
      * 
      */
     private @Nullable String mechanism;
@@ -59,6 +65,13 @@ public final class StreamConnectionAuthentication {
 
     private StreamConnectionAuthentication() {}
     /**
+     * @return AWS configuration used for `AWS_MSK_IAM` authentication to an Amazon MSK cluster. See authentication AWS.
+     * 
+     */
+    public Optional<StreamConnectionAuthenticationAws> aws() {
+        return Optional.ofNullable(this.aws);
+    }
+    /**
      * @return Public identifier for the Kafka client.
      * 
      */
@@ -73,7 +86,7 @@ public final class StreamConnectionAuthentication {
         return Optional.ofNullable(this.clientSecret);
     }
     /**
-     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, or `OAUTHBEARER`.
+     * @return Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
      * 
      */
     public Optional<String> mechanism() {
@@ -131,6 +144,7 @@ public final class StreamConnectionAuthentication {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable StreamConnectionAuthenticationAws aws;
         private @Nullable String clientId;
         private @Nullable String clientSecret;
         private @Nullable String mechanism;
@@ -143,6 +157,7 @@ public final class StreamConnectionAuthentication {
         public Builder() {}
         public Builder(StreamConnectionAuthentication defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.aws = defaults.aws;
     	      this.clientId = defaults.clientId;
     	      this.clientSecret = defaults.clientSecret;
     	      this.mechanism = defaults.mechanism;
@@ -154,6 +169,12 @@ public final class StreamConnectionAuthentication {
     	      this.username = defaults.username;
         }
 
+        @CustomType.Setter
+        public Builder aws(@Nullable StreamConnectionAuthenticationAws aws) {
+
+            this.aws = aws;
+            return this;
+        }
         @CustomType.Setter
         public Builder clientId(@Nullable String clientId) {
 
@@ -210,6 +231,7 @@ public final class StreamConnectionAuthentication {
         }
         public StreamConnectionAuthentication build() {
             final var _resultValue = new StreamConnectionAuthentication();
+            _resultValue.aws = aws;
             _resultValue.clientId = clientId;
             _resultValue.clientSecret = clientSecret;
             _resultValue.mechanism = mechanism;

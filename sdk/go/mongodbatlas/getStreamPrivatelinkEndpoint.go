@@ -262,6 +262,7 @@ type LookupStreamPrivatelinkEndpointArgs struct {
 // A collection of values returned by getStreamPrivatelinkEndpoint.
 type LookupStreamPrivatelinkEndpointResult struct {
 	Arn                   string   `pulumi:"arn"`
+	AuthenticationScheme  string   `pulumi:"authenticationScheme"`
 	DnsDomain             string   `pulumi:"dnsDomain"`
 	DnsSubDomains         []string `pulumi:"dnsSubDomains"`
 	ErrorMessage          string   `pulumi:"errorMessage"`
@@ -310,6 +311,10 @@ func (o LookupStreamPrivatelinkEndpointResultOutput) ToLookupStreamPrivatelinkEn
 
 func (o LookupStreamPrivatelinkEndpointResultOutput) Arn() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointResult) string { return v.Arn }).(pulumi.StringOutput)
+}
+
+func (o LookupStreamPrivatelinkEndpointResultOutput) AuthenticationScheme() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupStreamPrivatelinkEndpointResult) string { return v.AuthenticationScheme }).(pulumi.StringOutput)
 }
 
 func (o LookupStreamPrivatelinkEndpointResultOutput) DnsDomain() pulumi.StringOutput {

@@ -73,14 +73,14 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Optional configuration for the stream processor.
+     * Optional configuration for the stream processor. Empty `options` objects are not supported.
      * 
      */
     @Import(name="options")
     private @Nullable Output<StreamProcessorOptionsArgs> options;
 
     /**
-     * @return Optional configuration for the stream processor.
+     * @return Optional configuration for the stream processor. Empty `options` objects are not supported.
      * 
      */
     public Optional<Output<StreamProcessorOptionsArgs>> options() {
@@ -148,14 +148,14 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
      * 
      */
     @Import(name="tier")
     private @Nullable Output<String> tier;
 
     /**
-     * @return Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+     * @return Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
      * 
      */
     public Optional<Output<String>> tier() {
@@ -290,7 +290,7 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param options Optional configuration for the stream processor.
+         * @param options Optional configuration for the stream processor. Empty `options` objects are not supported.
          * 
          * @return builder
          * 
@@ -301,7 +301,7 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param options Optional configuration for the stream processor.
+         * @param options Optional configuration for the stream processor. Empty `options` objects are not supported.
          * 
          * @return builder
          * 
@@ -395,7 +395,7 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param tier Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+         * @param tier Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
          * 
          * @return builder
          * 
@@ -406,7 +406,7 @@ public final class StreamProcessorArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param tier Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50.
+         * @param tier Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
          * 
          * @return builder
          * 

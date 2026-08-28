@@ -18,6 +18,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string Arn;
         /// <summary>
+        /// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+        /// </summary>
+        public readonly string AuthenticationScheme;
+        /// <summary>
         /// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
         /// 
         /// 	* AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
@@ -94,6 +98,8 @@ namespace Pulumi.Mongodbatlas.Outputs
         private GetStreamPrivatelinkEndpointsResultResult(
             string arn,
 
+            string authenticationScheme,
+
             string dnsDomain,
 
             ImmutableArray<string> dnsSubDomains,
@@ -123,6 +129,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             string vendor)
         {
             Arn = arn;
+            AuthenticationScheme = authenticationScheme;
             DnsDomain = dnsDomain;
             DnsSubDomains = dnsSubDomains;
             ErrorMessage = errorMessage;

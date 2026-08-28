@@ -26,10 +26,13 @@ class GetStreamPrivatelinkEndpointResult:
     """
     A collection of values returned by getStreamPrivatelinkEndpoint.
     """
-    def __init__(__self__, arn=None, dns_domain=None, dns_sub_domains=None, error_message=None, id=None, interface_endpoint_id=None, interface_endpoint_name=None, project_id=None, provider_account_id=None, provider_name=None, region=None, service_attachment_uris=None, service_endpoint_id=None, state=None, vendor=None):
+    def __init__(__self__, arn=None, authentication_scheme=None, dns_domain=None, dns_sub_domains=None, error_message=None, id=None, interface_endpoint_id=None, interface_endpoint_name=None, project_id=None, provider_account_id=None, provider_name=None, region=None, service_attachment_uris=None, service_endpoint_id=None, state=None, vendor=None):
         if arn and not isinstance(arn, str):
             raise TypeError("Expected argument 'arn' to be a str")
         pulumi.set(__self__, "arn", arn)
+        if authentication_scheme and not isinstance(authentication_scheme, str):
+            raise TypeError("Expected argument 'authentication_scheme' to be a str")
+        pulumi.set(__self__, "authentication_scheme", authentication_scheme)
         if dns_domain and not isinstance(dns_domain, str):
             raise TypeError("Expected argument 'dns_domain' to be a str")
         pulumi.set(__self__, "dns_domain", dns_domain)
@@ -77,6 +80,11 @@ class GetStreamPrivatelinkEndpointResult:
     @pulumi.getter
     def arn(self) -> _builtins.str:
         return pulumi.get(self, "arn")
+
+    @_builtins.property
+    @pulumi.getter(name="authenticationScheme")
+    def authentication_scheme(self) -> _builtins.str:
+        return pulumi.get(self, "authentication_scheme")
 
     @_builtins.property
     @pulumi.getter(name="dnsDomain")
@@ -156,6 +164,7 @@ class AwaitableGetStreamPrivatelinkEndpointResult(GetStreamPrivatelinkEndpointRe
             yield self
         return GetStreamPrivatelinkEndpointResult(
             arn=self.arn,
+            authentication_scheme=self.authentication_scheme,
             dns_domain=self.dns_domain,
             dns_sub_domains=self.dns_sub_domains,
             error_message=self.error_message,
@@ -315,6 +324,7 @@ def get_stream_privatelink_endpoint(id: Optional[_builtins.str] = None,
 
     return AwaitableGetStreamPrivatelinkEndpointResult(
         arn=pulumi.get(__ret__, 'arn'),
+        authentication_scheme=pulumi.get(__ret__, 'authentication_scheme'),
         dns_domain=pulumi.get(__ret__, 'dns_domain'),
         dns_sub_domains=pulumi.get(__ret__, 'dns_sub_domains'),
         error_message=pulumi.get(__ret__, 'error_message'),
@@ -471,6 +481,7 @@ def get_stream_privatelink_endpoint_output(id: pulumi.Input[Optional[_builtins.s
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getStreamPrivatelinkEndpoint:getStreamPrivatelinkEndpoint', __args__, opts=opts, typ=GetStreamPrivatelinkEndpointResult)
     return __ret__.apply(lambda __response__: GetStreamPrivatelinkEndpointResult(
         arn=pulumi.get(__response__, 'arn'),
+        authentication_scheme=pulumi.get(__response__, 'authentication_scheme'),
         dns_domain=pulumi.get(__response__, 'dns_domain'),
         dns_sub_domains=pulumi.get(__response__, 'dns_sub_domains'),
         error_message=pulumi.get(__response__, 'error_message'),

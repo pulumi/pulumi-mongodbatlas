@@ -301,6 +301,20 @@ public class StreamPrivatelinkEndpoint extends com.pulumi.resources.CustomResour
         return Codegen.optional(this.arn);
     }
     /**
+     * Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+     * 
+     */
+    @Export(name="authenticationScheme", refs={String.class}, tree="[0]")
+    private Output<String> authenticationScheme;
+
+    /**
+     * @return Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+     * 
+     */
+    public Output<String> authenticationScheme() {
+        return this.authenticationScheme;
+    }
+    /**
      * The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
      * 
      *     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
