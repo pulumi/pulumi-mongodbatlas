@@ -1,4 +1,0 @@
-[submodule "upstream"]
-	path = upstream
-	url = https://github.com/mongodb/terraform-provider-mongodbatlas.git
-        ignore = dirty
