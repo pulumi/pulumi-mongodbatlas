@@ -6,12 +6,20 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetServiceAccountsResult;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetServiceAccountsInvokeResult {
+    /**
+     * @return Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+     * 
+     */
+    private @Nullable Boolean includeSystemManaged;
     /**
      * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      * 
@@ -24,6 +32,13 @@ public final class GetServiceAccountsInvokeResult {
     private List<GetServiceAccountsResult> results;
 
     private GetServiceAccountsInvokeResult() {}
+    /**
+     * @return Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+     * 
+     */
+    public Optional<Boolean> includeSystemManaged() {
+        return Optional.ofNullable(this.includeSystemManaged);
+    }
     /**
      * @return Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      * 
@@ -48,15 +63,23 @@ public final class GetServiceAccountsInvokeResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Boolean includeSystemManaged;
         private String orgId;
         private List<GetServiceAccountsResult> results;
         public Builder() {}
         public Builder(GetServiceAccountsInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.includeSystemManaged = defaults.includeSystemManaged;
     	      this.orgId = defaults.orgId;
     	      this.results = defaults.results;
         }
 
+        @CustomType.Setter
+        public Builder includeSystemManaged(@Nullable Boolean includeSystemManaged) {
+
+            this.includeSystemManaged = includeSystemManaged;
+            return this;
+        }
         @CustomType.Setter
         public Builder orgId(String orgId) {
             if (orgId == null) {
@@ -78,6 +101,7 @@ public final class GetServiceAccountsInvokeResult {
         }
         public GetServiceAccountsInvokeResult build() {
             final var _resultValue = new GetServiceAccountsInvokeResult();
+            _resultValue.includeSystemManaged = includeSystemManaged;
             _resultValue.orgId = orgId;
             _resultValue.results = results;
             return _resultValue;

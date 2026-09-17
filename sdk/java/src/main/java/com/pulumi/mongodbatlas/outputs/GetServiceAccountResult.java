@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetServiceAccountSecret;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -47,6 +48,11 @@ public final class GetServiceAccountResult {
      * 
      */
     private List<GetServiceAccountSecret> secrets;
+    /**
+     * @return Indicates whether the Service Account is system managed.
+     * 
+     */
+    private Boolean systemManaged;
 
     private GetServiceAccountResult() {}
     /**
@@ -98,6 +104,13 @@ public final class GetServiceAccountResult {
     public List<GetServiceAccountSecret> secrets() {
         return this.secrets;
     }
+    /**
+     * @return Indicates whether the Service Account is system managed.
+     * 
+     */
+    public Boolean systemManaged() {
+        return this.systemManaged;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -115,6 +128,7 @@ public final class GetServiceAccountResult {
         private String orgId;
         private List<String> roles;
         private List<GetServiceAccountSecret> secrets;
+        private Boolean systemManaged;
         public Builder() {}
         public Builder(GetServiceAccountResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -125,6 +139,7 @@ public final class GetServiceAccountResult {
     	      this.orgId = defaults.orgId;
     	      this.roles = defaults.roles;
     	      this.secrets = defaults.secrets;
+    	      this.systemManaged = defaults.systemManaged;
         }
 
         @CustomType.Setter
@@ -189,6 +204,14 @@ public final class GetServiceAccountResult {
         public Builder secrets(GetServiceAccountSecret... secrets) {
             return secrets(List.of(secrets));
         }
+        @CustomType.Setter
+        public Builder systemManaged(Boolean systemManaged) {
+            if (systemManaged == null) {
+              throw new MissingRequiredPropertyException("GetServiceAccountResult", "systemManaged");
+            }
+            this.systemManaged = systemManaged;
+            return this;
+        }
         public GetServiceAccountResult build() {
             final var _resultValue = new GetServiceAccountResult();
             _resultValue.clientId = clientId;
@@ -198,6 +221,7 @@ public final class GetServiceAccountResult {
             _resultValue.orgId = orgId;
             _resultValue.roles = roles;
             _resultValue.secrets = secrets;
+            _resultValue.systemManaged = systemManaged;
             return _resultValue;
         }
     }

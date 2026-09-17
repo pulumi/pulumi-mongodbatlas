@@ -27,13 +27,16 @@ class GetMaintenanceWindowResult:
     """
     A collection of values returned by getMaintenanceWindow.
     """
-    def __init__(__self__, auto_defer_once_enabled=None, day_of_week=None, hour_of_day=None, id=None, number_of_deferrals=None, project_id=None, protected_hours=None, start_asap=None, time_zone_id=None):
+    def __init__(__self__, auto_defer_once_enabled=None, day_of_week=None, effective_wave_assignment=None, hour_of_day=None, id=None, number_of_deferrals=None, project_id=None, protected_hours=None, start_asap=None, time_zone_id=None, wave_assignment=None):
         if auto_defer_once_enabled and not isinstance(auto_defer_once_enabled, bool):
             raise TypeError("Expected argument 'auto_defer_once_enabled' to be a bool")
         pulumi.set(__self__, "auto_defer_once_enabled", auto_defer_once_enabled)
         if day_of_week and not isinstance(day_of_week, int):
             raise TypeError("Expected argument 'day_of_week' to be a int")
         pulumi.set(__self__, "day_of_week", day_of_week)
+        if effective_wave_assignment and not isinstance(effective_wave_assignment, int):
+            raise TypeError("Expected argument 'effective_wave_assignment' to be a int")
+        pulumi.set(__self__, "effective_wave_assignment", effective_wave_assignment)
         if hour_of_day and not isinstance(hour_of_day, int):
             raise TypeError("Expected argument 'hour_of_day' to be a int")
         pulumi.set(__self__, "hour_of_day", hour_of_day)
@@ -55,6 +58,9 @@ class GetMaintenanceWindowResult:
         if time_zone_id and not isinstance(time_zone_id, str):
             raise TypeError("Expected argument 'time_zone_id' to be a str")
         pulumi.set(__self__, "time_zone_id", time_zone_id)
+        if wave_assignment and not isinstance(wave_assignment, int):
+            raise TypeError("Expected argument 'wave_assignment' to be a int")
+        pulumi.set(__self__, "wave_assignment", wave_assignment)
 
     @_builtins.property
     @pulumi.getter(name="autoDeferOnceEnabled")
@@ -71,6 +77,16 @@ class GetMaintenanceWindowResult:
         Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
         """
         return pulumi.get(self, "day_of_week")
+
+    @_builtins.property
+    @pulumi.getter(name="effectiveWaveAssignment")
+    def effective_wave_assignment(self) -> _builtins.int:
+        """
+        Read-only maintenance wave Atlas uses when scheduling maintenance for this project. This value can differ from `wave_assignment` in the following scenarios:
+        - **`ENV_TAG_MAPPING` mode is active at the organization level.** When the organization's `wave_assignment_mode` is set to `ENV_TAG_MAPPING` (see `OrgMaintenanceSettings`), Atlas ignores any explicit `wave_assignment` and derives the effective wave from the project's environment tag. A project can have `wave_assignment = 1` in state while `effective_wave_assignment` returns a different value.
+        - **Cross-organization billing (`MAINTENANCE_SEQUENCE_CROSS_ORG`).** When a linked non-paying organization inherits the paying organization's wave assignment mode. If the paying organization switches to `ENV_TAG_MAPPING`, all linked projects follow regardless of any explicit `wave_assignment` set on them.
+        """
+        return pulumi.get(self, "effective_wave_assignment")
 
     @_builtins.property
     @pulumi.getter(name="hourOfDay")
@@ -125,6 +141,14 @@ class GetMaintenanceWindowResult:
         """
         return pulumi.get(self, "time_zone_id")
 
+    @_builtins.property
+    @pulumi.getter(name="waveAssignment")
+    def wave_assignment(self) -> _builtins.int:
+        """
+        Maintenance wave explicitly assigned to this project. Always returned when a value has been set, regardless of the organization's `wave_assignment_mode`. When the mode is `ENV_TAG_MAPPING`, the system preserves the stored value but does not use it for scheduling. Switching back to `MANUAL` restores this value as the effective wave. Returns `0` when no explicit wave has been assigned.
+        """
+        return pulumi.get(self, "wave_assignment")
+
 
 class AwaitableGetMaintenanceWindowResult(GetMaintenanceWindowResult):
     # pylint: disable=using-constant-test
@@ -134,13 +158,15 @@ class AwaitableGetMaintenanceWindowResult(GetMaintenanceWindowResult):
         return GetMaintenanceWindowResult(
             auto_defer_once_enabled=self.auto_defer_once_enabled,
             day_of_week=self.day_of_week,
+            effective_wave_assignment=self.effective_wave_assignment,
             hour_of_day=self.hour_of_day,
             id=self.id,
             number_of_deferrals=self.number_of_deferrals,
             project_id=self.project_id,
             protected_hours=self.protected_hours,
             start_asap=self.start_asap,
-            time_zone_id=self.time_zone_id)
+            time_zone_id=self.time_zone_id,
+            wave_assignment=self.wave_assignment)
 
 
 def get_maintenance_window(project_id: Optional[_builtins.str] = None,
@@ -185,13 +211,15 @@ def get_maintenance_window(project_id: Optional[_builtins.str] = None,
     return AwaitableGetMaintenanceWindowResult(
         auto_defer_once_enabled=pulumi.get(__ret__, 'auto_defer_once_enabled'),
         day_of_week=pulumi.get(__ret__, 'day_of_week'),
+        effective_wave_assignment=pulumi.get(__ret__, 'effective_wave_assignment'),
         hour_of_day=pulumi.get(__ret__, 'hour_of_day'),
         id=pulumi.get(__ret__, 'id'),
         number_of_deferrals=pulumi.get(__ret__, 'number_of_deferrals'),
         project_id=pulumi.get(__ret__, 'project_id'),
         protected_hours=pulumi.get(__ret__, 'protected_hours'),
         start_asap=pulumi.get(__ret__, 'start_asap'),
-        time_zone_id=pulumi.get(__ret__, 'time_zone_id'))
+        time_zone_id=pulumi.get(__ret__, 'time_zone_id'),
+        wave_assignment=pulumi.get(__ret__, 'wave_assignment'))
 def get_maintenance_window_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                   opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetMaintenanceWindowResult]:
     """
@@ -233,10 +261,12 @@ def get_maintenance_window_output(project_id: pulumi.Input[Optional[_builtins.st
     return __ret__.apply(lambda __response__: GetMaintenanceWindowResult(
         auto_defer_once_enabled=pulumi.get(__response__, 'auto_defer_once_enabled'),
         day_of_week=pulumi.get(__response__, 'day_of_week'),
+        effective_wave_assignment=pulumi.get(__response__, 'effective_wave_assignment'),
         hour_of_day=pulumi.get(__response__, 'hour_of_day'),
         id=pulumi.get(__response__, 'id'),
         number_of_deferrals=pulumi.get(__response__, 'number_of_deferrals'),
         project_id=pulumi.get(__response__, 'project_id'),
         protected_hours=pulumi.get(__response__, 'protected_hours'),
         start_asap=pulumi.get(__response__, 'start_asap'),
-        time_zone_id=pulumi.get(__response__, 'time_zone_id')))
+        time_zone_id=pulumi.get(__response__, 'time_zone_id'),
+        wave_assignment=pulumi.get(__response__, 'wave_assignment')))

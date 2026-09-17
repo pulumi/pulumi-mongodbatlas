@@ -16,6 +16,7 @@ import * as utilities from "./utilities";
 export function getProjectServiceAccounts(args: GetProjectServiceAccountsArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectServiceAccountsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts", {
+        "includeSystemManaged": args.includeSystemManaged,
         "projectId": args.projectId,
     }, opts);
 }
@@ -24,6 +25,10 @@ export function getProjectServiceAccounts(args: GetProjectServiceAccountsArgs, o
  * A collection of arguments for invoking getProjectServiceAccounts.
  */
 export interface GetProjectServiceAccountsArgs {
+    /**
+     * Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+     */
+    includeSystemManaged?: boolean;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
@@ -34,6 +39,10 @@ export interface GetProjectServiceAccountsArgs {
  * A collection of values returned by getProjectServiceAccounts.
  */
 export interface GetProjectServiceAccountsResult {
+    /**
+     * Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+     */
+    readonly includeSystemManaged?: boolean;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
@@ -53,6 +62,7 @@ export interface GetProjectServiceAccountsResult {
 export function getProjectServiceAccountsOutput(args: GetProjectServiceAccountsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProjectServiceAccountsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts", {
+        "includeSystemManaged": args.includeSystemManaged,
         "projectId": args.projectId,
     }, opts);
 }
@@ -61,6 +71,10 @@ export function getProjectServiceAccountsOutput(args: GetProjectServiceAccountsO
  * A collection of arguments for invoking getProjectServiceAccounts.
  */
 export interface GetProjectServiceAccountsOutputArgs {
+    /**
+     * Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+     */
+    includeSystemManaged?: pulumi.Input<boolean | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */

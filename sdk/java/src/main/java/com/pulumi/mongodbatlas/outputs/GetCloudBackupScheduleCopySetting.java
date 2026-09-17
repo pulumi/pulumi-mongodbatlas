@@ -5,7 +5,9 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.mongodbatlas.outputs.GetCloudBackupScheduleCopySettingCopyPolicyItem;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -18,10 +20,24 @@ public final class GetCloudBackupScheduleCopySetting {
      */
     private String cloudProvider;
     /**
-     * @return List that describes which types of snapshots to copy. i.e. &#34;HOURLY&#34; &#34;DAILY&#34; &#34;WEEKLY&#34; &#34;MONTHLY&#34; &#34;YEARLY&#34; &#34;ON_DEMAND&#34;
+     * @return Copy-policy items when `copyPolicyItemsEnabled` is true. See below.
      * 
      */
+    private List<GetCloudBackupScheduleCopySettingCopyPolicyItem> copyPolicyItems;
+    /**
+     * @return (Deprecated) List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
     private List<String> frequencies;
+    /**
+     * @return Number of most recent snapshots copied when `copyPolicyItemsEnabled` is true.
+     * 
+     */
+    private Integer lastNumberOfSnapshots;
     /**
      * @return Target region to copy snapshots belonging to replicationSpecId to. Please supply the &#39;Atlas Region&#39; which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ &#39;regions&#39; link
      * 
@@ -47,11 +63,29 @@ public final class GetCloudBackupScheduleCopySetting {
         return this.cloudProvider;
     }
     /**
-     * @return List that describes which types of snapshots to copy. i.e. &#34;HOURLY&#34; &#34;DAILY&#34; &#34;WEEKLY&#34; &#34;MONTHLY&#34; &#34;YEARLY&#34; &#34;ON_DEMAND&#34;
+     * @return Copy-policy items when `copyPolicyItemsEnabled` is true. See below.
      * 
      */
+    public List<GetCloudBackupScheduleCopySettingCopyPolicyItem> copyPolicyItems() {
+        return this.copyPolicyItems;
+    }
+    /**
+     * @return (Deprecated) List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
     public List<String> frequencies() {
         return this.frequencies;
+    }
+    /**
+     * @return Number of most recent snapshots copied when `copyPolicyItemsEnabled` is true.
+     * 
+     */
+    public Integer lastNumberOfSnapshots() {
+        return this.lastNumberOfSnapshots;
     }
     /**
      * @return Target region to copy snapshots belonging to replicationSpecId to. Please supply the &#39;Atlas Region&#39; which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ &#39;regions&#39; link
@@ -85,7 +119,9 @@ public final class GetCloudBackupScheduleCopySetting {
     @CustomType.Builder
     public static final class Builder {
         private String cloudProvider;
+        private List<GetCloudBackupScheduleCopySettingCopyPolicyItem> copyPolicyItems;
         private List<String> frequencies;
+        private Integer lastNumberOfSnapshots;
         private String regionName;
         private Boolean shouldCopyOplogs;
         private String zoneId;
@@ -93,7 +129,9 @@ public final class GetCloudBackupScheduleCopySetting {
         public Builder(GetCloudBackupScheduleCopySetting defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.cloudProvider = defaults.cloudProvider;
+    	      this.copyPolicyItems = defaults.copyPolicyItems;
     	      this.frequencies = defaults.frequencies;
+    	      this.lastNumberOfSnapshots = defaults.lastNumberOfSnapshots;
     	      this.regionName = defaults.regionName;
     	      this.shouldCopyOplogs = defaults.shouldCopyOplogs;
     	      this.zoneId = defaults.zoneId;
@@ -108,6 +146,17 @@ public final class GetCloudBackupScheduleCopySetting {
             return this;
         }
         @CustomType.Setter
+        public Builder copyPolicyItems(List<GetCloudBackupScheduleCopySettingCopyPolicyItem> copyPolicyItems) {
+            if (copyPolicyItems == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleCopySetting", "copyPolicyItems");
+            }
+            this.copyPolicyItems = copyPolicyItems;
+            return this;
+        }
+        public Builder copyPolicyItems(GetCloudBackupScheduleCopySettingCopyPolicyItem... copyPolicyItems) {
+            return copyPolicyItems(List.of(copyPolicyItems));
+        }
+        @CustomType.Setter
         public Builder frequencies(List<String> frequencies) {
             if (frequencies == null) {
               throw new MissingRequiredPropertyException("GetCloudBackupScheduleCopySetting", "frequencies");
@@ -117,6 +166,14 @@ public final class GetCloudBackupScheduleCopySetting {
         }
         public Builder frequencies(String... frequencies) {
             return frequencies(List.of(frequencies));
+        }
+        @CustomType.Setter
+        public Builder lastNumberOfSnapshots(Integer lastNumberOfSnapshots) {
+            if (lastNumberOfSnapshots == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleCopySetting", "lastNumberOfSnapshots");
+            }
+            this.lastNumberOfSnapshots = lastNumberOfSnapshots;
+            return this;
         }
         @CustomType.Setter
         public Builder regionName(String regionName) {
@@ -145,7 +202,9 @@ public final class GetCloudBackupScheduleCopySetting {
         public GetCloudBackupScheduleCopySetting build() {
             final var _resultValue = new GetCloudBackupScheduleCopySetting();
             _resultValue.cloudProvider = cloudProvider;
+            _resultValue.copyPolicyItems = copyPolicyItems;
             _resultValue.frequencies = frequencies;
+            _resultValue.lastNumberOfSnapshots = lastNumberOfSnapshots;
             _resultValue.regionName = regionName;
             _resultValue.shouldCopyOplogs = shouldCopyOplogs;
             _resultValue.zoneId = zoneId;

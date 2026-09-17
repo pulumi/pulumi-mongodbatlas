@@ -118,6 +118,10 @@ from .get_ldap_verify import *
 from .get_log_integration import *
 from .get_log_integrations import *
 from .get_maintenance_window import *
+from .get_mcp_config import *
+from .get_mcp_config_secret import *
+from .get_mcp_config_secrets import *
+from .get_mcp_configs import *
 from .get_metric_integration import *
 from .get_metric_integrations import *
 from .get_mongodb_employee_access_grant import *
@@ -127,7 +131,9 @@ from .get_network_peering import *
 from .get_network_peerings import *
 from .get_online_archive import *
 from .get_online_archives import *
+from .get_org_delegation_settings import *
 from .get_org_invitation import *
+from .get_org_maintenance_settings import *
 from .get_organization import *
 from .get_organizations import *
 from .get_private_endpoint_regional_mode import *
@@ -143,6 +149,10 @@ from .get_project_invitation import *
 from .get_project_ip_access_list import *
 from .get_project_ip_access_lists import *
 from .get_project_ip_addresses import *
+from .get_project_mcp_config import *
+from .get_project_mcp_config_secret import *
+from .get_project_mcp_config_secrets import *
+from .get_project_mcp_configs import *
 from .get_project_service_account import *
 from .get_project_service_account_access_list_entries import *
 from .get_project_service_account_access_list_entry import *
@@ -192,12 +202,16 @@ from .ldap_configuration import *
 from .ldap_verify import *
 from .log_integration import *
 from .maintenance_window import *
+from .mcp_config import *
+from .mcp_config_secret import *
 from .metric_integration import *
 from .mongodb_employee_access_grant import *
 from .network_container import *
 from .network_peering import *
 from .online_archive import *
+from .org_delegation_settings import *
 from .org_invitation import *
+from .org_maintenance_settings import *
 from .organization import *
 from .private_endpoint_regional_mode import *
 from .private_link_endpoint import *
@@ -207,6 +221,8 @@ from .project import *
 from .project_api_key import *
 from .project_invitation import *
 from .project_ip_access_list import *
+from .project_mcp_config import *
+from .project_mcp_config_secret import *
 from .project_service_account import *
 from .project_service_account_access_list_entry import *
 from .project_service_account_secret import *
@@ -557,6 +573,22 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
+  "mod": "index/mcpConfig",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/mcpConfig:McpConfig": "McpConfig"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/mcpConfigSecret",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/mcpConfigSecret:McpConfigSecret": "McpConfigSecret"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
   "mod": "index/metricIntegration",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
@@ -597,10 +629,26 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
+  "mod": "index/orgDelegationSettings",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/orgDelegationSettings:OrgDelegationSettings": "OrgDelegationSettings"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
   "mod": "index/orgInvitation",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/orgInvitation:OrgInvitation": "OrgInvitation"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/orgMaintenanceSettings",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/orgMaintenanceSettings:OrgMaintenanceSettings": "OrgMaintenanceSettings"
   }
  },
  {
@@ -673,6 +721,22 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList": "ProjectIpAccessList"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/projectMcpConfig",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/projectMcpConfig:ProjectMcpConfig": "ProjectMcpConfig"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/projectMcpConfigSecret",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/projectMcpConfigSecret:ProjectMcpConfigSecret": "ProjectMcpConfigSecret"
   }
  },
  {

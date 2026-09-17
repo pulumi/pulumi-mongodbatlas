@@ -27,7 +27,7 @@ class GetProjectServiceAccountResult:
     """
     A collection of values returned by getProjectServiceAccount.
     """
-    def __init__(__self__, client_id=None, created_at=None, description=None, name=None, project_id=None, roles=None, secrets=None):
+    def __init__(__self__, client_id=None, created_at=None, description=None, name=None, project_id=None, roles=None, secrets=None, system_managed=None):
         if client_id and not isinstance(client_id, str):
             raise TypeError("Expected argument 'client_id' to be a str")
         pulumi.set(__self__, "client_id", client_id)
@@ -49,6 +49,9 @@ class GetProjectServiceAccountResult:
         if secrets and not isinstance(secrets, list):
             raise TypeError("Expected argument 'secrets' to be a list")
         pulumi.set(__self__, "secrets", secrets)
+        if system_managed and not isinstance(system_managed, bool):
+            raise TypeError("Expected argument 'system_managed' to be a bool")
+        pulumi.set(__self__, "system_managed", system_managed)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -106,6 +109,14 @@ class GetProjectServiceAccountResult:
         """
         return pulumi.get(self, "secrets")
 
+    @_builtins.property
+    @pulumi.getter(name="systemManaged")
+    def system_managed(self) -> _builtins.bool:
+        """
+        Indicates whether the Service Account is system managed.
+        """
+        return pulumi.get(self, "system_managed")
+
 
 class AwaitableGetProjectServiceAccountResult(GetProjectServiceAccountResult):
     # pylint: disable=using-constant-test
@@ -119,7 +130,8 @@ class AwaitableGetProjectServiceAccountResult(GetProjectServiceAccountResult):
             name=self.name,
             project_id=self.project_id,
             roles=self.roles,
-            secrets=self.secrets)
+            secrets=self.secrets,
+            system_managed=self.system_managed)
 
 
 def get_project_service_account(client_id: Optional[_builtins.str] = None,
@@ -149,7 +161,8 @@ def get_project_service_account(client_id: Optional[_builtins.str] = None,
         name=pulumi.get(__ret__, 'name'),
         project_id=pulumi.get(__ret__, 'project_id'),
         roles=pulumi.get(__ret__, 'roles'),
-        secrets=pulumi.get(__ret__, 'secrets'))
+        secrets=pulumi.get(__ret__, 'secrets'),
+        system_managed=pulumi.get(__ret__, 'system_managed'))
 def get_project_service_account_output(client_id: pulumi.Input[Optional[_builtins.str]] = None,
                                        project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                        opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectServiceAccountResult]:
@@ -176,4 +189,5 @@ def get_project_service_account_output(client_id: pulumi.Input[Optional[_builtin
         name=pulumi.get(__response__, 'name'),
         project_id=pulumi.get(__response__, 'project_id'),
         roles=pulumi.get(__response__, 'roles'),
-        secrets=pulumi.get(__response__, 'secrets')))
+        secrets=pulumi.get(__response__, 'secrets'),
+        system_managed=pulumi.get(__response__, 'system_managed')))

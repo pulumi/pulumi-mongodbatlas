@@ -28,12 +28,16 @@ func LookupProjectServiceAccounts(ctx *pulumi.Context, args *LookupProjectServic
 
 // A collection of arguments for invoking getProjectServiceAccounts.
 type LookupProjectServiceAccountsArgs struct {
+	// Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+	IncludeSystemManaged *bool `pulumi:"includeSystemManaged"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 }
 
 // A collection of values returned by getProjectServiceAccounts.
 type LookupProjectServiceAccountsResult struct {
+	// Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+	IncludeSystemManaged *bool `pulumi:"includeSystemManaged"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// List of returned documents that MongoDB Cloud provides when completing this request.
@@ -47,6 +51,8 @@ func LookupProjectServiceAccountsOutput(ctx *pulumi.Context, args LookupProjectS
 
 // A collection of arguments for invoking getProjectServiceAccounts.
 type LookupProjectServiceAccountsOutputArgs struct {
+	// Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+	IncludeSystemManaged pulumi.BoolPtrInput `pulumi:"includeSystemManaged"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
 }
@@ -68,6 +74,11 @@ func (o LookupProjectServiceAccountsResultOutput) ToLookupProjectServiceAccounts
 
 func (o LookupProjectServiceAccountsResultOutput) ToLookupProjectServiceAccountsResultOutputWithContext(ctx context.Context) LookupProjectServiceAccountsResultOutput {
 	return o
+}
+
+// Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+func (o LookupProjectServiceAccountsResultOutput) IncludeSystemManaged() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupProjectServiceAccountsResult) *bool { return v.IncludeSystemManaged }).(pulumi.BoolPtrOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

@@ -34,6 +34,11 @@ public final class GetCloudBackupScheduleResult {
     private String clusterId;
     private String clusterName;
     /**
+     * @return Flag that indicates whether copy settings use `copyPolicyItems` or `lastNumberOfSnapshots` instead of `frequencies`.
+     * 
+     */
+    private Boolean copyPolicyItemsEnabled;
+    /**
      * @return List that contains a document for each copy setting item in the desired backup policy. See below
      * 
      */
@@ -124,6 +129,13 @@ public final class GetCloudBackupScheduleResult {
     }
     public String clusterName() {
         return this.clusterName;
+    }
+    /**
+     * @return Flag that indicates whether copy settings use `copyPolicyItems` or `lastNumberOfSnapshots` instead of `frequencies`.
+     * 
+     */
+    public Boolean copyPolicyItemsEnabled() {
+        return this.copyPolicyItemsEnabled;
     }
     /**
      * @return List that contains a document for each copy setting item in the desired backup policy. See below
@@ -239,6 +251,7 @@ public final class GetCloudBackupScheduleResult {
         private Boolean autoExportEnabled;
         private String clusterId;
         private String clusterName;
+        private Boolean copyPolicyItemsEnabled;
         private List<GetCloudBackupScheduleCopySetting> copySettings;
         private List<GetCloudBackupScheduleExport> exports;
         private String id;
@@ -260,6 +273,7 @@ public final class GetCloudBackupScheduleResult {
     	      this.autoExportEnabled = defaults.autoExportEnabled;
     	      this.clusterId = defaults.clusterId;
     	      this.clusterName = defaults.clusterName;
+    	      this.copyPolicyItemsEnabled = defaults.copyPolicyItemsEnabled;
     	      this.copySettings = defaults.copySettings;
     	      this.exports = defaults.exports;
     	      this.id = defaults.id;
@@ -299,6 +313,14 @@ public final class GetCloudBackupScheduleResult {
               throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "clusterName");
             }
             this.clusterName = clusterName;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder copyPolicyItemsEnabled(Boolean copyPolicyItemsEnabled) {
+            if (copyPolicyItemsEnabled == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "copyPolicyItemsEnabled");
+            }
+            this.copyPolicyItemsEnabled = copyPolicyItemsEnabled;
             return this;
         }
         @CustomType.Setter
@@ -447,6 +469,7 @@ public final class GetCloudBackupScheduleResult {
             _resultValue.autoExportEnabled = autoExportEnabled;
             _resultValue.clusterId = clusterId;
             _resultValue.clusterName = clusterName;
+            _resultValue.copyPolicyItemsEnabled = copyPolicyItemsEnabled;
             _resultValue.copySettings = copySettings;
             _resultValue.exports = exports;
             _resultValue.id = id;

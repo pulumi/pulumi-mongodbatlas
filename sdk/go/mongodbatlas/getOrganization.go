@@ -59,6 +59,8 @@ type LookupOrganizationArgs struct {
 type LookupOrganizationResult struct {
 	// (Optional) Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired bool `pulumi:"apiAccessListRequired"`
+	// (Optional) Block that specifies the custom session timeout settings for the organization. See Custom Session Timeouts.
+	CustomSessionTimeouts []GetOrganizationCustomSessionTimeout `pulumi:"customSessionTimeouts"`
 	// (Optional) Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
 	GenAiFeaturesEnabled bool `pulumi:"genAiFeaturesEnabled"`
 	// The provider-assigned unique ID for this managed resource.
@@ -69,8 +71,10 @@ type LookupOrganizationResult struct {
 	// (Optional) Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
 	MultiFactorAuthRequired bool `pulumi:"multiFactorAuthRequired"`
 	// Human-readable label that identifies the organization.
-	Name  string `pulumi:"name"`
-	OrgId string `pulumi:"orgId"`
+	Name string `pulumi:"name"`
+	// (Optional) String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals.
+	OperationsContact string `pulumi:"operationsContact"`
+	OrgId             string `pulumi:"orgId"`
 	// (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
 	RestrictEmployeeAccess bool `pulumi:"restrictEmployeeAccess"`
 	// (Optional) String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
@@ -116,6 +120,11 @@ func (o LookupOrganizationResultOutput) ApiAccessListRequired() pulumi.BoolOutpu
 	return o.ApplyT(func(v LookupOrganizationResult) bool { return v.ApiAccessListRequired }).(pulumi.BoolOutput)
 }
 
+// (Optional) Block that specifies the custom session timeout settings for the organization. See Custom Session Timeouts.
+func (o LookupOrganizationResultOutput) CustomSessionTimeouts() GetOrganizationCustomSessionTimeoutArrayOutput {
+	return o.ApplyT(func(v LookupOrganizationResult) []GetOrganizationCustomSessionTimeout { return v.CustomSessionTimeouts }).(GetOrganizationCustomSessionTimeoutArrayOutput)
+}
+
 // (Optional) Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
 func (o LookupOrganizationResultOutput) GenAiFeaturesEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupOrganizationResult) bool { return v.GenAiFeaturesEnabled }).(pulumi.BoolOutput)
@@ -143,6 +152,11 @@ func (o LookupOrganizationResultOutput) MultiFactorAuthRequired() pulumi.BoolOut
 // Human-readable label that identifies the organization.
 func (o LookupOrganizationResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupOrganizationResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// (Optional) String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals.
+func (o LookupOrganizationResultOutput) OperationsContact() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupOrganizationResult) string { return v.OperationsContact }).(pulumi.StringOutput)
 }
 
 func (o LookupOrganizationResultOutput) OrgId() pulumi.StringOutput {

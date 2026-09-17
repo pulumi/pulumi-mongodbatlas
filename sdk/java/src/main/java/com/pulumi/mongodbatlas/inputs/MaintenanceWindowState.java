@@ -49,14 +49,14 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+     * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hourOfDay`. Omit both to set a `waveAssignment` without a maintenance window.
      * 
      */
     @Import(name="dayOfWeek")
     private @Nullable Output<Integer> dayOfWeek;
 
     /**
-     * @return Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+     * @return Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hourOfDay`. Omit both to set a `waveAssignment` without a maintenance window.
      * 
      */
     public Optional<Output<Integer>> dayOfWeek() {
@@ -79,14 +79,14 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
+     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone. Must be set together with `dayOfWeek`. Omit both to set a `waveAssignment` without a maintenance window.
      * 
      */
     @Import(name="hourOfDay")
     private @Nullable Output<Integer> hourOfDay;
 
     /**
-     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
+     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone. Must be set together with `dayOfWeek`. Omit both to set a `waveAssignment` without a maintenance window.
      * 
      */
     public Optional<Output<Integer>> hourOfDay() {
@@ -168,6 +168,21 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         return Optional.ofNullable(this.timeZoneId);
     }
 
+    /**
+     * Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization&#39;s wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `mongodbatlas.OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+     * 
+     */
+    @Import(name="waveAssignment")
+    private @Nullable Output<Integer> waveAssignment;
+
+    /**
+     * @return Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization&#39;s wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `mongodbatlas.OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+     * 
+     */
+    public Optional<Output<Integer>> waveAssignment() {
+        return Optional.ofNullable(this.waveAssignment);
+    }
+
     private MaintenanceWindowState() {}
 
     private MaintenanceWindowState(MaintenanceWindowState $) {
@@ -181,6 +196,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         this.protectedHours = $.protectedHours;
         this.startAsap = $.startAsap;
         this.timeZoneId = $.timeZoneId;
+        this.waveAssignment = $.waveAssignment;
     }
 
     public static Builder builder() {
@@ -244,7 +260,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param dayOfWeek Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+         * @param dayOfWeek Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hourOfDay`. Omit both to set a `waveAssignment` without a maintenance window.
          * 
          * @return builder
          * 
@@ -255,7 +271,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param dayOfWeek Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+         * @param dayOfWeek Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hourOfDay`. Omit both to set a `waveAssignment` without a maintenance window.
          * 
          * @return builder
          * 
@@ -286,7 +302,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
+         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone. Must be set together with `dayOfWeek`. Omit both to set a `waveAssignment` without a maintenance window.
          * 
          * @return builder
          * 
@@ -297,7 +313,7 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
+         * @param hourOfDay Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone. Must be set together with `dayOfWeek`. Omit both to set a `waveAssignment` without a maintenance window.
          * 
          * @return builder
          * 
@@ -409,6 +425,27 @@ public final class MaintenanceWindowState extends com.pulumi.resources.ResourceA
          */
         public Builder timeZoneId(String timeZoneId) {
             return timeZoneId(Output.of(timeZoneId));
+        }
+
+        /**
+         * @param waveAssignment Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization&#39;s wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `mongodbatlas.OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder waveAssignment(@Nullable Output<Integer> waveAssignment) {
+            $.waveAssignment = waveAssignment;
+            return this;
+        }
+
+        /**
+         * @param waveAssignment Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization&#39;s wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `mongodbatlas.OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder waveAssignment(Integer waveAssignment) {
+            return waveAssignment(Output.of(waveAssignment));
         }
 
         public MaintenanceWindowState build() {

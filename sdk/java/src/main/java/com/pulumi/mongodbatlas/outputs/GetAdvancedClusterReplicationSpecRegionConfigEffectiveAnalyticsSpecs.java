@@ -23,12 +23,12 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyti
      */
     private Double diskSizeGb;
     /**
-     * @return Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * @return Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can&#39;t configure it.
      * 
      */
     private Integer diskThroughput;
     /**
-     * @return Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+     * @return Type of storage attached to your AWS-provisioned cluster. This value doesn&#39;t return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      * 
      */
     private String ebsVolumeType;
@@ -59,14 +59,14 @@ public final class GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyti
         return this.diskSizeGb;
     }
     /**
-     * @return Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * @return Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can&#39;t configure it.
      * 
      */
     public Integer diskThroughput() {
         return this.diskThroughput;
     }
     /**
-     * @return Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+     * @return Type of storage attached to your AWS-provisioned cluster. This value doesn&#39;t return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      * 
      */
     public String ebsVolumeType() {

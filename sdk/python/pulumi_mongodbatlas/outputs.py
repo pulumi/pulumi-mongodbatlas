@@ -45,6 +45,7 @@ __all__ = [
     'CloudBackupCollectionRestoreJobIndexStatus',
     'CloudBackupCollectionRestoreJobTimeouts',
     'CloudBackupScheduleCopySetting',
+    'CloudBackupScheduleCopySettingCopyPolicyItem',
     'CloudBackupScheduleExport',
     'CloudBackupSchedulePolicyItemDaily',
     'CloudBackupSchedulePolicyItemHourly',
@@ -118,6 +119,7 @@ __all__ = [
     'LdapVerifyValidation',
     'LogIntegrationOtelSuppliedHeader',
     'MaintenanceWindowProtectedHours',
+    'McpConfigIpAccessList',
     'MetricIntegrationHeader',
     'MetricIntegrationHeadersRedacted',
     'OnlineArchiveCriteria',
@@ -125,6 +127,7 @@ __all__ = [
     'OnlineArchiveDataProcessRegion',
     'OnlineArchivePartitionField',
     'OnlineArchiveSchedule',
+    'OrganizationCustomSessionTimeouts',
     'OrganizationServiceAccount',
     'OrganizationServiceAccountSecret',
     'PrivateLinkEndpointServiceEndpoint',
@@ -135,6 +138,7 @@ __all__ = [
     'ProjectIpAddressesServices',
     'ProjectIpAddressesServicesCluster',
     'ProjectLimit',
+    'ProjectMcpConfigIpAccessList',
     'ProjectServiceAccountSecret',
     'ProjectTeam',
     'PushBasedLogExportTimeouts',
@@ -249,6 +253,7 @@ __all__ = [
     'GetCloudBackupCollectionRestoreJobsResultDatabaseResult',
     'GetCloudBackupCollectionRestoreJobsResultIndexStatusResult',
     'GetCloudBackupScheduleCopySettingResult',
+    'GetCloudBackupScheduleCopySettingCopyPolicyItemResult',
     'GetCloudBackupScheduleExportResult',
     'GetCloudBackupSchedulePolicyItemDailyResult',
     'GetCloudBackupSchedulePolicyItemHourlyResult',
@@ -395,6 +400,10 @@ __all__ = [
     'GetLogIntegrationsResultResult',
     'GetLogIntegrationsResultOtelSuppliedHeaderResult',
     'GetMaintenanceWindowProtectedHourResult',
+    'GetMcpConfigIpAccessListResult',
+    'GetMcpConfigSecretsResultResult',
+    'GetMcpConfigsResultResult',
+    'GetMcpConfigsResultIpAccessListResult',
     'GetMetricIntegrationHeadersRedactedResult',
     'GetMetricIntegrationsResultResult',
     'GetMetricIntegrationsResultHeadersRedactedResult',
@@ -411,11 +420,13 @@ __all__ = [
     'GetOnlineArchivesResultDataProcessRegionResult',
     'GetOnlineArchivesResultPartitionFieldResult',
     'GetOnlineArchivesResultScheduleResult',
+    'GetOrganizationCustomSessionTimeoutResult',
     'GetOrganizationLinkResult',
     'GetOrganizationUserResult',
     'GetOrganizationUserRoleResult',
     'GetOrganizationUserRoleProjectRoleAssignmentResult',
     'GetOrganizationsResultResult',
+    'GetOrganizationsResultCustomSessionTimeoutResult',
     'GetOrganizationsResultLinkResult',
     'GetOrganizationsResultUserResult',
     'GetOrganizationsResultUserRoleResult',
@@ -431,6 +442,10 @@ __all__ = [
     'GetProjectIpAddressesServicesResult',
     'GetProjectIpAddressesServicesClusterResult',
     'GetProjectLimitResult',
+    'GetProjectMcpConfigIpAccessListResult',
+    'GetProjectMcpConfigSecretsResultResult',
+    'GetProjectMcpConfigsResultResult',
+    'GetProjectMcpConfigsResultIpAccessListResult',
     'GetProjectServiceAccountAccessListEntriesResultResult',
     'GetProjectServiceAccountSecretResult',
     'GetProjectServiceAccountsResultResult',
@@ -1265,7 +1280,9 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
                - `FLEX` - Flex cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
         :param _builtins.str region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
                
-               For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes, see [Supported Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions).
+               For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
+               
+               Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster's cloud provider. Gen2 clusters don't support multi-cloud deployments.
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs' analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
         :param 'AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs' analytics_specs: Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
         :param 'AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs' auto_scaling: Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
@@ -1320,7 +1337,9 @@ class AdvancedClusterReplicationSpecRegionConfig(dict):
         """
         Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 
-        For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes, see [Supported Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions).
+        For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
+
+        Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster's cloud provider. Gen2 clusters don't support multi-cloud deployments.
         """
         return pulumi.get(self, "region_name")
 
@@ -1509,23 +1528,30 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
                  instance_size: Optional[_builtins.str] = None,
                  node_count: Optional[_builtins.int] = None):
         """
-        :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+        :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
                
+               For AWS, valid configurations are:
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-               * For M30 or greater (not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+               * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
                
-               For Azure, `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
-        :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
-        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-               * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
-               * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-               * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+               For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `disk_size_gb` and the selected instance size:
+               * The minimum value is the greater of 3000 and three times `disk_size_gb`.
+               * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+               
+               For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+        :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
+        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+               * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
+               * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+               * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
                
                Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
                
-               [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+               [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+               
+               GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         if disk_iops is not None:
@@ -1543,13 +1569,18 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
     @pulumi.getter(name="diskIops")
     def disk_iops(self) -> Optional[_builtins.int]:
         """
-        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 
+        For AWS, valid configurations are:
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-        * For M30 or greater (not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+        * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 
-        For Azure, `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+        For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `disk_size_gb` and the selected instance size:
+        * The minimum value is the greater of 3000 and three times `disk_size_gb`.
+        * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+
+        For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
         """
         return pulumi.get(self, "disk_iops")
 
@@ -1557,7 +1588,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
     @pulumi.getter(name="diskSizeGb")
     def disk_size_gb(self) -> Optional[_builtins.float]:
         """
-        Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+        Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
         """
         return pulumi.get(self, "disk_size_gb")
 
@@ -1565,10 +1596,10 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> Optional[_builtins.str]:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-        * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
-        * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-        * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+        * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
+        * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+        * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -1580,7 +1611,9 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs(dict):
 
         Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 
-        [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+        [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+
+        GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
         """
         return pulumi.get(self, "instance_size")
 
@@ -1749,24 +1782,30 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
                  instance_size: Optional[_builtins.str] = None,
                  node_count: Optional[_builtins.int] = None):
         """
-        :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+        :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
                
                For AWS, valid configurations are:
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-               * For M30 or greater (not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+               * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
                
-               For Azure, `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
-        :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
-        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-               * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
-               * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-               * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+               For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `disk_size_gb` and the selected instance size:
+               * The minimum value is the greater of 3000 and three times `disk_size_gb`.
+               * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+               
+               For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+        :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
+        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+               * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
+               * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+               * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
                
                Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
                
-               [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+               [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+               
+               GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         if disk_iops is not None:
@@ -1784,14 +1823,18 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
     @pulumi.getter(name="diskIops")
     def disk_iops(self) -> Optional[_builtins.int]:
         """
-        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 
         For AWS, valid configurations are:
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-        * For M30 or greater (not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+        * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 
-        For Azure, `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+        For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `disk_size_gb` and the selected instance size:
+        * The minimum value is the greater of 3000 and three times `disk_size_gb`.
+        * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+
+        For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
         """
         return pulumi.get(self, "disk_iops")
 
@@ -1799,7 +1842,7 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
     @pulumi.getter(name="diskSizeGb")
     def disk_size_gb(self) -> Optional[_builtins.float]:
         """
-        Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+        Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
         """
         return pulumi.get(self, "disk_size_gb")
 
@@ -1807,10 +1850,10 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> Optional[_builtins.str]:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-        * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
-        * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-        * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+        * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
+        * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+        * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -1822,7 +1865,9 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecs(dict):
 
         Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 
-        [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+        [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+
+        GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
         """
         return pulumi.get(self, "instance_size")
 
@@ -1869,23 +1914,30 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
                  instance_size: Optional[_builtins.str] = None,
                  node_count: Optional[_builtins.int] = None):
         """
-        :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+        :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
                
+               For AWS, valid configurations are:
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-               * For M30 or greater (not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+               * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
                
-               For Azure, `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
-        :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
-        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-               * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
-               * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-               * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+               For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `disk_size_gb` and the selected instance size:
+               * The minimum value is the greater of 3000 and three times `disk_size_gb`.
+               * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+               
+               For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+        :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
+        :param _builtins.str ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+               * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
+               * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+               * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
                
                Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
                
-               [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+               [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+               
+               GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         if disk_iops is not None:
@@ -1903,13 +1955,18 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
     @pulumi.getter(name="diskIops")
     def disk_iops(self) -> Optional[_builtins.int]:
         """
-        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 
+        For AWS, valid configurations are:
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-        * For M30 or greater (not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+        * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 
-        For Azure, `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+        For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `disk_size_gb` and the selected instance size:
+        * The minimum value is the greater of 3000 and three times `disk_size_gb`.
+        * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+
+        For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
         """
         return pulumi.get(self, "disk_iops")
 
@@ -1917,7 +1974,7 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
     @pulumi.getter(name="diskSizeGb")
     def disk_size_gb(self) -> Optional[_builtins.float]:
         """
-        Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+        Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
         """
         return pulumi.get(self, "disk_size_gb")
 
@@ -1925,10 +1982,10 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> Optional[_builtins.str]:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-        * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
-        * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-        * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+        * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
+        * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+        * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -1940,7 +1997,9 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs(dict):
 
         Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 
-        [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+        [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+
+        GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
         """
         return pulumi.get(self, "instance_size")
 
@@ -3288,6 +3347,10 @@ class CloudBackupScheduleCopySetting(dict):
         suggest = None
         if key == "cloudProvider":
             suggest = "cloud_provider"
+        elif key == "copyPolicyItems":
+            suggest = "copy_policy_items"
+        elif key == "lastNumberOfSnapshots":
+            suggest = "last_number_of_snapshots"
         elif key == "regionName":
             suggest = "region_name"
         elif key == "shouldCopyOplogs":
@@ -3308,21 +3371,29 @@ class CloudBackupScheduleCopySetting(dict):
 
     def __init__(__self__, *,
                  cloud_provider: Optional[_builtins.str] = None,
+                 copy_policy_items: Optional[Sequence['outputs.CloudBackupScheduleCopySettingCopyPolicyItem']] = None,
                  frequencies: Optional[Sequence[_builtins.str]] = None,
+                 last_number_of_snapshots: Optional[_builtins.int] = None,
                  region_name: Optional[_builtins.str] = None,
                  should_copy_oplogs: Optional[_builtins.bool] = None,
                  zone_id: Optional[_builtins.str] = None):
         """
         :param _builtins.str cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
-        :param Sequence[_builtins.str] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+        :param Sequence['CloudBackupScheduleCopySettingCopyPolicyItemArgs'] copy_policy_items: Copy-policy items when `copy_policy_items_enabled` is true. Mutually exclusive with `frequencies` and `last_number_of_snapshots`. See below.
+        :param Sequence[_builtins.str] frequencies: List that describes which types of snapshots to copy when `copy_policy_items_enabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copy_policy_items` and `last_number_of_snapshots` on the same entry. You can switch an entry from `frequencies` to `copy_policy_items` or `last_number_of_snapshots` in one apply; the switch back is not possible because `copy_policy_items_enabled` cannot be turned off once it is `true`. Use `copy_policy_items` or `last_number_of_snapshots` instead.
+        :param _builtins.int last_number_of_snapshots: Number of most recent snapshots to copy, from 1 to 500, when `copy_policy_items_enabled` is true. Mutually exclusive with `frequencies` and `copy_policy_items`.
         :param _builtins.str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
         :param _builtins.bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         :param _builtins.str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zone_id`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array [Return One Cluster From One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
         """
         if cloud_provider is not None:
             pulumi.set(__self__, "cloud_provider", cloud_provider)
+        if copy_policy_items is not None:
+            pulumi.set(__self__, "copy_policy_items", copy_policy_items)
         if frequencies is not None:
             pulumi.set(__self__, "frequencies", frequencies)
+        if last_number_of_snapshots is not None:
+            pulumi.set(__self__, "last_number_of_snapshots", last_number_of_snapshots)
         if region_name is not None:
             pulumi.set(__self__, "region_name", region_name)
         if should_copy_oplogs is not None:
@@ -3339,12 +3410,29 @@ class CloudBackupScheduleCopySetting(dict):
         return pulumi.get(self, "cloud_provider")
 
     @_builtins.property
+    @pulumi.getter(name="copyPolicyItems")
+    def copy_policy_items(self) -> Optional[Sequence['outputs.CloudBackupScheduleCopySettingCopyPolicyItem']]:
+        """
+        Copy-policy items when `copy_policy_items_enabled` is true. Mutually exclusive with `frequencies` and `last_number_of_snapshots`. See below.
+        """
+        return pulumi.get(self, "copy_policy_items")
+
+    @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_policy_items` or `last_number_of_snapshots`.""")
     def frequencies(self) -> Optional[Sequence[_builtins.str]]:
         """
-        List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+        List that describes which types of snapshots to copy when `copy_policy_items_enabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copy_policy_items` and `last_number_of_snapshots` on the same entry. You can switch an entry from `frequencies` to `copy_policy_items` or `last_number_of_snapshots` in one apply; the switch back is not possible because `copy_policy_items_enabled` cannot be turned off once it is `true`. Use `copy_policy_items` or `last_number_of_snapshots` instead.
         """
         return pulumi.get(self, "frequencies")
+
+    @_builtins.property
+    @pulumi.getter(name="lastNumberOfSnapshots")
+    def last_number_of_snapshots(self) -> Optional[_builtins.int]:
+        """
+        Number of most recent snapshots to copy, from 1 to 500, when `copy_policy_items_enabled` is true. Mutually exclusive with `frequencies` and `copy_policy_items`.
+        """
+        return pulumi.get(self, "last_number_of_snapshots")
 
     @_builtins.property
     @pulumi.getter(name="regionName")
@@ -3369,6 +3457,85 @@ class CloudBackupScheduleCopySetting(dict):
         Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zone_id`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array [Return One Cluster From One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
         """
         return pulumi.get(self, "zone_id")
+
+
+@pulumi.output_type
+class CloudBackupScheduleCopySettingCopyPolicyItem(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "frequencyType":
+            suggest = "frequency_type"
+        elif key == "retentionUnit":
+            suggest = "retention_unit"
+        elif key == "retentionValue":
+            suggest = "retention_value"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in CloudBackupScheduleCopySettingCopyPolicyItem. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        CloudBackupScheduleCopySettingCopyPolicyItem.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        CloudBackupScheduleCopySettingCopyPolicyItem.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 frequency_type: _builtins.str,
+                 id: Optional[_builtins.str] = None,
+                 retention_unit: Optional[_builtins.str] = None,
+                 retention_value: Optional[_builtins.int] = None):
+        """
+        :param _builtins.str frequency_type: Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+        :param _builtins.str id: Unique identifier of the copy policy item.
+               
+               **Note** The write-only array `deleteCopiedBackups` is not supported in Terraform. Use the Atlas Admin API or Atlas CLI to manage that array. It is not the same as `delete_copy_snapshots` on the resource.
+        :param _builtins.str retention_unit: Unit of time for copy retention: `days`, `weeks`, `months`, or `years`. Required by the API except when `frequency_type` is `ondemand`.
+        :param _builtins.int retention_value: Value to associate with `retention_unit`. Required by the API except when `frequency_type` is `ondemand`.
+        """
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if retention_unit is not None:
+            pulumi.set(__self__, "retention_unit", retention_unit)
+        if retention_value is not None:
+            pulumi.set(__self__, "retention_value", retention_value)
+
+    @_builtins.property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> _builtins.str:
+        """
+        Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+        """
+        return pulumi.get(self, "frequency_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> Optional[_builtins.str]:
+        """
+        Unique identifier of the copy policy item.
+
+        **Note** The write-only array `deleteCopiedBackups` is not supported in Terraform. Use the Atlas Admin API or Atlas CLI to manage that array. It is not the same as `delete_copy_snapshots` on the resource.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> Optional[_builtins.str]:
+        """
+        Unit of time for copy retention: `days`, `weeks`, `months`, or `years`. Required by the API except when `frequency_type` is `ondemand`.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> Optional[_builtins.int]:
+        """
+        Value to associate with `retention_unit`. Required by the API except when `frequency_type` is `ondemand`.
+        """
+        return pulumi.get(self, "retention_value")
 
 
 @pulumi.output_type
@@ -7936,6 +8103,56 @@ class MaintenanceWindowProtectedHours(dict):
 
 
 @pulumi.output_type
+class McpConfigIpAccessList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cidrBlock":
+            suggest = "cidr_block"
+        elif key == "ipAddress":
+            suggest = "ip_address"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in McpConfigIpAccessList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        McpConfigIpAccessList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        McpConfigIpAccessList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cidr_block: Optional[_builtins.str] = None,
+                 ip_address: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str cidr_block: Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        :param _builtins.str ip_address: Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        """
+        if cidr_block is not None:
+            pulumi.set(__self__, "cidr_block", cidr_block)
+        if ip_address is not None:
+            pulumi.set(__self__, "ip_address", ip_address)
+
+    @_builtins.property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> Optional[_builtins.str]:
+        """
+        Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> Optional[_builtins.str]:
+        """
+        Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        """
+        return pulumi.get(self, "ip_address")
+
+
+@pulumi.output_type
 class MetricIntegrationHeader(dict):
     def __init__(__self__, *,
                  name: _builtins.str,
@@ -8352,6 +8569,56 @@ class OnlineArchiveSchedule(dict):
         Minute of the hour when the scheduled window to run one online archive starts.
         """
         return pulumi.get(self, "start_minute")
+
+
+@pulumi.output_type
+class OrganizationCustomSessionTimeouts(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "absoluteSessionTimeoutInSeconds":
+            suggest = "absolute_session_timeout_in_seconds"
+        elif key == "idleSessionTimeoutInSeconds":
+            suggest = "idle_session_timeout_in_seconds"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in OrganizationCustomSessionTimeouts. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        OrganizationCustomSessionTimeouts.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        OrganizationCustomSessionTimeouts.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 absolute_session_timeout_in_seconds: Optional[_builtins.int] = None,
+                 idle_session_timeout_in_seconds: Optional[_builtins.int] = None):
+        """
+        :param _builtins.int absolute_session_timeout_in_seconds: Specifies the absolute session timeout duration in seconds. When set to `null`, the field's value is unset, and the default value of 43,200 seconds (12 hours) is applied. Accepted values range between a minimum of 3,600 seconds (1 hour) and a maximum of 43,200 seconds (12 hours).
+        :param _builtins.int idle_session_timeout_in_seconds: Specifies the idle session timeout duration in seconds. When set to `null`, the field's value is unset, and the default behavior depends on the context: no timeout for Atlas Commercial, and 600 seconds (10 minutes) for Atlas for Government. Accepted values start at a minimum of 300 seconds (5 minutes). For Atlas Commercial, the maximum value cannot exceed the configured absolute session timeout. For Atlas for Government, the maximum value is capped at 600 seconds (10 minutes).
+        """
+        if absolute_session_timeout_in_seconds is not None:
+            pulumi.set(__self__, "absolute_session_timeout_in_seconds", absolute_session_timeout_in_seconds)
+        if idle_session_timeout_in_seconds is not None:
+            pulumi.set(__self__, "idle_session_timeout_in_seconds", idle_session_timeout_in_seconds)
+
+    @_builtins.property
+    @pulumi.getter(name="absoluteSessionTimeoutInSeconds")
+    def absolute_session_timeout_in_seconds(self) -> Optional[_builtins.int]:
+        """
+        Specifies the absolute session timeout duration in seconds. When set to `null`, the field's value is unset, and the default value of 43,200 seconds (12 hours) is applied. Accepted values range between a minimum of 3,600 seconds (1 hour) and a maximum of 43,200 seconds (12 hours).
+        """
+        return pulumi.get(self, "absolute_session_timeout_in_seconds")
+
+    @_builtins.property
+    @pulumi.getter(name="idleSessionTimeoutInSeconds")
+    def idle_session_timeout_in_seconds(self) -> Optional[_builtins.int]:
+        """
+        Specifies the idle session timeout duration in seconds. When set to `null`, the field's value is unset, and the default behavior depends on the context: no timeout for Atlas Commercial, and 600 seconds (10 minutes) for Atlas for Government. Accepted values start at a minimum of 300 seconds (5 minutes). For Atlas Commercial, the maximum value cannot exceed the configured absolute session timeout. For Atlas for Government, the maximum value is capped at 600 seconds (10 minutes).
+        """
+        return pulumi.get(self, "idle_session_timeout_in_seconds")
 
 
 @pulumi.output_type
@@ -8870,6 +9137,56 @@ class ProjectLimit(dict):
     @pulumi.getter(name="maximumLimit")
     def maximum_limit(self) -> Optional[_builtins.int]:
         return pulumi.get(self, "maximum_limit")
+
+
+@pulumi.output_type
+class ProjectMcpConfigIpAccessList(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "cidrBlock":
+            suggest = "cidr_block"
+        elif key == "ipAddress":
+            suggest = "ip_address"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in ProjectMcpConfigIpAccessList. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        ProjectMcpConfigIpAccessList.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        ProjectMcpConfigIpAccessList.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 cidr_block: Optional[_builtins.str] = None,
+                 ip_address: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str cidr_block: Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        :param _builtins.str ip_address: Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        """
+        if cidr_block is not None:
+            pulumi.set(__self__, "cidr_block", cidr_block)
+        if ip_address is not None:
+            pulumi.set(__self__, "ip_address", ip_address)
+
+    @_builtins.property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> Optional[_builtins.str]:
+        """
+        Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> Optional[_builtins.str]:
+        """
+        Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        """
+        return pulumi.get(self, "ip_address")
 
 
 @pulumi.output_type
@@ -10535,17 +10852,38 @@ class StreamInstanceStreamConfig(dict):
 
 @pulumi.output_type
 class StreamProcessorOptions(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "resumeFromCheckpoint":
+            suggest = "resume_from_checkpoint"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in StreamProcessorOptions. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        StreamProcessorOptions.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        StreamProcessorOptions.__key_warning(key)
+        return super().get(key, default)
+
     def __init__(__self__, *,
                  autoscaling: Optional['outputs.StreamProcessorOptionsAutoscaling'] = None,
-                 dlq: Optional['outputs.StreamProcessorOptionsDlq'] = None):
+                 dlq: Optional['outputs.StreamProcessorOptionsDlq'] = None,
+                 resume_from_checkpoint: Optional[_builtins.bool] = None):
         """
         :param 'StreamProcessorOptionsAutoscalingArgs' autoscaling: Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `min_tier` and `max_tier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effective_tier`. To disable autoscaling, remove this block.
         :param 'StreamProcessorOptionsDlqArgs' dlq: Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+        :param _builtins.bool resume_from_checkpoint: Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
         """
         if autoscaling is not None:
             pulumi.set(__self__, "autoscaling", autoscaling)
         if dlq is not None:
             pulumi.set(__self__, "dlq", dlq)
+        if resume_from_checkpoint is not None:
+            pulumi.set(__self__, "resume_from_checkpoint", resume_from_checkpoint)
 
     @_builtins.property
     @pulumi.getter
@@ -10562,6 +10900,14 @@ class StreamProcessorOptions(dict):
         Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
         """
         return pulumi.get(self, "dlq")
+
+    @_builtins.property
+    @pulumi.getter(name="resumeFromCheckpoint")
+    def resume_from_checkpoint(self) -> Optional[_builtins.bool]:
+        """
+        Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
+        """
+        return pulumi.get(self, "resume_from_checkpoint")
 
 
 @pulumi.output_type
@@ -11649,8 +11995,8 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electable_specs` for additional `disk_iops` configuration details.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
-        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
+        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -11681,7 +12027,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
     @pulumi.getter(name="diskThroughput")
     def disk_throughput(self) -> _builtins.int:
         """
-        Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+        Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
         """
         return pulumi.get(self, "disk_throughput")
 
@@ -11689,7 +12035,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult(dict):
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> _builtins.str:
         """
-        Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -11786,8 +12132,8 @@ class GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsResult
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electable_specs` for additional `disk_iops` configuration details.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
-        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
+        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -11818,7 +12164,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsResult
     @pulumi.getter(name="diskThroughput")
     def disk_throughput(self) -> _builtins.int:
         """
-        Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+        Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
         """
         return pulumi.get(self, "disk_throughput")
 
@@ -11826,7 +12172,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsResult
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> _builtins.str:
         """
-        Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -11859,8 +12205,8 @@ class GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsResult
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electable_specs` for additional `disk_iops` configuration details.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
-        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
+        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -11891,7 +12237,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsResult
     @pulumi.getter(name="diskThroughput")
     def disk_throughput(self) -> _builtins.int:
         """
-        Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+        Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
         """
         return pulumi.get(self, "disk_throughput")
 
@@ -11899,7 +12245,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsResult
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> _builtins.str:
         """
-        Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -11932,8 +12278,8 @@ class GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsResult(
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electable_specs` for additional `disk_iops` configuration details.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
-        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
+        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -11964,7 +12310,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsResult(
     @pulumi.getter(name="diskThroughput")
     def disk_throughput(self) -> _builtins.int:
         """
-        Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+        Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
         """
         return pulumi.get(self, "disk_throughput")
 
@@ -11972,7 +12318,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsResult(
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> _builtins.str:
         """
-        Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -12005,8 +12351,8 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electable_specs` for additional `disk_iops` configuration details.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
-        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
+        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -12037,7 +12383,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
     @pulumi.getter(name="diskThroughput")
     def disk_throughput(self) -> _builtins.int:
         """
-        Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+        Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
         """
         return pulumi.get(self, "disk_throughput")
 
@@ -12045,7 +12391,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsResult(dict):
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> _builtins.str:
         """
-        Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -12078,8 +12424,8 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. See the resource documentation for `electable_specs` for additional `disk_iops` configuration details.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
-        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
+        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -12110,7 +12456,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
     @pulumi.getter(name="diskThroughput")
     def disk_throughput(self) -> _builtins.int:
         """
-        Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+        Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
         """
         return pulumi.get(self, "disk_throughput")
 
@@ -12118,7 +12464,7 @@ class GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsResult(dict):
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> _builtins.str:
         """
-        Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -13155,8 +13501,8 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(d
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electable_specs` for additional `disk_iops` configuration details.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
-        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
+        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -13187,7 +13533,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(d
     @pulumi.getter(name="diskThroughput")
     def disk_throughput(self) -> _builtins.int:
         """
-        Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+        Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
         """
         return pulumi.get(self, "disk_throughput")
 
@@ -13195,7 +13541,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult(d
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> _builtins.str:
         """
-        Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -13290,8 +13636,8 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpec
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electable_specs` for additional `disk_iops` configuration details.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
-        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
+        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -13322,7 +13668,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpec
     @pulumi.getter(name="diskThroughput")
     def disk_throughput(self) -> _builtins.int:
         """
-        Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+        Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
         """
         return pulumi.get(self, "disk_throughput")
 
@@ -13330,7 +13676,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpec
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> _builtins.str:
         """
-        Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -13363,8 +13709,8 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpec
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electable_specs` for additional `disk_iops` configuration details.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
-        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
+        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -13395,7 +13741,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpec
     @pulumi.getter(name="diskThroughput")
     def disk_throughput(self) -> _builtins.int:
         """
-        Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+        Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
         """
         return pulumi.get(self, "disk_throughput")
 
@@ -13403,7 +13749,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpec
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> _builtins.str:
         """
-        Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -13436,8 +13782,8 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electable_specs` for additional `disk_iops` configuration details.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
-        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
+        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -13468,7 +13814,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs
     @pulumi.getter(name="diskThroughput")
     def disk_throughput(self) -> _builtins.int:
         """
-        Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+        Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
         """
         return pulumi.get(self, "disk_throughput")
 
@@ -13476,7 +13822,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> _builtins.str:
         """
-        Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -13509,8 +13855,8 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(d
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electable_specs` for additional `disk_iops` configuration details.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
-        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
+        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -13541,7 +13887,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(d
     @pulumi.getter(name="diskThroughput")
     def disk_throughput(self) -> _builtins.int:
         """
-        Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+        Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
         """
         return pulumi.get(self, "disk_throughput")
 
@@ -13549,7 +13895,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsResult(d
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> _builtins.str:
         """
-        Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -13582,8 +13928,8 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(di
         """
         :param _builtins.int disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. This parameter defaults to the cluster tier's standard IOPS value. See the resource documentation for `electable_specs` for additional `disk_iops` configuration details.
         :param _builtins.float disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
-        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
-        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        :param _builtins.int disk_throughput: Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
+        :param _builtins.str ebs_volume_type: Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         :param _builtins.str instance_size: Hardware specification for the instance sizes in this region.
         :param _builtins.int node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
@@ -13614,7 +13960,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(di
     @pulumi.getter(name="diskThroughput")
     def disk_throughput(self) -> _builtins.int:
         """
-        Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+        Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `disk_iops`; you can't configure it.
         """
         return pulumi.get(self, "disk_throughput")
 
@@ -13622,7 +13968,7 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsResult(di
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> _builtins.str:
         """
-        Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
+        Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electable_specs` for additional `ebs_volume_type` configuration details.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -16586,19 +16932,25 @@ class GetCloudBackupCollectionRestoreJobsResultIndexStatusResult(dict):
 class GetCloudBackupScheduleCopySettingResult(dict):
     def __init__(__self__, *,
                  cloud_provider: _builtins.str,
+                 copy_policy_items: Sequence['outputs.GetCloudBackupScheduleCopySettingCopyPolicyItemResult'],
                  frequencies: Sequence[_builtins.str],
+                 last_number_of_snapshots: _builtins.int,
                  region_name: _builtins.str,
                  should_copy_oplogs: _builtins.bool,
                  zone_id: _builtins.str):
         """
         :param _builtins.str cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
-        :param Sequence[_builtins.str] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
+        :param Sequence['GetCloudBackupScheduleCopySettingCopyPolicyItemArgs'] copy_policy_items: Copy-policy items when `copy_policy_items_enabled` is true. See below.
+        :param Sequence[_builtins.str] frequencies: (Deprecated) List that describes which types of snapshots to copy when `copy_policy_items_enabled` is false. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Use `copy_policy_items` or `last_number_of_snapshots` instead.
+        :param _builtins.int last_number_of_snapshots: Number of most recent snapshots copied when `copy_policy_items_enabled` is true.
         :param _builtins.str region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
         :param _builtins.bool should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         :param _builtins.str zone_id: Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster.
         """
         pulumi.set(__self__, "cloud_provider", cloud_provider)
+        pulumi.set(__self__, "copy_policy_items", copy_policy_items)
         pulumi.set(__self__, "frequencies", frequencies)
+        pulumi.set(__self__, "last_number_of_snapshots", last_number_of_snapshots)
         pulumi.set(__self__, "region_name", region_name)
         pulumi.set(__self__, "should_copy_oplogs", should_copy_oplogs)
         pulumi.set(__self__, "zone_id", zone_id)
@@ -16612,12 +16964,29 @@ class GetCloudBackupScheduleCopySettingResult(dict):
         return pulumi.get(self, "cloud_provider")
 
     @_builtins.property
+    @pulumi.getter(name="copyPolicyItems")
+    def copy_policy_items(self) -> Sequence['outputs.GetCloudBackupScheduleCopySettingCopyPolicyItemResult']:
+        """
+        Copy-policy items when `copy_policy_items_enabled` is true. See below.
+        """
+        return pulumi.get(self, "copy_policy_items")
+
+    @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_policy_items` or `last_number_of_snapshots`.""")
     def frequencies(self) -> Sequence[_builtins.str]:
         """
-        List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
+        (Deprecated) List that describes which types of snapshots to copy when `copy_policy_items_enabled` is false. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Use `copy_policy_items` or `last_number_of_snapshots` instead.
         """
         return pulumi.get(self, "frequencies")
+
+    @_builtins.property
+    @pulumi.getter(name="lastNumberOfSnapshots")
+    def last_number_of_snapshots(self) -> _builtins.int:
+        """
+        Number of most recent snapshots copied when `copy_policy_items_enabled` is true.
+        """
+        return pulumi.get(self, "last_number_of_snapshots")
 
     @_builtins.property
     @pulumi.getter(name="regionName")
@@ -16645,13 +17014,64 @@ class GetCloudBackupScheduleCopySettingResult(dict):
 
 
 @pulumi.output_type
+class GetCloudBackupScheduleCopySettingCopyPolicyItemResult(dict):
+    def __init__(__self__, *,
+                 frequency_type: _builtins.str,
+                 id: _builtins.str,
+                 retention_unit: _builtins.str,
+                 retention_value: _builtins.int):
+        """
+        :param _builtins.str frequency_type: Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+        :param _builtins.str id: Unique identifier of the copy policy item.
+        :param _builtins.str retention_unit: Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
+        :param _builtins.int retention_value: Value to associate with `retention_unit`.
+        """
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "retention_unit", retention_unit)
+        pulumi.set(__self__, "retention_value", retention_value)
+
+    @_builtins.property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> _builtins.str:
+        """
+        Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+        """
+        return pulumi.get(self, "frequency_type")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Unique identifier of the copy policy item.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> _builtins.str:
+        """
+        Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @_builtins.property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> _builtins.int:
+        """
+        Value to associate with `retention_unit`.
+        """
+        return pulumi.get(self, "retention_value")
+
+
+@pulumi.output_type
 class GetCloudBackupScheduleExportResult(dict):
     def __init__(__self__, *,
                  export_bucket_id: _builtins.str,
                  frequency_type: _builtins.str):
         """
         :param _builtins.str export_bucket_id: Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
-        :param _builtins.str frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        :param _builtins.str frequency_type: Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
         """
         pulumi.set(__self__, "export_bucket_id", export_bucket_id)
         pulumi.set(__self__, "frequency_type", frequency_type)
@@ -16668,7 +17088,7 @@ class GetCloudBackupScheduleExportResult(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> _builtins.str:
         """
-        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -16683,10 +17103,10 @@ class GetCloudBackupSchedulePolicyItemDailyResult(dict):
                  retention_value: _builtins.int):
         """
         :param _builtins.int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
-        :param _builtins.str frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
-        :param _builtins.str id: Unique identifier of the backup policy item.
-        :param _builtins.str retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
-        :param _builtins.int retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param _builtins.str frequency_type: Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+        :param _builtins.str id: Unique identifier of the copy policy item.
+        :param _builtins.str retention_unit: Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
+        :param _builtins.int retention_value: Value to associate with `retention_unit`.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
@@ -16706,7 +17126,7 @@ class GetCloudBackupSchedulePolicyItemDailyResult(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> _builtins.str:
         """
-        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -16714,7 +17134,7 @@ class GetCloudBackupSchedulePolicyItemDailyResult(dict):
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        Unique identifier of the backup policy item.
+        Unique identifier of the copy policy item.
         """
         return pulumi.get(self, "id")
 
@@ -16722,7 +17142,7 @@ class GetCloudBackupSchedulePolicyItemDailyResult(dict):
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> _builtins.str:
         """
-        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -16730,7 +17150,7 @@ class GetCloudBackupSchedulePolicyItemDailyResult(dict):
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> _builtins.int:
         """
-        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        Value to associate with `retention_unit`.
         """
         return pulumi.get(self, "retention_value")
 
@@ -16745,10 +17165,10 @@ class GetCloudBackupSchedulePolicyItemHourlyResult(dict):
                  retention_value: _builtins.int):
         """
         :param _builtins.int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
-        :param _builtins.str frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
-        :param _builtins.str id: Unique identifier of the backup policy item.
-        :param _builtins.str retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
-        :param _builtins.int retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param _builtins.str frequency_type: Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+        :param _builtins.str id: Unique identifier of the copy policy item.
+        :param _builtins.str retention_unit: Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
+        :param _builtins.int retention_value: Value to associate with `retention_unit`.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
@@ -16768,7 +17188,7 @@ class GetCloudBackupSchedulePolicyItemHourlyResult(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> _builtins.str:
         """
-        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -16776,7 +17196,7 @@ class GetCloudBackupSchedulePolicyItemHourlyResult(dict):
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        Unique identifier of the backup policy item.
+        Unique identifier of the copy policy item.
         """
         return pulumi.get(self, "id")
 
@@ -16784,7 +17204,7 @@ class GetCloudBackupSchedulePolicyItemHourlyResult(dict):
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> _builtins.str:
         """
-        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -16792,7 +17212,7 @@ class GetCloudBackupSchedulePolicyItemHourlyResult(dict):
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> _builtins.int:
         """
-        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        Value to associate with `retention_unit`.
         """
         return pulumi.get(self, "retention_value")
 
@@ -16807,10 +17227,10 @@ class GetCloudBackupSchedulePolicyItemMonthlyResult(dict):
                  retention_value: _builtins.int):
         """
         :param _builtins.int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
-        :param _builtins.str frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
-        :param _builtins.str id: Unique identifier of the backup policy item.
-        :param _builtins.str retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
-        :param _builtins.int retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param _builtins.str frequency_type: Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+        :param _builtins.str id: Unique identifier of the copy policy item.
+        :param _builtins.str retention_unit: Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
+        :param _builtins.int retention_value: Value to associate with `retention_unit`.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
@@ -16830,7 +17250,7 @@ class GetCloudBackupSchedulePolicyItemMonthlyResult(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> _builtins.str:
         """
-        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -16838,7 +17258,7 @@ class GetCloudBackupSchedulePolicyItemMonthlyResult(dict):
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        Unique identifier of the backup policy item.
+        Unique identifier of the copy policy item.
         """
         return pulumi.get(self, "id")
 
@@ -16846,7 +17266,7 @@ class GetCloudBackupSchedulePolicyItemMonthlyResult(dict):
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> _builtins.str:
         """
-        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -16854,7 +17274,7 @@ class GetCloudBackupSchedulePolicyItemMonthlyResult(dict):
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> _builtins.int:
         """
-        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        Value to associate with `retention_unit`.
         """
         return pulumi.get(self, "retention_value")
 
@@ -16869,10 +17289,10 @@ class GetCloudBackupSchedulePolicyItemWeeklyResult(dict):
                  retention_value: _builtins.int):
         """
         :param _builtins.int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
-        :param _builtins.str frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
-        :param _builtins.str id: Unique identifier of the backup policy item.
-        :param _builtins.str retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
-        :param _builtins.int retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param _builtins.str frequency_type: Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+        :param _builtins.str id: Unique identifier of the copy policy item.
+        :param _builtins.str retention_unit: Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
+        :param _builtins.int retention_value: Value to associate with `retention_unit`.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
@@ -16892,7 +17312,7 @@ class GetCloudBackupSchedulePolicyItemWeeklyResult(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> _builtins.str:
         """
-        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -16900,7 +17320,7 @@ class GetCloudBackupSchedulePolicyItemWeeklyResult(dict):
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        Unique identifier of the backup policy item.
+        Unique identifier of the copy policy item.
         """
         return pulumi.get(self, "id")
 
@@ -16908,7 +17328,7 @@ class GetCloudBackupSchedulePolicyItemWeeklyResult(dict):
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> _builtins.str:
         """
-        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -16916,7 +17336,7 @@ class GetCloudBackupSchedulePolicyItemWeeklyResult(dict):
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> _builtins.int:
         """
-        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        Value to associate with `retention_unit`.
         """
         return pulumi.get(self, "retention_value")
 
@@ -16931,10 +17351,10 @@ class GetCloudBackupSchedulePolicyItemYearlyResult(dict):
                  retention_value: _builtins.int):
         """
         :param _builtins.int frequency_interval: Desired frequency of the new backup policy item specified by `frequency_type` (yearly in this case). The supported values for yearly policies are
-        :param _builtins.str frequency_type: Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
-        :param _builtins.str id: Unique identifier of the backup policy item.
-        :param _builtins.str retention_unit: Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
-        :param _builtins.int retention_value: Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        :param _builtins.str frequency_type: Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+        :param _builtins.str id: Unique identifier of the copy policy item.
+        :param _builtins.str retention_unit: Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
+        :param _builtins.int retention_value: Value to associate with `retention_unit`.
         """
         pulumi.set(__self__, "frequency_interval", frequency_interval)
         pulumi.set(__self__, "frequency_type", frequency_type)
@@ -16954,7 +17374,7 @@ class GetCloudBackupSchedulePolicyItemYearlyResult(dict):
     @pulumi.getter(name="frequencyType")
     def frequency_type(self) -> _builtins.str:
         """
-        Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
         """
         return pulumi.get(self, "frequency_type")
 
@@ -16962,7 +17382,7 @@ class GetCloudBackupSchedulePolicyItemYearlyResult(dict):
     @pulumi.getter
     def id(self) -> _builtins.str:
         """
-        Unique identifier of the backup policy item.
+        Unique identifier of the copy policy item.
         """
         return pulumi.get(self, "id")
 
@@ -16970,7 +17390,7 @@ class GetCloudBackupSchedulePolicyItemYearlyResult(dict):
     @pulumi.getter(name="retentionUnit")
     def retention_unit(self) -> _builtins.str:
         """
-        Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+        Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
         """
         return pulumi.get(self, "retention_unit")
 
@@ -16978,7 +17398,7 @@ class GetCloudBackupSchedulePolicyItemYearlyResult(dict):
     @pulumi.getter(name="retentionValue")
     def retention_value(self) -> _builtins.int:
         """
-        Value to associate with `retention_unit`. Yearly policy must have retention of at least 1 year.
+        Value to associate with `retention_unit`.
         """
         return pulumi.get(self, "retention_value")
 
@@ -24847,6 +25267,287 @@ class GetMaintenanceWindowProtectedHourResult(dict):
 
 
 @pulumi.output_type
+class GetMcpConfigIpAccessListResult(dict):
+    def __init__(__self__, *,
+                 cidr_block: _builtins.str,
+                 created_at: _builtins.str,
+                 ip_address: _builtins.str,
+                 last_used_address: _builtins.str,
+                 last_used_at: _builtins.str,
+                 request_count: _builtins.int):
+        """
+        :param _builtins.str cidr_block: Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        :param _builtins.str created_at: Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str ip_address: Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        :param _builtins.str last_used_address: Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+        :param _builtins.str last_used_at: Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.int request_count: The number of requests that has originated from this network address.
+        """
+        pulumi.set(__self__, "cidr_block", cidr_block)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "last_used_address", last_used_address)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "request_count", request_count)
+
+    @_builtins.property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> _builtins.str:
+        """
+        Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> _builtins.str:
+        """
+        Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAddress")
+    def last_used_address(self) -> _builtins.str:
+        """
+        Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+        """
+        return pulumi.get(self, "last_used_address")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="requestCount")
+    def request_count(self) -> _builtins.int:
+        """
+        The number of requests that has originated from this network address.
+        """
+        return pulumi.get(self, "request_count")
+
+
+@pulumi.output_type
+class GetMcpConfigSecretsResultResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 expires_at: _builtins.str,
+                 id: _builtins.str,
+                 last_used_at: _builtins.str,
+                 masked_secret_value: _builtins.str):
+        """
+        :param _builtins.str created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str id: Unique 24-hexadecimal digit string that identifies the secret.
+        :param _builtins.str last_used_at: The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str masked_secret_value: The masked Service Account secret.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "expires_at", expires_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "masked_secret_value", masked_secret_value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> _builtins.str:
+        """
+        The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="maskedSecretValue")
+    def masked_secret_value(self) -> _builtins.str:
+        """
+        The masked Service Account secret.
+        """
+        return pulumi.get(self, "masked_secret_value")
+
+
+@pulumi.output_type
+class GetMcpConfigsResultResult(dict):
+    def __init__(__self__, *,
+                 client_id: _builtins.str,
+                 egress_client_id: _builtins.str,
+                 ip_access_lists: Sequence['outputs.GetMcpConfigsResultIpAccessListResult'],
+                 mcp_config_id: _builtins.str,
+                 mcp_config_name: _builtins.str,
+                 roles: Sequence[_builtins.str]):
+        """
+        :param _builtins.str client_id: Unique identifier for the Service Account client associated with this MCP configuration. Use this Service Account to connect to the Atlas Remote MCP.
+        :param _builtins.str egress_client_id: Unique identifier for the egress Service Account client associated with this MCP configuration. This Service Account is managed by MongoDB Atlas.
+        :param Sequence['GetMcpConfigsResultIpAccessListArgs'] ip_access_lists: List of IP access list entries that define allowed source addresses for this MCP configuration.
+        :param _builtins.str mcp_config_id: Unique identifier that identifies this MCP configuration.
+        :param _builtins.str mcp_config_name: Human-readable name that identifies this MCP configuration.
+        :param Sequence[_builtins.str] roles: List of organization roles associated with this MCP configuration.
+        """
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "egress_client_id", egress_client_id)
+        pulumi.set(__self__, "ip_access_lists", ip_access_lists)
+        pulumi.set(__self__, "mcp_config_id", mcp_config_id)
+        pulumi.set(__self__, "mcp_config_name", mcp_config_name)
+        pulumi.set(__self__, "roles", roles)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        """
+        Unique identifier for the Service Account client associated with this MCP configuration. Use this Service Account to connect to the Atlas Remote MCP.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="egressClientId")
+    def egress_client_id(self) -> _builtins.str:
+        """
+        Unique identifier for the egress Service Account client associated with this MCP configuration. This Service Account is managed by MongoDB Atlas.
+        """
+        return pulumi.get(self, "egress_client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAccessLists")
+    def ip_access_lists(self) -> Sequence['outputs.GetMcpConfigsResultIpAccessListResult']:
+        """
+        List of IP access list entries that define allowed source addresses for this MCP configuration.
+        """
+        return pulumi.get(self, "ip_access_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="mcpConfigId")
+    def mcp_config_id(self) -> _builtins.str:
+        """
+        Unique identifier that identifies this MCP configuration.
+        """
+        return pulumi.get(self, "mcp_config_id")
+
+    @_builtins.property
+    @pulumi.getter(name="mcpConfigName")
+    def mcp_config_name(self) -> _builtins.str:
+        """
+        Human-readable name that identifies this MCP configuration.
+        """
+        return pulumi.get(self, "mcp_config_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> Sequence[_builtins.str]:
+        """
+        List of organization roles associated with this MCP configuration.
+        """
+        return pulumi.get(self, "roles")
+
+
+@pulumi.output_type
+class GetMcpConfigsResultIpAccessListResult(dict):
+    def __init__(__self__, *,
+                 cidr_block: _builtins.str,
+                 created_at: _builtins.str,
+                 ip_address: _builtins.str,
+                 last_used_address: _builtins.str,
+                 last_used_at: _builtins.str,
+                 request_count: _builtins.int):
+        """
+        :param _builtins.str cidr_block: Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        :param _builtins.str created_at: Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str ip_address: Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        :param _builtins.str last_used_address: Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+        :param _builtins.str last_used_at: Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.int request_count: The number of requests that has originated from this network address.
+        """
+        pulumi.set(__self__, "cidr_block", cidr_block)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "last_used_address", last_used_address)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "request_count", request_count)
+
+    @_builtins.property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> _builtins.str:
+        """
+        Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> _builtins.str:
+        """
+        Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAddress")
+    def last_used_address(self) -> _builtins.str:
+        """
+        Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+        """
+        return pulumi.get(self, "last_used_address")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="requestCount")
+    def request_count(self) -> _builtins.int:
+        """
+        The number of requests that has originated from this network address.
+        """
+        return pulumi.get(self, "request_count")
+
+
+@pulumi.output_type
 class GetMetricIntegrationHeadersRedactedResult(dict):
     def __init__(__self__, *,
                  name: _builtins.str,
@@ -25778,6 +26479,35 @@ class GetOnlineArchivesResultScheduleResult(dict):
 
 
 @pulumi.output_type
+class GetOrganizationCustomSessionTimeoutResult(dict):
+    def __init__(__self__, *,
+                 absolute_session_timeout_in_seconds: _builtins.int,
+                 idle_session_timeout_in_seconds: _builtins.int):
+        """
+        :param _builtins.int absolute_session_timeout_in_seconds: (Optional) Absolute session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom absolute session timeout.
+        :param _builtins.int idle_session_timeout_in_seconds: (Optional) Idle session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom idle session timeout. When this value is absent, Atlas applies the environment default, which is no idle timeout for Atlas Commercial and 600 seconds (10 minutes) for Atlas for Government.
+        """
+        pulumi.set(__self__, "absolute_session_timeout_in_seconds", absolute_session_timeout_in_seconds)
+        pulumi.set(__self__, "idle_session_timeout_in_seconds", idle_session_timeout_in_seconds)
+
+    @_builtins.property
+    @pulumi.getter(name="absoluteSessionTimeoutInSeconds")
+    def absolute_session_timeout_in_seconds(self) -> _builtins.int:
+        """
+        (Optional) Absolute session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom absolute session timeout.
+        """
+        return pulumi.get(self, "absolute_session_timeout_in_seconds")
+
+    @_builtins.property
+    @pulumi.getter(name="idleSessionTimeoutInSeconds")
+    def idle_session_timeout_in_seconds(self) -> _builtins.int:
+        """
+        (Optional) Idle session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom idle session timeout. When this value is absent, Atlas applies the environment default, which is no idle timeout for Atlas Commercial and 600 seconds (10 minutes) for Atlas for Government.
+        """
+        return pulumi.get(self, "idle_session_timeout_in_seconds")
+
+
+@pulumi.output_type
 class GetOrganizationLinkResult(dict):
     def __init__(__self__, *,
                  href: _builtins.str,
@@ -25999,35 +26729,41 @@ class GetOrganizationUserRoleProjectRoleAssignmentResult(dict):
 class GetOrganizationsResultResult(dict):
     def __init__(__self__, *,
                  api_access_list_required: _builtins.bool,
+                 custom_session_timeouts: Sequence['outputs.GetOrganizationsResultCustomSessionTimeoutResult'],
                  gen_ai_features_enabled: _builtins.bool,
                  id: _builtins.str,
                  is_deleted: _builtins.bool,
                  links: Sequence['outputs.GetOrganizationsResultLinkResult'],
                  multi_factor_auth_required: _builtins.bool,
                  name: _builtins.str,
+                 operations_contact: _builtins.str,
                  restrict_employee_access: _builtins.bool,
                  security_contact: _builtins.str,
                  skip_default_alerts_settings: _builtins.bool,
                  users: Sequence['outputs.GetOrganizationsResultUserResult']):
         """
         :param _builtins.bool api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+        :param Sequence['GetOrganizationsResultCustomSessionTimeoutArgs'] custom_session_timeouts: Block that specifies the custom session timeout settings for the organization. See Custom Session Timeouts.
         :param _builtins.bool gen_ai_features_enabled: Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
         :param _builtins.str id: Autogenerated Unique ID for this data source.
         :param _builtins.bool is_deleted: Flag that indicates whether this organization has been deleted.
         :param _builtins.bool multi_factor_auth_required: Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
         :param _builtins.str name: Human-readable label that identifies the organization.
+        :param _builtins.str operations_contact: String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals.
         :param _builtins.bool restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         :param _builtins.str security_contact: String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
         :param _builtins.bool skip_default_alerts_settings: Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
         :param Sequence['GetOrganizationsResultUserArgs'] users: Returns list of all pending and active MongoDB Cloud users associated with the specified organization.
         """
         pulumi.set(__self__, "api_access_list_required", api_access_list_required)
+        pulumi.set(__self__, "custom_session_timeouts", custom_session_timeouts)
         pulumi.set(__self__, "gen_ai_features_enabled", gen_ai_features_enabled)
         pulumi.set(__self__, "id", id)
         pulumi.set(__self__, "is_deleted", is_deleted)
         pulumi.set(__self__, "links", links)
         pulumi.set(__self__, "multi_factor_auth_required", multi_factor_auth_required)
         pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "operations_contact", operations_contact)
         pulumi.set(__self__, "restrict_employee_access", restrict_employee_access)
         pulumi.set(__self__, "security_contact", security_contact)
         pulumi.set(__self__, "skip_default_alerts_settings", skip_default_alerts_settings)
@@ -26040,6 +26776,14 @@ class GetOrganizationsResultResult(dict):
         Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
         """
         return pulumi.get(self, "api_access_list_required")
+
+    @_builtins.property
+    @pulumi.getter(name="customSessionTimeouts")
+    def custom_session_timeouts(self) -> Sequence['outputs.GetOrganizationsResultCustomSessionTimeoutResult']:
+        """
+        Block that specifies the custom session timeout settings for the organization. See Custom Session Timeouts.
+        """
+        return pulumi.get(self, "custom_session_timeouts")
 
     @_builtins.property
     @pulumi.getter(name="genAiFeaturesEnabled")
@@ -26087,6 +26831,14 @@ class GetOrganizationsResultResult(dict):
         return pulumi.get(self, "name")
 
     @_builtins.property
+    @pulumi.getter(name="operationsContact")
+    def operations_contact(self) -> _builtins.str:
+        """
+        String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals.
+        """
+        return pulumi.get(self, "operations_contact")
+
+    @_builtins.property
     @pulumi.getter(name="restrictEmployeeAccess")
     def restrict_employee_access(self) -> _builtins.bool:
         """
@@ -26117,6 +26869,35 @@ class GetOrganizationsResultResult(dict):
         Returns list of all pending and active MongoDB Cloud users associated with the specified organization.
         """
         return pulumi.get(self, "users")
+
+
+@pulumi.output_type
+class GetOrganizationsResultCustomSessionTimeoutResult(dict):
+    def __init__(__self__, *,
+                 absolute_session_timeout_in_seconds: _builtins.int,
+                 idle_session_timeout_in_seconds: _builtins.int):
+        """
+        :param _builtins.int absolute_session_timeout_in_seconds: Absolute session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom absolute session timeout.
+        :param _builtins.int idle_session_timeout_in_seconds: Idle session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom idle session timeout. When this value is absent, Atlas applies the environment default, which is no idle timeout for Atlas Commercial and 600 seconds (10 minutes) for Atlas for Government.
+        """
+        pulumi.set(__self__, "absolute_session_timeout_in_seconds", absolute_session_timeout_in_seconds)
+        pulumi.set(__self__, "idle_session_timeout_in_seconds", idle_session_timeout_in_seconds)
+
+    @_builtins.property
+    @pulumi.getter(name="absoluteSessionTimeoutInSeconds")
+    def absolute_session_timeout_in_seconds(self) -> _builtins.int:
+        """
+        Absolute session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom absolute session timeout.
+        """
+        return pulumi.get(self, "absolute_session_timeout_in_seconds")
+
+    @_builtins.property
+    @pulumi.getter(name="idleSessionTimeoutInSeconds")
+    def idle_session_timeout_in_seconds(self) -> _builtins.int:
+        """
+        Idle session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom idle session timeout. When this value is absent, Atlas applies the environment default, which is no idle timeout for Atlas Commercial and 600 seconds (10 minutes) for Atlas for Government.
+        """
+        return pulumi.get(self, "idle_session_timeout_in_seconds")
 
 
 @pulumi.output_type
@@ -26945,6 +27726,287 @@ class GetProjectLimitResult(dict):
 
 
 @pulumi.output_type
+class GetProjectMcpConfigIpAccessListResult(dict):
+    def __init__(__self__, *,
+                 cidr_block: _builtins.str,
+                 created_at: _builtins.str,
+                 ip_address: _builtins.str,
+                 last_used_address: _builtins.str,
+                 last_used_at: _builtins.str,
+                 request_count: _builtins.int):
+        """
+        :param _builtins.str cidr_block: Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        :param _builtins.str created_at: Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str ip_address: Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        :param _builtins.str last_used_address: Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+        :param _builtins.str last_used_at: Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.int request_count: The number of requests that has originated from this network address.
+        """
+        pulumi.set(__self__, "cidr_block", cidr_block)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "last_used_address", last_used_address)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "request_count", request_count)
+
+    @_builtins.property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> _builtins.str:
+        """
+        Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> _builtins.str:
+        """
+        Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAddress")
+    def last_used_address(self) -> _builtins.str:
+        """
+        Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+        """
+        return pulumi.get(self, "last_used_address")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="requestCount")
+    def request_count(self) -> _builtins.int:
+        """
+        The number of requests that has originated from this network address.
+        """
+        return pulumi.get(self, "request_count")
+
+
+@pulumi.output_type
+class GetProjectMcpConfigSecretsResultResult(dict):
+    def __init__(__self__, *,
+                 created_at: _builtins.str,
+                 expires_at: _builtins.str,
+                 id: _builtins.str,
+                 last_used_at: _builtins.str,
+                 masked_secret_value: _builtins.str):
+        """
+        :param _builtins.str created_at: The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str expires_at: The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str id: Unique 24-hexadecimal digit string that identifies the secret.
+        :param _builtins.str last_used_at: The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str masked_secret_value: The masked Service Account secret.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "expires_at", expires_at)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "masked_secret_value", masked_secret_value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="expiresAt")
+    def expires_at(self) -> _builtins.str:
+        """
+        The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "expires_at")
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> _builtins.str:
+        """
+        Unique 24-hexadecimal digit string that identifies the secret.
+        """
+        return pulumi.get(self, "id")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="maskedSecretValue")
+    def masked_secret_value(self) -> _builtins.str:
+        """
+        The masked Service Account secret.
+        """
+        return pulumi.get(self, "masked_secret_value")
+
+
+@pulumi.output_type
+class GetProjectMcpConfigsResultResult(dict):
+    def __init__(__self__, *,
+                 client_id: _builtins.str,
+                 egress_client_id: _builtins.str,
+                 ip_access_lists: Sequence['outputs.GetProjectMcpConfigsResultIpAccessListResult'],
+                 mcp_config_id: _builtins.str,
+                 mcp_config_name: _builtins.str,
+                 roles: Sequence[_builtins.str]):
+        """
+        :param _builtins.str client_id: Unique identifier for the Service Account client associated with this MCP configuration. Use this Service Account to connect to the Atlas Remote MCP.
+        :param _builtins.str egress_client_id: Unique identifier for the egress Service Account client associated with this MCP configuration. This Service Account is managed by MongoDB Atlas.
+        :param Sequence['GetProjectMcpConfigsResultIpAccessListArgs'] ip_access_lists: List of IP access list entries that define allowed source addresses for this MCP configuration.
+        :param _builtins.str mcp_config_id: Unique identifier that identifies this MCP configuration.
+        :param _builtins.str mcp_config_name: Human-readable name that identifies this MCP configuration.
+        :param Sequence[_builtins.str] roles: List of project roles associated with this MCP configuration.
+        """
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "egress_client_id", egress_client_id)
+        pulumi.set(__self__, "ip_access_lists", ip_access_lists)
+        pulumi.set(__self__, "mcp_config_id", mcp_config_id)
+        pulumi.set(__self__, "mcp_config_name", mcp_config_name)
+        pulumi.set(__self__, "roles", roles)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> _builtins.str:
+        """
+        Unique identifier for the Service Account client associated with this MCP configuration. Use this Service Account to connect to the Atlas Remote MCP.
+        """
+        return pulumi.get(self, "client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="egressClientId")
+    def egress_client_id(self) -> _builtins.str:
+        """
+        Unique identifier for the egress Service Account client associated with this MCP configuration. This Service Account is managed by MongoDB Atlas.
+        """
+        return pulumi.get(self, "egress_client_id")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAccessLists")
+    def ip_access_lists(self) -> Sequence['outputs.GetProjectMcpConfigsResultIpAccessListResult']:
+        """
+        List of IP access list entries that define allowed source addresses for this MCP configuration.
+        """
+        return pulumi.get(self, "ip_access_lists")
+
+    @_builtins.property
+    @pulumi.getter(name="mcpConfigId")
+    def mcp_config_id(self) -> _builtins.str:
+        """
+        Unique identifier that identifies this MCP configuration.
+        """
+        return pulumi.get(self, "mcp_config_id")
+
+    @_builtins.property
+    @pulumi.getter(name="mcpConfigName")
+    def mcp_config_name(self) -> _builtins.str:
+        """
+        Human-readable name that identifies this MCP configuration.
+        """
+        return pulumi.get(self, "mcp_config_name")
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> Sequence[_builtins.str]:
+        """
+        List of project roles associated with this MCP configuration.
+        """
+        return pulumi.get(self, "roles")
+
+
+@pulumi.output_type
+class GetProjectMcpConfigsResultIpAccessListResult(dict):
+    def __init__(__self__, *,
+                 cidr_block: _builtins.str,
+                 created_at: _builtins.str,
+                 ip_address: _builtins.str,
+                 last_used_address: _builtins.str,
+                 last_used_at: _builtins.str,
+                 request_count: _builtins.int):
+        """
+        :param _builtins.str cidr_block: Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        :param _builtins.str created_at: Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.str ip_address: Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        :param _builtins.str last_used_address: Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+        :param _builtins.str last_used_at: Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param _builtins.int request_count: The number of requests that has originated from this network address.
+        """
+        pulumi.set(__self__, "cidr_block", cidr_block)
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "ip_address", ip_address)
+        pulumi.set(__self__, "last_used_address", last_used_address)
+        pulumi.set(__self__, "last_used_at", last_used_at)
+        pulumi.set(__self__, "request_count", request_count)
+
+    @_builtins.property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> _builtins.str:
+        """
+        Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> _builtins.str:
+        """
+        Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> _builtins.str:
+        """
+        Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAddress")
+    def last_used_address(self) -> _builtins.str:
+        """
+        Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+        """
+        return pulumi.get(self, "last_used_address")
+
+    @_builtins.property
+    @pulumi.getter(name="lastUsedAt")
+    def last_used_at(self) -> _builtins.str:
+        """
+        Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "last_used_at")
+
+    @_builtins.property
+    @pulumi.getter(name="requestCount")
+    def request_count(self) -> _builtins.int:
+        """
+        The number of requests that has originated from this network address.
+        """
+        return pulumi.get(self, "request_count")
+
+
+@pulumi.output_type
 class GetProjectServiceAccountAccessListEntriesResultResult(dict):
     def __init__(__self__, *,
                  cidr_block: _builtins.str,
@@ -27109,7 +28171,8 @@ class GetProjectServiceAccountsResultResult(dict):
                  description: _builtins.str,
                  name: _builtins.str,
                  roles: Sequence[_builtins.str],
-                 secrets: Sequence['outputs.GetProjectServiceAccountsResultSecretResult']):
+                 secrets: Sequence['outputs.GetProjectServiceAccountsResultSecretResult'],
+                 system_managed: _builtins.bool):
         """
         :param _builtins.str client_id: The Client ID of the Service Account.
         :param _builtins.str created_at: The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
@@ -27117,6 +28180,7 @@ class GetProjectServiceAccountsResultResult(dict):
         :param _builtins.str name: Human-readable name for the Service Account.
         :param Sequence[_builtins.str] roles: A list of Project roles associated with the Service Account.
         :param Sequence['GetProjectServiceAccountsResultSecretArgs'] secrets: A list of secrets associated with the specified Service Account.
+        :param _builtins.bool system_managed: Indicates whether the Service Account is system managed.
         """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "created_at", created_at)
@@ -27124,6 +28188,7 @@ class GetProjectServiceAccountsResultResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "roles", roles)
         pulumi.set(__self__, "secrets", secrets)
+        pulumi.set(__self__, "system_managed", system_managed)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -27172,6 +28237,14 @@ class GetProjectServiceAccountsResultResult(dict):
         A list of secrets associated with the specified Service Account.
         """
         return pulumi.get(self, "secrets")
+
+    @_builtins.property
+    @pulumi.getter(name="systemManaged")
+    def system_managed(self) -> _builtins.bool:
+        """
+        Indicates whether the Service Account is system managed.
+        """
+        return pulumi.get(self, "system_managed")
 
 
 @pulumi.output_type
@@ -29318,7 +30391,8 @@ class GetServiceAccountsResultResult(dict):
                  description: _builtins.str,
                  name: _builtins.str,
                  roles: Sequence[_builtins.str],
-                 secrets: Sequence['outputs.GetServiceAccountsResultSecretResult']):
+                 secrets: Sequence['outputs.GetServiceAccountsResultSecretResult'],
+                 system_managed: _builtins.bool):
         """
         :param _builtins.str client_id: The Client ID of the Service Account.
         :param _builtins.str created_at: The date that the Service Account was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
@@ -29326,6 +30400,7 @@ class GetServiceAccountsResultResult(dict):
         :param _builtins.str name: Human-readable name for the Service Account.
         :param Sequence[_builtins.str] roles: A list of Organization roles associated with the Service Account.
         :param Sequence['GetServiceAccountsResultSecretArgs'] secrets: A list of secrets associated with the specified Service Account.
+        :param _builtins.bool system_managed: Indicates whether the Service Account is system managed.
         """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "created_at", created_at)
@@ -29333,6 +30408,7 @@ class GetServiceAccountsResultResult(dict):
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "roles", roles)
         pulumi.set(__self__, "secrets", secrets)
+        pulumi.set(__self__, "system_managed", system_managed)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -29381,6 +30457,14 @@ class GetServiceAccountsResultResult(dict):
         A list of secrets associated with the specified Service Account.
         """
         return pulumi.get(self, "secrets")
+
+    @_builtins.property
+    @pulumi.getter(name="systemManaged")
+    def system_managed(self) -> _builtins.bool:
+        """
+        Indicates whether the Service Account is system managed.
+        """
+        return pulumi.get(self, "system_managed")
 
 
 @pulumi.output_type

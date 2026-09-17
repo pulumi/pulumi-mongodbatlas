@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.StreamProcessorOptionsAutoscaling;
 import com.pulumi.mongodbatlas.outputs.StreamProcessorOptionsDlq;
+import java.lang.Boolean;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -22,6 +23,11 @@ public final class StreamProcessorOptions {
      * 
      */
     private @Nullable StreamProcessorOptionsDlq dlq;
+    /**
+     * @return Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
+     * 
+     */
+    private @Nullable Boolean resumeFromCheckpoint;
 
     private StreamProcessorOptions() {}
     /**
@@ -38,6 +44,13 @@ public final class StreamProcessorOptions {
     public Optional<StreamProcessorOptionsDlq> dlq() {
         return Optional.ofNullable(this.dlq);
     }
+    /**
+     * @return Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
+     * 
+     */
+    public Optional<Boolean> resumeFromCheckpoint() {
+        return Optional.ofNullable(this.resumeFromCheckpoint);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -50,11 +63,13 @@ public final class StreamProcessorOptions {
     public static final class Builder {
         private @Nullable StreamProcessorOptionsAutoscaling autoscaling;
         private @Nullable StreamProcessorOptionsDlq dlq;
+        private @Nullable Boolean resumeFromCheckpoint;
         public Builder() {}
         public Builder(StreamProcessorOptions defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.autoscaling = defaults.autoscaling;
     	      this.dlq = defaults.dlq;
+    	      this.resumeFromCheckpoint = defaults.resumeFromCheckpoint;
         }
 
         @CustomType.Setter
@@ -69,10 +84,17 @@ public final class StreamProcessorOptions {
             this.dlq = dlq;
             return this;
         }
+        @CustomType.Setter
+        public Builder resumeFromCheckpoint(@Nullable Boolean resumeFromCheckpoint) {
+
+            this.resumeFromCheckpoint = resumeFromCheckpoint;
+            return this;
+        }
         public StreamProcessorOptions build() {
             final var _resultValue = new StreamProcessorOptions();
             _resultValue.autoscaling = autoscaling;
             _resultValue.dlq = dlq;
+            _resultValue.resumeFromCheckpoint = resumeFromCheckpoint;
             return _resultValue;
         }
     }

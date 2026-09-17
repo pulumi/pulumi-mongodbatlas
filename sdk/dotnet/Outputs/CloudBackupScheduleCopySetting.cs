@@ -18,9 +18,17 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? CloudProvider;
         /// <summary>
-        /// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+        /// Copy-policy items when `CopyPolicyItemsEnabled` is true. Mutually exclusive with `Frequencies` and `LastNumberOfSnapshots`. See below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.CloudBackupScheduleCopySettingCopyPolicyItem> CopyPolicyItems;
+        /// <summary>
+        /// List that describes which types of snapshots to copy when `CopyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `CopyPolicyItems` and `LastNumberOfSnapshots` on the same entry. You can switch an entry from `Frequencies` to `CopyPolicyItems` or `LastNumberOfSnapshots` in one apply; the switch back is not possible because `CopyPolicyItemsEnabled` cannot be turned off once it is `True`. Use `CopyPolicyItems` or `LastNumberOfSnapshots` instead.
         /// </summary>
         public readonly ImmutableArray<string> Frequencies;
+        /// <summary>
+        /// Number of most recent snapshots to copy, from 1 to 500, when `CopyPolicyItemsEnabled` is true. Mutually exclusive with `Frequencies` and `CopyPolicyItems`.
+        /// </summary>
+        public readonly int? LastNumberOfSnapshots;
         /// <summary>
         /// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
         /// </summary>
@@ -38,7 +46,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         private CloudBackupScheduleCopySetting(
             string? cloudProvider,
 
+            ImmutableArray<Outputs.CloudBackupScheduleCopySettingCopyPolicyItem> copyPolicyItems,
+
             ImmutableArray<string> frequencies,
+
+            int? lastNumberOfSnapshots,
 
             string? regionName,
 
@@ -47,7 +59,9 @@ namespace Pulumi.Mongodbatlas.Outputs
             string? zoneId)
         {
             CloudProvider = cloudProvider;
+            CopyPolicyItems = copyPolicyItems;
             Frequencies = frequencies;
+            LastNumberOfSnapshots = lastNumberOfSnapshots;
             RegionName = regionName;
             ShouldCopyOplogs = shouldCopyOplogs;
             ZoneId = zoneId;

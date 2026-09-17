@@ -21,59 +21,41 @@ __all__ = ['MaintenanceWindowArgs', 'MaintenanceWindow']
 @pulumi.input_type
 class MaintenanceWindowArgs:
     def __init__(__self__, *,
-                 day_of_week: pulumi.Input[_builtins.int],
-                 hour_of_day: pulumi.Input[_builtins.int],
                  project_id: pulumi.Input[_builtins.str],
                  auto_defer: pulumi.Input[Optional[_builtins.bool]] = None,
                  auto_defer_once_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 day_of_week: pulumi.Input[Optional[_builtins.int]] = None,
                  defer: pulumi.Input[Optional[_builtins.bool]] = None,
-                 protected_hours: pulumi.Input[Optional['MaintenanceWindowProtectedHoursArgs']] = None):
+                 hour_of_day: pulumi.Input[Optional[_builtins.int]] = None,
+                 protected_hours: pulumi.Input[Optional['MaintenanceWindowProtectedHoursArgs']] = None,
+                 wave_assignment: pulumi.Input[Optional[_builtins.int]] = None):
         """
         The set of arguments for constructing a MaintenanceWindow resource.
 
-        :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
-        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] auto_defer: Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `auto_defer_once_enabled` instead.** <!-- see CLOUDP-375465 for details -->
         :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `auto_defer` is used to toggle the underlying flag, it will also affect the value of this attribute.
+        :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hour_of_day`. Omit both to set a `wave_assignment` without a maintenance window.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
+        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `day_of_week`. Omit both to set a `wave_assignment` without a maintenance window.
         :param pulumi.Input['MaintenanceWindowProtectedHoursArgs'] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+        :param pulumi.Input[_builtins.int] wave_assignment: Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `wave_assignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
         """
-        pulumi.set(__self__, "day_of_week", day_of_week)
-        pulumi.set(__self__, "hour_of_day", hour_of_day)
         pulumi.set(__self__, "project_id", project_id)
         if auto_defer is not None:
             pulumi.set(__self__, "auto_defer", auto_defer)
         if auto_defer_once_enabled is not None:
             pulumi.set(__self__, "auto_defer_once_enabled", auto_defer_once_enabled)
+        if day_of_week is not None:
+            pulumi.set(__self__, "day_of_week", day_of_week)
         if defer is not None:
             pulumi.set(__self__, "defer", defer)
+        if hour_of_day is not None:
+            pulumi.set(__self__, "hour_of_day", hour_of_day)
         if protected_hours is not None:
             pulumi.set(__self__, "protected_hours", protected_hours)
-
-    @_builtins.property
-    @pulumi.getter(name="dayOfWeek")
-    def day_of_week(self) -> pulumi.Input[_builtins.int]:
-        """
-        Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
-        """
-        return pulumi.get(self, "day_of_week")
-
-    @day_of_week.setter
-    def day_of_week(self, value: pulumi.Input[_builtins.int]):
-        pulumi.set(self, "day_of_week", value)
-
-    @_builtins.property
-    @pulumi.getter(name="hourOfDay")
-    def hour_of_day(self) -> pulumi.Input[_builtins.int]:
-        """
-        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
-        """
-        return pulumi.get(self, "hour_of_day")
-
-    @hour_of_day.setter
-    def hour_of_day(self, value: pulumi.Input[_builtins.int]):
-        pulumi.set(self, "hour_of_day", value)
+        if wave_assignment is not None:
+            pulumi.set(__self__, "wave_assignment", wave_assignment)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -112,6 +94,18 @@ class MaintenanceWindowArgs:
         pulumi.set(self, "auto_defer_once_enabled", value)
 
     @_builtins.property
+    @pulumi.getter(name="dayOfWeek")
+    def day_of_week(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hour_of_day`. Omit both to set a `wave_assignment` without a maintenance window.
+        """
+        return pulumi.get(self, "day_of_week")
+
+    @day_of_week.setter
+    def day_of_week(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "day_of_week", value)
+
+    @_builtins.property
     @pulumi.getter
     def defer(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
@@ -124,6 +118,18 @@ class MaintenanceWindowArgs:
         pulumi.set(self, "defer", value)
 
     @_builtins.property
+    @pulumi.getter(name="hourOfDay")
+    def hour_of_day(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `day_of_week`. Omit both to set a `wave_assignment` without a maintenance window.
+        """
+        return pulumi.get(self, "hour_of_day")
+
+    @hour_of_day.setter
+    def hour_of_day(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "hour_of_day", value)
+
+    @_builtins.property
     @pulumi.getter(name="protectedHours")
     def protected_hours(self) -> pulumi.Input[Optional['MaintenanceWindowProtectedHoursArgs']]:
         """
@@ -134,6 +140,18 @@ class MaintenanceWindowArgs:
     @protected_hours.setter
     def protected_hours(self, value: pulumi.Input[Optional['MaintenanceWindowProtectedHoursArgs']]):
         pulumi.set(self, "protected_hours", value)
+
+    @_builtins.property
+    @pulumi.getter(name="waveAssignment")
+    def wave_assignment(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `wave_assignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+        """
+        return pulumi.get(self, "wave_assignment")
+
+    @wave_assignment.setter
+    def wave_assignment(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "wave_assignment", value)
 
 
 @pulumi.input_type
@@ -148,20 +166,22 @@ class _MaintenanceWindowState:
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  protected_hours: pulumi.Input[Optional['MaintenanceWindowProtectedHoursArgs']] = None,
                  start_asap: pulumi.Input[Optional[_builtins.bool]] = None,
-                 time_zone_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 time_zone_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 wave_assignment: pulumi.Input[Optional[_builtins.int]] = None):
         """
         Input properties used for looking up and filtering MaintenanceWindow resources.
 
         :param pulumi.Input[_builtins.bool] auto_defer: Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `auto_defer_once_enabled` instead.** <!-- see CLOUDP-375465 for details -->
         :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `auto_defer` is used to toggle the underlying flag, it will also affect the value of this attribute.
-        :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+        :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hour_of_day`. Omit both to set a `wave_assignment` without a maintenance window.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
-        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
+        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `day_of_week`. Omit both to set a `wave_assignment` without a maintenance window.
         :param pulumi.Input[_builtins.int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
         :param pulumi.Input['MaintenanceWindowProtectedHoursArgs'] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
         :param pulumi.Input[_builtins.bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
         :param pulumi.Input[_builtins.str] time_zone_id: Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+        :param pulumi.Input[_builtins.int] wave_assignment: Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `wave_assignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
         """
         if auto_defer is not None:
             pulumi.set(__self__, "auto_defer", auto_defer)
@@ -183,6 +203,8 @@ class _MaintenanceWindowState:
             pulumi.set(__self__, "start_asap", start_asap)
         if time_zone_id is not None:
             pulumi.set(__self__, "time_zone_id", time_zone_id)
+        if wave_assignment is not None:
+            pulumi.set(__self__, "wave_assignment", wave_assignment)
 
     @_builtins.property
     @pulumi.getter(name="autoDefer")
@@ -212,7 +234,7 @@ class _MaintenanceWindowState:
     @pulumi.getter(name="dayOfWeek")
     def day_of_week(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+        Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hour_of_day`. Omit both to set a `wave_assignment` without a maintenance window.
         """
         return pulumi.get(self, "day_of_week")
 
@@ -236,7 +258,7 @@ class _MaintenanceWindowState:
     @pulumi.getter(name="hourOfDay")
     def hour_of_day(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
+        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `day_of_week`. Omit both to set a `wave_assignment` without a maintenance window.
         """
         return pulumi.get(self, "hour_of_day")
 
@@ -304,6 +326,18 @@ class _MaintenanceWindowState:
     def time_zone_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "time_zone_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="waveAssignment")
+    def wave_assignment(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `wave_assignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+        """
+        return pulumi.get(self, "wave_assignment")
+
+    @wave_assignment.setter
+    def wave_assignment(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "wave_assignment", value)
+
 
 @pulumi.type_token("mongodbatlas:index/maintenanceWindow:MaintenanceWindow")
 class MaintenanceWindow(pulumi.CustomResource):
@@ -318,6 +352,7 @@ class MaintenanceWindow(pulumi.CustomResource):
                  hour_of_day: pulumi.Input[Optional[_builtins.int]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  protected_hours: pulumi.Input[Optional[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
+                 wave_assignment: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
         `MaintenanceWindow` provides a resource to schedule the maintenance window for your MongoDB Atlas Project and/or set to defer a scheduled maintenance up to two times. Please refer to [Maintenance Windows](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/#configure-maintenance-window) documentation for more details.
@@ -393,18 +428,19 @@ class MaintenanceWindow(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/maintenanceWindow:MaintenanceWindow test 5d0f1f73cf09a29120e173cf
         ```
 
-        For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/maintenance-windows/)
+        For more information on Maintenance Windows, see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-maintenance-windows)
 
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] auto_defer: Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `auto_defer_once_enabled` instead.** <!-- see CLOUDP-375465 for details -->
         :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `auto_defer` is used to toggle the underlying flag, it will also affect the value of this attribute.
-        :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+        :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hour_of_day`. Omit both to set a `wave_assignment` without a maintenance window.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
-        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
+        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `day_of_week`. Omit both to set a `wave_assignment` without a maintenance window.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
         :param pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+        :param pulumi.Input[_builtins.int] wave_assignment: Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `wave_assignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
         """
         ...
     @overload
@@ -486,7 +522,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         $ pulumi import mongodbatlas:index/maintenanceWindow:MaintenanceWindow test 5d0f1f73cf09a29120e173cf
         ```
 
-        For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/maintenance-windows/)
+        For more information on Maintenance Windows, see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-maintenance-windows)
 
 
         :param str resource_name: The name of the resource.
@@ -511,6 +547,7 @@ class MaintenanceWindow(pulumi.CustomResource):
                  hour_of_day: pulumi.Input[Optional[_builtins.int]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  protected_hours: pulumi.Input[Optional[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
+                 wave_assignment: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -522,17 +559,14 @@ class MaintenanceWindow(pulumi.CustomResource):
 
             __props__.__dict__["auto_defer"] = auto_defer
             __props__.__dict__["auto_defer_once_enabled"] = auto_defer_once_enabled
-            if day_of_week is None and not opts.urn:
-                raise TypeError("Missing required property 'day_of_week'")
             __props__.__dict__["day_of_week"] = day_of_week
             __props__.__dict__["defer"] = defer
-            if hour_of_day is None and not opts.urn:
-                raise TypeError("Missing required property 'hour_of_day'")
             __props__.__dict__["hour_of_day"] = hour_of_day
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["protected_hours"] = protected_hours
+            __props__.__dict__["wave_assignment"] = wave_assignment
             __props__.__dict__["number_of_deferrals"] = None
             __props__.__dict__["start_asap"] = None
             __props__.__dict__["time_zone_id"] = None
@@ -555,7 +589,8 @@ class MaintenanceWindow(pulumi.CustomResource):
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             protected_hours: pulumi.Input[Optional[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
             start_asap: pulumi.Input[Optional[_builtins.bool]] = None,
-            time_zone_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'MaintenanceWindow':
+            time_zone_id: pulumi.Input[Optional[_builtins.str]] = None,
+            wave_assignment: pulumi.Input[Optional[_builtins.int]] = None) -> 'MaintenanceWindow':
         """
         Get an existing MaintenanceWindow resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -565,14 +600,15 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] auto_defer: Boolean flag to **toggle** automatic deferral on/off. Each change flips the current state (ON → OFF or OFF → ON). Achieves the same outcome as `auto_defer_once_enabled` but through a toggle operation, which can make the current state opaque to Terraform and introduce state drift. **For most use cases, prefer `auto_defer_once_enabled` instead.** <!-- see CLOUDP-375465 for details -->
         :param pulumi.Input[_builtins.bool] auto_defer_once_enabled: **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `auto_defer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `auto_defer` is used to toggle the underlying flag, it will also affect the value of this attribute.
-        :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+        :param pulumi.Input[_builtins.int] day_of_week: Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hour_of_day`. Omit both to set a `wave_assignment` without a maintenance window.
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
-        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
+        :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `day_of_week`. Omit both to set a `wave_assignment` without a maintenance window.
         :param pulumi.Input[_builtins.int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
         :param pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
         :param pulumi.Input[_builtins.bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
         :param pulumi.Input[_builtins.str] time_zone_id: Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
+        :param pulumi.Input[_builtins.int] wave_assignment: Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `wave_assignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -588,6 +624,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         __props__.__dict__["protected_hours"] = protected_hours
         __props__.__dict__["start_asap"] = start_asap
         __props__.__dict__["time_zone_id"] = time_zone_id
+        __props__.__dict__["wave_assignment"] = wave_assignment
         return MaintenanceWindow(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -608,9 +645,9 @@ class MaintenanceWindow(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="dayOfWeek")
-    def day_of_week(self) -> pulumi.Output[_builtins.int]:
+    def day_of_week(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+        Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hour_of_day`. Omit both to set a `wave_assignment` without a maintenance window.
         """
         return pulumi.get(self, "day_of_week")
 
@@ -624,9 +661,9 @@ class MaintenanceWindow(pulumi.CustomResource):
 
     @_builtins.property
     @pulumi.getter(name="hourOfDay")
-    def hour_of_day(self) -> pulumi.Output[_builtins.int]:
+    def hour_of_day(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
+        Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `day_of_week`. Omit both to set a `wave_assignment` without a maintenance window.
         """
         return pulumi.get(self, "hour_of_day")
 
@@ -669,4 +706,12 @@ class MaintenanceWindow(pulumi.CustomResource):
         Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
         """
         return pulumi.get(self, "time_zone_id")
+
+    @_builtins.property
+    @pulumi.getter(name="waveAssignment")
+    def wave_assignment(self) -> pulumi.Output[Optional[_builtins.int]]:
+        """
+        Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `wave_assignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+        """
+        return pulumi.get(self, "wave_assignment")
 

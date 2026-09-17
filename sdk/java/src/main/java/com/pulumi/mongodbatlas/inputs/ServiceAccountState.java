@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.ServiceAccountSecretArgs;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -138,6 +139,21 @@ public final class ServiceAccountState extends com.pulumi.resources.ResourceArgs
         return Optional.ofNullable(this.secrets);
     }
 
+    /**
+     * Indicates whether the Service Account is system managed.
+     * 
+     */
+    @Import(name="systemManaged")
+    private @Nullable Output<Boolean> systemManaged;
+
+    /**
+     * @return Indicates whether the Service Account is system managed.
+     * 
+     */
+    public Optional<Output<Boolean>> systemManaged() {
+        return Optional.ofNullable(this.systemManaged);
+    }
+
     private ServiceAccountState() {}
 
     private ServiceAccountState(ServiceAccountState $) {
@@ -149,6 +165,7 @@ public final class ServiceAccountState extends com.pulumi.resources.ResourceArgs
         this.roles = $.roles;
         this.secretExpiresAfterHours = $.secretExpiresAfterHours;
         this.secrets = $.secrets;
+        this.systemManaged = $.systemManaged;
     }
 
     public static Builder builder() {
@@ -355,6 +372,27 @@ public final class ServiceAccountState extends com.pulumi.resources.ResourceArgs
          */
         public Builder secrets(ServiceAccountSecretArgs... secrets) {
             return secrets(List.of(secrets));
+        }
+
+        /**
+         * @param systemManaged Indicates whether the Service Account is system managed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder systemManaged(@Nullable Output<Boolean> systemManaged) {
+            $.systemManaged = systemManaged;
+            return this;
+        }
+
+        /**
+         * @param systemManaged Indicates whether the Service Account is system managed.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder systemManaged(Boolean systemManaged) {
+            return systemManaged(Output.of(systemManaged));
         }
 
         public ServiceAccountState build() {

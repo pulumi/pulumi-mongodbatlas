@@ -64,18 +64,11 @@ import (
 //					RetentionUnit:     pulumi.String("days"),
 //					RetentionValue:    pulumi.Int(14),
 //				},
+//				CopyPolicyItemsEnabled: pulumi.Bool(true),
 //				CopySettings: mongodbatlas.CloudBackupScheduleCopySettingArray{
 //					&mongodbatlas.CloudBackupScheduleCopySettingArgs{
 //						CloudProvider: pulumi.String("AWS"),
-//						Frequencies: pulumi.StringArray{
-//							pulumi.String("HOURLY"),
-//							pulumi.String("DAILY"),
-//							pulumi.String("WEEKLY"),
-//							pulumi.String("MONTHLY"),
-//							pulumi.String("YEARLY"),
-//							pulumi.String("ON_DEMAND"),
-//						},
-//						RegionName: pulumi.String("US_EAST_1"),
+//						RegionName:    pulumi.String("US_EAST_1"),
 //						ZoneId: pulumi.String(myCluster.ReplicationSpecs.ApplyT(func(replicationSpecs []mongodbatlas.AdvancedClusterReplicationSpec) ([]interface{}, error) {
 //							var splat0 []interface{}
 //							for _, val0 := range replicationSpecs {
@@ -84,6 +77,16 @@ import (
 //							return splat0, nil
 //						}).(pulumi.ArrayOutput)),
 //						ShouldCopyOplogs: pulumi.Bool(false),
+//						CopyPolicyItems: mongodbatlas.CloudBackupScheduleCopySettingCopyPolicyItemArray{
+//							&mongodbatlas.CloudBackupScheduleCopySettingCopyPolicyItemArgs{
+//								FrequencyType:  pulumi.String("daily"),
+//								RetentionUnit:  pulumi.String("days"),
+//								RetentionValue: pulumi.Int(7),
+//							},
+//							&mongodbatlas.CloudBackupScheduleCopySettingCopyPolicyItemArgs{
+//								FrequencyType: pulumi.String("ondemand"),
+//							},
+//						},
 //					},
 //				},
 //			})
@@ -126,6 +129,8 @@ type LookupCloudBackupScheduleResult struct {
 	// Unique identifier of the Atlas cluster.
 	ClusterId   string `pulumi:"clusterId"`
 	ClusterName string `pulumi:"clusterName"`
+	// Flag that indicates whether copy settings use `copyPolicyItems` or `lastNumberOfSnapshots` instead of `frequencies`.
+	CopyPolicyItemsEnabled bool `pulumi:"copyPolicyItemsEnabled"`
 	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings []GetCloudBackupScheduleCopySetting `pulumi:"copySettings"`
 	// Policy for automatically exporting Cloud Backup Snapshots. See below
@@ -203,6 +208,11 @@ func (o LookupCloudBackupScheduleResultOutput) ClusterId() pulumi.StringOutput {
 
 func (o LookupCloudBackupScheduleResultOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupCloudBackupScheduleResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// Flag that indicates whether copy settings use `copyPolicyItems` or `lastNumberOfSnapshots` instead of `frequencies`.
+func (o LookupCloudBackupScheduleResultOutput) CopyPolicyItemsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupCloudBackupScheduleResult) bool { return v.CopyPolicyItemsEnabled }).(pulumi.BoolOutput)
 }
 
 // List that contains a document for each copy setting item in the desired backup policy. See below

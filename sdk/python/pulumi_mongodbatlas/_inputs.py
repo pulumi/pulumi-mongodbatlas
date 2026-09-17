@@ -73,6 +73,8 @@ __all__ = [
     'CloudBackupCollectionRestoreJobTimeoutsArgsDict',
     'CloudBackupScheduleCopySettingArgs',
     'CloudBackupScheduleCopySettingArgsDict',
+    'CloudBackupScheduleCopySettingCopyPolicyItemArgs',
+    'CloudBackupScheduleCopySettingCopyPolicyItemArgsDict',
     'CloudBackupScheduleExportArgs',
     'CloudBackupScheduleExportArgsDict',
     'CloudBackupSchedulePolicyItemDailyArgs',
@@ -219,6 +221,8 @@ __all__ = [
     'LogIntegrationOtelSuppliedHeaderArgsDict',
     'MaintenanceWindowProtectedHoursArgs',
     'MaintenanceWindowProtectedHoursArgsDict',
+    'McpConfigIpAccessListArgs',
+    'McpConfigIpAccessListArgsDict',
     'MetricIntegrationHeaderArgs',
     'MetricIntegrationHeaderArgsDict',
     'MetricIntegrationHeadersRedactedArgs',
@@ -233,6 +237,8 @@ __all__ = [
     'OnlineArchivePartitionFieldArgsDict',
     'OnlineArchiveScheduleArgs',
     'OnlineArchiveScheduleArgsDict',
+    'OrganizationCustomSessionTimeoutsArgs',
+    'OrganizationCustomSessionTimeoutsArgsDict',
     'OrganizationServiceAccountArgs',
     'OrganizationServiceAccountArgsDict',
     'OrganizationServiceAccountSecretArgs',
@@ -253,6 +259,8 @@ __all__ = [
     'ProjectIpAddressesServicesClusterArgsDict',
     'ProjectLimitArgs',
     'ProjectLimitArgsDict',
+    'ProjectMcpConfigIpAccessListArgs',
+    'ProjectMcpConfigIpAccessListArgsDict',
     'ProjectServiceAccountSecretArgs',
     'ProjectServiceAccountSecretArgsDict',
     'ProjectTeamArgs',
@@ -1209,7 +1217,9 @@ class AdvancedClusterReplicationSpecRegionConfigArgsDict(TypedDict):
     """
     Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 
-    For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes, see [Supported Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions).
+    For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
+
+    Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster's cloud provider. Gen2 clusters don't support multi-cloud deployments.
     """
     analytics_auto_scaling: NotRequired[pulumi.Input[Optional['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgsDict']]]
     """
@@ -1262,7 +1272,9 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
                - `FLEX` - Flex cluster. Use `replication_specs.[0].region_configs[0].backing_provider_name` to set the cloud service provider.
         :param pulumi.Input[_builtins.str] region_name: Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
                
-               For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes, see [Supported Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions).
+               For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
+               
+               Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster's cloud provider. Gen2 clusters don't support multi-cloud deployments.
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs'] analytics_auto_scaling: Configuration for the Collection of settings that configures analytics-auto-scaling information for the cluster. The values for the `analytics_auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs'] analytics_specs: Hardware specifications for [analytics nodes](https://www.mongodb.com/docs/atlas/reference/faq/deployment/#std-label-analytics-nodes-overview) needed in the region. Analytics nodes handle analytic data such as reporting queries from BI Connector for Atlas. Analytics nodes are read-only and can never become the [primary](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-primary). If you don't specify this parameter, no analytics nodes deploy to this region. See below.
         :param pulumi.Input['AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs'] auto_scaling: Configuration for the collection of settings that configures auto-scaling information for the cluster. The values for the `auto_scaling` attribute must be the same for all `region_configs` of a cluster. See below.
@@ -1325,7 +1337,9 @@ class AdvancedClusterReplicationSpecRegionConfigArgs:
         """
         Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 
-        For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes, see [Supported Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions).
+        For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
+
+        Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster's cloud provider. Gen2 clusters don't support multi-cloud deployments.
         """
         return pulumi.get(self, "region_name")
 
@@ -1533,24 +1547,29 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs:
 class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgsDict(TypedDict):
     disk_iops: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
-    Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+    Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 
+    For AWS, valid configurations are:
     * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
     * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-    * For M30 or greater (not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+    * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 
-    For Azure, `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+    For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `disk_size_gb` and the selected instance size:
+    * The minimum value is the greater of 3000 and three times `disk_size_gb`.
+    * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+
+    For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
     """
     disk_size_gb: NotRequired[pulumi.Input[Optional[_builtins.float]]]
     """
-    Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+    Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
     """
     ebs_volume_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-    * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
-    * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-    * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+    Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+    * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
+    * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+    * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
     """
     instance_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -1558,7 +1577,9 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgsDict(TypedDict
 
     Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 
-    [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+    [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+
+    GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
     """
     node_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
@@ -1574,23 +1595,30 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
                  instance_size: pulumi.Input[Optional[_builtins.str]] = None,
                  node_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.int] disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+        :param pulumi.Input[_builtins.int] disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
                
+               For AWS, valid configurations are:
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-               * For M30 or greater (not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+               * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
                
-               For Azure, `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
-        :param pulumi.Input[_builtins.float] disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
-        :param pulumi.Input[_builtins.str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-               * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
-               * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-               * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+               For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `disk_size_gb` and the selected instance size:
+               * The minimum value is the greater of 3000 and three times `disk_size_gb`.
+               * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+               
+               For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+        :param pulumi.Input[_builtins.float] disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
+        :param pulumi.Input[_builtins.str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+               * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
+               * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+               * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
         :param pulumi.Input[_builtins.str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
                
                Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
                
-               [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+               [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+               
+               GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
         :param pulumi.Input[_builtins.int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         if disk_iops is not None:
@@ -1608,13 +1636,18 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
     @pulumi.getter(name="diskIops")
     def disk_iops(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 
+        For AWS, valid configurations are:
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-        * For M30 or greater (not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+        * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 
-        For Azure, `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+        For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `disk_size_gb` and the selected instance size:
+        * The minimum value is the greater of 3000 and three times `disk_size_gb`.
+        * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+
+        For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
         """
         return pulumi.get(self, "disk_iops")
 
@@ -1626,7 +1659,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
     @pulumi.getter(name="diskSizeGb")
     def disk_size_gb(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+        Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
         """
         return pulumi.get(self, "disk_size_gb")
 
@@ -1638,10 +1671,10 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-        * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
-        * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-        * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+        * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
+        * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+        * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -1657,7 +1690,9 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
 
         Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 
-        [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+        [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+
+        GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
         """
         return pulumi.get(self, "instance_size")
 
@@ -1835,25 +1870,29 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs:
 class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgsDict(TypedDict):
     disk_iops: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
-    Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+    Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 
     For AWS, valid configurations are:
     * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
     * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-    * For M30 or greater (not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+    * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 
-    For Azure, `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+    For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `disk_size_gb` and the selected instance size:
+    * The minimum value is the greater of 3000 and three times `disk_size_gb`.
+    * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+
+    For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
     """
     disk_size_gb: NotRequired[pulumi.Input[Optional[_builtins.float]]]
     """
-    Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+    Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
     """
     ebs_volume_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-    * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
-    * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-    * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+    Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+    * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
+    * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+    * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
     """
     instance_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -1861,7 +1900,9 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgsDict(TypedDict
 
     Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 
-    [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+    [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+
+    GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
     """
     node_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
@@ -1877,24 +1918,30 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
                  instance_size: pulumi.Input[Optional[_builtins.str]] = None,
                  node_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.int] disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+        :param pulumi.Input[_builtins.int] disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
                
                For AWS, valid configurations are:
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-               * For M30 or greater (not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+               * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
                
-               For Azure, `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
-        :param pulumi.Input[_builtins.float] disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
-        :param pulumi.Input[_builtins.str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-               * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
-               * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-               * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+               For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `disk_size_gb` and the selected instance size:
+               * The minimum value is the greater of 3000 and three times `disk_size_gb`.
+               * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+               
+               For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+        :param pulumi.Input[_builtins.float] disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
+        :param pulumi.Input[_builtins.str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+               * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
+               * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+               * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
         :param pulumi.Input[_builtins.str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
                
                Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
                
-               [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+               [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+               
+               GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
         :param pulumi.Input[_builtins.int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         if disk_iops is not None:
@@ -1912,14 +1959,18 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
     @pulumi.getter(name="diskIops")
     def disk_iops(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 
         For AWS, valid configurations are:
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-        * For M30 or greater (not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+        * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 
-        For Azure, `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+        For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `disk_size_gb` and the selected instance size:
+        * The minimum value is the greater of 3000 and three times `disk_size_gb`.
+        * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+
+        For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
         """
         return pulumi.get(self, "disk_iops")
 
@@ -1931,7 +1982,7 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
     @pulumi.getter(name="diskSizeGb")
     def disk_size_gb(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+        Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
         """
         return pulumi.get(self, "disk_size_gb")
 
@@ -1943,10 +1994,10 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-        * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
-        * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-        * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+        * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
+        * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+        * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -1962,7 +2013,9 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
 
         Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 
-        [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+        [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+
+        GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
         """
         return pulumi.get(self, "instance_size")
 
@@ -1986,24 +2039,29 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
 class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgsDict(TypedDict):
     disk_iops: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
-    Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+    Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 
+    For AWS, valid configurations are:
     * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
     * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-    * For M30 or greater (not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+    * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 
-    For Azure, `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+    For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `disk_size_gb` and the selected instance size:
+    * The minimum value is the greater of 3000 and three times `disk_size_gb`.
+    * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+
+    For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
     """
     disk_size_gb: NotRequired[pulumi.Input[Optional[_builtins.float]]]
     """
-    Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+    Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
     """
     ebs_volume_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-    * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
-    * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-    * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+    Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+    * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
+    * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+    * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
     """
     instance_size: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -2011,7 +2069,9 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgsDict(TypedDict)
 
     Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 
-    [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+    [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+
+    GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
     """
     node_count: NotRequired[pulumi.Input[Optional[_builtins.int]]]
     """
@@ -2027,23 +2087,30 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
                  instance_size: pulumi.Input[Optional[_builtins.str]] = None,
                  node_count: pulumi.Input[Optional[_builtins.int]] = None):
         """
-        :param pulumi.Input[_builtins.int] disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+        :param pulumi.Input[_builtins.int] disk_iops: Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
                
+               For AWS, valid configurations are:
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
                * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-               * For M30 or greater (not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+               * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
                
-               For Azure, `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
-        :param pulumi.Input[_builtins.float] disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
-        :param pulumi.Input[_builtins.str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-               * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
-               * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-               * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+               For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `disk_size_gb` and the selected instance size:
+               * The minimum value is the greater of 3000 and three times `disk_size_gb`.
+               * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+               
+               For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+        :param pulumi.Input[_builtins.float] disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
+        :param pulumi.Input[_builtins.str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+               * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
+               * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+               * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
         :param pulumi.Input[_builtins.str] instance_size: Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
                
                Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
                
-               [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+               [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+               
+               GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
         :param pulumi.Input[_builtins.int] node_count: Number of nodes of the given type for MongoDB Atlas to deploy to the region.
         """
         if disk_iops is not None:
@@ -2061,13 +2128,18 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
     @pulumi.getter(name="diskIops")
     def disk_iops(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+        Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 
+        For AWS, valid configurations are:
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
         * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebs_volume_type` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-        * For M30 or greater (not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+        * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebs_volume_type` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 
-        For Azure, `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+        For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `disk_size_gb` and the selected instance size:
+        * The minimum value is the greater of 3000 and three times `disk_size_gb`.
+        * The maximum value is the lesser of 500 times `disk_size_gb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+
+        For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
         """
         return pulumi.get(self, "disk_iops")
 
@@ -2079,7 +2151,7 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
     @pulumi.getter(name="diskSizeGb")
     def disk_size_gb(self) -> pulumi.Input[Optional[_builtins.float]]:
         """
-        Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the disk_size_gb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `disk_size_gb` is used exclusively with Provisioned IOPS will help avoid these issues.
+        Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
         """
         return pulumi.get(self, "disk_size_gb")
 
@@ -2091,10 +2163,10 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-        * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
-        * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-        * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+        * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
+        * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+        * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
         """
         return pulumi.get(self, "ebs_volume_type")
 
@@ -2110,7 +2182,9 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
 
         Cluster tier names in the `instance_size` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 
-        [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+        [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+
+        GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
         """
         return pulumi.get(self, "instance_size")
 
@@ -3832,9 +3906,17 @@ class CloudBackupScheduleCopySettingArgsDict(TypedDict):
     """
     Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
     """
+    copy_policy_items: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupScheduleCopySettingCopyPolicyItemArgsDict']]]]]
+    """
+    Copy-policy items when `copy_policy_items_enabled` is true. Mutually exclusive with `frequencies` and `last_number_of_snapshots`. See below.
+    """
     frequencies: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     """
-    List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+    List that describes which types of snapshots to copy when `copy_policy_items_enabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copy_policy_items` and `last_number_of_snapshots` on the same entry. You can switch an entry from `frequencies` to `copy_policy_items` or `last_number_of_snapshots` in one apply; the switch back is not possible because `copy_policy_items_enabled` cannot be turned off once it is `true`. Use `copy_policy_items` or `last_number_of_snapshots` instead.
+    """
+    last_number_of_snapshots: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Number of most recent snapshots to copy, from 1 to 500, when `copy_policy_items_enabled` is true. Mutually exclusive with `frequencies` and `copy_policy_items`.
     """
     region_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
@@ -3853,21 +3935,32 @@ class CloudBackupScheduleCopySettingArgsDict(TypedDict):
 class CloudBackupScheduleCopySettingArgs:
     def __init__(__self__, *,
                  cloud_provider: pulumi.Input[Optional[_builtins.str]] = None,
+                 copy_policy_items: pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupScheduleCopySettingCopyPolicyItemArgs']]]] = None,
                  frequencies: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 last_number_of_snapshots: pulumi.Input[Optional[_builtins.int]] = None,
                  region_name: pulumi.Input[Optional[_builtins.str]] = None,
                  should_copy_oplogs: pulumi.Input[Optional[_builtins.bool]] = None,
                  zone_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         :param pulumi.Input[_builtins.str] cloud_provider: Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
-        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] frequencies: List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+        :param pulumi.Input[Sequence[pulumi.Input['CloudBackupScheduleCopySettingCopyPolicyItemArgs']]] copy_policy_items: Copy-policy items when `copy_policy_items_enabled` is true. Mutually exclusive with `frequencies` and `last_number_of_snapshots`. See below.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] frequencies: List that describes which types of snapshots to copy when `copy_policy_items_enabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copy_policy_items` and `last_number_of_snapshots` on the same entry. You can switch an entry from `frequencies` to `copy_policy_items` or `last_number_of_snapshots` in one apply; the switch back is not possible because `copy_policy_items_enabled` cannot be turned off once it is `true`. Use `copy_policy_items` or `last_number_of_snapshots` instead.
+        :param pulumi.Input[_builtins.int] last_number_of_snapshots: Number of most recent snapshots to copy, from 1 to 500, when `copy_policy_items_enabled` is true. Mutually exclusive with `frequencies` and `copy_policy_items`.
         :param pulumi.Input[_builtins.str] region_name: Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
         :param pulumi.Input[_builtins.bool] should_copy_oplogs: Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
         :param pulumi.Input[_builtins.str] zone_id: Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zone_id`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array [Return One Cluster From One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). Alternately, use `AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
         """
         if cloud_provider is not None:
             pulumi.set(__self__, "cloud_provider", cloud_provider)
+        if copy_policy_items is not None:
+            pulumi.set(__self__, "copy_policy_items", copy_policy_items)
+        if frequencies is not None:
+            warnings.warn("""This parameter is deprecated. Please transition to `copy_policy_items` or `last_number_of_snapshots`.""", DeprecationWarning)
+            pulumi.log.warn("""frequencies is deprecated: This parameter is deprecated. Please transition to `copy_policy_items` or `last_number_of_snapshots`.""")
         if frequencies is not None:
             pulumi.set(__self__, "frequencies", frequencies)
+        if last_number_of_snapshots is not None:
+            pulumi.set(__self__, "last_number_of_snapshots", last_number_of_snapshots)
         if region_name is not None:
             pulumi.set(__self__, "region_name", region_name)
         if should_copy_oplogs is not None:
@@ -3888,16 +3981,41 @@ class CloudBackupScheduleCopySettingArgs:
         pulumi.set(self, "cloud_provider", value)
 
     @_builtins.property
+    @pulumi.getter(name="copyPolicyItems")
+    def copy_policy_items(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupScheduleCopySettingCopyPolicyItemArgs']]]]:
+        """
+        Copy-policy items when `copy_policy_items_enabled` is true. Mutually exclusive with `frequencies` and `last_number_of_snapshots`. See below.
+        """
+        return pulumi.get(self, "copy_policy_items")
+
+    @copy_policy_items.setter
+    def copy_policy_items(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupScheduleCopySettingCopyPolicyItemArgs']]]]):
+        pulumi.set(self, "copy_policy_items", value)
+
+    @_builtins.property
     @pulumi.getter
+    @_utilities.deprecated("""This parameter is deprecated. Please transition to `copy_policy_items` or `last_number_of_snapshots`.""")
     def frequencies(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
         """
-        List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+        List that describes which types of snapshots to copy when `copy_policy_items_enabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copy_policy_items` and `last_number_of_snapshots` on the same entry. You can switch an entry from `frequencies` to `copy_policy_items` or `last_number_of_snapshots` in one apply; the switch back is not possible because `copy_policy_items_enabled` cannot be turned off once it is `true`. Use `copy_policy_items` or `last_number_of_snapshots` instead.
         """
         return pulumi.get(self, "frequencies")
 
     @frequencies.setter
     def frequencies(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
         pulumi.set(self, "frequencies", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lastNumberOfSnapshots")
+    def last_number_of_snapshots(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Number of most recent snapshots to copy, from 1 to 500, when `copy_policy_items_enabled` is true. Mutually exclusive with `frequencies` and `copy_policy_items`.
+        """
+        return pulumi.get(self, "last_number_of_snapshots")
+
+    @last_number_of_snapshots.setter
+    def last_number_of_snapshots(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "last_number_of_snapshots", value)
 
     @_builtins.property
     @pulumi.getter(name="regionName")
@@ -3934,6 +4052,100 @@ class CloudBackupScheduleCopySettingArgs:
     @zone_id.setter
     def zone_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "zone_id", value)
+
+
+class CloudBackupScheduleCopySettingCopyPolicyItemArgsDict(TypedDict):
+    frequency_type: pulumi.Input[_builtins.str]
+    """
+    Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+    """
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Unique identifier of the copy policy item.
+
+    **Note** The write-only array `deleteCopiedBackups` is not supported in Terraform. Use the Atlas Admin API or Atlas CLI to manage that array. It is not the same as `delete_copy_snapshots` on the resource.
+    """
+    retention_unit: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Unit of time for copy retention: `days`, `weeks`, `months`, or `years`. Required by the API except when `frequency_type` is `ondemand`.
+    """
+    retention_value: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Value to associate with `retention_unit`. Required by the API except when `frequency_type` is `ondemand`.
+    """
+
+@pulumi.input_type
+class CloudBackupScheduleCopySettingCopyPolicyItemArgs:
+    def __init__(__self__, *,
+                 frequency_type: pulumi.Input[_builtins.str],
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 retention_unit: pulumi.Input[Optional[_builtins.str]] = None,
+                 retention_value: pulumi.Input[Optional[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.str] frequency_type: Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+        :param pulumi.Input[_builtins.str] id: Unique identifier of the copy policy item.
+               
+               **Note** The write-only array `deleteCopiedBackups` is not supported in Terraform. Use the Atlas Admin API or Atlas CLI to manage that array. It is not the same as `delete_copy_snapshots` on the resource.
+        :param pulumi.Input[_builtins.str] retention_unit: Unit of time for copy retention: `days`, `weeks`, `months`, or `years`. Required by the API except when `frequency_type` is `ondemand`.
+        :param pulumi.Input[_builtins.int] retention_value: Value to associate with `retention_unit`. Required by the API except when `frequency_type` is `ondemand`.
+        """
+        pulumi.set(__self__, "frequency_type", frequency_type)
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if retention_unit is not None:
+            pulumi.set(__self__, "retention_unit", retention_unit)
+        if retention_value is not None:
+            pulumi.set(__self__, "retention_value", retention_value)
+
+    @_builtins.property
+    @pulumi.getter(name="frequencyType")
+    def frequency_type(self) -> pulumi.Input[_builtins.str]:
+        """
+        Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+        """
+        return pulumi.get(self, "frequency_type")
+
+    @frequency_type.setter
+    def frequency_type(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "frequency_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Unique identifier of the copy policy item.
+
+        **Note** The write-only array `deleteCopiedBackups` is not supported in Terraform. Use the Atlas Admin API or Atlas CLI to manage that array. It is not the same as `delete_copy_snapshots` on the resource.
+        """
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="retentionUnit")
+    def retention_unit(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Unit of time for copy retention: `days`, `weeks`, `months`, or `years`. Required by the API except when `frequency_type` is `ondemand`.
+        """
+        return pulumi.get(self, "retention_unit")
+
+    @retention_unit.setter
+    def retention_unit(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "retention_unit", value)
+
+    @_builtins.property
+    @pulumi.getter(name="retentionValue")
+    def retention_value(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Value to associate with `retention_unit`. Required by the API except when `frequency_type` is `ondemand`.
+        """
+        return pulumi.get(self, "retention_value")
+
+    @retention_value.setter
+    def retention_value(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "retention_value", value)
 
 
 class CloudBackupScheduleExportArgsDict(TypedDict):
@@ -9351,6 +9563,55 @@ class MaintenanceWindowProtectedHoursArgs:
         pulumi.set(self, "start_hour_of_day", value)
 
 
+class McpConfigIpAccessListArgsDict(TypedDict):
+    cidr_block: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+    """
+    ip_address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+    """
+
+@pulumi.input_type
+class McpConfigIpAccessListArgs:
+    def __init__(__self__, *,
+                 cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_address: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] cidr_block: Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        :param pulumi.Input[_builtins.str] ip_address: Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        """
+        if cidr_block is not None:
+            pulumi.set(__self__, "cidr_block", cidr_block)
+        if ip_address is not None:
+            pulumi.set(__self__, "ip_address", ip_address)
+
+    @_builtins.property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @cidr_block.setter
+    def cidr_block(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "cidr_block", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @ip_address.setter
+    def ip_address(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "ip_address", value)
+
+
 class MetricIntegrationHeaderArgsDict(TypedDict):
     name: pulumi.Input[_builtins.str]
     """
@@ -9863,6 +10124,55 @@ class OnlineArchiveScheduleArgs:
     @start_minute.setter
     def start_minute(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "start_minute", value)
+
+
+class OrganizationCustomSessionTimeoutsArgsDict(TypedDict):
+    absolute_session_timeout_in_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Specifies the absolute session timeout duration in seconds. When set to `null`, the field's value is unset, and the default value of 43,200 seconds (12 hours) is applied. Accepted values range between a minimum of 3,600 seconds (1 hour) and a maximum of 43,200 seconds (12 hours).
+    """
+    idle_session_timeout_in_seconds: NotRequired[pulumi.Input[Optional[_builtins.int]]]
+    """
+    Specifies the idle session timeout duration in seconds. When set to `null`, the field's value is unset, and the default behavior depends on the context: no timeout for Atlas Commercial, and 600 seconds (10 minutes) for Atlas for Government. Accepted values start at a minimum of 300 seconds (5 minutes). For Atlas Commercial, the maximum value cannot exceed the configured absolute session timeout. For Atlas for Government, the maximum value is capped at 600 seconds (10 minutes).
+    """
+
+@pulumi.input_type
+class OrganizationCustomSessionTimeoutsArgs:
+    def __init__(__self__, *,
+                 absolute_session_timeout_in_seconds: pulumi.Input[Optional[_builtins.int]] = None,
+                 idle_session_timeout_in_seconds: pulumi.Input[Optional[_builtins.int]] = None):
+        """
+        :param pulumi.Input[_builtins.int] absolute_session_timeout_in_seconds: Specifies the absolute session timeout duration in seconds. When set to `null`, the field's value is unset, and the default value of 43,200 seconds (12 hours) is applied. Accepted values range between a minimum of 3,600 seconds (1 hour) and a maximum of 43,200 seconds (12 hours).
+        :param pulumi.Input[_builtins.int] idle_session_timeout_in_seconds: Specifies the idle session timeout duration in seconds. When set to `null`, the field's value is unset, and the default behavior depends on the context: no timeout for Atlas Commercial, and 600 seconds (10 minutes) for Atlas for Government. Accepted values start at a minimum of 300 seconds (5 minutes). For Atlas Commercial, the maximum value cannot exceed the configured absolute session timeout. For Atlas for Government, the maximum value is capped at 600 seconds (10 minutes).
+        """
+        if absolute_session_timeout_in_seconds is not None:
+            pulumi.set(__self__, "absolute_session_timeout_in_seconds", absolute_session_timeout_in_seconds)
+        if idle_session_timeout_in_seconds is not None:
+            pulumi.set(__self__, "idle_session_timeout_in_seconds", idle_session_timeout_in_seconds)
+
+    @_builtins.property
+    @pulumi.getter(name="absoluteSessionTimeoutInSeconds")
+    def absolute_session_timeout_in_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Specifies the absolute session timeout duration in seconds. When set to `null`, the field's value is unset, and the default value of 43,200 seconds (12 hours) is applied. Accepted values range between a minimum of 3,600 seconds (1 hour) and a maximum of 43,200 seconds (12 hours).
+        """
+        return pulumi.get(self, "absolute_session_timeout_in_seconds")
+
+    @absolute_session_timeout_in_seconds.setter
+    def absolute_session_timeout_in_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "absolute_session_timeout_in_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter(name="idleSessionTimeoutInSeconds")
+    def idle_session_timeout_in_seconds(self) -> pulumi.Input[Optional[_builtins.int]]:
+        """
+        Specifies the idle session timeout duration in seconds. When set to `null`, the field's value is unset, and the default behavior depends on the context: no timeout for Atlas Commercial, and 600 seconds (10 minutes) for Atlas for Government. Accepted values start at a minimum of 300 seconds (5 minutes). For Atlas Commercial, the maximum value cannot exceed the configured absolute session timeout. For Atlas for Government, the maximum value is capped at 600 seconds (10 minutes).
+        """
+        return pulumi.get(self, "idle_session_timeout_in_seconds")
+
+    @idle_session_timeout_in_seconds.setter
+    def idle_session_timeout_in_seconds(self, value: pulumi.Input[Optional[_builtins.int]]):
+        pulumi.set(self, "idle_session_timeout_in_seconds", value)
 
 
 class OrganizationServiceAccountArgsDict(TypedDict):
@@ -10509,6 +10819,55 @@ class ProjectLimitArgs:
     @maximum_limit.setter
     def maximum_limit(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "maximum_limit", value)
+
+
+class ProjectMcpConfigIpAccessListArgsDict(TypedDict):
+    cidr_block: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+    """
+    ip_address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+    """
+
+@pulumi.input_type
+class ProjectMcpConfigIpAccessListArgs:
+    def __init__(__self__, *,
+                 cidr_block: pulumi.Input[Optional[_builtins.str]] = None,
+                 ip_address: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] cidr_block: Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        :param pulumi.Input[_builtins.str] ip_address: Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        """
+        if cidr_block is not None:
+            pulumi.set(__self__, "cidr_block", cidr_block)
+        if ip_address is not None:
+            pulumi.set(__self__, "ip_address", ip_address)
+
+    @_builtins.property
+    @pulumi.getter(name="cidrBlock")
+    def cidr_block(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+        """
+        return pulumi.get(self, "cidr_block")
+
+    @cidr_block.setter
+    def cidr_block(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "cidr_block", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ipAddress")
+    def ip_address(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+        """
+        return pulumi.get(self, "ip_address")
+
+    @ip_address.setter
+    def ip_address(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "ip_address", value)
 
 
 class ProjectServiceAccountSecretArgsDict(TypedDict):
@@ -12695,20 +13054,28 @@ class StreamProcessorOptionsArgsDict(TypedDict):
     """
     Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
     """
+    resume_from_checkpoint: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    """
+    Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
+    """
 
 @pulumi.input_type
 class StreamProcessorOptionsArgs:
     def __init__(__self__, *,
                  autoscaling: pulumi.Input[Optional['StreamProcessorOptionsAutoscalingArgs']] = None,
-                 dlq: pulumi.Input[Optional['StreamProcessorOptionsDlqArgs']] = None):
+                 dlq: pulumi.Input[Optional['StreamProcessorOptionsDlqArgs']] = None,
+                 resume_from_checkpoint: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         :param pulumi.Input['StreamProcessorOptionsAutoscalingArgs'] autoscaling: Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `min_tier` and `max_tier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effective_tier`. To disable autoscaling, remove this block.
         :param pulumi.Input['StreamProcessorOptionsDlqArgs'] dlq: Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+        :param pulumi.Input[_builtins.bool] resume_from_checkpoint: Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
         """
         if autoscaling is not None:
             pulumi.set(__self__, "autoscaling", autoscaling)
         if dlq is not None:
             pulumi.set(__self__, "dlq", dlq)
+        if resume_from_checkpoint is not None:
+            pulumi.set(__self__, "resume_from_checkpoint", resume_from_checkpoint)
 
     @_builtins.property
     @pulumi.getter
@@ -12733,6 +13100,18 @@ class StreamProcessorOptionsArgs:
     @dlq.setter
     def dlq(self, value: pulumi.Input[Optional['StreamProcessorOptionsDlqArgs']]):
         pulumi.set(self, "dlq", value)
+
+    @_builtins.property
+    @pulumi.getter(name="resumeFromCheckpoint")
+    def resume_from_checkpoint(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
+        """
+        return pulumi.get(self, "resume_from_checkpoint")
+
+    @resume_from_checkpoint.setter
+    def resume_from_checkpoint(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "resume_from_checkpoint", value)
 
 
 class StreamProcessorOptionsAutoscalingArgsDict(TypedDict):

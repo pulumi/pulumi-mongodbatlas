@@ -48,6 +48,8 @@ type ProjectServiceAccount struct {
 	SecretExpiresAfterHours pulumi.IntPtrOutput `pulumi:"secretExpiresAfterHours"`
 	// A list of secrets associated with the specified Service Account.
 	Secrets ProjectServiceAccountSecretTypeArrayOutput `pulumi:"secrets"`
+	// Indicates whether the Service Account is system managed.
+	SystemManaged pulumi.BoolOutput `pulumi:"systemManaged"`
 }
 
 // NewProjectServiceAccount registers a new resource with the given unique name, arguments, and options.
@@ -105,6 +107,8 @@ type projectServiceAccountState struct {
 	SecretExpiresAfterHours *int `pulumi:"secretExpiresAfterHours"`
 	// A list of secrets associated with the specified Service Account.
 	Secrets []ProjectServiceAccountSecretType `pulumi:"secrets"`
+	// Indicates whether the Service Account is system managed.
+	SystemManaged *bool `pulumi:"systemManaged"`
 }
 
 type ProjectServiceAccountState struct {
@@ -124,6 +128,8 @@ type ProjectServiceAccountState struct {
 	SecretExpiresAfterHours pulumi.IntPtrInput
 	// A list of secrets associated with the specified Service Account.
 	Secrets ProjectServiceAccountSecretTypeArrayInput
+	// Indicates whether the Service Account is system managed.
+	SystemManaged pulumi.BoolPtrInput
 }
 
 func (ProjectServiceAccountState) ElementType() reflect.Type {
@@ -282,6 +288,11 @@ func (o ProjectServiceAccountOutput) SecretExpiresAfterHours() pulumi.IntPtrOutp
 // A list of secrets associated with the specified Service Account.
 func (o ProjectServiceAccountOutput) Secrets() ProjectServiceAccountSecretTypeArrayOutput {
 	return o.ApplyT(func(v *ProjectServiceAccount) ProjectServiceAccountSecretTypeArrayOutput { return v.Secrets }).(ProjectServiceAccountSecretTypeArrayOutput)
+}
+
+// Indicates whether the Service Account is system managed.
+func (o ProjectServiceAccountOutput) SystemManaged() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ProjectServiceAccount) pulumi.BoolOutput { return v.SystemManaged }).(pulumi.BoolOutput)
 }
 
 type ProjectServiceAccountArrayOutput struct{ *pulumi.OutputState }

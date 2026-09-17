@@ -917,7 +917,16 @@ type AdvancedCluster struct {
 	RedactClientLogData pulumi.BoolOutput `pulumi:"redactClientLogData"`
 	// Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#configure-replica-set-scaling-mode)
 	ReplicaSetScalingStrategy pulumi.StringOutput `pulumi:"replicaSetScalingStrategy"`
-	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. If this list contains more than one entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
+	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently.
+	//
+	// The following clusters support independent `diskIops` values:
+	// * AWS Gen2 clusters that use the `STANDARD` (gp3) volume type.
+	// * AWS Gen2 clusters that use the `HIGH_PERFORMANCE` (io2) volume type.
+	// * AWS clusters that use the `PROVISIONED` (io2) volume type.
+	// * GCP Gen2 clusters, which use Hyperdisk Balanced storage.
+	// * Azure clusters in regions that support Extended IOPS.
+	//
+	// If your cluster has more than one `replicationSpecs` entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
 	ReplicationSpecs AdvancedClusterReplicationSpecArrayOutput `pulumi:"replicationSpecs"`
 	// Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, see Delete a Cluster with a Backup Compliance Policy.
 	//
@@ -1057,7 +1066,16 @@ type advancedClusterState struct {
 	RedactClientLogData *bool `pulumi:"redactClientLogData"`
 	// Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#configure-replica-set-scaling-mode)
 	ReplicaSetScalingStrategy *string `pulumi:"replicaSetScalingStrategy"`
-	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. If this list contains more than one entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
+	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently.
+	//
+	// The following clusters support independent `diskIops` values:
+	// * AWS Gen2 clusters that use the `STANDARD` (gp3) volume type.
+	// * AWS Gen2 clusters that use the `HIGH_PERFORMANCE` (io2) volume type.
+	// * AWS clusters that use the `PROVISIONED` (io2) volume type.
+	// * GCP Gen2 clusters, which use Hyperdisk Balanced storage.
+	// * Azure clusters in regions that support Extended IOPS.
+	//
+	// If your cluster has more than one `replicationSpecs` entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
 	ReplicationSpecs []AdvancedClusterReplicationSpec `pulumi:"replicationSpecs"`
 	// Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, see Delete a Cluster with a Backup Compliance Policy.
 	//
@@ -1159,7 +1177,16 @@ type AdvancedClusterState struct {
 	RedactClientLogData pulumi.BoolPtrInput
 	// Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#configure-replica-set-scaling-mode)
 	ReplicaSetScalingStrategy pulumi.StringPtrInput
-	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. If this list contains more than one entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
+	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently.
+	//
+	// The following clusters support independent `diskIops` values:
+	// * AWS Gen2 clusters that use the `STANDARD` (gp3) volume type.
+	// * AWS Gen2 clusters that use the `HIGH_PERFORMANCE` (io2) volume type.
+	// * AWS clusters that use the `PROVISIONED` (io2) volume type.
+	// * GCP Gen2 clusters, which use Hyperdisk Balanced storage.
+	// * Azure clusters in regions that support Extended IOPS.
+	//
+	// If your cluster has more than one `replicationSpecs` entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
 	ReplicationSpecs AdvancedClusterReplicationSpecArrayInput
 	// Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, see Delete a Cluster with a Backup Compliance Policy.
 	//
@@ -1255,7 +1282,16 @@ type advancedClusterArgs struct {
 	RedactClientLogData *bool `pulumi:"redactClientLogData"`
 	// Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#configure-replica-set-scaling-mode)
 	ReplicaSetScalingStrategy *string `pulumi:"replicaSetScalingStrategy"`
-	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. If this list contains more than one entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
+	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently.
+	//
+	// The following clusters support independent `diskIops` values:
+	// * AWS Gen2 clusters that use the `STANDARD` (gp3) volume type.
+	// * AWS Gen2 clusters that use the `HIGH_PERFORMANCE` (io2) volume type.
+	// * AWS clusters that use the `PROVISIONED` (io2) volume type.
+	// * GCP Gen2 clusters, which use Hyperdisk Balanced storage.
+	// * Azure clusters in regions that support Extended IOPS.
+	//
+	// If your cluster has more than one `replicationSpecs` entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
 	ReplicationSpecs []AdvancedClusterReplicationSpec `pulumi:"replicationSpecs"`
 	// Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, see Delete a Cluster with a Backup Compliance Policy.
 	//
@@ -1339,7 +1375,16 @@ type AdvancedClusterArgs struct {
 	RedactClientLogData pulumi.BoolPtrInput
 	// Replica set scaling mode for your cluster. Valid values are `WORKLOAD_TYPE`, `SEQUENTIAL` and `NODE_TYPE`. By default, Atlas scales under `WORKLOAD_TYPE`. This mode allows Atlas to scale your analytics nodes in parallel to your operational nodes. When configured as `SEQUENTIAL`, Atlas scales all nodes sequentially. This mode is intended for steady-state workloads and applications performing latency-sensitive secondary reads. When configured as `NODE_TYPE`, Atlas scales your electable nodes in parallel with your read-only and analytics nodes. This mode is intended for large, dynamic workloads requiring frequent and timely cluster tier scaling. This is the fastest scaling strategy, but it might impact latency of workloads when performing extensive secondary reads. [Modify the Replica Set Scaling Mode](https://www.mongodb.com/docs/atlas/cluster-additional-settings/#configure-replica-set-scaling-mode)
 	ReplicaSetScalingStrategy pulumi.StringPtrInput
-	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. If this list contains more than one entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
+	// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently.
+	//
+	// The following clusters support independent `diskIops` values:
+	// * AWS Gen2 clusters that use the `STANDARD` (gp3) volume type.
+	// * AWS Gen2 clusters that use the `HIGH_PERFORMANCE` (io2) volume type.
+	// * AWS clusters that use the `PROVISIONED` (io2) volume type.
+	// * GCP Gen2 clusters, which use Hyperdisk Balanced storage.
+	// * Azure clusters in regions that support Extended IOPS.
+	//
+	// If your cluster has more than one `replicationSpecs` entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
 	ReplicationSpecs AdvancedClusterReplicationSpecArrayInput
 	// Set to true to retain backup snapshots for the deleted cluster. This parameter applies to the Delete operation and only affects M10 and above clusters. To delete an Atlas cluster that has an associated `CloudBackupSchedule` resource and an enabled Backup Compliance Policy, see Delete a Cluster with a Backup Compliance Policy.
 	//
@@ -1590,7 +1635,16 @@ func (o AdvancedClusterOutput) ReplicaSetScalingStrategy() pulumi.StringOutput {
 	return o.ApplyT(func(v *AdvancedCluster) pulumi.StringOutput { return v.ReplicaSetScalingStrategy }).(pulumi.StringOutput)
 }
 
-// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. If this list contains more than one entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
+// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently.
+//
+// The following clusters support independent `diskIops` values:
+// * AWS Gen2 clusters that use the `STANDARD` (gp3) volume type.
+// * AWS Gen2 clusters that use the `HIGH_PERFORMANCE` (io2) volume type.
+// * AWS clusters that use the `PROVISIONED` (io2) volume type.
+// * GCP Gen2 clusters, which use Hyperdisk Balanced storage.
+// * Azure clusters in regions that support Extended IOPS.
+//
+// If your cluster has more than one `replicationSpecs` entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
 func (o AdvancedClusterOutput) ReplicationSpecs() AdvancedClusterReplicationSpecArrayOutput {
 	return o.ApplyT(func(v *AdvancedCluster) AdvancedClusterReplicationSpecArrayOutput { return v.ReplicationSpecs }).(AdvancedClusterReplicationSpecArrayOutput)
 }

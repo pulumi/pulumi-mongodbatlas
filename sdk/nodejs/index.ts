@@ -565,6 +565,26 @@ export const getMaintenanceWindow: typeof import("./getMaintenanceWindow").getMa
 export const getMaintenanceWindowOutput: typeof import("./getMaintenanceWindow").getMaintenanceWindowOutput = null as any;
 utilities.lazyLoad(exports, ["getMaintenanceWindow","getMaintenanceWindowOutput"], () => require("./getMaintenanceWindow"));
 
+export { GetMcpConfigArgs, GetMcpConfigResult, GetMcpConfigOutputArgs } from "./getMcpConfig";
+export const getMcpConfig: typeof import("./getMcpConfig").getMcpConfig = null as any;
+export const getMcpConfigOutput: typeof import("./getMcpConfig").getMcpConfigOutput = null as any;
+utilities.lazyLoad(exports, ["getMcpConfig","getMcpConfigOutput"], () => require("./getMcpConfig"));
+
+export { GetMcpConfigSecretArgs, GetMcpConfigSecretResult, GetMcpConfigSecretOutputArgs } from "./getMcpConfigSecret";
+export const getMcpConfigSecret: typeof import("./getMcpConfigSecret").getMcpConfigSecret = null as any;
+export const getMcpConfigSecretOutput: typeof import("./getMcpConfigSecret").getMcpConfigSecretOutput = null as any;
+utilities.lazyLoad(exports, ["getMcpConfigSecret","getMcpConfigSecretOutput"], () => require("./getMcpConfigSecret"));
+
+export { GetMcpConfigSecretsArgs, GetMcpConfigSecretsResult, GetMcpConfigSecretsOutputArgs } from "./getMcpConfigSecrets";
+export const getMcpConfigSecrets: typeof import("./getMcpConfigSecrets").getMcpConfigSecrets = null as any;
+export const getMcpConfigSecretsOutput: typeof import("./getMcpConfigSecrets").getMcpConfigSecretsOutput = null as any;
+utilities.lazyLoad(exports, ["getMcpConfigSecrets","getMcpConfigSecretsOutput"], () => require("./getMcpConfigSecrets"));
+
+export { GetMcpConfigsArgs, GetMcpConfigsResult, GetMcpConfigsOutputArgs } from "./getMcpConfigs";
+export const getMcpConfigs: typeof import("./getMcpConfigs").getMcpConfigs = null as any;
+export const getMcpConfigsOutput: typeof import("./getMcpConfigs").getMcpConfigsOutput = null as any;
+utilities.lazyLoad(exports, ["getMcpConfigs","getMcpConfigsOutput"], () => require("./getMcpConfigs"));
+
 export { GetMetricIntegrationArgs, GetMetricIntegrationResult, GetMetricIntegrationOutputArgs } from "./getMetricIntegration";
 export const getMetricIntegration: typeof import("./getMetricIntegration").getMetricIntegration = null as any;
 export const getMetricIntegrationOutput: typeof import("./getMetricIntegration").getMetricIntegrationOutput = null as any;
@@ -610,10 +630,20 @@ export const getOnlineArchives: typeof import("./getOnlineArchives").getOnlineAr
 export const getOnlineArchivesOutput: typeof import("./getOnlineArchives").getOnlineArchivesOutput = null as any;
 utilities.lazyLoad(exports, ["getOnlineArchives","getOnlineArchivesOutput"], () => require("./getOnlineArchives"));
 
+export { GetOrgDelegationSettingsArgs, GetOrgDelegationSettingsResult, GetOrgDelegationSettingsOutputArgs } from "./getOrgDelegationSettings";
+export const getOrgDelegationSettings: typeof import("./getOrgDelegationSettings").getOrgDelegationSettings = null as any;
+export const getOrgDelegationSettingsOutput: typeof import("./getOrgDelegationSettings").getOrgDelegationSettingsOutput = null as any;
+utilities.lazyLoad(exports, ["getOrgDelegationSettings","getOrgDelegationSettingsOutput"], () => require("./getOrgDelegationSettings"));
+
 export { GetOrgInvitationArgs, GetOrgInvitationResult, GetOrgInvitationOutputArgs } from "./getOrgInvitation";
 export const getOrgInvitation: typeof import("./getOrgInvitation").getOrgInvitation = null as any;
 export const getOrgInvitationOutput: typeof import("./getOrgInvitation").getOrgInvitationOutput = null as any;
 utilities.lazyLoad(exports, ["getOrgInvitation","getOrgInvitationOutput"], () => require("./getOrgInvitation"));
+
+export { GetOrgMaintenanceSettingsArgs, GetOrgMaintenanceSettingsResult, GetOrgMaintenanceSettingsOutputArgs } from "./getOrgMaintenanceSettings";
+export const getOrgMaintenanceSettings: typeof import("./getOrgMaintenanceSettings").getOrgMaintenanceSettings = null as any;
+export const getOrgMaintenanceSettingsOutput: typeof import("./getOrgMaintenanceSettings").getOrgMaintenanceSettingsOutput = null as any;
+utilities.lazyLoad(exports, ["getOrgMaintenanceSettings","getOrgMaintenanceSettingsOutput"], () => require("./getOrgMaintenanceSettings"));
 
 export { GetOrganizationArgs, GetOrganizationResult, GetOrganizationOutputArgs } from "./getOrganization";
 export const getOrganization: typeof import("./getOrganization").getOrganization = null as any;
@@ -689,6 +719,26 @@ export { GetProjectIpAddressesArgs, GetProjectIpAddressesResult, GetProjectIpAdd
 export const getProjectIpAddresses: typeof import("./getProjectIpAddresses").getProjectIpAddresses = null as any;
 export const getProjectIpAddressesOutput: typeof import("./getProjectIpAddresses").getProjectIpAddressesOutput = null as any;
 utilities.lazyLoad(exports, ["getProjectIpAddresses","getProjectIpAddressesOutput"], () => require("./getProjectIpAddresses"));
+
+export { GetProjectMcpConfigArgs, GetProjectMcpConfigResult, GetProjectMcpConfigOutputArgs } from "./getProjectMcpConfig";
+export const getProjectMcpConfig: typeof import("./getProjectMcpConfig").getProjectMcpConfig = null as any;
+export const getProjectMcpConfigOutput: typeof import("./getProjectMcpConfig").getProjectMcpConfigOutput = null as any;
+utilities.lazyLoad(exports, ["getProjectMcpConfig","getProjectMcpConfigOutput"], () => require("./getProjectMcpConfig"));
+
+export { GetProjectMcpConfigSecretArgs, GetProjectMcpConfigSecretResult, GetProjectMcpConfigSecretOutputArgs } from "./getProjectMcpConfigSecret";
+export const getProjectMcpConfigSecret: typeof import("./getProjectMcpConfigSecret").getProjectMcpConfigSecret = null as any;
+export const getProjectMcpConfigSecretOutput: typeof import("./getProjectMcpConfigSecret").getProjectMcpConfigSecretOutput = null as any;
+utilities.lazyLoad(exports, ["getProjectMcpConfigSecret","getProjectMcpConfigSecretOutput"], () => require("./getProjectMcpConfigSecret"));
+
+export { GetProjectMcpConfigSecretsArgs, GetProjectMcpConfigSecretsResult, GetProjectMcpConfigSecretsOutputArgs } from "./getProjectMcpConfigSecrets";
+export const getProjectMcpConfigSecrets: typeof import("./getProjectMcpConfigSecrets").getProjectMcpConfigSecrets = null as any;
+export const getProjectMcpConfigSecretsOutput: typeof import("./getProjectMcpConfigSecrets").getProjectMcpConfigSecretsOutput = null as any;
+utilities.lazyLoad(exports, ["getProjectMcpConfigSecrets","getProjectMcpConfigSecretsOutput"], () => require("./getProjectMcpConfigSecrets"));
+
+export { GetProjectMcpConfigsArgs, GetProjectMcpConfigsResult, GetProjectMcpConfigsOutputArgs } from "./getProjectMcpConfigs";
+export const getProjectMcpConfigs: typeof import("./getProjectMcpConfigs").getProjectMcpConfigs = null as any;
+export const getProjectMcpConfigsOutput: typeof import("./getProjectMcpConfigs").getProjectMcpConfigsOutput = null as any;
+utilities.lazyLoad(exports, ["getProjectMcpConfigs","getProjectMcpConfigsOutput"], () => require("./getProjectMcpConfigs"));
 
 export { GetProjectServiceAccountArgs, GetProjectServiceAccountResult, GetProjectServiceAccountOutputArgs } from "./getProjectServiceAccount";
 export const getProjectServiceAccount: typeof import("./getProjectServiceAccount").getProjectServiceAccount = null as any;
@@ -935,6 +985,16 @@ export type MaintenanceWindow = import("./maintenanceWindow").MaintenanceWindow;
 export const MaintenanceWindow: typeof import("./maintenanceWindow").MaintenanceWindow = null as any;
 utilities.lazyLoad(exports, ["MaintenanceWindow"], () => require("./maintenanceWindow"));
 
+export { McpConfigArgs, McpConfigState } from "./mcpConfig";
+export type McpConfig = import("./mcpConfig").McpConfig;
+export const McpConfig: typeof import("./mcpConfig").McpConfig = null as any;
+utilities.lazyLoad(exports, ["McpConfig"], () => require("./mcpConfig"));
+
+export { McpConfigSecretArgs, McpConfigSecretState } from "./mcpConfigSecret";
+export type McpConfigSecret = import("./mcpConfigSecret").McpConfigSecret;
+export const McpConfigSecret: typeof import("./mcpConfigSecret").McpConfigSecret = null as any;
+utilities.lazyLoad(exports, ["McpConfigSecret"], () => require("./mcpConfigSecret"));
+
 export { MetricIntegrationArgs, MetricIntegrationState } from "./metricIntegration";
 export type MetricIntegration = import("./metricIntegration").MetricIntegration;
 export const MetricIntegration: typeof import("./metricIntegration").MetricIntegration = null as any;
@@ -960,10 +1020,20 @@ export type OnlineArchive = import("./onlineArchive").OnlineArchive;
 export const OnlineArchive: typeof import("./onlineArchive").OnlineArchive = null as any;
 utilities.lazyLoad(exports, ["OnlineArchive"], () => require("./onlineArchive"));
 
+export { OrgDelegationSettingsArgs, OrgDelegationSettingsState } from "./orgDelegationSettings";
+export type OrgDelegationSettings = import("./orgDelegationSettings").OrgDelegationSettings;
+export const OrgDelegationSettings: typeof import("./orgDelegationSettings").OrgDelegationSettings = null as any;
+utilities.lazyLoad(exports, ["OrgDelegationSettings"], () => require("./orgDelegationSettings"));
+
 export { OrgInvitationArgs, OrgInvitationState } from "./orgInvitation";
 export type OrgInvitation = import("./orgInvitation").OrgInvitation;
 export const OrgInvitation: typeof import("./orgInvitation").OrgInvitation = null as any;
 utilities.lazyLoad(exports, ["OrgInvitation"], () => require("./orgInvitation"));
+
+export { OrgMaintenanceSettingsArgs, OrgMaintenanceSettingsState } from "./orgMaintenanceSettings";
+export type OrgMaintenanceSettings = import("./orgMaintenanceSettings").OrgMaintenanceSettings;
+export const OrgMaintenanceSettings: typeof import("./orgMaintenanceSettings").OrgMaintenanceSettings = null as any;
+utilities.lazyLoad(exports, ["OrgMaintenanceSettings"], () => require("./orgMaintenanceSettings"));
 
 export { OrganizationArgs, OrganizationState } from "./organization";
 export type Organization = import("./organization").Organization;
@@ -1009,6 +1079,16 @@ export { ProjectIpAccessListArgs, ProjectIpAccessListState } from "./projectIpAc
 export type ProjectIpAccessList = import("./projectIpAccessList").ProjectIpAccessList;
 export const ProjectIpAccessList: typeof import("./projectIpAccessList").ProjectIpAccessList = null as any;
 utilities.lazyLoad(exports, ["ProjectIpAccessList"], () => require("./projectIpAccessList"));
+
+export { ProjectMcpConfigArgs, ProjectMcpConfigState } from "./projectMcpConfig";
+export type ProjectMcpConfig = import("./projectMcpConfig").ProjectMcpConfig;
+export const ProjectMcpConfig: typeof import("./projectMcpConfig").ProjectMcpConfig = null as any;
+utilities.lazyLoad(exports, ["ProjectMcpConfig"], () => require("./projectMcpConfig"));
+
+export { ProjectMcpConfigSecretArgs, ProjectMcpConfigSecretState } from "./projectMcpConfigSecret";
+export type ProjectMcpConfigSecret = import("./projectMcpConfigSecret").ProjectMcpConfigSecret;
+export const ProjectMcpConfigSecret: typeof import("./projectMcpConfigSecret").ProjectMcpConfigSecret = null as any;
+utilities.lazyLoad(exports, ["ProjectMcpConfigSecret"], () => require("./projectMcpConfigSecret"));
 
 export { ProjectServiceAccountArgs, ProjectServiceAccountState } from "./projectServiceAccount";
 export type ProjectServiceAccount = import("./projectServiceAccount").ProjectServiceAccount;
@@ -1215,6 +1295,10 @@ const _module = {
                 return new LogIntegration(name, <any>undefined, { urn })
             case "mongodbatlas:index/maintenanceWindow:MaintenanceWindow":
                 return new MaintenanceWindow(name, <any>undefined, { urn })
+            case "mongodbatlas:index/mcpConfig:McpConfig":
+                return new McpConfig(name, <any>undefined, { urn })
+            case "mongodbatlas:index/mcpConfigSecret:McpConfigSecret":
+                return new McpConfigSecret(name, <any>undefined, { urn })
             case "mongodbatlas:index/metricIntegration:MetricIntegration":
                 return new MetricIntegration(name, <any>undefined, { urn })
             case "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant":
@@ -1225,8 +1309,12 @@ const _module = {
                 return new NetworkPeering(name, <any>undefined, { urn })
             case "mongodbatlas:index/onlineArchive:OnlineArchive":
                 return new OnlineArchive(name, <any>undefined, { urn })
+            case "mongodbatlas:index/orgDelegationSettings:OrgDelegationSettings":
+                return new OrgDelegationSettings(name, <any>undefined, { urn })
             case "mongodbatlas:index/orgInvitation:OrgInvitation":
                 return new OrgInvitation(name, <any>undefined, { urn })
+            case "mongodbatlas:index/orgMaintenanceSettings:OrgMaintenanceSettings":
+                return new OrgMaintenanceSettings(name, <any>undefined, { urn })
             case "mongodbatlas:index/organization:Organization":
                 return new Organization(name, <any>undefined, { urn })
             case "mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode":
@@ -1245,6 +1333,10 @@ const _module = {
                 return new ProjectInvitation(name, <any>undefined, { urn })
             case "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
                 return new ProjectIpAccessList(name, <any>undefined, { urn })
+            case "mongodbatlas:index/projectMcpConfig:ProjectMcpConfig":
+                return new ProjectMcpConfig(name, <any>undefined, { urn })
+            case "mongodbatlas:index/projectMcpConfigSecret:ProjectMcpConfigSecret":
+                return new ProjectMcpConfigSecret(name, <any>undefined, { urn })
             case "mongodbatlas:index/projectServiceAccount:ProjectServiceAccount":
                 return new ProjectServiceAccount(name, <any>undefined, { urn })
             case "mongodbatlas:index/projectServiceAccountAccessListEntry:ProjectServiceAccountAccessListEntry":
@@ -1333,12 +1425,16 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapConfiguration",
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/ldapVerify", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/logIntegration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/maintenanceWindow", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/mcpConfig", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/mcpConfigSecret", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/metricIntegration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/mongodbEmployeeAccessGrant", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkContainer", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkPeering", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/onlineArchive", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/orgDelegationSettings", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/orgInvitation", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/orgMaintenanceSettings", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/organization", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateEndpointRegionalMode", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateLinkEndpoint", _module)
@@ -1348,6 +1444,8 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/project", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectApiKey", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectInvitation", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectIpAccessList", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectMcpConfig", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectMcpConfigSecret", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectServiceAccount", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectServiceAccountAccessListEntry", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/projectServiceAccountSecret", _module)

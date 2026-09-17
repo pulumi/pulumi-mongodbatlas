@@ -17,22 +17,22 @@ public final class GetCloudBackupSchedulePolicyItemWeekly {
      */
     private Integer frequencyInterval;
     /**
-     * @return Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * @return Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
      * 
      */
     private String frequencyType;
     /**
-     * @return Unique identifier of the backup policy item.
+     * @return Unique identifier of the copy policy item.
      * 
      */
     private String id;
     /**
-     * @return Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+     * @return Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
      * 
      */
     private String retentionUnit;
     /**
-     * @return Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+     * @return Value to associate with `retentionUnit`.
      * 
      */
     private Integer retentionValue;
@@ -46,28 +46,28 @@ public final class GetCloudBackupSchedulePolicyItemWeekly {
         return this.frequencyInterval;
     }
     /**
-     * @return Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * @return Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
      * 
      */
     public String frequencyType() {
         return this.frequencyType;
     }
     /**
-     * @return Unique identifier of the backup policy item.
+     * @return Unique identifier of the copy policy item.
      * 
      */
     public String id() {
         return this.id;
     }
     /**
-     * @return Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+     * @return Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
      * 
      */
     public String retentionUnit() {
         return this.retentionUnit;
     }
     /**
-     * @return Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+     * @return Value to associate with `retentionUnit`.
      * 
      */
     public Integer retentionValue() {

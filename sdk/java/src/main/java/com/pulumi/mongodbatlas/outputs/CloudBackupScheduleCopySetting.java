@@ -4,7 +4,9 @@
 package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
+import com.pulumi.mongodbatlas.outputs.CloudBackupScheduleCopySettingCopyPolicyItem;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -19,10 +21,24 @@ public final class CloudBackupScheduleCopySetting {
      */
     private @Nullable String cloudProvider;
     /**
-     * @return List that describes which types of snapshots to copy. i.e. &#34;HOURLY&#34; &#34;DAILY&#34; &#34;WEEKLY&#34; &#34;MONTHLY&#34; &#34;ON_DEMAND&#34;
+     * @return Copy-policy items when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `lastNumberOfSnapshots`. See below.
      * 
      */
+    private @Nullable List<CloudBackupScheduleCopySettingCopyPolicyItem> copyPolicyItems;
+    /**
+     * @return List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copyPolicyItems` and `lastNumberOfSnapshots` on the same entry. You can switch an entry from `frequencies` to `copyPolicyItems` or `lastNumberOfSnapshots` in one apply; the switch back is not possible because `copyPolicyItemsEnabled` cannot be turned off once it is `true`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
     private @Nullable List<String> frequencies;
+    /**
+     * @return Number of most recent snapshots to copy, from 1 to 500, when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `copyPolicyItems`.
+     * 
+     */
+    private @Nullable Integer lastNumberOfSnapshots;
     /**
      * @return Target region to copy snapshots belonging to replicationSpecId to. Please supply the &#39;Atlas Region&#39; which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ &#39;regions&#39; link
      * 
@@ -48,11 +64,29 @@ public final class CloudBackupScheduleCopySetting {
         return Optional.ofNullable(this.cloudProvider);
     }
     /**
-     * @return List that describes which types of snapshots to copy. i.e. &#34;HOURLY&#34; &#34;DAILY&#34; &#34;WEEKLY&#34; &#34;MONTHLY&#34; &#34;ON_DEMAND&#34;
+     * @return Copy-policy items when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `lastNumberOfSnapshots`. See below.
      * 
      */
+    public List<CloudBackupScheduleCopySettingCopyPolicyItem> copyPolicyItems() {
+        return this.copyPolicyItems == null ? List.of() : this.copyPolicyItems;
+    }
+    /**
+     * @return List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copyPolicyItems` and `lastNumberOfSnapshots` on the same entry. You can switch an entry from `frequencies` to `copyPolicyItems` or `lastNumberOfSnapshots` in one apply; the switch back is not possible because `copyPolicyItemsEnabled` cannot be turned off once it is `true`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
     public List<String> frequencies() {
         return this.frequencies == null ? List.of() : this.frequencies;
+    }
+    /**
+     * @return Number of most recent snapshots to copy, from 1 to 500, when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `copyPolicyItems`.
+     * 
+     */
+    public Optional<Integer> lastNumberOfSnapshots() {
+        return Optional.ofNullable(this.lastNumberOfSnapshots);
     }
     /**
      * @return Target region to copy snapshots belonging to replicationSpecId to. Please supply the &#39;Atlas Region&#39; which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ &#39;regions&#39; link
@@ -86,7 +120,9 @@ public final class CloudBackupScheduleCopySetting {
     @CustomType.Builder
     public static final class Builder {
         private @Nullable String cloudProvider;
+        private @Nullable List<CloudBackupScheduleCopySettingCopyPolicyItem> copyPolicyItems;
         private @Nullable List<String> frequencies;
+        private @Nullable Integer lastNumberOfSnapshots;
         private @Nullable String regionName;
         private @Nullable Boolean shouldCopyOplogs;
         private @Nullable String zoneId;
@@ -94,7 +130,9 @@ public final class CloudBackupScheduleCopySetting {
         public Builder(CloudBackupScheduleCopySetting defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.cloudProvider = defaults.cloudProvider;
+    	      this.copyPolicyItems = defaults.copyPolicyItems;
     	      this.frequencies = defaults.frequencies;
+    	      this.lastNumberOfSnapshots = defaults.lastNumberOfSnapshots;
     	      this.regionName = defaults.regionName;
     	      this.shouldCopyOplogs = defaults.shouldCopyOplogs;
     	      this.zoneId = defaults.zoneId;
@@ -107,6 +145,15 @@ public final class CloudBackupScheduleCopySetting {
             return this;
         }
         @CustomType.Setter
+        public Builder copyPolicyItems(@Nullable List<CloudBackupScheduleCopySettingCopyPolicyItem> copyPolicyItems) {
+
+            this.copyPolicyItems = copyPolicyItems;
+            return this;
+        }
+        public Builder copyPolicyItems(CloudBackupScheduleCopySettingCopyPolicyItem... copyPolicyItems) {
+            return copyPolicyItems(List.of(copyPolicyItems));
+        }
+        @CustomType.Setter
         public Builder frequencies(@Nullable List<String> frequencies) {
 
             this.frequencies = frequencies;
@@ -114,6 +161,12 @@ public final class CloudBackupScheduleCopySetting {
         }
         public Builder frequencies(String... frequencies) {
             return frequencies(List.of(frequencies));
+        }
+        @CustomType.Setter
+        public Builder lastNumberOfSnapshots(@Nullable Integer lastNumberOfSnapshots) {
+
+            this.lastNumberOfSnapshots = lastNumberOfSnapshots;
+            return this;
         }
         @CustomType.Setter
         public Builder regionName(@Nullable String regionName) {
@@ -136,7 +189,9 @@ public final class CloudBackupScheduleCopySetting {
         public CloudBackupScheduleCopySetting build() {
             final var _resultValue = new CloudBackupScheduleCopySetting();
             _resultValue.cloudProvider = cloudProvider;
+            _resultValue.copyPolicyItems = copyPolicyItems;
             _resultValue.frequencies = frequencies;
+            _resultValue.lastNumberOfSnapshots = lastNumberOfSnapshots;
             _resultValue.regionName = regionName;
             _resultValue.shouldCopyOplogs = shouldCopyOplogs;
             _resultValue.zoneId = zoneId;

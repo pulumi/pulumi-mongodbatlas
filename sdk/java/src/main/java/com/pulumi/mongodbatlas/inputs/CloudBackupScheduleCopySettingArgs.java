@@ -5,7 +5,9 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingCopyPolicyItemArgs;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -33,18 +35,56 @@ public final class CloudBackupScheduleCopySettingArgs extends com.pulumi.resourc
     }
 
     /**
-     * List that describes which types of snapshots to copy. i.e. &#34;HOURLY&#34; &#34;DAILY&#34; &#34;WEEKLY&#34; &#34;MONTHLY&#34; &#34;ON_DEMAND&#34;
+     * Copy-policy items when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `lastNumberOfSnapshots`. See below.
      * 
      */
+    @Import(name="copyPolicyItems")
+    private @Nullable Output<List<CloudBackupScheduleCopySettingCopyPolicyItemArgs>> copyPolicyItems;
+
+    /**
+     * @return Copy-policy items when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `lastNumberOfSnapshots`. See below.
+     * 
+     */
+    public Optional<Output<List<CloudBackupScheduleCopySettingCopyPolicyItemArgs>>> copyPolicyItems() {
+        return Optional.ofNullable(this.copyPolicyItems);
+    }
+
+    /**
+     * List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copyPolicyItems` and `lastNumberOfSnapshots` on the same entry. You can switch an entry from `frequencies` to `copyPolicyItems` or `lastNumberOfSnapshots` in one apply; the switch back is not possible because `copyPolicyItemsEnabled` cannot be turned off once it is `true`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+     * 
+     */
+    @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
     @Import(name="frequencies")
     private @Nullable Output<List<String>> frequencies;
 
     /**
-     * @return List that describes which types of snapshots to copy. i.e. &#34;HOURLY&#34; &#34;DAILY&#34; &#34;WEEKLY&#34; &#34;MONTHLY&#34; &#34;ON_DEMAND&#34;
+     * @return List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copyPolicyItems` and `lastNumberOfSnapshots` on the same entry. You can switch an entry from `frequencies` to `copyPolicyItems` or `lastNumberOfSnapshots` in one apply; the switch back is not possible because `copyPolicyItemsEnabled` cannot be turned off once it is `true`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+     * 
+     * @deprecated
+     * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
      * 
      */
+    @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
     public Optional<Output<List<String>>> frequencies() {
         return Optional.ofNullable(this.frequencies);
+    }
+
+    /**
+     * Number of most recent snapshots to copy, from 1 to 500, when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `copyPolicyItems`.
+     * 
+     */
+    @Import(name="lastNumberOfSnapshots")
+    private @Nullable Output<Integer> lastNumberOfSnapshots;
+
+    /**
+     * @return Number of most recent snapshots to copy, from 1 to 500, when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `copyPolicyItems`.
+     * 
+     */
+    public Optional<Output<Integer>> lastNumberOfSnapshots() {
+        return Optional.ofNullable(this.lastNumberOfSnapshots);
     }
 
     /**
@@ -96,7 +136,9 @@ public final class CloudBackupScheduleCopySettingArgs extends com.pulumi.resourc
 
     private CloudBackupScheduleCopySettingArgs(CloudBackupScheduleCopySettingArgs $) {
         this.cloudProvider = $.cloudProvider;
+        this.copyPolicyItems = $.copyPolicyItems;
         this.frequencies = $.frequencies;
+        this.lastNumberOfSnapshots = $.lastNumberOfSnapshots;
         this.regionName = $.regionName;
         this.shouldCopyOplogs = $.shouldCopyOplogs;
         this.zoneId = $.zoneId;
@@ -142,34 +184,98 @@ public final class CloudBackupScheduleCopySettingArgs extends com.pulumi.resourc
         }
 
         /**
-         * @param frequencies List that describes which types of snapshots to copy. i.e. &#34;HOURLY&#34; &#34;DAILY&#34; &#34;WEEKLY&#34; &#34;MONTHLY&#34; &#34;ON_DEMAND&#34;
+         * @param copyPolicyItems Copy-policy items when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `lastNumberOfSnapshots`. See below.
          * 
          * @return builder
          * 
          */
+        public Builder copyPolicyItems(@Nullable Output<List<CloudBackupScheduleCopySettingCopyPolicyItemArgs>> copyPolicyItems) {
+            $.copyPolicyItems = copyPolicyItems;
+            return this;
+        }
+
+        /**
+         * @param copyPolicyItems Copy-policy items when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `lastNumberOfSnapshots`. See below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder copyPolicyItems(List<CloudBackupScheduleCopySettingCopyPolicyItemArgs> copyPolicyItems) {
+            return copyPolicyItems(Output.of(copyPolicyItems));
+        }
+
+        /**
+         * @param copyPolicyItems Copy-policy items when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `lastNumberOfSnapshots`. See below.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder copyPolicyItems(CloudBackupScheduleCopySettingCopyPolicyItemArgs... copyPolicyItems) {
+            return copyPolicyItems(List.of(copyPolicyItems));
+        }
+
+        /**
+         * @param frequencies List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copyPolicyItems` and `lastNumberOfSnapshots` on the same entry. You can switch an entry from `frequencies` to `copyPolicyItems` or `lastNumberOfSnapshots` in one apply; the switch back is not possible because `copyPolicyItemsEnabled` cannot be turned off once it is `true`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+         * 
+         */
+        @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
         public Builder frequencies(@Nullable Output<List<String>> frequencies) {
             $.frequencies = frequencies;
             return this;
         }
 
         /**
-         * @param frequencies List that describes which types of snapshots to copy. i.e. &#34;HOURLY&#34; &#34;DAILY&#34; &#34;WEEKLY&#34; &#34;MONTHLY&#34; &#34;ON_DEMAND&#34;
+         * @param frequencies List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copyPolicyItems` and `lastNumberOfSnapshots` on the same entry. You can switch an entry from `frequencies` to `copyPolicyItems` or `lastNumberOfSnapshots` in one apply; the switch back is not possible because `copyPolicyItemsEnabled` cannot be turned off once it is `true`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
          * 
          * @return builder
          * 
+         * @deprecated
+         * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+         * 
          */
+        @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
         public Builder frequencies(List<String> frequencies) {
             return frequencies(Output.of(frequencies));
         }
 
         /**
-         * @param frequencies List that describes which types of snapshots to copy. i.e. &#34;HOURLY&#34; &#34;DAILY&#34; &#34;WEEKLY&#34; &#34;MONTHLY&#34; &#34;ON_DEMAND&#34;
+         * @param frequencies List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copyPolicyItems` and `lastNumberOfSnapshots` on the same entry. You can switch an entry from `frequencies` to `copyPolicyItems` or `lastNumberOfSnapshots` in one apply; the switch back is not possible because `copyPolicyItemsEnabled` cannot be turned off once it is `true`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
+         * 
+         */
+        @Deprecated /* This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`. */
+        public Builder frequencies(String... frequencies) {
+            return frequencies(List.of(frequencies));
+        }
+
+        /**
+         * @param lastNumberOfSnapshots Number of most recent snapshots to copy, from 1 to 500, when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `copyPolicyItems`.
          * 
          * @return builder
          * 
          */
-        public Builder frequencies(String... frequencies) {
-            return frequencies(List.of(frequencies));
+        public Builder lastNumberOfSnapshots(@Nullable Output<Integer> lastNumberOfSnapshots) {
+            $.lastNumberOfSnapshots = lastNumberOfSnapshots;
+            return this;
+        }
+
+        /**
+         * @param lastNumberOfSnapshots Number of most recent snapshots to copy, from 1 to 500, when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `copyPolicyItems`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder lastNumberOfSnapshots(Integer lastNumberOfSnapshots) {
+            return lastNumberOfSnapshots(Output.of(lastNumberOfSnapshots));
         }
 
         /**

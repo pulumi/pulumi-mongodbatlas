@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.mongodbatlas.outputs.GetOrganizationsResultCustomSessionTimeout;
 import com.pulumi.mongodbatlas.outputs.GetOrganizationsResultLink;
 import com.pulumi.mongodbatlas.outputs.GetOrganizationsResultUser;
 import java.lang.Boolean;
@@ -19,6 +20,11 @@ public final class GetOrganizationsResult {
      * 
      */
     private Boolean apiAccessListRequired;
+    /**
+     * @return Block that specifies the custom session timeout settings for the organization. See Custom Session Timeouts.
+     * 
+     */
+    private List<GetOrganizationsResultCustomSessionTimeout> customSessionTimeouts;
     /**
      * @return Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
      * 
@@ -45,6 +51,11 @@ public final class GetOrganizationsResult {
      * 
      */
     private String name;
+    /**
+     * @return String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals.
+     * 
+     */
+    private String operationsContact;
     /**
      * @return Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
      * 
@@ -73,6 +84,13 @@ public final class GetOrganizationsResult {
      */
     public Boolean apiAccessListRequired() {
         return this.apiAccessListRequired;
+    }
+    /**
+     * @return Block that specifies the custom session timeout settings for the organization. See Custom Session Timeouts.
+     * 
+     */
+    public List<GetOrganizationsResultCustomSessionTimeout> customSessionTimeouts() {
+        return this.customSessionTimeouts;
     }
     /**
      * @return Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
@@ -113,6 +131,13 @@ public final class GetOrganizationsResult {
         return this.name;
     }
     /**
+     * @return String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals.
+     * 
+     */
+    public String operationsContact() {
+        return this.operationsContact;
+    }
+    /**
      * @return Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
      * 
      */
@@ -151,12 +176,14 @@ public final class GetOrganizationsResult {
     @CustomType.Builder
     public static final class Builder {
         private Boolean apiAccessListRequired;
+        private List<GetOrganizationsResultCustomSessionTimeout> customSessionTimeouts;
         private Boolean genAiFeaturesEnabled;
         private String id;
         private Boolean isDeleted;
         private List<GetOrganizationsResultLink> links;
         private Boolean multiFactorAuthRequired;
         private String name;
+        private String operationsContact;
         private Boolean restrictEmployeeAccess;
         private String securityContact;
         private Boolean skipDefaultAlertsSettings;
@@ -165,12 +192,14 @@ public final class GetOrganizationsResult {
         public Builder(GetOrganizationsResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.apiAccessListRequired = defaults.apiAccessListRequired;
+    	      this.customSessionTimeouts = defaults.customSessionTimeouts;
     	      this.genAiFeaturesEnabled = defaults.genAiFeaturesEnabled;
     	      this.id = defaults.id;
     	      this.isDeleted = defaults.isDeleted;
     	      this.links = defaults.links;
     	      this.multiFactorAuthRequired = defaults.multiFactorAuthRequired;
     	      this.name = defaults.name;
+    	      this.operationsContact = defaults.operationsContact;
     	      this.restrictEmployeeAccess = defaults.restrictEmployeeAccess;
     	      this.securityContact = defaults.securityContact;
     	      this.skipDefaultAlertsSettings = defaults.skipDefaultAlertsSettings;
@@ -184,6 +213,17 @@ public final class GetOrganizationsResult {
             }
             this.apiAccessListRequired = apiAccessListRequired;
             return this;
+        }
+        @CustomType.Setter
+        public Builder customSessionTimeouts(List<GetOrganizationsResultCustomSessionTimeout> customSessionTimeouts) {
+            if (customSessionTimeouts == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationsResult", "customSessionTimeouts");
+            }
+            this.customSessionTimeouts = customSessionTimeouts;
+            return this;
+        }
+        public Builder customSessionTimeouts(GetOrganizationsResultCustomSessionTimeout... customSessionTimeouts) {
+            return customSessionTimeouts(List.of(customSessionTimeouts));
         }
         @CustomType.Setter
         public Builder genAiFeaturesEnabled(Boolean genAiFeaturesEnabled) {
@@ -237,6 +277,14 @@ public final class GetOrganizationsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder operationsContact(String operationsContact) {
+            if (operationsContact == null) {
+              throw new MissingRequiredPropertyException("GetOrganizationsResult", "operationsContact");
+            }
+            this.operationsContact = operationsContact;
+            return this;
+        }
+        @CustomType.Setter
         public Builder restrictEmployeeAccess(Boolean restrictEmployeeAccess) {
             if (restrictEmployeeAccess == null) {
               throw new MissingRequiredPropertyException("GetOrganizationsResult", "restrictEmployeeAccess");
@@ -274,12 +322,14 @@ public final class GetOrganizationsResult {
         public GetOrganizationsResult build() {
             final var _resultValue = new GetOrganizationsResult();
             _resultValue.apiAccessListRequired = apiAccessListRequired;
+            _resultValue.customSessionTimeouts = customSessionTimeouts;
             _resultValue.genAiFeaturesEnabled = genAiFeaturesEnabled;
             _resultValue.id = id;
             _resultValue.isDeleted = isDeleted;
             _resultValue.links = links;
             _resultValue.multiFactorAuthRequired = multiFactorAuthRequired;
             _resultValue.name = name;
+            _resultValue.operationsContact = operationsContact;
             _resultValue.restrictEmployeeAccess = restrictEmployeeAccess;
             _resultValue.securityContact = securityContact;
             _resultValue.skipDefaultAlertsSettings = skipDefaultAlertsSettings;

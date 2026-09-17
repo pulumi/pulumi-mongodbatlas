@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetProjectServiceAccountSecret;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -47,6 +48,11 @@ public final class GetProjectServiceAccountResult {
      * 
      */
     private List<GetProjectServiceAccountSecret> secrets;
+    /**
+     * @return Indicates whether the Service Account is system managed.
+     * 
+     */
+    private Boolean systemManaged;
 
     private GetProjectServiceAccountResult() {}
     /**
@@ -98,6 +104,13 @@ public final class GetProjectServiceAccountResult {
     public List<GetProjectServiceAccountSecret> secrets() {
         return this.secrets;
     }
+    /**
+     * @return Indicates whether the Service Account is system managed.
+     * 
+     */
+    public Boolean systemManaged() {
+        return this.systemManaged;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -115,6 +128,7 @@ public final class GetProjectServiceAccountResult {
         private String projectId;
         private List<String> roles;
         private List<GetProjectServiceAccountSecret> secrets;
+        private Boolean systemManaged;
         public Builder() {}
         public Builder(GetProjectServiceAccountResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -125,6 +139,7 @@ public final class GetProjectServiceAccountResult {
     	      this.projectId = defaults.projectId;
     	      this.roles = defaults.roles;
     	      this.secrets = defaults.secrets;
+    	      this.systemManaged = defaults.systemManaged;
         }
 
         @CustomType.Setter
@@ -189,6 +204,14 @@ public final class GetProjectServiceAccountResult {
         public Builder secrets(GetProjectServiceAccountSecret... secrets) {
             return secrets(List.of(secrets));
         }
+        @CustomType.Setter
+        public Builder systemManaged(Boolean systemManaged) {
+            if (systemManaged == null) {
+              throw new MissingRequiredPropertyException("GetProjectServiceAccountResult", "systemManaged");
+            }
+            this.systemManaged = systemManaged;
+            return this;
+        }
         public GetProjectServiceAccountResult build() {
             final var _resultValue = new GetProjectServiceAccountResult();
             _resultValue.clientId = clientId;
@@ -198,6 +221,7 @@ public final class GetProjectServiceAccountResult {
             _resultValue.projectId = projectId;
             _resultValue.roles = roles;
             _resultValue.secrets = secrets;
+            _resultValue.systemManaged = systemManaged;
             return _resultValue;
         }
     }

@@ -24,6 +24,12 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("dlq")]
         public Input<Inputs.StreamProcessorOptionsDlqArgs>? Dlq { get; set; }
 
+        /// <summary>
+        /// Controls checkpoint behavior when the `$source` stage or a window stage of the `Pipeline` changes. When `True`, the stream processor resumes from its last checkpoint. Set to `False` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `True` when not set.
+        /// </summary>
+        [Input("resumeFromCheckpoint")]
+        public Input<bool>? ResumeFromCheckpoint { get; set; }
+
         public StreamProcessorOptionsArgs()
         {
         }

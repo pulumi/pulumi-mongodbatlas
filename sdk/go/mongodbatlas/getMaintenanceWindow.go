@@ -96,6 +96,10 @@ type LookupMaintenanceWindowResult struct {
 	AutoDeferOnceEnabled bool `pulumi:"autoDeferOnceEnabled"`
 	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
 	DayOfWeek int `pulumi:"dayOfWeek"`
+	// Read-only maintenance wave Atlas uses when scheduling maintenance for this project. This value can differ from `waveAssignment` in the following scenarios:
+	// - **`ENV_TAG_MAPPING` mode is active at the organization level.** When the organization's `waveAssignmentMode` is set to `ENV_TAG_MAPPING` (see `OrgMaintenanceSettings`), Atlas ignores any explicit `waveAssignment` and derives the effective wave from the project's environment tag. A project can have `waveAssignment = 1` in state while `effectiveWaveAssignment` returns a different value.
+	// - **Cross-organization billing (`MAINTENANCE_SEQUENCE_CROSS_ORG`).** When a linked non-paying organization inherits the paying organization's wave assignment mode. If the paying organization switches to `ENV_TAG_MAPPING`, all linked projects follow regardless of any explicit `waveAssignment` set on them.
+	EffectiveWaveAssignment int `pulumi:"effectiveWaveAssignment"`
 	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
 	HourOfDay int `pulumi:"hourOfDay"`
 	// The provider-assigned unique ID for this managed resource.
@@ -109,6 +113,8 @@ type LookupMaintenanceWindowResult struct {
 	StartAsap bool `pulumi:"startAsap"`
 	// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
 	TimeZoneId string `pulumi:"timeZoneId"`
+	// Maintenance wave explicitly assigned to this project. Always returned when a value has been set, regardless of the organization's `waveAssignmentMode`. When the mode is `ENV_TAG_MAPPING`, the system preserves the stored value but does not use it for scheduling. Switching back to `MANUAL` restores this value as the effective wave. Returns `0` when no explicit wave has been assigned.
+	WaveAssignment int `pulumi:"waveAssignment"`
 }
 
 func LookupMaintenanceWindowOutput(ctx *pulumi.Context, args LookupMaintenanceWindowOutputArgs, opts ...pulumi.InvokeOption) LookupMaintenanceWindowResultOutput {
@@ -151,6 +157,13 @@ func (o LookupMaintenanceWindowResultOutput) DayOfWeek() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupMaintenanceWindowResult) int { return v.DayOfWeek }).(pulumi.IntOutput)
 }
 
+// Read-only maintenance wave Atlas uses when scheduling maintenance for this project. This value can differ from `waveAssignment` in the following scenarios:
+// - **`ENV_TAG_MAPPING` mode is active at the organization level.** When the organization's `waveAssignmentMode` is set to `ENV_TAG_MAPPING` (see `OrgMaintenanceSettings`), Atlas ignores any explicit `waveAssignment` and derives the effective wave from the project's environment tag. A project can have `waveAssignment = 1` in state while `effectiveWaveAssignment` returns a different value.
+// - **Cross-organization billing (`MAINTENANCE_SEQUENCE_CROSS_ORG`).** When a linked non-paying organization inherits the paying organization's wave assignment mode. If the paying organization switches to `ENV_TAG_MAPPING`, all linked projects follow regardless of any explicit `waveAssignment` set on them.
+func (o LookupMaintenanceWindowResultOutput) EffectiveWaveAssignment() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupMaintenanceWindowResult) int { return v.EffectiveWaveAssignment }).(pulumi.IntOutput)
+}
+
 // Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
 func (o LookupMaintenanceWindowResultOutput) HourOfDay() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupMaintenanceWindowResult) int { return v.HourOfDay }).(pulumi.IntOutput)
@@ -183,6 +196,11 @@ func (o LookupMaintenanceWindowResultOutput) StartAsap() pulumi.BoolOutput {
 // Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
 func (o LookupMaintenanceWindowResultOutput) TimeZoneId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupMaintenanceWindowResult) string { return v.TimeZoneId }).(pulumi.StringOutput)
+}
+
+// Maintenance wave explicitly assigned to this project. Always returned when a value has been set, regardless of the organization's `waveAssignmentMode`. When the mode is `ENV_TAG_MAPPING`, the system preserves the stored value but does not use it for scheduling. Switching back to `MANUAL` restores this value as the effective wave. Returns `0` when no explicit wave has been assigned.
+func (o LookupMaintenanceWindowResultOutput) WaveAssignment() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupMaintenanceWindowResult) int { return v.WaveAssignment }).(pulumi.IntOutput)
 }
 
 func init() {

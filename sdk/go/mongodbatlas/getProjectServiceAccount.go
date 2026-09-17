@@ -50,6 +50,8 @@ type LookupProjectServiceAccountResult struct {
 	Roles []string `pulumi:"roles"`
 	// A list of secrets associated with the specified Service Account.
 	Secrets []GetProjectServiceAccountSecretType `pulumi:"secrets"`
+	// Indicates whether the Service Account is system managed.
+	SystemManaged bool `pulumi:"systemManaged"`
 }
 
 func LookupProjectServiceAccountOutput(ctx *pulumi.Context, args LookupProjectServiceAccountOutputArgs, opts ...pulumi.InvokeOption) LookupProjectServiceAccountResultOutput {
@@ -117,6 +119,11 @@ func (o LookupProjectServiceAccountResultOutput) Roles() pulumi.StringArrayOutpu
 // A list of secrets associated with the specified Service Account.
 func (o LookupProjectServiceAccountResultOutput) Secrets() GetProjectServiceAccountSecretTypeArrayOutput {
 	return o.ApplyT(func(v LookupProjectServiceAccountResult) []GetProjectServiceAccountSecretType { return v.Secrets }).(GetProjectServiceAccountSecretTypeArrayOutput)
+}
+
+// Indicates whether the Service Account is system managed.
+func (o LookupProjectServiceAccountResultOutput) SystemManaged() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupProjectServiceAccountResult) bool { return v.SystemManaged }).(pulumi.BoolOutput)
 }
 
 func init() {

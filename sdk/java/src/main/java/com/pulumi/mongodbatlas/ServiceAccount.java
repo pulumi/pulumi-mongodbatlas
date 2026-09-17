@@ -11,6 +11,7 @@ import com.pulumi.mongodbatlas.ServiceAccountArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.ServiceAccountState;
 import com.pulumi.mongodbatlas.outputs.ServiceAccountSecret;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -146,6 +147,20 @@ public class ServiceAccount extends com.pulumi.resources.CustomResource {
      */
     public Output<List<ServiceAccountSecret>> secrets() {
         return this.secrets;
+    }
+    /**
+     * Indicates whether the Service Account is system managed.
+     * 
+     */
+    @Export(name="systemManaged", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> systemManaged;
+
+    /**
+     * @return Indicates whether the Service Account is system managed.
+     * 
+     */
+    public Output<Boolean> systemManaged() {
+        return this.systemManaged;
     }
 
     /**

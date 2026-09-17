@@ -10,6 +10,7 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.mongodbatlas.OrganizationArgs;
 import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.OrganizationState;
+import com.pulumi.mongodbatlas.outputs.OrganizationCustomSessionTimeouts;
 import com.pulumi.mongodbatlas.outputs.OrganizationServiceAccount;
 import java.lang.Boolean;
 import java.lang.String;
@@ -96,6 +97,20 @@ public class Organization extends com.pulumi.resources.CustomResource {
         return this.apiAccessListRequired;
     }
     /**
+     * Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+     * 
+     */
+    @Export(name="customSessionTimeouts", refs={OrganizationCustomSessionTimeouts.class}, tree="[0]")
+    private Output</* @Nullable */ OrganizationCustomSessionTimeouts> customSessionTimeouts;
+
+    /**
+     * @return Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+     * 
+     */
+    public Output<Optional<OrganizationCustomSessionTimeouts>> customSessionTimeouts() {
+        return Codegen.optional(this.customSessionTimeouts);
+    }
+    /**
      * Programmatic API Key description. This attribute is required in creation and can&#39;t be updated later.
      * 
      * &gt; **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `mongodbatlas.Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -176,6 +191,20 @@ public class Organization extends com.pulumi.resources.CustomResource {
      */
     public Output<String> name() {
         return this.name;
+    }
+    /**
+     * String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+     * 
+     */
+    @Export(name="operationsContact", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> operationsContact;
+
+    /**
+     * @return String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+     * 
+     */
+    public Output<Optional<String>> operationsContact() {
+        return Codegen.optional(this.operationsContact);
     }
     /**
      * The organization id.

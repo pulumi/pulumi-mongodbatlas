@@ -108,7 +108,7 @@ namespace Pulumi.Mongodbatlas
     /// $ pulumi import mongodbatlas:index/maintenanceWindow:MaintenanceWindow test 5d0f1f73cf09a29120e173cf
     /// ```
     /// 
-    /// For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/maintenance-windows/)
+    /// For more information on Maintenance Windows, see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-maintenance-windows)
     /// </summary>
     [MongodbatlasResourceType("mongodbatlas:index/maintenanceWindow:MaintenanceWindow")]
     public partial class MaintenanceWindow : global::Pulumi.CustomResource
@@ -126,10 +126,10 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> AutoDeferOnceEnabled { get; private set; } = null!;
 
         /// <summary>
-        /// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+        /// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `HourOfDay`. Omit both to set a `WaveAssignment` without a maintenance window.
         /// </summary>
         [Output("dayOfWeek")]
-        public Output<int> DayOfWeek { get; private set; } = null!;
+        public Output<int?> DayOfWeek { get; private set; } = null!;
 
         /// <summary>
         /// Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
@@ -138,10 +138,10 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> Defer { get; private set; } = null!;
 
         /// <summary>
-        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
+        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `DayOfWeek`. Omit both to set a `WaveAssignment` without a maintenance window.
         /// </summary>
         [Output("hourOfDay")]
-        public Output<int> HourOfDay { get; private set; } = null!;
+        public Output<int?> HourOfDay { get; private set; } = null!;
 
         /// <summary>
         /// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
@@ -172,6 +172,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("timeZoneId")]
         public Output<string> TimeZoneId { get; private set; } = null!;
+
+        /// <summary>
+        /// Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `WaveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `mongodbatlas.OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+        /// </summary>
+        [Output("waveAssignment")]
+        public Output<int?> WaveAssignment { get; private set; } = null!;
 
 
         /// <summary>
@@ -232,10 +238,10 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? AutoDeferOnceEnabled { get; set; }
 
         /// <summary>
-        /// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+        /// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `HourOfDay`. Omit both to set a `WaveAssignment` without a maintenance window.
         /// </summary>
-        [Input("dayOfWeek", required: true)]
-        public Input<int> DayOfWeek { get; set; } = null!;
+        [Input("dayOfWeek")]
+        public Input<int>? DayOfWeek { get; set; }
 
         /// <summary>
         /// Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
@@ -244,10 +250,10 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Defer { get; set; }
 
         /// <summary>
-        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
+        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `DayOfWeek`. Omit both to set a `WaveAssignment` without a maintenance window.
         /// </summary>
-        [Input("hourOfDay", required: true)]
-        public Input<int> HourOfDay { get; set; } = null!;
+        [Input("hourOfDay")]
+        public Input<int>? HourOfDay { get; set; }
 
         /// <summary>
         /// The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
@@ -260,6 +266,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("protectedHours")]
         public Input<Inputs.MaintenanceWindowProtectedHoursArgs>? ProtectedHours { get; set; }
+
+        /// <summary>
+        /// Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `WaveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `mongodbatlas.OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+        /// </summary>
+        [Input("waveAssignment")]
+        public Input<int>? WaveAssignment { get; set; }
 
         public MaintenanceWindowArgs()
         {
@@ -282,7 +294,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? AutoDeferOnceEnabled { get; set; }
 
         /// <summary>
-        /// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+        /// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `HourOfDay`. Omit both to set a `WaveAssignment` without a maintenance window.
         /// </summary>
         [Input("dayOfWeek")]
         public Input<int>? DayOfWeek { get; set; }
@@ -294,7 +306,7 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? Defer { get; set; }
 
         /// <summary>
-        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
+        /// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `DayOfWeek`. Omit both to set a `WaveAssignment` without a maintenance window.
         /// </summary>
         [Input("hourOfDay")]
         public Input<int>? HourOfDay { get; set; }
@@ -328,6 +340,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("timeZoneId")]
         public Input<string>? TimeZoneId { get; set; }
+
+        /// <summary>
+        /// Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `WaveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `mongodbatlas.OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+        /// </summary>
+        [Input("waveAssignment")]
+        public Input<int>? WaveAssignment { get; set; }
 
         public MaintenanceWindowState()
         {

@@ -5,13 +5,31 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 
 public final class GetProjectServiceAccountsPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetProjectServiceAccountsPlainArgs Empty = new GetProjectServiceAccountsPlainArgs();
+
+    /**
+     * Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+     * 
+     */
+    @Import(name="includeSystemManaged")
+    private @Nullable Boolean includeSystemManaged;
+
+    /**
+     * @return Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+     * 
+     */
+    public Optional<Boolean> includeSystemManaged() {
+        return Optional.ofNullable(this.includeSystemManaged);
+    }
 
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -31,6 +49,7 @@ public final class GetProjectServiceAccountsPlainArgs extends com.pulumi.resourc
     private GetProjectServiceAccountsPlainArgs() {}
 
     private GetProjectServiceAccountsPlainArgs(GetProjectServiceAccountsPlainArgs $) {
+        this.includeSystemManaged = $.includeSystemManaged;
         this.projectId = $.projectId;
     }
 
@@ -50,6 +69,17 @@ public final class GetProjectServiceAccountsPlainArgs extends com.pulumi.resourc
 
         public Builder(GetProjectServiceAccountsPlainArgs defaults) {
             $ = new GetProjectServiceAccountsPlainArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param includeSystemManaged Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder includeSystemManaged(@Nullable Boolean includeSystemManaged) {
+            $.includeSystemManaged = includeSystemManaged;
+            return this;
         }
 
         /**

@@ -22,11 +22,13 @@ __all__ = ['OrganizationArgs', 'Organization']
 class OrganizationArgs:
     def __init__(__self__, *,
                  api_access_list_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 custom_session_timeouts: pulumi.Input[Optional['OrganizationCustomSessionTimeoutsArgs']] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
                  gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  multi_factor_auth_required: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 operations_contact: pulumi.Input[Optional[_builtins.str]] = None,
                  org_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  restrict_employee_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -37,6 +39,7 @@ class OrganizationArgs:
         The set of arguments for constructing a Organization resource.
 
         :param pulumi.Input[_builtins.bool] api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+        :param pulumi.Input['OrganizationCustomSessionTimeoutsArgs'] custom_session_timeouts: Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
         :param pulumi.Input[_builtins.str] description: Programmatic API Key description. This attribute is required in creation and can't be updated later.
                
                > **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -48,6 +51,7 @@ class OrganizationArgs:
         :param pulumi.Input[_builtins.bool] gen_ai_features_enabled: Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
         :param pulumi.Input[_builtins.bool] multi_factor_auth_required: Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
         :param pulumi.Input[_builtins.str] name: The name of the organization.
+        :param pulumi.Input[_builtins.str] operations_contact: String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
         :param pulumi.Input[_builtins.str] org_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
         :param pulumi.Input[_builtins.bool] restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
@@ -59,6 +63,8 @@ class OrganizationArgs:
         """
         if api_access_list_required is not None:
             pulumi.set(__self__, "api_access_list_required", api_access_list_required)
+        if custom_session_timeouts is not None:
+            pulumi.set(__self__, "custom_session_timeouts", custom_session_timeouts)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if federation_settings_id is not None:
@@ -69,6 +75,8 @@ class OrganizationArgs:
             pulumi.set(__self__, "multi_factor_auth_required", multi_factor_auth_required)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if operations_contact is not None:
+            pulumi.set(__self__, "operations_contact", operations_contact)
         if org_owner_id is not None:
             pulumi.set(__self__, "org_owner_id", org_owner_id)
         if restrict_employee_access is not None:
@@ -93,6 +101,18 @@ class OrganizationArgs:
     @api_access_list_required.setter
     def api_access_list_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "api_access_list_required", value)
+
+    @_builtins.property
+    @pulumi.getter(name="customSessionTimeouts")
+    def custom_session_timeouts(self) -> pulumi.Input[Optional['OrganizationCustomSessionTimeoutsArgs']]:
+        """
+        Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+        """
+        return pulumi.get(self, "custom_session_timeouts")
+
+    @custom_session_timeouts.setter
+    def custom_session_timeouts(self, value: pulumi.Input[Optional['OrganizationCustomSessionTimeoutsArgs']]):
+        pulumi.set(self, "custom_session_timeouts", value)
 
     @_builtins.property
     @pulumi.getter
@@ -159,6 +179,18 @@ class OrganizationArgs:
     @name.setter
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="operationsContact")
+    def operations_contact(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+        """
+        return pulumi.get(self, "operations_contact")
+
+    @operations_contact.setter
+    def operations_contact(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "operations_contact", value)
 
     @_builtins.property
     @pulumi.getter(name="orgOwnerId")
@@ -239,11 +271,13 @@ class OrganizationArgs:
 class _OrganizationState:
     def __init__(__self__, *,
                  api_access_list_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 custom_session_timeouts: pulumi.Input[Optional['OrganizationCustomSessionTimeoutsArgs']] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
                  gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  multi_factor_auth_required: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 operations_contact: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  org_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  private_key: pulumi.Input[Optional[_builtins.str]] = None,
@@ -257,6 +291,7 @@ class _OrganizationState:
         Input properties used for looking up and filtering Organization resources.
 
         :param pulumi.Input[_builtins.bool] api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+        :param pulumi.Input['OrganizationCustomSessionTimeoutsArgs'] custom_session_timeouts: Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
         :param pulumi.Input[_builtins.str] description: Programmatic API Key description. This attribute is required in creation and can't be updated later.
                
                > **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -268,6 +303,7 @@ class _OrganizationState:
         :param pulumi.Input[_builtins.bool] gen_ai_features_enabled: Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
         :param pulumi.Input[_builtins.bool] multi_factor_auth_required: Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
         :param pulumi.Input[_builtins.str] name: The name of the organization.
+        :param pulumi.Input[_builtins.str] operations_contact: String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
         :param pulumi.Input[_builtins.str] org_id: The organization id.
         :param pulumi.Input[_builtins.str] org_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
         :param pulumi.Input[_builtins.str] private_key: Private key returned for this organization API key. This key displays unredacted when first created and is stored in the Terraform state file. Used for subsequent resource operations. Only populated when no `service_account` block is defined.
@@ -282,6 +318,8 @@ class _OrganizationState:
         """
         if api_access_list_required is not None:
             pulumi.set(__self__, "api_access_list_required", api_access_list_required)
+        if custom_session_timeouts is not None:
+            pulumi.set(__self__, "custom_session_timeouts", custom_session_timeouts)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if federation_settings_id is not None:
@@ -292,6 +330,8 @@ class _OrganizationState:
             pulumi.set(__self__, "multi_factor_auth_required", multi_factor_auth_required)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if operations_contact is not None:
+            pulumi.set(__self__, "operations_contact", operations_contact)
         if org_id is not None:
             pulumi.set(__self__, "org_id", org_id)
         if org_owner_id is not None:
@@ -322,6 +362,18 @@ class _OrganizationState:
     @api_access_list_required.setter
     def api_access_list_required(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "api_access_list_required", value)
+
+    @_builtins.property
+    @pulumi.getter(name="customSessionTimeouts")
+    def custom_session_timeouts(self) -> pulumi.Input[Optional['OrganizationCustomSessionTimeoutsArgs']]:
+        """
+        Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+        """
+        return pulumi.get(self, "custom_session_timeouts")
+
+    @custom_session_timeouts.setter
+    def custom_session_timeouts(self, value: pulumi.Input[Optional['OrganizationCustomSessionTimeoutsArgs']]):
+        pulumi.set(self, "custom_session_timeouts", value)
 
     @_builtins.property
     @pulumi.getter
@@ -388,6 +440,18 @@ class _OrganizationState:
     @name.setter
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="operationsContact")
+    def operations_contact(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+        """
+        return pulumi.get(self, "operations_contact")
+
+    @operations_contact.setter
+    def operations_contact(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "operations_contact", value)
 
     @_builtins.property
     @pulumi.getter(name="orgId")
@@ -507,11 +571,13 @@ class Organization(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_access_list_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 custom_session_timeouts: pulumi.Input[Optional[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
                  gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  multi_factor_auth_required: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 operations_contact: pulumi.Input[Optional[_builtins.str]] = None,
                  org_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  restrict_employee_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -561,6 +627,7 @@ class Organization(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+        :param pulumi.Input[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict']] custom_session_timeouts: Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
         :param pulumi.Input[_builtins.str] description: Programmatic API Key description. This attribute is required in creation and can't be updated later.
                
                > **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -572,6 +639,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] gen_ai_features_enabled: Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
         :param pulumi.Input[_builtins.bool] multi_factor_auth_required: Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
         :param pulumi.Input[_builtins.str] name: The name of the organization.
+        :param pulumi.Input[_builtins.str] operations_contact: String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
         :param pulumi.Input[_builtins.str] org_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
         :param pulumi.Input[_builtins.bool] restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
@@ -642,11 +710,13 @@ class Organization(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_access_list_required: pulumi.Input[Optional[_builtins.bool]] = None,
+                 custom_session_timeouts: pulumi.Input[Optional[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
                  gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  multi_factor_auth_required: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 operations_contact: pulumi.Input[Optional[_builtins.str]] = None,
                  org_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  restrict_employee_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -663,11 +733,13 @@ class Organization(pulumi.CustomResource):
             __props__ = OrganizationArgs.__new__(OrganizationArgs)
 
             __props__.__dict__["api_access_list_required"] = api_access_list_required
+            __props__.__dict__["custom_session_timeouts"] = custom_session_timeouts
             __props__.__dict__["description"] = description
             __props__.__dict__["federation_settings_id"] = federation_settings_id
             __props__.__dict__["gen_ai_features_enabled"] = gen_ai_features_enabled
             __props__.__dict__["multi_factor_auth_required"] = multi_factor_auth_required
             __props__.__dict__["name"] = name
+            __props__.__dict__["operations_contact"] = operations_contact
             __props__.__dict__["org_owner_id"] = org_owner_id
             __props__.__dict__["restrict_employee_access"] = restrict_employee_access
             __props__.__dict__["role_names"] = role_names
@@ -690,11 +762,13 @@ class Organization(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             api_access_list_required: pulumi.Input[Optional[_builtins.bool]] = None,
+            custom_session_timeouts: pulumi.Input[Optional[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict']]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
             gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             multi_factor_auth_required: pulumi.Input[Optional[_builtins.bool]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
+            operations_contact: pulumi.Input[Optional[_builtins.str]] = None,
             org_id: pulumi.Input[Optional[_builtins.str]] = None,
             org_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
             private_key: pulumi.Input[Optional[_builtins.str]] = None,
@@ -712,6 +786,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
+        :param pulumi.Input[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict']] custom_session_timeouts: Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
         :param pulumi.Input[_builtins.str] description: Programmatic API Key description. This attribute is required in creation and can't be updated later.
                
                > **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -723,6 +798,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] gen_ai_features_enabled: Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
         :param pulumi.Input[_builtins.bool] multi_factor_auth_required: Flag that indicates whether to require users to set up Multi-Factor Authentication (MFA) before accessing the specified organization. To learn more, see: https://www.mongodb.com/docs/atlas/security-multi-factor-authentication/.
         :param pulumi.Input[_builtins.str] name: The name of the organization.
+        :param pulumi.Input[_builtins.str] operations_contact: String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
         :param pulumi.Input[_builtins.str] org_id: The organization id.
         :param pulumi.Input[_builtins.str] org_owner_id: Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
         :param pulumi.Input[_builtins.str] private_key: Private key returned for this organization API key. This key displays unredacted when first created and is stored in the Terraform state file. Used for subsequent resource operations. Only populated when no `service_account` block is defined.
@@ -740,11 +816,13 @@ class Organization(pulumi.CustomResource):
         __props__ = _OrganizationState.__new__(_OrganizationState)
 
         __props__.__dict__["api_access_list_required"] = api_access_list_required
+        __props__.__dict__["custom_session_timeouts"] = custom_session_timeouts
         __props__.__dict__["description"] = description
         __props__.__dict__["federation_settings_id"] = federation_settings_id
         __props__.__dict__["gen_ai_features_enabled"] = gen_ai_features_enabled
         __props__.__dict__["multi_factor_auth_required"] = multi_factor_auth_required
         __props__.__dict__["name"] = name
+        __props__.__dict__["operations_contact"] = operations_contact
         __props__.__dict__["org_id"] = org_id
         __props__.__dict__["org_owner_id"] = org_owner_id
         __props__.__dict__["private_key"] = private_key
@@ -763,6 +841,14 @@ class Organization(pulumi.CustomResource):
         Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
         """
         return pulumi.get(self, "api_access_list_required")
+
+    @_builtins.property
+    @pulumi.getter(name="customSessionTimeouts")
+    def custom_session_timeouts(self) -> pulumi.Output[Optional['outputs.OrganizationCustomSessionTimeouts']]:
+        """
+        Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+        """
+        return pulumi.get(self, "custom_session_timeouts")
 
     @_builtins.property
     @pulumi.getter
@@ -809,6 +895,14 @@ class Organization(pulumi.CustomResource):
         The name of the organization.
         """
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="operationsContact")
+    def operations_contact(self) -> pulumi.Output[Optional[_builtins.str]]:
+        """
+        String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+        """
+        return pulumi.get(self, "operations_contact")
 
     @_builtins.property
     @pulumi.getter(name="orgId")

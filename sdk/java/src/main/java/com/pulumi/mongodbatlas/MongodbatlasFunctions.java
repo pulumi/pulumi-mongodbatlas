@@ -163,6 +163,14 @@ import com.pulumi.mongodbatlas.inputs.GetLogIntegrationsArgs;
 import com.pulumi.mongodbatlas.inputs.GetLogIntegrationsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowArgs;
 import com.pulumi.mongodbatlas.inputs.GetMaintenanceWindowPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetMcpConfigArgs;
+import com.pulumi.mongodbatlas.inputs.GetMcpConfigPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetMcpConfigSecretArgs;
+import com.pulumi.mongodbatlas.inputs.GetMcpConfigSecretPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetMcpConfigSecretsArgs;
+import com.pulumi.mongodbatlas.inputs.GetMcpConfigSecretsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetMcpConfigsArgs;
+import com.pulumi.mongodbatlas.inputs.GetMcpConfigsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetMetricIntegrationArgs;
 import com.pulumi.mongodbatlas.inputs.GetMetricIntegrationPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetMetricIntegrationsArgs;
@@ -181,8 +189,12 @@ import com.pulumi.mongodbatlas.inputs.GetOnlineArchiveArgs;
 import com.pulumi.mongodbatlas.inputs.GetOnlineArchivePlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetOnlineArchivesArgs;
 import com.pulumi.mongodbatlas.inputs.GetOnlineArchivesPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetOrgDelegationSettingsArgs;
+import com.pulumi.mongodbatlas.inputs.GetOrgDelegationSettingsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetOrgInvitationArgs;
 import com.pulumi.mongodbatlas.inputs.GetOrgInvitationPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetOrgMaintenanceSettingsArgs;
+import com.pulumi.mongodbatlas.inputs.GetOrgMaintenanceSettingsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetOrganizationArgs;
 import com.pulumi.mongodbatlas.inputs.GetOrganizationPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetOrganizationsArgs;
@@ -212,6 +224,14 @@ import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListsArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectIpAccessListsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectIpAddressesPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigSecretArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigSecretPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigSecretsArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigSecretsPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigsArgs;
+import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesArgs;
 import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountAccessListEntriesPlainArgs;
@@ -377,6 +397,10 @@ import com.pulumi.mongodbatlas.outputs.GetLdapVerifyResult;
 import com.pulumi.mongodbatlas.outputs.GetLogIntegrationResult;
 import com.pulumi.mongodbatlas.outputs.GetLogIntegrationsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetMaintenanceWindowResult;
+import com.pulumi.mongodbatlas.outputs.GetMcpConfigResult;
+import com.pulumi.mongodbatlas.outputs.GetMcpConfigSecretResult;
+import com.pulumi.mongodbatlas.outputs.GetMcpConfigSecretsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetMcpConfigsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetMetricIntegrationResult;
 import com.pulumi.mongodbatlas.outputs.GetMetricIntegrationsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetMongodbEmployeeAccessGrantResult;
@@ -386,7 +410,9 @@ import com.pulumi.mongodbatlas.outputs.GetNetworkPeeringResult;
 import com.pulumi.mongodbatlas.outputs.GetNetworkPeeringsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetOnlineArchiveResult;
 import com.pulumi.mongodbatlas.outputs.GetOnlineArchivesInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetOrgDelegationSettingsResult;
 import com.pulumi.mongodbatlas.outputs.GetOrgInvitationResult;
+import com.pulumi.mongodbatlas.outputs.GetOrgMaintenanceSettingsResult;
 import com.pulumi.mongodbatlas.outputs.GetOrganizationResult;
 import com.pulumi.mongodbatlas.outputs.GetOrganizationsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetPrivateEndpointRegionalModeResult;
@@ -401,6 +427,10 @@ import com.pulumi.mongodbatlas.outputs.GetProjectInvitationResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectIpAccessListResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectIpAccessListsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectIpAddressesResult;
+import com.pulumi.mongodbatlas.outputs.GetProjectMcpConfigResult;
+import com.pulumi.mongodbatlas.outputs.GetProjectMcpConfigSecretResult;
+import com.pulumi.mongodbatlas.outputs.GetProjectMcpConfigSecretsInvokeResult;
+import com.pulumi.mongodbatlas.outputs.GetProjectMcpConfigsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectServiceAccountAccessListEntriesInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetProjectServiceAccountAccessListEntryResult;
@@ -9129,6 +9159,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingCopyPolicyItemArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
      * import java.util.ArrayList;
@@ -9173,18 +9204,21 @@ public final class MongodbatlasFunctions {
      *                 .retentionUnit("days")
      *                 .retentionValue(14)
      *                 .build())
+     *             .copyPolicyItemsEnabled(true)
      *             .copySettings(CloudBackupScheduleCopySettingArgs.builder()
      *                 .cloudProvider("AWS")
-     *                 .frequencies(                
-     *                     "HOURLY",
-     *                     "DAILY",
-     *                     "WEEKLY",
-     *                     "MONTHLY",
-     *                     "YEARLY",
-     *                     "ON_DEMAND")
      *                 .regionName("US_EAST_1")
      *                 .zoneId(myCluster.replicationSpecs().applyValue(_replicationSpecs -> _replicationSpecs.stream().map(element -> element.zoneId()[0]).collect(toList())))
      *                 .shouldCopyOplogs(false)
+     *                 .copyPolicyItems(                
+     *                     CloudBackupScheduleCopySettingCopyPolicyItemArgs.builder()
+     *                         .frequencyType("daily")
+     *                         .retentionUnit("days")
+     *                         .retentionValue(7)
+     *                         .build(),
+     *                     CloudBackupScheduleCopySettingCopyPolicyItemArgs.builder()
+     *                         .frequencyType("ondemand")
+     *                         .build())
      *                 .build())
      *             .build());
      * 
@@ -9225,6 +9259,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingCopyPolicyItemArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
      * import java.util.ArrayList;
@@ -9269,18 +9304,21 @@ public final class MongodbatlasFunctions {
      *                 .retentionUnit("days")
      *                 .retentionValue(14)
      *                 .build())
+     *             .copyPolicyItemsEnabled(true)
      *             .copySettings(CloudBackupScheduleCopySettingArgs.builder()
      *                 .cloudProvider("AWS")
-     *                 .frequencies(                
-     *                     "HOURLY",
-     *                     "DAILY",
-     *                     "WEEKLY",
-     *                     "MONTHLY",
-     *                     "YEARLY",
-     *                     "ON_DEMAND")
      *                 .regionName("US_EAST_1")
      *                 .zoneId(myCluster.replicationSpecs().applyValue(_replicationSpecs -> _replicationSpecs.stream().map(element -> element.zoneId()[0]).collect(toList())))
      *                 .shouldCopyOplogs(false)
+     *                 .copyPolicyItems(                
+     *                     CloudBackupScheduleCopySettingCopyPolicyItemArgs.builder()
+     *                         .frequencyType("daily")
+     *                         .retentionUnit("days")
+     *                         .retentionValue(7)
+     *                         .build(),
+     *                     CloudBackupScheduleCopySettingCopyPolicyItemArgs.builder()
+     *                         .frequencyType("ondemand")
+     *                         .build())
      *                 .build())
      *             .build());
      * 
@@ -9321,6 +9359,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingCopyPolicyItemArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
      * import java.util.ArrayList;
@@ -9365,18 +9404,21 @@ public final class MongodbatlasFunctions {
      *                 .retentionUnit("days")
      *                 .retentionValue(14)
      *                 .build())
+     *             .copyPolicyItemsEnabled(true)
      *             .copySettings(CloudBackupScheduleCopySettingArgs.builder()
      *                 .cloudProvider("AWS")
-     *                 .frequencies(                
-     *                     "HOURLY",
-     *                     "DAILY",
-     *                     "WEEKLY",
-     *                     "MONTHLY",
-     *                     "YEARLY",
-     *                     "ON_DEMAND")
      *                 .regionName("US_EAST_1")
      *                 .zoneId(myCluster.replicationSpecs().applyValue(_replicationSpecs -> _replicationSpecs.stream().map(element -> element.zoneId()[0]).collect(toList())))
      *                 .shouldCopyOplogs(false)
+     *                 .copyPolicyItems(                
+     *                     CloudBackupScheduleCopySettingCopyPolicyItemArgs.builder()
+     *                         .frequencyType("daily")
+     *                         .retentionUnit("days")
+     *                         .retentionValue(7)
+     *                         .build(),
+     *                     CloudBackupScheduleCopySettingCopyPolicyItemArgs.builder()
+     *                         .frequencyType("ondemand")
+     *                         .build())
      *                 .build())
      *             .build());
      * 
@@ -9417,6 +9459,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingCopyPolicyItemArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
      * import java.util.ArrayList;
@@ -9461,18 +9504,21 @@ public final class MongodbatlasFunctions {
      *                 .retentionUnit("days")
      *                 .retentionValue(14)
      *                 .build())
+     *             .copyPolicyItemsEnabled(true)
      *             .copySettings(CloudBackupScheduleCopySettingArgs.builder()
      *                 .cloudProvider("AWS")
-     *                 .frequencies(                
-     *                     "HOURLY",
-     *                     "DAILY",
-     *                     "WEEKLY",
-     *                     "MONTHLY",
-     *                     "YEARLY",
-     *                     "ON_DEMAND")
      *                 .regionName("US_EAST_1")
      *                 .zoneId(myCluster.replicationSpecs().applyValue(_replicationSpecs -> _replicationSpecs.stream().map(element -> element.zoneId()[0]).collect(toList())))
      *                 .shouldCopyOplogs(false)
+     *                 .copyPolicyItems(                
+     *                     CloudBackupScheduleCopySettingCopyPolicyItemArgs.builder()
+     *                         .frequencyType("daily")
+     *                         .retentionUnit("days")
+     *                         .retentionValue(7)
+     *                         .build(),
+     *                     CloudBackupScheduleCopySettingCopyPolicyItemArgs.builder()
+     *                         .frequencyType("ondemand")
+     *                         .build())
      *                 .build())
      *             .build());
      * 
@@ -9513,6 +9559,7 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
      * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
+     * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingCopyPolicyItemArgs;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetCloudBackupScheduleArgs;
      * import java.util.ArrayList;
@@ -9557,18 +9604,21 @@ public final class MongodbatlasFunctions {
      *                 .retentionUnit("days")
      *                 .retentionValue(14)
      *                 .build())
+     *             .copyPolicyItemsEnabled(true)
      *             .copySettings(CloudBackupScheduleCopySettingArgs.builder()
      *                 .cloudProvider("AWS")
-     *                 .frequencies(                
-     *                     "HOURLY",
-     *                     "DAILY",
-     *                     "WEEKLY",
-     *                     "MONTHLY",
-     *                     "YEARLY",
-     *                     "ON_DEMAND")
      *                 .regionName("US_EAST_1")
      *                 .zoneId(myCluster.replicationSpecs().applyValue(_replicationSpecs -> _replicationSpecs.stream().map(element -> element.zoneId()[0]).collect(toList())))
      *                 .shouldCopyOplogs(false)
+     *                 .copyPolicyItems(                
+     *                     CloudBackupScheduleCopySettingCopyPolicyItemArgs.builder()
+     *                         .frequencyType("daily")
+     *                         .retentionUnit("days")
+     *                         .retentionValue(7)
+     *                         .build(),
+     *                     CloudBackupScheduleCopySettingCopyPolicyItemArgs.builder()
+     *                         .frequencyType("ondemand")
+     *                         .build())
      *                 .build())
      *             .build());
      * 
@@ -24355,6 +24405,876 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow", TypeShape.of(GetMaintenanceWindowResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.McpConfig` describes an Organization Remote MCP Configuration.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfig(GetMcpConfigArgs.builder()
+     *             .orgId(orgId)
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigName", this_.mcpConfigName());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetMcpConfigResult> getMcpConfig(GetMcpConfigArgs args) {
+        return getMcpConfig(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.McpConfig` describes an Organization Remote MCP Configuration.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfig(GetMcpConfigArgs.builder()
+     *             .orgId(orgId)
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigName", this_.mcpConfigName());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetMcpConfigResult> getMcpConfigPlain(GetMcpConfigPlainArgs args) {
+        return getMcpConfigPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.McpConfig` describes an Organization Remote MCP Configuration.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfig(GetMcpConfigArgs.builder()
+     *             .orgId(orgId)
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigName", this_.mcpConfigName());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetMcpConfigResult> getMcpConfig(GetMcpConfigArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getMcpConfig:getMcpConfig", TypeShape.of(GetMcpConfigResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.McpConfig` describes an Organization Remote MCP Configuration.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfig(GetMcpConfigArgs.builder()
+     *             .orgId(orgId)
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigName", this_.mcpConfigName());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetMcpConfigResult> getMcpConfig(GetMcpConfigArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getMcpConfig:getMcpConfig", TypeShape.of(GetMcpConfigResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.McpConfig` describes an Organization Remote MCP Configuration.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfig(GetMcpConfigArgs.builder()
+     *             .orgId(orgId)
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigName", this_.mcpConfigName());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetMcpConfigResult> getMcpConfigPlain(GetMcpConfigPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getMcpConfig:getMcpConfig", TypeShape.of(GetMcpConfigResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.McpConfigSecret` describes an ingress secret for an Organization Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * &gt; **IMPORTANT:** Managing MCP Config Secrets with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigSecretArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfigSecret(GetMcpConfigSecretArgs.builder()
+     *             .orgId(orgId)
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .secretId(thisMongodbatlasMcpConfigSecret.secretId())
+     *             .build());
+     * 
+     *         ctx.export("secretExpiresAt", this_.expiresAt());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetMcpConfigSecretResult> getMcpConfigSecret(GetMcpConfigSecretArgs args) {
+        return getMcpConfigSecret(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.McpConfigSecret` describes an ingress secret for an Organization Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * &gt; **IMPORTANT:** Managing MCP Config Secrets with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigSecretArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfigSecret(GetMcpConfigSecretArgs.builder()
+     *             .orgId(orgId)
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .secretId(thisMongodbatlasMcpConfigSecret.secretId())
+     *             .build());
+     * 
+     *         ctx.export("secretExpiresAt", this_.expiresAt());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetMcpConfigSecretResult> getMcpConfigSecretPlain(GetMcpConfigSecretPlainArgs args) {
+        return getMcpConfigSecretPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.McpConfigSecret` describes an ingress secret for an Organization Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * &gt; **IMPORTANT:** Managing MCP Config Secrets with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigSecretArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfigSecret(GetMcpConfigSecretArgs.builder()
+     *             .orgId(orgId)
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .secretId(thisMongodbatlasMcpConfigSecret.secretId())
+     *             .build());
+     * 
+     *         ctx.export("secretExpiresAt", this_.expiresAt());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetMcpConfigSecretResult> getMcpConfigSecret(GetMcpConfigSecretArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getMcpConfigSecret:getMcpConfigSecret", TypeShape.of(GetMcpConfigSecretResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.McpConfigSecret` describes an ingress secret for an Organization Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * &gt; **IMPORTANT:** Managing MCP Config Secrets with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigSecretArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfigSecret(GetMcpConfigSecretArgs.builder()
+     *             .orgId(orgId)
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .secretId(thisMongodbatlasMcpConfigSecret.secretId())
+     *             .build());
+     * 
+     *         ctx.export("secretExpiresAt", this_.expiresAt());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetMcpConfigSecretResult> getMcpConfigSecret(GetMcpConfigSecretArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getMcpConfigSecret:getMcpConfigSecret", TypeShape.of(GetMcpConfigSecretResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.McpConfigSecret` describes an ingress secret for an Organization Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * &gt; **IMPORTANT:** Managing MCP Config Secrets with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigSecretArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfigSecret(GetMcpConfigSecretArgs.builder()
+     *             .orgId(orgId)
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .secretId(thisMongodbatlasMcpConfigSecret.secretId())
+     *             .build());
+     * 
+     *         ctx.export("secretExpiresAt", this_.expiresAt());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetMcpConfigSecretResult> getMcpConfigSecretPlain(GetMcpConfigSecretPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getMcpConfigSecret:getMcpConfigSecret", TypeShape.of(GetMcpConfigSecretResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getMcpConfigSecrets` returns all ingress secrets for an Organization Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigSecretsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfigSecrets(GetMcpConfigSecretsArgs.builder()
+     *             .orgId(orgId)
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigSecretsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetMcpConfigSecretsInvokeResult> getMcpConfigSecrets(GetMcpConfigSecretsArgs args) {
+        return getMcpConfigSecrets(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getMcpConfigSecrets` returns all ingress secrets for an Organization Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigSecretsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfigSecrets(GetMcpConfigSecretsArgs.builder()
+     *             .orgId(orgId)
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigSecretsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetMcpConfigSecretsInvokeResult> getMcpConfigSecretsPlain(GetMcpConfigSecretsPlainArgs args) {
+        return getMcpConfigSecretsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getMcpConfigSecrets` returns all ingress secrets for an Organization Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigSecretsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfigSecrets(GetMcpConfigSecretsArgs.builder()
+     *             .orgId(orgId)
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigSecretsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetMcpConfigSecretsInvokeResult> getMcpConfigSecrets(GetMcpConfigSecretsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getMcpConfigSecrets:getMcpConfigSecrets", TypeShape.of(GetMcpConfigSecretsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getMcpConfigSecrets` returns all ingress secrets for an Organization Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigSecretsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfigSecrets(GetMcpConfigSecretsArgs.builder()
+     *             .orgId(orgId)
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigSecretsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetMcpConfigSecretsInvokeResult> getMcpConfigSecrets(GetMcpConfigSecretsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getMcpConfigSecrets:getMcpConfigSecrets", TypeShape.of(GetMcpConfigSecretsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getMcpConfigSecrets` returns all ingress secrets for an Organization Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigSecretsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfigSecrets(GetMcpConfigSecretsArgs.builder()
+     *             .orgId(orgId)
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigSecretsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetMcpConfigSecretsInvokeResult> getMcpConfigSecretsPlain(GetMcpConfigSecretsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getMcpConfigSecrets:getMcpConfigSecrets", TypeShape.of(GetMcpConfigSecretsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getMcpConfigs` returns all Remote MCP Configurations for the specified Organization.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfigs(GetMcpConfigsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetMcpConfigsInvokeResult> getMcpConfigs(GetMcpConfigsArgs args) {
+        return getMcpConfigs(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getMcpConfigs` returns all Remote MCP Configurations for the specified Organization.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfigs(GetMcpConfigsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetMcpConfigsInvokeResult> getMcpConfigsPlain(GetMcpConfigsPlainArgs args) {
+        return getMcpConfigsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getMcpConfigs` returns all Remote MCP Configurations for the specified Organization.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfigs(GetMcpConfigsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetMcpConfigsInvokeResult> getMcpConfigs(GetMcpConfigsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getMcpConfigs:getMcpConfigs", TypeShape.of(GetMcpConfigsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getMcpConfigs` returns all Remote MCP Configurations for the specified Organization.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfigs(GetMcpConfigsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetMcpConfigsInvokeResult> getMcpConfigs(GetMcpConfigsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getMcpConfigs:getMcpConfigs", TypeShape.of(GetMcpConfigsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getMcpConfigs` returns all Remote MCP Configurations for the specified Organization.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetMcpConfigsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getMcpConfigs(GetMcpConfigsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetMcpConfigsInvokeResult> getMcpConfigsPlain(GetMcpConfigsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getMcpConfigs:getMcpConfigs", TypeShape.of(GetMcpConfigsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * `mongodbatlas.MetricIntegration` describes the configuration of a metric integration at the project level.
      * 
      * To use this data source, the requesting Service Account or API Key must have the Organization Owner or Project Owner role.
@@ -26710,6 +27630,286 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getOnlineArchives:getOnlineArchives", TypeShape.of(GetOnlineArchivesInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.OrgDelegationSettings` describes the delegation settings of a MongoDB Atlas organization: how MCP (Model Context Protocol) and partner delegated access are permitted within the organization, as well as the refresh token lifetimes.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.OrgDelegationSettings;
+     * import com.pulumi.mongodbatlas.OrgDelegationSettingsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrgDelegationSettingsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisOrgDelegationSettings = new OrgDelegationSettings("thisOrgDelegationSettings", OrgDelegationSettingsArgs.builder()
+     *             .orgId(atlasOrgId)
+     *             .delegatedMcpAccess("READ_ONLY")
+     *             .delegatedPartnerAccess("DISALLOWED")
+     *             .idleRefreshTokenLifetime(3600)
+     *             .maximumRefreshTokenLifetime(86400)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getOrgDelegationSettings(GetOrgDelegationSettingsArgs.builder()
+     *             .orgId(thisOrgDelegationSettings.orgId())
+     *             .build());
+     * 
+     *         ctx.export("orgDelegationSettingsDelegatedMcpAccess", thisOrgDelegationSettings.delegatedMcpAccess());
+     *         ctx.export("orgDelegationSettingsDelegatedPartnerAccess", thisOrgDelegationSettings.delegatedPartnerAccess());
+     *         ctx.export("orgDelegationSettingsIdleRefreshTokenLifetime", thisOrgDelegationSettings.idleRefreshTokenLifetime());
+     *         ctx.export("orgDelegationSettingsMaximumRefreshTokenLifetime", thisOrgDelegationSettings.maximumRefreshTokenLifetime());
+     *         ctx.export("orgDelegationSettingsDelegatedMcpAccessDs", this_.applyValue(_this_ -> _this_.delegatedMcpAccess()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetOrgDelegationSettingsResult> getOrgDelegationSettings(GetOrgDelegationSettingsArgs args) {
+        return getOrgDelegationSettings(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.OrgDelegationSettings` describes the delegation settings of a MongoDB Atlas organization: how MCP (Model Context Protocol) and partner delegated access are permitted within the organization, as well as the refresh token lifetimes.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.OrgDelegationSettings;
+     * import com.pulumi.mongodbatlas.OrgDelegationSettingsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrgDelegationSettingsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisOrgDelegationSettings = new OrgDelegationSettings("thisOrgDelegationSettings", OrgDelegationSettingsArgs.builder()
+     *             .orgId(atlasOrgId)
+     *             .delegatedMcpAccess("READ_ONLY")
+     *             .delegatedPartnerAccess("DISALLOWED")
+     *             .idleRefreshTokenLifetime(3600)
+     *             .maximumRefreshTokenLifetime(86400)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getOrgDelegationSettings(GetOrgDelegationSettingsArgs.builder()
+     *             .orgId(thisOrgDelegationSettings.orgId())
+     *             .build());
+     * 
+     *         ctx.export("orgDelegationSettingsDelegatedMcpAccess", thisOrgDelegationSettings.delegatedMcpAccess());
+     *         ctx.export("orgDelegationSettingsDelegatedPartnerAccess", thisOrgDelegationSettings.delegatedPartnerAccess());
+     *         ctx.export("orgDelegationSettingsIdleRefreshTokenLifetime", thisOrgDelegationSettings.idleRefreshTokenLifetime());
+     *         ctx.export("orgDelegationSettingsMaximumRefreshTokenLifetime", thisOrgDelegationSettings.maximumRefreshTokenLifetime());
+     *         ctx.export("orgDelegationSettingsDelegatedMcpAccessDs", this_.applyValue(_this_ -> _this_.delegatedMcpAccess()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetOrgDelegationSettingsResult> getOrgDelegationSettingsPlain(GetOrgDelegationSettingsPlainArgs args) {
+        return getOrgDelegationSettingsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.OrgDelegationSettings` describes the delegation settings of a MongoDB Atlas organization: how MCP (Model Context Protocol) and partner delegated access are permitted within the organization, as well as the refresh token lifetimes.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.OrgDelegationSettings;
+     * import com.pulumi.mongodbatlas.OrgDelegationSettingsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrgDelegationSettingsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisOrgDelegationSettings = new OrgDelegationSettings("thisOrgDelegationSettings", OrgDelegationSettingsArgs.builder()
+     *             .orgId(atlasOrgId)
+     *             .delegatedMcpAccess("READ_ONLY")
+     *             .delegatedPartnerAccess("DISALLOWED")
+     *             .idleRefreshTokenLifetime(3600)
+     *             .maximumRefreshTokenLifetime(86400)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getOrgDelegationSettings(GetOrgDelegationSettingsArgs.builder()
+     *             .orgId(thisOrgDelegationSettings.orgId())
+     *             .build());
+     * 
+     *         ctx.export("orgDelegationSettingsDelegatedMcpAccess", thisOrgDelegationSettings.delegatedMcpAccess());
+     *         ctx.export("orgDelegationSettingsDelegatedPartnerAccess", thisOrgDelegationSettings.delegatedPartnerAccess());
+     *         ctx.export("orgDelegationSettingsIdleRefreshTokenLifetime", thisOrgDelegationSettings.idleRefreshTokenLifetime());
+     *         ctx.export("orgDelegationSettingsMaximumRefreshTokenLifetime", thisOrgDelegationSettings.maximumRefreshTokenLifetime());
+     *         ctx.export("orgDelegationSettingsDelegatedMcpAccessDs", this_.applyValue(_this_ -> _this_.delegatedMcpAccess()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetOrgDelegationSettingsResult> getOrgDelegationSettings(GetOrgDelegationSettingsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getOrgDelegationSettings:getOrgDelegationSettings", TypeShape.of(GetOrgDelegationSettingsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.OrgDelegationSettings` describes the delegation settings of a MongoDB Atlas organization: how MCP (Model Context Protocol) and partner delegated access are permitted within the organization, as well as the refresh token lifetimes.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.OrgDelegationSettings;
+     * import com.pulumi.mongodbatlas.OrgDelegationSettingsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrgDelegationSettingsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisOrgDelegationSettings = new OrgDelegationSettings("thisOrgDelegationSettings", OrgDelegationSettingsArgs.builder()
+     *             .orgId(atlasOrgId)
+     *             .delegatedMcpAccess("READ_ONLY")
+     *             .delegatedPartnerAccess("DISALLOWED")
+     *             .idleRefreshTokenLifetime(3600)
+     *             .maximumRefreshTokenLifetime(86400)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getOrgDelegationSettings(GetOrgDelegationSettingsArgs.builder()
+     *             .orgId(thisOrgDelegationSettings.orgId())
+     *             .build());
+     * 
+     *         ctx.export("orgDelegationSettingsDelegatedMcpAccess", thisOrgDelegationSettings.delegatedMcpAccess());
+     *         ctx.export("orgDelegationSettingsDelegatedPartnerAccess", thisOrgDelegationSettings.delegatedPartnerAccess());
+     *         ctx.export("orgDelegationSettingsIdleRefreshTokenLifetime", thisOrgDelegationSettings.idleRefreshTokenLifetime());
+     *         ctx.export("orgDelegationSettingsMaximumRefreshTokenLifetime", thisOrgDelegationSettings.maximumRefreshTokenLifetime());
+     *         ctx.export("orgDelegationSettingsDelegatedMcpAccessDs", this_.applyValue(_this_ -> _this_.delegatedMcpAccess()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetOrgDelegationSettingsResult> getOrgDelegationSettings(GetOrgDelegationSettingsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getOrgDelegationSettings:getOrgDelegationSettings", TypeShape.of(GetOrgDelegationSettingsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.OrgDelegationSettings` describes the delegation settings of a MongoDB Atlas organization: how MCP (Model Context Protocol) and partner delegated access are permitted within the organization, as well as the refresh token lifetimes.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.OrgDelegationSettings;
+     * import com.pulumi.mongodbatlas.OrgDelegationSettingsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrgDelegationSettingsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisOrgDelegationSettings = new OrgDelegationSettings("thisOrgDelegationSettings", OrgDelegationSettingsArgs.builder()
+     *             .orgId(atlasOrgId)
+     *             .delegatedMcpAccess("READ_ONLY")
+     *             .delegatedPartnerAccess("DISALLOWED")
+     *             .idleRefreshTokenLifetime(3600)
+     *             .maximumRefreshTokenLifetime(86400)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getOrgDelegationSettings(GetOrgDelegationSettingsArgs.builder()
+     *             .orgId(thisOrgDelegationSettings.orgId())
+     *             .build());
+     * 
+     *         ctx.export("orgDelegationSettingsDelegatedMcpAccess", thisOrgDelegationSettings.delegatedMcpAccess());
+     *         ctx.export("orgDelegationSettingsDelegatedPartnerAccess", thisOrgDelegationSettings.delegatedPartnerAccess());
+     *         ctx.export("orgDelegationSettingsIdleRefreshTokenLifetime", thisOrgDelegationSettings.idleRefreshTokenLifetime());
+     *         ctx.export("orgDelegationSettingsMaximumRefreshTokenLifetime", thisOrgDelegationSettings.maximumRefreshTokenLifetime());
+     *         ctx.export("orgDelegationSettingsDelegatedMcpAccessDs", this_.applyValue(_this_ -> _this_.delegatedMcpAccess()));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetOrgDelegationSettingsResult> getOrgDelegationSettingsPlain(GetOrgDelegationSettingsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getOrgDelegationSettings:getOrgDelegationSettings", TypeShape.of(GetOrgDelegationSettingsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * `mongodbatlas.OrgInvitation` describes an invitation for a user to join an Atlas organization.
      * 
      * &gt; **DEPRECATION:** This data source is deprecated. Use `mongodbatlas.CloudUserOrgAssignment` to read organization user assignments. See the Org Invitation to Cloud User Org Assignment Migration Guide.
@@ -26753,6 +27953,226 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetOrgInvitationResult> getOrgInvitationPlain(GetOrgInvitationPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getOrgInvitation:getOrgInvitation", TypeShape.of(GetOrgInvitationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.OrgMaintenanceSettings` provides a data source to read the organization-level [maintenance wave settings](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/) for a MongoDB Atlas organization.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrgMaintenanceSettingsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getOrgMaintenanceSettings(GetOrgMaintenanceSettingsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("maintenanceSettings", Map.ofEntries(
+     *             Map.entry("waveAssignmentMode", example.waveAssignmentMode()),
+     *             Map.entry("effectiveWaveAssignmentMode", example.effectiveWaveAssignmentMode())
+     *         ));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetOrgMaintenanceSettingsResult> getOrgMaintenanceSettings(GetOrgMaintenanceSettingsArgs args) {
+        return getOrgMaintenanceSettings(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.OrgMaintenanceSettings` provides a data source to read the organization-level [maintenance wave settings](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/) for a MongoDB Atlas organization.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrgMaintenanceSettingsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getOrgMaintenanceSettings(GetOrgMaintenanceSettingsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("maintenanceSettings", Map.ofEntries(
+     *             Map.entry("waveAssignmentMode", example.waveAssignmentMode()),
+     *             Map.entry("effectiveWaveAssignmentMode", example.effectiveWaveAssignmentMode())
+     *         ));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetOrgMaintenanceSettingsResult> getOrgMaintenanceSettingsPlain(GetOrgMaintenanceSettingsPlainArgs args) {
+        return getOrgMaintenanceSettingsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.OrgMaintenanceSettings` provides a data source to read the organization-level [maintenance wave settings](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/) for a MongoDB Atlas organization.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrgMaintenanceSettingsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getOrgMaintenanceSettings(GetOrgMaintenanceSettingsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("maintenanceSettings", Map.ofEntries(
+     *             Map.entry("waveAssignmentMode", example.waveAssignmentMode()),
+     *             Map.entry("effectiveWaveAssignmentMode", example.effectiveWaveAssignmentMode())
+     *         ));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetOrgMaintenanceSettingsResult> getOrgMaintenanceSettings(GetOrgMaintenanceSettingsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getOrgMaintenanceSettings:getOrgMaintenanceSettings", TypeShape.of(GetOrgMaintenanceSettingsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.OrgMaintenanceSettings` provides a data source to read the organization-level [maintenance wave settings](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/) for a MongoDB Atlas organization.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrgMaintenanceSettingsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getOrgMaintenanceSettings(GetOrgMaintenanceSettingsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("maintenanceSettings", Map.ofEntries(
+     *             Map.entry("waveAssignmentMode", example.waveAssignmentMode()),
+     *             Map.entry("effectiveWaveAssignmentMode", example.effectiveWaveAssignmentMode())
+     *         ));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetOrgMaintenanceSettingsResult> getOrgMaintenanceSettings(GetOrgMaintenanceSettingsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getOrgMaintenanceSettings:getOrgMaintenanceSettings", TypeShape.of(GetOrgMaintenanceSettingsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.OrgMaintenanceSettings` provides a data source to read the organization-level [maintenance wave settings](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/) for a MongoDB Atlas organization.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrgMaintenanceSettingsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getOrgMaintenanceSettings(GetOrgMaintenanceSettingsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("maintenanceSettings", Map.ofEntries(
+     *             Map.entry("waveAssignmentMode", example.waveAssignmentMode()),
+     *             Map.entry("effectiveWaveAssignmentMode", example.effectiveWaveAssignmentMode())
+     *         ));
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetOrgMaintenanceSettingsResult> getOrgMaintenanceSettingsPlain(GetOrgMaintenanceSettingsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getOrgMaintenanceSettings:getOrgMaintenanceSettings", TypeShape.of(GetOrgMaintenanceSettingsResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `mongodbatlas.Organization` describes all MongoDB Atlas Organizations. This represents organizations that have been created.
@@ -31598,6 +33018,876 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetProjectIpAddressesResult> getProjectIpAddressesPlain(GetProjectIpAddressesPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses", TypeShape.of(GetProjectIpAddressesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.ProjectMcpConfig` describes a Project Remote MCP Configuration.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfig(GetProjectMcpConfigArgs.builder()
+     *             .projectId(projectId)
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigName", this_.mcpConfigName());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectMcpConfigResult> getProjectMcpConfig(GetProjectMcpConfigArgs args) {
+        return getProjectMcpConfig(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.ProjectMcpConfig` describes a Project Remote MCP Configuration.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfig(GetProjectMcpConfigArgs.builder()
+     *             .projectId(projectId)
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigName", this_.mcpConfigName());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProjectMcpConfigResult> getProjectMcpConfigPlain(GetProjectMcpConfigPlainArgs args) {
+        return getProjectMcpConfigPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.ProjectMcpConfig` describes a Project Remote MCP Configuration.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfig(GetProjectMcpConfigArgs.builder()
+     *             .projectId(projectId)
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigName", this_.mcpConfigName());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectMcpConfigResult> getProjectMcpConfig(GetProjectMcpConfigArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectMcpConfig:getProjectMcpConfig", TypeShape.of(GetProjectMcpConfigResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.ProjectMcpConfig` describes a Project Remote MCP Configuration.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfig(GetProjectMcpConfigArgs.builder()
+     *             .projectId(projectId)
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigName", this_.mcpConfigName());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectMcpConfigResult> getProjectMcpConfig(GetProjectMcpConfigArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectMcpConfig:getProjectMcpConfig", TypeShape.of(GetProjectMcpConfigResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.ProjectMcpConfig` describes a Project Remote MCP Configuration.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfig(GetProjectMcpConfigArgs.builder()
+     *             .projectId(projectId)
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigName", this_.mcpConfigName());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProjectMcpConfigResult> getProjectMcpConfigPlain(GetProjectMcpConfigPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectMcpConfig:getProjectMcpConfig", TypeShape.of(GetProjectMcpConfigResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.ProjectMcpConfigSecret` describes an ingress secret for a Project Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * &gt; **IMPORTANT:** Managing MCP Config Secrets with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigSecretArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecret(GetProjectMcpConfigSecretArgs.builder()
+     *             .projectId(projectId)
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .secretId(thisMongodbatlasProjectMcpConfigSecret.secretId())
+     *             .build());
+     * 
+     *         ctx.export("secretExpiresAt", this_.expiresAt());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectMcpConfigSecretResult> getProjectMcpConfigSecret(GetProjectMcpConfigSecretArgs args) {
+        return getProjectMcpConfigSecret(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.ProjectMcpConfigSecret` describes an ingress secret for a Project Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * &gt; **IMPORTANT:** Managing MCP Config Secrets with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigSecretArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecret(GetProjectMcpConfigSecretArgs.builder()
+     *             .projectId(projectId)
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .secretId(thisMongodbatlasProjectMcpConfigSecret.secretId())
+     *             .build());
+     * 
+     *         ctx.export("secretExpiresAt", this_.expiresAt());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProjectMcpConfigSecretResult> getProjectMcpConfigSecretPlain(GetProjectMcpConfigSecretPlainArgs args) {
+        return getProjectMcpConfigSecretPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.ProjectMcpConfigSecret` describes an ingress secret for a Project Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * &gt; **IMPORTANT:** Managing MCP Config Secrets with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigSecretArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecret(GetProjectMcpConfigSecretArgs.builder()
+     *             .projectId(projectId)
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .secretId(thisMongodbatlasProjectMcpConfigSecret.secretId())
+     *             .build());
+     * 
+     *         ctx.export("secretExpiresAt", this_.expiresAt());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectMcpConfigSecretResult> getProjectMcpConfigSecret(GetProjectMcpConfigSecretArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectMcpConfigSecret:getProjectMcpConfigSecret", TypeShape.of(GetProjectMcpConfigSecretResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.ProjectMcpConfigSecret` describes an ingress secret for a Project Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * &gt; **IMPORTANT:** Managing MCP Config Secrets with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigSecretArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecret(GetProjectMcpConfigSecretArgs.builder()
+     *             .projectId(projectId)
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .secretId(thisMongodbatlasProjectMcpConfigSecret.secretId())
+     *             .build());
+     * 
+     *         ctx.export("secretExpiresAt", this_.expiresAt());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectMcpConfigSecretResult> getProjectMcpConfigSecret(GetProjectMcpConfigSecretArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectMcpConfigSecret:getProjectMcpConfigSecret", TypeShape.of(GetProjectMcpConfigSecretResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.ProjectMcpConfigSecret` describes an ingress secret for a Project Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * &gt; **IMPORTANT:** Managing MCP Config Secrets with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigSecretArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecret(GetProjectMcpConfigSecretArgs.builder()
+     *             .projectId(projectId)
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .secretId(thisMongodbatlasProjectMcpConfigSecret.secretId())
+     *             .build());
+     * 
+     *         ctx.export("secretExpiresAt", this_.expiresAt());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProjectMcpConfigSecretResult> getProjectMcpConfigSecretPlain(GetProjectMcpConfigSecretPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectMcpConfigSecret:getProjectMcpConfigSecret", TypeShape.of(GetProjectMcpConfigSecretResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getProjectMcpConfigSecrets` returns all ingress secrets for a Project Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigSecretsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecrets(GetProjectMcpConfigSecretsArgs.builder()
+     *             .projectId(projectId)
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigSecretsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectMcpConfigSecretsInvokeResult> getProjectMcpConfigSecrets(GetProjectMcpConfigSecretsArgs args) {
+        return getProjectMcpConfigSecrets(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getProjectMcpConfigSecrets` returns all ingress secrets for a Project Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigSecretsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecrets(GetProjectMcpConfigSecretsArgs.builder()
+     *             .projectId(projectId)
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigSecretsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProjectMcpConfigSecretsInvokeResult> getProjectMcpConfigSecretsPlain(GetProjectMcpConfigSecretsPlainArgs args) {
+        return getProjectMcpConfigSecretsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getProjectMcpConfigSecrets` returns all ingress secrets for a Project Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigSecretsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecrets(GetProjectMcpConfigSecretsArgs.builder()
+     *             .projectId(projectId)
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigSecretsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectMcpConfigSecretsInvokeResult> getProjectMcpConfigSecrets(GetProjectMcpConfigSecretsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectMcpConfigSecrets:getProjectMcpConfigSecrets", TypeShape.of(GetProjectMcpConfigSecretsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getProjectMcpConfigSecrets` returns all ingress secrets for a Project Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigSecretsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecrets(GetProjectMcpConfigSecretsArgs.builder()
+     *             .projectId(projectId)
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigSecretsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectMcpConfigSecretsInvokeResult> getProjectMcpConfigSecrets(GetProjectMcpConfigSecretsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectMcpConfigSecrets:getProjectMcpConfigSecrets", TypeShape.of(GetProjectMcpConfigSecretsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getProjectMcpConfigSecrets` returns all ingress secrets for a Project Remote MCP Configuration. Secret values are never returned. Only masked metadata is available.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigSecretsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecrets(GetProjectMcpConfigSecretsArgs.builder()
+     *             .projectId(projectId)
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigSecretsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProjectMcpConfigSecretsInvokeResult> getProjectMcpConfigSecretsPlain(GetProjectMcpConfigSecretsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectMcpConfigSecrets:getProjectMcpConfigSecrets", TypeShape.of(GetProjectMcpConfigSecretsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getProjectMcpConfigs` returns all Remote MCP Configurations for the specified Project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfigs(GetProjectMcpConfigsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectMcpConfigsInvokeResult> getProjectMcpConfigs(GetProjectMcpConfigsArgs args) {
+        return getProjectMcpConfigs(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getProjectMcpConfigs` returns all Remote MCP Configurations for the specified Project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfigs(GetProjectMcpConfigsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProjectMcpConfigsInvokeResult> getProjectMcpConfigsPlain(GetProjectMcpConfigsPlainArgs args) {
+        return getProjectMcpConfigsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getProjectMcpConfigs` returns all Remote MCP Configurations for the specified Project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfigs(GetProjectMcpConfigsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectMcpConfigsInvokeResult> getProjectMcpConfigs(GetProjectMcpConfigsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectMcpConfigs:getProjectMcpConfigs", TypeShape.of(GetProjectMcpConfigsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getProjectMcpConfigs` returns all Remote MCP Configurations for the specified Project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfigs(GetProjectMcpConfigsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetProjectMcpConfigsInvokeResult> getProjectMcpConfigs(GetProjectMcpConfigsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getProjectMcpConfigs:getProjectMcpConfigs", TypeShape.of(GetProjectMcpConfigsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getProjectMcpConfigs` returns all Remote MCP Configurations for the specified Project.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectMcpConfigsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var this = MongodbatlasFunctions.getProjectMcpConfigs(GetProjectMcpConfigsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("mcpConfigsResults", this_.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetProjectMcpConfigsInvokeResult> getProjectMcpConfigsPlain(GetProjectMcpConfigsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getProjectMcpConfigs:getProjectMcpConfigs", TypeShape.of(GetProjectMcpConfigsInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `mongodbatlas.ProjectServiceAccount` describes a Project Service Account.

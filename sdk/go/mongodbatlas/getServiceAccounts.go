@@ -28,12 +28,16 @@ func LookupServiceAccounts(ctx *pulumi.Context, args *LookupServiceAccountsArgs,
 
 // A collection of arguments for invoking getServiceAccounts.
 type LookupServiceAccountsArgs struct {
+	// Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+	IncludeSystemManaged *bool `pulumi:"includeSystemManaged"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId string `pulumi:"orgId"`
 }
 
 // A collection of values returned by getServiceAccounts.
 type LookupServiceAccountsResult struct {
+	// Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+	IncludeSystemManaged *bool `pulumi:"includeSystemManaged"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId string `pulumi:"orgId"`
 	// List of returned documents that MongoDB Cloud provides when completing this request.
@@ -47,6 +51,8 @@ func LookupServiceAccountsOutput(ctx *pulumi.Context, args LookupServiceAccounts
 
 // A collection of arguments for invoking getServiceAccounts.
 type LookupServiceAccountsOutputArgs struct {
+	// Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+	IncludeSystemManaged pulumi.BoolPtrInput `pulumi:"includeSystemManaged"`
 	// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
 	OrgId pulumi.StringInput `pulumi:"orgId"`
 }
@@ -68,6 +74,11 @@ func (o LookupServiceAccountsResultOutput) ToLookupServiceAccountsResultOutput()
 
 func (o LookupServiceAccountsResultOutput) ToLookupServiceAccountsResultOutputWithContext(ctx context.Context) LookupServiceAccountsResultOutput {
 	return o
+}
+
+// Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+func (o LookupServiceAccountsResultOutput) IncludeSystemManaged() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v LookupServiceAccountsResult) *bool { return v.IncludeSystemManaged }).(pulumi.BoolPtrOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies the organization that contains your projects.

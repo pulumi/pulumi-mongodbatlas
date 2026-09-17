@@ -18,26 +18,36 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
     public static final AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs Empty = new AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs();
 
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
      * 
+     * For AWS, valid configurations are:
      * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
      * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-     * * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+     * * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
      * 
-     * For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can&#39;t set this attribute for a multi-cloud cluster.
+     * For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don&#39;t support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+     * * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+     * * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+     * 
+     * For Azure (Gen1 only; Azure doesn&#39;t support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can&#39;t set this attribute for a multi-cloud cluster.
      * 
      */
     @Import(name="diskIops")
     private @Nullable Output<Integer> diskIops;
 
     /**
-     * @return Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+     * @return Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
      * 
+     * For AWS, valid configurations are:
      * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
      * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-     * * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+     * * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
      * 
-     * For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can&#39;t set this attribute for a multi-cloud cluster.
+     * For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don&#39;t support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+     * * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+     * * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+     * 
+     * For Azure (Gen1 only; Azure doesn&#39;t support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can&#39;t set this attribute for a multi-cloud cluster.
      * 
      */
     public Optional<Output<Integer>> diskIops() {
@@ -45,14 +55,14 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
     }
 
     /**
-     * Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+     * Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
      * 
      */
     @Import(name="diskSizeGb")
     private @Nullable Output<Double> diskSizeGb;
 
     /**
-     * @return Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+     * @return Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
      * 
      */
     public Optional<Output<Double>> diskSizeGb() {
@@ -60,20 +70,20 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
     }
 
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Valid values are:
-     * * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-     * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-     * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Don&#39;t set this parameter for GCP or Azure clusters. Valid values are:
+     * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+     * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+     * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
      * 
      */
     @Import(name="ebsVolumeType")
     private @Nullable Output<String> ebsVolumeType;
 
     /**
-     * @return Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Valid values are:
-     * * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-     * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-     * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+     * @return Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Don&#39;t set this parameter for GCP or Azure clusters. Valid values are:
+     * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+     * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+     * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
      * 
      */
     public Optional<Output<String>> ebsVolumeType() {
@@ -85,7 +95,9 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
      * 
      * Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
      * 
-     * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+     * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn&#39;t support Gen2 instance sizes.
+     * 
+     * GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn&#39;t support `Mxx_NVME` Gen2 instance sizes.
      * 
      */
     @Import(name="instanceSize")
@@ -96,7 +108,9 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
      * 
      * Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
      * 
-     * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+     * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn&#39;t support Gen2 instance sizes.
+     * 
+     * GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn&#39;t support `Mxx_NVME` Gen2 instance sizes.
      * 
      */
     public Optional<Output<String>> instanceSize() {
@@ -147,13 +161,18 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
         }
 
         /**
-         * @param diskIops Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+         * @param diskIops Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
          * 
+         * For AWS, valid configurations are:
          * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
          * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-         * * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+         * * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
          * 
-         * For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can&#39;t set this attribute for a multi-cloud cluster.
+         * For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don&#39;t support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+         * * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+         * * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+         * 
+         * For Azure (Gen1 only; Azure doesn&#39;t support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can&#39;t set this attribute for a multi-cloud cluster.
          * 
          * @return builder
          * 
@@ -164,13 +183,18 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
         }
 
         /**
-         * @param diskIops Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+         * @param diskIops Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
          * 
+         * For AWS, valid configurations are:
          * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
          * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-         * * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+         * * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
          * 
-         * For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can&#39;t set this attribute for a multi-cloud cluster.
+         * For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don&#39;t support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+         * * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+         * * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+         * 
+         * For Azure (Gen1 only; Azure doesn&#39;t support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can&#39;t set this attribute for a multi-cloud cluster.
          * 
          * @return builder
          * 
@@ -180,7 +204,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
         }
 
         /**
-         * @param diskSizeGb Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+         * @param diskSizeGb Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
          * 
          * @return builder
          * 
@@ -191,7 +215,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
         }
 
         /**
-         * @param diskSizeGb Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+         * @param diskSizeGb Storage capacity that the host&#39;s root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
          * 
          * @return builder
          * 
@@ -201,10 +225,10 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
         }
 
         /**
-         * @param ebsVolumeType Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Valid values are:
-         * * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-         * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-         * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+         * @param ebsVolumeType Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Don&#39;t set this parameter for GCP or Azure clusters. Valid values are:
+         * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+         * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+         * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
          * 
          * @return builder
          * 
@@ -215,10 +239,10 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
         }
 
         /**
-         * @param ebsVolumeType Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Valid values are:
-         * * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-         * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-         * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+         * @param ebsVolumeType Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Don&#39;t set this parameter for GCP or Azure clusters. Valid values are:
+         * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+         * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+         * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
          * 
          * @return builder
          * 
@@ -232,7 +256,9 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
          * 
          * Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
          * 
-         * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+         * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn&#39;t support Gen2 instance sizes.
+         * 
+         * GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn&#39;t support `Mxx_NVME` Gen2 instance sizes.
          * 
          * @return builder
          * 
@@ -247,7 +273,9 @@ public final class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs 
          * 
          * Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
          * 
-         * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+         * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn&#39;t support Gen2 instance sizes.
+         * 
+         * GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn&#39;t support `Mxx_NVME` Gen2 instance sizes.
          * 
          * @return builder
          * 

@@ -27,13 +27,24 @@ class GetProjectServiceAccountsResult:
     """
     A collection of values returned by getProjectServiceAccounts.
     """
-    def __init__(__self__, project_id=None, results=None):
+    def __init__(__self__, include_system_managed=None, project_id=None, results=None):
+        if include_system_managed and not isinstance(include_system_managed, bool):
+            raise TypeError("Expected argument 'include_system_managed' to be a bool")
+        pulumi.set(__self__, "include_system_managed", include_system_managed)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
         if results and not isinstance(results, list):
             raise TypeError("Expected argument 'results' to be a list")
         pulumi.set(__self__, "results", results)
+
+    @_builtins.property
+    @pulumi.getter(name="includeSystemManaged")
+    def include_system_managed(self) -> Optional[_builtins.bool]:
+        """
+        Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+        """
+        return pulumi.get(self, "include_system_managed")
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -58,11 +69,13 @@ class AwaitableGetProjectServiceAccountsResult(GetProjectServiceAccountsResult):
         if False:
             yield self
         return GetProjectServiceAccountsResult(
+            include_system_managed=self.include_system_managed,
             project_id=self.project_id,
             results=self.results)
 
 
-def get_project_service_accounts(project_id: Optional[_builtins.str] = None,
+def get_project_service_accounts(include_system_managed: Optional[_builtins.bool] = None,
+                                 project_id: Optional[_builtins.str] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetProjectServiceAccountsResult:
     """
     `get_project_service_accounts` returns all Service Accounts for the specified Project.
@@ -72,17 +85,21 @@ def get_project_service_accounts(project_id: Optional[_builtins.str] = None,
     ## Example Usage
 
 
+    :param _builtins.bool include_system_managed: Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
+    __args__['includeSystemManaged'] = include_system_managed
     __args__['projectId'] = project_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts', __args__, opts=opts, typ=GetProjectServiceAccountsResult).value
 
     return AwaitableGetProjectServiceAccountsResult(
+        include_system_managed=pulumi.get(__ret__, 'include_system_managed'),
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'))
-def get_project_service_accounts_output(project_id: pulumi.Input[Optional[_builtins.str]] = None,
+def get_project_service_accounts_output(include_system_managed: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
+                                        project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetProjectServiceAccountsResult]:
     """
     `get_project_service_accounts` returns all Service Accounts for the specified Project.
@@ -92,12 +109,15 @@ def get_project_service_accounts_output(project_id: pulumi.Input[Optional[_built
     ## Example Usage
 
 
+    :param _builtins.bool include_system_managed: Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
     """
     __args__ = dict()
+    __args__['includeSystemManaged'] = include_system_managed
     __args__['projectId'] = project_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts', __args__, opts=opts, typ=GetProjectServiceAccountsResult)
     return __ret__.apply(lambda __response__: GetProjectServiceAccountsResult(
+        include_system_managed=pulumi.get(__response__, 'include_system_managed'),
         project_id=pulumi.get(__response__, 'project_id'),
         results=pulumi.get(__response__, 'results')))

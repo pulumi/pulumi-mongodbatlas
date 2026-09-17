@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.OrganizationCustomSessionTimeoutsArgs;
 import com.pulumi.mongodbatlas.inputs.OrganizationServiceAccountArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -31,6 +32,21 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<Boolean>> apiAccessListRequired() {
         return Optional.ofNullable(this.apiAccessListRequired);
+    }
+
+    /**
+     * Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+     * 
+     */
+    @Import(name="customSessionTimeouts")
+    private @Nullable Output<OrganizationCustomSessionTimeoutsArgs> customSessionTimeouts;
+
+    /**
+     * @return Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+     * 
+     */
+    public Optional<Output<OrganizationCustomSessionTimeoutsArgs>> customSessionTimeouts() {
+        return Optional.ofNullable(this.customSessionTimeouts);
     }
 
     /**
@@ -118,6 +134,21 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> name() {
         return Optional.ofNullable(this.name);
+    }
+
+    /**
+     * String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+     * 
+     */
+    @Import(name="operationsContact")
+    private @Nullable Output<String> operationsContact;
+
+    /**
+     * @return String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+     * 
+     */
+    public Optional<Output<String>> operationsContact() {
+        return Optional.ofNullable(this.operationsContact);
     }
 
     /**
@@ -218,11 +249,13 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
 
     private OrganizationArgs(OrganizationArgs $) {
         this.apiAccessListRequired = $.apiAccessListRequired;
+        this.customSessionTimeouts = $.customSessionTimeouts;
         this.description = $.description;
         this.federationSettingsId = $.federationSettingsId;
         this.genAiFeaturesEnabled = $.genAiFeaturesEnabled;
         this.multiFactorAuthRequired = $.multiFactorAuthRequired;
         this.name = $.name;
+        this.operationsContact = $.operationsContact;
         this.orgOwnerId = $.orgOwnerId;
         this.restrictEmployeeAccess = $.restrictEmployeeAccess;
         this.roleNames = $.roleNames;
@@ -268,6 +301,27 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder apiAccessListRequired(Boolean apiAccessListRequired) {
             return apiAccessListRequired(Output.of(apiAccessListRequired));
+        }
+
+        /**
+         * @param customSessionTimeouts Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customSessionTimeouts(@Nullable Output<OrganizationCustomSessionTimeoutsArgs> customSessionTimeouts) {
+            $.customSessionTimeouts = customSessionTimeouts;
+            return this;
+        }
+
+        /**
+         * @param customSessionTimeouts Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customSessionTimeouts(OrganizationCustomSessionTimeoutsArgs customSessionTimeouts) {
+            return customSessionTimeouts(Output.of(customSessionTimeouts));
         }
 
         /**
@@ -385,6 +439,27 @@ public final class OrganizationArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder name(String name) {
             return name(Output.of(name));
+        }
+
+        /**
+         * @param operationsContact String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationsContact(@Nullable Output<String> operationsContact) {
+            $.operationsContact = operationsContact;
+            return this;
+        }
+
+        /**
+         * @param operationsContact String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder operationsContact(String operationsContact) {
+            return operationsContact(Output.of(operationsContact));
         }
 
         /**

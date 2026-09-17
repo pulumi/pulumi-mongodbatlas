@@ -99,6 +99,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &LogIntegration{}
 	case "mongodbatlas:index/maintenanceWindow:MaintenanceWindow":
 		r = &MaintenanceWindow{}
+	case "mongodbatlas:index/mcpConfig:McpConfig":
+		r = &McpConfig{}
+	case "mongodbatlas:index/mcpConfigSecret:McpConfigSecret":
+		r = &McpConfigSecret{}
 	case "mongodbatlas:index/metricIntegration:MetricIntegration":
 		r = &MetricIntegration{}
 	case "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant":
@@ -109,8 +113,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NetworkPeering{}
 	case "mongodbatlas:index/onlineArchive:OnlineArchive":
 		r = &OnlineArchive{}
+	case "mongodbatlas:index/orgDelegationSettings:OrgDelegationSettings":
+		r = &OrgDelegationSettings{}
 	case "mongodbatlas:index/orgInvitation:OrgInvitation":
 		r = &OrgInvitation{}
+	case "mongodbatlas:index/orgMaintenanceSettings:OrgMaintenanceSettings":
+		r = &OrgMaintenanceSettings{}
 	case "mongodbatlas:index/organization:Organization":
 		r = &Organization{}
 	case "mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode":
@@ -129,6 +137,10 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ProjectInvitation{}
 	case "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList":
 		r = &ProjectIpAccessList{}
+	case "mongodbatlas:index/projectMcpConfig:ProjectMcpConfig":
+		r = &ProjectMcpConfig{}
+	case "mongodbatlas:index/projectMcpConfigSecret:ProjectMcpConfigSecret":
+		r = &ProjectMcpConfigSecret{}
 	case "mongodbatlas:index/projectServiceAccount:ProjectServiceAccount":
 		r = &ProjectServiceAccount{}
 	case "mongodbatlas:index/projectServiceAccountAccessListEntry:ProjectServiceAccountAccessListEntry":
@@ -401,6 +413,16 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/mcpConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/mcpConfigSecret",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/metricIntegration",
 		&module{version},
 	)
@@ -426,7 +448,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/orgDelegationSettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/orgInvitation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/orgMaintenanceSettings",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -472,6 +504,16 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/projectIpAccessList",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/projectMcpConfig",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/projectMcpConfigSecret",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

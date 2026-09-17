@@ -125,6 +125,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly bool ApiAccessListRequired;
         /// <summary>
+        /// (Optional) Block that specifies the custom session timeout settings for the organization. See Custom Session Timeouts.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetOrganizationCustomSessionTimeoutResult> CustomSessionTimeouts;
+        /// <summary>
         /// (Optional) Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `True`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
         /// </summary>
         public readonly bool GenAiFeaturesEnabled;
@@ -145,6 +149,10 @@ namespace Pulumi.Mongodbatlas
         /// Human-readable label that identifies the organization.
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// (Optional) String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals.
+        /// </summary>
+        public readonly string OperationsContact;
         public readonly string OrgId;
         /// <summary>
         /// (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
@@ -167,6 +175,8 @@ namespace Pulumi.Mongodbatlas
         private GetOrganizationResult(
             bool apiAccessListRequired,
 
+            ImmutableArray<Outputs.GetOrganizationCustomSessionTimeoutResult> customSessionTimeouts,
+
             bool genAiFeaturesEnabled,
 
             string id,
@@ -179,6 +189,8 @@ namespace Pulumi.Mongodbatlas
 
             string name,
 
+            string operationsContact,
+
             string orgId,
 
             bool restrictEmployeeAccess,
@@ -190,12 +202,14 @@ namespace Pulumi.Mongodbatlas
             ImmutableArray<Outputs.GetOrganizationUserResult> users)
         {
             ApiAccessListRequired = apiAccessListRequired;
+            CustomSessionTimeouts = customSessionTimeouts;
             GenAiFeaturesEnabled = genAiFeaturesEnabled;
             Id = id;
             IsDeleted = isDeleted;
             Links = links;
             MultiFactorAuthRequired = multiFactorAuthRequired;
             Name = name;
+            OperationsContact = operationsContact;
             OrgId = orgId;
             RestrictEmployeeAccess = restrictEmployeeAccess;
             SecurityContact = securityContact;
