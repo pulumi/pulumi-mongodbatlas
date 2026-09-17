@@ -133,7 +133,7 @@ import (
 // $ pulumi import mongodbatlas:index/maintenanceWindow:MaintenanceWindow test 5d0f1f73cf09a29120e173cf
 // ```
 //
-// For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/maintenance-windows/)
+// For more information on Maintenance Windows, see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-maintenance-windows)
 type MaintenanceWindow struct {
 	pulumi.CustomResourceState
 
@@ -141,12 +141,12 @@ type MaintenanceWindow struct {
 	AutoDefer pulumi.BoolOutput `pulumi:"autoDefer"`
 	// **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
 	AutoDeferOnceEnabled pulumi.BoolOutput `pulumi:"autoDeferOnceEnabled"`
-	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
-	DayOfWeek pulumi.IntOutput `pulumi:"dayOfWeek"`
+	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hourOfDay`. Omit both to set a `waveAssignment` without a maintenance window.
+	DayOfWeek pulumi.IntPtrOutput `pulumi:"dayOfWeek"`
 	// Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
 	Defer pulumi.BoolOutput `pulumi:"defer"`
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
-	HourOfDay pulumi.IntOutput `pulumi:"hourOfDay"`
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `dayOfWeek`. Omit both to set a `waveAssignment` without a maintenance window.
+	HourOfDay pulumi.IntPtrOutput `pulumi:"hourOfDay"`
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals pulumi.IntOutput `pulumi:"numberOfDeferrals"`
 	// The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
@@ -157,6 +157,8 @@ type MaintenanceWindow struct {
 	StartAsap pulumi.BoolOutput `pulumi:"startAsap"`
 	// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
 	TimeZoneId pulumi.StringOutput `pulumi:"timeZoneId"`
+	// Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+	WaveAssignment pulumi.IntPtrOutput `pulumi:"waveAssignment"`
 }
 
 // NewMaintenanceWindow registers a new resource with the given unique name, arguments, and options.
@@ -166,12 +168,6 @@ func NewMaintenanceWindow(ctx *pulumi.Context,
 		return nil, errors.New("missing one or more required arguments")
 	}
 
-	if args.DayOfWeek == nil {
-		return nil, errors.New("invalid value for required argument 'DayOfWeek'")
-	}
-	if args.HourOfDay == nil {
-		return nil, errors.New("invalid value for required argument 'HourOfDay'")
-	}
 	if args.ProjectId == nil {
 		return nil, errors.New("invalid value for required argument 'ProjectId'")
 	}
@@ -202,11 +198,11 @@ type maintenanceWindowState struct {
 	AutoDefer *bool `pulumi:"autoDefer"`
 	// **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
 	AutoDeferOnceEnabled *bool `pulumi:"autoDeferOnceEnabled"`
-	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hourOfDay`. Omit both to set a `waveAssignment` without a maintenance window.
 	DayOfWeek *int `pulumi:"dayOfWeek"`
 	// Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
 	Defer *bool `pulumi:"defer"`
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `dayOfWeek`. Omit both to set a `waveAssignment` without a maintenance window.
 	HourOfDay *int `pulumi:"hourOfDay"`
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals *int `pulumi:"numberOfDeferrals"`
@@ -218,6 +214,8 @@ type maintenanceWindowState struct {
 	StartAsap *bool `pulumi:"startAsap"`
 	// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
 	TimeZoneId *string `pulumi:"timeZoneId"`
+	// Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+	WaveAssignment *int `pulumi:"waveAssignment"`
 }
 
 type MaintenanceWindowState struct {
@@ -225,11 +223,11 @@ type MaintenanceWindowState struct {
 	AutoDefer pulumi.BoolPtrInput
 	// **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
 	AutoDeferOnceEnabled pulumi.BoolPtrInput
-	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hourOfDay`. Omit both to set a `waveAssignment` without a maintenance window.
 	DayOfWeek pulumi.IntPtrInput
 	// Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
 	Defer pulumi.BoolPtrInput
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `dayOfWeek`. Omit both to set a `waveAssignment` without a maintenance window.
 	HourOfDay pulumi.IntPtrInput
 	// Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
 	NumberOfDeferrals pulumi.IntPtrInput
@@ -241,6 +239,8 @@ type MaintenanceWindowState struct {
 	StartAsap pulumi.BoolPtrInput
 	// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
 	TimeZoneId pulumi.StringPtrInput
+	// Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+	WaveAssignment pulumi.IntPtrInput
 }
 
 func (MaintenanceWindowState) ElementType() reflect.Type {
@@ -252,16 +252,18 @@ type maintenanceWindowArgs struct {
 	AutoDefer *bool `pulumi:"autoDefer"`
 	// **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
 	AutoDeferOnceEnabled *bool `pulumi:"autoDeferOnceEnabled"`
-	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
-	DayOfWeek int `pulumi:"dayOfWeek"`
+	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hourOfDay`. Omit both to set a `waveAssignment` without a maintenance window.
+	DayOfWeek *int `pulumi:"dayOfWeek"`
 	// Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
 	Defer *bool `pulumi:"defer"`
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
-	HourOfDay int `pulumi:"hourOfDay"`
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `dayOfWeek`. Omit both to set a `waveAssignment` without a maintenance window.
+	HourOfDay *int `pulumi:"hourOfDay"`
 	// The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 	ProtectedHours *MaintenanceWindowProtectedHours `pulumi:"protectedHours"`
+	// Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+	WaveAssignment *int `pulumi:"waveAssignment"`
 }
 
 // The set of arguments for constructing a MaintenanceWindow resource.
@@ -270,16 +272,18 @@ type MaintenanceWindowArgs struct {
 	AutoDefer pulumi.BoolPtrInput
 	// **Recommended** field to enable or disable automatic deferral of all scheduled maintenance for the given project by one week. Achieves the same outcome as `autoDefer`, but by directly setting the value to `true` or `false`, which is idempotent and keeps Terraform state aligned with Atlas. If `autoDefer` is used to toggle the underlying flag, it will also affect the value of this attribute.
 	AutoDeferOnceEnabled pulumi.BoolPtrInput
-	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
-	DayOfWeek pulumi.IntInput
+	// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hourOfDay`. Omit both to set a `waveAssignment` without a maintenance window.
+	DayOfWeek pulumi.IntPtrInput
 	// Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
 	Defer pulumi.BoolPtrInput
-	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
-	HourOfDay pulumi.IntInput
+	// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `dayOfWeek`. Omit both to set a `waveAssignment` without a maintenance window.
+	HourOfDay pulumi.IntPtrInput
 	// The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 	ProtectedHours MaintenanceWindowProtectedHoursPtrInput
+	// Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+	WaveAssignment pulumi.IntPtrInput
 }
 
 func (MaintenanceWindowArgs) ElementType() reflect.Type {
@@ -379,9 +383,9 @@ func (o MaintenanceWindowOutput) AutoDeferOnceEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.AutoDeferOnceEnabled }).(pulumi.BoolOutput)
 }
 
-// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
-func (o MaintenanceWindowOutput) DayOfWeek() pulumi.IntOutput {
-	return o.ApplyT(func(v *MaintenanceWindow) pulumi.IntOutput { return v.DayOfWeek }).(pulumi.IntOutput)
+// Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hourOfDay`. Omit both to set a `waveAssignment` without a maintenance window.
+func (o MaintenanceWindowOutput) DayOfWeek() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MaintenanceWindow) pulumi.IntPtrOutput { return v.DayOfWeek }).(pulumi.IntPtrOutput)
 }
 
 // Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
@@ -389,9 +393,9 @@ func (o MaintenanceWindowOutput) Defer() pulumi.BoolOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.BoolOutput { return v.Defer }).(pulumi.BoolOutput)
 }
 
-// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
-func (o MaintenanceWindowOutput) HourOfDay() pulumi.IntOutput {
-	return o.ApplyT(func(v *MaintenanceWindow) pulumi.IntOutput { return v.HourOfDay }).(pulumi.IntOutput)
+// Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `dayOfWeek`. Omit both to set a `waveAssignment` without a maintenance window.
+func (o MaintenanceWindowOutput) HourOfDay() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MaintenanceWindow) pulumi.IntPtrOutput { return v.HourOfDay }).(pulumi.IntPtrOutput)
 }
 
 // Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
@@ -417,6 +421,11 @@ func (o MaintenanceWindowOutput) StartAsap() pulumi.BoolOutput {
 // Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
 func (o MaintenanceWindowOutput) TimeZoneId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.StringOutput { return v.TimeZoneId }).(pulumi.StringOutput)
+}
+
+// Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+func (o MaintenanceWindowOutput) WaveAssignment() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *MaintenanceWindow) pulumi.IntPtrOutput { return v.WaveAssignment }).(pulumi.IntPtrOutput)
 }
 
 type MaintenanceWindowArrayOutput struct{ *pulumi.OutputState }

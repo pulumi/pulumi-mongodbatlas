@@ -46,6 +46,12 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetServiceAccountsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+        /// </summary>
+        [Input("includeSystemManaged")]
+        public bool? IncludeSystemManaged { get; set; }
+
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         /// </summary>
         [Input("orgId", required: true)]
@@ -59,6 +65,12 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetServiceAccountsInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+        /// </summary>
+        [Input("includeSystemManaged")]
+        public Input<bool>? IncludeSystemManaged { get; set; }
+
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         /// </summary>
@@ -76,6 +88,10 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetServiceAccountsResult
     {
         /// <summary>
+        /// Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+        /// </summary>
+        public readonly bool? IncludeSystemManaged;
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         /// </summary>
         public readonly string OrgId;
@@ -86,10 +102,13 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetServiceAccountsResult(
+            bool? includeSystemManaged,
+
             string orgId,
 
             ImmutableArray<Outputs.GetServiceAccountsResultResult> results)
         {
+            IncludeSystemManaged = includeSystemManaged;
             OrgId = orgId;
             Results = results;
         }

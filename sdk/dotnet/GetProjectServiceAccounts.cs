@@ -46,6 +46,12 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetProjectServiceAccountsArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+        /// </summary>
+        [Input("includeSystemManaged")]
+        public bool? IncludeSystemManaged { get; set; }
+
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
@@ -59,6 +65,12 @@ namespace Pulumi.Mongodbatlas
 
     public sealed class GetProjectServiceAccountsInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+        /// </summary>
+        [Input("includeSystemManaged")]
+        public Input<bool>? IncludeSystemManaged { get; set; }
+
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
@@ -76,6 +88,10 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetProjectServiceAccountsResult
     {
         /// <summary>
+        /// Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+        /// </summary>
+        public readonly bool? IncludeSystemManaged;
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
@@ -86,10 +102,13 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetProjectServiceAccountsResult(
+            bool? includeSystemManaged,
+
             string projectId,
 
             ImmutableArray<Outputs.GetProjectServiceAccountsResultResult> results)
         {
+            IncludeSystemManaged = includeSystemManaged;
             ProjectId = projectId;
             Results = results;
         }

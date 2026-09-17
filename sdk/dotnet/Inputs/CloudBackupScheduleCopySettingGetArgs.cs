@@ -18,17 +18,36 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("cloudProvider")]
         public Input<string>? CloudProvider { get; set; }
 
+        [Input("copyPolicyItems")]
+        private InputList<Inputs.CloudBackupScheduleCopySettingCopyPolicyItemGetArgs>? _copyPolicyItems;
+
+        /// <summary>
+        /// Copy-policy items when `CopyPolicyItemsEnabled` is true. Mutually exclusive with `Frequencies` and `LastNumberOfSnapshots`. See below.
+        /// </summary>
+        public InputList<Inputs.CloudBackupScheduleCopySettingCopyPolicyItemGetArgs> CopyPolicyItems
+        {
+            get => _copyPolicyItems ?? (_copyPolicyItems = new InputList<Inputs.CloudBackupScheduleCopySettingCopyPolicyItemGetArgs>());
+            set => _copyPolicyItems = value;
+        }
+
         [Input("frequencies")]
         private InputList<string>? _frequencies;
 
         /// <summary>
-        /// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+        /// List that describes which types of snapshots to copy when `CopyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `CopyPolicyItems` and `LastNumberOfSnapshots` on the same entry. You can switch an entry from `Frequencies` to `CopyPolicyItems` or `LastNumberOfSnapshots` in one apply; the switch back is not possible because `CopyPolicyItemsEnabled` cannot be turned off once it is `True`. Use `CopyPolicyItems` or `LastNumberOfSnapshots` instead.
         /// </summary>
+        [Obsolete(@"This parameter is deprecated. Please transition to `CopyPolicyItems` or `LastNumberOfSnapshots`.")]
         public InputList<string> Frequencies
         {
             get => _frequencies ?? (_frequencies = new InputList<string>());
             set => _frequencies = value;
         }
+
+        /// <summary>
+        /// Number of most recent snapshots to copy, from 1 to 500, when `CopyPolicyItemsEnabled` is true. Mutually exclusive with `Frequencies` and `CopyPolicyItems`.
+        /// </summary>
+        [Input("lastNumberOfSnapshots")]
+        public Input<int>? LastNumberOfSnapshots { get; set; }
 
         /// <summary>
         /// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link

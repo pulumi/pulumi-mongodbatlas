@@ -16,6 +16,7 @@ import * as utilities from "./utilities";
 export function getServiceAccounts(args: GetServiceAccountsArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceAccountsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("mongodbatlas:index/getServiceAccounts:getServiceAccounts", {
+        "includeSystemManaged": args.includeSystemManaged,
         "orgId": args.orgId,
     }, opts);
 }
@@ -24,6 +25,10 @@ export function getServiceAccounts(args: GetServiceAccountsArgs, opts?: pulumi.I
  * A collection of arguments for invoking getServiceAccounts.
  */
 export interface GetServiceAccountsArgs {
+    /**
+     * Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+     */
+    includeSystemManaged?: boolean;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
@@ -34,6 +39,10 @@ export interface GetServiceAccountsArgs {
  * A collection of values returned by getServiceAccounts.
  */
 export interface GetServiceAccountsResult {
+    /**
+     * Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+     */
+    readonly includeSystemManaged?: boolean;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */
@@ -53,6 +62,7 @@ export interface GetServiceAccountsResult {
 export function getServiceAccountsOutput(args: GetServiceAccountsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetServiceAccountsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("mongodbatlas:index/getServiceAccounts:getServiceAccounts", {
+        "includeSystemManaged": args.includeSystemManaged,
         "orgId": args.orgId,
     }, opts);
 }
@@ -61,6 +71,10 @@ export function getServiceAccountsOutput(args: GetServiceAccountsOutputArgs, opt
  * A collection of arguments for invoking getServiceAccounts.
  */
 export interface GetServiceAccountsOutputArgs {
+    /**
+     * Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+     */
+    includeSystemManaged?: pulumi.Input<boolean | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
      */

@@ -47,6 +47,10 @@ export interface GetOrganizationResult {
      */
     readonly apiAccessListRequired: boolean;
     /**
+     * (Optional) Block that specifies the custom session timeout settings for the organization. See Custom Session Timeouts.
+     */
+    readonly customSessionTimeouts: outputs.GetOrganizationCustomSessionTimeout[];
+    /**
      * (Optional) Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
      */
     readonly genAiFeaturesEnabled: boolean;
@@ -67,6 +71,10 @@ export interface GetOrganizationResult {
      * Human-readable label that identifies the organization.
      */
     readonly name: string;
+    /**
+     * (Optional) String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals.
+     */
+    readonly operationsContact: string;
     readonly orgId: string;
     /**
      * (Optional) Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.

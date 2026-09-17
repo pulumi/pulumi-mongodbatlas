@@ -149,6 +149,9 @@
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
+                                "copy_policy_items": {
+                                    "maxItemsOne": false
+                                },
                                 "frequencies": {
                                     "maxItemsOne": false
                                 }
@@ -662,6 +665,22 @@
                     }
                 }
             },
+            "mongodbatlas_mcp_config": {
+                "current": "mongodbatlas:index/mcpConfig:McpConfig",
+                "majorVersion": 4,
+                "fields": {
+                    "ip_access_list": {
+                        "maxItemsOne": false
+                    },
+                    "roles": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_mcp_config_secret": {
+                "current": "mongodbatlas:index/mcpConfigSecret:McpConfigSecret",
+                "majorVersion": 4
+            },
             "mongodbatlas_metric_integration": {
                 "current": "mongodbatlas:index/metricIntegration:MetricIntegration",
                 "majorVersion": 4,
@@ -715,6 +734,10 @@
                     }
                 }
             },
+            "mongodbatlas_org_delegation_settings": {
+                "current": "mongodbatlas:index/orgDelegationSettings:OrgDelegationSettings",
+                "majorVersion": 4
+            },
             "mongodbatlas_org_invitation": {
                 "current": "mongodbatlas:index/orgInvitation:OrgInvitation",
                 "majorVersion": 4,
@@ -727,10 +750,17 @@
                     }
                 }
             },
+            "mongodbatlas_org_maintenance_settings": {
+                "current": "mongodbatlas:index/orgMaintenanceSettings:OrgMaintenanceSettings",
+                "majorVersion": 4
+            },
             "mongodbatlas_organization": {
                 "current": "mongodbatlas:index/organization:Organization",
                 "majorVersion": 4,
                 "fields": {
+                    "custom_session_timeouts": {
+                        "maxItemsOne": true
+                    },
                     "role_names": {
                         "maxItemsOne": false
                     },
@@ -854,6 +884,22 @@
             },
             "mongodbatlas_project_ip_access_list": {
                 "current": "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList",
+                "majorVersion": 4
+            },
+            "mongodbatlas_project_mcp_config": {
+                "current": "mongodbatlas:index/projectMcpConfig:ProjectMcpConfig",
+                "majorVersion": 4,
+                "fields": {
+                    "ip_access_list": {
+                        "maxItemsOne": false
+                    },
+                    "roles": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_project_mcp_config_secret": {
+                "current": "mongodbatlas:index/projectMcpConfigSecret:ProjectMcpConfigSecret",
                 "majorVersion": 4
             },
             "mongodbatlas_project_service_account": {
@@ -1469,6 +1515,9 @@
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
+                                "copy_policy_items": {
+                                    "maxItemsOne": false
+                                },
                                 "frequencies": {
                                     "maxItemsOne": false
                                 }
@@ -2552,6 +2601,50 @@
                     }
                 }
             },
+            "mongodbatlas_mcp_config": {
+                "current": "mongodbatlas:index/getMcpConfig:getMcpConfig",
+                "majorVersion": 4,
+                "fields": {
+                    "ip_access_list": {
+                        "maxItemsOne": false
+                    },
+                    "roles": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_mcp_config_secret": {
+                "current": "mongodbatlas:index/getMcpConfigSecret:getMcpConfigSecret",
+                "majorVersion": 4
+            },
+            "mongodbatlas_mcp_config_secrets": {
+                "current": "mongodbatlas:index/getMcpConfigSecrets:getMcpConfigSecrets",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_mcp_configs": {
+                "current": "mongodbatlas:index/getMcpConfigs:getMcpConfigs",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "ip_access_list": {
+                                    "maxItemsOne": false
+                                },
+                                "roles": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "mongodbatlas_metric_integration": {
                 "current": "mongodbatlas:index/getMetricIntegration:getMetricIntegration",
                 "majorVersion": 4,
@@ -2674,6 +2767,10 @@
                     }
                 }
             },
+            "mongodbatlas_org_delegation_settings": {
+                "current": "mongodbatlas:index/getOrgDelegationSettings:getOrgDelegationSettings",
+                "majorVersion": 4
+            },
             "mongodbatlas_org_invitation": {
                 "current": "mongodbatlas:index/getOrgInvitation:getOrgInvitation",
                 "majorVersion": 4,
@@ -2686,10 +2783,17 @@
                     }
                 }
             },
+            "mongodbatlas_org_maintenance_settings": {
+                "current": "mongodbatlas:index/getOrgMaintenanceSettings:getOrgMaintenanceSettings",
+                "majorVersion": 4
+            },
             "mongodbatlas_organization": {
                 "current": "mongodbatlas:index/getOrganization:getOrganization",
                 "majorVersion": 4,
                 "fields": {
+                    "custom_session_timeouts": {
+                        "maxItemsOne": false
+                    },
                     "links": {
                         "maxItemsOne": false
                     },
@@ -2733,6 +2837,9 @@
                         "maxItemsOne": false,
                         "elem": {
                             "fields": {
+                                "custom_session_timeouts": {
+                                    "maxItemsOne": false
+                                },
                                 "links": {
                                     "maxItemsOne": false
                                 },
@@ -2980,6 +3087,50 @@
                                             "maxItemsOne": false
                                         }
                                     }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "mongodbatlas_project_mcp_config": {
+                "current": "mongodbatlas:index/getProjectMcpConfig:getProjectMcpConfig",
+                "majorVersion": 4,
+                "fields": {
+                    "ip_access_list": {
+                        "maxItemsOne": false
+                    },
+                    "roles": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_project_mcp_config_secret": {
+                "current": "mongodbatlas:index/getProjectMcpConfigSecret:getProjectMcpConfigSecret",
+                "majorVersion": 4
+            },
+            "mongodbatlas_project_mcp_config_secrets": {
+                "current": "mongodbatlas:index/getProjectMcpConfigSecrets:getProjectMcpConfigSecrets",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_project_mcp_configs": {
+                "current": "mongodbatlas:index/getProjectMcpConfigs:getProjectMcpConfigs",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "ip_access_list": {
+                                    "maxItemsOne": false
+                                },
+                                "roles": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -3580,15 +3731,45 @@
                     "kind": "missing"
                 }
             },
+            "mongodbatlas_mcp_config": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_mcp_config_secret": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "mongodbatlas_metric_integration": {
                 "computeID": {
                     "kind": "missing"
                 }
             },
             "mongodbatlas_mongodb_employee_access_grant": {},
+            "mongodbatlas_org_delegation_settings": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_org_maintenance_settings": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "mongodbatlas_privatelink_endpoint_service_data_federation_online_archive": {},
             "mongodbatlas_project": {},
             "mongodbatlas_project_ip_access_list": {},
+            "mongodbatlas_project_mcp_config": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_project_mcp_config_secret": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "mongodbatlas_project_service_account": {
                 "computeID": {
                     "kind": "missing"
@@ -3685,12 +3866,16 @@
             "mongodbatlas:index/ldapVerify:LdapVerify": 0,
             "mongodbatlas:index/logIntegration:LogIntegration": 1,
             "mongodbatlas:index/maintenanceWindow:MaintenanceWindow": 0,
+            "mongodbatlas:index/mcpConfig:McpConfig": 1,
+            "mongodbatlas:index/mcpConfigSecret:McpConfigSecret": 1,
             "mongodbatlas:index/metricIntegration:MetricIntegration": 1,
             "mongodbatlas:index/mongodbEmployeeAccessGrant:MongodbEmployeeAccessGrant": 1,
             "mongodbatlas:index/networkContainer:NetworkContainer": 0,
             "mongodbatlas:index/networkPeering:NetworkPeering": 0,
             "mongodbatlas:index/onlineArchive:OnlineArchive": 0,
+            "mongodbatlas:index/orgDelegationSettings:OrgDelegationSettings": 1,
             "mongodbatlas:index/orgInvitation:OrgInvitation": 0,
+            "mongodbatlas:index/orgMaintenanceSettings:OrgMaintenanceSettings": 1,
             "mongodbatlas:index/organization:Organization": 0,
             "mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode": 0,
             "mongodbatlas:index/privateLinkEndpoint:PrivateLinkEndpoint": 0,
@@ -3700,6 +3885,8 @@
             "mongodbatlas:index/projectApiKey:ProjectApiKey": 0,
             "mongodbatlas:index/projectInvitation:ProjectInvitation": 0,
             "mongodbatlas:index/projectIpAccessList:ProjectIpAccessList": 1,
+            "mongodbatlas:index/projectMcpConfig:ProjectMcpConfig": 1,
+            "mongodbatlas:index/projectMcpConfigSecret:ProjectMcpConfigSecret": 1,
             "mongodbatlas:index/projectServiceAccount:ProjectServiceAccount": 1,
             "mongodbatlas:index/projectServiceAccountAccessListEntry:ProjectServiceAccountAccessListEntry": 1,
             "mongodbatlas:index/projectServiceAccountSecret:ProjectServiceAccountSecret": 1,
@@ -3802,6 +3989,10 @@
             "mongodbatlas:index/getLogIntegration:getLogIntegration": 1,
             "mongodbatlas:index/getLogIntegrations:getLogIntegrations": 1,
             "mongodbatlas:index/getMaintenanceWindow:getMaintenanceWindow": 0,
+            "mongodbatlas:index/getMcpConfig:getMcpConfig": 1,
+            "mongodbatlas:index/getMcpConfigSecret:getMcpConfigSecret": 1,
+            "mongodbatlas:index/getMcpConfigSecrets:getMcpConfigSecrets": 1,
+            "mongodbatlas:index/getMcpConfigs:getMcpConfigs": 1,
             "mongodbatlas:index/getMetricIntegration:getMetricIntegration": 1,
             "mongodbatlas:index/getMetricIntegrations:getMetricIntegrations": 1,
             "mongodbatlas:index/getMongodbEmployeeAccessGrant:getMongodbEmployeeAccessGrant": 1,
@@ -3811,7 +4002,9 @@
             "mongodbatlas:index/getNetworkPeerings:getNetworkPeerings": 0,
             "mongodbatlas:index/getOnlineArchive:getOnlineArchive": 0,
             "mongodbatlas:index/getOnlineArchives:getOnlineArchives": 0,
+            "mongodbatlas:index/getOrgDelegationSettings:getOrgDelegationSettings": 1,
             "mongodbatlas:index/getOrgInvitation:getOrgInvitation": 0,
+            "mongodbatlas:index/getOrgMaintenanceSettings:getOrgMaintenanceSettings": 1,
             "mongodbatlas:index/getOrganization:getOrganization": 0,
             "mongodbatlas:index/getOrganizations:getOrganizations": 0,
             "mongodbatlas:index/getPrivateEndpointRegionalMode:getPrivateEndpointRegionalMode": 0,
@@ -3827,6 +4020,10 @@
             "mongodbatlas:index/getProjectIpAccessList:getProjectIpAccessList": 1,
             "mongodbatlas:index/getProjectIpAccessLists:getProjectIpAccessLists": 1,
             "mongodbatlas:index/getProjectIpAddresses:getProjectIpAddresses": 1,
+            "mongodbatlas:index/getProjectMcpConfig:getProjectMcpConfig": 1,
+            "mongodbatlas:index/getProjectMcpConfigSecret:getProjectMcpConfigSecret": 1,
+            "mongodbatlas:index/getProjectMcpConfigSecrets:getProjectMcpConfigSecrets": 1,
+            "mongodbatlas:index/getProjectMcpConfigs:getProjectMcpConfigs": 1,
             "mongodbatlas:index/getProjectServiceAccount:getProjectServiceAccount": 1,
             "mongodbatlas:index/getProjectServiceAccountAccessListEntries:getProjectServiceAccountAccessListEntries": 1,
             "mongodbatlas:index/getProjectServiceAccountAccessListEntry:getProjectServiceAccountAccessListEntry": 1,

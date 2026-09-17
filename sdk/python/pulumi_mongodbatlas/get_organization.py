@@ -27,10 +27,13 @@ class GetOrganizationResult:
     """
     A collection of values returned by getOrganization.
     """
-    def __init__(__self__, api_access_list_required=None, gen_ai_features_enabled=None, id=None, is_deleted=None, links=None, multi_factor_auth_required=None, name=None, org_id=None, restrict_employee_access=None, security_contact=None, skip_default_alerts_settings=None, users=None):
+    def __init__(__self__, api_access_list_required=None, custom_session_timeouts=None, gen_ai_features_enabled=None, id=None, is_deleted=None, links=None, multi_factor_auth_required=None, name=None, operations_contact=None, org_id=None, restrict_employee_access=None, security_contact=None, skip_default_alerts_settings=None, users=None):
         if api_access_list_required and not isinstance(api_access_list_required, bool):
             raise TypeError("Expected argument 'api_access_list_required' to be a bool")
         pulumi.set(__self__, "api_access_list_required", api_access_list_required)
+        if custom_session_timeouts and not isinstance(custom_session_timeouts, list):
+            raise TypeError("Expected argument 'custom_session_timeouts' to be a list")
+        pulumi.set(__self__, "custom_session_timeouts", custom_session_timeouts)
         if gen_ai_features_enabled and not isinstance(gen_ai_features_enabled, bool):
             raise TypeError("Expected argument 'gen_ai_features_enabled' to be a bool")
         pulumi.set(__self__, "gen_ai_features_enabled", gen_ai_features_enabled)
@@ -49,6 +52,9 @@ class GetOrganizationResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if operations_contact and not isinstance(operations_contact, str):
+            raise TypeError("Expected argument 'operations_contact' to be a str")
+        pulumi.set(__self__, "operations_contact", operations_contact)
         if org_id and not isinstance(org_id, str):
             raise TypeError("Expected argument 'org_id' to be a str")
         pulumi.set(__self__, "org_id", org_id)
@@ -72,6 +78,14 @@ class GetOrganizationResult:
         (Optional) Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
         """
         return pulumi.get(self, "api_access_list_required")
+
+    @_builtins.property
+    @pulumi.getter(name="customSessionTimeouts")
+    def custom_session_timeouts(self) -> Sequence['outputs.GetOrganizationCustomSessionTimeoutResult']:
+        """
+        (Optional) Block that specifies the custom session timeout settings for the organization. See Custom Session Timeouts.
+        """
+        return pulumi.get(self, "custom_session_timeouts")
 
     @_builtins.property
     @pulumi.getter(name="genAiFeaturesEnabled")
@@ -119,6 +133,14 @@ class GetOrganizationResult:
         return pulumi.get(self, "name")
 
     @_builtins.property
+    @pulumi.getter(name="operationsContact")
+    def operations_contact(self) -> _builtins.str:
+        """
+        (Optional) String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals.
+        """
+        return pulumi.get(self, "operations_contact")
+
+    @_builtins.property
     @pulumi.getter(name="orgId")
     def org_id(self) -> _builtins.str:
         return pulumi.get(self, "org_id")
@@ -163,12 +185,14 @@ class AwaitableGetOrganizationResult(GetOrganizationResult):
             yield self
         return GetOrganizationResult(
             api_access_list_required=self.api_access_list_required,
+            custom_session_timeouts=self.custom_session_timeouts,
             gen_ai_features_enabled=self.gen_ai_features_enabled,
             id=self.id,
             is_deleted=self.is_deleted,
             links=self.links,
             multi_factor_auth_required=self.multi_factor_auth_required,
             name=self.name,
+            operations_contact=self.operations_contact,
             org_id=self.org_id,
             restrict_employee_access=self.restrict_employee_access,
             security_contact=self.security_contact,
@@ -201,12 +225,14 @@ def get_organization(org_id: Optional[_builtins.str] = None,
 
     return AwaitableGetOrganizationResult(
         api_access_list_required=pulumi.get(__ret__, 'api_access_list_required'),
+        custom_session_timeouts=pulumi.get(__ret__, 'custom_session_timeouts'),
         gen_ai_features_enabled=pulumi.get(__ret__, 'gen_ai_features_enabled'),
         id=pulumi.get(__ret__, 'id'),
         is_deleted=pulumi.get(__ret__, 'is_deleted'),
         links=pulumi.get(__ret__, 'links'),
         multi_factor_auth_required=pulumi.get(__ret__, 'multi_factor_auth_required'),
         name=pulumi.get(__ret__, 'name'),
+        operations_contact=pulumi.get(__ret__, 'operations_contact'),
         org_id=pulumi.get(__ret__, 'org_id'),
         restrict_employee_access=pulumi.get(__ret__, 'restrict_employee_access'),
         security_contact=pulumi.get(__ret__, 'security_contact'),
@@ -236,12 +262,14 @@ def get_organization_output(org_id: pulumi.Input[Optional[_builtins.str]] = None
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getOrganization:getOrganization', __args__, opts=opts, typ=GetOrganizationResult)
     return __ret__.apply(lambda __response__: GetOrganizationResult(
         api_access_list_required=pulumi.get(__response__, 'api_access_list_required'),
+        custom_session_timeouts=pulumi.get(__response__, 'custom_session_timeouts'),
         gen_ai_features_enabled=pulumi.get(__response__, 'gen_ai_features_enabled'),
         id=pulumi.get(__response__, 'id'),
         is_deleted=pulumi.get(__response__, 'is_deleted'),
         links=pulumi.get(__response__, 'links'),
         multi_factor_auth_required=pulumi.get(__response__, 'multi_factor_auth_required'),
         name=pulumi.get(__response__, 'name'),
+        operations_contact=pulumi.get(__response__, 'operations_contact'),
         org_id=pulumi.get(__response__, 'org_id'),
         restrict_employee_access=pulumi.get(__response__, 'restrict_employee_access'),
         security_contact=pulumi.get(__response__, 'security_contact'),

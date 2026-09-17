@@ -1409,7 +1409,9 @@ type AdvancedClusterReplicationSpecRegionConfig struct {
 	ReadOnlySpecs *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs `pulumi:"readOnlySpecs"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	//
-	// For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes, see [Supported Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions).
+	// For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
+	//
+	// Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster's cloud provider. Gen2 clusters don't support multi-cloud deployments.
 	RegionName string `pulumi:"regionName"`
 }
 
@@ -1452,7 +1454,9 @@ type AdvancedClusterReplicationSpecRegionConfigArgs struct {
 	ReadOnlySpecs AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrInput `pulumi:"readOnlySpecs"`
 	// Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 	//
-	// For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes, see [Supported Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions).
+	// For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
+	//
+	// Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster's cloud provider. Gen2 clusters don't support multi-cloud deployments.
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 }
 
@@ -1568,7 +1572,9 @@ func (o AdvancedClusterReplicationSpecRegionConfigOutput) ReadOnlySpecs() Advanc
 
 // Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
 //
-// For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes, see [Supported Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions).
+// For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
+//
+// Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster's cloud provider. Gen2 clusters don't support multi-cloud deployments.
 func (o AdvancedClusterReplicationSpecRegionConfigOutput) RegionName() pulumi.StringOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfig) string { return v.RegionName }).(pulumi.StringOutput)
 }
@@ -1833,26 +1839,33 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingPtrOutput)
 }
 
 type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 	//
+	// For AWS, valid configurations are:
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-	// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+	// * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 	//
-	// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+	// For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+	// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+	// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+	//
+	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 	DiskIops *int `pulumi:"diskIops"`
-	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-	// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	//
 	// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 	//
-	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+	//
+	// GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
 	InstanceSize *string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount *int `pulumi:"nodeCount"`
@@ -1870,26 +1883,33 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput interface {
 }
 
 type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 	//
+	// For AWS, valid configurations are:
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-	// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+	// * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 	//
-	// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+	// For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+	// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+	// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+	//
+	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
-	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-	// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	//
 	// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 	//
-	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+	//
+	// GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
 	InstanceSize pulumi.StringPtrInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
@@ -1972,26 +1992,31 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) ToAdvanc
 	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput)
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 //
+// For AWS, valid configurations are:
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+// * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 //
-// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+// For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+//
+// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
 }
 
-// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskSizeGb() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *float64 { return v.DiskSizeGb }).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -2000,7 +2025,9 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolum
 //
 // Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 //
-// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+//
+// GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string { return v.InstanceSize }).(pulumi.StringPtrOutput)
 }
@@ -2034,13 +2061,18 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) Elem(
 	}).(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput)
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 //
+// For AWS, valid configurations are:
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+// * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 //
-// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+// For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+//
+// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *int {
 		if v == nil {
@@ -2050,7 +2082,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskI
 	}).(pulumi.IntPtrOutput)
 }
 
-// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskSizeGb() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *float64 {
 		if v == nil {
@@ -2060,10 +2092,10 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskS
 	}).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		if v == nil {
@@ -2077,7 +2109,9 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) EbsVo
 //
 // Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 //
-// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+//
+// GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
 func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *string {
 		if v == nil {
@@ -2371,27 +2405,33 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) DiskGbEn
 }
 
 type AdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 	//
 	// For AWS, valid configurations are:
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-	// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+	// * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 	//
-	// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+	// For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+	// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+	// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+	//
+	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 	DiskIops *int `pulumi:"diskIops"`
-	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-	// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	//
 	// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 	//
-	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+	//
+	// GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
 	InstanceSize *string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount *int `pulumi:"nodeCount"`
@@ -2409,27 +2449,33 @@ type AdvancedClusterReplicationSpecRegionConfigElectableSpecsInput interface {
 }
 
 type AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 	//
 	// For AWS, valid configurations are:
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-	// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+	// * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 	//
-	// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+	// For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+	// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+	// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+	//
+	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
-	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-	// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	//
 	// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 	//
-	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+	//
+	// GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
 	InstanceSize pulumi.StringPtrInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
@@ -2512,27 +2558,31 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) ToAdvanc
 	}).(AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput)
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 //
 // For AWS, valid configurations are:
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+// * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 //
-// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+// For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+//
+// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
 }
 
-// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskSizeGb() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *float64 { return v.DiskSizeGb }).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -2541,7 +2591,9 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolum
 //
 // Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 //
-// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+//
+// GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string { return v.InstanceSize }).(pulumi.StringPtrOutput)
 }
@@ -2575,14 +2627,18 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) Elem(
 	}).(AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput)
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 //
 // For AWS, valid configurations are:
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+// * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 //
-// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+// For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+//
+// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *int {
 		if v == nil {
@@ -2592,7 +2648,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskI
 	}).(pulumi.IntPtrOutput)
 }
 
-// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskSizeGb() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *float64 {
 		if v == nil {
@@ -2602,10 +2658,10 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskS
 	}).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
 		if v == nil {
@@ -2619,7 +2675,9 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) EbsVo
 //
 // Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 //
-// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+//
+// GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
 func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *string {
 		if v == nil {
@@ -2640,26 +2698,33 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) NodeC
 }
 
 type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 	//
+	// For AWS, valid configurations are:
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-	// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+	// * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 	//
-	// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+	// For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+	// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+	// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+	//
+	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops *int `pulumi:"diskIops"`
-	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-	// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
 	EbsVolumeType *string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	//
 	// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 	//
-	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+	//
+	// GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
 	InstanceSize *string `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount *int `pulumi:"nodeCount"`
@@ -2677,26 +2742,33 @@ type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput interface {
 }
 
 type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
-	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+	// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 	//
+	// For AWS, valid configurations are:
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 	// * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-	// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+	// * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 	//
-	// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+	// For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+	// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+	// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+	//
+	// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
-	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-	// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
 	EbsVolumeType pulumi.StringPtrInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region. Each instance size has a default storage and memory capacity. The instance size you select applies to all the data-bearing hosts in your instance size. Electable nodes and read-only nodes (known as "base nodes") within a single shard must use the same instance size. Analytics nodes can scale independently from base nodes within a shard. Both base nodes and analytics nodes can scale independently from their equivalents in other shards.
 	//
 	// Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 	//
-	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+	// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+	//
+	// GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
 	InstanceSize pulumi.StringPtrInput `pulumi:"instanceSize"`
 	// Number of nodes of the given type for MongoDB Atlas to deploy to the region.
 	NodeCount pulumi.IntPtrInput `pulumi:"nodeCount"`
@@ -2779,26 +2851,31 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) ToAdvance
 	}).(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput)
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 //
+// For AWS, valid configurations are:
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+// * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 //
-// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+// For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+//
+// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int { return v.DiskIops }).(pulumi.IntPtrOutput)
 }
 
-// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskSizeGb() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *float64 { return v.DiskSizeGb }).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string { return v.EbsVolumeType }).(pulumi.StringPtrOutput)
 }
@@ -2807,7 +2884,9 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolume
 //
 // Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 //
-// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+//
+// GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string { return v.InstanceSize }).(pulumi.StringPtrOutput)
 }
@@ -2841,13 +2920,18 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) Elem()
 	}).(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput)
 }
 
-// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+// Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
 //
+// For AWS, valid configurations are:
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
 // * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-// * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+// * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
 //
-// For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+// For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+// * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+// * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+//
+// For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskIops() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *int {
 		if v == nil {
@@ -2857,7 +2941,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskIo
 	}).(pulumi.IntPtrOutput)
 }
 
-// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskSizeGb() pulumi.Float64PtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *float64 {
 		if v == nil {
@@ -2867,10 +2951,10 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskSi
 	}).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-// * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVolumeType() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
 		if v == nil {
@@ -2884,7 +2968,9 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) EbsVol
 //
 // Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
 //
-// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+// [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+//
+// GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
 func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) InstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *string {
 		if v == nil {
@@ -5531,8 +5617,14 @@ func (o CloudBackupCollectionRestoreJobTimeoutsPtrOutput) Create() pulumi.String
 type CloudBackupScheduleCopySetting struct {
 	// Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
 	CloudProvider *string `pulumi:"cloudProvider"`
-	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+	// Copy-policy items when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `lastNumberOfSnapshots`. See below.
+	CopyPolicyItems []CloudBackupScheduleCopySettingCopyPolicyItem `pulumi:"copyPolicyItems"`
+	// List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copyPolicyItems` and `lastNumberOfSnapshots` on the same entry. You can switch an entry from `frequencies` to `copyPolicyItems` or `lastNumberOfSnapshots` in one apply; the switch back is not possible because `copyPolicyItemsEnabled` cannot be turned off once it is `true`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
 	Frequencies []string `pulumi:"frequencies"`
+	// Number of most recent snapshots to copy, from 1 to 500, when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `copyPolicyItems`.
+	LastNumberOfSnapshots *int `pulumi:"lastNumberOfSnapshots"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName *string `pulumi:"regionName"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
@@ -5555,8 +5647,14 @@ type CloudBackupScheduleCopySettingInput interface {
 type CloudBackupScheduleCopySettingArgs struct {
 	// Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
 	CloudProvider pulumi.StringPtrInput `pulumi:"cloudProvider"`
-	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+	// Copy-policy items when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `lastNumberOfSnapshots`. See below.
+	CopyPolicyItems CloudBackupScheduleCopySettingCopyPolicyItemArrayInput `pulumi:"copyPolicyItems"`
+	// List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copyPolicyItems` and `lastNumberOfSnapshots` on the same entry. You can switch an entry from `frequencies` to `copyPolicyItems` or `lastNumberOfSnapshots` in one apply; the switch back is not possible because `copyPolicyItemsEnabled` cannot be turned off once it is `true`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
 	Frequencies pulumi.StringArrayInput `pulumi:"frequencies"`
+	// Number of most recent snapshots to copy, from 1 to 500, when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `copyPolicyItems`.
+	LastNumberOfSnapshots pulumi.IntPtrInput `pulumi:"lastNumberOfSnapshots"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName pulumi.StringPtrInput `pulumi:"regionName"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
@@ -5621,9 +5719,23 @@ func (o CloudBackupScheduleCopySettingOutput) CloudProvider() pulumi.StringPtrOu
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *string { return v.CloudProvider }).(pulumi.StringPtrOutput)
 }
 
-// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+// Copy-policy items when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `lastNumberOfSnapshots`. See below.
+func (o CloudBackupScheduleCopySettingOutput) CopyPolicyItems() CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput {
+	return o.ApplyT(func(v CloudBackupScheduleCopySetting) []CloudBackupScheduleCopySettingCopyPolicyItem {
+		return v.CopyPolicyItems
+	}).(CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput)
+}
+
+// List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copyPolicyItems` and `lastNumberOfSnapshots` on the same entry. You can switch an entry from `frequencies` to `copyPolicyItems` or `lastNumberOfSnapshots` in one apply; the switch back is not possible because `copyPolicyItemsEnabled` cannot be turned off once it is `true`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+//
+// Deprecated: This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
 func (o CloudBackupScheduleCopySettingOutput) Frequencies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v CloudBackupScheduleCopySetting) []string { return v.Frequencies }).(pulumi.StringArrayOutput)
+}
+
+// Number of most recent snapshots to copy, from 1 to 500, when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `copyPolicyItems`.
+func (o CloudBackupScheduleCopySettingOutput) LastNumberOfSnapshots() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CloudBackupScheduleCopySetting) *int { return v.LastNumberOfSnapshots }).(pulumi.IntPtrOutput)
 }
 
 // Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
@@ -5659,6 +5771,136 @@ func (o CloudBackupScheduleCopySettingArrayOutput) Index(i pulumi.IntInput) Clou
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudBackupScheduleCopySetting {
 		return vs[0].([]CloudBackupScheduleCopySetting)[vs[1].(int)]
 	}).(CloudBackupScheduleCopySettingOutput)
+}
+
+type CloudBackupScheduleCopySettingCopyPolicyItem struct {
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+	FrequencyType string `pulumi:"frequencyType"`
+	// Unique identifier of the copy policy item.
+	//
+	// **Note** The write-only array `deleteCopiedBackups` is not supported in Terraform. Use the Atlas Admin API or Atlas CLI to manage that array. It is not the same as `deleteCopySnapshots` on the resource.
+	Id *string `pulumi:"id"`
+	// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`. Required by the API except when `frequencyType` is `ondemand`.
+	RetentionUnit *string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Required by the API except when `frequencyType` is `ondemand`.
+	RetentionValue *int `pulumi:"retentionValue"`
+}
+
+// CloudBackupScheduleCopySettingCopyPolicyItemInput is an input type that accepts CloudBackupScheduleCopySettingCopyPolicyItemArgs and CloudBackupScheduleCopySettingCopyPolicyItemOutput values.
+// You can construct a concrete instance of `CloudBackupScheduleCopySettingCopyPolicyItemInput` via:
+//
+//	CloudBackupScheduleCopySettingCopyPolicyItemArgs{...}
+type CloudBackupScheduleCopySettingCopyPolicyItemInput interface {
+	pulumi.Input
+
+	ToCloudBackupScheduleCopySettingCopyPolicyItemOutput() CloudBackupScheduleCopySettingCopyPolicyItemOutput
+	ToCloudBackupScheduleCopySettingCopyPolicyItemOutputWithContext(context.Context) CloudBackupScheduleCopySettingCopyPolicyItemOutput
+}
+
+type CloudBackupScheduleCopySettingCopyPolicyItemArgs struct {
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+	// Unique identifier of the copy policy item.
+	//
+	// **Note** The write-only array `deleteCopiedBackups` is not supported in Terraform. Use the Atlas Admin API or Atlas CLI to manage that array. It is not the same as `deleteCopySnapshots` on the resource.
+	Id pulumi.StringPtrInput `pulumi:"id"`
+	// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`. Required by the API except when `frequencyType` is `ondemand`.
+	RetentionUnit pulumi.StringPtrInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`. Required by the API except when `frequencyType` is `ondemand`.
+	RetentionValue pulumi.IntPtrInput `pulumi:"retentionValue"`
+}
+
+func (CloudBackupScheduleCopySettingCopyPolicyItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupScheduleCopySettingCopyPolicyItem)(nil)).Elem()
+}
+
+func (i CloudBackupScheduleCopySettingCopyPolicyItemArgs) ToCloudBackupScheduleCopySettingCopyPolicyItemOutput() CloudBackupScheduleCopySettingCopyPolicyItemOutput {
+	return i.ToCloudBackupScheduleCopySettingCopyPolicyItemOutputWithContext(context.Background())
+}
+
+func (i CloudBackupScheduleCopySettingCopyPolicyItemArgs) ToCloudBackupScheduleCopySettingCopyPolicyItemOutputWithContext(ctx context.Context) CloudBackupScheduleCopySettingCopyPolicyItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupScheduleCopySettingCopyPolicyItemOutput)
+}
+
+// CloudBackupScheduleCopySettingCopyPolicyItemArrayInput is an input type that accepts CloudBackupScheduleCopySettingCopyPolicyItemArray and CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput values.
+// You can construct a concrete instance of `CloudBackupScheduleCopySettingCopyPolicyItemArrayInput` via:
+//
+//	CloudBackupScheduleCopySettingCopyPolicyItemArray{ CloudBackupScheduleCopySettingCopyPolicyItemArgs{...} }
+type CloudBackupScheduleCopySettingCopyPolicyItemArrayInput interface {
+	pulumi.Input
+
+	ToCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput() CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput
+	ToCloudBackupScheduleCopySettingCopyPolicyItemArrayOutputWithContext(context.Context) CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput
+}
+
+type CloudBackupScheduleCopySettingCopyPolicyItemArray []CloudBackupScheduleCopySettingCopyPolicyItemInput
+
+func (CloudBackupScheduleCopySettingCopyPolicyItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupScheduleCopySettingCopyPolicyItem)(nil)).Elem()
+}
+
+func (i CloudBackupScheduleCopySettingCopyPolicyItemArray) ToCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput() CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput {
+	return i.ToCloudBackupScheduleCopySettingCopyPolicyItemArrayOutputWithContext(context.Background())
+}
+
+func (i CloudBackupScheduleCopySettingCopyPolicyItemArray) ToCloudBackupScheduleCopySettingCopyPolicyItemArrayOutputWithContext(ctx context.Context) CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput)
+}
+
+type CloudBackupScheduleCopySettingCopyPolicyItemOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupScheduleCopySettingCopyPolicyItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CloudBackupScheduleCopySettingCopyPolicyItem)(nil)).Elem()
+}
+
+func (o CloudBackupScheduleCopySettingCopyPolicyItemOutput) ToCloudBackupScheduleCopySettingCopyPolicyItemOutput() CloudBackupScheduleCopySettingCopyPolicyItemOutput {
+	return o
+}
+
+func (o CloudBackupScheduleCopySettingCopyPolicyItemOutput) ToCloudBackupScheduleCopySettingCopyPolicyItemOutputWithContext(ctx context.Context) CloudBackupScheduleCopySettingCopyPolicyItemOutput {
+	return o
+}
+
+// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+func (o CloudBackupScheduleCopySettingCopyPolicyItemOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v CloudBackupScheduleCopySettingCopyPolicyItem) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the copy policy item.
+//
+// **Note** The write-only array `deleteCopiedBackups` is not supported in Terraform. Use the Atlas Admin API or Atlas CLI to manage that array. It is not the same as `deleteCopySnapshots` on the resource.
+func (o CloudBackupScheduleCopySettingCopyPolicyItemOutput) Id() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupScheduleCopySettingCopyPolicyItem) *string { return v.Id }).(pulumi.StringPtrOutput)
+}
+
+// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`. Required by the API except when `frequencyType` is `ondemand`.
+func (o CloudBackupScheduleCopySettingCopyPolicyItemOutput) RetentionUnit() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v CloudBackupScheduleCopySettingCopyPolicyItem) *string { return v.RetentionUnit }).(pulumi.StringPtrOutput)
+}
+
+// Value to associate with `retentionUnit`. Required by the API except when `frequencyType` is `ondemand`.
+func (o CloudBackupScheduleCopySettingCopyPolicyItemOutput) RetentionValue() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v CloudBackupScheduleCopySettingCopyPolicyItem) *int { return v.RetentionValue }).(pulumi.IntPtrOutput)
+}
+
+type CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput struct{ *pulumi.OutputState }
+
+func (CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]CloudBackupScheduleCopySettingCopyPolicyItem)(nil)).Elem()
+}
+
+func (o CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput) ToCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput() CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput {
+	return o
+}
+
+func (o CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput) ToCloudBackupScheduleCopySettingCopyPolicyItemArrayOutputWithContext(ctx context.Context) CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput {
+	return o
+}
+
+func (o CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput) Index(i pulumi.IntInput) CloudBackupScheduleCopySettingCopyPolicyItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) CloudBackupScheduleCopySettingCopyPolicyItem {
+		return vs[0].([]CloudBackupScheduleCopySettingCopyPolicyItem)[vs[1].(int)]
+	}).(CloudBackupScheduleCopySettingCopyPolicyItemOutput)
 }
 
 type CloudBackupScheduleExport struct {
@@ -16265,6 +16507,112 @@ func (o MaintenanceWindowProtectedHoursPtrOutput) StartHourOfDay() pulumi.IntPtr
 	}).(pulumi.IntPtrOutput)
 }
 
+type McpConfigIpAccessList struct {
+	// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+	CidrBlock *string `pulumi:"cidrBlock"`
+	// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+	IpAddress *string `pulumi:"ipAddress"`
+}
+
+// McpConfigIpAccessListInput is an input type that accepts McpConfigIpAccessListArgs and McpConfigIpAccessListOutput values.
+// You can construct a concrete instance of `McpConfigIpAccessListInput` via:
+//
+//	McpConfigIpAccessListArgs{...}
+type McpConfigIpAccessListInput interface {
+	pulumi.Input
+
+	ToMcpConfigIpAccessListOutput() McpConfigIpAccessListOutput
+	ToMcpConfigIpAccessListOutputWithContext(context.Context) McpConfigIpAccessListOutput
+}
+
+type McpConfigIpAccessListArgs struct {
+	// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+	CidrBlock pulumi.StringPtrInput `pulumi:"cidrBlock"`
+	// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
+}
+
+func (McpConfigIpAccessListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*McpConfigIpAccessList)(nil)).Elem()
+}
+
+func (i McpConfigIpAccessListArgs) ToMcpConfigIpAccessListOutput() McpConfigIpAccessListOutput {
+	return i.ToMcpConfigIpAccessListOutputWithContext(context.Background())
+}
+
+func (i McpConfigIpAccessListArgs) ToMcpConfigIpAccessListOutputWithContext(ctx context.Context) McpConfigIpAccessListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(McpConfigIpAccessListOutput)
+}
+
+// McpConfigIpAccessListArrayInput is an input type that accepts McpConfigIpAccessListArray and McpConfigIpAccessListArrayOutput values.
+// You can construct a concrete instance of `McpConfigIpAccessListArrayInput` via:
+//
+//	McpConfigIpAccessListArray{ McpConfigIpAccessListArgs{...} }
+type McpConfigIpAccessListArrayInput interface {
+	pulumi.Input
+
+	ToMcpConfigIpAccessListArrayOutput() McpConfigIpAccessListArrayOutput
+	ToMcpConfigIpAccessListArrayOutputWithContext(context.Context) McpConfigIpAccessListArrayOutput
+}
+
+type McpConfigIpAccessListArray []McpConfigIpAccessListInput
+
+func (McpConfigIpAccessListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]McpConfigIpAccessList)(nil)).Elem()
+}
+
+func (i McpConfigIpAccessListArray) ToMcpConfigIpAccessListArrayOutput() McpConfigIpAccessListArrayOutput {
+	return i.ToMcpConfigIpAccessListArrayOutputWithContext(context.Background())
+}
+
+func (i McpConfigIpAccessListArray) ToMcpConfigIpAccessListArrayOutputWithContext(ctx context.Context) McpConfigIpAccessListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(McpConfigIpAccessListArrayOutput)
+}
+
+type McpConfigIpAccessListOutput struct{ *pulumi.OutputState }
+
+func (McpConfigIpAccessListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*McpConfigIpAccessList)(nil)).Elem()
+}
+
+func (o McpConfigIpAccessListOutput) ToMcpConfigIpAccessListOutput() McpConfigIpAccessListOutput {
+	return o
+}
+
+func (o McpConfigIpAccessListOutput) ToMcpConfigIpAccessListOutputWithContext(ctx context.Context) McpConfigIpAccessListOutput {
+	return o
+}
+
+// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+func (o McpConfigIpAccessListOutput) CidrBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v McpConfigIpAccessList) *string { return v.CidrBlock }).(pulumi.StringPtrOutput)
+}
+
+// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+func (o McpConfigIpAccessListOutput) IpAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v McpConfigIpAccessList) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
+}
+
+type McpConfigIpAccessListArrayOutput struct{ *pulumi.OutputState }
+
+func (McpConfigIpAccessListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]McpConfigIpAccessList)(nil)).Elem()
+}
+
+func (o McpConfigIpAccessListArrayOutput) ToMcpConfigIpAccessListArrayOutput() McpConfigIpAccessListArrayOutput {
+	return o
+}
+
+func (o McpConfigIpAccessListArrayOutput) ToMcpConfigIpAccessListArrayOutputWithContext(ctx context.Context) McpConfigIpAccessListArrayOutput {
+	return o
+}
+
+func (o McpConfigIpAccessListArrayOutput) Index(i pulumi.IntInput) McpConfigIpAccessListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) McpConfigIpAccessList {
+		return vs[0].([]McpConfigIpAccessList)[vs[1].(int)]
+	}).(McpConfigIpAccessListOutput)
+}
+
 type MetricIntegrationHeader struct {
 	// Header name.
 	Name string `pulumi:"name"`
@@ -17371,6 +17719,162 @@ func (o OnlineArchiveSchedulePtrOutput) Type() pulumi.StringPtrOutput {
 		}
 		return &v.Type
 	}).(pulumi.StringPtrOutput)
+}
+
+type OrganizationCustomSessionTimeouts struct {
+	// Specifies the absolute session timeout duration in seconds. When set to `null`, the field's value is unset, and the default value of 43,200 seconds (12 hours) is applied. Accepted values range between a minimum of 3,600 seconds (1 hour) and a maximum of 43,200 seconds (12 hours).
+	AbsoluteSessionTimeoutInSeconds *int `pulumi:"absoluteSessionTimeoutInSeconds"`
+	// Specifies the idle session timeout duration in seconds. When set to `null`, the field's value is unset, and the default behavior depends on the context: no timeout for Atlas Commercial, and 600 seconds (10 minutes) for Atlas for Government. Accepted values start at a minimum of 300 seconds (5 minutes). For Atlas Commercial, the maximum value cannot exceed the configured absolute session timeout. For Atlas for Government, the maximum value is capped at 600 seconds (10 minutes).
+	IdleSessionTimeoutInSeconds *int `pulumi:"idleSessionTimeoutInSeconds"`
+}
+
+// OrganizationCustomSessionTimeoutsInput is an input type that accepts OrganizationCustomSessionTimeoutsArgs and OrganizationCustomSessionTimeoutsOutput values.
+// You can construct a concrete instance of `OrganizationCustomSessionTimeoutsInput` via:
+//
+//	OrganizationCustomSessionTimeoutsArgs{...}
+type OrganizationCustomSessionTimeoutsInput interface {
+	pulumi.Input
+
+	ToOrganizationCustomSessionTimeoutsOutput() OrganizationCustomSessionTimeoutsOutput
+	ToOrganizationCustomSessionTimeoutsOutputWithContext(context.Context) OrganizationCustomSessionTimeoutsOutput
+}
+
+type OrganizationCustomSessionTimeoutsArgs struct {
+	// Specifies the absolute session timeout duration in seconds. When set to `null`, the field's value is unset, and the default value of 43,200 seconds (12 hours) is applied. Accepted values range between a minimum of 3,600 seconds (1 hour) and a maximum of 43,200 seconds (12 hours).
+	AbsoluteSessionTimeoutInSeconds pulumi.IntPtrInput `pulumi:"absoluteSessionTimeoutInSeconds"`
+	// Specifies the idle session timeout duration in seconds. When set to `null`, the field's value is unset, and the default behavior depends on the context: no timeout for Atlas Commercial, and 600 seconds (10 minutes) for Atlas for Government. Accepted values start at a minimum of 300 seconds (5 minutes). For Atlas Commercial, the maximum value cannot exceed the configured absolute session timeout. For Atlas for Government, the maximum value is capped at 600 seconds (10 minutes).
+	IdleSessionTimeoutInSeconds pulumi.IntPtrInput `pulumi:"idleSessionTimeoutInSeconds"`
+}
+
+func (OrganizationCustomSessionTimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationCustomSessionTimeouts)(nil)).Elem()
+}
+
+func (i OrganizationCustomSessionTimeoutsArgs) ToOrganizationCustomSessionTimeoutsOutput() OrganizationCustomSessionTimeoutsOutput {
+	return i.ToOrganizationCustomSessionTimeoutsOutputWithContext(context.Background())
+}
+
+func (i OrganizationCustomSessionTimeoutsArgs) ToOrganizationCustomSessionTimeoutsOutputWithContext(ctx context.Context) OrganizationCustomSessionTimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationCustomSessionTimeoutsOutput)
+}
+
+func (i OrganizationCustomSessionTimeoutsArgs) ToOrganizationCustomSessionTimeoutsPtrOutput() OrganizationCustomSessionTimeoutsPtrOutput {
+	return i.ToOrganizationCustomSessionTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i OrganizationCustomSessionTimeoutsArgs) ToOrganizationCustomSessionTimeoutsPtrOutputWithContext(ctx context.Context) OrganizationCustomSessionTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationCustomSessionTimeoutsOutput).ToOrganizationCustomSessionTimeoutsPtrOutputWithContext(ctx)
+}
+
+// OrganizationCustomSessionTimeoutsPtrInput is an input type that accepts OrganizationCustomSessionTimeoutsArgs, OrganizationCustomSessionTimeoutsPtr and OrganizationCustomSessionTimeoutsPtrOutput values.
+// You can construct a concrete instance of `OrganizationCustomSessionTimeoutsPtrInput` via:
+//
+//	        OrganizationCustomSessionTimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type OrganizationCustomSessionTimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToOrganizationCustomSessionTimeoutsPtrOutput() OrganizationCustomSessionTimeoutsPtrOutput
+	ToOrganizationCustomSessionTimeoutsPtrOutputWithContext(context.Context) OrganizationCustomSessionTimeoutsPtrOutput
+}
+
+type organizationCustomSessionTimeoutsPtrType OrganizationCustomSessionTimeoutsArgs
+
+func OrganizationCustomSessionTimeoutsPtr(v *OrganizationCustomSessionTimeoutsArgs) OrganizationCustomSessionTimeoutsPtrInput {
+	return (*organizationCustomSessionTimeoutsPtrType)(v)
+}
+
+func (*organizationCustomSessionTimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**OrganizationCustomSessionTimeouts)(nil)).Elem()
+}
+
+func (i *organizationCustomSessionTimeoutsPtrType) ToOrganizationCustomSessionTimeoutsPtrOutput() OrganizationCustomSessionTimeoutsPtrOutput {
+	return i.ToOrganizationCustomSessionTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *organizationCustomSessionTimeoutsPtrType) ToOrganizationCustomSessionTimeoutsPtrOutputWithContext(ctx context.Context) OrganizationCustomSessionTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrganizationCustomSessionTimeoutsPtrOutput)
+}
+
+type OrganizationCustomSessionTimeoutsOutput struct{ *pulumi.OutputState }
+
+func (OrganizationCustomSessionTimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrganizationCustomSessionTimeouts)(nil)).Elem()
+}
+
+func (o OrganizationCustomSessionTimeoutsOutput) ToOrganizationCustomSessionTimeoutsOutput() OrganizationCustomSessionTimeoutsOutput {
+	return o
+}
+
+func (o OrganizationCustomSessionTimeoutsOutput) ToOrganizationCustomSessionTimeoutsOutputWithContext(ctx context.Context) OrganizationCustomSessionTimeoutsOutput {
+	return o
+}
+
+func (o OrganizationCustomSessionTimeoutsOutput) ToOrganizationCustomSessionTimeoutsPtrOutput() OrganizationCustomSessionTimeoutsPtrOutput {
+	return o.ToOrganizationCustomSessionTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o OrganizationCustomSessionTimeoutsOutput) ToOrganizationCustomSessionTimeoutsPtrOutputWithContext(ctx context.Context) OrganizationCustomSessionTimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v OrganizationCustomSessionTimeouts) *OrganizationCustomSessionTimeouts {
+		return &v
+	}).(OrganizationCustomSessionTimeoutsPtrOutput)
+}
+
+// Specifies the absolute session timeout duration in seconds. When set to `null`, the field's value is unset, and the default value of 43,200 seconds (12 hours) is applied. Accepted values range between a minimum of 3,600 seconds (1 hour) and a maximum of 43,200 seconds (12 hours).
+func (o OrganizationCustomSessionTimeoutsOutput) AbsoluteSessionTimeoutInSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v OrganizationCustomSessionTimeouts) *int { return v.AbsoluteSessionTimeoutInSeconds }).(pulumi.IntPtrOutput)
+}
+
+// Specifies the idle session timeout duration in seconds. When set to `null`, the field's value is unset, and the default behavior depends on the context: no timeout for Atlas Commercial, and 600 seconds (10 minutes) for Atlas for Government. Accepted values start at a minimum of 300 seconds (5 minutes). For Atlas Commercial, the maximum value cannot exceed the configured absolute session timeout. For Atlas for Government, the maximum value is capped at 600 seconds (10 minutes).
+func (o OrganizationCustomSessionTimeoutsOutput) IdleSessionTimeoutInSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v OrganizationCustomSessionTimeouts) *int { return v.IdleSessionTimeoutInSeconds }).(pulumi.IntPtrOutput)
+}
+
+type OrganizationCustomSessionTimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (OrganizationCustomSessionTimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**OrganizationCustomSessionTimeouts)(nil)).Elem()
+}
+
+func (o OrganizationCustomSessionTimeoutsPtrOutput) ToOrganizationCustomSessionTimeoutsPtrOutput() OrganizationCustomSessionTimeoutsPtrOutput {
+	return o
+}
+
+func (o OrganizationCustomSessionTimeoutsPtrOutput) ToOrganizationCustomSessionTimeoutsPtrOutputWithContext(ctx context.Context) OrganizationCustomSessionTimeoutsPtrOutput {
+	return o
+}
+
+func (o OrganizationCustomSessionTimeoutsPtrOutput) Elem() OrganizationCustomSessionTimeoutsOutput {
+	return o.ApplyT(func(v *OrganizationCustomSessionTimeouts) OrganizationCustomSessionTimeouts {
+		if v != nil {
+			return *v
+		}
+		var ret OrganizationCustomSessionTimeouts
+		return ret
+	}).(OrganizationCustomSessionTimeoutsOutput)
+}
+
+// Specifies the absolute session timeout duration in seconds. When set to `null`, the field's value is unset, and the default value of 43,200 seconds (12 hours) is applied. Accepted values range between a minimum of 3,600 seconds (1 hour) and a maximum of 43,200 seconds (12 hours).
+func (o OrganizationCustomSessionTimeoutsPtrOutput) AbsoluteSessionTimeoutInSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *OrganizationCustomSessionTimeouts) *int {
+		if v == nil {
+			return nil
+		}
+		return v.AbsoluteSessionTimeoutInSeconds
+	}).(pulumi.IntPtrOutput)
+}
+
+// Specifies the idle session timeout duration in seconds. When set to `null`, the field's value is unset, and the default behavior depends on the context: no timeout for Atlas Commercial, and 600 seconds (10 minutes) for Atlas for Government. Accepted values start at a minimum of 300 seconds (5 minutes). For Atlas Commercial, the maximum value cannot exceed the configured absolute session timeout. For Atlas for Government, the maximum value is capped at 600 seconds (10 minutes).
+func (o OrganizationCustomSessionTimeoutsPtrOutput) IdleSessionTimeoutInSeconds() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *OrganizationCustomSessionTimeouts) *int {
+		if v == nil {
+			return nil
+		}
+		return v.IdleSessionTimeoutInSeconds
+	}).(pulumi.IntPtrOutput)
 }
 
 type OrganizationServiceAccount struct {
@@ -18802,6 +19306,112 @@ func (o ProjectLimitArrayOutput) Index(i pulumi.IntInput) ProjectLimitOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProjectLimit {
 		return vs[0].([]ProjectLimit)[vs[1].(int)]
 	}).(ProjectLimitOutput)
+}
+
+type ProjectMcpConfigIpAccessList struct {
+	// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+	CidrBlock *string `pulumi:"cidrBlock"`
+	// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+	IpAddress *string `pulumi:"ipAddress"`
+}
+
+// ProjectMcpConfigIpAccessListInput is an input type that accepts ProjectMcpConfigIpAccessListArgs and ProjectMcpConfigIpAccessListOutput values.
+// You can construct a concrete instance of `ProjectMcpConfigIpAccessListInput` via:
+//
+//	ProjectMcpConfigIpAccessListArgs{...}
+type ProjectMcpConfigIpAccessListInput interface {
+	pulumi.Input
+
+	ToProjectMcpConfigIpAccessListOutput() ProjectMcpConfigIpAccessListOutput
+	ToProjectMcpConfigIpAccessListOutputWithContext(context.Context) ProjectMcpConfigIpAccessListOutput
+}
+
+type ProjectMcpConfigIpAccessListArgs struct {
+	// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+	CidrBlock pulumi.StringPtrInput `pulumi:"cidrBlock"`
+	// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+	IpAddress pulumi.StringPtrInput `pulumi:"ipAddress"`
+}
+
+func (ProjectMcpConfigIpAccessListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectMcpConfigIpAccessList)(nil)).Elem()
+}
+
+func (i ProjectMcpConfigIpAccessListArgs) ToProjectMcpConfigIpAccessListOutput() ProjectMcpConfigIpAccessListOutput {
+	return i.ToProjectMcpConfigIpAccessListOutputWithContext(context.Background())
+}
+
+func (i ProjectMcpConfigIpAccessListArgs) ToProjectMcpConfigIpAccessListOutputWithContext(ctx context.Context) ProjectMcpConfigIpAccessListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectMcpConfigIpAccessListOutput)
+}
+
+// ProjectMcpConfigIpAccessListArrayInput is an input type that accepts ProjectMcpConfigIpAccessListArray and ProjectMcpConfigIpAccessListArrayOutput values.
+// You can construct a concrete instance of `ProjectMcpConfigIpAccessListArrayInput` via:
+//
+//	ProjectMcpConfigIpAccessListArray{ ProjectMcpConfigIpAccessListArgs{...} }
+type ProjectMcpConfigIpAccessListArrayInput interface {
+	pulumi.Input
+
+	ToProjectMcpConfigIpAccessListArrayOutput() ProjectMcpConfigIpAccessListArrayOutput
+	ToProjectMcpConfigIpAccessListArrayOutputWithContext(context.Context) ProjectMcpConfigIpAccessListArrayOutput
+}
+
+type ProjectMcpConfigIpAccessListArray []ProjectMcpConfigIpAccessListInput
+
+func (ProjectMcpConfigIpAccessListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProjectMcpConfigIpAccessList)(nil)).Elem()
+}
+
+func (i ProjectMcpConfigIpAccessListArray) ToProjectMcpConfigIpAccessListArrayOutput() ProjectMcpConfigIpAccessListArrayOutput {
+	return i.ToProjectMcpConfigIpAccessListArrayOutputWithContext(context.Background())
+}
+
+func (i ProjectMcpConfigIpAccessListArray) ToProjectMcpConfigIpAccessListArrayOutputWithContext(ctx context.Context) ProjectMcpConfigIpAccessListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ProjectMcpConfigIpAccessListArrayOutput)
+}
+
+type ProjectMcpConfigIpAccessListOutput struct{ *pulumi.OutputState }
+
+func (ProjectMcpConfigIpAccessListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ProjectMcpConfigIpAccessList)(nil)).Elem()
+}
+
+func (o ProjectMcpConfigIpAccessListOutput) ToProjectMcpConfigIpAccessListOutput() ProjectMcpConfigIpAccessListOutput {
+	return o
+}
+
+func (o ProjectMcpConfigIpAccessListOutput) ToProjectMcpConfigIpAccessListOutputWithContext(ctx context.Context) ProjectMcpConfigIpAccessListOutput {
+	return o
+}
+
+// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+func (o ProjectMcpConfigIpAccessListOutput) CidrBlock() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProjectMcpConfigIpAccessList) *string { return v.CidrBlock }).(pulumi.StringPtrOutput)
+}
+
+// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+func (o ProjectMcpConfigIpAccessListOutput) IpAddress() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ProjectMcpConfigIpAccessList) *string { return v.IpAddress }).(pulumi.StringPtrOutput)
+}
+
+type ProjectMcpConfigIpAccessListArrayOutput struct{ *pulumi.OutputState }
+
+func (ProjectMcpConfigIpAccessListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ProjectMcpConfigIpAccessList)(nil)).Elem()
+}
+
+func (o ProjectMcpConfigIpAccessListArrayOutput) ToProjectMcpConfigIpAccessListArrayOutput() ProjectMcpConfigIpAccessListArrayOutput {
+	return o
+}
+
+func (o ProjectMcpConfigIpAccessListArrayOutput) ToProjectMcpConfigIpAccessListArrayOutputWithContext(ctx context.Context) ProjectMcpConfigIpAccessListArrayOutput {
+	return o
+}
+
+func (o ProjectMcpConfigIpAccessListArrayOutput) Index(i pulumi.IntInput) ProjectMcpConfigIpAccessListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ProjectMcpConfigIpAccessList {
+		return vs[0].([]ProjectMcpConfigIpAccessList)[vs[1].(int)]
+	}).(ProjectMcpConfigIpAccessListOutput)
 }
 
 type ProjectServiceAccountSecretType struct {
@@ -23982,6 +24592,8 @@ type StreamProcessorOptions struct {
 	Autoscaling *StreamProcessorOptionsAutoscaling `pulumi:"autoscaling"`
 	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
 	Dlq *StreamProcessorOptionsDlq `pulumi:"dlq"`
+	// Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
+	ResumeFromCheckpoint *bool `pulumi:"resumeFromCheckpoint"`
 }
 
 // StreamProcessorOptionsInput is an input type that accepts StreamProcessorOptionsArgs and StreamProcessorOptionsOutput values.
@@ -24000,6 +24612,8 @@ type StreamProcessorOptionsArgs struct {
 	Autoscaling StreamProcessorOptionsAutoscalingPtrInput `pulumi:"autoscaling"`
 	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
 	Dlq StreamProcessorOptionsDlqPtrInput `pulumi:"dlq"`
+	// Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
+	ResumeFromCheckpoint pulumi.BoolPtrInput `pulumi:"resumeFromCheckpoint"`
 }
 
 func (StreamProcessorOptionsArgs) ElementType() reflect.Type {
@@ -24089,6 +24703,11 @@ func (o StreamProcessorOptionsOutput) Dlq() StreamProcessorOptionsDlqPtrOutput {
 	return o.ApplyT(func(v StreamProcessorOptions) *StreamProcessorOptionsDlq { return v.Dlq }).(StreamProcessorOptionsDlqPtrOutput)
 }
 
+// Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
+func (o StreamProcessorOptionsOutput) ResumeFromCheckpoint() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v StreamProcessorOptions) *bool { return v.ResumeFromCheckpoint }).(pulumi.BoolPtrOutput)
+}
+
 type StreamProcessorOptionsPtrOutput struct{ *pulumi.OutputState }
 
 func (StreamProcessorOptionsPtrOutput) ElementType() reflect.Type {
@@ -24131,6 +24750,16 @@ func (o StreamProcessorOptionsPtrOutput) Dlq() StreamProcessorOptionsDlqPtrOutpu
 		}
 		return v.Dlq
 	}).(StreamProcessorOptionsDlqPtrOutput)
+}
+
+// Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
+func (o StreamProcessorOptionsPtrOutput) ResumeFromCheckpoint() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *StreamProcessorOptions) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.ResumeFromCheckpoint
+	}).(pulumi.BoolPtrOutput)
 }
 
 type StreamProcessorOptionsAutoscaling struct {
@@ -26395,9 +27024,9 @@ type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput int `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -26421,9 +27050,9 @@ type GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -26467,12 +27096,12 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskS
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
 
-// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskThroughput() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) int { return v.DiskThroughput }).(pulumi.IntOutput)
 }
 
-// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) string { return v.EbsVolumeType }).(pulumi.StringOutput)
 }
@@ -26589,9 +27218,9 @@ type GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecs struct
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput int `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -26615,9 +27244,9 @@ type GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsArgs st
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -26663,14 +27292,14 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutp
 	}).(pulumi.Float64Output)
 }
 
-// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutput) DiskThroughput() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecs) int {
 		return v.DiskThroughput
 	}).(pulumi.IntOutput)
 }
 
-// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecs) string {
 		return v.EbsVolumeType
@@ -26694,9 +27323,9 @@ type GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecs struct
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput int `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -26720,9 +27349,9 @@ type GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsArgs st
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -26768,14 +27397,14 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsOutp
 	}).(pulumi.Float64Output)
 }
 
-// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsOutput) DiskThroughput() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecs) int {
 		return v.DiskThroughput
 	}).(pulumi.IntOutput)
 }
 
-// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecs) string {
 		return v.EbsVolumeType
@@ -26799,9 +27428,9 @@ type GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecs struct 
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput int `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -26825,9 +27454,9 @@ type GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsArgs str
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -26873,14 +27502,14 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsOutpu
 	}).(pulumi.Float64Output)
 }
 
-// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsOutput) DiskThroughput() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecs) int {
 		return v.DiskThroughput
 	}).(pulumi.IntOutput)
 }
 
-// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecs) string {
 		return v.EbsVolumeType
@@ -26904,9 +27533,9 @@ type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput int `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -26930,9 +27559,9 @@ type GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -26976,12 +27605,12 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskS
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
 
-// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskThroughput() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) int { return v.DiskThroughput }).(pulumi.IntOutput)
 }
 
-// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs) string { return v.EbsVolumeType }).(pulumi.StringOutput)
 }
@@ -27001,9 +27630,9 @@ type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput int `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -27027,9 +27656,9 @@ type GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -27073,12 +27702,12 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskSi
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
 
-// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskThroughput() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) int { return v.DiskThroughput }).(pulumi.IntOutput)
 }
 
-// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) string { return v.EbsVolumeType }).(pulumi.StringOutput)
 }
@@ -28580,9 +29209,9 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs struct {
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput int `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -28606,9 +29235,9 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs stru
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -28654,14 +29283,14 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput
 	}).(pulumi.Float64Output)
 }
 
-// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskThroughput() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) int {
 		return v.DiskThroughput
 	}).(pulumi.IntOutput)
 }
 
-// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecs) string {
 		return v.EbsVolumeType
@@ -28779,9 +29408,9 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput int `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -28805,9 +29434,9 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -28855,14 +29484,14 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSp
 	}).(pulumi.Float64Output)
 }
 
-// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutput) DiskThroughput() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs) int {
 		return v.DiskThroughput
 	}).(pulumi.IntOutput)
 }
 
-// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs) string {
 		return v.EbsVolumeType
@@ -28888,9 +29517,9 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput int `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -28914,9 +29543,9 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -28964,14 +29593,14 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSp
 	}).(pulumi.Float64Output)
 }
 
-// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsOutput) DiskThroughput() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs) int {
 		return v.DiskThroughput
 	}).(pulumi.IntOutput)
 }
 
-// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecs) string {
 		return v.EbsVolumeType
@@ -28997,9 +29626,9 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs 
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput int `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -29023,9 +29652,9 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsA
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -29073,14 +29702,14 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpe
 	}).(pulumi.Float64Output)
 }
 
-// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsOutput) DiskThroughput() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs) int {
 		return v.DiskThroughput
 	}).(pulumi.IntOutput)
 }
 
-// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecs) string {
 		return v.EbsVolumeType
@@ -29106,9 +29735,9 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs struct {
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput int `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -29132,9 +29761,9 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsArgs stru
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -29180,14 +29809,14 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput
 	}).(pulumi.Float64Output)
 }
 
-// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) DiskThroughput() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) int {
 		return v.DiskThroughput
 	}).(pulumi.IntOutput)
 }
 
-// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigElectableSpecs) string {
 		return v.EbsVolumeType
@@ -29211,9 +29840,9 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs struct {
 	DiskIops int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb float64 `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput int `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType string `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize string `pulumi:"instanceSize"`
@@ -29237,9 +29866,9 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsArgs struc
 	DiskIops pulumi.IntInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier.
 	DiskSizeGb pulumi.Float64Input `pulumi:"diskSizeGb"`
-	// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+	// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 	DiskThroughput pulumi.IntInput `pulumi:"diskThroughput"`
-	// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+	// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 	EbsVolumeType pulumi.StringInput `pulumi:"ebsVolumeType"`
 	// Hardware specification for the instance sizes in this region.
 	InstanceSize pulumi.StringInput `pulumi:"instanceSize"`
@@ -29283,12 +29912,12 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput)
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) float64 { return v.DiskSizeGb }).(pulumi.Float64Output)
 }
 
-// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) DiskThroughput() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) int { return v.DiskThroughput }).(pulumi.IntOutput)
 }
 
-// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecsOutput) EbsVolumeType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpecs) string {
 		return v.EbsVolumeType
@@ -34888,8 +35517,14 @@ func (o GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput) State() pulu
 type GetCloudBackupScheduleCopySetting struct {
 	// Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
 	CloudProvider string `pulumi:"cloudProvider"`
-	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
+	// Copy-policy items when `copyPolicyItemsEnabled` is true. See below.
+	CopyPolicyItems []GetCloudBackupScheduleCopySettingCopyPolicyItem `pulumi:"copyPolicyItems"`
+	// (Deprecated) List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
 	Frequencies []string `pulumi:"frequencies"`
+	// Number of most recent snapshots copied when `copyPolicyItemsEnabled` is true.
+	LastNumberOfSnapshots int `pulumi:"lastNumberOfSnapshots"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName string `pulumi:"regionName"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
@@ -34912,8 +35547,14 @@ type GetCloudBackupScheduleCopySettingInput interface {
 type GetCloudBackupScheduleCopySettingArgs struct {
 	// Human-readable label that identifies the cloud provider that stores the snapshot copy. i.e. "AWS" "AZURE" "GCP"
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
+	// Copy-policy items when `copyPolicyItemsEnabled` is true. See below.
+	CopyPolicyItems GetCloudBackupScheduleCopySettingCopyPolicyItemArrayInput `pulumi:"copyPolicyItems"`
+	// (Deprecated) List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
 	Frequencies pulumi.StringArrayInput `pulumi:"frequencies"`
+	// Number of most recent snapshots copied when `copyPolicyItemsEnabled` is true.
+	LastNumberOfSnapshots pulumi.IntInput `pulumi:"lastNumberOfSnapshots"`
 	// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
 	RegionName pulumi.StringInput `pulumi:"regionName"`
 	// Flag that indicates whether to copy the oplogs to the target region. You can use the oplogs to perform point-in-time restores.
@@ -34978,9 +35619,23 @@ func (o GetCloudBackupScheduleCopySettingOutput) CloudProvider() pulumi.StringOu
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
 
-// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
+// Copy-policy items when `copyPolicyItemsEnabled` is true. See below.
+func (o GetCloudBackupScheduleCopySettingOutput) CopyPolicyItems() GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput {
+	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) []GetCloudBackupScheduleCopySettingCopyPolicyItem {
+		return v.CopyPolicyItems
+	}).(GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput)
+}
+
+// (Deprecated) List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+//
+// Deprecated: This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
 func (o GetCloudBackupScheduleCopySettingOutput) Frequencies() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) []string { return v.Frequencies }).(pulumi.StringArrayOutput)
+}
+
+// Number of most recent snapshots copied when `copyPolicyItemsEnabled` is true.
+func (o GetCloudBackupScheduleCopySettingOutput) LastNumberOfSnapshots() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupScheduleCopySetting) int { return v.LastNumberOfSnapshots }).(pulumi.IntOutput)
 }
 
 // Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
@@ -35018,10 +35673,134 @@ func (o GetCloudBackupScheduleCopySettingArrayOutput) Index(i pulumi.IntInput) G
 	}).(GetCloudBackupScheduleCopySettingOutput)
 }
 
+type GetCloudBackupScheduleCopySettingCopyPolicyItem struct {
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+	FrequencyType string `pulumi:"frequencyType"`
+	// Unique identifier of the copy policy item.
+	Id string `pulumi:"id"`
+	// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit string `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue int `pulumi:"retentionValue"`
+}
+
+// GetCloudBackupScheduleCopySettingCopyPolicyItemInput is an input type that accepts GetCloudBackupScheduleCopySettingCopyPolicyItemArgs and GetCloudBackupScheduleCopySettingCopyPolicyItemOutput values.
+// You can construct a concrete instance of `GetCloudBackupScheduleCopySettingCopyPolicyItemInput` via:
+//
+//	GetCloudBackupScheduleCopySettingCopyPolicyItemArgs{...}
+type GetCloudBackupScheduleCopySettingCopyPolicyItemInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupScheduleCopySettingCopyPolicyItemOutput() GetCloudBackupScheduleCopySettingCopyPolicyItemOutput
+	ToGetCloudBackupScheduleCopySettingCopyPolicyItemOutputWithContext(context.Context) GetCloudBackupScheduleCopySettingCopyPolicyItemOutput
+}
+
+type GetCloudBackupScheduleCopySettingCopyPolicyItemArgs struct {
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
+	// Unique identifier of the copy policy item.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
+	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
+	// Value to associate with `retentionUnit`.
+	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
+}
+
+func (GetCloudBackupScheduleCopySettingCopyPolicyItemArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupScheduleCopySettingCopyPolicyItem)(nil)).Elem()
+}
+
+func (i GetCloudBackupScheduleCopySettingCopyPolicyItemArgs) ToGetCloudBackupScheduleCopySettingCopyPolicyItemOutput() GetCloudBackupScheduleCopySettingCopyPolicyItemOutput {
+	return i.ToGetCloudBackupScheduleCopySettingCopyPolicyItemOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupScheduleCopySettingCopyPolicyItemArgs) ToGetCloudBackupScheduleCopySettingCopyPolicyItemOutputWithContext(ctx context.Context) GetCloudBackupScheduleCopySettingCopyPolicyItemOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupScheduleCopySettingCopyPolicyItemOutput)
+}
+
+// GetCloudBackupScheduleCopySettingCopyPolicyItemArrayInput is an input type that accepts GetCloudBackupScheduleCopySettingCopyPolicyItemArray and GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput values.
+// You can construct a concrete instance of `GetCloudBackupScheduleCopySettingCopyPolicyItemArrayInput` via:
+//
+//	GetCloudBackupScheduleCopySettingCopyPolicyItemArray{ GetCloudBackupScheduleCopySettingCopyPolicyItemArgs{...} }
+type GetCloudBackupScheduleCopySettingCopyPolicyItemArrayInput interface {
+	pulumi.Input
+
+	ToGetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput() GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput
+	ToGetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutputWithContext(context.Context) GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput
+}
+
+type GetCloudBackupScheduleCopySettingCopyPolicyItemArray []GetCloudBackupScheduleCopySettingCopyPolicyItemInput
+
+func (GetCloudBackupScheduleCopySettingCopyPolicyItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupScheduleCopySettingCopyPolicyItem)(nil)).Elem()
+}
+
+func (i GetCloudBackupScheduleCopySettingCopyPolicyItemArray) ToGetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput() GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput {
+	return i.ToGetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutputWithContext(context.Background())
+}
+
+func (i GetCloudBackupScheduleCopySettingCopyPolicyItemArray) ToGetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutputWithContext(ctx context.Context) GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput)
+}
+
+type GetCloudBackupScheduleCopySettingCopyPolicyItemOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupScheduleCopySettingCopyPolicyItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCloudBackupScheduleCopySettingCopyPolicyItem)(nil)).Elem()
+}
+
+func (o GetCloudBackupScheduleCopySettingCopyPolicyItemOutput) ToGetCloudBackupScheduleCopySettingCopyPolicyItemOutput() GetCloudBackupScheduleCopySettingCopyPolicyItemOutput {
+	return o
+}
+
+func (o GetCloudBackupScheduleCopySettingCopyPolicyItemOutput) ToGetCloudBackupScheduleCopySettingCopyPolicyItemOutputWithContext(ctx context.Context) GetCloudBackupScheduleCopySettingCopyPolicyItemOutput {
+	return o
+}
+
+// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+func (o GetCloudBackupScheduleCopySettingCopyPolicyItemOutput) FrequencyType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupScheduleCopySettingCopyPolicyItem) string { return v.FrequencyType }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the copy policy item.
+func (o GetCloudBackupScheduleCopySettingCopyPolicyItemOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupScheduleCopySettingCopyPolicyItem) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
+func (o GetCloudBackupScheduleCopySettingCopyPolicyItemOutput) RetentionUnit() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCloudBackupScheduleCopySettingCopyPolicyItem) string { return v.RetentionUnit }).(pulumi.StringOutput)
+}
+
+// Value to associate with `retentionUnit`.
+func (o GetCloudBackupScheduleCopySettingCopyPolicyItemOutput) RetentionValue() pulumi.IntOutput {
+	return o.ApplyT(func(v GetCloudBackupScheduleCopySettingCopyPolicyItem) int { return v.RetentionValue }).(pulumi.IntOutput)
+}
+
+type GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput struct{ *pulumi.OutputState }
+
+func (GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetCloudBackupScheduleCopySettingCopyPolicyItem)(nil)).Elem()
+}
+
+func (o GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput) ToGetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput() GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput) ToGetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutputWithContext(ctx context.Context) GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput {
+	return o
+}
+
+func (o GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput) Index(i pulumi.IntInput) GetCloudBackupScheduleCopySettingCopyPolicyItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetCloudBackupScheduleCopySettingCopyPolicyItem {
+		return vs[0].([]GetCloudBackupScheduleCopySettingCopyPolicyItem)[vs[1].(int)]
+	}).(GetCloudBackupScheduleCopySettingCopyPolicyItemOutput)
+}
+
 type GetCloudBackupScheduleExport struct {
 	// Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
 	ExportBucketId string `pulumi:"exportBucketId"`
-	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 	FrequencyType string `pulumi:"frequencyType"`
 }
 
@@ -35039,7 +35818,7 @@ type GetCloudBackupScheduleExportInput interface {
 type GetCloudBackupScheduleExportArgs struct {
 	// Unique identifier of the CloudBackupSnapshotExportBucket export_bucket_id value.
 	ExportBucketId pulumi.StringInput `pulumi:"exportBucketId"`
-	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
 }
 
@@ -35099,7 +35878,7 @@ func (o GetCloudBackupScheduleExportOutput) ExportBucketId() pulumi.StringOutput
 	return o.ApplyT(func(v GetCloudBackupScheduleExport) string { return v.ExportBucketId }).(pulumi.StringOutput)
 }
 
-// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 func (o GetCloudBackupScheduleExportOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupScheduleExport) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
@@ -35127,13 +35906,13 @@ func (o GetCloudBackupScheduleExportArrayOutput) Index(i pulumi.IntInput) GetClo
 type GetCloudBackupSchedulePolicyItemDaily struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 	FrequencyType string `pulumi:"frequencyType"`
-	// Unique identifier of the backup policy item.
+	// Unique identifier of the copy policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	// Value to associate with `retentionUnit`.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -35151,13 +35930,13 @@ type GetCloudBackupSchedulePolicyItemDailyInput interface {
 type GetCloudBackupSchedulePolicyItemDailyArgs struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
-	// Unique identifier of the backup policy item.
+	// Unique identifier of the copy policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	// Value to associate with `retentionUnit`.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -35217,22 +35996,22 @@ func (o GetCloudBackupSchedulePolicyItemDailyOutput) FrequencyInterval() pulumi.
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 func (o GetCloudBackupSchedulePolicyItemDailyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
 
-// Unique identifier of the backup policy item.
+// Unique identifier of the copy policy item.
 func (o GetCloudBackupSchedulePolicyItemDailyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
 func (o GetCloudBackupSchedulePolicyItemDailyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+// Value to associate with `retentionUnit`.
 func (o GetCloudBackupSchedulePolicyItemDailyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemDaily) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -35260,13 +36039,13 @@ func (o GetCloudBackupSchedulePolicyItemDailyArrayOutput) Index(i pulumi.IntInpu
 type GetCloudBackupSchedulePolicyItemHourly struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 	FrequencyType string `pulumi:"frequencyType"`
-	// Unique identifier of the backup policy item.
+	// Unique identifier of the copy policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	// Value to associate with `retentionUnit`.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -35284,13 +36063,13 @@ type GetCloudBackupSchedulePolicyItemHourlyInput interface {
 type GetCloudBackupSchedulePolicyItemHourlyArgs struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
-	// Unique identifier of the backup policy item.
+	// Unique identifier of the copy policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	// Value to associate with `retentionUnit`.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -35350,22 +36129,22 @@ func (o GetCloudBackupSchedulePolicyItemHourlyOutput) FrequencyInterval() pulumi
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 func (o GetCloudBackupSchedulePolicyItemHourlyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
 
-// Unique identifier of the backup policy item.
+// Unique identifier of the copy policy item.
 func (o GetCloudBackupSchedulePolicyItemHourlyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
 func (o GetCloudBackupSchedulePolicyItemHourlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+// Value to associate with `retentionUnit`.
 func (o GetCloudBackupSchedulePolicyItemHourlyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemHourly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -35393,13 +36172,13 @@ func (o GetCloudBackupSchedulePolicyItemHourlyArrayOutput) Index(i pulumi.IntInp
 type GetCloudBackupSchedulePolicyItemMonthly struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 	FrequencyType string `pulumi:"frequencyType"`
-	// Unique identifier of the backup policy item.
+	// Unique identifier of the copy policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	// Value to associate with `retentionUnit`.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -35417,13 +36196,13 @@ type GetCloudBackupSchedulePolicyItemMonthlyInput interface {
 type GetCloudBackupSchedulePolicyItemMonthlyArgs struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
-	// Unique identifier of the backup policy item.
+	// Unique identifier of the copy policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	// Value to associate with `retentionUnit`.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -35483,22 +36262,22 @@ func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) FrequencyInterval() pulum
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
 
-// Unique identifier of the backup policy item.
+// Unique identifier of the copy policy item.
 func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
 func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+// Value to associate with `retentionUnit`.
 func (o GetCloudBackupSchedulePolicyItemMonthlyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemMonthly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -35526,13 +36305,13 @@ func (o GetCloudBackupSchedulePolicyItemMonthlyArrayOutput) Index(i pulumi.IntIn
 type GetCloudBackupSchedulePolicyItemWeekly struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 	FrequencyType string `pulumi:"frequencyType"`
-	// Unique identifier of the backup policy item.
+	// Unique identifier of the copy policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	// Value to associate with `retentionUnit`.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -35550,13 +36329,13 @@ type GetCloudBackupSchedulePolicyItemWeeklyInput interface {
 type GetCloudBackupSchedulePolicyItemWeeklyArgs struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
-	// Unique identifier of the backup policy item.
+	// Unique identifier of the copy policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	// Value to associate with `retentionUnit`.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -35616,22 +36395,22 @@ func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) FrequencyInterval() pulumi
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
 
-// Unique identifier of the backup policy item.
+// Unique identifier of the copy policy item.
 func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
 func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+// Value to associate with `retentionUnit`.
 func (o GetCloudBackupSchedulePolicyItemWeeklyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemWeekly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -35659,13 +36438,13 @@ func (o GetCloudBackupSchedulePolicyItemWeeklyArrayOutput) Index(i pulumi.IntInp
 type GetCloudBackupSchedulePolicyItemYearly struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval int `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 	FrequencyType string `pulumi:"frequencyType"`
-	// Unique identifier of the backup policy item.
+	// Unique identifier of the copy policy item.
 	Id string `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit string `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	// Value to associate with `retentionUnit`.
 	RetentionValue int `pulumi:"retentionValue"`
 }
 
@@ -35683,13 +36462,13 @@ type GetCloudBackupSchedulePolicyItemYearlyInput interface {
 type GetCloudBackupSchedulePolicyItemYearlyArgs struct {
 	// Desired frequency of the new backup policy item specified by `frequencyType` (yearly in this case). The supported values for yearly policies are
 	FrequencyInterval pulumi.IntInput `pulumi:"frequencyInterval"`
-	// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+	// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 	FrequencyType pulumi.StringInput `pulumi:"frequencyType"`
-	// Unique identifier of the backup policy item.
+	// Unique identifier of the copy policy item.
 	Id pulumi.StringInput `pulumi:"id"`
-	// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+	// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
 	RetentionUnit pulumi.StringInput `pulumi:"retentionUnit"`
-	// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+	// Value to associate with `retentionUnit`.
 	RetentionValue pulumi.IntInput `pulumi:"retentionValue"`
 }
 
@@ -35749,22 +36528,22 @@ func (o GetCloudBackupSchedulePolicyItemYearlyOutput) FrequencyInterval() pulumi
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemYearly) int { return v.FrequencyInterval }).(pulumi.IntOutput)
 }
 
-// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+// Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
 func (o GetCloudBackupSchedulePolicyItemYearlyOutput) FrequencyType() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemYearly) string { return v.FrequencyType }).(pulumi.StringOutput)
 }
 
-// Unique identifier of the backup policy item.
+// Unique identifier of the copy policy item.
 func (o GetCloudBackupSchedulePolicyItemYearlyOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemYearly) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+// Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
 func (o GetCloudBackupSchedulePolicyItemYearlyOutput) RetentionUnit() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemYearly) string { return v.RetentionUnit }).(pulumi.StringOutput)
 }
 
-// Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+// Value to associate with `retentionUnit`.
 func (o GetCloudBackupSchedulePolicyItemYearlyOutput) RetentionValue() pulumi.IntOutput {
 	return o.ApplyT(func(v GetCloudBackupSchedulePolicyItemYearly) int { return v.RetentionValue }).(pulumi.IntOutput)
 }
@@ -53549,6 +54328,565 @@ func (o GetMaintenanceWindowProtectedHourArrayOutput) Index(i pulumi.IntInput) G
 	}).(GetMaintenanceWindowProtectedHourOutput)
 }
 
+type GetMcpConfigIpAccessList struct {
+	// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+	CidrBlock string `pulumi:"cidrBlock"`
+	// Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+	IpAddress string `pulumi:"ipAddress"`
+	// Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+	LastUsedAddress string `pulumi:"lastUsedAddress"`
+	// Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// The number of requests that has originated from this network address.
+	RequestCount int `pulumi:"requestCount"`
+}
+
+// GetMcpConfigIpAccessListInput is an input type that accepts GetMcpConfigIpAccessListArgs and GetMcpConfigIpAccessListOutput values.
+// You can construct a concrete instance of `GetMcpConfigIpAccessListInput` via:
+//
+//	GetMcpConfigIpAccessListArgs{...}
+type GetMcpConfigIpAccessListInput interface {
+	pulumi.Input
+
+	ToGetMcpConfigIpAccessListOutput() GetMcpConfigIpAccessListOutput
+	ToGetMcpConfigIpAccessListOutputWithContext(context.Context) GetMcpConfigIpAccessListOutput
+}
+
+type GetMcpConfigIpAccessListArgs struct {
+	// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+	CidrBlock pulumi.StringInput `pulumi:"cidrBlock"`
+	// Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+	LastUsedAddress pulumi.StringInput `pulumi:"lastUsedAddress"`
+	// Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// The number of requests that has originated from this network address.
+	RequestCount pulumi.IntInput `pulumi:"requestCount"`
+}
+
+func (GetMcpConfigIpAccessListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMcpConfigIpAccessList)(nil)).Elem()
+}
+
+func (i GetMcpConfigIpAccessListArgs) ToGetMcpConfigIpAccessListOutput() GetMcpConfigIpAccessListOutput {
+	return i.ToGetMcpConfigIpAccessListOutputWithContext(context.Background())
+}
+
+func (i GetMcpConfigIpAccessListArgs) ToGetMcpConfigIpAccessListOutputWithContext(ctx context.Context) GetMcpConfigIpAccessListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMcpConfigIpAccessListOutput)
+}
+
+// GetMcpConfigIpAccessListArrayInput is an input type that accepts GetMcpConfigIpAccessListArray and GetMcpConfigIpAccessListArrayOutput values.
+// You can construct a concrete instance of `GetMcpConfigIpAccessListArrayInput` via:
+//
+//	GetMcpConfigIpAccessListArray{ GetMcpConfigIpAccessListArgs{...} }
+type GetMcpConfigIpAccessListArrayInput interface {
+	pulumi.Input
+
+	ToGetMcpConfigIpAccessListArrayOutput() GetMcpConfigIpAccessListArrayOutput
+	ToGetMcpConfigIpAccessListArrayOutputWithContext(context.Context) GetMcpConfigIpAccessListArrayOutput
+}
+
+type GetMcpConfigIpAccessListArray []GetMcpConfigIpAccessListInput
+
+func (GetMcpConfigIpAccessListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMcpConfigIpAccessList)(nil)).Elem()
+}
+
+func (i GetMcpConfigIpAccessListArray) ToGetMcpConfigIpAccessListArrayOutput() GetMcpConfigIpAccessListArrayOutput {
+	return i.ToGetMcpConfigIpAccessListArrayOutputWithContext(context.Background())
+}
+
+func (i GetMcpConfigIpAccessListArray) ToGetMcpConfigIpAccessListArrayOutputWithContext(ctx context.Context) GetMcpConfigIpAccessListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMcpConfigIpAccessListArrayOutput)
+}
+
+type GetMcpConfigIpAccessListOutput struct{ *pulumi.OutputState }
+
+func (GetMcpConfigIpAccessListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMcpConfigIpAccessList)(nil)).Elem()
+}
+
+func (o GetMcpConfigIpAccessListOutput) ToGetMcpConfigIpAccessListOutput() GetMcpConfigIpAccessListOutput {
+	return o
+}
+
+func (o GetMcpConfigIpAccessListOutput) ToGetMcpConfigIpAccessListOutputWithContext(ctx context.Context) GetMcpConfigIpAccessListOutput {
+	return o
+}
+
+// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+func (o GetMcpConfigIpAccessListOutput) CidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigIpAccessList) string { return v.CidrBlock }).(pulumi.StringOutput)
+}
+
+// Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetMcpConfigIpAccessListOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigIpAccessList) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+func (o GetMcpConfigIpAccessListOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigIpAccessList) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+func (o GetMcpConfigIpAccessListOutput) LastUsedAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigIpAccessList) string { return v.LastUsedAddress }).(pulumi.StringOutput)
+}
+
+// Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetMcpConfigIpAccessListOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigIpAccessList) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// The number of requests that has originated from this network address.
+func (o GetMcpConfigIpAccessListOutput) RequestCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMcpConfigIpAccessList) int { return v.RequestCount }).(pulumi.IntOutput)
+}
+
+type GetMcpConfigIpAccessListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMcpConfigIpAccessListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMcpConfigIpAccessList)(nil)).Elem()
+}
+
+func (o GetMcpConfigIpAccessListArrayOutput) ToGetMcpConfigIpAccessListArrayOutput() GetMcpConfigIpAccessListArrayOutput {
+	return o
+}
+
+func (o GetMcpConfigIpAccessListArrayOutput) ToGetMcpConfigIpAccessListArrayOutputWithContext(ctx context.Context) GetMcpConfigIpAccessListArrayOutput {
+	return o
+}
+
+func (o GetMcpConfigIpAccessListArrayOutput) Index(i pulumi.IntInput) GetMcpConfigIpAccessListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMcpConfigIpAccessList {
+		return vs[0].([]GetMcpConfigIpAccessList)[vs[1].(int)]
+	}).(GetMcpConfigIpAccessListOutput)
+}
+
+type GetMcpConfigSecretsResult struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt string `pulumi:"expiresAt"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	Id string `pulumi:"id"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue string `pulumi:"maskedSecretValue"`
+}
+
+// GetMcpConfigSecretsResultInput is an input type that accepts GetMcpConfigSecretsResultArgs and GetMcpConfigSecretsResultOutput values.
+// You can construct a concrete instance of `GetMcpConfigSecretsResultInput` via:
+//
+//	GetMcpConfigSecretsResultArgs{...}
+type GetMcpConfigSecretsResultInput interface {
+	pulumi.Input
+
+	ToGetMcpConfigSecretsResultOutput() GetMcpConfigSecretsResultOutput
+	ToGetMcpConfigSecretsResultOutputWithContext(context.Context) GetMcpConfigSecretsResultOutput
+}
+
+type GetMcpConfigSecretsResultArgs struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt pulumi.StringInput `pulumi:"expiresAt"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue pulumi.StringInput `pulumi:"maskedSecretValue"`
+}
+
+func (GetMcpConfigSecretsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMcpConfigSecretsResult)(nil)).Elem()
+}
+
+func (i GetMcpConfigSecretsResultArgs) ToGetMcpConfigSecretsResultOutput() GetMcpConfigSecretsResultOutput {
+	return i.ToGetMcpConfigSecretsResultOutputWithContext(context.Background())
+}
+
+func (i GetMcpConfigSecretsResultArgs) ToGetMcpConfigSecretsResultOutputWithContext(ctx context.Context) GetMcpConfigSecretsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMcpConfigSecretsResultOutput)
+}
+
+// GetMcpConfigSecretsResultArrayInput is an input type that accepts GetMcpConfigSecretsResultArray and GetMcpConfigSecretsResultArrayOutput values.
+// You can construct a concrete instance of `GetMcpConfigSecretsResultArrayInput` via:
+//
+//	GetMcpConfigSecretsResultArray{ GetMcpConfigSecretsResultArgs{...} }
+type GetMcpConfigSecretsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetMcpConfigSecretsResultArrayOutput() GetMcpConfigSecretsResultArrayOutput
+	ToGetMcpConfigSecretsResultArrayOutputWithContext(context.Context) GetMcpConfigSecretsResultArrayOutput
+}
+
+type GetMcpConfigSecretsResultArray []GetMcpConfigSecretsResultInput
+
+func (GetMcpConfigSecretsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMcpConfigSecretsResult)(nil)).Elem()
+}
+
+func (i GetMcpConfigSecretsResultArray) ToGetMcpConfigSecretsResultArrayOutput() GetMcpConfigSecretsResultArrayOutput {
+	return i.ToGetMcpConfigSecretsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetMcpConfigSecretsResultArray) ToGetMcpConfigSecretsResultArrayOutputWithContext(ctx context.Context) GetMcpConfigSecretsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMcpConfigSecretsResultArrayOutput)
+}
+
+type GetMcpConfigSecretsResultOutput struct{ *pulumi.OutputState }
+
+func (GetMcpConfigSecretsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMcpConfigSecretsResult)(nil)).Elem()
+}
+
+func (o GetMcpConfigSecretsResultOutput) ToGetMcpConfigSecretsResultOutput() GetMcpConfigSecretsResultOutput {
+	return o
+}
+
+func (o GetMcpConfigSecretsResultOutput) ToGetMcpConfigSecretsResultOutputWithContext(ctx context.Context) GetMcpConfigSecretsResultOutput {
+	return o
+}
+
+// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetMcpConfigSecretsResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigSecretsResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetMcpConfigSecretsResultOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigSecretsResult) string { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the secret.
+func (o GetMcpConfigSecretsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigSecretsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetMcpConfigSecretsResultOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigSecretsResult) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// The masked Service Account secret.
+func (o GetMcpConfigSecretsResultOutput) MaskedSecretValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigSecretsResult) string { return v.MaskedSecretValue }).(pulumi.StringOutput)
+}
+
+type GetMcpConfigSecretsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMcpConfigSecretsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMcpConfigSecretsResult)(nil)).Elem()
+}
+
+func (o GetMcpConfigSecretsResultArrayOutput) ToGetMcpConfigSecretsResultArrayOutput() GetMcpConfigSecretsResultArrayOutput {
+	return o
+}
+
+func (o GetMcpConfigSecretsResultArrayOutput) ToGetMcpConfigSecretsResultArrayOutputWithContext(ctx context.Context) GetMcpConfigSecretsResultArrayOutput {
+	return o
+}
+
+func (o GetMcpConfigSecretsResultArrayOutput) Index(i pulumi.IntInput) GetMcpConfigSecretsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMcpConfigSecretsResult {
+		return vs[0].([]GetMcpConfigSecretsResult)[vs[1].(int)]
+	}).(GetMcpConfigSecretsResultOutput)
+}
+
+type GetMcpConfigsResult struct {
+	// Unique identifier for the Service Account client associated with this MCP configuration. Use this Service Account to connect to the Atlas Remote MCP.
+	ClientId string `pulumi:"clientId"`
+	// Unique identifier for the egress Service Account client associated with this MCP configuration. This Service Account is managed by MongoDB Atlas.
+	EgressClientId string `pulumi:"egressClientId"`
+	// List of IP access list entries that define allowed source addresses for this MCP configuration.
+	IpAccessLists []GetMcpConfigsResultIpAccessList `pulumi:"ipAccessLists"`
+	// Unique identifier that identifies this MCP configuration.
+	McpConfigId string `pulumi:"mcpConfigId"`
+	// Human-readable name that identifies this MCP configuration.
+	McpConfigName string `pulumi:"mcpConfigName"`
+	// List of organization roles associated with this MCP configuration.
+	Roles []string `pulumi:"roles"`
+}
+
+// GetMcpConfigsResultInput is an input type that accepts GetMcpConfigsResultArgs and GetMcpConfigsResultOutput values.
+// You can construct a concrete instance of `GetMcpConfigsResultInput` via:
+//
+//	GetMcpConfigsResultArgs{...}
+type GetMcpConfigsResultInput interface {
+	pulumi.Input
+
+	ToGetMcpConfigsResultOutput() GetMcpConfigsResultOutput
+	ToGetMcpConfigsResultOutputWithContext(context.Context) GetMcpConfigsResultOutput
+}
+
+type GetMcpConfigsResultArgs struct {
+	// Unique identifier for the Service Account client associated with this MCP configuration. Use this Service Account to connect to the Atlas Remote MCP.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// Unique identifier for the egress Service Account client associated with this MCP configuration. This Service Account is managed by MongoDB Atlas.
+	EgressClientId pulumi.StringInput `pulumi:"egressClientId"`
+	// List of IP access list entries that define allowed source addresses for this MCP configuration.
+	IpAccessLists GetMcpConfigsResultIpAccessListArrayInput `pulumi:"ipAccessLists"`
+	// Unique identifier that identifies this MCP configuration.
+	McpConfigId pulumi.StringInput `pulumi:"mcpConfigId"`
+	// Human-readable name that identifies this MCP configuration.
+	McpConfigName pulumi.StringInput `pulumi:"mcpConfigName"`
+	// List of organization roles associated with this MCP configuration.
+	Roles pulumi.StringArrayInput `pulumi:"roles"`
+}
+
+func (GetMcpConfigsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMcpConfigsResult)(nil)).Elem()
+}
+
+func (i GetMcpConfigsResultArgs) ToGetMcpConfigsResultOutput() GetMcpConfigsResultOutput {
+	return i.ToGetMcpConfigsResultOutputWithContext(context.Background())
+}
+
+func (i GetMcpConfigsResultArgs) ToGetMcpConfigsResultOutputWithContext(ctx context.Context) GetMcpConfigsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMcpConfigsResultOutput)
+}
+
+// GetMcpConfigsResultArrayInput is an input type that accepts GetMcpConfigsResultArray and GetMcpConfigsResultArrayOutput values.
+// You can construct a concrete instance of `GetMcpConfigsResultArrayInput` via:
+//
+//	GetMcpConfigsResultArray{ GetMcpConfigsResultArgs{...} }
+type GetMcpConfigsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetMcpConfigsResultArrayOutput() GetMcpConfigsResultArrayOutput
+	ToGetMcpConfigsResultArrayOutputWithContext(context.Context) GetMcpConfigsResultArrayOutput
+}
+
+type GetMcpConfigsResultArray []GetMcpConfigsResultInput
+
+func (GetMcpConfigsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMcpConfigsResult)(nil)).Elem()
+}
+
+func (i GetMcpConfigsResultArray) ToGetMcpConfigsResultArrayOutput() GetMcpConfigsResultArrayOutput {
+	return i.ToGetMcpConfigsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetMcpConfigsResultArray) ToGetMcpConfigsResultArrayOutputWithContext(ctx context.Context) GetMcpConfigsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMcpConfigsResultArrayOutput)
+}
+
+type GetMcpConfigsResultOutput struct{ *pulumi.OutputState }
+
+func (GetMcpConfigsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMcpConfigsResult)(nil)).Elem()
+}
+
+func (o GetMcpConfigsResultOutput) ToGetMcpConfigsResultOutput() GetMcpConfigsResultOutput {
+	return o
+}
+
+func (o GetMcpConfigsResultOutput) ToGetMcpConfigsResultOutputWithContext(ctx context.Context) GetMcpConfigsResultOutput {
+	return o
+}
+
+// Unique identifier for the Service Account client associated with this MCP configuration. Use this Service Account to connect to the Atlas Remote MCP.
+func (o GetMcpConfigsResultOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigsResult) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// Unique identifier for the egress Service Account client associated with this MCP configuration. This Service Account is managed by MongoDB Atlas.
+func (o GetMcpConfigsResultOutput) EgressClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigsResult) string { return v.EgressClientId }).(pulumi.StringOutput)
+}
+
+// List of IP access list entries that define allowed source addresses for this MCP configuration.
+func (o GetMcpConfigsResultOutput) IpAccessLists() GetMcpConfigsResultIpAccessListArrayOutput {
+	return o.ApplyT(func(v GetMcpConfigsResult) []GetMcpConfigsResultIpAccessList { return v.IpAccessLists }).(GetMcpConfigsResultIpAccessListArrayOutput)
+}
+
+// Unique identifier that identifies this MCP configuration.
+func (o GetMcpConfigsResultOutput) McpConfigId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigsResult) string { return v.McpConfigId }).(pulumi.StringOutput)
+}
+
+// Human-readable name that identifies this MCP configuration.
+func (o GetMcpConfigsResultOutput) McpConfigName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigsResult) string { return v.McpConfigName }).(pulumi.StringOutput)
+}
+
+// List of organization roles associated with this MCP configuration.
+func (o GetMcpConfigsResultOutput) Roles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetMcpConfigsResult) []string { return v.Roles }).(pulumi.StringArrayOutput)
+}
+
+type GetMcpConfigsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMcpConfigsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMcpConfigsResult)(nil)).Elem()
+}
+
+func (o GetMcpConfigsResultArrayOutput) ToGetMcpConfigsResultArrayOutput() GetMcpConfigsResultArrayOutput {
+	return o
+}
+
+func (o GetMcpConfigsResultArrayOutput) ToGetMcpConfigsResultArrayOutputWithContext(ctx context.Context) GetMcpConfigsResultArrayOutput {
+	return o
+}
+
+func (o GetMcpConfigsResultArrayOutput) Index(i pulumi.IntInput) GetMcpConfigsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMcpConfigsResult {
+		return vs[0].([]GetMcpConfigsResult)[vs[1].(int)]
+	}).(GetMcpConfigsResultOutput)
+}
+
+type GetMcpConfigsResultIpAccessList struct {
+	// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+	CidrBlock string `pulumi:"cidrBlock"`
+	// Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+	IpAddress string `pulumi:"ipAddress"`
+	// Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+	LastUsedAddress string `pulumi:"lastUsedAddress"`
+	// Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// The number of requests that has originated from this network address.
+	RequestCount int `pulumi:"requestCount"`
+}
+
+// GetMcpConfigsResultIpAccessListInput is an input type that accepts GetMcpConfigsResultIpAccessListArgs and GetMcpConfigsResultIpAccessListOutput values.
+// You can construct a concrete instance of `GetMcpConfigsResultIpAccessListInput` via:
+//
+//	GetMcpConfigsResultIpAccessListArgs{...}
+type GetMcpConfigsResultIpAccessListInput interface {
+	pulumi.Input
+
+	ToGetMcpConfigsResultIpAccessListOutput() GetMcpConfigsResultIpAccessListOutput
+	ToGetMcpConfigsResultIpAccessListOutputWithContext(context.Context) GetMcpConfigsResultIpAccessListOutput
+}
+
+type GetMcpConfigsResultIpAccessListArgs struct {
+	// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+	CidrBlock pulumi.StringInput `pulumi:"cidrBlock"`
+	// Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+	LastUsedAddress pulumi.StringInput `pulumi:"lastUsedAddress"`
+	// Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// The number of requests that has originated from this network address.
+	RequestCount pulumi.IntInput `pulumi:"requestCount"`
+}
+
+func (GetMcpConfigsResultIpAccessListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMcpConfigsResultIpAccessList)(nil)).Elem()
+}
+
+func (i GetMcpConfigsResultIpAccessListArgs) ToGetMcpConfigsResultIpAccessListOutput() GetMcpConfigsResultIpAccessListOutput {
+	return i.ToGetMcpConfigsResultIpAccessListOutputWithContext(context.Background())
+}
+
+func (i GetMcpConfigsResultIpAccessListArgs) ToGetMcpConfigsResultIpAccessListOutputWithContext(ctx context.Context) GetMcpConfigsResultIpAccessListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMcpConfigsResultIpAccessListOutput)
+}
+
+// GetMcpConfigsResultIpAccessListArrayInput is an input type that accepts GetMcpConfigsResultIpAccessListArray and GetMcpConfigsResultIpAccessListArrayOutput values.
+// You can construct a concrete instance of `GetMcpConfigsResultIpAccessListArrayInput` via:
+//
+//	GetMcpConfigsResultIpAccessListArray{ GetMcpConfigsResultIpAccessListArgs{...} }
+type GetMcpConfigsResultIpAccessListArrayInput interface {
+	pulumi.Input
+
+	ToGetMcpConfigsResultIpAccessListArrayOutput() GetMcpConfigsResultIpAccessListArrayOutput
+	ToGetMcpConfigsResultIpAccessListArrayOutputWithContext(context.Context) GetMcpConfigsResultIpAccessListArrayOutput
+}
+
+type GetMcpConfigsResultIpAccessListArray []GetMcpConfigsResultIpAccessListInput
+
+func (GetMcpConfigsResultIpAccessListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMcpConfigsResultIpAccessList)(nil)).Elem()
+}
+
+func (i GetMcpConfigsResultIpAccessListArray) ToGetMcpConfigsResultIpAccessListArrayOutput() GetMcpConfigsResultIpAccessListArrayOutput {
+	return i.ToGetMcpConfigsResultIpAccessListArrayOutputWithContext(context.Background())
+}
+
+func (i GetMcpConfigsResultIpAccessListArray) ToGetMcpConfigsResultIpAccessListArrayOutputWithContext(ctx context.Context) GetMcpConfigsResultIpAccessListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMcpConfigsResultIpAccessListArrayOutput)
+}
+
+type GetMcpConfigsResultIpAccessListOutput struct{ *pulumi.OutputState }
+
+func (GetMcpConfigsResultIpAccessListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMcpConfigsResultIpAccessList)(nil)).Elem()
+}
+
+func (o GetMcpConfigsResultIpAccessListOutput) ToGetMcpConfigsResultIpAccessListOutput() GetMcpConfigsResultIpAccessListOutput {
+	return o
+}
+
+func (o GetMcpConfigsResultIpAccessListOutput) ToGetMcpConfigsResultIpAccessListOutputWithContext(ctx context.Context) GetMcpConfigsResultIpAccessListOutput {
+	return o
+}
+
+// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+func (o GetMcpConfigsResultIpAccessListOutput) CidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigsResultIpAccessList) string { return v.CidrBlock }).(pulumi.StringOutput)
+}
+
+// Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetMcpConfigsResultIpAccessListOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigsResultIpAccessList) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+func (o GetMcpConfigsResultIpAccessListOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigsResultIpAccessList) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+func (o GetMcpConfigsResultIpAccessListOutput) LastUsedAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigsResultIpAccessList) string { return v.LastUsedAddress }).(pulumi.StringOutput)
+}
+
+// Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetMcpConfigsResultIpAccessListOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMcpConfigsResultIpAccessList) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// The number of requests that has originated from this network address.
+func (o GetMcpConfigsResultIpAccessListOutput) RequestCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetMcpConfigsResultIpAccessList) int { return v.RequestCount }).(pulumi.IntOutput)
+}
+
+type GetMcpConfigsResultIpAccessListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetMcpConfigsResultIpAccessListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetMcpConfigsResultIpAccessList)(nil)).Elem()
+}
+
+func (o GetMcpConfigsResultIpAccessListArrayOutput) ToGetMcpConfigsResultIpAccessListArrayOutput() GetMcpConfigsResultIpAccessListArrayOutput {
+	return o
+}
+
+func (o GetMcpConfigsResultIpAccessListArrayOutput) ToGetMcpConfigsResultIpAccessListArrayOutputWithContext(ctx context.Context) GetMcpConfigsResultIpAccessListArrayOutput {
+	return o
+}
+
+func (o GetMcpConfigsResultIpAccessListArrayOutput) Index(i pulumi.IntInput) GetMcpConfigsResultIpAccessListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMcpConfigsResultIpAccessList {
+		return vs[0].([]GetMcpConfigsResultIpAccessList)[vs[1].(int)]
+	}).(GetMcpConfigsResultIpAccessListOutput)
+}
+
 type GetMetricIntegrationHeadersRedacted struct {
 	// Header name.
 	Name string `pulumi:"name"`
@@ -55665,6 +57003,112 @@ func (o GetOnlineArchivesResultScheduleArrayOutput) Index(i pulumi.IntInput) Get
 	}).(GetOnlineArchivesResultScheduleOutput)
 }
 
+type GetOrganizationCustomSessionTimeout struct {
+	// (Optional) Absolute session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom absolute session timeout.
+	AbsoluteSessionTimeoutInSeconds int `pulumi:"absoluteSessionTimeoutInSeconds"`
+	// (Optional) Idle session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom idle session timeout. When this value is absent, Atlas applies the environment default, which is no idle timeout for Atlas Commercial and 600 seconds (10 minutes) for Atlas for Government.
+	IdleSessionTimeoutInSeconds int `pulumi:"idleSessionTimeoutInSeconds"`
+}
+
+// GetOrganizationCustomSessionTimeoutInput is an input type that accepts GetOrganizationCustomSessionTimeoutArgs and GetOrganizationCustomSessionTimeoutOutput values.
+// You can construct a concrete instance of `GetOrganizationCustomSessionTimeoutInput` via:
+//
+//	GetOrganizationCustomSessionTimeoutArgs{...}
+type GetOrganizationCustomSessionTimeoutInput interface {
+	pulumi.Input
+
+	ToGetOrganizationCustomSessionTimeoutOutput() GetOrganizationCustomSessionTimeoutOutput
+	ToGetOrganizationCustomSessionTimeoutOutputWithContext(context.Context) GetOrganizationCustomSessionTimeoutOutput
+}
+
+type GetOrganizationCustomSessionTimeoutArgs struct {
+	// (Optional) Absolute session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom absolute session timeout.
+	AbsoluteSessionTimeoutInSeconds pulumi.IntInput `pulumi:"absoluteSessionTimeoutInSeconds"`
+	// (Optional) Idle session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom idle session timeout. When this value is absent, Atlas applies the environment default, which is no idle timeout for Atlas Commercial and 600 seconds (10 minutes) for Atlas for Government.
+	IdleSessionTimeoutInSeconds pulumi.IntInput `pulumi:"idleSessionTimeoutInSeconds"`
+}
+
+func (GetOrganizationCustomSessionTimeoutArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrganizationCustomSessionTimeout)(nil)).Elem()
+}
+
+func (i GetOrganizationCustomSessionTimeoutArgs) ToGetOrganizationCustomSessionTimeoutOutput() GetOrganizationCustomSessionTimeoutOutput {
+	return i.ToGetOrganizationCustomSessionTimeoutOutputWithContext(context.Background())
+}
+
+func (i GetOrganizationCustomSessionTimeoutArgs) ToGetOrganizationCustomSessionTimeoutOutputWithContext(ctx context.Context) GetOrganizationCustomSessionTimeoutOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOrganizationCustomSessionTimeoutOutput)
+}
+
+// GetOrganizationCustomSessionTimeoutArrayInput is an input type that accepts GetOrganizationCustomSessionTimeoutArray and GetOrganizationCustomSessionTimeoutArrayOutput values.
+// You can construct a concrete instance of `GetOrganizationCustomSessionTimeoutArrayInput` via:
+//
+//	GetOrganizationCustomSessionTimeoutArray{ GetOrganizationCustomSessionTimeoutArgs{...} }
+type GetOrganizationCustomSessionTimeoutArrayInput interface {
+	pulumi.Input
+
+	ToGetOrganizationCustomSessionTimeoutArrayOutput() GetOrganizationCustomSessionTimeoutArrayOutput
+	ToGetOrganizationCustomSessionTimeoutArrayOutputWithContext(context.Context) GetOrganizationCustomSessionTimeoutArrayOutput
+}
+
+type GetOrganizationCustomSessionTimeoutArray []GetOrganizationCustomSessionTimeoutInput
+
+func (GetOrganizationCustomSessionTimeoutArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOrganizationCustomSessionTimeout)(nil)).Elem()
+}
+
+func (i GetOrganizationCustomSessionTimeoutArray) ToGetOrganizationCustomSessionTimeoutArrayOutput() GetOrganizationCustomSessionTimeoutArrayOutput {
+	return i.ToGetOrganizationCustomSessionTimeoutArrayOutputWithContext(context.Background())
+}
+
+func (i GetOrganizationCustomSessionTimeoutArray) ToGetOrganizationCustomSessionTimeoutArrayOutputWithContext(ctx context.Context) GetOrganizationCustomSessionTimeoutArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOrganizationCustomSessionTimeoutArrayOutput)
+}
+
+type GetOrganizationCustomSessionTimeoutOutput struct{ *pulumi.OutputState }
+
+func (GetOrganizationCustomSessionTimeoutOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrganizationCustomSessionTimeout)(nil)).Elem()
+}
+
+func (o GetOrganizationCustomSessionTimeoutOutput) ToGetOrganizationCustomSessionTimeoutOutput() GetOrganizationCustomSessionTimeoutOutput {
+	return o
+}
+
+func (o GetOrganizationCustomSessionTimeoutOutput) ToGetOrganizationCustomSessionTimeoutOutputWithContext(ctx context.Context) GetOrganizationCustomSessionTimeoutOutput {
+	return o
+}
+
+// (Optional) Absolute session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom absolute session timeout.
+func (o GetOrganizationCustomSessionTimeoutOutput) AbsoluteSessionTimeoutInSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOrganizationCustomSessionTimeout) int { return v.AbsoluteSessionTimeoutInSeconds }).(pulumi.IntOutput)
+}
+
+// (Optional) Idle session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom idle session timeout. When this value is absent, Atlas applies the environment default, which is no idle timeout for Atlas Commercial and 600 seconds (10 minutes) for Atlas for Government.
+func (o GetOrganizationCustomSessionTimeoutOutput) IdleSessionTimeoutInSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOrganizationCustomSessionTimeout) int { return v.IdleSessionTimeoutInSeconds }).(pulumi.IntOutput)
+}
+
+type GetOrganizationCustomSessionTimeoutArrayOutput struct{ *pulumi.OutputState }
+
+func (GetOrganizationCustomSessionTimeoutArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOrganizationCustomSessionTimeout)(nil)).Elem()
+}
+
+func (o GetOrganizationCustomSessionTimeoutArrayOutput) ToGetOrganizationCustomSessionTimeoutArrayOutput() GetOrganizationCustomSessionTimeoutArrayOutput {
+	return o
+}
+
+func (o GetOrganizationCustomSessionTimeoutArrayOutput) ToGetOrganizationCustomSessionTimeoutArrayOutputWithContext(ctx context.Context) GetOrganizationCustomSessionTimeoutArrayOutput {
+	return o
+}
+
+func (o GetOrganizationCustomSessionTimeoutArrayOutput) Index(i pulumi.IntInput) GetOrganizationCustomSessionTimeoutOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOrganizationCustomSessionTimeout {
+		return vs[0].([]GetOrganizationCustomSessionTimeout)[vs[1].(int)]
+	}).(GetOrganizationCustomSessionTimeoutOutput)
+}
+
 type GetOrganizationLink struct {
 	Href string `pulumi:"href"`
 	Rel  string `pulumi:"rel"`
@@ -56184,6 +57628,8 @@ func (o GetOrganizationUserRoleProjectRoleAssignmentArrayOutput) Index(i pulumi.
 type GetOrganizationsResult struct {
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired bool `pulumi:"apiAccessListRequired"`
+	// Block that specifies the custom session timeout settings for the organization. See Custom Session Timeouts.
+	CustomSessionTimeouts []GetOrganizationsResultCustomSessionTimeout `pulumi:"customSessionTimeouts"`
 	// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
 	GenAiFeaturesEnabled bool `pulumi:"genAiFeaturesEnabled"`
 	// Autogenerated Unique ID for this data source.
@@ -56195,6 +57641,8 @@ type GetOrganizationsResult struct {
 	MultiFactorAuthRequired bool `pulumi:"multiFactorAuthRequired"`
 	// Human-readable label that identifies the organization.
 	Name string `pulumi:"name"`
+	// String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals.
+	OperationsContact string `pulumi:"operationsContact"`
 	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
 	RestrictEmployeeAccess bool `pulumi:"restrictEmployeeAccess"`
 	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
@@ -56219,6 +57667,8 @@ type GetOrganizationsResultInput interface {
 type GetOrganizationsResultArgs struct {
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired pulumi.BoolInput `pulumi:"apiAccessListRequired"`
+	// Block that specifies the custom session timeout settings for the organization. See Custom Session Timeouts.
+	CustomSessionTimeouts GetOrganizationsResultCustomSessionTimeoutArrayInput `pulumi:"customSessionTimeouts"`
 	// Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
 	GenAiFeaturesEnabled pulumi.BoolInput `pulumi:"genAiFeaturesEnabled"`
 	// Autogenerated Unique ID for this data source.
@@ -56230,6 +57680,8 @@ type GetOrganizationsResultArgs struct {
 	MultiFactorAuthRequired pulumi.BoolInput `pulumi:"multiFactorAuthRequired"`
 	// Human-readable label that identifies the organization.
 	Name pulumi.StringInput `pulumi:"name"`
+	// String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals.
+	OperationsContact pulumi.StringInput `pulumi:"operationsContact"`
 	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
 	RestrictEmployeeAccess pulumi.BoolInput `pulumi:"restrictEmployeeAccess"`
 	// String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
@@ -56296,6 +57748,13 @@ func (o GetOrganizationsResultOutput) ApiAccessListRequired() pulumi.BoolOutput 
 	return o.ApplyT(func(v GetOrganizationsResult) bool { return v.ApiAccessListRequired }).(pulumi.BoolOutput)
 }
 
+// Block that specifies the custom session timeout settings for the organization. See Custom Session Timeouts.
+func (o GetOrganizationsResultOutput) CustomSessionTimeouts() GetOrganizationsResultCustomSessionTimeoutArrayOutput {
+	return o.ApplyT(func(v GetOrganizationsResult) []GetOrganizationsResultCustomSessionTimeout {
+		return v.CustomSessionTimeouts
+	}).(GetOrganizationsResultCustomSessionTimeoutArrayOutput)
+}
+
 // Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
 func (o GetOrganizationsResultOutput) GenAiFeaturesEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetOrganizationsResult) bool { return v.GenAiFeaturesEnabled }).(pulumi.BoolOutput)
@@ -56323,6 +57782,11 @@ func (o GetOrganizationsResultOutput) MultiFactorAuthRequired() pulumi.BoolOutpu
 // Human-readable label that identifies the organization.
 func (o GetOrganizationsResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetOrganizationsResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals.
+func (o GetOrganizationsResultOutput) OperationsContact() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrganizationsResult) string { return v.OperationsContact }).(pulumi.StringOutput)
 }
 
 // Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
@@ -56363,6 +57827,112 @@ func (o GetOrganizationsResultArrayOutput) Index(i pulumi.IntInput) GetOrganizat
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOrganizationsResult {
 		return vs[0].([]GetOrganizationsResult)[vs[1].(int)]
 	}).(GetOrganizationsResultOutput)
+}
+
+type GetOrganizationsResultCustomSessionTimeout struct {
+	// Absolute session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom absolute session timeout.
+	AbsoluteSessionTimeoutInSeconds int `pulumi:"absoluteSessionTimeoutInSeconds"`
+	// Idle session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom idle session timeout. When this value is absent, Atlas applies the environment default, which is no idle timeout for Atlas Commercial and 600 seconds (10 minutes) for Atlas for Government.
+	IdleSessionTimeoutInSeconds int `pulumi:"idleSessionTimeoutInSeconds"`
+}
+
+// GetOrganizationsResultCustomSessionTimeoutInput is an input type that accepts GetOrganizationsResultCustomSessionTimeoutArgs and GetOrganizationsResultCustomSessionTimeoutOutput values.
+// You can construct a concrete instance of `GetOrganizationsResultCustomSessionTimeoutInput` via:
+//
+//	GetOrganizationsResultCustomSessionTimeoutArgs{...}
+type GetOrganizationsResultCustomSessionTimeoutInput interface {
+	pulumi.Input
+
+	ToGetOrganizationsResultCustomSessionTimeoutOutput() GetOrganizationsResultCustomSessionTimeoutOutput
+	ToGetOrganizationsResultCustomSessionTimeoutOutputWithContext(context.Context) GetOrganizationsResultCustomSessionTimeoutOutput
+}
+
+type GetOrganizationsResultCustomSessionTimeoutArgs struct {
+	// Absolute session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom absolute session timeout.
+	AbsoluteSessionTimeoutInSeconds pulumi.IntInput `pulumi:"absoluteSessionTimeoutInSeconds"`
+	// Idle session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom idle session timeout. When this value is absent, Atlas applies the environment default, which is no idle timeout for Atlas Commercial and 600 seconds (10 minutes) for Atlas for Government.
+	IdleSessionTimeoutInSeconds pulumi.IntInput `pulumi:"idleSessionTimeoutInSeconds"`
+}
+
+func (GetOrganizationsResultCustomSessionTimeoutArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrganizationsResultCustomSessionTimeout)(nil)).Elem()
+}
+
+func (i GetOrganizationsResultCustomSessionTimeoutArgs) ToGetOrganizationsResultCustomSessionTimeoutOutput() GetOrganizationsResultCustomSessionTimeoutOutput {
+	return i.ToGetOrganizationsResultCustomSessionTimeoutOutputWithContext(context.Background())
+}
+
+func (i GetOrganizationsResultCustomSessionTimeoutArgs) ToGetOrganizationsResultCustomSessionTimeoutOutputWithContext(ctx context.Context) GetOrganizationsResultCustomSessionTimeoutOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOrganizationsResultCustomSessionTimeoutOutput)
+}
+
+// GetOrganizationsResultCustomSessionTimeoutArrayInput is an input type that accepts GetOrganizationsResultCustomSessionTimeoutArray and GetOrganizationsResultCustomSessionTimeoutArrayOutput values.
+// You can construct a concrete instance of `GetOrganizationsResultCustomSessionTimeoutArrayInput` via:
+//
+//	GetOrganizationsResultCustomSessionTimeoutArray{ GetOrganizationsResultCustomSessionTimeoutArgs{...} }
+type GetOrganizationsResultCustomSessionTimeoutArrayInput interface {
+	pulumi.Input
+
+	ToGetOrganizationsResultCustomSessionTimeoutArrayOutput() GetOrganizationsResultCustomSessionTimeoutArrayOutput
+	ToGetOrganizationsResultCustomSessionTimeoutArrayOutputWithContext(context.Context) GetOrganizationsResultCustomSessionTimeoutArrayOutput
+}
+
+type GetOrganizationsResultCustomSessionTimeoutArray []GetOrganizationsResultCustomSessionTimeoutInput
+
+func (GetOrganizationsResultCustomSessionTimeoutArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOrganizationsResultCustomSessionTimeout)(nil)).Elem()
+}
+
+func (i GetOrganizationsResultCustomSessionTimeoutArray) ToGetOrganizationsResultCustomSessionTimeoutArrayOutput() GetOrganizationsResultCustomSessionTimeoutArrayOutput {
+	return i.ToGetOrganizationsResultCustomSessionTimeoutArrayOutputWithContext(context.Background())
+}
+
+func (i GetOrganizationsResultCustomSessionTimeoutArray) ToGetOrganizationsResultCustomSessionTimeoutArrayOutputWithContext(ctx context.Context) GetOrganizationsResultCustomSessionTimeoutArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOrganizationsResultCustomSessionTimeoutArrayOutput)
+}
+
+type GetOrganizationsResultCustomSessionTimeoutOutput struct{ *pulumi.OutputState }
+
+func (GetOrganizationsResultCustomSessionTimeoutOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrganizationsResultCustomSessionTimeout)(nil)).Elem()
+}
+
+func (o GetOrganizationsResultCustomSessionTimeoutOutput) ToGetOrganizationsResultCustomSessionTimeoutOutput() GetOrganizationsResultCustomSessionTimeoutOutput {
+	return o
+}
+
+func (o GetOrganizationsResultCustomSessionTimeoutOutput) ToGetOrganizationsResultCustomSessionTimeoutOutputWithContext(ctx context.Context) GetOrganizationsResultCustomSessionTimeoutOutput {
+	return o
+}
+
+// Absolute session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom absolute session timeout.
+func (o GetOrganizationsResultCustomSessionTimeoutOutput) AbsoluteSessionTimeoutInSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOrganizationsResultCustomSessionTimeout) int { return v.AbsoluteSessionTimeoutInSeconds }).(pulumi.IntOutput)
+}
+
+// Idle session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom idle session timeout. When this value is absent, Atlas applies the environment default, which is no idle timeout for Atlas Commercial and 600 seconds (10 minutes) for Atlas for Government.
+func (o GetOrganizationsResultCustomSessionTimeoutOutput) IdleSessionTimeoutInSeconds() pulumi.IntOutput {
+	return o.ApplyT(func(v GetOrganizationsResultCustomSessionTimeout) int { return v.IdleSessionTimeoutInSeconds }).(pulumi.IntOutput)
+}
+
+type GetOrganizationsResultCustomSessionTimeoutArrayOutput struct{ *pulumi.OutputState }
+
+func (GetOrganizationsResultCustomSessionTimeoutArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOrganizationsResultCustomSessionTimeout)(nil)).Elem()
+}
+
+func (o GetOrganizationsResultCustomSessionTimeoutArrayOutput) ToGetOrganizationsResultCustomSessionTimeoutArrayOutput() GetOrganizationsResultCustomSessionTimeoutArrayOutput {
+	return o
+}
+
+func (o GetOrganizationsResultCustomSessionTimeoutArrayOutput) ToGetOrganizationsResultCustomSessionTimeoutArrayOutputWithContext(ctx context.Context) GetOrganizationsResultCustomSessionTimeoutArrayOutput {
+	return o
+}
+
+func (o GetOrganizationsResultCustomSessionTimeoutArrayOutput) Index(i pulumi.IntInput) GetOrganizationsResultCustomSessionTimeoutOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOrganizationsResultCustomSessionTimeout {
+		return vs[0].([]GetOrganizationsResultCustomSessionTimeout)[vs[1].(int)]
+	}).(GetOrganizationsResultCustomSessionTimeoutOutput)
 }
 
 type GetOrganizationsResultLink struct {
@@ -58219,6 +59789,565 @@ func (o GetProjectLimitArrayOutput) Index(i pulumi.IntInput) GetProjectLimitOutp
 	}).(GetProjectLimitOutput)
 }
 
+type GetProjectMcpConfigIpAccessList struct {
+	// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+	CidrBlock string `pulumi:"cidrBlock"`
+	// Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+	IpAddress string `pulumi:"ipAddress"`
+	// Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+	LastUsedAddress string `pulumi:"lastUsedAddress"`
+	// Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// The number of requests that has originated from this network address.
+	RequestCount int `pulumi:"requestCount"`
+}
+
+// GetProjectMcpConfigIpAccessListInput is an input type that accepts GetProjectMcpConfigIpAccessListArgs and GetProjectMcpConfigIpAccessListOutput values.
+// You can construct a concrete instance of `GetProjectMcpConfigIpAccessListInput` via:
+//
+//	GetProjectMcpConfigIpAccessListArgs{...}
+type GetProjectMcpConfigIpAccessListInput interface {
+	pulumi.Input
+
+	ToGetProjectMcpConfigIpAccessListOutput() GetProjectMcpConfigIpAccessListOutput
+	ToGetProjectMcpConfigIpAccessListOutputWithContext(context.Context) GetProjectMcpConfigIpAccessListOutput
+}
+
+type GetProjectMcpConfigIpAccessListArgs struct {
+	// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+	CidrBlock pulumi.StringInput `pulumi:"cidrBlock"`
+	// Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+	LastUsedAddress pulumi.StringInput `pulumi:"lastUsedAddress"`
+	// Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// The number of requests that has originated from this network address.
+	RequestCount pulumi.IntInput `pulumi:"requestCount"`
+}
+
+func (GetProjectMcpConfigIpAccessListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectMcpConfigIpAccessList)(nil)).Elem()
+}
+
+func (i GetProjectMcpConfigIpAccessListArgs) ToGetProjectMcpConfigIpAccessListOutput() GetProjectMcpConfigIpAccessListOutput {
+	return i.ToGetProjectMcpConfigIpAccessListOutputWithContext(context.Background())
+}
+
+func (i GetProjectMcpConfigIpAccessListArgs) ToGetProjectMcpConfigIpAccessListOutputWithContext(ctx context.Context) GetProjectMcpConfigIpAccessListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectMcpConfigIpAccessListOutput)
+}
+
+// GetProjectMcpConfigIpAccessListArrayInput is an input type that accepts GetProjectMcpConfigIpAccessListArray and GetProjectMcpConfigIpAccessListArrayOutput values.
+// You can construct a concrete instance of `GetProjectMcpConfigIpAccessListArrayInput` via:
+//
+//	GetProjectMcpConfigIpAccessListArray{ GetProjectMcpConfigIpAccessListArgs{...} }
+type GetProjectMcpConfigIpAccessListArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectMcpConfigIpAccessListArrayOutput() GetProjectMcpConfigIpAccessListArrayOutput
+	ToGetProjectMcpConfigIpAccessListArrayOutputWithContext(context.Context) GetProjectMcpConfigIpAccessListArrayOutput
+}
+
+type GetProjectMcpConfigIpAccessListArray []GetProjectMcpConfigIpAccessListInput
+
+func (GetProjectMcpConfigIpAccessListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectMcpConfigIpAccessList)(nil)).Elem()
+}
+
+func (i GetProjectMcpConfigIpAccessListArray) ToGetProjectMcpConfigIpAccessListArrayOutput() GetProjectMcpConfigIpAccessListArrayOutput {
+	return i.ToGetProjectMcpConfigIpAccessListArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectMcpConfigIpAccessListArray) ToGetProjectMcpConfigIpAccessListArrayOutputWithContext(ctx context.Context) GetProjectMcpConfigIpAccessListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectMcpConfigIpAccessListArrayOutput)
+}
+
+type GetProjectMcpConfigIpAccessListOutput struct{ *pulumi.OutputState }
+
+func (GetProjectMcpConfigIpAccessListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectMcpConfigIpAccessList)(nil)).Elem()
+}
+
+func (o GetProjectMcpConfigIpAccessListOutput) ToGetProjectMcpConfigIpAccessListOutput() GetProjectMcpConfigIpAccessListOutput {
+	return o
+}
+
+func (o GetProjectMcpConfigIpAccessListOutput) ToGetProjectMcpConfigIpAccessListOutputWithContext(ctx context.Context) GetProjectMcpConfigIpAccessListOutput {
+	return o
+}
+
+// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+func (o GetProjectMcpConfigIpAccessListOutput) CidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigIpAccessList) string { return v.CidrBlock }).(pulumi.StringOutput)
+}
+
+// Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetProjectMcpConfigIpAccessListOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigIpAccessList) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+func (o GetProjectMcpConfigIpAccessListOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigIpAccessList) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+func (o GetProjectMcpConfigIpAccessListOutput) LastUsedAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigIpAccessList) string { return v.LastUsedAddress }).(pulumi.StringOutput)
+}
+
+// Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetProjectMcpConfigIpAccessListOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigIpAccessList) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// The number of requests that has originated from this network address.
+func (o GetProjectMcpConfigIpAccessListOutput) RequestCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigIpAccessList) int { return v.RequestCount }).(pulumi.IntOutput)
+}
+
+type GetProjectMcpConfigIpAccessListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectMcpConfigIpAccessListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectMcpConfigIpAccessList)(nil)).Elem()
+}
+
+func (o GetProjectMcpConfigIpAccessListArrayOutput) ToGetProjectMcpConfigIpAccessListArrayOutput() GetProjectMcpConfigIpAccessListArrayOutput {
+	return o
+}
+
+func (o GetProjectMcpConfigIpAccessListArrayOutput) ToGetProjectMcpConfigIpAccessListArrayOutputWithContext(ctx context.Context) GetProjectMcpConfigIpAccessListArrayOutput {
+	return o
+}
+
+func (o GetProjectMcpConfigIpAccessListArrayOutput) Index(i pulumi.IntInput) GetProjectMcpConfigIpAccessListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectMcpConfigIpAccessList {
+		return vs[0].([]GetProjectMcpConfigIpAccessList)[vs[1].(int)]
+	}).(GetProjectMcpConfigIpAccessListOutput)
+}
+
+type GetProjectMcpConfigSecretsResult struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt string `pulumi:"expiresAt"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	Id string `pulumi:"id"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue string `pulumi:"maskedSecretValue"`
+}
+
+// GetProjectMcpConfigSecretsResultInput is an input type that accepts GetProjectMcpConfigSecretsResultArgs and GetProjectMcpConfigSecretsResultOutput values.
+// You can construct a concrete instance of `GetProjectMcpConfigSecretsResultInput` via:
+//
+//	GetProjectMcpConfigSecretsResultArgs{...}
+type GetProjectMcpConfigSecretsResultInput interface {
+	pulumi.Input
+
+	ToGetProjectMcpConfigSecretsResultOutput() GetProjectMcpConfigSecretsResultOutput
+	ToGetProjectMcpConfigSecretsResultOutputWithContext(context.Context) GetProjectMcpConfigSecretsResultOutput
+}
+
+type GetProjectMcpConfigSecretsResultArgs struct {
+	// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	ExpiresAt pulumi.StringInput `pulumi:"expiresAt"`
+	// Unique 24-hexadecimal digit string that identifies the secret.
+	Id pulumi.StringInput `pulumi:"id"`
+	// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// The masked Service Account secret.
+	MaskedSecretValue pulumi.StringInput `pulumi:"maskedSecretValue"`
+}
+
+func (GetProjectMcpConfigSecretsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectMcpConfigSecretsResult)(nil)).Elem()
+}
+
+func (i GetProjectMcpConfigSecretsResultArgs) ToGetProjectMcpConfigSecretsResultOutput() GetProjectMcpConfigSecretsResultOutput {
+	return i.ToGetProjectMcpConfigSecretsResultOutputWithContext(context.Background())
+}
+
+func (i GetProjectMcpConfigSecretsResultArgs) ToGetProjectMcpConfigSecretsResultOutputWithContext(ctx context.Context) GetProjectMcpConfigSecretsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectMcpConfigSecretsResultOutput)
+}
+
+// GetProjectMcpConfigSecretsResultArrayInput is an input type that accepts GetProjectMcpConfigSecretsResultArray and GetProjectMcpConfigSecretsResultArrayOutput values.
+// You can construct a concrete instance of `GetProjectMcpConfigSecretsResultArrayInput` via:
+//
+//	GetProjectMcpConfigSecretsResultArray{ GetProjectMcpConfigSecretsResultArgs{...} }
+type GetProjectMcpConfigSecretsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectMcpConfigSecretsResultArrayOutput() GetProjectMcpConfigSecretsResultArrayOutput
+	ToGetProjectMcpConfigSecretsResultArrayOutputWithContext(context.Context) GetProjectMcpConfigSecretsResultArrayOutput
+}
+
+type GetProjectMcpConfigSecretsResultArray []GetProjectMcpConfigSecretsResultInput
+
+func (GetProjectMcpConfigSecretsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectMcpConfigSecretsResult)(nil)).Elem()
+}
+
+func (i GetProjectMcpConfigSecretsResultArray) ToGetProjectMcpConfigSecretsResultArrayOutput() GetProjectMcpConfigSecretsResultArrayOutput {
+	return i.ToGetProjectMcpConfigSecretsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectMcpConfigSecretsResultArray) ToGetProjectMcpConfigSecretsResultArrayOutputWithContext(ctx context.Context) GetProjectMcpConfigSecretsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectMcpConfigSecretsResultArrayOutput)
+}
+
+type GetProjectMcpConfigSecretsResultOutput struct{ *pulumi.OutputState }
+
+func (GetProjectMcpConfigSecretsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectMcpConfigSecretsResult)(nil)).Elem()
+}
+
+func (o GetProjectMcpConfigSecretsResultOutput) ToGetProjectMcpConfigSecretsResultOutput() GetProjectMcpConfigSecretsResultOutput {
+	return o
+}
+
+func (o GetProjectMcpConfigSecretsResultOutput) ToGetProjectMcpConfigSecretsResultOutputWithContext(ctx context.Context) GetProjectMcpConfigSecretsResultOutput {
+	return o
+}
+
+// The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetProjectMcpConfigSecretsResultOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigSecretsResult) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetProjectMcpConfigSecretsResultOutput) ExpiresAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigSecretsResult) string { return v.ExpiresAt }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the secret.
+func (o GetProjectMcpConfigSecretsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigSecretsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetProjectMcpConfigSecretsResultOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigSecretsResult) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// The masked Service Account secret.
+func (o GetProjectMcpConfigSecretsResultOutput) MaskedSecretValue() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigSecretsResult) string { return v.MaskedSecretValue }).(pulumi.StringOutput)
+}
+
+type GetProjectMcpConfigSecretsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectMcpConfigSecretsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectMcpConfigSecretsResult)(nil)).Elem()
+}
+
+func (o GetProjectMcpConfigSecretsResultArrayOutput) ToGetProjectMcpConfigSecretsResultArrayOutput() GetProjectMcpConfigSecretsResultArrayOutput {
+	return o
+}
+
+func (o GetProjectMcpConfigSecretsResultArrayOutput) ToGetProjectMcpConfigSecretsResultArrayOutputWithContext(ctx context.Context) GetProjectMcpConfigSecretsResultArrayOutput {
+	return o
+}
+
+func (o GetProjectMcpConfigSecretsResultArrayOutput) Index(i pulumi.IntInput) GetProjectMcpConfigSecretsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectMcpConfigSecretsResult {
+		return vs[0].([]GetProjectMcpConfigSecretsResult)[vs[1].(int)]
+	}).(GetProjectMcpConfigSecretsResultOutput)
+}
+
+type GetProjectMcpConfigsResult struct {
+	// Unique identifier for the Service Account client associated with this MCP configuration. Use this Service Account to connect to the Atlas Remote MCP.
+	ClientId string `pulumi:"clientId"`
+	// Unique identifier for the egress Service Account client associated with this MCP configuration. This Service Account is managed by MongoDB Atlas.
+	EgressClientId string `pulumi:"egressClientId"`
+	// List of IP access list entries that define allowed source addresses for this MCP configuration.
+	IpAccessLists []GetProjectMcpConfigsResultIpAccessList `pulumi:"ipAccessLists"`
+	// Unique identifier that identifies this MCP configuration.
+	McpConfigId string `pulumi:"mcpConfigId"`
+	// Human-readable name that identifies this MCP configuration.
+	McpConfigName string `pulumi:"mcpConfigName"`
+	// List of project roles associated with this MCP configuration.
+	Roles []string `pulumi:"roles"`
+}
+
+// GetProjectMcpConfigsResultInput is an input type that accepts GetProjectMcpConfigsResultArgs and GetProjectMcpConfigsResultOutput values.
+// You can construct a concrete instance of `GetProjectMcpConfigsResultInput` via:
+//
+//	GetProjectMcpConfigsResultArgs{...}
+type GetProjectMcpConfigsResultInput interface {
+	pulumi.Input
+
+	ToGetProjectMcpConfigsResultOutput() GetProjectMcpConfigsResultOutput
+	ToGetProjectMcpConfigsResultOutputWithContext(context.Context) GetProjectMcpConfigsResultOutput
+}
+
+type GetProjectMcpConfigsResultArgs struct {
+	// Unique identifier for the Service Account client associated with this MCP configuration. Use this Service Account to connect to the Atlas Remote MCP.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// Unique identifier for the egress Service Account client associated with this MCP configuration. This Service Account is managed by MongoDB Atlas.
+	EgressClientId pulumi.StringInput `pulumi:"egressClientId"`
+	// List of IP access list entries that define allowed source addresses for this MCP configuration.
+	IpAccessLists GetProjectMcpConfigsResultIpAccessListArrayInput `pulumi:"ipAccessLists"`
+	// Unique identifier that identifies this MCP configuration.
+	McpConfigId pulumi.StringInput `pulumi:"mcpConfigId"`
+	// Human-readable name that identifies this MCP configuration.
+	McpConfigName pulumi.StringInput `pulumi:"mcpConfigName"`
+	// List of project roles associated with this MCP configuration.
+	Roles pulumi.StringArrayInput `pulumi:"roles"`
+}
+
+func (GetProjectMcpConfigsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectMcpConfigsResult)(nil)).Elem()
+}
+
+func (i GetProjectMcpConfigsResultArgs) ToGetProjectMcpConfigsResultOutput() GetProjectMcpConfigsResultOutput {
+	return i.ToGetProjectMcpConfigsResultOutputWithContext(context.Background())
+}
+
+func (i GetProjectMcpConfigsResultArgs) ToGetProjectMcpConfigsResultOutputWithContext(ctx context.Context) GetProjectMcpConfigsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectMcpConfigsResultOutput)
+}
+
+// GetProjectMcpConfigsResultArrayInput is an input type that accepts GetProjectMcpConfigsResultArray and GetProjectMcpConfigsResultArrayOutput values.
+// You can construct a concrete instance of `GetProjectMcpConfigsResultArrayInput` via:
+//
+//	GetProjectMcpConfigsResultArray{ GetProjectMcpConfigsResultArgs{...} }
+type GetProjectMcpConfigsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectMcpConfigsResultArrayOutput() GetProjectMcpConfigsResultArrayOutput
+	ToGetProjectMcpConfigsResultArrayOutputWithContext(context.Context) GetProjectMcpConfigsResultArrayOutput
+}
+
+type GetProjectMcpConfigsResultArray []GetProjectMcpConfigsResultInput
+
+func (GetProjectMcpConfigsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectMcpConfigsResult)(nil)).Elem()
+}
+
+func (i GetProjectMcpConfigsResultArray) ToGetProjectMcpConfigsResultArrayOutput() GetProjectMcpConfigsResultArrayOutput {
+	return i.ToGetProjectMcpConfigsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectMcpConfigsResultArray) ToGetProjectMcpConfigsResultArrayOutputWithContext(ctx context.Context) GetProjectMcpConfigsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectMcpConfigsResultArrayOutput)
+}
+
+type GetProjectMcpConfigsResultOutput struct{ *pulumi.OutputState }
+
+func (GetProjectMcpConfigsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectMcpConfigsResult)(nil)).Elem()
+}
+
+func (o GetProjectMcpConfigsResultOutput) ToGetProjectMcpConfigsResultOutput() GetProjectMcpConfigsResultOutput {
+	return o
+}
+
+func (o GetProjectMcpConfigsResultOutput) ToGetProjectMcpConfigsResultOutputWithContext(ctx context.Context) GetProjectMcpConfigsResultOutput {
+	return o
+}
+
+// Unique identifier for the Service Account client associated with this MCP configuration. Use this Service Account to connect to the Atlas Remote MCP.
+func (o GetProjectMcpConfigsResultOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigsResult) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// Unique identifier for the egress Service Account client associated with this MCP configuration. This Service Account is managed by MongoDB Atlas.
+func (o GetProjectMcpConfigsResultOutput) EgressClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigsResult) string { return v.EgressClientId }).(pulumi.StringOutput)
+}
+
+// List of IP access list entries that define allowed source addresses for this MCP configuration.
+func (o GetProjectMcpConfigsResultOutput) IpAccessLists() GetProjectMcpConfigsResultIpAccessListArrayOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigsResult) []GetProjectMcpConfigsResultIpAccessList { return v.IpAccessLists }).(GetProjectMcpConfigsResultIpAccessListArrayOutput)
+}
+
+// Unique identifier that identifies this MCP configuration.
+func (o GetProjectMcpConfigsResultOutput) McpConfigId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigsResult) string { return v.McpConfigId }).(pulumi.StringOutput)
+}
+
+// Human-readable name that identifies this MCP configuration.
+func (o GetProjectMcpConfigsResultOutput) McpConfigName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigsResult) string { return v.McpConfigName }).(pulumi.StringOutput)
+}
+
+// List of project roles associated with this MCP configuration.
+func (o GetProjectMcpConfigsResultOutput) Roles() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigsResult) []string { return v.Roles }).(pulumi.StringArrayOutput)
+}
+
+type GetProjectMcpConfigsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectMcpConfigsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectMcpConfigsResult)(nil)).Elem()
+}
+
+func (o GetProjectMcpConfigsResultArrayOutput) ToGetProjectMcpConfigsResultArrayOutput() GetProjectMcpConfigsResultArrayOutput {
+	return o
+}
+
+func (o GetProjectMcpConfigsResultArrayOutput) ToGetProjectMcpConfigsResultArrayOutputWithContext(ctx context.Context) GetProjectMcpConfigsResultArrayOutput {
+	return o
+}
+
+func (o GetProjectMcpConfigsResultArrayOutput) Index(i pulumi.IntInput) GetProjectMcpConfigsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectMcpConfigsResult {
+		return vs[0].([]GetProjectMcpConfigsResult)[vs[1].(int)]
+	}).(GetProjectMcpConfigsResultOutput)
+}
+
+type GetProjectMcpConfigsResultIpAccessList struct {
+	// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+	CidrBlock string `pulumi:"cidrBlock"`
+	// Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+	IpAddress string `pulumi:"ipAddress"`
+	// Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+	LastUsedAddress string `pulumi:"lastUsedAddress"`
+	// Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt string `pulumi:"lastUsedAt"`
+	// The number of requests that has originated from this network address.
+	RequestCount int `pulumi:"requestCount"`
+}
+
+// GetProjectMcpConfigsResultIpAccessListInput is an input type that accepts GetProjectMcpConfigsResultIpAccessListArgs and GetProjectMcpConfigsResultIpAccessListOutput values.
+// You can construct a concrete instance of `GetProjectMcpConfigsResultIpAccessListInput` via:
+//
+//	GetProjectMcpConfigsResultIpAccessListArgs{...}
+type GetProjectMcpConfigsResultIpAccessListInput interface {
+	pulumi.Input
+
+	ToGetProjectMcpConfigsResultIpAccessListOutput() GetProjectMcpConfigsResultIpAccessListOutput
+	ToGetProjectMcpConfigsResultIpAccessListOutputWithContext(context.Context) GetProjectMcpConfigsResultIpAccessListOutput
+}
+
+type GetProjectMcpConfigsResultIpAccessListArgs struct {
+	// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+	CidrBlock pulumi.StringInput `pulumi:"cidrBlock"`
+	// Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+	IpAddress pulumi.StringInput `pulumi:"ipAddress"`
+	// Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+	LastUsedAddress pulumi.StringInput `pulumi:"lastUsedAddress"`
+	// Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	LastUsedAt pulumi.StringInput `pulumi:"lastUsedAt"`
+	// The number of requests that has originated from this network address.
+	RequestCount pulumi.IntInput `pulumi:"requestCount"`
+}
+
+func (GetProjectMcpConfigsResultIpAccessListArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectMcpConfigsResultIpAccessList)(nil)).Elem()
+}
+
+func (i GetProjectMcpConfigsResultIpAccessListArgs) ToGetProjectMcpConfigsResultIpAccessListOutput() GetProjectMcpConfigsResultIpAccessListOutput {
+	return i.ToGetProjectMcpConfigsResultIpAccessListOutputWithContext(context.Background())
+}
+
+func (i GetProjectMcpConfigsResultIpAccessListArgs) ToGetProjectMcpConfigsResultIpAccessListOutputWithContext(ctx context.Context) GetProjectMcpConfigsResultIpAccessListOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectMcpConfigsResultIpAccessListOutput)
+}
+
+// GetProjectMcpConfigsResultIpAccessListArrayInput is an input type that accepts GetProjectMcpConfigsResultIpAccessListArray and GetProjectMcpConfigsResultIpAccessListArrayOutput values.
+// You can construct a concrete instance of `GetProjectMcpConfigsResultIpAccessListArrayInput` via:
+//
+//	GetProjectMcpConfigsResultIpAccessListArray{ GetProjectMcpConfigsResultIpAccessListArgs{...} }
+type GetProjectMcpConfigsResultIpAccessListArrayInput interface {
+	pulumi.Input
+
+	ToGetProjectMcpConfigsResultIpAccessListArrayOutput() GetProjectMcpConfigsResultIpAccessListArrayOutput
+	ToGetProjectMcpConfigsResultIpAccessListArrayOutputWithContext(context.Context) GetProjectMcpConfigsResultIpAccessListArrayOutput
+}
+
+type GetProjectMcpConfigsResultIpAccessListArray []GetProjectMcpConfigsResultIpAccessListInput
+
+func (GetProjectMcpConfigsResultIpAccessListArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectMcpConfigsResultIpAccessList)(nil)).Elem()
+}
+
+func (i GetProjectMcpConfigsResultIpAccessListArray) ToGetProjectMcpConfigsResultIpAccessListArrayOutput() GetProjectMcpConfigsResultIpAccessListArrayOutput {
+	return i.ToGetProjectMcpConfigsResultIpAccessListArrayOutputWithContext(context.Background())
+}
+
+func (i GetProjectMcpConfigsResultIpAccessListArray) ToGetProjectMcpConfigsResultIpAccessListArrayOutputWithContext(ctx context.Context) GetProjectMcpConfigsResultIpAccessListArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetProjectMcpConfigsResultIpAccessListArrayOutput)
+}
+
+type GetProjectMcpConfigsResultIpAccessListOutput struct{ *pulumi.OutputState }
+
+func (GetProjectMcpConfigsResultIpAccessListOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetProjectMcpConfigsResultIpAccessList)(nil)).Elem()
+}
+
+func (o GetProjectMcpConfigsResultIpAccessListOutput) ToGetProjectMcpConfigsResultIpAccessListOutput() GetProjectMcpConfigsResultIpAccessListOutput {
+	return o
+}
+
+func (o GetProjectMcpConfigsResultIpAccessListOutput) ToGetProjectMcpConfigsResultIpAccessListOutputWithContext(ctx context.Context) GetProjectMcpConfigsResultIpAccessListOutput {
+	return o
+}
+
+// Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+func (o GetProjectMcpConfigsResultIpAccessListOutput) CidrBlock() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigsResultIpAccessList) string { return v.CidrBlock }).(pulumi.StringOutput)
+}
+
+// Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetProjectMcpConfigsResultIpAccessListOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigsResultIpAccessList) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+func (o GetProjectMcpConfigsResultIpAccessListOutput) IpAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigsResultIpAccessList) string { return v.IpAddress }).(pulumi.StringOutput)
+}
+
+// Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+func (o GetProjectMcpConfigsResultIpAccessListOutput) LastUsedAddress() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigsResultIpAccessList) string { return v.LastUsedAddress }).(pulumi.StringOutput)
+}
+
+// Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetProjectMcpConfigsResultIpAccessListOutput) LastUsedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigsResultIpAccessList) string { return v.LastUsedAt }).(pulumi.StringOutput)
+}
+
+// The number of requests that has originated from this network address.
+func (o GetProjectMcpConfigsResultIpAccessListOutput) RequestCount() pulumi.IntOutput {
+	return o.ApplyT(func(v GetProjectMcpConfigsResultIpAccessList) int { return v.RequestCount }).(pulumi.IntOutput)
+}
+
+type GetProjectMcpConfigsResultIpAccessListArrayOutput struct{ *pulumi.OutputState }
+
+func (GetProjectMcpConfigsResultIpAccessListArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetProjectMcpConfigsResultIpAccessList)(nil)).Elem()
+}
+
+func (o GetProjectMcpConfigsResultIpAccessListArrayOutput) ToGetProjectMcpConfigsResultIpAccessListArrayOutput() GetProjectMcpConfigsResultIpAccessListArrayOutput {
+	return o
+}
+
+func (o GetProjectMcpConfigsResultIpAccessListArrayOutput) ToGetProjectMcpConfigsResultIpAccessListArrayOutputWithContext(ctx context.Context) GetProjectMcpConfigsResultIpAccessListArrayOutput {
+	return o
+}
+
+func (o GetProjectMcpConfigsResultIpAccessListArrayOutput) Index(i pulumi.IntInput) GetProjectMcpConfigsResultIpAccessListOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetProjectMcpConfigsResultIpAccessList {
+		return vs[0].([]GetProjectMcpConfigsResultIpAccessList)[vs[1].(int)]
+	}).(GetProjectMcpConfigsResultIpAccessListOutput)
+}
+
 type GetProjectServiceAccountAccessListEntriesResult struct {
 	// Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
 	CidrBlock string `pulumi:"cidrBlock"`
@@ -58525,6 +60654,8 @@ type GetProjectServiceAccountsResult struct {
 	Roles []string `pulumi:"roles"`
 	// A list of secrets associated with the specified Service Account.
 	Secrets []GetProjectServiceAccountsResultSecret `pulumi:"secrets"`
+	// Indicates whether the Service Account is system managed.
+	SystemManaged bool `pulumi:"systemManaged"`
 }
 
 // GetProjectServiceAccountsResultInput is an input type that accepts GetProjectServiceAccountsResultArgs and GetProjectServiceAccountsResultOutput values.
@@ -58551,6 +60682,8 @@ type GetProjectServiceAccountsResultArgs struct {
 	Roles pulumi.StringArrayInput `pulumi:"roles"`
 	// A list of secrets associated with the specified Service Account.
 	Secrets GetProjectServiceAccountsResultSecretArrayInput `pulumi:"secrets"`
+	// Indicates whether the Service Account is system managed.
+	SystemManaged pulumi.BoolInput `pulumi:"systemManaged"`
 }
 
 func (GetProjectServiceAccountsResultArgs) ElementType() reflect.Type {
@@ -58632,6 +60765,11 @@ func (o GetProjectServiceAccountsResultOutput) Roles() pulumi.StringArrayOutput 
 // A list of secrets associated with the specified Service Account.
 func (o GetProjectServiceAccountsResultOutput) Secrets() GetProjectServiceAccountsResultSecretArrayOutput {
 	return o.ApplyT(func(v GetProjectServiceAccountsResult) []GetProjectServiceAccountsResultSecret { return v.Secrets }).(GetProjectServiceAccountsResultSecretArrayOutput)
+}
+
+// Indicates whether the Service Account is system managed.
+func (o GetProjectServiceAccountsResultOutput) SystemManaged() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetProjectServiceAccountsResult) bool { return v.SystemManaged }).(pulumi.BoolOutput)
 }
 
 type GetProjectServiceAccountsResultArrayOutput struct{ *pulumi.OutputState }
@@ -62988,6 +65126,8 @@ type GetServiceAccountsResult struct {
 	Roles []string `pulumi:"roles"`
 	// A list of secrets associated with the specified Service Account.
 	Secrets []GetServiceAccountsResultSecret `pulumi:"secrets"`
+	// Indicates whether the Service Account is system managed.
+	SystemManaged bool `pulumi:"systemManaged"`
 }
 
 // GetServiceAccountsResultInput is an input type that accepts GetServiceAccountsResultArgs and GetServiceAccountsResultOutput values.
@@ -63014,6 +65154,8 @@ type GetServiceAccountsResultArgs struct {
 	Roles pulumi.StringArrayInput `pulumi:"roles"`
 	// A list of secrets associated with the specified Service Account.
 	Secrets GetServiceAccountsResultSecretArrayInput `pulumi:"secrets"`
+	// Indicates whether the Service Account is system managed.
+	SystemManaged pulumi.BoolInput `pulumi:"systemManaged"`
 }
 
 func (GetServiceAccountsResultArgs) ElementType() reflect.Type {
@@ -63095,6 +65237,11 @@ func (o GetServiceAccountsResultOutput) Roles() pulumi.StringArrayOutput {
 // A list of secrets associated with the specified Service Account.
 func (o GetServiceAccountsResultOutput) Secrets() GetServiceAccountsResultSecretArrayOutput {
 	return o.ApplyT(func(v GetServiceAccountsResult) []GetServiceAccountsResultSecret { return v.Secrets }).(GetServiceAccountsResultSecretArrayOutput)
+}
+
+// Indicates whether the Service Account is system managed.
+func (o GetServiceAccountsResultOutput) SystemManaged() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetServiceAccountsResult) bool { return v.SystemManaged }).(pulumi.BoolOutput)
 }
 
 type GetServiceAccountsResultArrayOutput struct{ *pulumi.OutputState }
@@ -65911,1367 +68058,6 @@ func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Type() pulumi.StringOut
 	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
 }
 
-type GetStreamConnectionsResultGcp struct {
-	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
-	ServiceAccountId string `pulumi:"serviceAccountId"`
-}
-
-// GetStreamConnectionsResultGcpInput is an input type that accepts GetStreamConnectionsResultGcpArgs and GetStreamConnectionsResultGcpOutput values.
-// You can construct a concrete instance of `GetStreamConnectionsResultGcpInput` via:
-//
-//	GetStreamConnectionsResultGcpArgs{...}
-type GetStreamConnectionsResultGcpInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionsResultGcpOutput() GetStreamConnectionsResultGcpOutput
-	ToGetStreamConnectionsResultGcpOutputWithContext(context.Context) GetStreamConnectionsResultGcpOutput
-}
-
-type GetStreamConnectionsResultGcpArgs struct {
-	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
-	ServiceAccountId pulumi.StringInput `pulumi:"serviceAccountId"`
-}
-
-func (GetStreamConnectionsResultGcpArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultGcp)(nil)).Elem()
-}
-
-func (i GetStreamConnectionsResultGcpArgs) ToGetStreamConnectionsResultGcpOutput() GetStreamConnectionsResultGcpOutput {
-	return i.ToGetStreamConnectionsResultGcpOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionsResultGcpArgs) ToGetStreamConnectionsResultGcpOutputWithContext(ctx context.Context) GetStreamConnectionsResultGcpOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultGcpOutput)
-}
-
-type GetStreamConnectionsResultGcpOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionsResultGcpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultGcp)(nil)).Elem()
-}
-
-func (o GetStreamConnectionsResultGcpOutput) ToGetStreamConnectionsResultGcpOutput() GetStreamConnectionsResultGcpOutput {
-	return o
-}
-
-func (o GetStreamConnectionsResultGcpOutput) ToGetStreamConnectionsResultGcpOutputWithContext(ctx context.Context) GetStreamConnectionsResultGcpOutput {
-	return o
-}
-
-// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
-func (o GetStreamConnectionsResultGcpOutput) ServiceAccountId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultGcp) string { return v.ServiceAccountId }).(pulumi.StringOutput)
-}
-
-type GetStreamConnectionsResultNetworking struct {
-	// Information about the networking access. See access.
-	Access GetStreamConnectionsResultNetworkingAccess `pulumi:"access"`
-}
-
-// GetStreamConnectionsResultNetworkingInput is an input type that accepts GetStreamConnectionsResultNetworkingArgs and GetStreamConnectionsResultNetworkingOutput values.
-// You can construct a concrete instance of `GetStreamConnectionsResultNetworkingInput` via:
-//
-//	GetStreamConnectionsResultNetworkingArgs{...}
-type GetStreamConnectionsResultNetworkingInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionsResultNetworkingOutput() GetStreamConnectionsResultNetworkingOutput
-	ToGetStreamConnectionsResultNetworkingOutputWithContext(context.Context) GetStreamConnectionsResultNetworkingOutput
-}
-
-type GetStreamConnectionsResultNetworkingArgs struct {
-	// Information about the networking access. See access.
-	Access GetStreamConnectionsResultNetworkingAccessInput `pulumi:"access"`
-}
-
-func (GetStreamConnectionsResultNetworkingArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultNetworking)(nil)).Elem()
-}
-
-func (i GetStreamConnectionsResultNetworkingArgs) ToGetStreamConnectionsResultNetworkingOutput() GetStreamConnectionsResultNetworkingOutput {
-	return i.ToGetStreamConnectionsResultNetworkingOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionsResultNetworkingArgs) ToGetStreamConnectionsResultNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionsResultNetworkingOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultNetworkingOutput)
-}
-
-type GetStreamConnectionsResultNetworkingOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionsResultNetworkingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultNetworking)(nil)).Elem()
-}
-
-func (o GetStreamConnectionsResultNetworkingOutput) ToGetStreamConnectionsResultNetworkingOutput() GetStreamConnectionsResultNetworkingOutput {
-	return o
-}
-
-func (o GetStreamConnectionsResultNetworkingOutput) ToGetStreamConnectionsResultNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionsResultNetworkingOutput {
-	return o
-}
-
-// Information about the networking access. See access.
-func (o GetStreamConnectionsResultNetworkingOutput) Access() GetStreamConnectionsResultNetworkingAccessOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultNetworking) GetStreamConnectionsResultNetworkingAccess {
-		return v.Access
-	}).(GetStreamConnectionsResultNetworkingAccessOutput)
-}
-
-type GetStreamConnectionsResultNetworkingAccess struct {
-	// Id of the Private Link connection when type is `PRIVATE_LINK`.
-	ConnectionId string `pulumi:"connectionId"`
-	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-	Type string `pulumi:"type"`
-}
-
-// GetStreamConnectionsResultNetworkingAccessInput is an input type that accepts GetStreamConnectionsResultNetworkingAccessArgs and GetStreamConnectionsResultNetworkingAccessOutput values.
-// You can construct a concrete instance of `GetStreamConnectionsResultNetworkingAccessInput` via:
-//
-//	GetStreamConnectionsResultNetworkingAccessArgs{...}
-type GetStreamConnectionsResultNetworkingAccessInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionsResultNetworkingAccessOutput() GetStreamConnectionsResultNetworkingAccessOutput
-	ToGetStreamConnectionsResultNetworkingAccessOutputWithContext(context.Context) GetStreamConnectionsResultNetworkingAccessOutput
-}
-
-type GetStreamConnectionsResultNetworkingAccessArgs struct {
-	// Id of the Private Link connection when type is `PRIVATE_LINK`.
-	ConnectionId pulumi.StringInput `pulumi:"connectionId"`
-	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-	Type pulumi.StringInput `pulumi:"type"`
-}
-
-func (GetStreamConnectionsResultNetworkingAccessArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultNetworkingAccess)(nil)).Elem()
-}
-
-func (i GetStreamConnectionsResultNetworkingAccessArgs) ToGetStreamConnectionsResultNetworkingAccessOutput() GetStreamConnectionsResultNetworkingAccessOutput {
-	return i.ToGetStreamConnectionsResultNetworkingAccessOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionsResultNetworkingAccessArgs) ToGetStreamConnectionsResultNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionsResultNetworkingAccessOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultNetworkingAccessOutput)
-}
-
-type GetStreamConnectionsResultNetworkingAccessOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionsResultNetworkingAccessOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultNetworkingAccess)(nil)).Elem()
-}
-
-func (o GetStreamConnectionsResultNetworkingAccessOutput) ToGetStreamConnectionsResultNetworkingAccessOutput() GetStreamConnectionsResultNetworkingAccessOutput {
-	return o
-}
-
-func (o GetStreamConnectionsResultNetworkingAccessOutput) ToGetStreamConnectionsResultNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionsResultNetworkingAccessOutput {
-	return o
-}
-
-// Id of the Private Link connection when type is `PRIVATE_LINK`.
-func (o GetStreamConnectionsResultNetworkingAccessOutput) ConnectionId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultNetworkingAccess) string { return v.ConnectionId }).(pulumi.StringOutput)
-}
-
-// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-func (o GetStreamConnectionsResultNetworkingAccessOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
-}
-
-type GetStreamConnectionsResultSchemaRegistryAuthentication struct {
-	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
-	Password string `pulumi:"password"`
-	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-	Type string `pulumi:"type"`
-	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
-	Username string `pulumi:"username"`
-}
-
-// GetStreamConnectionsResultSchemaRegistryAuthenticationInput is an input type that accepts GetStreamConnectionsResultSchemaRegistryAuthenticationArgs and GetStreamConnectionsResultSchemaRegistryAuthenticationOutput values.
-// You can construct a concrete instance of `GetStreamConnectionsResultSchemaRegistryAuthenticationInput` via:
-//
-//	GetStreamConnectionsResultSchemaRegistryAuthenticationArgs{...}
-type GetStreamConnectionsResultSchemaRegistryAuthenticationInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutput() GetStreamConnectionsResultSchemaRegistryAuthenticationOutput
-	ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutputWithContext(context.Context) GetStreamConnectionsResultSchemaRegistryAuthenticationOutput
-}
-
-type GetStreamConnectionsResultSchemaRegistryAuthenticationArgs struct {
-	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
-	Password pulumi.StringInput `pulumi:"password"`
-	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-	Type pulumi.StringInput `pulumi:"type"`
-	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
-	Username pulumi.StringInput `pulumi:"username"`
-}
-
-func (GetStreamConnectionsResultSchemaRegistryAuthenticationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultSchemaRegistryAuthentication)(nil)).Elem()
-}
-
-func (i GetStreamConnectionsResultSchemaRegistryAuthenticationArgs) ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutput() GetStreamConnectionsResultSchemaRegistryAuthenticationOutput {
-	return i.ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionsResultSchemaRegistryAuthenticationArgs) ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionsResultSchemaRegistryAuthenticationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultSchemaRegistryAuthenticationOutput)
-}
-
-type GetStreamConnectionsResultSchemaRegistryAuthenticationOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultSchemaRegistryAuthentication)(nil)).Elem()
-}
-
-func (o GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutput() GetStreamConnectionsResultSchemaRegistryAuthenticationOutput {
-	return o
-}
-
-func (o GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionsResultSchemaRegistryAuthenticationOutput {
-	return o
-}
-
-// Password for the Schema Registry. Required when `type` is `USER_INFO`.
-func (o GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultSchemaRegistryAuthentication) string { return v.Password }).(pulumi.StringOutput)
-}
-
-// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-func (o GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultSchemaRegistryAuthentication) string { return v.Type }).(pulumi.StringOutput)
-}
-
-// Username for the Schema Registry. Required when `type` is `USER_INFO`.
-func (o GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultSchemaRegistryAuthentication) string { return v.Username }).(pulumi.StringOutput)
-}
-
-type GetStreamConnectionsResultSecurity struct {
-	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
-	BrokerPublicCertificate string `pulumi:"brokerPublicCertificate"`
-	// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
-	Protocol string `pulumi:"protocol"`
-}
-
-// GetStreamConnectionsResultSecurityInput is an input type that accepts GetStreamConnectionsResultSecurityArgs and GetStreamConnectionsResultSecurityOutput values.
-// You can construct a concrete instance of `GetStreamConnectionsResultSecurityInput` via:
-//
-//	GetStreamConnectionsResultSecurityArgs{...}
-type GetStreamConnectionsResultSecurityInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionsResultSecurityOutput() GetStreamConnectionsResultSecurityOutput
-	ToGetStreamConnectionsResultSecurityOutputWithContext(context.Context) GetStreamConnectionsResultSecurityOutput
-}
-
-type GetStreamConnectionsResultSecurityArgs struct {
-	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
-	BrokerPublicCertificate pulumi.StringInput `pulumi:"brokerPublicCertificate"`
-	// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
-	Protocol pulumi.StringInput `pulumi:"protocol"`
-}
-
-func (GetStreamConnectionsResultSecurityArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultSecurity)(nil)).Elem()
-}
-
-func (i GetStreamConnectionsResultSecurityArgs) ToGetStreamConnectionsResultSecurityOutput() GetStreamConnectionsResultSecurityOutput {
-	return i.ToGetStreamConnectionsResultSecurityOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionsResultSecurityArgs) ToGetStreamConnectionsResultSecurityOutputWithContext(ctx context.Context) GetStreamConnectionsResultSecurityOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultSecurityOutput)
-}
-
-type GetStreamConnectionsResultSecurityOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionsResultSecurityOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultSecurity)(nil)).Elem()
-}
-
-func (o GetStreamConnectionsResultSecurityOutput) ToGetStreamConnectionsResultSecurityOutput() GetStreamConnectionsResultSecurityOutput {
-	return o
-}
-
-func (o GetStreamConnectionsResultSecurityOutput) ToGetStreamConnectionsResultSecurityOutputWithContext(ctx context.Context) GetStreamConnectionsResultSecurityOutput {
-	return o
-}
-
-// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
-func (o GetStreamConnectionsResultSecurityOutput) BrokerPublicCertificate() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultSecurity) string { return v.BrokerPublicCertificate }).(pulumi.StringOutput)
-}
-
-// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
-func (o GetStreamConnectionsResultSecurityOutput) Protocol() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultSecurity) string { return v.Protocol }).(pulumi.StringOutput)
-}
-
-type GetStreamInstanceDataProcessRegion struct {
-	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-	CloudProvider string `pulumi:"cloudProvider"`
-	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-	Region string `pulumi:"region"`
-}
-
-// GetStreamInstanceDataProcessRegionInput is an input type that accepts GetStreamInstanceDataProcessRegionArgs and GetStreamInstanceDataProcessRegionOutput values.
-// You can construct a concrete instance of `GetStreamInstanceDataProcessRegionInput` via:
-//
-//	GetStreamInstanceDataProcessRegionArgs{...}
-type GetStreamInstanceDataProcessRegionInput interface {
-	pulumi.Input
-
-	ToGetStreamInstanceDataProcessRegionOutput() GetStreamInstanceDataProcessRegionOutput
-	ToGetStreamInstanceDataProcessRegionOutputWithContext(context.Context) GetStreamInstanceDataProcessRegionOutput
-}
-
-type GetStreamInstanceDataProcessRegionArgs struct {
-	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-	Region pulumi.StringInput `pulumi:"region"`
-}
-
-func (GetStreamInstanceDataProcessRegionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamInstanceDataProcessRegion)(nil)).Elem()
-}
-
-func (i GetStreamInstanceDataProcessRegionArgs) ToGetStreamInstanceDataProcessRegionOutput() GetStreamInstanceDataProcessRegionOutput {
-	return i.ToGetStreamInstanceDataProcessRegionOutputWithContext(context.Background())
-}
-
-func (i GetStreamInstanceDataProcessRegionArgs) ToGetStreamInstanceDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstanceDataProcessRegionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstanceDataProcessRegionOutput)
-}
-
-type GetStreamInstanceDataProcessRegionOutput struct{ *pulumi.OutputState }
-
-func (GetStreamInstanceDataProcessRegionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamInstanceDataProcessRegion)(nil)).Elem()
-}
-
-func (o GetStreamInstanceDataProcessRegionOutput) ToGetStreamInstanceDataProcessRegionOutput() GetStreamInstanceDataProcessRegionOutput {
-	return o
-}
-
-func (o GetStreamInstanceDataProcessRegionOutput) ToGetStreamInstanceDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstanceDataProcessRegionOutput {
-	return o
-}
-
-// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-func (o GetStreamInstanceDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamInstanceDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
-}
-
-// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-func (o GetStreamInstanceDataProcessRegionOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamInstanceDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
-}
-
-type GetStreamInstanceStreamConfig struct {
-	MaxTierSize string `pulumi:"maxTierSize"`
-	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-	Tier string `pulumi:"tier"`
-}
-
-// GetStreamInstanceStreamConfigInput is an input type that accepts GetStreamInstanceStreamConfigArgs and GetStreamInstanceStreamConfigOutput values.
-// You can construct a concrete instance of `GetStreamInstanceStreamConfigInput` via:
-//
-//	GetStreamInstanceStreamConfigArgs{...}
-type GetStreamInstanceStreamConfigInput interface {
-	pulumi.Input
-
-	ToGetStreamInstanceStreamConfigOutput() GetStreamInstanceStreamConfigOutput
-	ToGetStreamInstanceStreamConfigOutputWithContext(context.Context) GetStreamInstanceStreamConfigOutput
-}
-
-type GetStreamInstanceStreamConfigArgs struct {
-	MaxTierSize pulumi.StringInput `pulumi:"maxTierSize"`
-	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-	Tier pulumi.StringInput `pulumi:"tier"`
-}
-
-func (GetStreamInstanceStreamConfigArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamInstanceStreamConfig)(nil)).Elem()
-}
-
-func (i GetStreamInstanceStreamConfigArgs) ToGetStreamInstanceStreamConfigOutput() GetStreamInstanceStreamConfigOutput {
-	return i.ToGetStreamInstanceStreamConfigOutputWithContext(context.Background())
-}
-
-func (i GetStreamInstanceStreamConfigArgs) ToGetStreamInstanceStreamConfigOutputWithContext(ctx context.Context) GetStreamInstanceStreamConfigOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstanceStreamConfigOutput)
-}
-
-type GetStreamInstanceStreamConfigOutput struct{ *pulumi.OutputState }
-
-func (GetStreamInstanceStreamConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamInstanceStreamConfig)(nil)).Elem()
-}
-
-func (o GetStreamInstanceStreamConfigOutput) ToGetStreamInstanceStreamConfigOutput() GetStreamInstanceStreamConfigOutput {
-	return o
-}
-
-func (o GetStreamInstanceStreamConfigOutput) ToGetStreamInstanceStreamConfigOutputWithContext(ctx context.Context) GetStreamInstanceStreamConfigOutput {
-	return o
-}
-
-func (o GetStreamInstanceStreamConfigOutput) MaxTierSize() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamInstanceStreamConfig) string { return v.MaxTierSize }).(pulumi.StringOutput)
-}
-
-// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-func (o GetStreamInstanceStreamConfigOutput) Tier() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamInstanceStreamConfig) string { return v.Tier }).(pulumi.StringOutput)
-}
-
-type GetStreamInstancesResult struct {
-	// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
-	DataProcessRegion GetStreamInstancesResultDataProcessRegion `pulumi:"dataProcessRegion"`
-	// List that contains the hostnames assigned to the stream instance.
-	Hostnames []string `pulumi:"hostnames"`
-	Id        string   `pulumi:"id"`
-	// Human-readable label that identifies the stream instance.
-	InstanceName string `pulumi:"instanceName"`
-	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-	ProjectId string `pulumi:"projectId"`
-	// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
-	StreamConfig GetStreamInstancesResultStreamConfig `pulumi:"streamConfig"`
-}
-
-// GetStreamInstancesResultInput is an input type that accepts GetStreamInstancesResultArgs and GetStreamInstancesResultOutput values.
-// You can construct a concrete instance of `GetStreamInstancesResultInput` via:
-//
-//	GetStreamInstancesResultArgs{...}
-type GetStreamInstancesResultInput interface {
-	pulumi.Input
-
-	ToGetStreamInstancesResultOutput() GetStreamInstancesResultOutput
-	ToGetStreamInstancesResultOutputWithContext(context.Context) GetStreamInstancesResultOutput
-}
-
-type GetStreamInstancesResultArgs struct {
-	// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
-	DataProcessRegion GetStreamInstancesResultDataProcessRegionInput `pulumi:"dataProcessRegion"`
-	// List that contains the hostnames assigned to the stream instance.
-	Hostnames pulumi.StringArrayInput `pulumi:"hostnames"`
-	Id        pulumi.StringInput      `pulumi:"id"`
-	// Human-readable label that identifies the stream instance.
-	InstanceName pulumi.StringInput `pulumi:"instanceName"`
-	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
-	StreamConfig GetStreamInstancesResultStreamConfigInput `pulumi:"streamConfig"`
-}
-
-func (GetStreamInstancesResultArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamInstancesResult)(nil)).Elem()
-}
-
-func (i GetStreamInstancesResultArgs) ToGetStreamInstancesResultOutput() GetStreamInstancesResultOutput {
-	return i.ToGetStreamInstancesResultOutputWithContext(context.Background())
-}
-
-func (i GetStreamInstancesResultArgs) ToGetStreamInstancesResultOutputWithContext(ctx context.Context) GetStreamInstancesResultOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultOutput)
-}
-
-// GetStreamInstancesResultArrayInput is an input type that accepts GetStreamInstancesResultArray and GetStreamInstancesResultArrayOutput values.
-// You can construct a concrete instance of `GetStreamInstancesResultArrayInput` via:
-//
-//	GetStreamInstancesResultArray{ GetStreamInstancesResultArgs{...} }
-type GetStreamInstancesResultArrayInput interface {
-	pulumi.Input
-
-	ToGetStreamInstancesResultArrayOutput() GetStreamInstancesResultArrayOutput
-	ToGetStreamInstancesResultArrayOutputWithContext(context.Context) GetStreamInstancesResultArrayOutput
-}
-
-type GetStreamInstancesResultArray []GetStreamInstancesResultInput
-
-func (GetStreamInstancesResultArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetStreamInstancesResult)(nil)).Elem()
-}
-
-func (i GetStreamInstancesResultArray) ToGetStreamInstancesResultArrayOutput() GetStreamInstancesResultArrayOutput {
-	return i.ToGetStreamInstancesResultArrayOutputWithContext(context.Background())
-}
-
-func (i GetStreamInstancesResultArray) ToGetStreamInstancesResultArrayOutputWithContext(ctx context.Context) GetStreamInstancesResultArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultArrayOutput)
-}
-
-type GetStreamInstancesResultOutput struct{ *pulumi.OutputState }
-
-func (GetStreamInstancesResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamInstancesResult)(nil)).Elem()
-}
-
-func (o GetStreamInstancesResultOutput) ToGetStreamInstancesResultOutput() GetStreamInstancesResultOutput {
-	return o
-}
-
-func (o GetStreamInstancesResultOutput) ToGetStreamInstancesResultOutputWithContext(ctx context.Context) GetStreamInstancesResultOutput {
-	return o
-}
-
-// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
-func (o GetStreamInstancesResultOutput) DataProcessRegion() GetStreamInstancesResultDataProcessRegionOutput {
-	return o.ApplyT(func(v GetStreamInstancesResult) GetStreamInstancesResultDataProcessRegion { return v.DataProcessRegion }).(GetStreamInstancesResultDataProcessRegionOutput)
-}
-
-// List that contains the hostnames assigned to the stream instance.
-func (o GetStreamInstancesResultOutput) Hostnames() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetStreamInstancesResult) []string { return v.Hostnames }).(pulumi.StringArrayOutput)
-}
-
-func (o GetStreamInstancesResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamInstancesResult) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Human-readable label that identifies the stream instance.
-func (o GetStreamInstancesResultOutput) InstanceName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamInstancesResult) string { return v.InstanceName }).(pulumi.StringOutput)
-}
-
-// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-func (o GetStreamInstancesResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamInstancesResult) string { return v.ProjectId }).(pulumi.StringOutput)
-}
-
-// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
-func (o GetStreamInstancesResultOutput) StreamConfig() GetStreamInstancesResultStreamConfigOutput {
-	return o.ApplyT(func(v GetStreamInstancesResult) GetStreamInstancesResultStreamConfig { return v.StreamConfig }).(GetStreamInstancesResultStreamConfigOutput)
-}
-
-type GetStreamInstancesResultArrayOutput struct{ *pulumi.OutputState }
-
-func (GetStreamInstancesResultArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetStreamInstancesResult)(nil)).Elem()
-}
-
-func (o GetStreamInstancesResultArrayOutput) ToGetStreamInstancesResultArrayOutput() GetStreamInstancesResultArrayOutput {
-	return o
-}
-
-func (o GetStreamInstancesResultArrayOutput) ToGetStreamInstancesResultArrayOutputWithContext(ctx context.Context) GetStreamInstancesResultArrayOutput {
-	return o
-}
-
-func (o GetStreamInstancesResultArrayOutput) Index(i pulumi.IntInput) GetStreamInstancesResultOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamInstancesResult {
-		return vs[0].([]GetStreamInstancesResult)[vs[1].(int)]
-	}).(GetStreamInstancesResultOutput)
-}
-
-type GetStreamInstancesResultDataProcessRegion struct {
-	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-	CloudProvider string `pulumi:"cloudProvider"`
-	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-	Region string `pulumi:"region"`
-}
-
-// GetStreamInstancesResultDataProcessRegionInput is an input type that accepts GetStreamInstancesResultDataProcessRegionArgs and GetStreamInstancesResultDataProcessRegionOutput values.
-// You can construct a concrete instance of `GetStreamInstancesResultDataProcessRegionInput` via:
-//
-//	GetStreamInstancesResultDataProcessRegionArgs{...}
-type GetStreamInstancesResultDataProcessRegionInput interface {
-	pulumi.Input
-
-	ToGetStreamInstancesResultDataProcessRegionOutput() GetStreamInstancesResultDataProcessRegionOutput
-	ToGetStreamInstancesResultDataProcessRegionOutputWithContext(context.Context) GetStreamInstancesResultDataProcessRegionOutput
-}
-
-type GetStreamInstancesResultDataProcessRegionArgs struct {
-	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
-	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-	Region pulumi.StringInput `pulumi:"region"`
-}
-
-func (GetStreamInstancesResultDataProcessRegionArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamInstancesResultDataProcessRegion)(nil)).Elem()
-}
-
-func (i GetStreamInstancesResultDataProcessRegionArgs) ToGetStreamInstancesResultDataProcessRegionOutput() GetStreamInstancesResultDataProcessRegionOutput {
-	return i.ToGetStreamInstancesResultDataProcessRegionOutputWithContext(context.Background())
-}
-
-func (i GetStreamInstancesResultDataProcessRegionArgs) ToGetStreamInstancesResultDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstancesResultDataProcessRegionOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultDataProcessRegionOutput)
-}
-
-type GetStreamInstancesResultDataProcessRegionOutput struct{ *pulumi.OutputState }
-
-func (GetStreamInstancesResultDataProcessRegionOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamInstancesResultDataProcessRegion)(nil)).Elem()
-}
-
-func (o GetStreamInstancesResultDataProcessRegionOutput) ToGetStreamInstancesResultDataProcessRegionOutput() GetStreamInstancesResultDataProcessRegionOutput {
-	return o
-}
-
-func (o GetStreamInstancesResultDataProcessRegionOutput) ToGetStreamInstancesResultDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstancesResultDataProcessRegionOutput {
-	return o
-}
-
-// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-func (o GetStreamInstancesResultDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamInstancesResultDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
-}
-
-// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-func (o GetStreamInstancesResultDataProcessRegionOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamInstancesResultDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
-}
-
-type GetStreamInstancesResultStreamConfig struct {
-	MaxTierSize string `pulumi:"maxTierSize"`
-	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-	Tier string `pulumi:"tier"`
-}
-
-// GetStreamInstancesResultStreamConfigInput is an input type that accepts GetStreamInstancesResultStreamConfigArgs and GetStreamInstancesResultStreamConfigOutput values.
-// You can construct a concrete instance of `GetStreamInstancesResultStreamConfigInput` via:
-//
-//	GetStreamInstancesResultStreamConfigArgs{...}
-type GetStreamInstancesResultStreamConfigInput interface {
-	pulumi.Input
-
-	ToGetStreamInstancesResultStreamConfigOutput() GetStreamInstancesResultStreamConfigOutput
-	ToGetStreamInstancesResultStreamConfigOutputWithContext(context.Context) GetStreamInstancesResultStreamConfigOutput
-}
-
-type GetStreamInstancesResultStreamConfigArgs struct {
-	MaxTierSize pulumi.StringInput `pulumi:"maxTierSize"`
-	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-	Tier pulumi.StringInput `pulumi:"tier"`
-}
-
-func (GetStreamInstancesResultStreamConfigArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamInstancesResultStreamConfig)(nil)).Elem()
-}
-
-func (i GetStreamInstancesResultStreamConfigArgs) ToGetStreamInstancesResultStreamConfigOutput() GetStreamInstancesResultStreamConfigOutput {
-	return i.ToGetStreamInstancesResultStreamConfigOutputWithContext(context.Background())
-}
-
-func (i GetStreamInstancesResultStreamConfigArgs) ToGetStreamInstancesResultStreamConfigOutputWithContext(ctx context.Context) GetStreamInstancesResultStreamConfigOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultStreamConfigOutput)
-}
-
-type GetStreamInstancesResultStreamConfigOutput struct{ *pulumi.OutputState }
-
-func (GetStreamInstancesResultStreamConfigOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamInstancesResultStreamConfig)(nil)).Elem()
-}
-
-func (o GetStreamInstancesResultStreamConfigOutput) ToGetStreamInstancesResultStreamConfigOutput() GetStreamInstancesResultStreamConfigOutput {
-	return o
-}
-
-func (o GetStreamInstancesResultStreamConfigOutput) ToGetStreamInstancesResultStreamConfigOutputWithContext(ctx context.Context) GetStreamInstancesResultStreamConfigOutput {
-	return o
-}
-
-func (o GetStreamInstancesResultStreamConfigOutput) MaxTierSize() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamInstancesResultStreamConfig) string { return v.MaxTierSize }).(pulumi.StringOutput)
-}
-
-// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
-func (o GetStreamInstancesResultStreamConfigOutput) Tier() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamInstancesResultStreamConfig) string { return v.Tier }).(pulumi.StringOutput)
-}
-
-type GetStreamPrivatelinkEndpointsResult struct {
-	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
-	Arn string `pulumi:"arn"`
-	// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
-	AuthenticationScheme string `pulumi:"authenticationScheme"`
-	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
-	//
-	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
-	//
-	//     * AZURE provider with EVENTHUB or CONFLUENT vendor.
-	//
-	//     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
-	//
-	//     * For GCP provider with PUBSUB vendor, the API computes this process.
-	//
-	//     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
-	DnsDomain string `pulumi:"dnsDomain"`
-	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
-	DnsSubDomains []string `pulumi:"dnsSubDomains"`
-	// Error message if the connection is in a failed state.
-	ErrorMessage string `pulumi:"errorMessage"`
-	// The ID of the Private Link connection.
-	Id string `pulumi:"id"`
-	// Interface endpoint ID that is created from the specified service endpoint ID.
-	InterfaceEndpointId string `pulumi:"interfaceEndpointId"`
-	// Name of interface endpoint that is created from the specified service endpoint ID.
-	InterfaceEndpointName string `pulumi:"interfaceEndpointName"`
-	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-	ProjectId string `pulumi:"projectId"`
-	// Account ID from the cloud provider.
-	ProviderAccountId string `pulumi:"providerAccountId"`
-	// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
-	ProviderName string `pulumi:"providerName"`
-	// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
-	Region string `pulumi:"region"`
-	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
-	ServiceAttachmentUris []string `pulumi:"serviceAttachmentUris"`
-	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
-	ServiceEndpointId string `pulumi:"serviceEndpointId"`
-	// Status of the connection.
-	State string `pulumi:"state"`
-	// Vendor that manages the endpoint. The following are the vendor values per provider:
-	//
-	//     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
-	//
-	//     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
-	//
-	//     * **GCP**: CONFLUENT and PUBSUB
-	Vendor string `pulumi:"vendor"`
-}
-
-// GetStreamPrivatelinkEndpointsResultInput is an input type that accepts GetStreamPrivatelinkEndpointsResultArgs and GetStreamPrivatelinkEndpointsResultOutput values.
-// You can construct a concrete instance of `GetStreamPrivatelinkEndpointsResultInput` via:
-//
-//	GetStreamPrivatelinkEndpointsResultArgs{...}
-type GetStreamPrivatelinkEndpointsResultInput interface {
-	pulumi.Input
-
-	ToGetStreamPrivatelinkEndpointsResultOutput() GetStreamPrivatelinkEndpointsResultOutput
-	ToGetStreamPrivatelinkEndpointsResultOutputWithContext(context.Context) GetStreamPrivatelinkEndpointsResultOutput
-}
-
-type GetStreamPrivatelinkEndpointsResultArgs struct {
-	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
-	Arn pulumi.StringInput `pulumi:"arn"`
-	// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
-	AuthenticationScheme pulumi.StringInput `pulumi:"authenticationScheme"`
-	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
-	//
-	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
-	//
-	//     * AZURE provider with EVENTHUB or CONFLUENT vendor.
-	//
-	//     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
-	//
-	//     * For GCP provider with PUBSUB vendor, the API computes this process.
-	//
-	//     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
-	DnsDomain pulumi.StringInput `pulumi:"dnsDomain"`
-	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
-	DnsSubDomains pulumi.StringArrayInput `pulumi:"dnsSubDomains"`
-	// Error message if the connection is in a failed state.
-	ErrorMessage pulumi.StringInput `pulumi:"errorMessage"`
-	// The ID of the Private Link connection.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Interface endpoint ID that is created from the specified service endpoint ID.
-	InterfaceEndpointId pulumi.StringInput `pulumi:"interfaceEndpointId"`
-	// Name of interface endpoint that is created from the specified service endpoint ID.
-	InterfaceEndpointName pulumi.StringInput `pulumi:"interfaceEndpointName"`
-	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Account ID from the cloud provider.
-	ProviderAccountId pulumi.StringInput `pulumi:"providerAccountId"`
-	// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
-	ProviderName pulumi.StringInput `pulumi:"providerName"`
-	// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
-	Region pulumi.StringInput `pulumi:"region"`
-	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
-	ServiceAttachmentUris pulumi.StringArrayInput `pulumi:"serviceAttachmentUris"`
-	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
-	ServiceEndpointId pulumi.StringInput `pulumi:"serviceEndpointId"`
-	// Status of the connection.
-	State pulumi.StringInput `pulumi:"state"`
-	// Vendor that manages the endpoint. The following are the vendor values per provider:
-	//
-	//     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
-	//
-	//     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
-	//
-	//     * **GCP**: CONFLUENT and PUBSUB
-	Vendor pulumi.StringInput `pulumi:"vendor"`
-}
-
-func (GetStreamPrivatelinkEndpointsResultArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamPrivatelinkEndpointsResult)(nil)).Elem()
-}
-
-func (i GetStreamPrivatelinkEndpointsResultArgs) ToGetStreamPrivatelinkEndpointsResultOutput() GetStreamPrivatelinkEndpointsResultOutput {
-	return i.ToGetStreamPrivatelinkEndpointsResultOutputWithContext(context.Background())
-}
-
-func (i GetStreamPrivatelinkEndpointsResultArgs) ToGetStreamPrivatelinkEndpointsResultOutputWithContext(ctx context.Context) GetStreamPrivatelinkEndpointsResultOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamPrivatelinkEndpointsResultOutput)
-}
-
-// GetStreamPrivatelinkEndpointsResultArrayInput is an input type that accepts GetStreamPrivatelinkEndpointsResultArray and GetStreamPrivatelinkEndpointsResultArrayOutput values.
-// You can construct a concrete instance of `GetStreamPrivatelinkEndpointsResultArrayInput` via:
-//
-//	GetStreamPrivatelinkEndpointsResultArray{ GetStreamPrivatelinkEndpointsResultArgs{...} }
-type GetStreamPrivatelinkEndpointsResultArrayInput interface {
-	pulumi.Input
-
-	ToGetStreamPrivatelinkEndpointsResultArrayOutput() GetStreamPrivatelinkEndpointsResultArrayOutput
-	ToGetStreamPrivatelinkEndpointsResultArrayOutputWithContext(context.Context) GetStreamPrivatelinkEndpointsResultArrayOutput
-}
-
-type GetStreamPrivatelinkEndpointsResultArray []GetStreamPrivatelinkEndpointsResultInput
-
-func (GetStreamPrivatelinkEndpointsResultArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetStreamPrivatelinkEndpointsResult)(nil)).Elem()
-}
-
-func (i GetStreamPrivatelinkEndpointsResultArray) ToGetStreamPrivatelinkEndpointsResultArrayOutput() GetStreamPrivatelinkEndpointsResultArrayOutput {
-	return i.ToGetStreamPrivatelinkEndpointsResultArrayOutputWithContext(context.Background())
-}
-
-func (i GetStreamPrivatelinkEndpointsResultArray) ToGetStreamPrivatelinkEndpointsResultArrayOutputWithContext(ctx context.Context) GetStreamPrivatelinkEndpointsResultArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamPrivatelinkEndpointsResultArrayOutput)
-}
-
-type GetStreamPrivatelinkEndpointsResultOutput struct{ *pulumi.OutputState }
-
-func (GetStreamPrivatelinkEndpointsResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamPrivatelinkEndpointsResult)(nil)).Elem()
-}
-
-func (o GetStreamPrivatelinkEndpointsResultOutput) ToGetStreamPrivatelinkEndpointsResultOutput() GetStreamPrivatelinkEndpointsResultOutput {
-	return o
-}
-
-func (o GetStreamPrivatelinkEndpointsResultOutput) ToGetStreamPrivatelinkEndpointsResultOutputWithContext(ctx context.Context) GetStreamPrivatelinkEndpointsResultOutput {
-	return o
-}
-
-// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
-func (o GetStreamPrivatelinkEndpointsResultOutput) Arn() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Arn }).(pulumi.StringOutput)
-}
-
-// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
-func (o GetStreamPrivatelinkEndpointsResultOutput) AuthenticationScheme() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.AuthenticationScheme }).(pulumi.StringOutput)
-}
-
-// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
-//
-//   - AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
-//
-//   - AZURE provider with EVENTHUB or CONFLUENT vendor.
-//
-//   - AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
-//
-//   - For GCP provider with PUBSUB vendor, the API computes this process.
-//
-//     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
-func (o GetStreamPrivatelinkEndpointsResultOutput) DnsDomain() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.DnsDomain }).(pulumi.StringOutput)
-}
-
-// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
-func (o GetStreamPrivatelinkEndpointsResultOutput) DnsSubDomains() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) []string { return v.DnsSubDomains }).(pulumi.StringArrayOutput)
-}
-
-// Error message if the connection is in a failed state.
-func (o GetStreamPrivatelinkEndpointsResultOutput) ErrorMessage() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
-}
-
-// The ID of the Private Link connection.
-func (o GetStreamPrivatelinkEndpointsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Interface endpoint ID that is created from the specified service endpoint ID.
-func (o GetStreamPrivatelinkEndpointsResultOutput) InterfaceEndpointId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.InterfaceEndpointId }).(pulumi.StringOutput)
-}
-
-// Name of interface endpoint that is created from the specified service endpoint ID.
-func (o GetStreamPrivatelinkEndpointsResultOutput) InterfaceEndpointName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.InterfaceEndpointName }).(pulumi.StringOutput)
-}
-
-// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-func (o GetStreamPrivatelinkEndpointsResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ProjectId }).(pulumi.StringOutput)
-}
-
-// Account ID from the cloud provider.
-func (o GetStreamPrivatelinkEndpointsResultOutput) ProviderAccountId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ProviderAccountId }).(pulumi.StringOutput)
-}
-
-// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
-func (o GetStreamPrivatelinkEndpointsResultOutput) ProviderName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ProviderName }).(pulumi.StringOutput)
-}
-
-// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
-func (o GetStreamPrivatelinkEndpointsResultOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Region }).(pulumi.StringOutput)
-}
-
-// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
-func (o GetStreamPrivatelinkEndpointsResultOutput) ServiceAttachmentUris() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) []string { return v.ServiceAttachmentUris }).(pulumi.StringArrayOutput)
-}
-
-// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
-func (o GetStreamPrivatelinkEndpointsResultOutput) ServiceEndpointId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ServiceEndpointId }).(pulumi.StringOutput)
-}
-
-// Status of the connection.
-func (o GetStreamPrivatelinkEndpointsResultOutput) State() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.State }).(pulumi.StringOutput)
-}
-
-// Vendor that manages the endpoint. The following are the vendor values per provider:
-//
-//   - **AWS**: MSK, CONFLUENT, S3, and LAMBDA
-//
-//   - **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
-//
-//   - **GCP**: CONFLUENT and PUBSUB
-func (o GetStreamPrivatelinkEndpointsResultOutput) Vendor() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Vendor }).(pulumi.StringOutput)
-}
-
-type GetStreamPrivatelinkEndpointsResultArrayOutput struct{ *pulumi.OutputState }
-
-func (GetStreamPrivatelinkEndpointsResultArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetStreamPrivatelinkEndpointsResult)(nil)).Elem()
-}
-
-func (o GetStreamPrivatelinkEndpointsResultArrayOutput) ToGetStreamPrivatelinkEndpointsResultArrayOutput() GetStreamPrivatelinkEndpointsResultArrayOutput {
-	return o
-}
-
-func (o GetStreamPrivatelinkEndpointsResultArrayOutput) ToGetStreamPrivatelinkEndpointsResultArrayOutputWithContext(ctx context.Context) GetStreamPrivatelinkEndpointsResultArrayOutput {
-	return o
-}
-
-func (o GetStreamPrivatelinkEndpointsResultArrayOutput) Index(i pulumi.IntInput) GetStreamPrivatelinkEndpointsResultOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamPrivatelinkEndpointsResult {
-		return vs[0].([]GetStreamPrivatelinkEndpointsResult)[vs[1].(int)]
-	}).(GetStreamPrivatelinkEndpointsResultOutput)
-}
-
-type GetStreamProcessorOptions struct {
-	// Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
-	Autoscaling GetStreamProcessorOptionsAutoscaling `pulumi:"autoscaling"`
-	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
-	Dlq GetStreamProcessorOptionsDlq `pulumi:"dlq"`
-}
-
-// GetStreamProcessorOptionsInput is an input type that accepts GetStreamProcessorOptionsArgs and GetStreamProcessorOptionsOutput values.
-// You can construct a concrete instance of `GetStreamProcessorOptionsInput` via:
-//
-//	GetStreamProcessorOptionsArgs{...}
-type GetStreamProcessorOptionsInput interface {
-	pulumi.Input
-
-	ToGetStreamProcessorOptionsOutput() GetStreamProcessorOptionsOutput
-	ToGetStreamProcessorOptionsOutputWithContext(context.Context) GetStreamProcessorOptionsOutput
-}
-
-type GetStreamProcessorOptionsArgs struct {
-	// Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
-	Autoscaling GetStreamProcessorOptionsAutoscalingInput `pulumi:"autoscaling"`
-	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
-	Dlq GetStreamProcessorOptionsDlqInput `pulumi:"dlq"`
-}
-
-func (GetStreamProcessorOptionsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamProcessorOptions)(nil)).Elem()
-}
-
-func (i GetStreamProcessorOptionsArgs) ToGetStreamProcessorOptionsOutput() GetStreamProcessorOptionsOutput {
-	return i.ToGetStreamProcessorOptionsOutputWithContext(context.Background())
-}
-
-func (i GetStreamProcessorOptionsArgs) ToGetStreamProcessorOptionsOutputWithContext(ctx context.Context) GetStreamProcessorOptionsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorOptionsOutput)
-}
-
-type GetStreamProcessorOptionsOutput struct{ *pulumi.OutputState }
-
-func (GetStreamProcessorOptionsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamProcessorOptions)(nil)).Elem()
-}
-
-func (o GetStreamProcessorOptionsOutput) ToGetStreamProcessorOptionsOutput() GetStreamProcessorOptionsOutput {
-	return o
-}
-
-func (o GetStreamProcessorOptionsOutput) ToGetStreamProcessorOptionsOutputWithContext(ctx context.Context) GetStreamProcessorOptionsOutput {
-	return o
-}
-
-// Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
-func (o GetStreamProcessorOptionsOutput) Autoscaling() GetStreamProcessorOptionsAutoscalingOutput {
-	return o.ApplyT(func(v GetStreamProcessorOptions) GetStreamProcessorOptionsAutoscaling { return v.Autoscaling }).(GetStreamProcessorOptionsAutoscalingOutput)
-}
-
-// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
-func (o GetStreamProcessorOptionsOutput) Dlq() GetStreamProcessorOptionsDlqOutput {
-	return o.ApplyT(func(v GetStreamProcessorOptions) GetStreamProcessorOptionsDlq { return v.Dlq }).(GetStreamProcessorOptionsDlqOutput)
-}
-
-type GetStreamProcessorOptionsAutoscaling struct {
-	// Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
-	MaxTier string `pulumi:"maxTier"`
-	// Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
-	MinTier string `pulumi:"minTier"`
-}
-
-// GetStreamProcessorOptionsAutoscalingInput is an input type that accepts GetStreamProcessorOptionsAutoscalingArgs and GetStreamProcessorOptionsAutoscalingOutput values.
-// You can construct a concrete instance of `GetStreamProcessorOptionsAutoscalingInput` via:
-//
-//	GetStreamProcessorOptionsAutoscalingArgs{...}
-type GetStreamProcessorOptionsAutoscalingInput interface {
-	pulumi.Input
-
-	ToGetStreamProcessorOptionsAutoscalingOutput() GetStreamProcessorOptionsAutoscalingOutput
-	ToGetStreamProcessorOptionsAutoscalingOutputWithContext(context.Context) GetStreamProcessorOptionsAutoscalingOutput
-}
-
-type GetStreamProcessorOptionsAutoscalingArgs struct {
-	// Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
-	MaxTier pulumi.StringInput `pulumi:"maxTier"`
-	// Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
-	MinTier pulumi.StringInput `pulumi:"minTier"`
-}
-
-func (GetStreamProcessorOptionsAutoscalingArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamProcessorOptionsAutoscaling)(nil)).Elem()
-}
-
-func (i GetStreamProcessorOptionsAutoscalingArgs) ToGetStreamProcessorOptionsAutoscalingOutput() GetStreamProcessorOptionsAutoscalingOutput {
-	return i.ToGetStreamProcessorOptionsAutoscalingOutputWithContext(context.Background())
-}
-
-func (i GetStreamProcessorOptionsAutoscalingArgs) ToGetStreamProcessorOptionsAutoscalingOutputWithContext(ctx context.Context) GetStreamProcessorOptionsAutoscalingOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorOptionsAutoscalingOutput)
-}
-
-type GetStreamProcessorOptionsAutoscalingOutput struct{ *pulumi.OutputState }
-
-func (GetStreamProcessorOptionsAutoscalingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamProcessorOptionsAutoscaling)(nil)).Elem()
-}
-
-func (o GetStreamProcessorOptionsAutoscalingOutput) ToGetStreamProcessorOptionsAutoscalingOutput() GetStreamProcessorOptionsAutoscalingOutput {
-	return o
-}
-
-func (o GetStreamProcessorOptionsAutoscalingOutput) ToGetStreamProcessorOptionsAutoscalingOutputWithContext(ctx context.Context) GetStreamProcessorOptionsAutoscalingOutput {
-	return o
-}
-
-// Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
-func (o GetStreamProcessorOptionsAutoscalingOutput) MaxTier() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorOptionsAutoscaling) string { return v.MaxTier }).(pulumi.StringOutput)
-}
-
-// Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
-func (o GetStreamProcessorOptionsAutoscalingOutput) MinTier() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorOptionsAutoscaling) string { return v.MinTier }).(pulumi.StringOutput)
-}
-
-type GetStreamProcessorOptionsDlq struct {
-	// Name of the collection to use for the DLQ.
-	Coll string `pulumi:"coll"`
-	// Name of the connection to write DLQ messages to. Must be an Atlas connection.
-	ConnectionName string `pulumi:"connectionName"`
-	// Name of the database to use for the DLQ.
-	Db string `pulumi:"db"`
-}
-
-// GetStreamProcessorOptionsDlqInput is an input type that accepts GetStreamProcessorOptionsDlqArgs and GetStreamProcessorOptionsDlqOutput values.
-// You can construct a concrete instance of `GetStreamProcessorOptionsDlqInput` via:
-//
-//	GetStreamProcessorOptionsDlqArgs{...}
-type GetStreamProcessorOptionsDlqInput interface {
-	pulumi.Input
-
-	ToGetStreamProcessorOptionsDlqOutput() GetStreamProcessorOptionsDlqOutput
-	ToGetStreamProcessorOptionsDlqOutputWithContext(context.Context) GetStreamProcessorOptionsDlqOutput
-}
-
-type GetStreamProcessorOptionsDlqArgs struct {
-	// Name of the collection to use for the DLQ.
-	Coll pulumi.StringInput `pulumi:"coll"`
-	// Name of the connection to write DLQ messages to. Must be an Atlas connection.
-	ConnectionName pulumi.StringInput `pulumi:"connectionName"`
-	// Name of the database to use for the DLQ.
-	Db pulumi.StringInput `pulumi:"db"`
-}
-
-func (GetStreamProcessorOptionsDlqArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamProcessorOptionsDlq)(nil)).Elem()
-}
-
-func (i GetStreamProcessorOptionsDlqArgs) ToGetStreamProcessorOptionsDlqOutput() GetStreamProcessorOptionsDlqOutput {
-	return i.ToGetStreamProcessorOptionsDlqOutputWithContext(context.Background())
-}
-
-func (i GetStreamProcessorOptionsDlqArgs) ToGetStreamProcessorOptionsDlqOutputWithContext(ctx context.Context) GetStreamProcessorOptionsDlqOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorOptionsDlqOutput)
-}
-
-type GetStreamProcessorOptionsDlqOutput struct{ *pulumi.OutputState }
-
-func (GetStreamProcessorOptionsDlqOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamProcessorOptionsDlq)(nil)).Elem()
-}
-
-func (o GetStreamProcessorOptionsDlqOutput) ToGetStreamProcessorOptionsDlqOutput() GetStreamProcessorOptionsDlqOutput {
-	return o
-}
-
-func (o GetStreamProcessorOptionsDlqOutput) ToGetStreamProcessorOptionsDlqOutputWithContext(ctx context.Context) GetStreamProcessorOptionsDlqOutput {
-	return o
-}
-
-// Name of the collection to use for the DLQ.
-func (o GetStreamProcessorOptionsDlqOutput) Coll() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorOptionsDlq) string { return v.Coll }).(pulumi.StringOutput)
-}
-
-// Name of the connection to write DLQ messages to. Must be an Atlas connection.
-func (o GetStreamProcessorOptionsDlqOutput) ConnectionName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorOptionsDlq) string { return v.ConnectionName }).(pulumi.StringOutput)
-}
-
-// Name of the database to use for the DLQ.
-func (o GetStreamProcessorOptionsDlqOutput) Db() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorOptionsDlq) string { return v.Db }).(pulumi.StringOutput)
-}
-
-type GetStreamProcessorsResult struct {
-	// Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
-	EffectiveTier string `pulumi:"effectiveTier"`
-	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
-	FailoverEnabled bool `pulumi:"failoverEnabled"`
-	// Unique 24-hexadecimal character string that identifies the stream processor.
-	Id string `pulumi:"id"`
-	// Label that identifies the stream processing workspace.
-	//
-	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
-	InstanceName string `pulumi:"instanceName"`
-	// Optional configuration for the stream processor. Empty `options` objects are not supported.
-	Options GetStreamProcessorsResultOptions `pulumi:"options"`
-	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
-	Pipeline string `pulumi:"pipeline"`
-	// Label that identifies the stream processor.
-	ProcessorName string `pulumi:"processorName"`
-	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-	ProjectId string `pulumi:"projectId"`
-	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
-	State string `pulumi:"state"`
-	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
-	Stats string `pulumi:"stats"`
-	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
-	Tier string `pulumi:"tier"`
-	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
-	WorkspaceName string `pulumi:"workspaceName"`
-}
-
-// GetStreamProcessorsResultInput is an input type that accepts GetStreamProcessorsResultArgs and GetStreamProcessorsResultOutput values.
-// You can construct a concrete instance of `GetStreamProcessorsResultInput` via:
-//
-//	GetStreamProcessorsResultArgs{...}
-type GetStreamProcessorsResultInput interface {
-	pulumi.Input
-
-	ToGetStreamProcessorsResultOutput() GetStreamProcessorsResultOutput
-	ToGetStreamProcessorsResultOutputWithContext(context.Context) GetStreamProcessorsResultOutput
-}
-
-type GetStreamProcessorsResultArgs struct {
-	// Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
-	EffectiveTier pulumi.StringInput `pulumi:"effectiveTier"`
-	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
-	FailoverEnabled pulumi.BoolInput `pulumi:"failoverEnabled"`
-	// Unique 24-hexadecimal character string that identifies the stream processor.
-	Id pulumi.StringInput `pulumi:"id"`
-	// Label that identifies the stream processing workspace.
-	//
-	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
-	InstanceName pulumi.StringInput `pulumi:"instanceName"`
-	// Optional configuration for the stream processor. Empty `options` objects are not supported.
-	Options GetStreamProcessorsResultOptionsInput `pulumi:"options"`
-	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
-	Pipeline pulumi.StringInput `pulumi:"pipeline"`
-	// Label that identifies the stream processor.
-	ProcessorName pulumi.StringInput `pulumi:"processorName"`
-	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
-	State pulumi.StringInput `pulumi:"state"`
-	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
-	Stats pulumi.StringInput `pulumi:"stats"`
-	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
-	Tier pulumi.StringInput `pulumi:"tier"`
-	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
-	WorkspaceName pulumi.StringInput `pulumi:"workspaceName"`
-}
-
-func (GetStreamProcessorsResultArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamProcessorsResult)(nil)).Elem()
-}
-
-func (i GetStreamProcessorsResultArgs) ToGetStreamProcessorsResultOutput() GetStreamProcessorsResultOutput {
-	return i.ToGetStreamProcessorsResultOutputWithContext(context.Background())
-}
-
-func (i GetStreamProcessorsResultArgs) ToGetStreamProcessorsResultOutputWithContext(ctx context.Context) GetStreamProcessorsResultOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorsResultOutput)
-}
-
-// GetStreamProcessorsResultArrayInput is an input type that accepts GetStreamProcessorsResultArray and GetStreamProcessorsResultArrayOutput values.
-// You can construct a concrete instance of `GetStreamProcessorsResultArrayInput` via:
-//
-//	GetStreamProcessorsResultArray{ GetStreamProcessorsResultArgs{...} }
-type GetStreamProcessorsResultArrayInput interface {
-	pulumi.Input
-
-	ToGetStreamProcessorsResultArrayOutput() GetStreamProcessorsResultArrayOutput
-	ToGetStreamProcessorsResultArrayOutputWithContext(context.Context) GetStreamProcessorsResultArrayOutput
-}
-
-type GetStreamProcessorsResultArray []GetStreamProcessorsResultInput
-
-func (GetStreamProcessorsResultArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetStreamProcessorsResult)(nil)).Elem()
-}
-
-func (i GetStreamProcessorsResultArray) ToGetStreamProcessorsResultArrayOutput() GetStreamProcessorsResultArrayOutput {
-	return i.ToGetStreamProcessorsResultArrayOutputWithContext(context.Background())
-}
-
-func (i GetStreamProcessorsResultArray) ToGetStreamProcessorsResultArrayOutputWithContext(ctx context.Context) GetStreamProcessorsResultArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorsResultArrayOutput)
-}
-
-type GetStreamProcessorsResultOutput struct{ *pulumi.OutputState }
-
-func (GetStreamProcessorsResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamProcessorsResult)(nil)).Elem()
-}
-
-func (o GetStreamProcessorsResultOutput) ToGetStreamProcessorsResultOutput() GetStreamProcessorsResultOutput {
-	return o
-}
-
-func (o GetStreamProcessorsResultOutput) ToGetStreamProcessorsResultOutputWithContext(ctx context.Context) GetStreamProcessorsResultOutput {
-	return o
-}
-
-// Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
-func (o GetStreamProcessorsResultOutput) EffectiveTier() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.EffectiveTier }).(pulumi.StringOutput)
-}
-
-// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
-func (o GetStreamProcessorsResultOutput) FailoverEnabled() pulumi.BoolOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResult) bool { return v.FailoverEnabled }).(pulumi.BoolOutput)
-}
-
-// Unique 24-hexadecimal character string that identifies the stream processor.
-func (o GetStreamProcessorsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Label that identifies the stream processing workspace.
-//
-// Deprecated: This parameter is deprecated. Please transition to workspace_name.
-func (o GetStreamProcessorsResultOutput) InstanceName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.InstanceName }).(pulumi.StringOutput)
-}
-
-// Optional configuration for the stream processor. Empty `options` objects are not supported.
-func (o GetStreamProcessorsResultOutput) Options() GetStreamProcessorsResultOptionsOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResult) GetStreamProcessorsResultOptions { return v.Options }).(GetStreamProcessorsResultOptionsOutput)
-}
-
-// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
-func (o GetStreamProcessorsResultOutput) Pipeline() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.Pipeline }).(pulumi.StringOutput)
-}
-
-// Label that identifies the stream processor.
-func (o GetStreamProcessorsResultOutput) ProcessorName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.ProcessorName }).(pulumi.StringOutput)
-}
-
-// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-func (o GetStreamProcessorsResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.ProjectId }).(pulumi.StringOutput)
-}
-
-// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
-func (o GetStreamProcessorsResultOutput) State() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.State }).(pulumi.StringOutput)
-}
-
-// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
-func (o GetStreamProcessorsResultOutput) Stats() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.Stats }).(pulumi.StringOutput)
-}
-
-// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
-func (o GetStreamProcessorsResultOutput) Tier() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.Tier }).(pulumi.StringOutput)
-}
-
-// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
-func (o GetStreamProcessorsResultOutput) WorkspaceName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.WorkspaceName }).(pulumi.StringOutput)
-}
-
-type GetStreamProcessorsResultArrayOutput struct{ *pulumi.OutputState }
-
-func (GetStreamProcessorsResultArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetStreamProcessorsResult)(nil)).Elem()
-}
-
-func (o GetStreamProcessorsResultArrayOutput) ToGetStreamProcessorsResultArrayOutput() GetStreamProcessorsResultArrayOutput {
-	return o
-}
-
-func (o GetStreamProcessorsResultArrayOutput) ToGetStreamProcessorsResultArrayOutputWithContext(ctx context.Context) GetStreamProcessorsResultArrayOutput {
-	return o
-}
-
-func (o GetStreamProcessorsResultArrayOutput) Index(i pulumi.IntInput) GetStreamProcessorsResultOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamProcessorsResult {
-		return vs[0].([]GetStreamProcessorsResult)[vs[1].(int)]
-	}).(GetStreamProcessorsResultOutput)
-}
-
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterAdvancedConfigurationInput)(nil)).Elem(), AdvancedClusterAdvancedConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterAdvancedConfigurationPtrInput)(nil)).Elem(), AdvancedClusterAdvancedConfigurationArgs{})
@@ -67331,6 +68117,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupCollectionRestoreJobTimeoutsPtrInput)(nil)).Elem(), CloudBackupCollectionRestoreJobTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleCopySettingInput)(nil)).Elem(), CloudBackupScheduleCopySettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleCopySettingArrayInput)(nil)).Elem(), CloudBackupScheduleCopySettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleCopySettingCopyPolicyItemInput)(nil)).Elem(), CloudBackupScheduleCopySettingCopyPolicyItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleCopySettingCopyPolicyItemArrayInput)(nil)).Elem(), CloudBackupScheduleCopySettingCopyPolicyItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleExportInput)(nil)).Elem(), CloudBackupScheduleExportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupScheduleExportPtrInput)(nil)).Elem(), CloudBackupScheduleExportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CloudBackupSchedulePolicyItemDailyInput)(nil)).Elem(), CloudBackupSchedulePolicyItemDailyArgs{})
@@ -67477,6 +68265,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LogIntegrationOtelSuppliedHeaderArrayInput)(nil)).Elem(), LogIntegrationOtelSuppliedHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MaintenanceWindowProtectedHoursInput)(nil)).Elem(), MaintenanceWindowProtectedHoursArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MaintenanceWindowProtectedHoursPtrInput)(nil)).Elem(), MaintenanceWindowProtectedHoursArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*McpConfigIpAccessListInput)(nil)).Elem(), McpConfigIpAccessListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*McpConfigIpAccessListArrayInput)(nil)).Elem(), McpConfigIpAccessListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MetricIntegrationHeaderInput)(nil)).Elem(), MetricIntegrationHeaderArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MetricIntegrationHeaderArrayInput)(nil)).Elem(), MetricIntegrationHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MetricIntegrationHeadersRedactedInput)(nil)).Elem(), MetricIntegrationHeadersRedactedArgs{})
@@ -67491,6 +68281,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchivePartitionFieldArrayInput)(nil)).Elem(), OnlineArchivePartitionFieldArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveScheduleInput)(nil)).Elem(), OnlineArchiveScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveSchedulePtrInput)(nil)).Elem(), OnlineArchiveScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationCustomSessionTimeoutsInput)(nil)).Elem(), OrganizationCustomSessionTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationCustomSessionTimeoutsPtrInput)(nil)).Elem(), OrganizationCustomSessionTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationServiceAccountInput)(nil)).Elem(), OrganizationServiceAccountArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationServiceAccountPtrInput)(nil)).Elem(), OrganizationServiceAccountArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationServiceAccountSecretInput)(nil)).Elem(), OrganizationServiceAccountSecretArgs{})
@@ -67511,6 +68303,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectIpAddressesServicesClusterArrayInput)(nil)).Elem(), ProjectIpAddressesServicesClusterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectLimitInput)(nil)).Elem(), ProjectLimitArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectLimitArrayInput)(nil)).Elem(), ProjectLimitArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProjectMcpConfigIpAccessListInput)(nil)).Elem(), ProjectMcpConfigIpAccessListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ProjectMcpConfigIpAccessListArrayInput)(nil)).Elem(), ProjectMcpConfigIpAccessListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectServiceAccountSecretTypeInput)(nil)).Elem(), ProjectServiceAccountSecretTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectServiceAccountSecretTypeArrayInput)(nil)).Elem(), ProjectServiceAccountSecretTypeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ProjectTeamInput)(nil)).Elem(), ProjectTeamArgs{})
@@ -67713,6 +68507,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupCollectionRestoreJobsResultIndexStatusInput)(nil)).Elem(), GetCloudBackupCollectionRestoreJobsResultIndexStatusArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleCopySettingInput)(nil)).Elem(), GetCloudBackupScheduleCopySettingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleCopySettingArrayInput)(nil)).Elem(), GetCloudBackupScheduleCopySettingArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleCopySettingCopyPolicyItemInput)(nil)).Elem(), GetCloudBackupScheduleCopySettingCopyPolicyItemArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleCopySettingCopyPolicyItemArrayInput)(nil)).Elem(), GetCloudBackupScheduleCopySettingCopyPolicyItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleExportInput)(nil)).Elem(), GetCloudBackupScheduleExportArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupScheduleExportArrayInput)(nil)).Elem(), GetCloudBackupScheduleExportArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetCloudBackupSchedulePolicyItemDailyInput)(nil)).Elem(), GetCloudBackupSchedulePolicyItemDailyArgs{})
@@ -67992,6 +68788,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetLogIntegrationsResultOtelSuppliedHeaderArrayInput)(nil)).Elem(), GetLogIntegrationsResultOtelSuppliedHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMaintenanceWindowProtectedHourInput)(nil)).Elem(), GetMaintenanceWindowProtectedHourArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMaintenanceWindowProtectedHourArrayInput)(nil)).Elem(), GetMaintenanceWindowProtectedHourArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMcpConfigIpAccessListInput)(nil)).Elem(), GetMcpConfigIpAccessListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMcpConfigIpAccessListArrayInput)(nil)).Elem(), GetMcpConfigIpAccessListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMcpConfigSecretsResultInput)(nil)).Elem(), GetMcpConfigSecretsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMcpConfigSecretsResultArrayInput)(nil)).Elem(), GetMcpConfigSecretsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMcpConfigsResultInput)(nil)).Elem(), GetMcpConfigsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMcpConfigsResultArrayInput)(nil)).Elem(), GetMcpConfigsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMcpConfigsResultIpAccessListInput)(nil)).Elem(), GetMcpConfigsResultIpAccessListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMcpConfigsResultIpAccessListArrayInput)(nil)).Elem(), GetMcpConfigsResultIpAccessListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationHeadersRedactedInput)(nil)).Elem(), GetMetricIntegrationHeadersRedactedArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationHeadersRedactedArrayInput)(nil)).Elem(), GetMetricIntegrationHeadersRedactedArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationsResultInput)(nil)).Elem(), GetMetricIntegrationsResultArgs{})
@@ -68024,6 +68828,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultPartitionFieldArrayInput)(nil)).Elem(), GetOnlineArchivesResultPartitionFieldArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultScheduleInput)(nil)).Elem(), GetOnlineArchivesResultScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultScheduleArrayInput)(nil)).Elem(), GetOnlineArchivesResultScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationCustomSessionTimeoutInput)(nil)).Elem(), GetOrganizationCustomSessionTimeoutArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationCustomSessionTimeoutArrayInput)(nil)).Elem(), GetOrganizationCustomSessionTimeoutArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationLinkInput)(nil)).Elem(), GetOrganizationLinkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationLinkArrayInput)(nil)).Elem(), GetOrganizationLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationUserInput)(nil)).Elem(), GetOrganizationUserArgs{})
@@ -68034,6 +68840,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationUserRoleProjectRoleAssignmentArrayInput)(nil)).Elem(), GetOrganizationUserRoleProjectRoleAssignmentArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationsResultInput)(nil)).Elem(), GetOrganizationsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationsResultArrayInput)(nil)).Elem(), GetOrganizationsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationsResultCustomSessionTimeoutInput)(nil)).Elem(), GetOrganizationsResultCustomSessionTimeoutArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationsResultCustomSessionTimeoutArrayInput)(nil)).Elem(), GetOrganizationsResultCustomSessionTimeoutArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationsResultLinkInput)(nil)).Elem(), GetOrganizationsResultLinkArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationsResultLinkArrayInput)(nil)).Elem(), GetOrganizationsResultLinkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationsResultUserInput)(nil)).Elem(), GetOrganizationsResultUserArgs{})
@@ -68062,6 +68870,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectIpAddressesServicesClusterArrayInput)(nil)).Elem(), GetProjectIpAddressesServicesClusterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectLimitInput)(nil)).Elem(), GetProjectLimitArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectLimitArrayInput)(nil)).Elem(), GetProjectLimitArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectMcpConfigIpAccessListInput)(nil)).Elem(), GetProjectMcpConfigIpAccessListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectMcpConfigIpAccessListArrayInput)(nil)).Elem(), GetProjectMcpConfigIpAccessListArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectMcpConfigSecretsResultInput)(nil)).Elem(), GetProjectMcpConfigSecretsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectMcpConfigSecretsResultArrayInput)(nil)).Elem(), GetProjectMcpConfigSecretsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectMcpConfigsResultInput)(nil)).Elem(), GetProjectMcpConfigsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectMcpConfigsResultArrayInput)(nil)).Elem(), GetProjectMcpConfigsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectMcpConfigsResultIpAccessListInput)(nil)).Elem(), GetProjectMcpConfigsResultIpAccessListArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectMcpConfigsResultIpAccessListArrayInput)(nil)).Elem(), GetProjectMcpConfigsResultIpAccessListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectServiceAccountAccessListEntriesResultInput)(nil)).Elem(), GetProjectServiceAccountAccessListEntriesResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectServiceAccountAccessListEntriesResultArrayInput)(nil)).Elem(), GetProjectServiceAccountAccessListEntriesResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetProjectServiceAccountSecretTypeInput)(nil)).Elem(), GetProjectServiceAccountSecretTypeArgs{})
@@ -68167,24 +68983,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAwsInput)(nil)).Elem(), GetStreamConnectionsResultAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAzureInput)(nil)).Elem(), GetStreamConnectionsResultAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionsResultDbRoleToExecuteArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultGcpInput)(nil)).Elem(), GetStreamConnectionsResultGcpArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultNetworkingInput)(nil)).Elem(), GetStreamConnectionsResultNetworkingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionsResultNetworkingAccessArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultSchemaRegistryAuthenticationInput)(nil)).Elem(), GetStreamConnectionsResultSchemaRegistryAuthenticationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultSecurityInput)(nil)).Elem(), GetStreamConnectionsResultSecurityArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstanceDataProcessRegionInput)(nil)).Elem(), GetStreamInstanceDataProcessRegionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstanceStreamConfigInput)(nil)).Elem(), GetStreamInstanceStreamConfigArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultInput)(nil)).Elem(), GetStreamInstancesResultArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultArrayInput)(nil)).Elem(), GetStreamInstancesResultArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultDataProcessRegionInput)(nil)).Elem(), GetStreamInstancesResultDataProcessRegionArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultStreamConfigInput)(nil)).Elem(), GetStreamInstancesResultStreamConfigArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamPrivatelinkEndpointsResultInput)(nil)).Elem(), GetStreamPrivatelinkEndpointsResultArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamPrivatelinkEndpointsResultArrayInput)(nil)).Elem(), GetStreamPrivatelinkEndpointsResultArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorOptionsInput)(nil)).Elem(), GetStreamProcessorOptionsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorOptionsAutoscalingInput)(nil)).Elem(), GetStreamProcessorOptionsAutoscalingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorOptionsDlqInput)(nil)).Elem(), GetStreamProcessorOptionsDlqArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultInput)(nil)).Elem(), GetStreamProcessorsResultArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultArrayInput)(nil)).Elem(), GetStreamProcessorsResultArray{})
 	pulumi.RegisterOutputType(AdvancedClusterAdvancedConfigurationOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterAdvancedConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterBiConnectorConfigOutput{})
@@ -68243,6 +69041,8 @@ func init() {
 	pulumi.RegisterOutputType(CloudBackupCollectionRestoreJobTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleCopySettingOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleCopySettingArrayOutput{})
+	pulumi.RegisterOutputType(CloudBackupScheduleCopySettingCopyPolicyItemOutput{})
+	pulumi.RegisterOutputType(CloudBackupScheduleCopySettingCopyPolicyItemArrayOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleExportOutput{})
 	pulumi.RegisterOutputType(CloudBackupScheduleExportPtrOutput{})
 	pulumi.RegisterOutputType(CloudBackupSchedulePolicyItemDailyOutput{})
@@ -68389,6 +69189,8 @@ func init() {
 	pulumi.RegisterOutputType(LogIntegrationOtelSuppliedHeaderArrayOutput{})
 	pulumi.RegisterOutputType(MaintenanceWindowProtectedHoursOutput{})
 	pulumi.RegisterOutputType(MaintenanceWindowProtectedHoursPtrOutput{})
+	pulumi.RegisterOutputType(McpConfigIpAccessListOutput{})
+	pulumi.RegisterOutputType(McpConfigIpAccessListArrayOutput{})
 	pulumi.RegisterOutputType(MetricIntegrationHeaderOutput{})
 	pulumi.RegisterOutputType(MetricIntegrationHeaderArrayOutput{})
 	pulumi.RegisterOutputType(MetricIntegrationHeadersRedactedOutput{})
@@ -68403,6 +69205,8 @@ func init() {
 	pulumi.RegisterOutputType(OnlineArchivePartitionFieldArrayOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveScheduleOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveSchedulePtrOutput{})
+	pulumi.RegisterOutputType(OrganizationCustomSessionTimeoutsOutput{})
+	pulumi.RegisterOutputType(OrganizationCustomSessionTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(OrganizationServiceAccountOutput{})
 	pulumi.RegisterOutputType(OrganizationServiceAccountPtrOutput{})
 	pulumi.RegisterOutputType(OrganizationServiceAccountSecretOutput{})
@@ -68423,6 +69227,8 @@ func init() {
 	pulumi.RegisterOutputType(ProjectIpAddressesServicesClusterArrayOutput{})
 	pulumi.RegisterOutputType(ProjectLimitOutput{})
 	pulumi.RegisterOutputType(ProjectLimitArrayOutput{})
+	pulumi.RegisterOutputType(ProjectMcpConfigIpAccessListOutput{})
+	pulumi.RegisterOutputType(ProjectMcpConfigIpAccessListArrayOutput{})
 	pulumi.RegisterOutputType(ProjectServiceAccountSecretTypeOutput{})
 	pulumi.RegisterOutputType(ProjectServiceAccountSecretTypeArrayOutput{})
 	pulumi.RegisterOutputType(ProjectTeamOutput{})
@@ -68625,6 +69431,8 @@ func init() {
 	pulumi.RegisterOutputType(GetCloudBackupCollectionRestoreJobsResultIndexStatusOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleCopySettingOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleCopySettingArrayOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupScheduleCopySettingCopyPolicyItemOutput{})
+	pulumi.RegisterOutputType(GetCloudBackupScheduleCopySettingCopyPolicyItemArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleExportOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupScheduleExportArrayOutput{})
 	pulumi.RegisterOutputType(GetCloudBackupSchedulePolicyItemDailyOutput{})
@@ -68904,6 +69712,14 @@ func init() {
 	pulumi.RegisterOutputType(GetLogIntegrationsResultOtelSuppliedHeaderArrayOutput{})
 	pulumi.RegisterOutputType(GetMaintenanceWindowProtectedHourOutput{})
 	pulumi.RegisterOutputType(GetMaintenanceWindowProtectedHourArrayOutput{})
+	pulumi.RegisterOutputType(GetMcpConfigIpAccessListOutput{})
+	pulumi.RegisterOutputType(GetMcpConfigIpAccessListArrayOutput{})
+	pulumi.RegisterOutputType(GetMcpConfigSecretsResultOutput{})
+	pulumi.RegisterOutputType(GetMcpConfigSecretsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetMcpConfigsResultOutput{})
+	pulumi.RegisterOutputType(GetMcpConfigsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetMcpConfigsResultIpAccessListOutput{})
+	pulumi.RegisterOutputType(GetMcpConfigsResultIpAccessListArrayOutput{})
 	pulumi.RegisterOutputType(GetMetricIntegrationHeadersRedactedOutput{})
 	pulumi.RegisterOutputType(GetMetricIntegrationHeadersRedactedArrayOutput{})
 	pulumi.RegisterOutputType(GetMetricIntegrationsResultOutput{})
@@ -68936,6 +69752,8 @@ func init() {
 	pulumi.RegisterOutputType(GetOnlineArchivesResultPartitionFieldArrayOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultScheduleOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultScheduleArrayOutput{})
+	pulumi.RegisterOutputType(GetOrganizationCustomSessionTimeoutOutput{})
+	pulumi.RegisterOutputType(GetOrganizationCustomSessionTimeoutArrayOutput{})
 	pulumi.RegisterOutputType(GetOrganizationLinkOutput{})
 	pulumi.RegisterOutputType(GetOrganizationLinkArrayOutput{})
 	pulumi.RegisterOutputType(GetOrganizationUserOutput{})
@@ -68946,6 +69764,8 @@ func init() {
 	pulumi.RegisterOutputType(GetOrganizationUserRoleProjectRoleAssignmentArrayOutput{})
 	pulumi.RegisterOutputType(GetOrganizationsResultOutput{})
 	pulumi.RegisterOutputType(GetOrganizationsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetOrganizationsResultCustomSessionTimeoutOutput{})
+	pulumi.RegisterOutputType(GetOrganizationsResultCustomSessionTimeoutArrayOutput{})
 	pulumi.RegisterOutputType(GetOrganizationsResultLinkOutput{})
 	pulumi.RegisterOutputType(GetOrganizationsResultLinkArrayOutput{})
 	pulumi.RegisterOutputType(GetOrganizationsResultUserOutput{})
@@ -68974,6 +69794,14 @@ func init() {
 	pulumi.RegisterOutputType(GetProjectIpAddressesServicesClusterArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectLimitOutput{})
 	pulumi.RegisterOutputType(GetProjectLimitArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectMcpConfigIpAccessListOutput{})
+	pulumi.RegisterOutputType(GetProjectMcpConfigIpAccessListArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectMcpConfigSecretsResultOutput{})
+	pulumi.RegisterOutputType(GetProjectMcpConfigSecretsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectMcpConfigsResultOutput{})
+	pulumi.RegisterOutputType(GetProjectMcpConfigsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetProjectMcpConfigsResultIpAccessListOutput{})
+	pulumi.RegisterOutputType(GetProjectMcpConfigsResultIpAccessListArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectServiceAccountAccessListEntriesResultOutput{})
 	pulumi.RegisterOutputType(GetProjectServiceAccountAccessListEntriesResultArrayOutput{})
 	pulumi.RegisterOutputType(GetProjectServiceAccountSecretTypeOutput{})
@@ -69079,22 +69907,4 @@ func init() {
 	pulumi.RegisterOutputType(GetStreamConnectionsResultAwsOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultAzureOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultDbRoleToExecuteOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionsResultGcpOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionsResultNetworkingOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionsResultNetworkingAccessOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionsResultSchemaRegistryAuthenticationOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionsResultSecurityOutput{})
-	pulumi.RegisterOutputType(GetStreamInstanceDataProcessRegionOutput{})
-	pulumi.RegisterOutputType(GetStreamInstanceStreamConfigOutput{})
-	pulumi.RegisterOutputType(GetStreamInstancesResultOutput{})
-	pulumi.RegisterOutputType(GetStreamInstancesResultArrayOutput{})
-	pulumi.RegisterOutputType(GetStreamInstancesResultDataProcessRegionOutput{})
-	pulumi.RegisterOutputType(GetStreamInstancesResultStreamConfigOutput{})
-	pulumi.RegisterOutputType(GetStreamPrivatelinkEndpointsResultOutput{})
-	pulumi.RegisterOutputType(GetStreamPrivatelinkEndpointsResultArrayOutput{})
-	pulumi.RegisterOutputType(GetStreamProcessorOptionsOutput{})
-	pulumi.RegisterOutputType(GetStreamProcessorOptionsAutoscalingOutput{})
-	pulumi.RegisterOutputType(GetStreamProcessorOptionsDlqOutput{})
-	pulumi.RegisterOutputType(GetStreamProcessorsResultOutput{})
-	pulumi.RegisterOutputType(GetStreamProcessorsResultArrayOutput{})
 }

@@ -45,19 +45,22 @@ import * as utilities from "./utilities";
  *         retentionUnit: "days",
  *         retentionValue: 14,
  *     },
+ *     copyPolicyItemsEnabled: true,
  *     copySettings: [{
  *         cloudProvider: "AWS",
- *         frequencies: [
- *             "HOURLY",
- *             "DAILY",
- *             "WEEKLY",
- *             "MONTHLY",
- *             "YEARLY",
- *             "ON_DEMAND",
- *         ],
  *         regionName: "US_EAST_1",
  *         zoneId: myCluster.replicationSpecs.apply(replicationSpecs => replicationSpecs.map(__item => __item.zoneId?.[0])),
  *         shouldCopyOplogs: false,
+ *         copyPolicyItems: [
+ *             {
+ *                 frequencyType: "daily",
+ *                 retentionUnit: "days",
+ *                 retentionValue: 7,
+ *             },
+ *             {
+ *                 frequencyType: "ondemand",
+ *             },
+ *         ],
  *     }],
  * });
  * const test = mongodbatlas.getCloudBackupScheduleOutput({
@@ -103,6 +106,10 @@ export interface GetCloudBackupScheduleResult {
      */
     readonly clusterId: string;
     readonly clusterName: string;
+    /**
+     * Flag that indicates whether copy settings use `copyPolicyItems` or `lastNumberOfSnapshots` instead of `frequencies`.
+     */
+    readonly copyPolicyItemsEnabled: boolean;
     /**
      * List that contains a document for each copy setting item in the desired backup policy. See below
      */
@@ -200,19 +207,22 @@ export interface GetCloudBackupScheduleResult {
  *         retentionUnit: "days",
  *         retentionValue: 14,
  *     },
+ *     copyPolicyItemsEnabled: true,
  *     copySettings: [{
  *         cloudProvider: "AWS",
- *         frequencies: [
- *             "HOURLY",
- *             "DAILY",
- *             "WEEKLY",
- *             "MONTHLY",
- *             "YEARLY",
- *             "ON_DEMAND",
- *         ],
  *         regionName: "US_EAST_1",
  *         zoneId: myCluster.replicationSpecs.apply(replicationSpecs => replicationSpecs.map(__item => __item.zoneId?.[0])),
  *         shouldCopyOplogs: false,
+ *         copyPolicyItems: [
+ *             {
+ *                 frequencyType: "daily",
+ *                 retentionUnit: "days",
+ *                 retentionValue: 7,
+ *             },
+ *             {
+ *                 frequencyType: "ondemand",
+ *             },
+ *         ],
  *     }],
  * });
  * const test = mongodbatlas.getCloudBackupScheduleOutput({

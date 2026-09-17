@@ -6,12 +6,20 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetProjectServiceAccountsResult;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import javax.annotation.Nullable;
 
 @CustomType
 public final class GetProjectServiceAccountsInvokeResult {
+    /**
+     * @return Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+     * 
+     */
+    private @Nullable Boolean includeSystemManaged;
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
@@ -24,6 +32,13 @@ public final class GetProjectServiceAccountsInvokeResult {
     private List<GetProjectServiceAccountsResult> results;
 
     private GetProjectServiceAccountsInvokeResult() {}
+    /**
+     * @return Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
+     * 
+     */
+    public Optional<Boolean> includeSystemManaged() {
+        return Optional.ofNullable(this.includeSystemManaged);
+    }
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
@@ -48,15 +63,23 @@ public final class GetProjectServiceAccountsInvokeResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Boolean includeSystemManaged;
         private String projectId;
         private List<GetProjectServiceAccountsResult> results;
         public Builder() {}
         public Builder(GetProjectServiceAccountsInvokeResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.includeSystemManaged = defaults.includeSystemManaged;
     	      this.projectId = defaults.projectId;
     	      this.results = defaults.results;
         }
 
+        @CustomType.Setter
+        public Builder includeSystemManaged(@Nullable Boolean includeSystemManaged) {
+
+            this.includeSystemManaged = includeSystemManaged;
+            return this;
+        }
         @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
@@ -78,6 +101,7 @@ public final class GetProjectServiceAccountsInvokeResult {
         }
         public GetProjectServiceAccountsInvokeResult build() {
             final var _resultValue = new GetProjectServiceAccountsInvokeResult();
+            _resultValue.includeSystemManaged = includeSystemManaged;
             _resultValue.projectId = projectId;
             _resultValue.results = results;
             return _resultValue;

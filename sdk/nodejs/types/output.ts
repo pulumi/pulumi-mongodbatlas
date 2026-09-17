@@ -232,7 +232,9 @@ export interface AdvancedClusterReplicationSpecRegionConfig {
     /**
      * Physical location of your MongoDB cluster. The region you choose can affect network latency for clients accessing your databases.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/).
      *
-     * For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes, see [Supported Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions).
+     * For the list of AWS regions that support [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes, see [Supported AWS Regions](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#supported-regions). For the list of GCP regions that support Gen2 instance sizes, see [Supported GCP Regions](https://www.mongodb.com/docs/atlas/reference/google-gcp/#supported-regions).
+     *
+     * Gen2 clusters can span regions only if every region you deploy to supports Gen2 instance sizes on the cluster's cloud provider. Gen2 clusters don't support multi-cloud deployments.
      */
     regionName: string;
 }
@@ -267,24 +269,29 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling 
 
 export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
      *
+     * For AWS, valid configurations are:
      * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
      * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-     * * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+     * * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
      *
-     * For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+     * For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+     * * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+     * * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+     *
+     * For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
      */
     diskIops: number;
     /**
-     * Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+     * Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-     * * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-     * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-     * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+     * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+     * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+     * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
      */
     ebsVolumeType: string;
     /**
@@ -292,7 +299,9 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
      *
      * Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
      *
-     * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+     * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+     *
+     * GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
      */
     instanceSize: string;
     /**
@@ -341,25 +350,29 @@ export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
 
 export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider.
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
      *
      * For AWS, valid configurations are:
      * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
      * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-     * * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+     * * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
      *
-     * For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
+     * For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+     * * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+     * * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+     *
+     * For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
      */
     diskIops: number;
     /**
-     * Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+     * Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-     * * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-     * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-     * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+     * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+     * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+     * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
      */
     ebsVolumeType: string;
     /**
@@ -367,7 +380,9 @@ export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
      *
      * Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
      *
-     * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+     * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+     *
+     * GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
      */
     instanceSize: string;
     /**
@@ -378,24 +393,29 @@ export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
 
 export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
     /**
-     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS or Azure as your cloud service provider. For AWS, valid configurations are:
+     * Target IOPS (Input/Output Operations Per Second) desired for storage attached to this hardware. You can set this attribute if you selected AWS, GCP, or Azure as your cloud service provider.
      *
+     * For AWS, valid configurations are:
      * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `STANDARD`: configurable between 3000 and 80000 IOPS.
      * * For Gen2 instance sizes (`M30_GEN_2` or greater) with `ebsVolumeType` set to `HIGH_PERFORMANCE`: configurable within the allowable range for the selected volume size.
-     * * For M30 or greater (not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
+     * * For Gen1 instance sizes (`M30` or greater, not including `Mxx_NVME` tiers) with `ebsVolumeType` set to `PROVISIONED`: configurable within the allowable range for the selected volume size.
      *
-     * For Azure, `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
+     * For GCP, you can set this attribute only for Gen2 instance sizes (`M30_GEN_2` or greater), which use Hyperdisk Balanced storage. Gen1 instance sizes don't support configurable IOPS. The valid range depends on `diskSizeGb` and the selected instance size:
+     * * The minimum value is the greater of 3000 and three times `diskSizeGb`.
+     * * The maximum value is the lesser of 500 times `diskSizeGb` and the maximum IOPS for the selected instance size, up to 160000 IOPS.
+     *
+     * For Azure (Gen1 only; Azure doesn't support Gen2), `instanceSize` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
      */
     diskIops: number;
     /**
-     * Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** Using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, it should be used only with the Provisioned IOPS volume type. When using Provisioned IOPS, the diskSizeGb parameter specifies the storage capacity, but the IOPS are set independently. Ensuring that `diskSizeGb` is used exclusively with Provisioned IOPS will help avoid these issues.
+     * Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Valid values are:
-     * * `STANDARD` volume types use gp3 storage. For Gen 2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
-     * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
-     * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size.
+     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+     * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
+     * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
+     * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
      */
     ebsVolumeType: string;
     /**
@@ -403,7 +423,9 @@ export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      *
      * Cluster tier names in the `instanceSize` attribute are prepended with `R` instead of `M` if they run a low-CPU version of the cluster, for example `R40`. For a complete list of Low-CPU instance clusters see Cluster Configuration Options under each [Cloud Provider](https://www.mongodb.com/docs/atlas/reference/cloud-providers).
      *
-     * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#aws-gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`.
+     * [Gen2](https://www.mongodb.com/docs/atlas/manage-clusters/#gen2-dedicated-clusters) instance sizes use the `_GEN_2` suffix, for example `M30_GEN_2`. AWS and GCP support Gen2 instance sizes. Azure doesn't support Gen2 instance sizes.
+     *
+     * GCP supports the following Gen2 instance sizes: `M30_GEN_2`, `M40_GEN_2`, `M50_GEN_2`, `M60_GEN_2`, `M80_GEN_2`, `M140_GEN_2`, `M200_GEN_2`, `R40_GEN_2`, `R50_GEN_2`, `R60_GEN_2`, `R80_GEN_2`, `R200_GEN_2`, `R300_GEN_2`, and `R400_GEN_2`. GCP doesn't support `Mxx_NVME` Gen2 instance sizes.
      */
     instanceSize: string;
     /**
@@ -785,9 +807,19 @@ export interface CloudBackupScheduleCopySetting {
      */
     cloudProvider: string;
     /**
-     * List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "ON_DEMAND"
+     * Copy-policy items when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `lastNumberOfSnapshots`. See below.
+     */
+    copyPolicyItems?: outputs.CloudBackupScheduleCopySettingCopyPolicyItem[];
+    /**
+     * List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false or omitted. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Mutually exclusive with `copyPolicyItems` and `lastNumberOfSnapshots` on the same entry. You can switch an entry from `frequencies` to `copyPolicyItems` or `lastNumberOfSnapshots` in one apply; the switch back is not possible because `copyPolicyItemsEnabled` cannot be turned off once it is `true`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+     *
+     * @deprecated This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
      */
     frequencies: string[];
+    /**
+     * Number of most recent snapshots to copy, from 1 to 500, when `copyPolicyItemsEnabled` is true. Mutually exclusive with `frequencies` and `copyPolicyItems`.
+     */
+    lastNumberOfSnapshots?: number;
     /**
      * Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
      */
@@ -800,6 +832,27 @@ export interface CloudBackupScheduleCopySetting {
      * Unique 24-hexadecimal digit string that identifies the zone in a cluster. For global clusters, there can be multiple zones to choose from. For sharded clusters and replica set clusters, there is only one zone in the cluster. To find appropriate value for `zoneId`, do a GET request to Return One Cluster from One Project and consult the replicationSpecs array [Return One Cluster From One Project](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-getcluster). Alternately, use `mongodbatlas.AdvancedCluster` data source or resource and reference `replication_specs.#.zone_id`.
      */
     zoneId: string;
+}
+
+export interface CloudBackupScheduleCopySettingCopyPolicyItem {
+    /**
+     * Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the copy policy item.
+     *
+     * **Note** The write-only array `deleteCopiedBackups` is not supported in Terraform. Use the Atlas Admin API or Atlas CLI to manage that array. It is not the same as `deleteCopySnapshots` on the resource.
+     */
+    id: string;
+    /**
+     * Unit of time for copy retention: `days`, `weeks`, `months`, or `years`. Required by the API except when `frequencyType` is `ondemand`.
+     */
+    retentionUnit?: string;
+    /**
+     * Value to associate with `retentionUnit`. Required by the API except when `frequencyType` is `ondemand`.
+     */
+    retentionValue?: number;
 }
 
 export interface CloudBackupScheduleExport {
@@ -2087,11 +2140,11 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
      */
     diskSizeGb: number;
     /**
-     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
      */
     diskThroughput: number;
     /**
-     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+     * Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2138,11 +2191,11 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalytics
      */
     diskSizeGb: number;
     /**
-     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
      */
     diskThroughput: number;
     /**
-     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+     * Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2165,11 +2218,11 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectable
      */
     diskSizeGb: number;
     /**
-     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
      */
     diskThroughput: number;
     /**
-     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+     * Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2192,11 +2245,11 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlyS
      */
     diskSizeGb: number;
     /**
-     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
      */
     diskThroughput: number;
     /**
-     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+     * Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2219,11 +2272,11 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigElectableSpecs {
      */
     diskSizeGb: number;
     /**
-     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
      */
     diskThroughput: number;
     /**
-     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+     * Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2246,11 +2299,11 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      */
     diskSizeGb: number;
     /**
-     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
      */
     diskThroughput: number;
     /**
-     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+     * Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2645,11 +2698,11 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSp
      */
     diskSizeGb: number;
     /**
-     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
      */
     diskThroughput: number;
     /**
-     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+     * Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2695,11 +2748,11 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAn
      */
     diskSizeGb: number;
     /**
-     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
      */
     diskThroughput: number;
     /**
-     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+     * Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2722,11 +2775,11 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveEl
      */
     diskSizeGb: number;
     /**
-     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
      */
     diskThroughput: number;
     /**
-     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+     * Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2749,11 +2802,11 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveRe
      */
     diskSizeGb: number;
     /**
-     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
      */
     diskThroughput: number;
     /**
-     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+     * Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2776,11 +2829,11 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigElectableSp
      */
     diskSizeGb: number;
     /**
-     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
      */
     diskThroughput: number;
     /**
-     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+     * Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -2803,11 +2856,11 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigReadOnlySpe
      */
     diskSizeGb: number;
     /**
-     * Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+     * Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `diskIops`; you can't configure it.
      */
     diskThroughput: number;
     /**
-     * Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
+     * Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `electableSpecs` for additional `ebsVolumeType` configuration details.
      */
     ebsVolumeType: string;
     /**
@@ -3906,9 +3959,19 @@ export interface GetCloudBackupScheduleCopySetting {
      */
     cloudProvider: string;
     /**
-     * List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
+     * Copy-policy items when `copyPolicyItemsEnabled` is true. See below.
+     */
+    copyPolicyItems: outputs.GetCloudBackupScheduleCopySettingCopyPolicyItem[];
+    /**
+     * (Deprecated) List that describes which types of snapshots to copy when `copyPolicyItemsEnabled` is false. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Use `copyPolicyItems` or `lastNumberOfSnapshots` instead.
+     *
+     * @deprecated This parameter is deprecated. Please transition to `copyPolicyItems` or `lastNumberOfSnapshots`.
      */
     frequencies: string[];
+    /**
+     * Number of most recent snapshots copied when `copyPolicyItemsEnabled` is true.
+     */
+    lastNumberOfSnapshots: number;
     /**
      * Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
      */
@@ -3923,13 +3986,32 @@ export interface GetCloudBackupScheduleCopySetting {
     zoneId: string;
 }
 
+export interface GetCloudBackupScheduleCopySettingCopyPolicyItem {
+    /**
+     * Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
+     */
+    frequencyType: string;
+    /**
+     * Unique identifier of the copy policy item.
+     */
+    id: string;
+    /**
+     * Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
+     */
+    retentionUnit: string;
+    /**
+     * Value to associate with `retentionUnit`.
+     */
+    retentionValue: number;
+}
+
 export interface GetCloudBackupScheduleExport {
     /**
      * Unique identifier of the mongodbatlas.CloudBackupSnapshotExportBucket export_bucket_id value.
      */
     exportBucketId: string;
     /**
-     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
      */
     frequencyType: string;
 }
@@ -3940,19 +4022,19 @@ export interface GetCloudBackupSchedulePolicyItemDaily {
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
      */
     frequencyType: string;
     /**
-     * Unique identifier of the backup policy item.
+     * Unique identifier of the copy policy item.
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+     * Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+     * Value to associate with `retentionUnit`.
      */
     retentionValue: number;
 }
@@ -3963,19 +4045,19 @@ export interface GetCloudBackupSchedulePolicyItemHourly {
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
      */
     frequencyType: string;
     /**
-     * Unique identifier of the backup policy item.
+     * Unique identifier of the copy policy item.
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+     * Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+     * Value to associate with `retentionUnit`.
      */
     retentionValue: number;
 }
@@ -3986,19 +4068,19 @@ export interface GetCloudBackupSchedulePolicyItemMonthly {
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
      */
     frequencyType: string;
     /**
-     * Unique identifier of the backup policy item.
+     * Unique identifier of the copy policy item.
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+     * Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+     * Value to associate with `retentionUnit`.
      */
     retentionValue: number;
 }
@@ -4009,19 +4091,19 @@ export interface GetCloudBackupSchedulePolicyItemWeekly {
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
      */
     frequencyType: string;
     /**
-     * Unique identifier of the backup policy item.
+     * Unique identifier of the copy policy item.
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+     * Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+     * Value to associate with `retentionUnit`.
      */
     retentionValue: number;
 }
@@ -4032,19 +4114,19 @@ export interface GetCloudBackupSchedulePolicyItemYearly {
      */
     frequencyInterval: number;
     /**
-     * Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+     * Frequency associated with the copy policy item: `hourly`, `daily`, `weekly`, `monthly`, `yearly`, or `ondemand`.
      */
     frequencyType: string;
     /**
-     * Unique identifier of the backup policy item.
+     * Unique identifier of the copy policy item.
      */
     id: string;
     /**
-     * Scope of the backup policy item: `days`, `weeks`, `months`, or `years`.
+     * Unit of time for copy retention: `days`, `weeks`, `months`, or `years`.
      */
     retentionUnit: string;
     /**
-     * Value to associate with `retentionUnit`. Yearly policy must have retention of at least 1 year.
+     * Value to associate with `retentionUnit`.
      */
     retentionValue: number;
 }
@@ -6760,6 +6842,110 @@ export interface GetMaintenanceWindowProtectedHour {
     startHourOfDay: number;
 }
 
+export interface GetMcpConfigIpAccessList {
+    /**
+     * Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+     */
+    cidrBlock: string;
+    /**
+     * Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+     */
+    ipAddress: string;
+    /**
+     * Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+     */
+    lastUsedAddress: string;
+    /**
+     * Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    lastUsedAt: string;
+    /**
+     * The number of requests that has originated from this network address.
+     */
+    requestCount: number;
+}
+
+export interface GetMcpConfigSecretsResult {
+    /**
+     * The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    expiresAt: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the secret.
+     */
+    id: string;
+    /**
+     * The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    lastUsedAt: string;
+    /**
+     * The masked Service Account secret.
+     */
+    maskedSecretValue: string;
+}
+
+export interface GetMcpConfigsResult {
+    /**
+     * Unique identifier for the Service Account client associated with this MCP configuration. Use this Service Account to connect to the Atlas Remote MCP.
+     */
+    clientId: string;
+    /**
+     * Unique identifier for the egress Service Account client associated with this MCP configuration. This Service Account is managed by MongoDB Atlas.
+     */
+    egressClientId: string;
+    /**
+     * List of IP access list entries that define allowed source addresses for this MCP configuration.
+     */
+    ipAccessLists: outputs.GetMcpConfigsResultIpAccessList[];
+    /**
+     * Unique identifier that identifies this MCP configuration.
+     */
+    mcpConfigId: string;
+    /**
+     * Human-readable name that identifies this MCP configuration.
+     */
+    mcpConfigName: string;
+    /**
+     * List of organization roles associated with this MCP configuration.
+     */
+    roles: string[];
+}
+
+export interface GetMcpConfigsResultIpAccessList {
+    /**
+     * Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+     */
+    cidrBlock: string;
+    /**
+     * Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+     */
+    ipAddress: string;
+    /**
+     * Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+     */
+    lastUsedAddress: string;
+    /**
+     * Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    lastUsedAt: string;
+    /**
+     * The number of requests that has originated from this network address.
+     */
+    requestCount: number;
+}
+
 export interface GetMetricIntegrationHeadersRedacted {
     /**
      * Header name.
@@ -7037,6 +7223,17 @@ export interface GetOnlineArchivesResultSchedule {
     type: string;
 }
 
+export interface GetOrganizationCustomSessionTimeout {
+    /**
+     * (Optional) Absolute session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom absolute session timeout.
+     */
+    absoluteSessionTimeoutInSeconds: number;
+    /**
+     * (Optional) Idle session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom idle session timeout. When this value is absent, Atlas applies the environment default, which is no idle timeout for Atlas Commercial and 600 seconds (10 minutes) for Atlas for Government.
+     */
+    idleSessionTimeoutInSeconds: number;
+}
+
 export interface GetOrganizationLink {
     href: string;
     rel: string;
@@ -7117,6 +7314,10 @@ export interface GetOrganizationsResult {
      */
     apiAccessListRequired: boolean;
     /**
+     * Block that specifies the custom session timeout settings for the organization. See Custom Session Timeouts.
+     */
+    customSessionTimeouts: outputs.GetOrganizationsResultCustomSessionTimeout[];
+    /**
      * Flag that indicates whether this organization has access to generative AI features. This setting only applies to Atlas Commercial and defaults to `true`. With this setting on, Project Owners may be able to enable or disable individual AI features at the project level. To learn more, see https://www.mongodb.com/docs/generative-ai-faq/.
      */
     genAiFeaturesEnabled: boolean;
@@ -7138,6 +7339,10 @@ export interface GetOrganizationsResult {
      */
     name: string;
     /**
+     * String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals.
+     */
+    operationsContact: string;
+    /**
      * Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
      */
     restrictEmployeeAccess: boolean;
@@ -7153,6 +7358,17 @@ export interface GetOrganizationsResult {
      * Returns list of all pending and active MongoDB Cloud users associated with the specified organization.
      */
     users: outputs.GetOrganizationsResultUser[];
+}
+
+export interface GetOrganizationsResultCustomSessionTimeout {
+    /**
+     * Absolute session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom absolute session timeout.
+     */
+    absoluteSessionTimeoutInSeconds: number;
+    /**
+     * Idle session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom idle session timeout. When this value is absent, Atlas applies the environment default, which is no idle timeout for Atlas Commercial and 600 seconds (10 minutes) for Atlas for Government.
+     */
+    idleSessionTimeoutInSeconds: number;
 }
 
 export interface GetOrganizationsResultLink {
@@ -7453,6 +7669,110 @@ export interface GetProjectLimit {
     value: number;
 }
 
+export interface GetProjectMcpConfigIpAccessList {
+    /**
+     * Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+     */
+    cidrBlock: string;
+    /**
+     * Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+     */
+    ipAddress: string;
+    /**
+     * Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+     */
+    lastUsedAddress: string;
+    /**
+     * Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    lastUsedAt: string;
+    /**
+     * The number of requests that has originated from this network address.
+     */
+    requestCount: number;
+}
+
+export interface GetProjectMcpConfigSecretsResult {
+    /**
+     * The date that the secret was created on. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * The date for the expiration of the secret. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    expiresAt: string;
+    /**
+     * Unique 24-hexadecimal digit string that identifies the secret.
+     */
+    id: string;
+    /**
+     * The last time the secret was used. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    lastUsedAt: string;
+    /**
+     * The masked Service Account secret.
+     */
+    maskedSecretValue: string;
+}
+
+export interface GetProjectMcpConfigsResult {
+    /**
+     * Unique identifier for the Service Account client associated with this MCP configuration. Use this Service Account to connect to the Atlas Remote MCP.
+     */
+    clientId: string;
+    /**
+     * Unique identifier for the egress Service Account client associated with this MCP configuration. This Service Account is managed by MongoDB Atlas.
+     */
+    egressClientId: string;
+    /**
+     * List of IP access list entries that define allowed source addresses for this MCP configuration.
+     */
+    ipAccessLists: outputs.GetProjectMcpConfigsResultIpAccessList[];
+    /**
+     * Unique identifier that identifies this MCP configuration.
+     */
+    mcpConfigId: string;
+    /**
+     * Human-readable name that identifies this MCP configuration.
+     */
+    mcpConfigName: string;
+    /**
+     * List of project roles associated with this MCP configuration.
+     */
+    roles: string[];
+}
+
+export interface GetProjectMcpConfigsResultIpAccessList {
+    /**
+     * Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+     */
+    cidrBlock: string;
+    /**
+     * Date MongoDB Cloud added the entry was added to the Access List. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+     */
+    ipAddress: string;
+    /**
+     * Network address that issued the most recent request to the API. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. The resource returns this parameter after this IP address makes at least one request.
+     */
+    lastUsedAddress: string;
+    /**
+     * Date when MongoDB Cloud received the most recent request that originated from this Internet Protocol version 4 or version 6 address. The resource returns this parameter when at least one request originates from this IP address. MongoDB Cloud updates this parameter each time a client accesses the permitted resource, with a delay of up to 5 minutes. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    lastUsedAt: string;
+    /**
+     * The number of requests that has originated from this network address.
+     */
+    requestCount: number;
+}
+
 export interface GetProjectServiceAccountAccessListEntriesResult {
     /**
      * Range of IP addresses in CIDR notation to be added to the access list. You can set a value for this parameter or **ip_address**, but not for both.
@@ -7536,6 +7856,10 @@ export interface GetProjectServiceAccountsResult {
      * A list of secrets associated with the specified Service Account.
      */
     secrets: outputs.GetProjectServiceAccountsResultSecret[];
+    /**
+     * Indicates whether the Service Account is system managed.
+     */
+    systemManaged: boolean;
 }
 
 export interface GetProjectServiceAccountsResultSecret {
@@ -8347,6 +8671,10 @@ export interface GetServiceAccountsResult {
      * A list of secrets associated with the specified Service Account.
      */
     secrets: outputs.GetServiceAccountsResultSecret[];
+    /**
+     * Indicates whether the Service Account is system managed.
+     */
+    systemManaged: boolean;
 }
 
 export interface GetServiceAccountsResultSecret {
@@ -9608,6 +9936,17 @@ export interface MaintenanceWindowProtectedHours {
     startHourOfDay: number;
 }
 
+export interface McpConfigIpAccessList {
+    /**
+     * Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+     */
+    cidrBlock: string;
+    /**
+     * Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+     */
+    ipAddress: string;
+}
+
 export interface MetricIntegrationHeader {
     /**
      * Header name.
@@ -9721,6 +10060,17 @@ export interface OnlineArchiveSchedule {
      * Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
      */
     type: string;
+}
+
+export interface OrganizationCustomSessionTimeouts {
+    /**
+     * Specifies the absolute session timeout duration in seconds. When set to `null`, the field's value is unset, and the default value of 43,200 seconds (12 hours) is applied. Accepted values range between a minimum of 3,600 seconds (1 hour) and a maximum of 43,200 seconds (12 hours).
+     */
+    absoluteSessionTimeoutInSeconds?: number;
+    /**
+     * Specifies the idle session timeout duration in seconds. When set to `null`, the field's value is unset, and the default behavior depends on the context: no timeout for Atlas Commercial, and 600 seconds (10 minutes) for Atlas for Government. Accepted values start at a minimum of 300 seconds (5 minutes). For Atlas Commercial, the maximum value cannot exceed the configured absolute session timeout. For Atlas for Government, the maximum value is capped at 600 seconds (10 minutes).
+     */
+    idleSessionTimeoutInSeconds?: number;
 }
 
 export interface OrganizationServiceAccount {
@@ -9853,6 +10203,17 @@ export interface ProjectLimit {
      * Amount to set the limit to. Use the [Project Limit Documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/v2/#tag/Projects/operation/setProjectLimit) under `limitName` parameter to verify the override limits.
      */
     value: number;
+}
+
+export interface ProjectMcpConfigIpAccessList {
+    /**
+     * Range of network addresses in the access list for the Service Account. This parameter requires the range to be expressed in Classless Inter-Domain Routing (CIDR) notation of Internet Protocol version 4 or version 6 addresses. You can set a value for this parameter or `ipAddress`, but not for both in the same request.
+     */
+    cidrBlock: string;
+    /**
+     * Network address in the access list for the Service Account. This parameter requires the address to be expressed as one Internet Protocol version 4 or version 6 address. You can set a value for this parameter or `cidrBlock`, but not for both in the same request.
+     */
+    ipAddress: string;
 }
 
 export interface ProjectServiceAccountSecret {
@@ -10336,6 +10697,10 @@ export interface StreamProcessorOptions {
      * Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
      */
     dlq?: outputs.StreamProcessorOptionsDlq;
+    /**
+     * Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
+     */
+    resumeFromCheckpoint?: boolean;
 }
 
 export interface StreamProcessorOptionsAutoscaling {

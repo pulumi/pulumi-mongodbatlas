@@ -18,19 +18,19 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly int FrequencyInterval;
         /// <summary>
-        /// Frequency associated with the backup policy item. For yearly policies, the frequency type is defined as `Yearly`. Note that this is a read-only value and not required in plan files - its value is implied from the policy resource type.
+        /// Frequency associated with the copy policy item: `Hourly`, `Daily`, `Weekly`, `Monthly`, `Yearly`, or `Ondemand`.
         /// </summary>
         public readonly string FrequencyType;
         /// <summary>
-        /// Unique identifier of the backup policy item.
+        /// Unique identifier of the copy policy item.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// Scope of the backup policy item: `Days`, `Weeks`, `Months`, or `Years`.
+        /// Unit of time for copy retention: `Days`, `Weeks`, `Months`, or `Years`.
         /// </summary>
         public readonly string RetentionUnit;
         /// <summary>
-        /// Value to associate with `RetentionUnit`. Yearly policy must have retention of at least 1 year.
+        /// Value to associate with `RetentionUnit`.
         /// </summary>
         public readonly int RetentionValue;
 

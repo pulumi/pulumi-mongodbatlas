@@ -999,7 +999,16 @@ namespace Pulumi.Mongodbatlas
         public Output<string> ReplicaSetScalingStrategy { get; private set; } = null!;
 
         /// <summary>
-        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. If this list contains more than one entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently.
+        /// 
+        /// The following clusters support independent `DiskIops` values:
+        /// * AWS Gen2 clusters that use the `STANDARD` (gp3) volume type.
+        /// * AWS Gen2 clusters that use the `HIGH_PERFORMANCE` (io2) volume type.
+        /// * AWS clusters that use the `PROVISIONED` (io2) volume type.
+        /// * GCP Gen2 clusters, which use Hyperdisk Balanced storage.
+        /// * Azure clusters in regions that support Extended IOPS.
+        /// 
+        /// If your cluster has more than one `ReplicationSpecs` entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
         /// </summary>
         [Output("replicationSpecs")]
         public Output<ImmutableArray<Outputs.AdvancedClusterReplicationSpec>> ReplicationSpecs { get; private set; } = null!;
@@ -1259,7 +1268,16 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterReplicationSpecArgs>? _replicationSpecs;
 
         /// <summary>
-        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. If this list contains more than one entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently.
+        /// 
+        /// The following clusters support independent `DiskIops` values:
+        /// * AWS Gen2 clusters that use the `STANDARD` (gp3) volume type.
+        /// * AWS Gen2 clusters that use the `HIGH_PERFORMANCE` (io2) volume type.
+        /// * AWS clusters that use the `PROVISIONED` (io2) volume type.
+        /// * GCP Gen2 clusters, which use Hyperdisk Balanced storage.
+        /// * Azure clusters in regions that support Extended IOPS.
+        /// 
+        /// If your cluster has more than one `ReplicationSpecs` entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
         /// </summary>
         public InputList<Inputs.AdvancedClusterReplicationSpecArgs> ReplicationSpecs
         {
@@ -1507,7 +1525,16 @@ namespace Pulumi.Mongodbatlas
         private InputList<Inputs.AdvancedClusterReplicationSpecGetArgs>? _replicationSpecs;
 
         /// <summary>
-        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently. Note that independent `DiskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. If this list contains more than one entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
+        /// List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `ReplicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `InstanceSize` and `DiskIops` that can scale independently.
+        /// 
+        /// The following clusters support independent `DiskIops` values:
+        /// * AWS Gen2 clusters that use the `STANDARD` (gp3) volume type.
+        /// * AWS Gen2 clusters that use the `HIGH_PERFORMANCE` (io2) volume type.
+        /// * AWS clusters that use the `PROVISIONED` (io2) volume type.
+        /// * GCP Gen2 clusters, which use Hyperdisk Balanced storage.
+        /// * Azure clusters in regions that support Extended IOPS.
+        /// 
+        /// If your cluster has more than one `ReplicationSpecs` entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
         /// </summary>
         public InputList<Inputs.AdvancedClusterReplicationSpecGetArgs> ReplicationSpecs
         {

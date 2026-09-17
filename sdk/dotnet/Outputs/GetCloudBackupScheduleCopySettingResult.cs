@@ -18,9 +18,17 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string CloudProvider;
         /// <summary>
-        /// List that describes which types of snapshots to copy. i.e. "HOURLY" "DAILY" "WEEKLY" "MONTHLY" "YEARLY" "ON_DEMAND"
+        /// Copy-policy items when `CopyPolicyItemsEnabled` is true. See below.
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetCloudBackupScheduleCopySettingCopyPolicyItemResult> CopyPolicyItems;
+        /// <summary>
+        /// (Deprecated) List that describes which types of snapshots to copy when `CopyPolicyItemsEnabled` is false. Values: `HOURLY`, `DAILY`, `WEEKLY`, `MONTHLY`, `YEARLY`, `ON_DEMAND`. Use `CopyPolicyItems` or `LastNumberOfSnapshots` instead.
         /// </summary>
         public readonly ImmutableArray<string> Frequencies;
+        /// <summary>
+        /// Number of most recent snapshots copied when `CopyPolicyItemsEnabled` is true.
+        /// </summary>
+        public readonly int LastNumberOfSnapshots;
         /// <summary>
         /// Target region to copy snapshots belonging to replicationSpecId to. Please supply the 'Atlas Region' which can be found under https://www.mongodb.com/docs/atlas/reference/cloud-providers/ 'regions' link
         /// </summary>
@@ -38,7 +46,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         private GetCloudBackupScheduleCopySettingResult(
             string cloudProvider,
 
+            ImmutableArray<Outputs.GetCloudBackupScheduleCopySettingCopyPolicyItemResult> copyPolicyItems,
+
             ImmutableArray<string> frequencies,
+
+            int lastNumberOfSnapshots,
 
             string regionName,
 
@@ -47,7 +59,9 @@ namespace Pulumi.Mongodbatlas.Outputs
             string zoneId)
         {
             CloudProvider = cloudProvider;
+            CopyPolicyItems = copyPolicyItems;
             Frequencies = frequencies;
+            LastNumberOfSnapshots = lastNumberOfSnapshots;
             RegionName = regionName;
             ShouldCopyOplogs = shouldCopyOplogs;
             ZoneId = zoneId;

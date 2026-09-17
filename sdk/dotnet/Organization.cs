@@ -68,6 +68,12 @@ namespace Pulumi.Mongodbatlas
         public Output<bool> ApiAccessListRequired { get; private set; } = null!;
 
         /// <summary>
+        /// Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `Null`, to clear both timeouts. See Custom Session Timeouts.
+        /// </summary>
+        [Output("customSessionTimeouts")]
+        public Output<Outputs.OrganizationCustomSessionTimeouts?> CustomSessionTimeouts { get; private set; } = null!;
+
+        /// <summary>
         /// Programmatic API Key description. This attribute is required in creation and can't be updated later.
         /// 
         /// &gt; **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `mongodbatlas.Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -102,6 +108,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
+
+        /// <summary>
+        /// String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `Null`, to clear an existing operations contact.
+        /// </summary>
+        [Output("operationsContact")]
+        public Output<string?> OperationsContact { get; private set; } = null!;
 
         /// <summary>
         /// The organization id.
@@ -152,7 +164,7 @@ namespace Pulumi.Mongodbatlas
         public Output<Outputs.OrganizationServiceAccount?> ServiceAccount { get; private set; } = null!;
 
         /// <summary>
-        /// Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `True`. 
+        /// Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `True`.
         /// 
         /// &gt; **NOTE:** - If you create an organization with our Terraform provider version &gt;=1.30.0, this field is set to `True` by default.&lt;br&gt; - If you have an existing organization created with our Terraform provider version &lt;1.30.0, this field might be `False`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `True`.
         /// </summary>
@@ -217,6 +229,12 @@ namespace Pulumi.Mongodbatlas
         public Input<bool>? ApiAccessListRequired { get; set; }
 
         /// <summary>
+        /// Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `Null`, to clear both timeouts. See Custom Session Timeouts.
+        /// </summary>
+        [Input("customSessionTimeouts")]
+        public Input<Inputs.OrganizationCustomSessionTimeoutsArgs>? CustomSessionTimeouts { get; set; }
+
+        /// <summary>
         /// Programmatic API Key description. This attribute is required in creation and can't be updated later.
         /// 
         /// &gt; **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `mongodbatlas.Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -251,6 +269,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `Null`, to clear an existing operations contact.
+        /// </summary>
+        [Input("operationsContact")]
+        public Input<string>? OperationsContact { get; set; }
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
@@ -289,7 +313,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.OrganizationServiceAccountArgs>? ServiceAccount { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `True`. 
+        /// Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `True`.
         /// 
         /// &gt; **NOTE:** - If you create an organization with our Terraform provider version &gt;=1.30.0, this field is set to `True` by default.&lt;br&gt; - If you have an existing organization created with our Terraform provider version &lt;1.30.0, this field might be `False`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `True`.
         /// </summary>
@@ -309,6 +333,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("apiAccessListRequired")]
         public Input<bool>? ApiAccessListRequired { get; set; }
+
+        /// <summary>
+        /// Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `Null`, to clear both timeouts. See Custom Session Timeouts.
+        /// </summary>
+        [Input("customSessionTimeouts")]
+        public Input<Inputs.OrganizationCustomSessionTimeoutsGetArgs>? CustomSessionTimeouts { get; set; }
 
         /// <summary>
         /// Programmatic API Key description. This attribute is required in creation and can't be updated later.
@@ -345,6 +375,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `Null`, to clear an existing operations contact.
+        /// </summary>
+        [Input("operationsContact")]
+        public Input<string>? OperationsContact { get; set; }
 
         /// <summary>
         /// The organization id.
@@ -421,7 +457,7 @@ namespace Pulumi.Mongodbatlas
         public Input<Inputs.OrganizationServiceAccountGetArgs>? ServiceAccount { get; set; }
 
         /// <summary>
-        /// Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `True`. 
+        /// Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `True`.
         /// 
         /// &gt; **NOTE:** - If you create an organization with our Terraform provider version &gt;=1.30.0, this field is set to `True` by default.&lt;br&gt; - If you have an existing organization created with our Terraform provider version &lt;1.30.0, this field might be `False`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `True`.
         /// </summary>

@@ -27,7 +27,7 @@ class GetCloudBackupScheduleResult:
     """
     A collection of values returned by getCloudBackupSchedule.
     """
-    def __init__(__self__, auto_export_enabled=None, cluster_id=None, cluster_name=None, copy_settings=None, exports=None, id=None, id_policy=None, next_snapshot=None, policy_item_dailies=None, policy_item_hourlies=None, policy_item_monthlies=None, policy_item_weeklies=None, policy_item_yearlies=None, project_id=None, reference_hour_of_day=None, reference_minute_of_hour=None, restore_window_days=None, use_org_and_group_names_in_export_prefix=None):
+    def __init__(__self__, auto_export_enabled=None, cluster_id=None, cluster_name=None, copy_policy_items_enabled=None, copy_settings=None, exports=None, id=None, id_policy=None, next_snapshot=None, policy_item_dailies=None, policy_item_hourlies=None, policy_item_monthlies=None, policy_item_weeklies=None, policy_item_yearlies=None, project_id=None, reference_hour_of_day=None, reference_minute_of_hour=None, restore_window_days=None, use_org_and_group_names_in_export_prefix=None):
         if auto_export_enabled and not isinstance(auto_export_enabled, bool):
             raise TypeError("Expected argument 'auto_export_enabled' to be a bool")
         pulumi.set(__self__, "auto_export_enabled", auto_export_enabled)
@@ -37,6 +37,9 @@ class GetCloudBackupScheduleResult:
         if cluster_name and not isinstance(cluster_name, str):
             raise TypeError("Expected argument 'cluster_name' to be a str")
         pulumi.set(__self__, "cluster_name", cluster_name)
+        if copy_policy_items_enabled and not isinstance(copy_policy_items_enabled, bool):
+            raise TypeError("Expected argument 'copy_policy_items_enabled' to be a bool")
+        pulumi.set(__self__, "copy_policy_items_enabled", copy_policy_items_enabled)
         if copy_settings and not isinstance(copy_settings, list):
             raise TypeError("Expected argument 'copy_settings' to be a list")
         pulumi.set(__self__, "copy_settings", copy_settings)
@@ -105,6 +108,14 @@ class GetCloudBackupScheduleResult:
     @pulumi.getter(name="clusterName")
     def cluster_name(self) -> _builtins.str:
         return pulumi.get(self, "cluster_name")
+
+    @_builtins.property
+    @pulumi.getter(name="copyPolicyItemsEnabled")
+    def copy_policy_items_enabled(self) -> _builtins.bool:
+        """
+        Flag that indicates whether copy settings use `copy_policy_items` or `last_number_of_snapshots` instead of `frequencies`.
+        """
+        return pulumi.get(self, "copy_policy_items_enabled")
 
     @_builtins.property
     @pulumi.getter(name="copySettings")
@@ -233,6 +244,7 @@ class AwaitableGetCloudBackupScheduleResult(GetCloudBackupScheduleResult):
             auto_export_enabled=self.auto_export_enabled,
             cluster_id=self.cluster_id,
             cluster_name=self.cluster_name,
+            copy_policy_items_enabled=self.copy_policy_items_enabled,
             copy_settings=self.copy_settings,
             exports=self.exports,
             id=self.id,
@@ -291,19 +303,22 @@ def get_cloud_backup_schedule(cluster_name: Optional[_builtins.str] = None,
             "retention_unit": "days",
             "retention_value": 14,
         },
+        copy_policy_items_enabled=True,
         copy_settings=[{
             "cloud_provider": "AWS",
-            "frequencies": [
-                "HOURLY",
-                "DAILY",
-                "WEEKLY",
-                "MONTHLY",
-                "YEARLY",
-                "ON_DEMAND",
-            ],
             "region_name": "US_EAST_1",
             "zone_id": my_cluster.replication_specs.apply(lambda replication_specs: [__item.zone_id[0] for __item in replication_specs]),
             "should_copy_oplogs": False,
+            "copy_policy_items": [
+                {
+                    "frequency_type": "daily",
+                    "retention_unit": "days",
+                    "retention_value": 7,
+                },
+                {
+                    "frequency_type": "ondemand",
+                },
+            ],
         }])
     test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
         cluster_name=test_cloud_backup_schedule.cluster_name)
@@ -323,6 +338,7 @@ def get_cloud_backup_schedule(cluster_name: Optional[_builtins.str] = None,
         auto_export_enabled=pulumi.get(__ret__, 'auto_export_enabled'),
         cluster_id=pulumi.get(__ret__, 'cluster_id'),
         cluster_name=pulumi.get(__ret__, 'cluster_name'),
+        copy_policy_items_enabled=pulumi.get(__ret__, 'copy_policy_items_enabled'),
         copy_settings=pulumi.get(__ret__, 'copy_settings'),
         exports=pulumi.get(__ret__, 'exports'),
         id=pulumi.get(__ret__, 'id'),
@@ -379,19 +395,22 @@ def get_cloud_backup_schedule_output(cluster_name: pulumi.Input[Optional[_builti
             "retention_unit": "days",
             "retention_value": 14,
         },
+        copy_policy_items_enabled=True,
         copy_settings=[{
             "cloud_provider": "AWS",
-            "frequencies": [
-                "HOURLY",
-                "DAILY",
-                "WEEKLY",
-                "MONTHLY",
-                "YEARLY",
-                "ON_DEMAND",
-            ],
             "region_name": "US_EAST_1",
             "zone_id": my_cluster.replication_specs.apply(lambda replication_specs: [__item.zone_id[0] for __item in replication_specs]),
             "should_copy_oplogs": False,
+            "copy_policy_items": [
+                {
+                    "frequency_type": "daily",
+                    "retention_unit": "days",
+                    "retention_value": 7,
+                },
+                {
+                    "frequency_type": "ondemand",
+                },
+            ],
         }])
     test = mongodbatlas.get_cloud_backup_schedule_output(project_id=test_cloud_backup_schedule.project_id,
         cluster_name=test_cloud_backup_schedule.cluster_name)
@@ -410,6 +429,7 @@ def get_cloud_backup_schedule_output(cluster_name: pulumi.Input[Optional[_builti
         auto_export_enabled=pulumi.get(__response__, 'auto_export_enabled'),
         cluster_id=pulumi.get(__response__, 'cluster_id'),
         cluster_name=pulumi.get(__response__, 'cluster_name'),
+        copy_policy_items_enabled=pulumi.get(__response__, 'copy_policy_items_enabled'),
         copy_settings=pulumi.get(__response__, 'copy_settings'),
         exports=pulumi.get(__response__, 'exports'),
         id=pulumi.get(__response__, 'id'),

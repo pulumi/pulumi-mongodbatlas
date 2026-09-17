@@ -114,7 +114,8 @@ class _ServiceAccountState:
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None,
-                 secrets: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceAccountSecretArgs']]]] = None):
+                 secrets: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceAccountSecretArgs']]]] = None,
+                 system_managed: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering ServiceAccount resources.
 
@@ -126,6 +127,7 @@ class _ServiceAccountState:
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: A list of organization-level roles for the Service Account.
         :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
         :param pulumi.Input[Sequence[pulumi.Input['ServiceAccountSecretArgs']]] secrets: A list of secrets associated with the specified Service Account.
+        :param pulumi.Input[_builtins.bool] system_managed: Indicates whether the Service Account is system managed.
         """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
@@ -143,6 +145,8 @@ class _ServiceAccountState:
             pulumi.set(__self__, "secret_expires_after_hours", secret_expires_after_hours)
         if secrets is not None:
             pulumi.set(__self__, "secrets", secrets)
+        if system_managed is not None:
+            pulumi.set(__self__, "system_managed", system_managed)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -239,6 +243,18 @@ class _ServiceAccountState:
     @secrets.setter
     def secrets(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceAccountSecretArgs']]]]):
         pulumi.set(self, "secrets", value)
+
+    @_builtins.property
+    @pulumi.getter(name="systemManaged")
+    def system_managed(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Indicates whether the Service Account is system managed.
+        """
+        return pulumi.get(self, "system_managed")
+
+    @system_managed.setter
+    def system_managed(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "system_managed", value)
 
 
 @pulumi.type_token("mongodbatlas:index/serviceAccount:ServiceAccount")
@@ -342,6 +358,7 @@ class ServiceAccount(pulumi.CustomResource):
             __props__.__dict__["client_id"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["secrets"] = None
+            __props__.__dict__["system_managed"] = None
         super(ServiceAccount, __self__).__init__(
             'mongodbatlas:index/serviceAccount:ServiceAccount',
             resource_name,
@@ -359,7 +376,8 @@ class ServiceAccount(pulumi.CustomResource):
             org_id: pulumi.Input[Optional[_builtins.str]] = None,
             roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None,
-            secrets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceAccountSecretArgs', 'ServiceAccountSecretArgsDict']]]]] = None) -> 'ServiceAccount':
+            secrets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceAccountSecretArgs', 'ServiceAccountSecretArgsDict']]]]] = None,
+            system_managed: pulumi.Input[Optional[_builtins.bool]] = None) -> 'ServiceAccount':
         """
         Get an existing ServiceAccount resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -375,6 +393,7 @@ class ServiceAccount(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: A list of organization-level roles for the Service Account.
         :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceAccountSecretArgs', 'ServiceAccountSecretArgsDict']]]] secrets: A list of secrets associated with the specified Service Account.
+        :param pulumi.Input[_builtins.bool] system_managed: Indicates whether the Service Account is system managed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -388,6 +407,7 @@ class ServiceAccount(pulumi.CustomResource):
         __props__.__dict__["roles"] = roles
         __props__.__dict__["secret_expires_after_hours"] = secret_expires_after_hours
         __props__.__dict__["secrets"] = secrets
+        __props__.__dict__["system_managed"] = system_managed
         return ServiceAccount(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -453,4 +473,12 @@ class ServiceAccount(pulumi.CustomResource):
         A list of secrets associated with the specified Service Account.
         """
         return pulumi.get(self, "secrets")
+
+    @_builtins.property
+    @pulumi.getter(name="systemManaged")
+    def system_managed(self) -> pulumi.Output[_builtins.bool]:
+        """
+        Indicates whether the Service Account is system managed.
+        """
+        return pulumi.get(self, "system_managed")
 

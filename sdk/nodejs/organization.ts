@@ -78,6 +78,10 @@ export class Organization extends pulumi.CustomResource {
      */
     declare public readonly apiAccessListRequired: pulumi.Output<boolean>;
     /**
+     * Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+     */
+    declare public readonly customSessionTimeouts: pulumi.Output<outputs.OrganizationCustomSessionTimeouts | undefined>;
+    /**
      * Programmatic API Key description. This attribute is required in creation and can't be updated later.
      *
      * > **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `mongodbatlas.Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -103,6 +107,10 @@ export class Organization extends pulumi.CustomResource {
      * The name of the organization.
      */
     declare public readonly name: pulumi.Output<string>;
+    /**
+     * String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+     */
+    declare public readonly operationsContact: pulumi.Output<string | undefined>;
     /**
      * The organization id.
      */
@@ -156,11 +164,13 @@ export class Organization extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as OrganizationState | undefined;
             resourceInputs["apiAccessListRequired"] = state?.apiAccessListRequired;
+            resourceInputs["customSessionTimeouts"] = state?.customSessionTimeouts;
             resourceInputs["description"] = state?.description;
             resourceInputs["federationSettingsId"] = state?.federationSettingsId;
             resourceInputs["genAiFeaturesEnabled"] = state?.genAiFeaturesEnabled;
             resourceInputs["multiFactorAuthRequired"] = state?.multiFactorAuthRequired;
             resourceInputs["name"] = state?.name;
+            resourceInputs["operationsContact"] = state?.operationsContact;
             resourceInputs["orgId"] = state?.orgId;
             resourceInputs["orgOwnerId"] = state?.orgOwnerId;
             resourceInputs["privateKey"] = state?.privateKey;
@@ -173,11 +183,13 @@ export class Organization extends pulumi.CustomResource {
         } else {
             const args = argsOrState as OrganizationArgs | undefined;
             resourceInputs["apiAccessListRequired"] = args?.apiAccessListRequired;
+            resourceInputs["customSessionTimeouts"] = args?.customSessionTimeouts;
             resourceInputs["description"] = args?.description;
             resourceInputs["federationSettingsId"] = args?.federationSettingsId;
             resourceInputs["genAiFeaturesEnabled"] = args?.genAiFeaturesEnabled;
             resourceInputs["multiFactorAuthRequired"] = args?.multiFactorAuthRequired;
             resourceInputs["name"] = args?.name;
+            resourceInputs["operationsContact"] = args?.operationsContact;
             resourceInputs["orgOwnerId"] = args?.orgOwnerId;
             resourceInputs["restrictEmployeeAccess"] = args?.restrictEmployeeAccess;
             resourceInputs["roleNames"] = args?.roleNames;
@@ -204,6 +216,10 @@ export interface OrganizationState {
      */
     apiAccessListRequired?: pulumi.Input<boolean | undefined>;
     /**
+     * Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+     */
+    customSessionTimeouts?: pulumi.Input<inputs.OrganizationCustomSessionTimeouts | undefined>;
+    /**
      * Programmatic API Key description. This attribute is required in creation and can't be updated later.
      *
      * > **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `mongodbatlas.Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -229,6 +245,10 @@ export interface OrganizationState {
      * The name of the organization.
      */
     name?: pulumi.Input<string | undefined>;
+    /**
+     * String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+     */
+    operationsContact?: pulumi.Input<string | undefined>;
     /**
      * The organization id.
      */
@@ -278,6 +298,10 @@ export interface OrganizationArgs {
      */
     apiAccessListRequired?: pulumi.Input<boolean | undefined>;
     /**
+     * Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+     */
+    customSessionTimeouts?: pulumi.Input<inputs.OrganizationCustomSessionTimeouts | undefined>;
+    /**
      * Programmatic API Key description. This attribute is required in creation and can't be updated later.
      *
      * > **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `mongodbatlas.Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -303,6 +327,10 @@ export interface OrganizationArgs {
      * The name of the organization.
      */
     name?: pulumi.Input<string | undefined>;
+    /**
+     * String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+     */
+    operationsContact?: pulumi.Input<string | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
      */

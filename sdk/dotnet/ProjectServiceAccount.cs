@@ -79,6 +79,12 @@ namespace Pulumi.Mongodbatlas
         [Output("secrets")]
         public Output<ImmutableArray<Outputs.ProjectServiceAccountSecret>> Secrets { get; private set; } = null!;
 
+        /// <summary>
+        /// Indicates whether the Service Account is system managed.
+        /// </summary>
+        [Output("systemManaged")]
+        public Output<bool> SystemManaged { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a ProjectServiceAccount resource with the given unique name, arguments, and options.
@@ -228,6 +234,12 @@ namespace Pulumi.Mongodbatlas
             get => _secrets ?? (_secrets = new InputList<Inputs.ProjectServiceAccountSecretGetArgs>());
             set => _secrets = value;
         }
+
+        /// <summary>
+        /// Indicates whether the Service Account is system managed.
+        /// </summary>
+        [Input("systemManaged")]
+        public Input<bool>? SystemManaged { get; set; }
 
         public ProjectServiceAccountState()
         {

@@ -22,11 +22,11 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly double DiskSizeGb;
         /// <summary>
-        /// Target throughput desired for storage attached to this hardware. Returns only for Gen2 instance sizes with Standard (gp3) volume type.
+        /// Target throughput desired for storage attached to this hardware. Atlas returns this value only for GCP Gen2 instance sizes and for AWS Gen2 instance sizes that use the Standard (gp3) volume type. Atlas derives the value from `DiskIops`; you can't configure it.
         /// </summary>
         public readonly int DiskThroughput;
         /// <summary>
-        /// Type of storage attached to your AWS-provisioned cluster. See the resource documentation for `ElectableSpecs` for additional `EbsVolumeType` configuration details.
+        /// Type of storage attached to your AWS-provisioned cluster. This value doesn't return for GCP or Azure clusters. See the resource documentation for `ElectableSpecs` for additional `EbsVolumeType` configuration details.
         /// </summary>
         public readonly string EbsVolumeType;
         /// <summary>

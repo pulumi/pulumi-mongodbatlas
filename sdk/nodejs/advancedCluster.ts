@@ -757,7 +757,16 @@ export class AdvancedCluster extends pulumi.CustomResource {
      */
     declare public readonly replicaSetScalingStrategy: pulumi.Output<string>;
     /**
-     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. If this list contains more than one entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
+     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently.
+     *
+     * The following clusters support independent `diskIops` values:
+     * * AWS Gen2 clusters that use the `STANDARD` (gp3) volume type.
+     * * AWS Gen2 clusters that use the `HIGH_PERFORMANCE` (io2) volume type.
+     * * AWS clusters that use the `PROVISIONED` (io2) volume type.
+     * * GCP Gen2 clusters, which use Hyperdisk Balanced storage.
+     * * Azure clusters in regions that support Extended IOPS.
+     *
+     * If your cluster has more than one `replicationSpecs` entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
      */
     declare public readonly replicationSpecs: pulumi.Output<outputs.AdvancedClusterReplicationSpec[]>;
     /**
@@ -1027,7 +1036,16 @@ export interface AdvancedClusterState {
      */
     replicaSetScalingStrategy?: pulumi.Input<string | undefined>;
     /**
-     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. If this list contains more than one entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
+     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently.
+     *
+     * The following clusters support independent `diskIops` values:
+     * * AWS Gen2 clusters that use the `STANDARD` (gp3) volume type.
+     * * AWS Gen2 clusters that use the `HIGH_PERFORMANCE` (io2) volume type.
+     * * AWS clusters that use the `PROVISIONED` (io2) volume type.
+     * * GCP Gen2 clusters, which use Hyperdisk Balanced storage.
+     * * Azure clusters in regions that support Extended IOPS.
+     *
+     * If your cluster has more than one `replicationSpecs` entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
      */
     replicationSpecs?: pulumi.Input<pulumi.Input<inputs.AdvancedClusterReplicationSpec>[] | undefined>;
     /**
@@ -1180,7 +1198,16 @@ export interface AdvancedClusterArgs {
      */
     replicaSetScalingStrategy?: pulumi.Input<string | undefined>;
     /**
-     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently. Note that independent `diskIops` values are supported for AWS Gen2 STANDARD (gp3) clusters, AWS PROVISIONED (io2) clusters, AWS HIGH_PERFORMANCE (Gen 2 io2) clusters, and Azure regions that support Extended IOPS. If this list contains more than one entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
+     * List of settings that configure your cluster regions. This attribute has one object per shard representing node configurations in each shard. For replica sets there is only one object representing node configurations. The `replicationSpecs` configuration for all shards within the same zone must be the same, with the exception of `instanceSize` and `diskIops` that can scale independently.
+     *
+     * The following clusters support independent `diskIops` values:
+     * * AWS Gen2 clusters that use the `STANDARD` (gp3) volume type.
+     * * AWS Gen2 clusters that use the `HIGH_PERFORMANCE` (io2) volume type.
+     * * AWS clusters that use the `PROVISIONED` (io2) volume type.
+     * * GCP Gen2 clusters, which use Hyperdisk Balanced storage.
+     * * Azure clusters in regions that support Extended IOPS.
+     *
+     * If your cluster has more than one `replicationSpecs` entry, review Multi-shard clusters and topology changes before adding, removing, or reordering entries. See below.
      */
     replicationSpecs: pulumi.Input<pulumi.Input<inputs.AdvancedClusterReplicationSpec>[]>;
     /**

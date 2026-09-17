@@ -44,6 +44,8 @@ type ServiceAccount struct {
 	SecretExpiresAfterHours pulumi.IntPtrOutput `pulumi:"secretExpiresAfterHours"`
 	// A list of secrets associated with the specified Service Account.
 	Secrets ServiceAccountSecretTypeArrayOutput `pulumi:"secrets"`
+	// Indicates whether the Service Account is system managed.
+	SystemManaged pulumi.BoolOutput `pulumi:"systemManaged"`
 }
 
 // NewServiceAccount registers a new resource with the given unique name, arguments, and options.
@@ -101,6 +103,8 @@ type serviceAccountState struct {
 	SecretExpiresAfterHours *int `pulumi:"secretExpiresAfterHours"`
 	// A list of secrets associated with the specified Service Account.
 	Secrets []ServiceAccountSecretType `pulumi:"secrets"`
+	// Indicates whether the Service Account is system managed.
+	SystemManaged *bool `pulumi:"systemManaged"`
 }
 
 type ServiceAccountState struct {
@@ -120,6 +124,8 @@ type ServiceAccountState struct {
 	SecretExpiresAfterHours pulumi.IntPtrInput
 	// A list of secrets associated with the specified Service Account.
 	Secrets ServiceAccountSecretTypeArrayInput
+	// Indicates whether the Service Account is system managed.
+	SystemManaged pulumi.BoolPtrInput
 }
 
 func (ServiceAccountState) ElementType() reflect.Type {
@@ -278,6 +284,11 @@ func (o ServiceAccountOutput) SecretExpiresAfterHours() pulumi.IntPtrOutput {
 // A list of secrets associated with the specified Service Account.
 func (o ServiceAccountOutput) Secrets() ServiceAccountSecretTypeArrayOutput {
 	return o.ApplyT(func(v *ServiceAccount) ServiceAccountSecretTypeArrayOutput { return v.Secrets }).(ServiceAccountSecretTypeArrayOutput)
+}
+
+// Indicates whether the Service Account is system managed.
+func (o ServiceAccountOutput) SystemManaged() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ServiceAccount) pulumi.BoolOutput { return v.SystemManaged }).(pulumi.BoolOutput)
 }
 
 type ServiceAccountArrayOutput struct{ *pulumi.OutputState }

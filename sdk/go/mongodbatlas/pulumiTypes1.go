@@ -13,6 +13,1367 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type GetStreamConnectionsResultGcp struct {
+	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+	ServiceAccountId string `pulumi:"serviceAccountId"`
+}
+
+// GetStreamConnectionsResultGcpInput is an input type that accepts GetStreamConnectionsResultGcpArgs and GetStreamConnectionsResultGcpOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultGcpInput` via:
+//
+//	GetStreamConnectionsResultGcpArgs{...}
+type GetStreamConnectionsResultGcpInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultGcpOutput() GetStreamConnectionsResultGcpOutput
+	ToGetStreamConnectionsResultGcpOutputWithContext(context.Context) GetStreamConnectionsResultGcpOutput
+}
+
+type GetStreamConnectionsResultGcpArgs struct {
+	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+	ServiceAccountId pulumi.StringInput `pulumi:"serviceAccountId"`
+}
+
+func (GetStreamConnectionsResultGcpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultGcp)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultGcpArgs) ToGetStreamConnectionsResultGcpOutput() GetStreamConnectionsResultGcpOutput {
+	return i.ToGetStreamConnectionsResultGcpOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultGcpArgs) ToGetStreamConnectionsResultGcpOutputWithContext(ctx context.Context) GetStreamConnectionsResultGcpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultGcpOutput)
+}
+
+type GetStreamConnectionsResultGcpOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultGcpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultGcp)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultGcpOutput) ToGetStreamConnectionsResultGcpOutput() GetStreamConnectionsResultGcpOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultGcpOutput) ToGetStreamConnectionsResultGcpOutputWithContext(ctx context.Context) GetStreamConnectionsResultGcpOutput {
+	return o
+}
+
+// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+func (o GetStreamConnectionsResultGcpOutput) ServiceAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultGcp) string { return v.ServiceAccountId }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultNetworking struct {
+	// Information about the networking access. See access.
+	Access GetStreamConnectionsResultNetworkingAccess `pulumi:"access"`
+}
+
+// GetStreamConnectionsResultNetworkingInput is an input type that accepts GetStreamConnectionsResultNetworkingArgs and GetStreamConnectionsResultNetworkingOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultNetworkingInput` via:
+//
+//	GetStreamConnectionsResultNetworkingArgs{...}
+type GetStreamConnectionsResultNetworkingInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultNetworkingOutput() GetStreamConnectionsResultNetworkingOutput
+	ToGetStreamConnectionsResultNetworkingOutputWithContext(context.Context) GetStreamConnectionsResultNetworkingOutput
+}
+
+type GetStreamConnectionsResultNetworkingArgs struct {
+	// Information about the networking access. See access.
+	Access GetStreamConnectionsResultNetworkingAccessInput `pulumi:"access"`
+}
+
+func (GetStreamConnectionsResultNetworkingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultNetworking)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultNetworkingArgs) ToGetStreamConnectionsResultNetworkingOutput() GetStreamConnectionsResultNetworkingOutput {
+	return i.ToGetStreamConnectionsResultNetworkingOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultNetworkingArgs) ToGetStreamConnectionsResultNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionsResultNetworkingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultNetworkingOutput)
+}
+
+type GetStreamConnectionsResultNetworkingOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultNetworkingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultNetworking)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultNetworkingOutput) ToGetStreamConnectionsResultNetworkingOutput() GetStreamConnectionsResultNetworkingOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultNetworkingOutput) ToGetStreamConnectionsResultNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionsResultNetworkingOutput {
+	return o
+}
+
+// Information about the networking access. See access.
+func (o GetStreamConnectionsResultNetworkingOutput) Access() GetStreamConnectionsResultNetworkingAccessOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultNetworking) GetStreamConnectionsResultNetworkingAccess {
+		return v.Access
+	}).(GetStreamConnectionsResultNetworkingAccessOutput)
+}
+
+type GetStreamConnectionsResultNetworkingAccess struct {
+	// Id of the Private Link connection when type is `PRIVATE_LINK`.
+	ConnectionId string `pulumi:"connectionId"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionsResultNetworkingAccessInput is an input type that accepts GetStreamConnectionsResultNetworkingAccessArgs and GetStreamConnectionsResultNetworkingAccessOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultNetworkingAccessInput` via:
+//
+//	GetStreamConnectionsResultNetworkingAccessArgs{...}
+type GetStreamConnectionsResultNetworkingAccessInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultNetworkingAccessOutput() GetStreamConnectionsResultNetworkingAccessOutput
+	ToGetStreamConnectionsResultNetworkingAccessOutputWithContext(context.Context) GetStreamConnectionsResultNetworkingAccessOutput
+}
+
+type GetStreamConnectionsResultNetworkingAccessArgs struct {
+	// Id of the Private Link connection when type is `PRIVATE_LINK`.
+	ConnectionId pulumi.StringInput `pulumi:"connectionId"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionsResultNetworkingAccessArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultNetworkingAccess)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultNetworkingAccessArgs) ToGetStreamConnectionsResultNetworkingAccessOutput() GetStreamConnectionsResultNetworkingAccessOutput {
+	return i.ToGetStreamConnectionsResultNetworkingAccessOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultNetworkingAccessArgs) ToGetStreamConnectionsResultNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionsResultNetworkingAccessOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultNetworkingAccessOutput)
+}
+
+type GetStreamConnectionsResultNetworkingAccessOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultNetworkingAccessOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultNetworkingAccess)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultNetworkingAccessOutput) ToGetStreamConnectionsResultNetworkingAccessOutput() GetStreamConnectionsResultNetworkingAccessOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultNetworkingAccessOutput) ToGetStreamConnectionsResultNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionsResultNetworkingAccessOutput {
+	return o
+}
+
+// Id of the Private Link connection when type is `PRIVATE_LINK`.
+func (o GetStreamConnectionsResultNetworkingAccessOutput) ConnectionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultNetworkingAccess) string { return v.ConnectionId }).(pulumi.StringOutput)
+}
+
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+func (o GetStreamConnectionsResultNetworkingAccessOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultSchemaRegistryAuthentication struct {
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+	Password string `pulumi:"password"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type string `pulumi:"type"`
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+	Username string `pulumi:"username"`
+}
+
+// GetStreamConnectionsResultSchemaRegistryAuthenticationInput is an input type that accepts GetStreamConnectionsResultSchemaRegistryAuthenticationArgs and GetStreamConnectionsResultSchemaRegistryAuthenticationOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultSchemaRegistryAuthenticationInput` via:
+//
+//	GetStreamConnectionsResultSchemaRegistryAuthenticationArgs{...}
+type GetStreamConnectionsResultSchemaRegistryAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutput() GetStreamConnectionsResultSchemaRegistryAuthenticationOutput
+	ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutputWithContext(context.Context) GetStreamConnectionsResultSchemaRegistryAuthenticationOutput
+}
+
+type GetStreamConnectionsResultSchemaRegistryAuthenticationArgs struct {
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetStreamConnectionsResultSchemaRegistryAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultSchemaRegistryAuthentication)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultSchemaRegistryAuthenticationArgs) ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutput() GetStreamConnectionsResultSchemaRegistryAuthenticationOutput {
+	return i.ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultSchemaRegistryAuthenticationArgs) ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionsResultSchemaRegistryAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultSchemaRegistryAuthenticationOutput)
+}
+
+type GetStreamConnectionsResultSchemaRegistryAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultSchemaRegistryAuthentication)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutput() GetStreamConnectionsResultSchemaRegistryAuthenticationOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) ToGetStreamConnectionsResultSchemaRegistryAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionsResultSchemaRegistryAuthenticationOutput {
+	return o
+}
+
+// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+func (o GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultSchemaRegistryAuthentication) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+func (o GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultSchemaRegistryAuthentication) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+func (o GetStreamConnectionsResultSchemaRegistryAuthenticationOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultSchemaRegistryAuthentication) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultSecurity struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate string `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
+	Protocol string `pulumi:"protocol"`
+}
+
+// GetStreamConnectionsResultSecurityInput is an input type that accepts GetStreamConnectionsResultSecurityArgs and GetStreamConnectionsResultSecurityOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultSecurityInput` via:
+//
+//	GetStreamConnectionsResultSecurityArgs{...}
+type GetStreamConnectionsResultSecurityInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultSecurityOutput() GetStreamConnectionsResultSecurityOutput
+	ToGetStreamConnectionsResultSecurityOutputWithContext(context.Context) GetStreamConnectionsResultSecurityOutput
+}
+
+type GetStreamConnectionsResultSecurityArgs struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate pulumi.StringInput `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+}
+
+func (GetStreamConnectionsResultSecurityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultSecurity)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultSecurityArgs) ToGetStreamConnectionsResultSecurityOutput() GetStreamConnectionsResultSecurityOutput {
+	return i.ToGetStreamConnectionsResultSecurityOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultSecurityArgs) ToGetStreamConnectionsResultSecurityOutputWithContext(ctx context.Context) GetStreamConnectionsResultSecurityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultSecurityOutput)
+}
+
+type GetStreamConnectionsResultSecurityOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultSecurityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultSecurity)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultSecurityOutput) ToGetStreamConnectionsResultSecurityOutput() GetStreamConnectionsResultSecurityOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultSecurityOutput) ToGetStreamConnectionsResultSecurityOutputWithContext(ctx context.Context) GetStreamConnectionsResultSecurityOutput {
+	return o
+}
+
+// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+func (o GetStreamConnectionsResultSecurityOutput) BrokerPublicCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultSecurity) string { return v.BrokerPublicCertificate }).(pulumi.StringOutput)
+}
+
+// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
+func (o GetStreamConnectionsResultSecurityOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultSecurity) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+type GetStreamInstanceDataProcessRegion struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region string `pulumi:"region"`
+}
+
+// GetStreamInstanceDataProcessRegionInput is an input type that accepts GetStreamInstanceDataProcessRegionArgs and GetStreamInstanceDataProcessRegionOutput values.
+// You can construct a concrete instance of `GetStreamInstanceDataProcessRegionInput` via:
+//
+//	GetStreamInstanceDataProcessRegionArgs{...}
+type GetStreamInstanceDataProcessRegionInput interface {
+	pulumi.Input
+
+	ToGetStreamInstanceDataProcessRegionOutput() GetStreamInstanceDataProcessRegionOutput
+	ToGetStreamInstanceDataProcessRegionOutputWithContext(context.Context) GetStreamInstanceDataProcessRegionOutput
+}
+
+type GetStreamInstanceDataProcessRegionArgs struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetStreamInstanceDataProcessRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstanceDataProcessRegion)(nil)).Elem()
+}
+
+func (i GetStreamInstanceDataProcessRegionArgs) ToGetStreamInstanceDataProcessRegionOutput() GetStreamInstanceDataProcessRegionOutput {
+	return i.ToGetStreamInstanceDataProcessRegionOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstanceDataProcessRegionArgs) ToGetStreamInstanceDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstanceDataProcessRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstanceDataProcessRegionOutput)
+}
+
+type GetStreamInstanceDataProcessRegionOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstanceDataProcessRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstanceDataProcessRegion)(nil)).Elem()
+}
+
+func (o GetStreamInstanceDataProcessRegionOutput) ToGetStreamInstanceDataProcessRegionOutput() GetStreamInstanceDataProcessRegionOutput {
+	return o
+}
+
+func (o GetStreamInstanceDataProcessRegionOutput) ToGetStreamInstanceDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstanceDataProcessRegionOutput {
+	return o
+}
+
+// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstanceDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstanceDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstanceDataProcessRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstanceDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetStreamInstanceStreamConfig struct {
+	MaxTierSize string `pulumi:"maxTierSize"`
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier string `pulumi:"tier"`
+}
+
+// GetStreamInstanceStreamConfigInput is an input type that accepts GetStreamInstanceStreamConfigArgs and GetStreamInstanceStreamConfigOutput values.
+// You can construct a concrete instance of `GetStreamInstanceStreamConfigInput` via:
+//
+//	GetStreamInstanceStreamConfigArgs{...}
+type GetStreamInstanceStreamConfigInput interface {
+	pulumi.Input
+
+	ToGetStreamInstanceStreamConfigOutput() GetStreamInstanceStreamConfigOutput
+	ToGetStreamInstanceStreamConfigOutputWithContext(context.Context) GetStreamInstanceStreamConfigOutput
+}
+
+type GetStreamInstanceStreamConfigArgs struct {
+	MaxTierSize pulumi.StringInput `pulumi:"maxTierSize"`
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier pulumi.StringInput `pulumi:"tier"`
+}
+
+func (GetStreamInstanceStreamConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstanceStreamConfig)(nil)).Elem()
+}
+
+func (i GetStreamInstanceStreamConfigArgs) ToGetStreamInstanceStreamConfigOutput() GetStreamInstanceStreamConfigOutput {
+	return i.ToGetStreamInstanceStreamConfigOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstanceStreamConfigArgs) ToGetStreamInstanceStreamConfigOutputWithContext(ctx context.Context) GetStreamInstanceStreamConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstanceStreamConfigOutput)
+}
+
+type GetStreamInstanceStreamConfigOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstanceStreamConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstanceStreamConfig)(nil)).Elem()
+}
+
+func (o GetStreamInstanceStreamConfigOutput) ToGetStreamInstanceStreamConfigOutput() GetStreamInstanceStreamConfigOutput {
+	return o
+}
+
+func (o GetStreamInstanceStreamConfigOutput) ToGetStreamInstanceStreamConfigOutputWithContext(ctx context.Context) GetStreamInstanceStreamConfigOutput {
+	return o
+}
+
+func (o GetStreamInstanceStreamConfigOutput) MaxTierSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstanceStreamConfig) string { return v.MaxTierSize }).(pulumi.StringOutput)
+}
+
+// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstanceStreamConfigOutput) Tier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstanceStreamConfig) string { return v.Tier }).(pulumi.StringOutput)
+}
+
+type GetStreamInstancesResult struct {
+	// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+	DataProcessRegion GetStreamInstancesResultDataProcessRegion `pulumi:"dataProcessRegion"`
+	// List that contains the hostnames assigned to the stream instance.
+	Hostnames []string `pulumi:"hostnames"`
+	Id        string   `pulumi:"id"`
+	// Human-readable label that identifies the stream instance.
+	InstanceName string `pulumi:"instanceName"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
+	StreamConfig GetStreamInstancesResultStreamConfig `pulumi:"streamConfig"`
+}
+
+// GetStreamInstancesResultInput is an input type that accepts GetStreamInstancesResultArgs and GetStreamInstancesResultOutput values.
+// You can construct a concrete instance of `GetStreamInstancesResultInput` via:
+//
+//	GetStreamInstancesResultArgs{...}
+type GetStreamInstancesResultInput interface {
+	pulumi.Input
+
+	ToGetStreamInstancesResultOutput() GetStreamInstancesResultOutput
+	ToGetStreamInstancesResultOutputWithContext(context.Context) GetStreamInstancesResultOutput
+}
+
+type GetStreamInstancesResultArgs struct {
+	// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+	DataProcessRegion GetStreamInstancesResultDataProcessRegionInput `pulumi:"dataProcessRegion"`
+	// List that contains the hostnames assigned to the stream instance.
+	Hostnames pulumi.StringArrayInput `pulumi:"hostnames"`
+	Id        pulumi.StringInput      `pulumi:"id"`
+	// Human-readable label that identifies the stream instance.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
+	StreamConfig GetStreamInstancesResultStreamConfigInput `pulumi:"streamConfig"`
+}
+
+func (GetStreamInstancesResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResult)(nil)).Elem()
+}
+
+func (i GetStreamInstancesResultArgs) ToGetStreamInstancesResultOutput() GetStreamInstancesResultOutput {
+	return i.ToGetStreamInstancesResultOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstancesResultArgs) ToGetStreamInstancesResultOutputWithContext(ctx context.Context) GetStreamInstancesResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultOutput)
+}
+
+// GetStreamInstancesResultArrayInput is an input type that accepts GetStreamInstancesResultArray and GetStreamInstancesResultArrayOutput values.
+// You can construct a concrete instance of `GetStreamInstancesResultArrayInput` via:
+//
+//	GetStreamInstancesResultArray{ GetStreamInstancesResultArgs{...} }
+type GetStreamInstancesResultArrayInput interface {
+	pulumi.Input
+
+	ToGetStreamInstancesResultArrayOutput() GetStreamInstancesResultArrayOutput
+	ToGetStreamInstancesResultArrayOutputWithContext(context.Context) GetStreamInstancesResultArrayOutput
+}
+
+type GetStreamInstancesResultArray []GetStreamInstancesResultInput
+
+func (GetStreamInstancesResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamInstancesResult)(nil)).Elem()
+}
+
+func (i GetStreamInstancesResultArray) ToGetStreamInstancesResultArrayOutput() GetStreamInstancesResultArrayOutput {
+	return i.ToGetStreamInstancesResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstancesResultArray) ToGetStreamInstancesResultArrayOutputWithContext(ctx context.Context) GetStreamInstancesResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultArrayOutput)
+}
+
+type GetStreamInstancesResultOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstancesResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResult)(nil)).Elem()
+}
+
+func (o GetStreamInstancesResultOutput) ToGetStreamInstancesResultOutput() GetStreamInstancesResultOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultOutput) ToGetStreamInstancesResultOutputWithContext(ctx context.Context) GetStreamInstancesResultOutput {
+	return o
+}
+
+// Defines the cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+func (o GetStreamInstancesResultOutput) DataProcessRegion() GetStreamInstancesResultDataProcessRegionOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) GetStreamInstancesResultDataProcessRegion { return v.DataProcessRegion }).(GetStreamInstancesResultDataProcessRegionOutput)
+}
+
+// List that contains the hostnames assigned to the stream instance.
+func (o GetStreamInstancesResultOutput) Hostnames() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) []string { return v.Hostnames }).(pulumi.StringArrayOutput)
+}
+
+func (o GetStreamInstancesResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the stream instance.
+func (o GetStreamInstancesResultOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+func (o GetStreamInstancesResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Defines the configuration options for an Atlas Stream Processing Instance. See stream config
+func (o GetStreamInstancesResultOutput) StreamConfig() GetStreamInstancesResultStreamConfigOutput {
+	return o.ApplyT(func(v GetStreamInstancesResult) GetStreamInstancesResultStreamConfig { return v.StreamConfig }).(GetStreamInstancesResultStreamConfigOutput)
+}
+
+type GetStreamInstancesResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstancesResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamInstancesResult)(nil)).Elem()
+}
+
+func (o GetStreamInstancesResultArrayOutput) ToGetStreamInstancesResultArrayOutput() GetStreamInstancesResultArrayOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultArrayOutput) ToGetStreamInstancesResultArrayOutputWithContext(ctx context.Context) GetStreamInstancesResultArrayOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultArrayOutput) Index(i pulumi.IntInput) GetStreamInstancesResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamInstancesResult {
+		return vs[0].([]GetStreamInstancesResult)[vs[1].(int)]
+	}).(GetStreamInstancesResultOutput)
+}
+
+type GetStreamInstancesResultDataProcessRegion struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider string `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region string `pulumi:"region"`
+}
+
+// GetStreamInstancesResultDataProcessRegionInput is an input type that accepts GetStreamInstancesResultDataProcessRegionArgs and GetStreamInstancesResultDataProcessRegionOutput values.
+// You can construct a concrete instance of `GetStreamInstancesResultDataProcessRegionInput` via:
+//
+//	GetStreamInstancesResultDataProcessRegionArgs{...}
+type GetStreamInstancesResultDataProcessRegionInput interface {
+	pulumi.Input
+
+	ToGetStreamInstancesResultDataProcessRegionOutput() GetStreamInstancesResultDataProcessRegionOutput
+	ToGetStreamInstancesResultDataProcessRegionOutputWithContext(context.Context) GetStreamInstancesResultDataProcessRegionOutput
+}
+
+type GetStreamInstancesResultDataProcessRegionArgs struct {
+	// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
+	// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Region pulumi.StringInput `pulumi:"region"`
+}
+
+func (GetStreamInstancesResultDataProcessRegionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResultDataProcessRegion)(nil)).Elem()
+}
+
+func (i GetStreamInstancesResultDataProcessRegionArgs) ToGetStreamInstancesResultDataProcessRegionOutput() GetStreamInstancesResultDataProcessRegionOutput {
+	return i.ToGetStreamInstancesResultDataProcessRegionOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstancesResultDataProcessRegionArgs) ToGetStreamInstancesResultDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstancesResultDataProcessRegionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultDataProcessRegionOutput)
+}
+
+type GetStreamInstancesResultDataProcessRegionOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstancesResultDataProcessRegionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResultDataProcessRegion)(nil)).Elem()
+}
+
+func (o GetStreamInstancesResultDataProcessRegionOutput) ToGetStreamInstancesResultDataProcessRegionOutput() GetStreamInstancesResultDataProcessRegionOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultDataProcessRegionOutput) ToGetStreamInstancesResultDataProcessRegionOutputWithContext(ctx context.Context) GetStreamInstancesResultDataProcessRegionOutput {
+	return o
+}
+
+// Label that identifies the cloud service provider where MongoDB Cloud performs stream processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstancesResultDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResultDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
+}
+
+// Name of the cloud provider region hosting Atlas Stream Processing. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstancesResultDataProcessRegionOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResultDataProcessRegion) string { return v.Region }).(pulumi.StringOutput)
+}
+
+type GetStreamInstancesResultStreamConfig struct {
+	MaxTierSize string `pulumi:"maxTierSize"`
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier string `pulumi:"tier"`
+}
+
+// GetStreamInstancesResultStreamConfigInput is an input type that accepts GetStreamInstancesResultStreamConfigArgs and GetStreamInstancesResultStreamConfigOutput values.
+// You can construct a concrete instance of `GetStreamInstancesResultStreamConfigInput` via:
+//
+//	GetStreamInstancesResultStreamConfigArgs{...}
+type GetStreamInstancesResultStreamConfigInput interface {
+	pulumi.Input
+
+	ToGetStreamInstancesResultStreamConfigOutput() GetStreamInstancesResultStreamConfigOutput
+	ToGetStreamInstancesResultStreamConfigOutputWithContext(context.Context) GetStreamInstancesResultStreamConfigOutput
+}
+
+type GetStreamInstancesResultStreamConfigArgs struct {
+	MaxTierSize pulumi.StringInput `pulumi:"maxTierSize"`
+	// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+	Tier pulumi.StringInput `pulumi:"tier"`
+}
+
+func (GetStreamInstancesResultStreamConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResultStreamConfig)(nil)).Elem()
+}
+
+func (i GetStreamInstancesResultStreamConfigArgs) ToGetStreamInstancesResultStreamConfigOutput() GetStreamInstancesResultStreamConfigOutput {
+	return i.ToGetStreamInstancesResultStreamConfigOutputWithContext(context.Background())
+}
+
+func (i GetStreamInstancesResultStreamConfigArgs) ToGetStreamInstancesResultStreamConfigOutputWithContext(ctx context.Context) GetStreamInstancesResultStreamConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamInstancesResultStreamConfigOutput)
+}
+
+type GetStreamInstancesResultStreamConfigOutput struct{ *pulumi.OutputState }
+
+func (GetStreamInstancesResultStreamConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamInstancesResultStreamConfig)(nil)).Elem()
+}
+
+func (o GetStreamInstancesResultStreamConfigOutput) ToGetStreamInstancesResultStreamConfigOutput() GetStreamInstancesResultStreamConfigOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultStreamConfigOutput) ToGetStreamInstancesResultStreamConfigOutputWithContext(ctx context.Context) GetStreamInstancesResultStreamConfigOutput {
+	return o
+}
+
+func (o GetStreamInstancesResultStreamConfigOutput) MaxTierSize() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResultStreamConfig) string { return v.MaxTierSize }).(pulumi.StringOutput)
+}
+
+// Selected tier for the Stream Instance. Configures Memory / VCPU allowances. The [MongoDB Atlas API](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Streams/operation/createStreamInstance) describes the valid values.
+func (o GetStreamInstancesResultStreamConfigOutput) Tier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamInstancesResultStreamConfig) string { return v.Tier }).(pulumi.StringOutput)
+}
+
+type GetStreamPrivatelinkEndpointsResult struct {
+	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
+	Arn string `pulumi:"arn"`
+	// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+	AuthenticationScheme string `pulumi:"authenticationScheme"`
+	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
+	//
+	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
+	//
+	//     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+	//
+	//     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+	//
+	//     * For GCP provider with PUBSUB vendor, the API computes this process.
+	//
+	//     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
+	DnsDomain string `pulumi:"dnsDomain"`
+	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+	DnsSubDomains []string `pulumi:"dnsSubDomains"`
+	// Error message if the connection is in a failed state.
+	ErrorMessage string `pulumi:"errorMessage"`
+	// The ID of the Private Link connection.
+	Id string `pulumi:"id"`
+	// Interface endpoint ID that is created from the specified service endpoint ID.
+	InterfaceEndpointId string `pulumi:"interfaceEndpointId"`
+	// Name of interface endpoint that is created from the specified service endpoint ID.
+	InterfaceEndpointName string `pulumi:"interfaceEndpointName"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// Account ID from the cloud provider.
+	ProviderAccountId string `pulumi:"providerAccountId"`
+	// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
+	ProviderName string `pulumi:"providerName"`
+	// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+	Region string `pulumi:"region"`
+	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+	ServiceAttachmentUris []string `pulumi:"serviceAttachmentUris"`
+	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+	ServiceEndpointId string `pulumi:"serviceEndpointId"`
+	// Status of the connection.
+	State string `pulumi:"state"`
+	// Vendor that manages the endpoint. The following are the vendor values per provider:
+	//
+	//     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
+	//
+	//     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
+	//
+	//     * **GCP**: CONFLUENT and PUBSUB
+	Vendor string `pulumi:"vendor"`
+}
+
+// GetStreamPrivatelinkEndpointsResultInput is an input type that accepts GetStreamPrivatelinkEndpointsResultArgs and GetStreamPrivatelinkEndpointsResultOutput values.
+// You can construct a concrete instance of `GetStreamPrivatelinkEndpointsResultInput` via:
+//
+//	GetStreamPrivatelinkEndpointsResultArgs{...}
+type GetStreamPrivatelinkEndpointsResultInput interface {
+	pulumi.Input
+
+	ToGetStreamPrivatelinkEndpointsResultOutput() GetStreamPrivatelinkEndpointsResultOutput
+	ToGetStreamPrivatelinkEndpointsResultOutputWithContext(context.Context) GetStreamPrivatelinkEndpointsResultOutput
+}
+
+type GetStreamPrivatelinkEndpointsResultArgs struct {
+	// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
+	Arn pulumi.StringInput `pulumi:"arn"`
+	// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+	AuthenticationScheme pulumi.StringInput `pulumi:"authenticationScheme"`
+	// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
+	//
+	//     * AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
+	//
+	//     * AZURE provider with EVENTHUB or CONFLUENT vendor.
+	//
+	//     * AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+	//
+	//     * For GCP provider with PUBSUB vendor, the API computes this process.
+	//
+	//     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
+	DnsDomain pulumi.StringInput `pulumi:"dnsDomain"`
+	// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+	DnsSubDomains pulumi.StringArrayInput `pulumi:"dnsSubDomains"`
+	// Error message if the connection is in a failed state.
+	ErrorMessage pulumi.StringInput `pulumi:"errorMessage"`
+	// The ID of the Private Link connection.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Interface endpoint ID that is created from the specified service endpoint ID.
+	InterfaceEndpointId pulumi.StringInput `pulumi:"interfaceEndpointId"`
+	// Name of interface endpoint that is created from the specified service endpoint ID.
+	InterfaceEndpointName pulumi.StringInput `pulumi:"interfaceEndpointName"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Account ID from the cloud provider.
+	ProviderAccountId pulumi.StringInput `pulumi:"providerAccountId"`
+	// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
+	ProviderName pulumi.StringInput `pulumi:"providerName"`
+	// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+	Region pulumi.StringInput `pulumi:"region"`
+	// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+	ServiceAttachmentUris pulumi.StringArrayInput `pulumi:"serviceAttachmentUris"`
+	// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+	ServiceEndpointId pulumi.StringInput `pulumi:"serviceEndpointId"`
+	// Status of the connection.
+	State pulumi.StringInput `pulumi:"state"`
+	// Vendor that manages the endpoint. The following are the vendor values per provider:
+	//
+	//     * **AWS**: MSK, CONFLUENT, S3, and LAMBDA
+	//
+	//     * **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
+	//
+	//     * **GCP**: CONFLUENT and PUBSUB
+	Vendor pulumi.StringInput `pulumi:"vendor"`
+}
+
+func (GetStreamPrivatelinkEndpointsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamPrivatelinkEndpointsResult)(nil)).Elem()
+}
+
+func (i GetStreamPrivatelinkEndpointsResultArgs) ToGetStreamPrivatelinkEndpointsResultOutput() GetStreamPrivatelinkEndpointsResultOutput {
+	return i.ToGetStreamPrivatelinkEndpointsResultOutputWithContext(context.Background())
+}
+
+func (i GetStreamPrivatelinkEndpointsResultArgs) ToGetStreamPrivatelinkEndpointsResultOutputWithContext(ctx context.Context) GetStreamPrivatelinkEndpointsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamPrivatelinkEndpointsResultOutput)
+}
+
+// GetStreamPrivatelinkEndpointsResultArrayInput is an input type that accepts GetStreamPrivatelinkEndpointsResultArray and GetStreamPrivatelinkEndpointsResultArrayOutput values.
+// You can construct a concrete instance of `GetStreamPrivatelinkEndpointsResultArrayInput` via:
+//
+//	GetStreamPrivatelinkEndpointsResultArray{ GetStreamPrivatelinkEndpointsResultArgs{...} }
+type GetStreamPrivatelinkEndpointsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetStreamPrivatelinkEndpointsResultArrayOutput() GetStreamPrivatelinkEndpointsResultArrayOutput
+	ToGetStreamPrivatelinkEndpointsResultArrayOutputWithContext(context.Context) GetStreamPrivatelinkEndpointsResultArrayOutput
+}
+
+type GetStreamPrivatelinkEndpointsResultArray []GetStreamPrivatelinkEndpointsResultInput
+
+func (GetStreamPrivatelinkEndpointsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamPrivatelinkEndpointsResult)(nil)).Elem()
+}
+
+func (i GetStreamPrivatelinkEndpointsResultArray) ToGetStreamPrivatelinkEndpointsResultArrayOutput() GetStreamPrivatelinkEndpointsResultArrayOutput {
+	return i.ToGetStreamPrivatelinkEndpointsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetStreamPrivatelinkEndpointsResultArray) ToGetStreamPrivatelinkEndpointsResultArrayOutputWithContext(ctx context.Context) GetStreamPrivatelinkEndpointsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamPrivatelinkEndpointsResultArrayOutput)
+}
+
+type GetStreamPrivatelinkEndpointsResultOutput struct{ *pulumi.OutputState }
+
+func (GetStreamPrivatelinkEndpointsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamPrivatelinkEndpointsResult)(nil)).Elem()
+}
+
+func (o GetStreamPrivatelinkEndpointsResultOutput) ToGetStreamPrivatelinkEndpointsResultOutput() GetStreamPrivatelinkEndpointsResultOutput {
+	return o
+}
+
+func (o GetStreamPrivatelinkEndpointsResultOutput) ToGetStreamPrivatelinkEndpointsResultOutputWithContext(ctx context.Context) GetStreamPrivatelinkEndpointsResultOutput {
+	return o
+}
+
+// Amazon Resource Name (ARN). Required for AWS Provider and MSK vendor.
+func (o GetStreamPrivatelinkEndpointsResultOutput) Arn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Arn }).(pulumi.StringOutput)
+}
+
+// Authentication mechanism to use with this private link connection. Only applies when the vendor is `MSK`. Valid values are `SASL_SCRAM`, `TLS`, and `IAM`. Changing this value forces replacement of the private link connection.
+func (o GetStreamPrivatelinkEndpointsResultOutput) AuthenticationScheme() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.AuthenticationScheme }).(pulumi.StringOutput)
+}
+
+// The domain hostname. Optional for AWS Confluent Enterprise Kafka Cluster. Required for the following provider and vendor combinations:
+//
+//   - AWS provider with CONFLUENT vendor for Dedicated Kafka Cluster.
+//
+//   - AZURE provider with EVENTHUB or CONFLUENT vendor.
+//
+//   - AZURE provider with AZURE_BLOB_STORAGE vendor. This should follow the format `{storageAccount}.blob.core.windows.net`.
+//
+//   - For GCP provider with PUBSUB vendor, the API computes this process.
+//
+//     This attribute can be updated in place for AWS Confluent Enterprise Kafka Cluster. Updating it is only allowed when no domain is currently set, or when the connection is in the `IDLE` state.
+func (o GetStreamPrivatelinkEndpointsResultOutput) DnsDomain() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.DnsDomain }).(pulumi.StringOutput)
+}
+
+// Sub-Domain name of Confluent cluster. These are typically your availability zones. Required for AWS Provider and CONFLUENT vendor. If your AWS CONFLUENT cluster doesn't use subdomains, you must set this to the empty array [].
+func (o GetStreamPrivatelinkEndpointsResultOutput) DnsSubDomains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) []string { return v.DnsSubDomains }).(pulumi.StringArrayOutput)
+}
+
+// Error message if the connection is in a failed state.
+func (o GetStreamPrivatelinkEndpointsResultOutput) ErrorMessage() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ErrorMessage }).(pulumi.StringOutput)
+}
+
+// The ID of the Private Link connection.
+func (o GetStreamPrivatelinkEndpointsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Interface endpoint ID that is created from the specified service endpoint ID.
+func (o GetStreamPrivatelinkEndpointsResultOutput) InterfaceEndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.InterfaceEndpointId }).(pulumi.StringOutput)
+}
+
+// Name of interface endpoint that is created from the specified service endpoint ID.
+func (o GetStreamPrivatelinkEndpointsResultOutput) InterfaceEndpointName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.InterfaceEndpointName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+func (o GetStreamPrivatelinkEndpointsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Account ID from the cloud provider.
+func (o GetStreamPrivatelinkEndpointsResultOutput) ProviderAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ProviderAccountId }).(pulumi.StringOutput)
+}
+
+// Provider where the endpoint is deployed. Valid values are AWS, AZURE, and GCP.
+func (o GetStreamPrivatelinkEndpointsResultOutput) ProviderName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ProviderName }).(pulumi.StringOutput)
+}
+
+// The region of the Provider’s cluster. See [AZURE](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/#stream-processing-instances) and [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/#stream-processing-instances) supported regions. When the vendor is `CONFLUENT`, this is the domain name of Confluent cluster. When the vendor is `MSK`, this is computed by the API from the provided `arn`.
+func (o GetStreamPrivatelinkEndpointsResultOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// List of GCP service attachment URIs for Confluent vendor. Required for GCP provider with CONFLUENT vendor.
+func (o GetStreamPrivatelinkEndpointsResultOutput) ServiceAttachmentUris() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) []string { return v.ServiceAttachmentUris }).(pulumi.StringArrayOutput)
+}
+
+// For AZURE EVENTHUB, this is the [namespace endpoint ID](https://learn.microsoft.com/en-us/rest/api/eventhub/namespaces/get). For AWS CONFLUENT cluster, this is the [VPC Endpoint service name](https://docs.confluent.io/cloud/current/networking/private-links/aws-privatelink.html). For AWS LAMBDA, this is the Lambda VPC endpoint service name in the format `com.amazonaws.{region}.lambda`. For AZURE_BLOB_STORAGE, this is the Azure Resource Manager path of the storage account in the format `/subscriptions/{subscriptionId}/resourceGroups/{resourceGroup}/providers/Microsoft.Storage/storageAccounts/{storageAccount}`.
+func (o GetStreamPrivatelinkEndpointsResultOutput) ServiceEndpointId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.ServiceEndpointId }).(pulumi.StringOutput)
+}
+
+// Status of the connection.
+func (o GetStreamPrivatelinkEndpointsResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.State }).(pulumi.StringOutput)
+}
+
+// Vendor that manages the endpoint. The following are the vendor values per provider:
+//
+//   - **AWS**: MSK, CONFLUENT, S3, and LAMBDA
+//
+//   - **Azure**: EVENTHUB, CONFLUENT, and AZURE_BLOB_STORAGE
+//
+//   - **GCP**: CONFLUENT and PUBSUB
+func (o GetStreamPrivatelinkEndpointsResultOutput) Vendor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamPrivatelinkEndpointsResult) string { return v.Vendor }).(pulumi.StringOutput)
+}
+
+type GetStreamPrivatelinkEndpointsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStreamPrivatelinkEndpointsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamPrivatelinkEndpointsResult)(nil)).Elem()
+}
+
+func (o GetStreamPrivatelinkEndpointsResultArrayOutput) ToGetStreamPrivatelinkEndpointsResultArrayOutput() GetStreamPrivatelinkEndpointsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamPrivatelinkEndpointsResultArrayOutput) ToGetStreamPrivatelinkEndpointsResultArrayOutputWithContext(ctx context.Context) GetStreamPrivatelinkEndpointsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamPrivatelinkEndpointsResultArrayOutput) Index(i pulumi.IntInput) GetStreamPrivatelinkEndpointsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamPrivatelinkEndpointsResult {
+		return vs[0].([]GetStreamPrivatelinkEndpointsResult)[vs[1].(int)]
+	}).(GetStreamPrivatelinkEndpointsResultOutput)
+}
+
+type GetStreamProcessorOptions struct {
+	// Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+	Autoscaling GetStreamProcessorOptionsAutoscaling `pulumi:"autoscaling"`
+	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+	Dlq GetStreamProcessorOptionsDlq `pulumi:"dlq"`
+}
+
+// GetStreamProcessorOptionsInput is an input type that accepts GetStreamProcessorOptionsArgs and GetStreamProcessorOptionsOutput values.
+// You can construct a concrete instance of `GetStreamProcessorOptionsInput` via:
+//
+//	GetStreamProcessorOptionsArgs{...}
+type GetStreamProcessorOptionsInput interface {
+	pulumi.Input
+
+	ToGetStreamProcessorOptionsOutput() GetStreamProcessorOptionsOutput
+	ToGetStreamProcessorOptionsOutputWithContext(context.Context) GetStreamProcessorOptionsOutput
+}
+
+type GetStreamProcessorOptionsArgs struct {
+	// Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+	Autoscaling GetStreamProcessorOptionsAutoscalingInput `pulumi:"autoscaling"`
+	// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+	Dlq GetStreamProcessorOptionsDlqInput `pulumi:"dlq"`
+}
+
+func (GetStreamProcessorOptionsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorOptions)(nil)).Elem()
+}
+
+func (i GetStreamProcessorOptionsArgs) ToGetStreamProcessorOptionsOutput() GetStreamProcessorOptionsOutput {
+	return i.ToGetStreamProcessorOptionsOutputWithContext(context.Background())
+}
+
+func (i GetStreamProcessorOptionsArgs) ToGetStreamProcessorOptionsOutputWithContext(ctx context.Context) GetStreamProcessorOptionsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorOptionsOutput)
+}
+
+type GetStreamProcessorOptionsOutput struct{ *pulumi.OutputState }
+
+func (GetStreamProcessorOptionsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorOptions)(nil)).Elem()
+}
+
+func (o GetStreamProcessorOptionsOutput) ToGetStreamProcessorOptionsOutput() GetStreamProcessorOptionsOutput {
+	return o
+}
+
+func (o GetStreamProcessorOptionsOutput) ToGetStreamProcessorOptionsOutputWithContext(ctx context.Context) GetStreamProcessorOptionsOutput {
+	return o
+}
+
+// Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
+func (o GetStreamProcessorOptionsOutput) Autoscaling() GetStreamProcessorOptionsAutoscalingOutput {
+	return o.ApplyT(func(v GetStreamProcessorOptions) GetStreamProcessorOptionsAutoscaling { return v.Autoscaling }).(GetStreamProcessorOptionsAutoscalingOutput)
+}
+
+// Dead letter queue for the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/reference/glossary/#std-term-dead-letter-queue) for more information.
+func (o GetStreamProcessorOptionsOutput) Dlq() GetStreamProcessorOptionsDlqOutput {
+	return o.ApplyT(func(v GetStreamProcessorOptions) GetStreamProcessorOptionsDlq { return v.Dlq }).(GetStreamProcessorOptionsDlqOutput)
+}
+
+type GetStreamProcessorOptionsAutoscaling struct {
+	// Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+	MaxTier string `pulumi:"maxTier"`
+	// Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+	MinTier string `pulumi:"minTier"`
+}
+
+// GetStreamProcessorOptionsAutoscalingInput is an input type that accepts GetStreamProcessorOptionsAutoscalingArgs and GetStreamProcessorOptionsAutoscalingOutput values.
+// You can construct a concrete instance of `GetStreamProcessorOptionsAutoscalingInput` via:
+//
+//	GetStreamProcessorOptionsAutoscalingArgs{...}
+type GetStreamProcessorOptionsAutoscalingInput interface {
+	pulumi.Input
+
+	ToGetStreamProcessorOptionsAutoscalingOutput() GetStreamProcessorOptionsAutoscalingOutput
+	ToGetStreamProcessorOptionsAutoscalingOutputWithContext(context.Context) GetStreamProcessorOptionsAutoscalingOutput
+}
+
+type GetStreamProcessorOptionsAutoscalingArgs struct {
+	// Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+	MaxTier pulumi.StringInput `pulumi:"maxTier"`
+	// Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+	MinTier pulumi.StringInput `pulumi:"minTier"`
+}
+
+func (GetStreamProcessorOptionsAutoscalingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorOptionsAutoscaling)(nil)).Elem()
+}
+
+func (i GetStreamProcessorOptionsAutoscalingArgs) ToGetStreamProcessorOptionsAutoscalingOutput() GetStreamProcessorOptionsAutoscalingOutput {
+	return i.ToGetStreamProcessorOptionsAutoscalingOutputWithContext(context.Background())
+}
+
+func (i GetStreamProcessorOptionsAutoscalingArgs) ToGetStreamProcessorOptionsAutoscalingOutputWithContext(ctx context.Context) GetStreamProcessorOptionsAutoscalingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorOptionsAutoscalingOutput)
+}
+
+type GetStreamProcessorOptionsAutoscalingOutput struct{ *pulumi.OutputState }
+
+func (GetStreamProcessorOptionsAutoscalingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorOptionsAutoscaling)(nil)).Elem()
+}
+
+func (o GetStreamProcessorOptionsAutoscalingOutput) ToGetStreamProcessorOptionsAutoscalingOutput() GetStreamProcessorOptionsAutoscalingOutput {
+	return o
+}
+
+func (o GetStreamProcessorOptionsAutoscalingOutput) ToGetStreamProcessorOptionsAutoscalingOutputWithContext(ctx context.Context) GetStreamProcessorOptionsAutoscalingOutput {
+	return o
+}
+
+// Tier ceiling for autoscaling (scale-up limit). When not set, it defaults to the workspace maximum tier.
+func (o GetStreamProcessorOptionsAutoscalingOutput) MaxTier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorOptionsAutoscaling) string { return v.MaxTier }).(pulumi.StringOutput)
+}
+
+// Tier floor for autoscaling (scale-down limit). When not set, it defaults to the lower of the processor `tier` and the workspace default tier.
+func (o GetStreamProcessorOptionsAutoscalingOutput) MinTier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorOptionsAutoscaling) string { return v.MinTier }).(pulumi.StringOutput)
+}
+
+type GetStreamProcessorOptionsDlq struct {
+	// Name of the collection to use for the DLQ.
+	Coll string `pulumi:"coll"`
+	// Name of the connection to write DLQ messages to. Must be an Atlas connection.
+	ConnectionName string `pulumi:"connectionName"`
+	// Name of the database to use for the DLQ.
+	Db string `pulumi:"db"`
+}
+
+// GetStreamProcessorOptionsDlqInput is an input type that accepts GetStreamProcessorOptionsDlqArgs and GetStreamProcessorOptionsDlqOutput values.
+// You can construct a concrete instance of `GetStreamProcessorOptionsDlqInput` via:
+//
+//	GetStreamProcessorOptionsDlqArgs{...}
+type GetStreamProcessorOptionsDlqInput interface {
+	pulumi.Input
+
+	ToGetStreamProcessorOptionsDlqOutput() GetStreamProcessorOptionsDlqOutput
+	ToGetStreamProcessorOptionsDlqOutputWithContext(context.Context) GetStreamProcessorOptionsDlqOutput
+}
+
+type GetStreamProcessorOptionsDlqArgs struct {
+	// Name of the collection to use for the DLQ.
+	Coll pulumi.StringInput `pulumi:"coll"`
+	// Name of the connection to write DLQ messages to. Must be an Atlas connection.
+	ConnectionName pulumi.StringInput `pulumi:"connectionName"`
+	// Name of the database to use for the DLQ.
+	Db pulumi.StringInput `pulumi:"db"`
+}
+
+func (GetStreamProcessorOptionsDlqArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorOptionsDlq)(nil)).Elem()
+}
+
+func (i GetStreamProcessorOptionsDlqArgs) ToGetStreamProcessorOptionsDlqOutput() GetStreamProcessorOptionsDlqOutput {
+	return i.ToGetStreamProcessorOptionsDlqOutputWithContext(context.Background())
+}
+
+func (i GetStreamProcessorOptionsDlqArgs) ToGetStreamProcessorOptionsDlqOutputWithContext(ctx context.Context) GetStreamProcessorOptionsDlqOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorOptionsDlqOutput)
+}
+
+type GetStreamProcessorOptionsDlqOutput struct{ *pulumi.OutputState }
+
+func (GetStreamProcessorOptionsDlqOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorOptionsDlq)(nil)).Elem()
+}
+
+func (o GetStreamProcessorOptionsDlqOutput) ToGetStreamProcessorOptionsDlqOutput() GetStreamProcessorOptionsDlqOutput {
+	return o
+}
+
+func (o GetStreamProcessorOptionsDlqOutput) ToGetStreamProcessorOptionsDlqOutputWithContext(ctx context.Context) GetStreamProcessorOptionsDlqOutput {
+	return o
+}
+
+// Name of the collection to use for the DLQ.
+func (o GetStreamProcessorOptionsDlqOutput) Coll() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorOptionsDlq) string { return v.Coll }).(pulumi.StringOutput)
+}
+
+// Name of the connection to write DLQ messages to. Must be an Atlas connection.
+func (o GetStreamProcessorOptionsDlqOutput) ConnectionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorOptionsDlq) string { return v.ConnectionName }).(pulumi.StringOutput)
+}
+
+// Name of the database to use for the DLQ.
+func (o GetStreamProcessorOptionsDlqOutput) Db() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorOptionsDlq) string { return v.Db }).(pulumi.StringOutput)
+}
+
+type GetStreamProcessorsResult struct {
+	// Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+	EffectiveTier string `pulumi:"effectiveTier"`
+	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+	FailoverEnabled bool `pulumi:"failoverEnabled"`
+	// Unique 24-hexadecimal character string that identifies the stream processor.
+	Id string `pulumi:"id"`
+	// Label that identifies the stream processing workspace.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName string `pulumi:"instanceName"`
+	// Optional configuration for the stream processor. Empty `options` objects are not supported.
+	Options GetStreamProcessorsResultOptions `pulumi:"options"`
+	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
+	Pipeline string `pulumi:"pipeline"`
+	// Label that identifies the stream processor.
+	ProcessorName string `pulumi:"processorName"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
+	State string `pulumi:"state"`
+	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
+	Stats string `pulumi:"stats"`
+	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
+	Tier string `pulumi:"tier"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+	WorkspaceName string `pulumi:"workspaceName"`
+}
+
+// GetStreamProcessorsResultInput is an input type that accepts GetStreamProcessorsResultArgs and GetStreamProcessorsResultOutput values.
+// You can construct a concrete instance of `GetStreamProcessorsResultInput` via:
+//
+//	GetStreamProcessorsResultArgs{...}
+type GetStreamProcessorsResultInput interface {
+	pulumi.Input
+
+	ToGetStreamProcessorsResultOutput() GetStreamProcessorsResultOutput
+	ToGetStreamProcessorsResultOutputWithContext(context.Context) GetStreamProcessorsResultOutput
+}
+
+type GetStreamProcessorsResultArgs struct {
+	// Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+	EffectiveTier pulumi.StringInput `pulumi:"effectiveTier"`
+	// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+	FailoverEnabled pulumi.BoolInput `pulumi:"failoverEnabled"`
+	// Unique 24-hexadecimal character string that identifies the stream processor.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Label that identifies the stream processing workspace.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// Optional configuration for the stream processor. Empty `options` objects are not supported.
+	Options GetStreamProcessorsResultOptionsInput `pulumi:"options"`
+	// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
+	Pipeline pulumi.StringInput `pulumi:"pipeline"`
+	// Label that identifies the stream processor.
+	ProcessorName pulumi.StringInput `pulumi:"processorName"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
+	State pulumi.StringInput `pulumi:"state"`
+	// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
+	Stats pulumi.StringInput `pulumi:"stats"`
+	// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
+	Tier pulumi.StringInput `pulumi:"tier"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+	WorkspaceName pulumi.StringInput `pulumi:"workspaceName"`
+}
+
+func (GetStreamProcessorsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorsResult)(nil)).Elem()
+}
+
+func (i GetStreamProcessorsResultArgs) ToGetStreamProcessorsResultOutput() GetStreamProcessorsResultOutput {
+	return i.ToGetStreamProcessorsResultOutputWithContext(context.Background())
+}
+
+func (i GetStreamProcessorsResultArgs) ToGetStreamProcessorsResultOutputWithContext(ctx context.Context) GetStreamProcessorsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorsResultOutput)
+}
+
+// GetStreamProcessorsResultArrayInput is an input type that accepts GetStreamProcessorsResultArray and GetStreamProcessorsResultArrayOutput values.
+// You can construct a concrete instance of `GetStreamProcessorsResultArrayInput` via:
+//
+//	GetStreamProcessorsResultArray{ GetStreamProcessorsResultArgs{...} }
+type GetStreamProcessorsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetStreamProcessorsResultArrayOutput() GetStreamProcessorsResultArrayOutput
+	ToGetStreamProcessorsResultArrayOutputWithContext(context.Context) GetStreamProcessorsResultArrayOutput
+}
+
+type GetStreamProcessorsResultArray []GetStreamProcessorsResultInput
+
+func (GetStreamProcessorsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamProcessorsResult)(nil)).Elem()
+}
+
+func (i GetStreamProcessorsResultArray) ToGetStreamProcessorsResultArrayOutput() GetStreamProcessorsResultArrayOutput {
+	return i.ToGetStreamProcessorsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetStreamProcessorsResultArray) ToGetStreamProcessorsResultArrayOutputWithContext(ctx context.Context) GetStreamProcessorsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamProcessorsResultArrayOutput)
+}
+
+type GetStreamProcessorsResultOutput struct{ *pulumi.OutputState }
+
+func (GetStreamProcessorsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamProcessorsResult)(nil)).Elem()
+}
+
+func (o GetStreamProcessorsResultOutput) ToGetStreamProcessorsResultOutput() GetStreamProcessorsResultOutput {
+	return o
+}
+
+func (o GetStreamProcessorsResultOutput) ToGetStreamProcessorsResultOutputWithContext(ctx context.Context) GetStreamProcessorsResultOutput {
+	return o
+}
+
+// Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
+func (o GetStreamProcessorsResultOutput) EffectiveTier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.EffectiveTier }).(pulumi.StringOutput)
+}
+
+// Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failoverRegions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failoverRegions` configured on the workspace.
+func (o GetStreamProcessorsResultOutput) FailoverEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) bool { return v.FailoverEnabled }).(pulumi.BoolOutput)
+}
+
+// Unique 24-hexadecimal character string that identifies the stream processor.
+func (o GetStreamProcessorsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Label that identifies the stream processing workspace.
+//
+// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+func (o GetStreamProcessorsResultOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// Optional configuration for the stream processor. Empty `options` objects are not supported.
+func (o GetStreamProcessorsResultOutput) Options() GetStreamProcessorsResultOptionsOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) GetStreamProcessorsResultOptions { return v.Options }).(GetStreamProcessorsResultOptionsOutput)
+}
+
+// Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
+func (o GetStreamProcessorsResultOutput) Pipeline() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.Pipeline }).(pulumi.StringOutput)
+}
+
+// Label that identifies the stream processor.
+func (o GetStreamProcessorsResultOutput) ProcessorName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.ProcessorName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+func (o GetStreamProcessorsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// The state of the stream processor. Commonly occurring states are 'CREATED', 'STARTED', 'STOPPED' and 'FAILED'. Used to start or stop the Stream Processor. Valid values are `CREATED`, `STARTED` or `STOPPED`. When a Stream Processor is created without specifying the state, it will default to `CREATED` state. When a Stream Processor is updated without specifying the state, it will default to the Previous state.
+func (o GetStreamProcessorsResultOutput) State() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.State }).(pulumi.StringOutput)
+}
+
+// The stats associated with the stream processor. Refer to the [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/manage-stream-processor/#view-statistics-of-a-stream-processor) for more information.
+func (o GetStreamProcessorsResultOutput) Stats() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.Stats }).(pulumi.StringOutput)
+}
+
+// Selected tier to start a stream processor on rather than defaulting to the workspace setting. Configures Memory / VCPU allowances. Valid options are SP2, SP5, SP10, SP30, and SP50. When `options.autoscaling` is enabled, this is used only as the initial/baseline tier; the running tier is reported by `effectiveTier`.
+func (o GetStreamProcessorsResultOutput) Tier() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.Tier }).(pulumi.StringOutput)
+}
+
+// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+func (o GetStreamProcessorsResultOutput) WorkspaceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamProcessorsResult) string { return v.WorkspaceName }).(pulumi.StringOutput)
+}
+
+type GetStreamProcessorsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStreamProcessorsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamProcessorsResult)(nil)).Elem()
+}
+
+func (o GetStreamProcessorsResultArrayOutput) ToGetStreamProcessorsResultArrayOutput() GetStreamProcessorsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamProcessorsResultArrayOutput) ToGetStreamProcessorsResultArrayOutputWithContext(ctx context.Context) GetStreamProcessorsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamProcessorsResultArrayOutput) Index(i pulumi.IntInput) GetStreamProcessorsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamProcessorsResult {
+		return vs[0].([]GetStreamProcessorsResult)[vs[1].(int)]
+	}).(GetStreamProcessorsResultOutput)
+}
+
 type GetStreamProcessorsResultOptions struct {
 	// Vertical autoscaling configuration for the stream processor. When present, the processor automatically scales its tier between `minTier` and `maxTier` based on load; `tier` is used only as the initial/baseline tier and the running tier is reported by `effectiveTier`. To disable autoscaling, remove this block.
 	Autoscaling GetStreamProcessorsResultOptionsAutoscaling `pulumi:"autoscaling"`
@@ -1614,6 +2975,24 @@ func (o GetX509AuthenticationDatabaseUserCertificateArrayOutput) Index(i pulumi.
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultGcpInput)(nil)).Elem(), GetStreamConnectionsResultGcpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultNetworkingInput)(nil)).Elem(), GetStreamConnectionsResultNetworkingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionsResultNetworkingAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultSchemaRegistryAuthenticationInput)(nil)).Elem(), GetStreamConnectionsResultSchemaRegistryAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultSecurityInput)(nil)).Elem(), GetStreamConnectionsResultSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstanceDataProcessRegionInput)(nil)).Elem(), GetStreamInstanceDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstanceStreamConfigInput)(nil)).Elem(), GetStreamInstanceStreamConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultInput)(nil)).Elem(), GetStreamInstancesResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultArrayInput)(nil)).Elem(), GetStreamInstancesResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultDataProcessRegionInput)(nil)).Elem(), GetStreamInstancesResultDataProcessRegionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamInstancesResultStreamConfigInput)(nil)).Elem(), GetStreamInstancesResultStreamConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamPrivatelinkEndpointsResultInput)(nil)).Elem(), GetStreamPrivatelinkEndpointsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamPrivatelinkEndpointsResultArrayInput)(nil)).Elem(), GetStreamPrivatelinkEndpointsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorOptionsInput)(nil)).Elem(), GetStreamProcessorOptionsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorOptionsAutoscalingInput)(nil)).Elem(), GetStreamProcessorOptionsAutoscalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorOptionsDlqInput)(nil)).Elem(), GetStreamProcessorOptionsDlqArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultInput)(nil)).Elem(), GetStreamProcessorsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultArrayInput)(nil)).Elem(), GetStreamProcessorsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultOptionsInput)(nil)).Elem(), GetStreamProcessorsResultOptionsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultOptionsAutoscalingInput)(nil)).Elem(), GetStreamProcessorsResultOptionsAutoscalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamProcessorsResultOptionsDlqInput)(nil)).Elem(), GetStreamProcessorsResultOptionsDlqArgs{})
@@ -1637,6 +3016,24 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultArrayInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetX509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), GetX509AuthenticationDatabaseUserCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetX509AuthenticationDatabaseUserCertificateArrayInput)(nil)).Elem(), GetX509AuthenticationDatabaseUserCertificateArray{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultGcpOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultNetworkingOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultNetworkingAccessOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultSchemaRegistryAuthenticationOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultSecurityOutput{})
+	pulumi.RegisterOutputType(GetStreamInstanceDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(GetStreamInstanceStreamConfigOutput{})
+	pulumi.RegisterOutputType(GetStreamInstancesResultOutput{})
+	pulumi.RegisterOutputType(GetStreamInstancesResultArrayOutput{})
+	pulumi.RegisterOutputType(GetStreamInstancesResultDataProcessRegionOutput{})
+	pulumi.RegisterOutputType(GetStreamInstancesResultStreamConfigOutput{})
+	pulumi.RegisterOutputType(GetStreamPrivatelinkEndpointsResultOutput{})
+	pulumi.RegisterOutputType(GetStreamPrivatelinkEndpointsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetStreamProcessorOptionsOutput{})
+	pulumi.RegisterOutputType(GetStreamProcessorOptionsAutoscalingOutput{})
+	pulumi.RegisterOutputType(GetStreamProcessorOptionsDlqOutput{})
+	pulumi.RegisterOutputType(GetStreamProcessorsResultOutput{})
+	pulumi.RegisterOutputType(GetStreamProcessorsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamProcessorsResultOptionsOutput{})
 	pulumi.RegisterOutputType(GetStreamProcessorsResultOptionsAutoscalingOutput{})
 	pulumi.RegisterOutputType(GetStreamProcessorsResultOptionsDlqOutput{})

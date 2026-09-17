@@ -37,6 +37,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// A list of secrets associated with the specified Service Account.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetServiceAccountsResultSecretResult> Secrets;
+        /// <summary>
+        /// Indicates whether the Service Account is system managed.
+        /// </summary>
+        public readonly bool SystemManaged;
 
         [OutputConstructor]
         private GetServiceAccountsResultResult(
@@ -50,7 +54,9 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<string> roles,
 
-            ImmutableArray<Outputs.GetServiceAccountsResultSecretResult> secrets)
+            ImmutableArray<Outputs.GetServiceAccountsResultSecretResult> secrets,
+
+            bool systemManaged)
         {
             ClientId = clientId;
             CreatedAt = createdAt;
@@ -58,6 +64,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             Name = name;
             Roles = roles;
             Secrets = secrets;
+            SystemManaged = systemManaged;
         }
     }
 }

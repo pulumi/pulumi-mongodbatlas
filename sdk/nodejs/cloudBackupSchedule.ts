@@ -159,7 +159,7 @@ import * as utilities from "./utilities";
  *
  * ### Create A Cluster With Cloud Backup Enabled With Snapshot Distribution
  *
- * You can enable `cloudBackup` in the Cluster resource and then use the `cloudBackupSchedule` resource with a basic policy for Cloud Backup.
+ * You can enable `cloudBackup` in the Cluster resource and then use the `cloudBackupSchedule` resource with a basic policy for Cloud Backup. Use `copyPolicyItemsEnabled = true` with `copyPolicyItems` when copies should keep a different retention than the source snapshots. Use `lastNumberOfSnapshots` instead to copy the last N snapshots. `frequencyType` is lowercase. After you apply with the flag `true`, keep it `true`; Atlas cannot disable copy-policy items once they are enabled.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -193,25 +193,32 @@ import * as utilities from "./utilities";
  *         retentionUnit: "days",
  *         retentionValue: 14,
  *     },
+ *     copyPolicyItemsEnabled: true,
  *     copySettings: [{
  *         cloudProvider: "AWS",
- *         frequencies: [
- *             "HOURLY",
- *             "DAILY",
- *             "WEEKLY",
- *             "MONTHLY",
- *             "YEARLY",
- *             "ON_DEMAND",
- *         ],
  *         regionName: "US_EAST_1",
  *         zoneId: myCluster.replicationSpecs.apply(replicationSpecs => replicationSpecs.map(__item => __item.zoneId?.[0])),
  *         shouldCopyOplogs: false,
+ *         copyPolicyItems: [
+ *             {
+ *                 frequencyType: "daily",
+ *                 retentionUnit: "days",
+ *                 retentionValue: 7,
+ *             },
+ *             {
+ *                 frequencyType: "ondemand",
+ *             },
+ *         ],
  *     }],
  * });
  * ```
  *
  * ### Further Examples
  * - Cloud Backup Schedule
+ *
+ * ## Switching from frequencies
+ *
+ * `copy_settings.frequencies` is deprecated. Set `copyPolicyItemsEnabled = true`, then set `copyPolicyItems` or `lastNumberOfSnapshots` on the entry and drop `frequencies`. The switch is one-way on the cluster: after Atlas enables copy-policy items, you cannot turn the flag off.
  *
  * ## Import
  *
@@ -266,9 +273,17 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
      */
     declare public readonly clusterName: pulumi.Output<string>;
     /**
+     * Flag that selects copy-policy mode. Set to `true` to use `copyPolicyItems` or `lastNumberOfSnapshots`. When `false` or omitted, use `frequencies`. This transition is one-way: after you apply with `copyPolicyItemsEnabled = true`, Atlas cannot disable copy-policy items. You can still switch each `copySettings` entry between `copyPolicyItems` and `lastNumberOfSnapshots`.
+     */
+    declare public readonly copyPolicyItemsEnabled: pulumi.Output<boolean | undefined>;
+    /**
      * List that contains a document for each copy setting item in the desired backup policy. See below
      */
-    declare public readonly copySettings: pulumi.Output<outputs.CloudBackupScheduleCopySetting[] | undefined>;
+    declare public readonly copySettings: pulumi.Output<outputs.CloudBackupScheduleCopySetting[]>;
+    /**
+     * Specify true to delete snapshot copies when their associated `copyPolicyItems` are removed. Requires `copyPolicyItemsEnabled` to be true.
+     */
+    declare public readonly deleteCopySnapshots: pulumi.Output<boolean | undefined>;
     /**
      * Policy for automatically exporting Cloud Backup Snapshots. See below
      */
@@ -322,9 +337,11 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
      */
     declare public readonly skipDestroy: pulumi.Output<boolean | undefined>;
     /**
+     * Specify true to apply the retention changes for updated copy policy items to snapshot copies that Atlas took previously. Requires `copyPolicyItemsEnabled` to be true.
+     */
+    declare public readonly updateCopySnapshots: pulumi.Output<boolean | undefined>;
+    /**
      * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-     *
-     * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
      */
     declare public readonly updateSnapshots: pulumi.Output<boolean>;
     /**
@@ -348,7 +365,9 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
             resourceInputs["autoExportEnabled"] = state?.autoExportEnabled;
             resourceInputs["clusterId"] = state?.clusterId;
             resourceInputs["clusterName"] = state?.clusterName;
+            resourceInputs["copyPolicyItemsEnabled"] = state?.copyPolicyItemsEnabled;
             resourceInputs["copySettings"] = state?.copySettings;
+            resourceInputs["deleteCopySnapshots"] = state?.deleteCopySnapshots;
             resourceInputs["export"] = state?.export;
             resourceInputs["idPolicy"] = state?.idPolicy;
             resourceInputs["nextSnapshot"] = state?.nextSnapshot;
@@ -362,6 +381,7 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
             resourceInputs["referenceMinuteOfHour"] = state?.referenceMinuteOfHour;
             resourceInputs["restoreWindowDays"] = state?.restoreWindowDays;
             resourceInputs["skipDestroy"] = state?.skipDestroy;
+            resourceInputs["updateCopySnapshots"] = state?.updateCopySnapshots;
             resourceInputs["updateSnapshots"] = state?.updateSnapshots;
             resourceInputs["useOrgAndGroupNamesInExportPrefix"] = state?.useOrgAndGroupNamesInExportPrefix;
         } else {
@@ -374,7 +394,9 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
             }
             resourceInputs["autoExportEnabled"] = args?.autoExportEnabled;
             resourceInputs["clusterName"] = args?.clusterName;
+            resourceInputs["copyPolicyItemsEnabled"] = args?.copyPolicyItemsEnabled;
             resourceInputs["copySettings"] = args?.copySettings;
+            resourceInputs["deleteCopySnapshots"] = args?.deleteCopySnapshots;
             resourceInputs["export"] = args?.export;
             resourceInputs["policyItemDaily"] = args?.policyItemDaily;
             resourceInputs["policyItemHourly"] = args?.policyItemHourly;
@@ -386,6 +408,7 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
             resourceInputs["referenceMinuteOfHour"] = args?.referenceMinuteOfHour;
             resourceInputs["restoreWindowDays"] = args?.restoreWindowDays;
             resourceInputs["skipDestroy"] = args?.skipDestroy;
+            resourceInputs["updateCopySnapshots"] = args?.updateCopySnapshots;
             resourceInputs["updateSnapshots"] = args?.updateSnapshots;
             resourceInputs["useOrgAndGroupNamesInExportPrefix"] = args?.useOrgAndGroupNamesInExportPrefix;
             resourceInputs["clusterId"] = undefined /*out*/;
@@ -416,9 +439,17 @@ export interface CloudBackupScheduleState {
      */
     clusterName?: pulumi.Input<string | undefined>;
     /**
+     * Flag that selects copy-policy mode. Set to `true` to use `copyPolicyItems` or `lastNumberOfSnapshots`. When `false` or omitted, use `frequencies`. This transition is one-way: after you apply with `copyPolicyItemsEnabled = true`, Atlas cannot disable copy-policy items. You can still switch each `copySettings` entry between `copyPolicyItems` and `lastNumberOfSnapshots`.
+     */
+    copyPolicyItemsEnabled?: pulumi.Input<boolean | undefined>;
+    /**
      * List that contains a document for each copy setting item in the desired backup policy. See below
      */
     copySettings?: pulumi.Input<pulumi.Input<inputs.CloudBackupScheduleCopySetting>[] | undefined>;
+    /**
+     * Specify true to delete snapshot copies when their associated `copyPolicyItems` are removed. Requires `copyPolicyItemsEnabled` to be true.
+     */
+    deleteCopySnapshots?: pulumi.Input<boolean | undefined>;
     /**
      * Policy for automatically exporting Cloud Backup Snapshots. See below
      */
@@ -472,9 +503,11 @@ export interface CloudBackupScheduleState {
      */
     skipDestroy?: pulumi.Input<boolean | undefined>;
     /**
+     * Specify true to apply the retention changes for updated copy policy items to snapshot copies that Atlas took previously. Requires `copyPolicyItemsEnabled` to be true.
+     */
+    updateCopySnapshots?: pulumi.Input<boolean | undefined>;
+    /**
      * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-     *
-     * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
      */
     updateSnapshots?: pulumi.Input<boolean | undefined>;
     /**
@@ -498,9 +531,17 @@ export interface CloudBackupScheduleArgs {
      */
     clusterName: pulumi.Input<string>;
     /**
+     * Flag that selects copy-policy mode. Set to `true` to use `copyPolicyItems` or `lastNumberOfSnapshots`. When `false` or omitted, use `frequencies`. This transition is one-way: after you apply with `copyPolicyItemsEnabled = true`, Atlas cannot disable copy-policy items. You can still switch each `copySettings` entry between `copyPolicyItems` and `lastNumberOfSnapshots`.
+     */
+    copyPolicyItemsEnabled?: pulumi.Input<boolean | undefined>;
+    /**
      * List that contains a document for each copy setting item in the desired backup policy. See below
      */
     copySettings?: pulumi.Input<pulumi.Input<inputs.CloudBackupScheduleCopySetting>[] | undefined>;
+    /**
+     * Specify true to delete snapshot copies when their associated `copyPolicyItems` are removed. Requires `copyPolicyItemsEnabled` to be true.
+     */
+    deleteCopySnapshots?: pulumi.Input<boolean | undefined>;
     /**
      * Policy for automatically exporting Cloud Backup Snapshots. See below
      */
@@ -546,9 +587,11 @@ export interface CloudBackupScheduleArgs {
      */
     skipDestroy?: pulumi.Input<boolean | undefined>;
     /**
+     * Specify true to apply the retention changes for updated copy policy items to snapshot copies that Atlas took previously. Requires `copyPolicyItemsEnabled` to be true.
+     */
+    updateCopySnapshots?: pulumi.Input<boolean | undefined>;
+    /**
      * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-     *
-     * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
      */
     updateSnapshots?: pulumi.Input<boolean | undefined>;
     /**

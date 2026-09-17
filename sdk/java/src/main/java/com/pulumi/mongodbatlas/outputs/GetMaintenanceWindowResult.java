@@ -25,6 +25,13 @@ public final class GetMaintenanceWindowResult {
      */
     private Integer dayOfWeek;
     /**
+     * @return Read-only maintenance wave Atlas uses when scheduling maintenance for this project. This value can differ from `waveAssignment` in the following scenarios:
+     * - **`ENV_TAG_MAPPING` mode is active at the organization level.** When the organization&#39;s `waveAssignmentMode` is set to `ENV_TAG_MAPPING` (see `mongodbatlas.OrgMaintenanceSettings`), Atlas ignores any explicit `waveAssignment` and derives the effective wave from the project&#39;s environment tag. A project can have `waveAssignment = 1` in state while `effectiveWaveAssignment` returns a different value.
+     * - **Cross-organization billing (`MAINTENANCE_SEQUENCE_CROSS_ORG`).** When a linked non-paying organization inherits the paying organization&#39;s wave assignment mode. If the paying organization switches to `ENV_TAG_MAPPING`, all linked projects follow regardless of any explicit `waveAssignment` set on them.
+     * 
+     */
+    private Integer effectiveWaveAssignment;
+    /**
      * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
      * 
      */
@@ -55,6 +62,11 @@ public final class GetMaintenanceWindowResult {
      * 
      */
     private String timeZoneId;
+    /**
+     * @return Maintenance wave explicitly assigned to this project. Always returned when a value has been set, regardless of the organization&#39;s `waveAssignmentMode`. When the mode is `ENV_TAG_MAPPING`, the system preserves the stored value but does not use it for scheduling. Switching back to `MANUAL` restores this value as the effective wave. Returns `0` when no explicit wave has been assigned.
+     * 
+     */
+    private Integer waveAssignment;
 
     private GetMaintenanceWindowResult() {}
     /**
@@ -70,6 +82,15 @@ public final class GetMaintenanceWindowResult {
      */
     public Integer dayOfWeek() {
         return this.dayOfWeek;
+    }
+    /**
+     * @return Read-only maintenance wave Atlas uses when scheduling maintenance for this project. This value can differ from `waveAssignment` in the following scenarios:
+     * - **`ENV_TAG_MAPPING` mode is active at the organization level.** When the organization&#39;s `waveAssignmentMode` is set to `ENV_TAG_MAPPING` (see `mongodbatlas.OrgMaintenanceSettings`), Atlas ignores any explicit `waveAssignment` and derives the effective wave from the project&#39;s environment tag. A project can have `waveAssignment = 1` in state while `effectiveWaveAssignment` returns a different value.
+     * - **Cross-organization billing (`MAINTENANCE_SEQUENCE_CROSS_ORG`).** When a linked non-paying organization inherits the paying organization&#39;s wave assignment mode. If the paying organization switches to `ENV_TAG_MAPPING`, all linked projects follow regardless of any explicit `waveAssignment` set on them.
+     * 
+     */
+    public Integer effectiveWaveAssignment() {
+        return this.effectiveWaveAssignment;
     }
     /**
      * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
@@ -116,6 +137,13 @@ public final class GetMaintenanceWindowResult {
     public String timeZoneId() {
         return this.timeZoneId;
     }
+    /**
+     * @return Maintenance wave explicitly assigned to this project. Always returned when a value has been set, regardless of the organization&#39;s `waveAssignmentMode`. When the mode is `ENV_TAG_MAPPING`, the system preserves the stored value but does not use it for scheduling. Switching back to `MANUAL` restores this value as the effective wave. Returns `0` when no explicit wave has been assigned.
+     * 
+     */
+    public Integer waveAssignment() {
+        return this.waveAssignment;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -128,6 +156,7 @@ public final class GetMaintenanceWindowResult {
     public static final class Builder {
         private Boolean autoDeferOnceEnabled;
         private Integer dayOfWeek;
+        private Integer effectiveWaveAssignment;
         private Integer hourOfDay;
         private String id;
         private Integer numberOfDeferrals;
@@ -135,11 +164,13 @@ public final class GetMaintenanceWindowResult {
         private List<GetMaintenanceWindowProtectedHour> protectedHours;
         private Boolean startAsap;
         private String timeZoneId;
+        private Integer waveAssignment;
         public Builder() {}
         public Builder(GetMaintenanceWindowResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.autoDeferOnceEnabled = defaults.autoDeferOnceEnabled;
     	      this.dayOfWeek = defaults.dayOfWeek;
+    	      this.effectiveWaveAssignment = defaults.effectiveWaveAssignment;
     	      this.hourOfDay = defaults.hourOfDay;
     	      this.id = defaults.id;
     	      this.numberOfDeferrals = defaults.numberOfDeferrals;
@@ -147,6 +178,7 @@ public final class GetMaintenanceWindowResult {
     	      this.protectedHours = defaults.protectedHours;
     	      this.startAsap = defaults.startAsap;
     	      this.timeZoneId = defaults.timeZoneId;
+    	      this.waveAssignment = defaults.waveAssignment;
         }
 
         @CustomType.Setter
@@ -163,6 +195,14 @@ public final class GetMaintenanceWindowResult {
               throw new MissingRequiredPropertyException("GetMaintenanceWindowResult", "dayOfWeek");
             }
             this.dayOfWeek = dayOfWeek;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder effectiveWaveAssignment(Integer effectiveWaveAssignment) {
+            if (effectiveWaveAssignment == null) {
+              throw new MissingRequiredPropertyException("GetMaintenanceWindowResult", "effectiveWaveAssignment");
+            }
+            this.effectiveWaveAssignment = effectiveWaveAssignment;
             return this;
         }
         @CustomType.Setter
@@ -224,10 +264,19 @@ public final class GetMaintenanceWindowResult {
             this.timeZoneId = timeZoneId;
             return this;
         }
+        @CustomType.Setter
+        public Builder waveAssignment(Integer waveAssignment) {
+            if (waveAssignment == null) {
+              throw new MissingRequiredPropertyException("GetMaintenanceWindowResult", "waveAssignment");
+            }
+            this.waveAssignment = waveAssignment;
+            return this;
+        }
         public GetMaintenanceWindowResult build() {
             final var _resultValue = new GetMaintenanceWindowResult();
             _resultValue.autoDeferOnceEnabled = autoDeferOnceEnabled;
             _resultValue.dayOfWeek = dayOfWeek;
+            _resultValue.effectiveWaveAssignment = effectiveWaveAssignment;
             _resultValue.hourOfDay = hourOfDay;
             _resultValue.id = id;
             _resultValue.numberOfDeferrals = numberOfDeferrals;
@@ -235,6 +284,7 @@ public final class GetMaintenanceWindowResult {
             _resultValue.protectedHours = protectedHours;
             _resultValue.startAsap = startAsap;
             _resultValue.timeZoneId = timeZoneId;
+            _resultValue.waveAssignment = waveAssignment;
             return _resultValue;
         }
     }

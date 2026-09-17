@@ -85,6 +85,10 @@ export class ProjectServiceAccount extends pulumi.CustomResource {
      * A list of secrets associated with the specified Service Account.
      */
     declare public /*out*/ readonly secrets: pulumi.Output<outputs.ProjectServiceAccountSecret[]>;
+    /**
+     * Indicates whether the Service Account is system managed.
+     */
+    declare public /*out*/ readonly systemManaged: pulumi.Output<boolean>;
 
     /**
      * Create a ProjectServiceAccount resource with the given unique name, arguments, and options.
@@ -107,6 +111,7 @@ export class ProjectServiceAccount extends pulumi.CustomResource {
             resourceInputs["roles"] = state?.roles;
             resourceInputs["secretExpiresAfterHours"] = state?.secretExpiresAfterHours;
             resourceInputs["secrets"] = state?.secrets;
+            resourceInputs["systemManaged"] = state?.systemManaged;
         } else {
             const args = argsOrState as ProjectServiceAccountArgs | undefined;
             if (args?.description === undefined && !opts.urn) {
@@ -126,6 +131,7 @@ export class ProjectServiceAccount extends pulumi.CustomResource {
             resourceInputs["clientId"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["secrets"] = undefined /*out*/;
+            resourceInputs["systemManaged"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ProjectServiceAccount.__pulumiType, name, resourceInputs, opts);
@@ -168,6 +174,10 @@ export interface ProjectServiceAccountState {
      * A list of secrets associated with the specified Service Account.
      */
     secrets?: pulumi.Input<pulumi.Input<inputs.ProjectServiceAccountSecret>[] | undefined>;
+    /**
+     * Indicates whether the Service Account is system managed.
+     */
+    systemManaged?: pulumi.Input<boolean | undefined>;
 }
 
 /**

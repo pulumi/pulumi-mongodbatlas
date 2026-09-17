@@ -268,7 +268,7 @@ import javax.annotation.Nullable;
  * 
  * ### Create A Cluster With Cloud Backup Enabled With Snapshot Distribution
  * 
- * You can enable `cloudBackup` in the Cluster resource and then use the `cloudBackupSchedule` resource with a basic policy for Cloud Backup.
+ * You can enable `cloudBackup` in the Cluster resource and then use the `cloudBackupSchedule` resource with a basic policy for Cloud Backup. Use `copyPolicyItemsEnabled = true` with `copyPolicyItems` when copies should keep a different retention than the source snapshots. Use `lastNumberOfSnapshots` instead to copy the last N snapshots. `frequencyType` is lowercase. After you apply with the flag `true`, keep it `true`; Atlas cannot disable copy-policy items once they are enabled.
  * 
  * <pre>
  * {@code
@@ -286,6 +286,7 @@ import javax.annotation.Nullable;
  * import com.pulumi.mongodbatlas.CloudBackupScheduleArgs;
  * import com.pulumi.mongodbatlas.inputs.CloudBackupSchedulePolicyItemDailyArgs;
  * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingArgs;
+ * import com.pulumi.mongodbatlas.inputs.CloudBackupScheduleCopySettingCopyPolicyItemArgs;
  * import java.util.ArrayList;
  * import java.util.Arrays;
  * import java.util.Map;
@@ -328,18 +329,21 @@ import javax.annotation.Nullable;
  *                 .retentionUnit("days")
  *                 .retentionValue(14)
  *                 .build())
+ *             .copyPolicyItemsEnabled(true)
  *             .copySettings(CloudBackupScheduleCopySettingArgs.builder()
  *                 .cloudProvider("AWS")
- *                 .frequencies(                
- *                     "HOURLY",
- *                     "DAILY",
- *                     "WEEKLY",
- *                     "MONTHLY",
- *                     "YEARLY",
- *                     "ON_DEMAND")
  *                 .regionName("US_EAST_1")
  *                 .zoneId(myCluster.replicationSpecs().applyValue(_replicationSpecs -> _replicationSpecs.stream().map(element -> element.zoneId()[0]).collect(toList())))
  *                 .shouldCopyOplogs(false)
+ *                 .copyPolicyItems(                
+ *                     CloudBackupScheduleCopySettingCopyPolicyItemArgs.builder()
+ *                         .frequencyType("daily")
+ *                         .retentionUnit("days")
+ *                         .retentionValue(7)
+ *                         .build(),
+ *                     CloudBackupScheduleCopySettingCopyPolicyItemArgs.builder()
+ *                         .frequencyType("ondemand")
+ *                         .build())
  *                 .build())
  *             .build());
  * 
@@ -350,6 +354,10 @@ import javax.annotation.Nullable;
  * 
  * ### Further Examples
  * - Cloud Backup Schedule
+ * 
+ * ## Switching from frequencies
+ * 
+ * `copy_settings.frequencies` is deprecated. Set `copyPolicyItemsEnabled = true`, then set `copyPolicyItems` or `lastNumberOfSnapshots` on the entry and drop `frequencies`. The switch is one-way on the cluster: after Atlas enables copy-policy items, you cannot turn the flag off.
  * 
  * ## Import
  * 
@@ -411,18 +419,46 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
         return this.clusterName;
     }
     /**
+     * Flag that selects copy-policy mode. Set to `true` to use `copyPolicyItems` or `lastNumberOfSnapshots`. When `false` or omitted, use `frequencies`. This transition is one-way: after you apply with `copyPolicyItemsEnabled = true`, Atlas cannot disable copy-policy items. You can still switch each `copySettings` entry between `copyPolicyItems` and `lastNumberOfSnapshots`.
+     * 
+     */
+    @Export(name="copyPolicyItemsEnabled", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> copyPolicyItemsEnabled;
+
+    /**
+     * @return Flag that selects copy-policy mode. Set to `true` to use `copyPolicyItems` or `lastNumberOfSnapshots`. When `false` or omitted, use `frequencies`. This transition is one-way: after you apply with `copyPolicyItemsEnabled = true`, Atlas cannot disable copy-policy items. You can still switch each `copySettings` entry between `copyPolicyItems` and `lastNumberOfSnapshots`.
+     * 
+     */
+    public Output<Optional<Boolean>> copyPolicyItemsEnabled() {
+        return Codegen.optional(this.copyPolicyItemsEnabled);
+    }
+    /**
      * List that contains a document for each copy setting item in the desired backup policy. See below
      * 
      */
     @Export(name="copySettings", refs={List.class,CloudBackupScheduleCopySetting.class}, tree="[0,1]")
-    private Output</* @Nullable */ List<CloudBackupScheduleCopySetting>> copySettings;
+    private Output<List<CloudBackupScheduleCopySetting>> copySettings;
 
     /**
      * @return List that contains a document for each copy setting item in the desired backup policy. See below
      * 
      */
-    public Output<Optional<List<CloudBackupScheduleCopySetting>>> copySettings() {
-        return Codegen.optional(this.copySettings);
+    public Output<List<CloudBackupScheduleCopySetting>> copySettings() {
+        return this.copySettings;
+    }
+    /**
+     * Specify true to delete snapshot copies when their associated `copyPolicyItems` are removed. Requires `copyPolicyItemsEnabled` to be true.
+     * 
+     */
+    @Export(name="deleteCopySnapshots", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> deleteCopySnapshots;
+
+    /**
+     * @return Specify true to delete snapshot copies when their associated `copyPolicyItems` are removed. Requires `copyPolicyItemsEnabled` to be true.
+     * 
+     */
+    public Output<Optional<Boolean>> deleteCopySnapshots() {
+        return Codegen.optional(this.deleteCopySnapshots);
     }
     /**
      * Policy for automatically exporting Cloud Backup Snapshots. See below
@@ -607,9 +643,21 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.skipDestroy);
     }
     /**
-     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
+     * Specify true to apply the retention changes for updated copy policy items to snapshot copies that Atlas took previously. Requires `copyPolicyItemsEnabled` to be true.
      * 
-     * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
+     */
+    @Export(name="updateCopySnapshots", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> updateCopySnapshots;
+
+    /**
+     * @return Specify true to apply the retention changes for updated copy policy items to snapshot copies that Atlas took previously. Requires `copyPolicyItemsEnabled` to be true.
+     * 
+     */
+    public Output<Optional<Boolean>> updateCopySnapshots() {
+        return Codegen.optional(this.updateCopySnapshots);
+    }
+    /**
+     * Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
      * 
      */
     @Export(name="updateSnapshots", refs={Boolean.class}, tree="[0]")
@@ -617,8 +665,6 @@ public class CloudBackupSchedule extends com.pulumi.resources.CustomResource {
 
     /**
      * @return Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-     * 
-     * **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
      * 
      */
     public Output<Boolean> updateSnapshots() {

@@ -161,7 +161,7 @@ import javax.annotation.Nullable;
  * $ pulumi import mongodbatlas:index/maintenanceWindow:MaintenanceWindow test 5d0f1f73cf09a29120e173cf
  * ```
  * 
- * For more information see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/atlas/reference/api/maintenance-windows/)
+ * For more information on Maintenance Windows, see: [MongoDB Atlas API Reference.](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-maintenance-windows)
  * 
  */
 @ResourceType(type="mongodbatlas:index/maintenanceWindow:MaintenanceWindow")
@@ -195,18 +195,18 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
         return this.autoDeferOnceEnabled;
     }
     /**
-     * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+     * Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hourOfDay`. Omit both to set a `waveAssignment` without a maintenance window.
      * 
      */
     @Export(name="dayOfWeek", refs={Integer.class}, tree="[0]")
-    private Output<Integer> dayOfWeek;
+    private Output</* @Nullable */ Integer> dayOfWeek;
 
     /**
-     * @return Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7.
+     * @return Day of the week when you would like the maintenance window to start as a 1-based integer: Su=1, M=2, T=3, W=4, T=5, F=6, Sa=7. Must be set together with `hourOfDay`. Omit both to set a `waveAssignment` without a maintenance window.
      * 
      */
-    public Output<Integer> dayOfWeek() {
-        return this.dayOfWeek;
+    public Output<Optional<Integer>> dayOfWeek() {
+        return Codegen.optional(this.dayOfWeek);
     }
     /**
      * Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
@@ -223,18 +223,18 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
         return this.defer;
     }
     /**
-     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
+     * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone. Must be set together with `dayOfWeek`. Omit both to set a `waveAssignment` without a maintenance window.
      * 
      */
     @Export(name="hourOfDay", refs={Integer.class}, tree="[0]")
-    private Output<Integer> hourOfDay;
+    private Output</* @Nullable */ Integer> hourOfDay;
 
     /**
-     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone.
+     * @return Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project&#39;s configured timezone. Must be set together with `dayOfWeek`. Omit both to set a `waveAssignment` without a maintenance window.
      * 
      */
-    public Output<Integer> hourOfDay() {
-        return this.hourOfDay;
+    public Output<Optional<Integer>> hourOfDay() {
+        return Codegen.optional(this.hourOfDay);
     }
     /**
      * Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
@@ -305,6 +305,20 @@ public class MaintenanceWindow extends com.pulumi.resources.CustomResource {
      */
     public Output<String> timeZoneId() {
         return this.timeZoneId;
+    }
+    /**
+     * Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization&#39;s wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `mongodbatlas.OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+     * 
+     */
+    @Export(name="waveAssignment", refs={Integer.class}, tree="[0]")
+    private Output</* @Nullable */ Integer> waveAssignment;
+
+    /**
+     * @return Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization&#39;s wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `mongodbatlas.OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+     * 
+     */
+    public Output<Optional<Integer>> waveAssignment() {
+        return Codegen.optional(this.waveAssignment);
     }
 
     /**

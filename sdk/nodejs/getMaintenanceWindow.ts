@@ -71,6 +71,12 @@ export interface GetMaintenanceWindowResult {
      */
     readonly dayOfWeek: number;
     /**
+     * Read-only maintenance wave Atlas uses when scheduling maintenance for this project. This value can differ from `waveAssignment` in the following scenarios:
+     * - **`ENV_TAG_MAPPING` mode is active at the organization level.** When the organization's `waveAssignmentMode` is set to `ENV_TAG_MAPPING` (see `mongodbatlas.OrgMaintenanceSettings`), Atlas ignores any explicit `waveAssignment` and derives the effective wave from the project's environment tag. A project can have `waveAssignment = 1` in state while `effectiveWaveAssignment` returns a different value.
+     * - **Cross-organization billing (`MAINTENANCE_SEQUENCE_CROSS_ORG`).** When a linked non-paying organization inherits the paying organization's wave assignment mode. If the paying organization switches to `ENV_TAG_MAPPING`, all linked projects follow regardless of any explicit `waveAssignment` set on them.
+     */
+    readonly effectiveWaveAssignment: number;
+    /**
      * Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone.
      */
     readonly hourOfDay: number;
@@ -95,6 +101,10 @@ export interface GetMaintenanceWindowResult {
      * Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
      */
     readonly timeZoneId: string;
+    /**
+     * Maintenance wave explicitly assigned to this project. Always returned when a value has been set, regardless of the organization's `waveAssignmentMode`. When the mode is `ENV_TAG_MAPPING`, the system preserves the stored value but does not use it for scheduling. Switching back to `MANUAL` restores this value as the effective wave. Returns `0` when no explicit wave has been assigned.
+     */
+    readonly waveAssignment: number;
 }
 /**
  * `mongodbatlas.MaintenanceWindow` provides a Maintenance Window entry datasource. Gets information regarding the configured maintenance window for a MongoDB Atlas project.

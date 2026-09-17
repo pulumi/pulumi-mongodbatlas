@@ -70,6 +70,8 @@ type Organization struct {
 
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired pulumi.BoolOutput `pulumi:"apiAccessListRequired"`
+	// Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+	CustomSessionTimeouts OrganizationCustomSessionTimeoutsPtrOutput `pulumi:"customSessionTimeouts"`
 	// Programmatic API Key description. This attribute is required in creation and can't be updated later.
 	//
 	// > **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -86,6 +88,8 @@ type Organization struct {
 	MultiFactorAuthRequired pulumi.BoolOutput `pulumi:"multiFactorAuthRequired"`
 	// The name of the organization.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+	OperationsContact pulumi.StringPtrOutput `pulumi:"operationsContact"`
 	// The organization id.
 	OrgId pulumi.StringOutput `pulumi:"orgId"`
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
@@ -145,6 +149,8 @@ func GetOrganization(ctx *pulumi.Context,
 type organizationState struct {
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired *bool `pulumi:"apiAccessListRequired"`
+	// Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+	CustomSessionTimeouts *OrganizationCustomSessionTimeouts `pulumi:"customSessionTimeouts"`
 	// Programmatic API Key description. This attribute is required in creation and can't be updated later.
 	//
 	// > **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -161,6 +167,8 @@ type organizationState struct {
 	MultiFactorAuthRequired *bool `pulumi:"multiFactorAuthRequired"`
 	// The name of the organization.
 	Name *string `pulumi:"name"`
+	// String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+	OperationsContact *string `pulumi:"operationsContact"`
 	// The organization id.
 	OrgId *string `pulumi:"orgId"`
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
@@ -186,6 +194,8 @@ type organizationState struct {
 type OrganizationState struct {
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired pulumi.BoolPtrInput
+	// Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+	CustomSessionTimeouts OrganizationCustomSessionTimeoutsPtrInput
 	// Programmatic API Key description. This attribute is required in creation and can't be updated later.
 	//
 	// > **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -202,6 +212,8 @@ type OrganizationState struct {
 	MultiFactorAuthRequired pulumi.BoolPtrInput
 	// The name of the organization.
 	Name pulumi.StringPtrInput
+	// String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+	OperationsContact pulumi.StringPtrInput
 	// The organization id.
 	OrgId pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
@@ -231,6 +243,8 @@ func (OrganizationState) ElementType() reflect.Type {
 type organizationArgs struct {
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired *bool `pulumi:"apiAccessListRequired"`
+	// Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+	CustomSessionTimeouts *OrganizationCustomSessionTimeouts `pulumi:"customSessionTimeouts"`
 	// Programmatic API Key description. This attribute is required in creation and can't be updated later.
 	//
 	// > **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -247,6 +261,8 @@ type organizationArgs struct {
 	MultiFactorAuthRequired *bool `pulumi:"multiFactorAuthRequired"`
 	// The name of the organization.
 	Name *string `pulumi:"name"`
+	// String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+	OperationsContact *string `pulumi:"operationsContact"`
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
 	OrgOwnerId *string `pulumi:"orgOwnerId"`
 	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
@@ -267,6 +283,8 @@ type organizationArgs struct {
 type OrganizationArgs struct {
 	// Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
 	ApiAccessListRequired pulumi.BoolPtrInput
+	// Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+	CustomSessionTimeouts OrganizationCustomSessionTimeoutsPtrInput
 	// Programmatic API Key description. This attribute is required in creation and can't be updated later.
 	//
 	// > **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -283,6 +301,8 @@ type OrganizationArgs struct {
 	MultiFactorAuthRequired pulumi.BoolPtrInput
 	// The name of the organization.
 	Name pulumi.StringPtrInput
+	// String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+	OperationsContact pulumi.StringPtrInput
 	// Unique 24-hexadecimal digit string that identifies the Atlas user that you want to assign the Organization Owner role. This user must be a member of the same organization as the calling API key.  This is only required when authenticating with Programmatic API Keys. [MongoDB Atlas Admin API - Get User By Username](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/MongoDB-Cloud-Users/operation/getUserByUsername). This attribute is required in creation and can't be updated later.
 	OrgOwnerId pulumi.StringPtrInput
 	// Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
@@ -391,6 +411,11 @@ func (o OrganizationOutput) ApiAccessListRequired() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Organization) pulumi.BoolOutput { return v.ApiAccessListRequired }).(pulumi.BoolOutput)
 }
 
+// Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+func (o OrganizationOutput) CustomSessionTimeouts() OrganizationCustomSessionTimeoutsPtrOutput {
+	return o.ApplyT(func(v *Organization) OrganizationCustomSessionTimeoutsPtrOutput { return v.CustomSessionTimeouts }).(OrganizationCustomSessionTimeoutsPtrOutput)
+}
+
 // Programmatic API Key description. This attribute is required in creation and can't be updated later.
 //
 // > **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -420,6 +445,11 @@ func (o OrganizationOutput) MultiFactorAuthRequired() pulumi.BoolOutput {
 // The name of the organization.
 func (o OrganizationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Organization) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// String that specifies a distribution list email address for the specified organization to receive proactive notifications about its infrastructure. The operations contact is used for notifications only and is not authorized to make decisions or approvals. Remove the attribute from your configuration, or set it to `null`, to clear an existing operations contact.
+func (o OrganizationOutput) OperationsContact() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Organization) pulumi.StringPtrOutput { return v.OperationsContact }).(pulumi.StringPtrOutput)
 }
 
 // The organization id.

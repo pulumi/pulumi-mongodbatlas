@@ -67,23 +67,28 @@ namespace Pulumi.Mongodbatlas
         ///             RetentionUnit = "days",
         ///             RetentionValue = 14,
         ///         },
+        ///         CopyPolicyItemsEnabled = true,
         ///         CopySettings = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.CloudBackupScheduleCopySettingArgs
         ///             {
         ///                 CloudProvider = "AWS",
-        ///                 Frequencies = new[]
-        ///                 {
-        ///                     "HOURLY",
-        ///                     "DAILY",
-        ///                     "WEEKLY",
-        ///                     "MONTHLY",
-        ///                     "YEARLY",
-        ///                     "ON_DEMAND",
-        ///                 },
         ///                 RegionName = "US_EAST_1",
         ///                 ZoneId = myCluster.ReplicationSpecs.Apply(replicationSpecs =&gt; replicationSpecs.Select(__item =&gt; __item.ZoneId[0]).ToList()),
         ///                 ShouldCopyOplogs = false,
+        ///                 CopyPolicyItems = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.CloudBackupScheduleCopySettingCopyPolicyItemArgs
+        ///                     {
+        ///                         FrequencyType = "daily",
+        ///                         RetentionUnit = "days",
+        ///                         RetentionValue = 7,
+        ///                     },
+        ///                     new Mongodbatlas.Inputs.CloudBackupScheduleCopySettingCopyPolicyItemArgs
+        ///                     {
+        ///                         FrequencyType = "ondemand",
+        ///                     },
+        ///                 },
         ///             },
         ///         },
         ///     });
@@ -156,23 +161,28 @@ namespace Pulumi.Mongodbatlas
         ///             RetentionUnit = "days",
         ///             RetentionValue = 14,
         ///         },
+        ///         CopyPolicyItemsEnabled = true,
         ///         CopySettings = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.CloudBackupScheduleCopySettingArgs
         ///             {
         ///                 CloudProvider = "AWS",
-        ///                 Frequencies = new[]
-        ///                 {
-        ///                     "HOURLY",
-        ///                     "DAILY",
-        ///                     "WEEKLY",
-        ///                     "MONTHLY",
-        ///                     "YEARLY",
-        ///                     "ON_DEMAND",
-        ///                 },
         ///                 RegionName = "US_EAST_1",
         ///                 ZoneId = myCluster.ReplicationSpecs.Apply(replicationSpecs =&gt; replicationSpecs.Select(__item =&gt; __item.ZoneId[0]).ToList()),
         ///                 ShouldCopyOplogs = false,
+        ///                 CopyPolicyItems = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.CloudBackupScheduleCopySettingCopyPolicyItemArgs
+        ///                     {
+        ///                         FrequencyType = "daily",
+        ///                         RetentionUnit = "days",
+        ///                         RetentionValue = 7,
+        ///                     },
+        ///                     new Mongodbatlas.Inputs.CloudBackupScheduleCopySettingCopyPolicyItemArgs
+        ///                     {
+        ///                         FrequencyType = "ondemand",
+        ///                     },
+        ///                 },
         ///             },
         ///         },
         ///     });
@@ -245,23 +255,28 @@ namespace Pulumi.Mongodbatlas
         ///             RetentionUnit = "days",
         ///             RetentionValue = 14,
         ///         },
+        ///         CopyPolicyItemsEnabled = true,
         ///         CopySettings = new[]
         ///         {
         ///             new Mongodbatlas.Inputs.CloudBackupScheduleCopySettingArgs
         ///             {
         ///                 CloudProvider = "AWS",
-        ///                 Frequencies = new[]
-        ///                 {
-        ///                     "HOURLY",
-        ///                     "DAILY",
-        ///                     "WEEKLY",
-        ///                     "MONTHLY",
-        ///                     "YEARLY",
-        ///                     "ON_DEMAND",
-        ///                 },
         ///                 RegionName = "US_EAST_1",
         ///                 ZoneId = myCluster.ReplicationSpecs.Apply(replicationSpecs =&gt; replicationSpecs.Select(__item =&gt; __item.ZoneId[0]).ToList()),
         ///                 ShouldCopyOplogs = false,
+        ///                 CopyPolicyItems = new[]
+        ///                 {
+        ///                     new Mongodbatlas.Inputs.CloudBackupScheduleCopySettingCopyPolicyItemArgs
+        ///                     {
+        ///                         FrequencyType = "daily",
+        ///                         RetentionUnit = "days",
+        ///                         RetentionValue = 7,
+        ///                     },
+        ///                     new Mongodbatlas.Inputs.CloudBackupScheduleCopySettingCopyPolicyItemArgs
+        ///                     {
+        ///                         FrequencyType = "ondemand",
+        ///                     },
+        ///                 },
         ///             },
         ///         },
         ///     });
@@ -336,6 +351,10 @@ namespace Pulumi.Mongodbatlas
         public readonly string ClusterId;
         public readonly string ClusterName;
         /// <summary>
+        /// Flag that indicates whether copy settings use `CopyPolicyItems` or `LastNumberOfSnapshots` instead of `Frequencies`.
+        /// </summary>
+        public readonly bool CopyPolicyItemsEnabled;
+        /// <summary>
         /// List that contains a document for each copy setting item in the desired backup policy. See below
         /// </summary>
         public readonly ImmutableArray<Outputs.GetCloudBackupScheduleCopySettingResult> CopySettings;
@@ -401,6 +420,8 @@ namespace Pulumi.Mongodbatlas
 
             string clusterName,
 
+            bool copyPolicyItemsEnabled,
+
             ImmutableArray<Outputs.GetCloudBackupScheduleCopySettingResult> copySettings,
 
             ImmutableArray<Outputs.GetCloudBackupScheduleExportResult> exports,
@@ -434,6 +455,7 @@ namespace Pulumi.Mongodbatlas
             AutoExportEnabled = autoExportEnabled;
             ClusterId = clusterId;
             ClusterName = clusterName;
+            CopyPolicyItemsEnabled = copyPolicyItemsEnabled;
             CopySettings = copySettings;
             Exports = exports;
             Id = id;

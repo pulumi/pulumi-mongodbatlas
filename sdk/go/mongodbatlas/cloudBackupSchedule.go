@@ -236,7 +236,7 @@ import (
 //
 // ### Create A Cluster With Cloud Backup Enabled With Snapshot Distribution
 //
-// You can enable `cloudBackup` in the Cluster resource and then use the `cloudBackupSchedule` resource with a basic policy for Cloud Backup.
+// You can enable `cloudBackup` in the Cluster resource and then use the `cloudBackupSchedule` resource with a basic policy for Cloud Backup. Use `copyPolicyItemsEnabled = true` with `copyPolicyItems` when copies should keep a different retention than the source snapshots. Use `lastNumberOfSnapshots` instead to copy the last N snapshots. `frequencyType` is lowercase. After you apply with the flag `true`, keep it `true`; Atlas cannot disable copy-policy items once they are enabled.
 //
 // ```go
 // package main
@@ -285,18 +285,11 @@ import (
 //					RetentionUnit:     pulumi.String("days"),
 //					RetentionValue:    pulumi.Int(14),
 //				},
+//				CopyPolicyItemsEnabled: pulumi.Bool(true),
 //				CopySettings: mongodbatlas.CloudBackupScheduleCopySettingArray{
 //					&mongodbatlas.CloudBackupScheduleCopySettingArgs{
 //						CloudProvider: pulumi.String("AWS"),
-//						Frequencies: pulumi.StringArray{
-//							pulumi.String("HOURLY"),
-//							pulumi.String("DAILY"),
-//							pulumi.String("WEEKLY"),
-//							pulumi.String("MONTHLY"),
-//							pulumi.String("YEARLY"),
-//							pulumi.String("ON_DEMAND"),
-//						},
-//						RegionName: pulumi.String("US_EAST_1"),
+//						RegionName:    pulumi.String("US_EAST_1"),
 //						ZoneId: pulumi.String(myCluster.ReplicationSpecs.ApplyT(func(replicationSpecs []mongodbatlas.AdvancedClusterReplicationSpec) ([]interface{}, error) {
 //							var splat0 []interface{}
 //							for _, val0 := range replicationSpecs {
@@ -305,6 +298,16 @@ import (
 //							return splat0, nil
 //						}).(pulumi.ArrayOutput)),
 //						ShouldCopyOplogs: pulumi.Bool(false),
+//						CopyPolicyItems: mongodbatlas.CloudBackupScheduleCopySettingCopyPolicyItemArray{
+//							&mongodbatlas.CloudBackupScheduleCopySettingCopyPolicyItemArgs{
+//								FrequencyType:  pulumi.String("daily"),
+//								RetentionUnit:  pulumi.String("days"),
+//								RetentionValue: pulumi.Int(7),
+//							},
+//							&mongodbatlas.CloudBackupScheduleCopySettingCopyPolicyItemArgs{
+//								FrequencyType: pulumi.String("ondemand"),
+//							},
+//						},
 //					},
 //				},
 //			})
@@ -319,6 +322,10 @@ import (
 //
 // ### Further Examples
 // - Cloud Backup Schedule
+//
+// ## Switching from frequencies
+//
+// `copy_settings.frequencies` is deprecated. Set `copyPolicyItemsEnabled = true`, then set `copyPolicyItems` or `lastNumberOfSnapshots` on the entry and drop `frequencies`. The switch is one-way on the cluster: after Atlas enables copy-policy items, you cannot turn the flag off.
 //
 // ## Import
 //
@@ -340,8 +347,12 @@ type CloudBackupSchedule struct {
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName pulumi.StringOutput `pulumi:"clusterName"`
+	// Flag that selects copy-policy mode. Set to `true` to use `copyPolicyItems` or `lastNumberOfSnapshots`. When `false` or omitted, use `frequencies`. This transition is one-way: after you apply with `copyPolicyItemsEnabled = true`, Atlas cannot disable copy-policy items. You can still switch each `copySettings` entry between `copyPolicyItems` and `lastNumberOfSnapshots`.
+	CopyPolicyItemsEnabled pulumi.BoolPtrOutput `pulumi:"copyPolicyItemsEnabled"`
 	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings CloudBackupScheduleCopySettingArrayOutput `pulumi:"copySettings"`
+	// Specify true to delete snapshot copies when their associated `copyPolicyItems` are removed. Requires `copyPolicyItemsEnabled` to be true.
+	DeleteCopySnapshots pulumi.BoolPtrOutput `pulumi:"deleteCopySnapshots"`
 	// Policy for automatically exporting Cloud Backup Snapshots. See below
 	Export CloudBackupScheduleExportPtrOutput `pulumi:"export"`
 	// Unique identifier of the backup policy.
@@ -368,9 +379,9 @@ type CloudBackupSchedule struct {
 	RestoreWindowDays pulumi.IntOutput `pulumi:"restoreWindowDays"`
 	// Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
 	SkipDestroy pulumi.BoolPtrOutput `pulumi:"skipDestroy"`
+	// Specify true to apply the retention changes for updated copy policy items to snapshot copies that Atlas took previously. Requires `copyPolicyItemsEnabled` to be true.
+	UpdateCopySnapshots pulumi.BoolPtrOutput `pulumi:"updateCopySnapshots"`
 	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-	//
-	// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
 	UpdateSnapshots pulumi.BoolOutput `pulumi:"updateSnapshots"`
 	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
 	UseOrgAndGroupNamesInExportPrefix pulumi.BoolOutput `pulumi:"useOrgAndGroupNamesInExportPrefix"`
@@ -420,8 +431,12 @@ type cloudBackupScheduleState struct {
 	ClusterId *string `pulumi:"clusterId"`
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName *string `pulumi:"clusterName"`
+	// Flag that selects copy-policy mode. Set to `true` to use `copyPolicyItems` or `lastNumberOfSnapshots`. When `false` or omitted, use `frequencies`. This transition is one-way: after you apply with `copyPolicyItemsEnabled = true`, Atlas cannot disable copy-policy items. You can still switch each `copySettings` entry between `copyPolicyItems` and `lastNumberOfSnapshots`.
+	CopyPolicyItemsEnabled *bool `pulumi:"copyPolicyItemsEnabled"`
 	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings []CloudBackupScheduleCopySetting `pulumi:"copySettings"`
+	// Specify true to delete snapshot copies when their associated `copyPolicyItems` are removed. Requires `copyPolicyItemsEnabled` to be true.
+	DeleteCopySnapshots *bool `pulumi:"deleteCopySnapshots"`
 	// Policy for automatically exporting Cloud Backup Snapshots. See below
 	Export *CloudBackupScheduleExport `pulumi:"export"`
 	// Unique identifier of the backup policy.
@@ -448,9 +463,9 @@ type cloudBackupScheduleState struct {
 	RestoreWindowDays *int `pulumi:"restoreWindowDays"`
 	// Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
 	SkipDestroy *bool `pulumi:"skipDestroy"`
+	// Specify true to apply the retention changes for updated copy policy items to snapshot copies that Atlas took previously. Requires `copyPolicyItemsEnabled` to be true.
+	UpdateCopySnapshots *bool `pulumi:"updateCopySnapshots"`
 	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-	//
-	// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
 	UpdateSnapshots *bool `pulumi:"updateSnapshots"`
 	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
 	UseOrgAndGroupNamesInExportPrefix *bool `pulumi:"useOrgAndGroupNamesInExportPrefix"`
@@ -465,8 +480,12 @@ type CloudBackupScheduleState struct {
 	ClusterId pulumi.StringPtrInput
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName pulumi.StringPtrInput
+	// Flag that selects copy-policy mode. Set to `true` to use `copyPolicyItems` or `lastNumberOfSnapshots`. When `false` or omitted, use `frequencies`. This transition is one-way: after you apply with `copyPolicyItemsEnabled = true`, Atlas cannot disable copy-policy items. You can still switch each `copySettings` entry between `copyPolicyItems` and `lastNumberOfSnapshots`.
+	CopyPolicyItemsEnabled pulumi.BoolPtrInput
 	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings CloudBackupScheduleCopySettingArrayInput
+	// Specify true to delete snapshot copies when their associated `copyPolicyItems` are removed. Requires `copyPolicyItemsEnabled` to be true.
+	DeleteCopySnapshots pulumi.BoolPtrInput
 	// Policy for automatically exporting Cloud Backup Snapshots. See below
 	Export CloudBackupScheduleExportPtrInput
 	// Unique identifier of the backup policy.
@@ -493,9 +512,9 @@ type CloudBackupScheduleState struct {
 	RestoreWindowDays pulumi.IntPtrInput
 	// Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
 	SkipDestroy pulumi.BoolPtrInput
+	// Specify true to apply the retention changes for updated copy policy items to snapshot copies that Atlas took previously. Requires `copyPolicyItemsEnabled` to be true.
+	UpdateCopySnapshots pulumi.BoolPtrInput
 	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-	//
-	// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
 	UpdateSnapshots pulumi.BoolPtrInput
 	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
 	UseOrgAndGroupNamesInExportPrefix pulumi.BoolPtrInput
@@ -512,8 +531,12 @@ type cloudBackupScheduleArgs struct {
 	AutoExportEnabled *bool `pulumi:"autoExportEnabled"`
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName string `pulumi:"clusterName"`
+	// Flag that selects copy-policy mode. Set to `true` to use `copyPolicyItems` or `lastNumberOfSnapshots`. When `false` or omitted, use `frequencies`. This transition is one-way: after you apply with `copyPolicyItemsEnabled = true`, Atlas cannot disable copy-policy items. You can still switch each `copySettings` entry between `copyPolicyItems` and `lastNumberOfSnapshots`.
+	CopyPolicyItemsEnabled *bool `pulumi:"copyPolicyItemsEnabled"`
 	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings []CloudBackupScheduleCopySetting `pulumi:"copySettings"`
+	// Specify true to delete snapshot copies when their associated `copyPolicyItems` are removed. Requires `copyPolicyItemsEnabled` to be true.
+	DeleteCopySnapshots *bool `pulumi:"deleteCopySnapshots"`
 	// Policy for automatically exporting Cloud Backup Snapshots. See below
 	Export *CloudBackupScheduleExport `pulumi:"export"`
 	// Daily policy item. See below
@@ -536,9 +559,9 @@ type cloudBackupScheduleArgs struct {
 	RestoreWindowDays *int `pulumi:"restoreWindowDays"`
 	// Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
 	SkipDestroy *bool `pulumi:"skipDestroy"`
+	// Specify true to apply the retention changes for updated copy policy items to snapshot copies that Atlas took previously. Requires `copyPolicyItemsEnabled` to be true.
+	UpdateCopySnapshots *bool `pulumi:"updateCopySnapshots"`
 	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-	//
-	// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
 	UpdateSnapshots *bool `pulumi:"updateSnapshots"`
 	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
 	UseOrgAndGroupNamesInExportPrefix *bool `pulumi:"useOrgAndGroupNamesInExportPrefix"`
@@ -552,8 +575,12 @@ type CloudBackupScheduleArgs struct {
 	AutoExportEnabled pulumi.BoolPtrInput
 	// The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
 	ClusterName pulumi.StringInput
+	// Flag that selects copy-policy mode. Set to `true` to use `copyPolicyItems` or `lastNumberOfSnapshots`. When `false` or omitted, use `frequencies`. This transition is one-way: after you apply with `copyPolicyItemsEnabled = true`, Atlas cannot disable copy-policy items. You can still switch each `copySettings` entry between `copyPolicyItems` and `lastNumberOfSnapshots`.
+	CopyPolicyItemsEnabled pulumi.BoolPtrInput
 	// List that contains a document for each copy setting item in the desired backup policy. See below
 	CopySettings CloudBackupScheduleCopySettingArrayInput
+	// Specify true to delete snapshot copies when their associated `copyPolicyItems` are removed. Requires `copyPolicyItemsEnabled` to be true.
+	DeleteCopySnapshots pulumi.BoolPtrInput
 	// Policy for automatically exporting Cloud Backup Snapshots. See below
 	Export CloudBackupScheduleExportPtrInput
 	// Daily policy item. See below
@@ -576,9 +603,9 @@ type CloudBackupScheduleArgs struct {
 	RestoreWindowDays pulumi.IntPtrInput
 	// Flag that, when set to `true`, causes the provider to remove the resource from Terraform state on destroy without calling the Atlas API to delete the backup schedule. The schedule remains in Atlas and is removed when the cluster is deleted. This is useful when a Backup Compliance Policy prevents deleting the backup schedule, allowing `terraform destroy` to succeed. Defaults to `false`. See the Delete a Cluster with Backup Compliance Policy guide.
 	SkipDestroy pulumi.BoolPtrInput
+	// Specify true to apply the retention changes for updated copy policy items to snapshot copies that Atlas took previously. Requires `copyPolicyItemsEnabled` to be true.
+	UpdateCopySnapshots pulumi.BoolPtrInput
 	// Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-	//
-	// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
 	UpdateSnapshots pulumi.BoolPtrInput
 	// Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
 	UseOrgAndGroupNamesInExportPrefix pulumi.BoolPtrInput
@@ -688,9 +715,19 @@ func (o CloudBackupScheduleOutput) ClusterName() pulumi.StringOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.StringOutput { return v.ClusterName }).(pulumi.StringOutput)
 }
 
+// Flag that selects copy-policy mode. Set to `true` to use `copyPolicyItems` or `lastNumberOfSnapshots`. When `false` or omitted, use `frequencies`. This transition is one-way: after you apply with `copyPolicyItemsEnabled = true`, Atlas cannot disable copy-policy items. You can still switch each `copySettings` entry between `copyPolicyItems` and `lastNumberOfSnapshots`.
+func (o CloudBackupScheduleOutput) CopyPolicyItemsEnabled() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.BoolPtrOutput { return v.CopyPolicyItemsEnabled }).(pulumi.BoolPtrOutput)
+}
+
 // List that contains a document for each copy setting item in the desired backup policy. See below
 func (o CloudBackupScheduleOutput) CopySettings() CloudBackupScheduleCopySettingArrayOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) CloudBackupScheduleCopySettingArrayOutput { return v.CopySettings }).(CloudBackupScheduleCopySettingArrayOutput)
+}
+
+// Specify true to delete snapshot copies when their associated `copyPolicyItems` are removed. Requires `copyPolicyItemsEnabled` to be true.
+func (o CloudBackupScheduleOutput) DeleteCopySnapshots() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.BoolPtrOutput { return v.DeleteCopySnapshots }).(pulumi.BoolPtrOutput)
 }
 
 // Policy for automatically exporting Cloud Backup Snapshots. See below
@@ -764,9 +801,12 @@ func (o CloudBackupScheduleOutput) SkipDestroy() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.BoolPtrOutput { return v.SkipDestroy }).(pulumi.BoolPtrOutput)
 }
 
+// Specify true to apply the retention changes for updated copy policy items to snapshot copies that Atlas took previously. Requires `copyPolicyItemsEnabled` to be true.
+func (o CloudBackupScheduleOutput) UpdateCopySnapshots() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.BoolPtrOutput { return v.UpdateCopySnapshots }).(pulumi.BoolPtrOutput)
+}
+
 // Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
-//
-// **Note** This parameter does not return updates on return from API, this is a feature of the MongoDB Atlas Admin API itself and not Terraform.  For more details about this resource see [Cloud Backup Schedule](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Cloud-Backups/operation/getBackupSchedule).
 func (o CloudBackupScheduleOutput) UpdateSnapshots() pulumi.BoolOutput {
 	return o.ApplyT(func(v *CloudBackupSchedule) pulumi.BoolOutput { return v.UpdateSnapshots }).(pulumi.BoolOutput)
 }

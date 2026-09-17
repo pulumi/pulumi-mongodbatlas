@@ -67,6 +67,10 @@ export interface GetProjectServiceAccountResult {
      * A list of secrets associated with the specified Service Account.
      */
     readonly secrets: outputs.GetProjectServiceAccountSecret[];
+    /**
+     * Indicates whether the Service Account is system managed.
+     */
+    readonly systemManaged: boolean;
 }
 /**
  * `mongodbatlas.ProjectServiceAccount` describes a Project Service Account.

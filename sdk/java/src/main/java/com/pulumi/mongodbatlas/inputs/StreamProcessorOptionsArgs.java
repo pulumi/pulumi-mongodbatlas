@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsAutoscalingArgs;
 import com.pulumi.mongodbatlas.inputs.StreamProcessorOptionsDlqArgs;
+import java.lang.Boolean;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -46,11 +47,27 @@ public final class StreamProcessorOptionsArgs extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.dlq);
     }
 
+    /**
+     * Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
+     * 
+     */
+    @Import(name="resumeFromCheckpoint")
+    private @Nullable Output<Boolean> resumeFromCheckpoint;
+
+    /**
+     * @return Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
+     * 
+     */
+    public Optional<Output<Boolean>> resumeFromCheckpoint() {
+        return Optional.ofNullable(this.resumeFromCheckpoint);
+    }
+
     private StreamProcessorOptionsArgs() {}
 
     private StreamProcessorOptionsArgs(StreamProcessorOptionsArgs $) {
         this.autoscaling = $.autoscaling;
         this.dlq = $.dlq;
+        this.resumeFromCheckpoint = $.resumeFromCheckpoint;
     }
 
     public static Builder builder() {
@@ -111,6 +128,27 @@ public final class StreamProcessorOptionsArgs extends com.pulumi.resources.Resou
          */
         public Builder dlq(StreamProcessorOptionsDlqArgs dlq) {
             return dlq(Output.of(dlq));
+        }
+
+        /**
+         * @param resumeFromCheckpoint Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder resumeFromCheckpoint(@Nullable Output<Boolean> resumeFromCheckpoint) {
+            $.resumeFromCheckpoint = resumeFromCheckpoint;
+            return this;
+        }
+
+        /**
+         * @param resumeFromCheckpoint Controls checkpoint behavior when the `$source` stage or a window stage of the `pipeline` changes. When `true`, the stream processor resumes from its last checkpoint. Set to `false` to discard the existing checkpoint, which is necessary for those changes because the API rejects them while resuming from an incompatible checkpoint. Defaults to `true` when not set.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder resumeFromCheckpoint(Boolean resumeFromCheckpoint) {
+            return resumeFromCheckpoint(Output.of(resumeFromCheckpoint));
         }
 
         public StreamProcessorOptionsArgs build() {
