@@ -260,7 +260,7 @@ class PushBasedLogExport(pulumi.CustomResource):
                  iam_role_id: pulumi.Input[Optional[_builtins.str]] = None,
                  prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 timeouts: pulumi.Input[Optional[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict', 'outputs.PushBasedLogExportTimeouts']]] = None,
                  __props__=None):
         """
         > **DEPRECATED:** This resource is deprecated and will be removed in the next major version. Please use `LogIntegration` instead. For migration instructions, see the Push-Based Log Export to Log Integration Migration Guide.
@@ -390,7 +390,7 @@ class PushBasedLogExport(pulumi.CustomResource):
                  iam_role_id: pulumi.Input[Optional[_builtins.str]] = None,
                  prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 timeouts: pulumi.Input[Optional[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict', 'outputs.PushBasedLogExportTimeouts']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -431,7 +431,7 @@ class PushBasedLogExport(pulumi.CustomResource):
             prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             state: pulumi.Input[Optional[_builtins.str]] = None,
-            timeouts: pulumi.Input[Optional[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict']]] = None) -> 'PushBasedLogExport':
+            timeouts: pulumi.Input[Optional[Union['PushBasedLogExportTimeoutsArgs', 'PushBasedLogExportTimeoutsArgsDict', 'outputs.PushBasedLogExportTimeouts']]] = None) -> 'PushBasedLogExport':
         """
         Get an existing PushBasedLogExport resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

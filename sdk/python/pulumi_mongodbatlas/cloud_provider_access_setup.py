@@ -248,7 +248,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 azure_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict']]]]] = None,
+                 azure_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict', 'outputs.CloudProviderAccessSetupAzureConfig']]]]] = None,
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -327,7 +327,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict']]]] azure_configs: azure related configurations
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict', 'outputs.CloudProviderAccessSetupAzureConfig']]]] azure_configs: azure related configurations
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation
         :param pulumi.Input[_builtins.str] provider_name: The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `provider_name` will result in destruction of the existing resource and the creation of a new resource.
@@ -425,7 +425,7 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 azure_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict']]]]] = None,
+                 azure_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict', 'outputs.CloudProviderAccessSetupAzureConfig']]]]] = None,
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -461,11 +461,11 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            aws_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAwsConfigArgs', 'CloudProviderAccessSetupAwsConfigArgsDict']]]]] = None,
-            azure_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict']]]]] = None,
+            aws_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAwsConfigArgs', 'CloudProviderAccessSetupAwsConfigArgsDict', 'outputs.CloudProviderAccessSetupAwsConfig']]]]] = None,
+            azure_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict', 'outputs.CloudProviderAccessSetupAzureConfig']]]]] = None,
             created_date: pulumi.Input[Optional[_builtins.str]] = None,
             delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
-            gcp_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessSetupGcpConfigArgs', 'CloudProviderAccessSetupGcpConfigArgsDict']]]]] = None,
+            gcp_configs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessSetupGcpConfigArgs', 'CloudProviderAccessSetupGcpConfigArgsDict', 'outputs.CloudProviderAccessSetupGcpConfig']]]]] = None,
             last_updated_date: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             provider_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -477,11 +477,11 @@ class CloudProviderAccessSetup(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAwsConfigArgs', 'CloudProviderAccessSetupAwsConfigArgsDict']]]] aws_configs: aws related arn roles
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict']]]] azure_configs: azure related configurations
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAwsConfigArgs', 'CloudProviderAccessSetupAwsConfigArgsDict', 'outputs.CloudProviderAccessSetupAwsConfig']]]] aws_configs: aws related arn roles
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupAzureConfigArgs', 'CloudProviderAccessSetupAzureConfigArgsDict', 'outputs.CloudProviderAccessSetupAzureConfig']]]] azure_configs: azure related configurations
         :param pulumi.Input[_builtins.str] created_date: Date on which this role was created.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupGcpConfigArgs', 'CloudProviderAccessSetupGcpConfigArgsDict']]]] gcp_configs: gcp related configuration
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessSetupGcpConfigArgs', 'CloudProviderAccessSetupGcpConfigArgsDict', 'outputs.CloudProviderAccessSetupGcpConfig']]]] gcp_configs: gcp related configuration
         :param pulumi.Input[_builtins.str] last_updated_date: Date and time when this Azure Service Principal was last updated. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation
         :param pulumi.Input[_builtins.str] provider_name: The cloud provider for which to create a new role. Currently, AWS, AZURE and GCP are supported. **WARNING** Changing the `provider_name` will result in destruction of the existing resource and the creation of a new resource.

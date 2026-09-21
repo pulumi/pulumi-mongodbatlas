@@ -571,7 +571,7 @@ class Organization(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_access_list_required: pulumi.Input[Optional[_builtins.bool]] = None,
-                 custom_session_timeouts: pulumi.Input[Optional[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict']]] = None,
+                 custom_session_timeouts: pulumi.Input[Optional[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict', 'outputs.OrganizationCustomSessionTimeouts']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
                  gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -582,7 +582,7 @@ class Organization(pulumi.CustomResource):
                  restrict_employee_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  security_contact: pulumi.Input[Optional[_builtins.str]] = None,
-                 service_account: pulumi.Input[Optional[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']]] = None,
+                 service_account: pulumi.Input[Optional[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict', 'outputs.OrganizationServiceAccount']]] = None,
                  skip_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
@@ -627,7 +627,7 @@ class Organization(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
-        :param pulumi.Input[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict']] custom_session_timeouts: Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+        :param pulumi.Input[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict', 'outputs.OrganizationCustomSessionTimeouts']] custom_session_timeouts: Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
         :param pulumi.Input[_builtins.str] description: Programmatic API Key description. This attribute is required in creation and can't be updated later.
                
                > **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -644,7 +644,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
         :param pulumi.Input[_builtins.str] security_contact: String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
-        :param pulumi.Input[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']] service_account: Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `role_names`. This block can't be updated after creation. See Service Account.
+        :param pulumi.Input[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict', 'outputs.OrganizationServiceAccount']] service_account: Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `role_names`. This block can't be updated after creation. See Service Account.
         :param pulumi.Input[_builtins.bool] skip_default_alerts_settings: Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
                
                > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true`.
@@ -710,7 +710,7 @@ class Organization(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  api_access_list_required: pulumi.Input[Optional[_builtins.bool]] = None,
-                 custom_session_timeouts: pulumi.Input[Optional[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict']]] = None,
+                 custom_session_timeouts: pulumi.Input[Optional[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict', 'outputs.OrganizationCustomSessionTimeouts']]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
                  gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -721,7 +721,7 @@ class Organization(pulumi.CustomResource):
                  restrict_employee_access: pulumi.Input[Optional[_builtins.bool]] = None,
                  role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  security_contact: pulumi.Input[Optional[_builtins.str]] = None,
-                 service_account: pulumi.Input[Optional[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']]] = None,
+                 service_account: pulumi.Input[Optional[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict', 'outputs.OrganizationServiceAccount']]] = None,
                  skip_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -762,7 +762,7 @@ class Organization(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             api_access_list_required: pulumi.Input[Optional[_builtins.bool]] = None,
-            custom_session_timeouts: pulumi.Input[Optional[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict']]] = None,
+            custom_session_timeouts: pulumi.Input[Optional[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict', 'outputs.OrganizationCustomSessionTimeouts']]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
             gen_ai_features_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -776,7 +776,7 @@ class Organization(pulumi.CustomResource):
             restrict_employee_access: pulumi.Input[Optional[_builtins.bool]] = None,
             role_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             security_contact: pulumi.Input[Optional[_builtins.str]] = None,
-            service_account: pulumi.Input[Optional[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']]] = None,
+            service_account: pulumi.Input[Optional[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict', 'outputs.OrganizationServiceAccount']]] = None,
             skip_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None) -> 'Organization':
         """
         Get an existing Organization resource's state with the given name, id, and optional extra
@@ -786,7 +786,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] api_access_list_required: Flag that indicates whether to require API operations to originate from an IP Address added to the API access list for the specified organization.
-        :param pulumi.Input[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict']] custom_session_timeouts: Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
+        :param pulumi.Input[Union['OrganizationCustomSessionTimeoutsArgs', 'OrganizationCustomSessionTimeoutsArgsDict', 'outputs.OrganizationCustomSessionTimeouts']] custom_session_timeouts: Block that specifies the custom session timeout settings for the organization. Remove the block from your configuration, or set it to `null`, to clear both timeouts. See Custom Session Timeouts.
         :param pulumi.Input[_builtins.str] description: Programmatic API Key description. This attribute is required in creation and can't be updated later.
                
                > **NOTE:** Creating an organization will return a set of credentials that are stored in the Terraform state and used by the `Organization` resource for subsequent operations (read, update, delete) on the new organization. The credentials stored depend on the authentication method used during creation:
@@ -806,7 +806,7 @@ class Organization(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] restrict_employee_access: Flag that indicates whether to block MongoDB Support from accessing Atlas infrastructure for any deployment in the specified organization without explicit permission. Once this setting is turned on, you can grant MongoDB Support a 24-hour bypass access to the Atlas deployment to resolve support issues. To learn more, see: https://www.mongodb.com/docs/atlas/security-restrict-support-access/.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] role_names: List of Organization roles that the Programmatic API key needs to have. Ensure that you provide at least one role and ensure all roles are valid for the Organization.  You must specify an array even if you are only associating a single role with the Programmatic API key. The [MongoDB Documentation](https://www.mongodb.com/docs/atlas/reference/user-roles/#organization-roles) describes the roles that you can assign to a Programmatic API key. This attribute is required in creation and can't be updated later.
         :param pulumi.Input[_builtins.str] security_contact: String that specifies a single email address for the specified organization to receive security-related notifications. Specifying a security contact does not grant them authorization or access to Atlas for security decisions or approvals.
-        :param pulumi.Input[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict']] service_account: Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `role_names`. This block can't be updated after creation. See Service Account.
+        :param pulumi.Input[Union['OrganizationServiceAccountArgs', 'OrganizationServiceAccountArgsDict', 'outputs.OrganizationServiceAccount']] service_account: Block to create a Service Account instead of a Programmatic API Key when creating the organization. The API does not allow creating both in the same request. Mutually exclusive with `description` and `role_names`. This block can't be updated after creation. See Service Account.
         :param pulumi.Input[_builtins.bool] skip_default_alerts_settings: Flag that indicates whether to prevent Atlas from automatically creating organization-level alerts not explicitly managed through Terraform. Defaults to `true`.
                
                > **NOTE:** - If you create an organization with our Terraform provider version >=1.30.0, this field is set to `true` by default.<br> - If you have an existing organization created with our Terraform provider version <1.30.0, this field might be `false`, which is the [API default value](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorganization). To prevent the creation of future default alerts, set this explicitly to `true`.

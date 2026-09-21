@@ -502,7 +502,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
                  endpoint_service_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]]] = None,
+                 endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict', 'outputs.PrivateLinkEndpointServiceEndpoint']]]]] = None,
                  gcp_project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  private_endpoint_ip_address: pulumi.Input[Optional[_builtins.str]] = None,
                  private_link_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -738,7 +738,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]] endpoints: Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpoint_service_id` and `private_endpoint_ip_address` instead.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict', 'outputs.PrivateLinkEndpointServiceEndpoint']]]] endpoints: Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpoint_service_id` and `private_endpoint_ip_address` instead.
         :param pulumi.Input[_builtins.str] gcp_project_id: Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.
         :param pulumi.Input[_builtins.str] private_endpoint_ip_address: Private IP address of the private endpoint network interface. **Required for `AZURE and GCP Port-Mapped`.** For port-mapped architecture, this is required and is the IP address of the forwarding rule. For GCP legacy private endpoint architecture, this is not used.
         :param pulumi.Input[_builtins.str] private_link_id: Unique identifier of the `AWS`, `AZURE` or `GCP` PrivateLink connection which is created by `PrivateLinkEndpoint` resource.
@@ -993,7 +993,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
                  endpoint_service_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]]] = None,
+                 endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict', 'outputs.PrivateLinkEndpointServiceEndpoint']]]]] = None,
                  gcp_project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  private_endpoint_ip_address: pulumi.Input[Optional[_builtins.str]] = None,
                  private_link_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1051,7 +1051,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
             delete_requested: pulumi.Input[Optional[_builtins.bool]] = None,
             endpoint_group_name: pulumi.Input[Optional[_builtins.str]] = None,
             endpoint_service_id: pulumi.Input[Optional[_builtins.str]] = None,
-            endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]]] = None,
+            endpoints: pulumi.Input[Optional[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict', 'outputs.PrivateLinkEndpointServiceEndpoint']]]]] = None,
             error_message: pulumi.Input[Optional[_builtins.str]] = None,
             gcp_endpoint_status: pulumi.Input[Optional[_builtins.str]] = None,
             gcp_project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1088,7 +1088,7 @@ class PrivateLinkEndpointService(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.bool] delete_requested: Indicates if Atlas received a request to remove the interface endpoint from the private endpoint connection.
         :param pulumi.Input[_builtins.str] endpoint_service_id: Unique identifier of the interface endpoint you created in your VPC. For `AWS` and `AZURE`, this is the interface endpoint identifier. For `GCP` port-mapped architecture, this is the forwarding rule name. For `GCP` legacy private endpoint architecture, this is the endpoint group name.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict']]]] endpoints: Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpoint_service_id` and `private_endpoint_ip_address` instead.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['PrivateLinkEndpointServiceEndpointArgs', 'PrivateLinkEndpointServiceEndpointArgsDict', 'outputs.PrivateLinkEndpointServiceEndpoint']]]] endpoints: Collection of individual private endpoints that comprise your endpoint group. Only for GCP legacy private endpoint architecture. **Note:** For the port-mapped architecture, this field is no longer used - use `endpoint_service_id` and `private_endpoint_ip_address` instead.
         :param pulumi.Input[_builtins.str] error_message: Error message pertaining to the interface endpoint. Returns null if there are no errors.
         :param pulumi.Input[_builtins.str] gcp_endpoint_status: Status of the individual endpoint. Only populated for port-mapped architecture. Returns one of the following values: `INITIATING`, `AVAILABLE`, `FAILED`, `DELETING`.
         :param pulumi.Input[_builtins.str] gcp_project_id: Unique identifier of the GCP project in which you created your endpoints. **Required for `GCP`** (both legacy and port-mapped architectures). Only for `GCP`.

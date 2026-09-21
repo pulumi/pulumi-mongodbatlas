@@ -204,8 +204,8 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws: pulumi.Input[Optional[Union['CloudProviderAccessAuthorizationAwsArgs', 'CloudProviderAccessAuthorizationAwsArgsDict']]] = None,
-                 azure: pulumi.Input[Optional[Union['CloudProviderAccessAuthorizationAzureArgs', 'CloudProviderAccessAuthorizationAzureArgsDict']]] = None,
+                 aws: pulumi.Input[Optional[Union['CloudProviderAccessAuthorizationAwsArgs', 'CloudProviderAccessAuthorizationAwsArgsDict', 'outputs.CloudProviderAccessAuthorizationAws']]] = None,
+                 azure: pulumi.Input[Optional[Union['CloudProviderAccessAuthorizationAzureArgs', 'CloudProviderAccessAuthorizationAzureArgsDict', 'outputs.CloudProviderAccessAuthorizationAzure']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -409,8 +409,8 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 aws: pulumi.Input[Optional[Union['CloudProviderAccessAuthorizationAwsArgs', 'CloudProviderAccessAuthorizationAwsArgsDict']]] = None,
-                 azure: pulumi.Input[Optional[Union['CloudProviderAccessAuthorizationAzureArgs', 'CloudProviderAccessAuthorizationAzureArgsDict']]] = None,
+                 aws: pulumi.Input[Optional[Union['CloudProviderAccessAuthorizationAwsArgs', 'CloudProviderAccessAuthorizationAwsArgsDict', 'outputs.CloudProviderAccessAuthorizationAws']]] = None,
+                 azure: pulumi.Input[Optional[Union['CloudProviderAccessAuthorizationAzureArgs', 'CloudProviderAccessAuthorizationAzureArgsDict', 'outputs.CloudProviderAccessAuthorizationAzure']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -444,10 +444,10 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             authorized_date: pulumi.Input[Optional[_builtins.str]] = None,
-            aws: pulumi.Input[Optional[Union['CloudProviderAccessAuthorizationAwsArgs', 'CloudProviderAccessAuthorizationAwsArgsDict']]] = None,
-            azure: pulumi.Input[Optional[Union['CloudProviderAccessAuthorizationAzureArgs', 'CloudProviderAccessAuthorizationAzureArgsDict']]] = None,
-            feature_usages: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessAuthorizationFeatureUsageArgs', 'CloudProviderAccessAuthorizationFeatureUsageArgsDict']]]]] = None,
-            gcps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessAuthorizationGcpArgs', 'CloudProviderAccessAuthorizationGcpArgsDict']]]]] = None,
+            aws: pulumi.Input[Optional[Union['CloudProviderAccessAuthorizationAwsArgs', 'CloudProviderAccessAuthorizationAwsArgsDict', 'outputs.CloudProviderAccessAuthorizationAws']]] = None,
+            azure: pulumi.Input[Optional[Union['CloudProviderAccessAuthorizationAzureArgs', 'CloudProviderAccessAuthorizationAzureArgsDict', 'outputs.CloudProviderAccessAuthorizationAzure']]] = None,
+            feature_usages: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessAuthorizationFeatureUsageArgs', 'CloudProviderAccessAuthorizationFeatureUsageArgsDict', 'outputs.CloudProviderAccessAuthorizationFeatureUsage']]]]] = None,
+            gcps: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudProviderAccessAuthorizationGcpArgs', 'CloudProviderAccessAuthorizationGcpArgsDict', 'outputs.CloudProviderAccessAuthorizationGcp']]]]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             role_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'CloudProviderAccessAuthorization':
         """
@@ -458,7 +458,7 @@ class CloudProviderAccessAuthorization(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] authorized_date: Date on which this role was authorized.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessAuthorizationFeatureUsageArgs', 'CloudProviderAccessAuthorizationFeatureUsageArgsDict']]]] feature_usages: Atlas features this AWS IAM role is linked to.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudProviderAccessAuthorizationFeatureUsageArgs', 'CloudProviderAccessAuthorizationFeatureUsageArgsDict', 'outputs.CloudProviderAccessAuthorizationFeatureUsage']]]] feature_usages: Atlas features this AWS IAM role is linked to.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project, also known as `groupId` in the official documentation. **WARNING**: Changing the `project_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
         :param pulumi.Input[_builtins.str] role_id: The unique ID of this role returned by the mongodb atlas api. **WARNING**: Changing the `role_id` will result in destruction of the existing authorization resource and the creation of a new authorization resource.
                

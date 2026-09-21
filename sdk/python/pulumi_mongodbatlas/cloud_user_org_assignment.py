@@ -328,7 +328,7 @@ class CloudUserOrgAssignment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 roles: pulumi.Input[Optional[Union['CloudUserOrgAssignmentRolesArgs', 'CloudUserOrgAssignmentRolesArgsDict']]] = None,
+                 roles: pulumi.Input[Optional[Union['CloudUserOrgAssignmentRolesArgs', 'CloudUserOrgAssignmentRolesArgsDict', 'outputs.CloudUserOrgAssignmentRoles']]] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -377,7 +377,7 @@ class CloudUserOrgAssignment(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-organizations) endpoint to retrieve all organizations to which the authenticated user has access.
-        :param pulumi.Input[Union['CloudUserOrgAssignmentRolesArgs', 'CloudUserOrgAssignmentRolesArgsDict']] roles: Organization and project level roles to assign the MongoDB Cloud user within one organization.
+        :param pulumi.Input[Union['CloudUserOrgAssignmentRolesArgs', 'CloudUserOrgAssignmentRolesArgsDict', 'outputs.CloudUserOrgAssignmentRoles']] roles: Organization and project level roles to assign the MongoDB Cloud user within one organization.
         :param pulumi.Input[_builtins.str] username: Email address that represents the username of the MongoDB Cloud user.
         """
         ...
@@ -445,7 +445,7 @@ class CloudUserOrgAssignment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 roles: pulumi.Input[Optional[Union['CloudUserOrgAssignmentRolesArgs', 'CloudUserOrgAssignmentRolesArgsDict']]] = None,
+                 roles: pulumi.Input[Optional[Union['CloudUserOrgAssignmentRolesArgs', 'CloudUserOrgAssignmentRolesArgsDict', 'outputs.CloudUserOrgAssignmentRoles']]] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -498,7 +498,7 @@ class CloudUserOrgAssignment(pulumi.CustomResource):
             mobile_number: pulumi.Input[Optional[_builtins.str]] = None,
             org_id: pulumi.Input[Optional[_builtins.str]] = None,
             org_membership_status: pulumi.Input[Optional[_builtins.str]] = None,
-            roles: pulumi.Input[Optional[Union['CloudUserOrgAssignmentRolesArgs', 'CloudUserOrgAssignmentRolesArgsDict']]] = None,
+            roles: pulumi.Input[Optional[Union['CloudUserOrgAssignmentRolesArgs', 'CloudUserOrgAssignmentRolesArgsDict', 'outputs.CloudUserOrgAssignmentRoles']]] = None,
             team_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             user_id: pulumi.Input[Optional[_builtins.str]] = None,
             username: pulumi.Input[Optional[_builtins.str]] = None) -> 'CloudUserOrgAssignment':
@@ -520,7 +520,7 @@ class CloudUserOrgAssignment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] mobile_number: Mobile phone number that belongs to the MongoDB Cloud user.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-organizations) endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[_builtins.str] org_membership_status: String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
-        :param pulumi.Input[Union['CloudUserOrgAssignmentRolesArgs', 'CloudUserOrgAssignmentRolesArgsDict']] roles: Organization and project level roles to assign the MongoDB Cloud user within one organization.
+        :param pulumi.Input[Union['CloudUserOrgAssignmentRolesArgs', 'CloudUserOrgAssignmentRolesArgsDict', 'outputs.CloudUserOrgAssignmentRoles']] roles: Organization and project level roles to assign the MongoDB Cloud user within one organization.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] team_ids: List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
         :param pulumi.Input[_builtins.str] user_id: Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.
         :param pulumi.Input[_builtins.str] username: Email address that represents the username of the MongoDB Cloud user.

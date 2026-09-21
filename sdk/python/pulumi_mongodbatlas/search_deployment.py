@@ -259,8 +259,8 @@ class SearchDeployment(pulumi.CustomResource):
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  skip_wait_on_update: pulumi.Input[Optional[_builtins.bool]] = None,
-                 specs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
-                 timeouts: pulumi.Input[Optional[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None,
+                 specs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict', 'outputs.SearchDeploymentSpec']]]]] = None,
+                 timeouts: pulumi.Input[Optional[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict', 'outputs.SearchDeploymentTimeouts']]] = None,
                  __props__=None):
         """
         `SearchDeployment` provides a Search Deployment resource. The resource lets you create, edit and delete dedicated search nodes in a cluster.
@@ -326,7 +326,7 @@ class SearchDeployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] skip_wait_on_update: If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict', 'outputs.SearchDeploymentSpec']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         """
         ...
     @overload
@@ -411,8 +411,8 @@ class SearchDeployment(pulumi.CustomResource):
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  skip_wait_on_update: pulumi.Input[Optional[_builtins.bool]] = None,
-                 specs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
-                 timeouts: pulumi.Input[Optional[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None,
+                 specs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict', 'outputs.SearchDeploymentSpec']]]]] = None,
+                 timeouts: pulumi.Input[Optional[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict', 'outputs.SearchDeploymentTimeouts']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -451,9 +451,9 @@ class SearchDeployment(pulumi.CustomResource):
             encryption_at_rest_provider: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             skip_wait_on_update: pulumi.Input[Optional[_builtins.bool]] = None,
-            specs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]]] = None,
+            specs: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict', 'outputs.SearchDeploymentSpec']]]]] = None,
             state_name: pulumi.Input[Optional[_builtins.str]] = None,
-            timeouts: pulumi.Input[Optional[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict']]] = None) -> 'SearchDeployment':
+            timeouts: pulumi.Input[Optional[Union['SearchDeploymentTimeoutsArgs', 'SearchDeploymentTimeoutsArgsDict', 'outputs.SearchDeploymentTimeouts']]] = None) -> 'SearchDeployment':
         """
         Get an existing SearchDeployment resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -466,7 +466,7 @@ class SearchDeployment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] encryption_at_rest_provider: Cloud service provider that manages your customer keys to provide an additional layer of Encryption At Rest for the cluster.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.bool] skip_wait_on_update: If true, the resource update is executed without waiting until the state is `IDLE`, making the operation faster. This might cause update errors to go unnoticed and lead to non-empty plans at the next terraform execution.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchDeploymentSpecArgs', 'SearchDeploymentSpecArgsDict', 'outputs.SearchDeploymentSpec']]]] specs: List of settings that configure the search nodes for your cluster. This list is currently limited to defining a single element.
         :param pulumi.Input[_builtins.str] state_name: Human-readable label that indicates the current operating condition of this search deployment.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

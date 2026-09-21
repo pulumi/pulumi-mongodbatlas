@@ -326,7 +326,7 @@ class MetricIntegration(pulumi.CustomResource):
                  aggregation_temporality: pulumi.Input[Optional[_builtins.str]] = None,
                  auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  endpoint: pulumi.Input[Optional[_builtins.str]] = None,
-                 headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MetricIntegrationHeaderArgs', 'MetricIntegrationHeaderArgsDict']]]]] = None,
+                 headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MetricIntegrationHeaderArgs', 'MetricIntegrationHeaderArgsDict', 'outputs.MetricIntegrationHeader']]]]] = None,
                  integration_type: pulumi.Input[Optional[_builtins.str]] = None,
                  metric_selections: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -387,7 +387,7 @@ class MetricIntegration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] aggregation_temporality: The temporality to send to the metric integration.
         :param pulumi.Input[_builtins.str] auth_type: Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
         :param pulumi.Input[_builtins.str] endpoint: OpenTelemetry collector endpoint URL. Must use HTTPS.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['MetricIntegrationHeaderArgs', 'MetricIntegrationHeaderArgsDict']]]] headers: Required for auth_type: HEADER. HTTP headers for authentication and configuration. Total size limit 2KB.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MetricIntegrationHeaderArgs', 'MetricIntegrationHeaderArgsDict', 'outputs.MetricIntegrationHeader']]]] headers: Required for auth_type: HEADER. HTTP headers for authentication and configuration. Total size limit 2KB.
         :param pulumi.Input[_builtins.str] integration_type: Type of metric integration. Identifies which protocol will be used for the integration. This value cannot be modified after the integration is created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] metric_selections: Array of metric categories to export. Determines which types of metrics are sent to the integration.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -467,7 +467,7 @@ class MetricIntegration(pulumi.CustomResource):
                  aggregation_temporality: pulumi.Input[Optional[_builtins.str]] = None,
                  auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  endpoint: pulumi.Input[Optional[_builtins.str]] = None,
-                 headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MetricIntegrationHeaderArgs', 'MetricIntegrationHeaderArgsDict']]]]] = None,
+                 headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MetricIntegrationHeaderArgs', 'MetricIntegrationHeaderArgsDict', 'outputs.MetricIntegrationHeader']]]]] = None,
                  integration_type: pulumi.Input[Optional[_builtins.str]] = None,
                  metric_selections: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -518,8 +518,8 @@ class MetricIntegration(pulumi.CustomResource):
             aggregation_temporality: pulumi.Input[Optional[_builtins.str]] = None,
             auth_type: pulumi.Input[Optional[_builtins.str]] = None,
             endpoint: pulumi.Input[Optional[_builtins.str]] = None,
-            headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MetricIntegrationHeaderArgs', 'MetricIntegrationHeaderArgsDict']]]]] = None,
-            headers_redacteds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MetricIntegrationHeadersRedactedArgs', 'MetricIntegrationHeadersRedactedArgsDict']]]]] = None,
+            headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MetricIntegrationHeaderArgs', 'MetricIntegrationHeaderArgsDict', 'outputs.MetricIntegrationHeader']]]]] = None,
+            headers_redacteds: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MetricIntegrationHeadersRedactedArgs', 'MetricIntegrationHeadersRedactedArgsDict', 'outputs.MetricIntegrationHeadersRedacted']]]]] = None,
             integration_type: pulumi.Input[Optional[_builtins.str]] = None,
             metric_integration_id: pulumi.Input[Optional[_builtins.str]] = None,
             metric_selections: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -535,8 +535,8 @@ class MetricIntegration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] aggregation_temporality: The temporality to send to the metric integration.
         :param pulumi.Input[_builtins.str] auth_type: Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
         :param pulumi.Input[_builtins.str] endpoint: OpenTelemetry collector endpoint URL. Must use HTTPS.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['MetricIntegrationHeaderArgs', 'MetricIntegrationHeaderArgsDict']]]] headers: Required for auth_type: HEADER. HTTP headers for authentication and configuration. Total size limit 2KB.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['MetricIntegrationHeadersRedactedArgs', 'MetricIntegrationHeadersRedactedArgsDict']]]] headers_redacteds: HTTP headers for authentication and configuration. Values are redacted and never returned in plaintext.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MetricIntegrationHeaderArgs', 'MetricIntegrationHeaderArgsDict', 'outputs.MetricIntegrationHeader']]]] headers: Required for auth_type: HEADER. HTTP headers for authentication and configuration. Total size limit 2KB.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['MetricIntegrationHeadersRedactedArgs', 'MetricIntegrationHeadersRedactedArgsDict', 'outputs.MetricIntegrationHeadersRedacted']]]] headers_redacteds: HTTP headers for authentication and configuration. Values are redacted and never returned in plaintext.
         :param pulumi.Input[_builtins.str] integration_type: Type of metric integration. Identifies which protocol will be used for the integration. This value cannot be modified after the integration is created.
         :param pulumi.Input[_builtins.str] metric_integration_id: Unique identifier of the metric integration configuration.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] metric_selections: Array of metric categories to export. Determines which types of metrics are sent to the integration.

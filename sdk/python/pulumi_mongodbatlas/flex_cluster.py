@@ -371,10 +371,10 @@ class FlexCluster(pulumi.CustomResource):
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 provider_settings: pulumi.Input[Optional[Union['FlexClusterProviderSettingsArgs', 'FlexClusterProviderSettingsArgsDict']]] = None,
+                 provider_settings: pulumi.Input[Optional[Union['FlexClusterProviderSettingsArgs', 'FlexClusterProviderSettingsArgsDict', 'outputs.FlexClusterProviderSettings']]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 timeouts: pulumi.Input[Optional[Union['FlexClusterTimeoutsArgs', 'FlexClusterTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['FlexClusterTimeoutsArgs', 'FlexClusterTimeoutsArgsDict', 'outputs.FlexClusterTimeouts']]] = None,
                  __props__=None):
         """
         `FlexCluster` provides a Flex Cluster resource. The resource lets you create, update, delete and import a flex cluster.
@@ -419,7 +419,7 @@ class FlexCluster(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] name: Human-readable label that identifies the instance.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal character string that identifies the project.
-        :param pulumi.Input[Union['FlexClusterProviderSettingsArgs', 'FlexClusterProviderSettingsArgsDict']] provider_settings: Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
+        :param pulumi.Input[Union['FlexClusterProviderSettingsArgs', 'FlexClusterProviderSettingsArgsDict', 'outputs.FlexClusterProviderSettings']] provider_settings: Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
         :param pulumi.Input[_builtins.bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.
         """
@@ -485,10 +485,10 @@ class FlexCluster(pulumi.CustomResource):
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 provider_settings: pulumi.Input[Optional[Union['FlexClusterProviderSettingsArgs', 'FlexClusterProviderSettingsArgsDict']]] = None,
+                 provider_settings: pulumi.Input[Optional[Union['FlexClusterProviderSettingsArgs', 'FlexClusterProviderSettingsArgsDict', 'outputs.FlexClusterProviderSettings']]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 timeouts: pulumi.Input[Optional[Union['FlexClusterTimeoutsArgs', 'FlexClusterTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['FlexClusterTimeoutsArgs', 'FlexClusterTimeoutsArgsDict', 'outputs.FlexClusterTimeouts']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -526,19 +526,19 @@ class FlexCluster(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            backup_settings: pulumi.Input[Optional[Union['FlexClusterBackupSettingsArgs', 'FlexClusterBackupSettingsArgsDict']]] = None,
+            backup_settings: pulumi.Input[Optional[Union['FlexClusterBackupSettingsArgs', 'FlexClusterBackupSettingsArgsDict', 'outputs.FlexClusterBackupSettings']]] = None,
             cluster_type: pulumi.Input[Optional[_builtins.str]] = None,
-            connection_strings: pulumi.Input[Optional[Union['FlexClusterConnectionStringsArgs', 'FlexClusterConnectionStringsArgsDict']]] = None,
+            connection_strings: pulumi.Input[Optional[Union['FlexClusterConnectionStringsArgs', 'FlexClusterConnectionStringsArgsDict', 'outputs.FlexClusterConnectionStrings']]] = None,
             create_date: pulumi.Input[Optional[_builtins.str]] = None,
             delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
             mongo_db_version: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            provider_settings: pulumi.Input[Optional[Union['FlexClusterProviderSettingsArgs', 'FlexClusterProviderSettingsArgsDict']]] = None,
+            provider_settings: pulumi.Input[Optional[Union['FlexClusterProviderSettingsArgs', 'FlexClusterProviderSettingsArgsDict', 'outputs.FlexClusterProviderSettings']]] = None,
             state_name: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-            timeouts: pulumi.Input[Optional[Union['FlexClusterTimeoutsArgs', 'FlexClusterTimeoutsArgsDict']]] = None,
+            timeouts: pulumi.Input[Optional[Union['FlexClusterTimeoutsArgs', 'FlexClusterTimeoutsArgsDict', 'outputs.FlexClusterTimeouts']]] = None,
             version_release_system: pulumi.Input[Optional[_builtins.str]] = None) -> 'FlexCluster':
         """
         Get an existing FlexCluster resource's state with the given name, id, and optional extra
@@ -547,15 +547,15 @@ class FlexCluster(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['FlexClusterBackupSettingsArgs', 'FlexClusterBackupSettingsArgsDict']] backup_settings: Flex backup configuration
+        :param pulumi.Input[Union['FlexClusterBackupSettingsArgs', 'FlexClusterBackupSettingsArgsDict', 'outputs.FlexClusterBackupSettings']] backup_settings: Flex backup configuration
         :param pulumi.Input[_builtins.str] cluster_type: Flex cluster topology.
-        :param pulumi.Input[Union['FlexClusterConnectionStringsArgs', 'FlexClusterConnectionStringsArgsDict']] connection_strings: Collection of Uniform Resource Locators that point to the MongoDB database.
+        :param pulumi.Input[Union['FlexClusterConnectionStringsArgs', 'FlexClusterConnectionStringsArgsDict', 'outputs.FlexClusterConnectionStrings']] connection_strings: Collection of Uniform Resource Locators that point to the MongoDB database.
         :param pulumi.Input[_builtins.str] create_date: Date and time when MongoDB Cloud created this instance. This parameter expresses its value in ISO 8601 format in UTC.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] mongo_db_version: Version of MongoDB that the instance runs.
         :param pulumi.Input[_builtins.str] name: Human-readable label that identifies the instance.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal character string that identifies the project.
-        :param pulumi.Input[Union['FlexClusterProviderSettingsArgs', 'FlexClusterProviderSettingsArgsDict']] provider_settings: Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
+        :param pulumi.Input[Union['FlexClusterProviderSettingsArgs', 'FlexClusterProviderSettingsArgsDict', 'outputs.FlexClusterProviderSettings']] provider_settings: Group of cloud provider settings that configure the provisioned MongoDB flex cluster.
         :param pulumi.Input[_builtins.str] state_name: Human-readable label that indicates the current operating condition of this instance.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] tags: Map that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the instance.
         :param pulumi.Input[_builtins.bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to `true`, MongoDB Cloud won't delete the cluster. If set to `false`, MongoDB Cloud will delete the cluster.

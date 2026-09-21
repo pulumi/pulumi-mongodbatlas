@@ -243,7 +243,7 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 timeouts: pulumi.Input[Optional[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict', 'outputs.EncryptionAtRestPrivateEndpointTimeouts']]] = None,
                  __props__=None):
         """
         `EncryptionAtRestPrivateEndpoint` provides a resource for managing a private endpoint used for encryption at rest with customer-managed keys. This ensures all traffic between Atlas and customer key management systems take place over private network interfaces.
@@ -473,7 +473,7 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 timeouts: pulumi.Input[Optional[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict', 'outputs.EncryptionAtRestPrivateEndpointTimeouts']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -514,7 +514,7 @@ class EncryptionAtRestPrivateEndpoint(pulumi.CustomResource):
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region_name: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
-            timeouts: pulumi.Input[Optional[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict']]] = None) -> 'EncryptionAtRestPrivateEndpoint':
+            timeouts: pulumi.Input[Optional[Union['EncryptionAtRestPrivateEndpointTimeoutsArgs', 'EncryptionAtRestPrivateEndpointTimeoutsArgsDict', 'outputs.EncryptionAtRestPrivateEndpointTimeouts']]] = None) -> 'EncryptionAtRestPrivateEndpoint':
         """
         Get an existing EncryptionAtRestPrivateEndpoint resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.

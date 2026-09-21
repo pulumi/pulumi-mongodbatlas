@@ -449,7 +449,7 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
             identity_provider_id: pulumi.Input[Optional[_builtins.str]] = None,
             org_id: pulumi.Input[Optional[_builtins.str]] = None,
             post_auth_role_grants: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
-            user_conflicts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedSettingsOrgConfigUserConflictArgs', 'FederatedSettingsOrgConfigUserConflictArgsDict']]]]] = None) -> 'FederatedSettingsOrgConfig':
+            user_conflicts: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedSettingsOrgConfigUserConflictArgs', 'FederatedSettingsOrgConfigUserConflictArgsDict', 'outputs.FederatedSettingsOrgConfigUserConflict']]]]] = None) -> 'FederatedSettingsOrgConfig':
         """
         Get an existing FederatedSettingsOrgConfig resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -466,7 +466,7 @@ class FederatedSettingsOrgConfig(pulumi.CustomResource):
                2. `okta_idp_id` on the `FederatedSettingsIdentityProvider` resource
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] post_auth_role_grants: List that contains the default [roles](https://www.mongodb.com/docs/atlas/reference/user-roles/#std-label-organization-roles) granted to users who authenticate through the IdP in a connected organization.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedSettingsOrgConfigUserConflictArgs', 'FederatedSettingsOrgConfigUserConflictArgsDict']]]] user_conflicts: List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedSettingsOrgConfigUserConflictArgs', 'FederatedSettingsOrgConfigUserConflictArgsDict', 'outputs.FederatedSettingsOrgConfigUserConflict']]]] user_conflicts: List that contains the users who have an email address that doesn't match any domain on the allowed list. See below
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

@@ -215,7 +215,7 @@ class ProjectMcpConfig(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ip_access_lists: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectMcpConfigIpAccessListArgs', 'ProjectMcpConfigIpAccessListArgsDict']]]]] = None,
+                 ip_access_lists: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectMcpConfigIpAccessListArgs', 'ProjectMcpConfigIpAccessListArgsDict', 'outputs.ProjectMcpConfigIpAccessList']]]]] = None,
                  mcp_config_name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -257,7 +257,7 @@ class ProjectMcpConfig(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ProjectMcpConfigIpAccessListArgs', 'ProjectMcpConfigIpAccessListArgsDict']]]] ip_access_lists: List of IP access list entries that define allowed source addresses for this MCP configuration.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ProjectMcpConfigIpAccessListArgs', 'ProjectMcpConfigIpAccessListArgsDict', 'outputs.ProjectMcpConfigIpAccessList']]]] ip_access_lists: List of IP access list entries that define allowed source addresses for this MCP configuration.
         :param pulumi.Input[_builtins.str] mcp_config_name: Human-readable name that identifies this MCP configuration.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: List of project roles to assign to this MCP configuration.
@@ -318,7 +318,7 @@ class ProjectMcpConfig(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 ip_access_lists: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectMcpConfigIpAccessListArgs', 'ProjectMcpConfigIpAccessListArgsDict']]]]] = None,
+                 ip_access_lists: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectMcpConfigIpAccessListArgs', 'ProjectMcpConfigIpAccessListArgsDict', 'outputs.ProjectMcpConfigIpAccessList']]]]] = None,
                  mcp_config_name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
@@ -356,7 +356,7 @@ class ProjectMcpConfig(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             client_id: pulumi.Input[Optional[_builtins.str]] = None,
             egress_client_id: pulumi.Input[Optional[_builtins.str]] = None,
-            ip_access_lists: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectMcpConfigIpAccessListArgs', 'ProjectMcpConfigIpAccessListArgsDict']]]]] = None,
+            ip_access_lists: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectMcpConfigIpAccessListArgs', 'ProjectMcpConfigIpAccessListArgsDict', 'outputs.ProjectMcpConfigIpAccessList']]]]] = None,
             mcp_config_id: pulumi.Input[Optional[_builtins.str]] = None,
             mcp_config_name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -370,7 +370,7 @@ class ProjectMcpConfig(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] client_id: Unique identifier for the Service Account client associated with this MCP configuration. Use this Service Account to connect to the Atlas Remote MCP.
         :param pulumi.Input[_builtins.str] egress_client_id: Unique identifier for the egress Service Account client associated with this MCP configuration. This Service Account is managed by MongoDB Atlas.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ProjectMcpConfigIpAccessListArgs', 'ProjectMcpConfigIpAccessListArgsDict']]]] ip_access_lists: List of IP access list entries that define allowed source addresses for this MCP configuration.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ProjectMcpConfigIpAccessListArgs', 'ProjectMcpConfigIpAccessListArgsDict', 'outputs.ProjectMcpConfigIpAccessList']]]] ip_access_lists: List of IP access list entries that define allowed source addresses for this MCP configuration.
         :param pulumi.Input[_builtins.str] mcp_config_id: Unique identifier that identifies this MCP configuration.
         :param pulumi.Input[_builtins.str] mcp_config_name: Human-readable name that identifies this MCP configuration.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

@@ -744,9 +744,9 @@ class SearchIndex(pulumi.CustomResource):
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  search_analyzer: pulumi.Input[Optional[_builtins.str]] = None,
                  stored_source: pulumi.Input[Optional[_builtins.str]] = None,
-                 synonyms: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]]] = None,
+                 synonyms: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict', 'outputs.SearchIndexSynonym']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
-                 type_sets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]]] = None,
+                 type_sets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict', 'outputs.SearchIndexTypeSet']]]]] = None,
                  wait_for_index_build_completion: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
@@ -956,9 +956,9 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] project_id: The ID of the organization or project you want to create the search index within, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[_builtins.str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]] synonyms: Synonyms mapping definition to use in this index.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict', 'outputs.SearchIndexSynonym']]]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[_builtins.str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]] type_sets: One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict', 'outputs.SearchIndexTypeSet']]]] type_sets: One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
         :param pulumi.Input[_builtins.bool] wait_for_index_build_completion: Wait for search index to achieve Active status before terraform considers resource built.
         """
         ...
@@ -1166,9 +1166,9 @@ class SearchIndex(pulumi.CustomResource):
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  search_analyzer: pulumi.Input[Optional[_builtins.str]] = None,
                  stored_source: pulumi.Input[Optional[_builtins.str]] = None,
-                 synonyms: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]]] = None,
+                 synonyms: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict', 'outputs.SearchIndexSynonym']]]]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
-                 type_sets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]]] = None,
+                 type_sets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict', 'outputs.SearchIndexTypeSet']]]]] = None,
                  wait_for_index_build_completion: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -1233,9 +1233,9 @@ class SearchIndex(pulumi.CustomResource):
             search_analyzer: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
             stored_source: pulumi.Input[Optional[_builtins.str]] = None,
-            synonyms: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]]] = None,
+            synonyms: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict', 'outputs.SearchIndexSynonym']]]]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
-            type_sets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]]] = None,
+            type_sets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict', 'outputs.SearchIndexTypeSet']]]]] = None,
             wait_for_index_build_completion: pulumi.Input[Optional[_builtins.bool]] = None) -> 'SearchIndex':
         """
         Get an existing SearchIndex resource's state with the given name, id, and optional extra
@@ -1281,9 +1281,9 @@ class SearchIndex(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] search_analyzer: [Analyzer](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/#std-label-analyzers-ref) to use when searching the index. Defaults to [lucene.standard](https://www.mongodb.com/docs/atlas/reference/atlas-search/analyzers/standard/#std-label-ref-standard-analyzer)
         :param pulumi.Input[_builtins.str] status: Current status of the index.
         :param pulumi.Input[_builtins.str] stored_source: String that can be "true" (store all fields), "false" (default, don't store any field), or a JSON string that contains the list of fields to store (include) or not store (exclude) on Atlas Search. To learn more, see [Stored Source Fields](https://www.mongodb.com/docs/atlas/atlas-search/stored-source-definition/).
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict']]]] synonyms: Synonyms mapping definition to use in this index.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexSynonymArgs', 'SearchIndexSynonymArgsDict', 'outputs.SearchIndexSynonym']]]] synonyms: Synonyms mapping definition to use in this index.
         :param pulumi.Input[_builtins.str] type: Type of index: `search` or `vectorSearch`. Default type is `search`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict']]]] type_sets: One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['SearchIndexTypeSetArgs', 'SearchIndexTypeSetArgsDict', 'outputs.SearchIndexTypeSet']]]] type_sets: One or more blocks defining configurable dynamic type sets. Atlas only persists/returns `typeSets` when `mappings.dynamic` is an object referencing a `typeSet` name.
         :param pulumi.Input[_builtins.bool] wait_for_index_build_completion: Wait for search index to achieve Active status before terraform considers resource built.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

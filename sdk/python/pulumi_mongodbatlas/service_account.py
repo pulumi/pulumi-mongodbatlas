@@ -376,7 +376,7 @@ class ServiceAccount(pulumi.CustomResource):
             org_id: pulumi.Input[Optional[_builtins.str]] = None,
             roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None,
-            secrets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceAccountSecretArgs', 'ServiceAccountSecretArgsDict']]]]] = None,
+            secrets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceAccountSecretArgs', 'ServiceAccountSecretArgsDict', 'outputs.ServiceAccountSecret']]]]] = None,
             system_managed: pulumi.Input[Optional[_builtins.bool]] = None) -> 'ServiceAccount':
         """
         Get an existing ServiceAccount resource's state with the given name, id, and optional extra
@@ -392,7 +392,7 @@ class ServiceAccount(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: A list of organization-level roles for the Service Account.
         :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceAccountSecretArgs', 'ServiceAccountSecretArgsDict']]]] secrets: A list of secrets associated with the specified Service Account.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceAccountSecretArgs', 'ServiceAccountSecretArgsDict', 'outputs.ServiceAccountSecret']]]] secrets: A list of secrets associated with the specified Service Account.
         :param pulumi.Input[_builtins.bool] system_managed: Indicates whether the Service Account is system managed.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

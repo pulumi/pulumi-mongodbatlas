@@ -351,7 +351,7 @@ class MaintenanceWindow(pulumi.CustomResource):
                  defer: pulumi.Input[Optional[_builtins.bool]] = None,
                  hour_of_day: pulumi.Input[Optional[_builtins.int]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 protected_hours: pulumi.Input[Optional[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
+                 protected_hours: pulumi.Input[Optional[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict', 'outputs.MaintenanceWindowProtectedHours']]] = None,
                  wave_assignment: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         """
@@ -439,7 +439,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] defer: Defer the next scheduled maintenance event for the given project by one week. Only works when maintenance is already scheduled.
         :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `day_of_week`. Omit both to set a `wave_assignment` without a maintenance window.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
-        :param pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+        :param pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict', 'outputs.MaintenanceWindowProtectedHours']] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
         :param pulumi.Input[_builtins.int] wave_assignment: Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `wave_assignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
         """
         ...
@@ -546,7 +546,7 @@ class MaintenanceWindow(pulumi.CustomResource):
                  defer: pulumi.Input[Optional[_builtins.bool]] = None,
                  hour_of_day: pulumi.Input[Optional[_builtins.int]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 protected_hours: pulumi.Input[Optional[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
+                 protected_hours: pulumi.Input[Optional[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict', 'outputs.MaintenanceWindowProtectedHours']]] = None,
                  wave_assignment: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -587,7 +587,7 @@ class MaintenanceWindow(pulumi.CustomResource):
             hour_of_day: pulumi.Input[Optional[_builtins.int]] = None,
             number_of_deferrals: pulumi.Input[Optional[_builtins.int]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            protected_hours: pulumi.Input[Optional[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']]] = None,
+            protected_hours: pulumi.Input[Optional[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict', 'outputs.MaintenanceWindowProtectedHours']]] = None,
             start_asap: pulumi.Input[Optional[_builtins.bool]] = None,
             time_zone_id: pulumi.Input[Optional[_builtins.str]] = None,
             wave_assignment: pulumi.Input[Optional[_builtins.int]] = None) -> 'MaintenanceWindow':
@@ -605,7 +605,7 @@ class MaintenanceWindow(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] hour_of_day: Hour of the day when you would like the maintenance window to start. This parameter uses the 24-hour clock, where midnight is 0, noon is 12. Uses the project's configured timezone. Must be set together with `day_of_week`. Omit both to set a `wave_assignment` without a maintenance window.
         :param pulumi.Input[_builtins.int] number_of_deferrals: Number of times the current maintenance event for this project has been deferred, there can be a maximum of 2 deferrals.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Maintenance Window, also known as `groupId` in the official documentation.
-        :param pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict']] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
+        :param pulumi.Input[Union['MaintenanceWindowProtectedHoursArgs', 'MaintenanceWindowProtectedHoursArgsDict', 'outputs.MaintenanceWindowProtectedHours']] protected_hours: Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
         :param pulumi.Input[_builtins.bool] start_asap: Flag indicating whether project maintenance has been directed to start immediately. If requested, this field returns true from the time the request was made until the time the maintenance event completes.
         :param pulumi.Input[_builtins.str] time_zone_id: Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
         :param pulumi.Input[_builtins.int] wave_assignment: Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `wave_assignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.

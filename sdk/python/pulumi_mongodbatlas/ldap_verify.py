@@ -514,12 +514,12 @@ class LdapVerify(pulumi.CustomResource):
             bind_username: pulumi.Input[Optional[_builtins.str]] = None,
             ca_certificate: pulumi.Input[Optional[_builtins.str]] = None,
             hostname: pulumi.Input[Optional[_builtins.str]] = None,
-            links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LdapVerifyLinkArgs', 'LdapVerifyLinkArgsDict']]]]] = None,
+            links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LdapVerifyLinkArgs', 'LdapVerifyLinkArgsDict', 'outputs.LdapVerifyLink']]]]] = None,
             port: pulumi.Input[Optional[_builtins.int]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             request_id: pulumi.Input[Optional[_builtins.str]] = None,
             status: pulumi.Input[Optional[_builtins.str]] = None,
-            validations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LdapVerifyValidationArgs', 'LdapVerifyValidationArgsDict']]]]] = None) -> 'LdapVerify':
+            validations: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LdapVerifyValidationArgs', 'LdapVerifyValidationArgsDict', 'outputs.LdapVerifyValidation']]]]] = None) -> 'LdapVerify':
         """
         Get an existing LdapVerify resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -532,12 +532,12 @@ class LdapVerify(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] bind_username: The user DN that Atlas uses to connect to the LDAP server. Must be the full DN, such as `CN=BindUser,CN=Users,DC=myldapserver,DC=mycompany,DC=com`.
         :param pulumi.Input[_builtins.str] ca_certificate: CA certificate used to verify the identify of the LDAP server. Self-signed certificates are allowed.
         :param pulumi.Input[_builtins.str] hostname: The hostname or IP address of the LDAP server. The server must be visible to the internet or connected to your Atlas cluster with VPC Peering.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LdapVerifyLinkArgs', 'LdapVerifyLinkArgsDict']]]] links: One or more links to sub-resources. The relations in the URLs are explained in the Web Linking Specification.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LdapVerifyLinkArgs', 'LdapVerifyLinkArgsDict', 'outputs.LdapVerifyLink']]]] links: One or more links to sub-resources. The relations in the URLs are explained in the Web Linking Specification.
         :param pulumi.Input[_builtins.int] port: The port to which the LDAP server listens for client connections. Default: `636`
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to configure LDAP, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] request_id: The unique identifier for the request to verify the LDAP over TLS/SSL configuration.
         :param pulumi.Input[_builtins.str] status: The current status of the LDAP over TLS/SSL configuration. One of the following values: `PENDING`, `SUCCESS`, and `FAILED`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LdapVerifyValidationArgs', 'LdapVerifyValidationArgsDict']]]] validations: Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://www.mongodb.com/docs/atlas/reference/api/ldaps-configuration-request-verification)
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LdapVerifyValidationArgs', 'LdapVerifyValidationArgsDict', 'outputs.LdapVerifyValidation']]]] validations: Array of validation messages related to the verification of the provided LDAP over TLS/SSL configuration details. The array contains a document for each test that Atlas runs. Atlas stops running tests after the first failure. The following return values can be seen here: [Values](https://www.mongodb.com/docs/atlas/reference/api/ldaps-configuration-request-verification)
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 

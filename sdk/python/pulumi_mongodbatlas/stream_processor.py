@@ -426,13 +426,13 @@ class StreamProcessor(pulumi.CustomResource):
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
                  failover_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  instance_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 options: pulumi.Input[Optional[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']]] = None,
+                 options: pulumi.Input[Optional[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict', 'outputs.StreamProcessorOptions']]] = None,
                  pipeline: pulumi.Input[Optional[_builtins.str]] = None,
                  processor_name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  state: pulumi.Input[Optional[_builtins.str]] = None,
                  tier: pulumi.Input[Optional[_builtins.str]] = None,
-                 timeouts: pulumi.Input[Optional[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict', 'outputs.StreamProcessorTimeouts']]] = None,
                  workspace_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -573,7 +573,7 @@ class StreamProcessor(pulumi.CustomResource):
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.bool] failover_enabled: Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace.
-        :param pulumi.Input[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']] options: Optional configuration for the stream processor. Empty `options` objects are not supported.
+        :param pulumi.Input[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict', 'outputs.StreamProcessorOptions']] options: Optional configuration for the stream processor. Empty `options` objects are not supported.
         :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         :param pulumi.Input[_builtins.str] processor_name: Label that identifies the stream processor.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -738,13 +738,13 @@ class StreamProcessor(pulumi.CustomResource):
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
                  failover_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  instance_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 options: pulumi.Input[Optional[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']]] = None,
+                 options: pulumi.Input[Optional[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict', 'outputs.StreamProcessorOptions']]] = None,
                  pipeline: pulumi.Input[Optional[_builtins.str]] = None,
                  processor_name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  state: pulumi.Input[Optional[_builtins.str]] = None,
                  tier: pulumi.Input[Optional[_builtins.str]] = None,
-                 timeouts: pulumi.Input[Optional[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict', 'outputs.StreamProcessorTimeouts']]] = None,
                  workspace_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -788,14 +788,14 @@ class StreamProcessor(pulumi.CustomResource):
             effective_tier: pulumi.Input[Optional[_builtins.str]] = None,
             failover_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             instance_name: pulumi.Input[Optional[_builtins.str]] = None,
-            options: pulumi.Input[Optional[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']]] = None,
+            options: pulumi.Input[Optional[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict', 'outputs.StreamProcessorOptions']]] = None,
             pipeline: pulumi.Input[Optional[_builtins.str]] = None,
             processor_name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             state: pulumi.Input[Optional[_builtins.str]] = None,
             stats: pulumi.Input[Optional[_builtins.str]] = None,
             tier: pulumi.Input[Optional[_builtins.str]] = None,
-            timeouts: pulumi.Input[Optional[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict']]] = None,
+            timeouts: pulumi.Input[Optional[Union['StreamProcessorTimeoutsArgs', 'StreamProcessorTimeoutsArgsDict', 'outputs.StreamProcessorTimeouts']]] = None,
             workspace_name: pulumi.Input[Optional[_builtins.str]] = None) -> 'StreamProcessor':
         """
         Get an existing StreamProcessor resource's state with the given name, id, and optional extra
@@ -808,7 +808,7 @@ class StreamProcessor(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] effective_tier: Tier the stream processor is currently running on. When autoscaling is disabled this equals `tier`; when autoscaling is enabled it reflects the tier chosen by the autoscaler within the configured bounds.
         :param pulumi.Input[_builtins.bool] failover_enabled: Indicates whether this stream processor is eligible for failover. When `true`, an operator can trigger a failover event to migrate the stream processor to a secondary region configured in the workspace's `failover_regions`. Requires an Atlas-to-Atlas or Atlas-to-Kafka pipeline with `failover_regions` configured on the workspace.
         :param pulumi.Input[_builtins.str] instance_name: Label that identifies the stream processing workspace.
-        :param pulumi.Input[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict']] options: Optional configuration for the stream processor. Empty `options` objects are not supported.
+        :param pulumi.Input[Union['StreamProcessorOptionsArgs', 'StreamProcessorOptionsArgsDict', 'outputs.StreamProcessorOptions']] options: Optional configuration for the stream processor. Empty `options` objects are not supported.
         :param pulumi.Input[_builtins.str] pipeline: Stream aggregation pipeline you want to apply to your streaming data, as a JSON string. [MongoDB Atlas Docs](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/#std-label-stream-aggregation) contain more information. For more details see the [Aggregation Pipelines Documentation](https://www.mongodb.com/docs/atlas/atlas-stream-processing/stream-aggregation/). **Field order matters:** author this as a raw JSON string (heredoc or `file("pipeline.json")`) and do not use jsonencode, which sorts object keys lexicographically, changing sort precedence, document-literal equality matches, and `$addFields`/`$project` output field order.
         :param pulumi.Input[_builtins.str] processor_name: Label that identifies the stream processor.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

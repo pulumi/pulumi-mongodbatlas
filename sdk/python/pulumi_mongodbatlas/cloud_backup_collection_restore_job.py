@@ -638,9 +638,9 @@ class CloudBackupCollectionRestoreJob(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
                  collection_suffix: pulumi.Input[Optional[_builtins.str]] = None,
-                 collections: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobCollectionArgs', 'CloudBackupCollectionRestoreJobCollectionArgsDict']]]]] = None,
+                 collections: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobCollectionArgs', 'CloudBackupCollectionRestoreJobCollectionArgsDict', 'outputs.CloudBackupCollectionRestoreJobCollection']]]]] = None,
                  database_suffix: pulumi.Input[Optional[_builtins.str]] = None,
-                 databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobDatabaseArgs', 'CloudBackupCollectionRestoreJobDatabaseArgsDict']]]]] = None,
+                 databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobDatabaseArgs', 'CloudBackupCollectionRestoreJobDatabaseArgsDict', 'outputs.CloudBackupCollectionRestoreJobDatabase']]]]] = None,
                  index_strategy: pulumi.Input[Optional[_builtins.str]] = None,
                  oplog_inc: pulumi.Input[Optional[_builtins.int]] = None,
                  oplog_ts: pulumi.Input[Optional[_builtins.int]] = None,
@@ -649,7 +649,7 @@ class CloudBackupCollectionRestoreJob(pulumi.CustomResource):
                  snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
                  target_cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
                  target_project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 timeouts: pulumi.Input[Optional[Union['CloudBackupCollectionRestoreJobTimeoutsArgs', 'CloudBackupCollectionRestoreJobTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['CloudBackupCollectionRestoreJobTimeoutsArgs', 'CloudBackupCollectionRestoreJobTimeoutsArgsDict', 'outputs.CloudBackupCollectionRestoreJobTimeouts']]] = None,
                  write_strategy: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -686,9 +686,9 @@ class CloudBackupCollectionRestoreJob(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_name: Human-readable label that identifies the source cluster for the restore.
         :param pulumi.Input[_builtins.str] collection_suffix: Optional suffix applied to restored collection names.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobCollectionArgs', 'CloudBackupCollectionRestoreJobCollectionArgsDict']]]] collections: List of collections to restore (up to 100 items).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobCollectionArgs', 'CloudBackupCollectionRestoreJobCollectionArgsDict', 'outputs.CloudBackupCollectionRestoreJobCollection']]]] collections: List of collections to restore (up to 100 items).
         :param pulumi.Input[_builtins.str] database_suffix: Optional suffix applied to restored database names.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobDatabaseArgs', 'CloudBackupCollectionRestoreJobDatabaseArgsDict']]]] databases: List of databases to restore (up to 100 items).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobDatabaseArgs', 'CloudBackupCollectionRestoreJobDatabaseArgsDict', 'outputs.CloudBackupCollectionRestoreJobDatabase']]]] databases: List of databases to restore (up to 100 items).
         :param pulumi.Input[_builtins.str] index_strategy: Strategy for restoring indexes (all, none, or all except TTL).
         :param pulumi.Input[_builtins.int] oplog_inc: Oplog increment for point-in-time restore.
         :param pulumi.Input[_builtins.int] oplog_ts: Oplog timestamp (seconds part) for point-in-time restore.
@@ -752,9 +752,9 @@ class CloudBackupCollectionRestoreJob(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
                  collection_suffix: pulumi.Input[Optional[_builtins.str]] = None,
-                 collections: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobCollectionArgs', 'CloudBackupCollectionRestoreJobCollectionArgsDict']]]]] = None,
+                 collections: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobCollectionArgs', 'CloudBackupCollectionRestoreJobCollectionArgsDict', 'outputs.CloudBackupCollectionRestoreJobCollection']]]]] = None,
                  database_suffix: pulumi.Input[Optional[_builtins.str]] = None,
-                 databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobDatabaseArgs', 'CloudBackupCollectionRestoreJobDatabaseArgsDict']]]]] = None,
+                 databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobDatabaseArgs', 'CloudBackupCollectionRestoreJobDatabaseArgsDict', 'outputs.CloudBackupCollectionRestoreJobDatabase']]]]] = None,
                  index_strategy: pulumi.Input[Optional[_builtins.str]] = None,
                  oplog_inc: pulumi.Input[Optional[_builtins.int]] = None,
                  oplog_ts: pulumi.Input[Optional[_builtins.int]] = None,
@@ -763,7 +763,7 @@ class CloudBackupCollectionRestoreJob(pulumi.CustomResource):
                  snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
                  target_cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
                  target_project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 timeouts: pulumi.Input[Optional[Union['CloudBackupCollectionRestoreJobTimeoutsArgs', 'CloudBackupCollectionRestoreJobTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['CloudBackupCollectionRestoreJobTimeoutsArgs', 'CloudBackupCollectionRestoreJobTimeoutsArgsDict', 'outputs.CloudBackupCollectionRestoreJobTimeouts']]] = None,
                  write_strategy: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -821,13 +821,13 @@ class CloudBackupCollectionRestoreJob(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
             collection_suffix: pulumi.Input[Optional[_builtins.str]] = None,
-            collections: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobCollectionArgs', 'CloudBackupCollectionRestoreJobCollectionArgsDict']]]]] = None,
+            collections: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobCollectionArgs', 'CloudBackupCollectionRestoreJobCollectionArgsDict', 'outputs.CloudBackupCollectionRestoreJobCollection']]]]] = None,
             created_at: pulumi.Input[Optional[_builtins.str]] = None,
             database_suffix: pulumi.Input[Optional[_builtins.str]] = None,
-            databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobDatabaseArgs', 'CloudBackupCollectionRestoreJobDatabaseArgsDict']]]]] = None,
+            databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobDatabaseArgs', 'CloudBackupCollectionRestoreJobDatabaseArgsDict', 'outputs.CloudBackupCollectionRestoreJobDatabase']]]]] = None,
             error_message: pulumi.Input[Optional[_builtins.str]] = None,
             finished_at: pulumi.Input[Optional[_builtins.str]] = None,
-            index_status: pulumi.Input[Optional[Union['CloudBackupCollectionRestoreJobIndexStatusArgs', 'CloudBackupCollectionRestoreJobIndexStatusArgsDict']]] = None,
+            index_status: pulumi.Input[Optional[Union['CloudBackupCollectionRestoreJobIndexStatusArgs', 'CloudBackupCollectionRestoreJobIndexStatusArgsDict', 'outputs.CloudBackupCollectionRestoreJobIndexStatus']]] = None,
             index_strategy: pulumi.Input[Optional[_builtins.str]] = None,
             job_id: pulumi.Input[Optional[_builtins.str]] = None,
             oplog_inc: pulumi.Input[Optional[_builtins.int]] = None,
@@ -839,7 +839,7 @@ class CloudBackupCollectionRestoreJob(pulumi.CustomResource):
             state: pulumi.Input[Optional[_builtins.str]] = None,
             target_cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
             target_project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            timeouts: pulumi.Input[Optional[Union['CloudBackupCollectionRestoreJobTimeoutsArgs', 'CloudBackupCollectionRestoreJobTimeoutsArgsDict']]] = None,
+            timeouts: pulumi.Input[Optional[Union['CloudBackupCollectionRestoreJobTimeoutsArgs', 'CloudBackupCollectionRestoreJobTimeoutsArgsDict', 'outputs.CloudBackupCollectionRestoreJobTimeouts']]] = None,
             total_documents: pulumi.Input[Optional[_builtins.int]] = None,
             write_strategy: pulumi.Input[Optional[_builtins.str]] = None) -> 'CloudBackupCollectionRestoreJob':
         """
@@ -851,13 +851,13 @@ class CloudBackupCollectionRestoreJob(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_name: Human-readable label that identifies the source cluster for the restore.
         :param pulumi.Input[_builtins.str] collection_suffix: Optional suffix applied to restored collection names.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobCollectionArgs', 'CloudBackupCollectionRestoreJobCollectionArgsDict']]]] collections: List of collections to restore (up to 100 items).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobCollectionArgs', 'CloudBackupCollectionRestoreJobCollectionArgsDict', 'outputs.CloudBackupCollectionRestoreJobCollection']]]] collections: List of collections to restore (up to 100 items).
         :param pulumi.Input[_builtins.str] created_at: Date and time when the restore job was created (ISO 8601 format in UTC).
         :param pulumi.Input[_builtins.str] database_suffix: Optional suffix applied to restored database names.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobDatabaseArgs', 'CloudBackupCollectionRestoreJobDatabaseArgsDict']]]] databases: List of databases to restore (up to 100 items).
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupCollectionRestoreJobDatabaseArgs', 'CloudBackupCollectionRestoreJobDatabaseArgsDict', 'outputs.CloudBackupCollectionRestoreJobDatabase']]]] databases: List of databases to restore (up to 100 items).
         :param pulumi.Input[_builtins.str] error_message: Error message when the job has failed or been canceled.
         :param pulumi.Input[_builtins.str] finished_at: Date and time when the restore job finished (ISO 8601 format in UTC).
-        :param pulumi.Input[Union['CloudBackupCollectionRestoreJobIndexStatusArgs', 'CloudBackupCollectionRestoreJobIndexStatusArgsDict']] index_status: Overall index build status for a collection restore job.
+        :param pulumi.Input[Union['CloudBackupCollectionRestoreJobIndexStatusArgs', 'CloudBackupCollectionRestoreJobIndexStatusArgsDict', 'outputs.CloudBackupCollectionRestoreJobIndexStatus']] index_status: Overall index build status for a collection restore job.
         :param pulumi.Input[_builtins.str] index_strategy: Strategy for restoring indexes (all, none, or all except TTL).
         :param pulumi.Input[_builtins.str] job_id: Unique 24-hexadecimal digit string that identifies the collection restore job.
         :param pulumi.Input[_builtins.int] oplog_inc: Oplog increment for point-in-time restore.

@@ -190,7 +190,7 @@ class AwaitableGetFederatedDatabaseInstanceResult(GetFederatedDatabaseInstanceRe
             storage_stores=self.storage_stores)
 
 
-def get_federated_database_instance(cloud_provider_configs: Optional[Sequence[Union['GetFederatedDatabaseInstanceCloudProviderConfigArgs', 'GetFederatedDatabaseInstanceCloudProviderConfigArgsDict']]] = None,
+def get_federated_database_instance(cloud_provider_configs: Optional[Sequence[Union['GetFederatedDatabaseInstanceCloudProviderConfigArgs', 'GetFederatedDatabaseInstanceCloudProviderConfigArgsDict', 'outputs.GetFederatedDatabaseInstanceCloudProviderConfigResult']]] = None,
                                     name: Optional[_builtins.str] = None,
                                     project_id: Optional[_builtins.str] = None,
                                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFederatedDatabaseInstanceResult:
@@ -263,7 +263,7 @@ def get_federated_database_instance(cloud_provider_configs: Optional[Sequence[Un
         state=pulumi.get(__ret__, 'state'),
         storage_databases=pulumi.get(__ret__, 'storage_databases'),
         storage_stores=pulumi.get(__ret__, 'storage_stores'))
-def get_federated_database_instance_output(cloud_provider_configs: pulumi.Input[Optional[Optional[Sequence[Union['GetFederatedDatabaseInstanceCloudProviderConfigArgs', 'GetFederatedDatabaseInstanceCloudProviderConfigArgsDict']]]]] = None,
+def get_federated_database_instance_output(cloud_provider_configs: pulumi.Input[Optional[Optional[Sequence[Union['GetFederatedDatabaseInstanceCloudProviderConfigArgs', 'GetFederatedDatabaseInstanceCloudProviderConfigArgsDict', 'outputs.GetFederatedDatabaseInstanceCloudProviderConfigResult']]]]] = None,
                                            name: pulumi.Input[Optional[_builtins.str]] = None,
                                            project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetFederatedDatabaseInstanceResult]:
