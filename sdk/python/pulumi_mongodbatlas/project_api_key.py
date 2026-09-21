@@ -145,7 +145,7 @@ class ProjectApiKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 project_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict']]]]] = None,
+                 project_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict', 'outputs.ProjectApiKeyProjectAssignment']]]]] = None,
                  __props__=None):
         """
         `ProjectApiKey` provides a Project API Key resource. This allows project API Key to be created.
@@ -293,7 +293,7 @@ class ProjectApiKey(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 project_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict']]]]] = None,
+                 project_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict', 'outputs.ProjectApiKeyProjectAssignment']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -327,7 +327,7 @@ class ProjectApiKey(pulumi.CustomResource):
             api_key_id: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
             private_key: pulumi.Input[Optional[_builtins.str]] = None,
-            project_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict']]]]] = None,
+            project_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectApiKeyProjectAssignmentArgs', 'ProjectApiKeyProjectAssignmentArgsDict', 'outputs.ProjectApiKeyProjectAssignment']]]]] = None,
             public_key: pulumi.Input[Optional[_builtins.str]] = None) -> 'ProjectApiKey':
         """
         Get an existing ProjectApiKey resource's state with the given name, id, and optional extra

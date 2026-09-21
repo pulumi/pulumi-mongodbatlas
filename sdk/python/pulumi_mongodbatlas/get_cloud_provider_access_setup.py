@@ -147,7 +147,7 @@ class AwaitableGetCloudProviderAccessSetupResult(GetCloudProviderAccessSetupResu
             role_id=self.role_id)
 
 
-def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict']]] = None,
+def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict', 'outputs.GetCloudProviderAccessSetupAzureConfigResult']]] = None,
                                     project_id: Optional[_builtins.str] = None,
                                     provider_name: Optional[_builtins.str] = None,
                                     role_id: Optional[_builtins.str] = None,
@@ -203,7 +203,7 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[Union['GetC
     ```
 
 
-    :param Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict']] azure_configs: azure related configurations
+    :param Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict', 'outputs.GetCloudProviderAccessSetupAzureConfigResult']] azure_configs: azure related configurations
     :param _builtins.str project_id: The unique ID for the project to get all Cloud Provider Access, also known as `groupId` in the official documentation
     :param _builtins.str provider_name: cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
     :param _builtins.str role_id: unique role id among all the roles provided by MongoDB Atlas.
@@ -227,7 +227,7 @@ def get_cloud_provider_access_setup(azure_configs: Optional[Sequence[Union['GetC
         project_id=pulumi.get(__ret__, 'project_id'),
         provider_name=pulumi.get(__ret__, 'provider_name'),
         role_id=pulumi.get(__ret__, 'role_id'))
-def get_cloud_provider_access_setup_output(azure_configs: pulumi.Input[Optional[Optional[Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict']]]]] = None,
+def get_cloud_provider_access_setup_output(azure_configs: pulumi.Input[Optional[Optional[Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict', 'outputs.GetCloudProviderAccessSetupAzureConfigResult']]]]] = None,
                                            project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                            provider_name: pulumi.Input[Optional[_builtins.str]] = None,
                                            role_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -283,7 +283,7 @@ def get_cloud_provider_access_setup_output(azure_configs: pulumi.Input[Optional[
     ```
 
 
-    :param Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict']] azure_configs: azure related configurations
+    :param Sequence[Union['GetCloudProviderAccessSetupAzureConfigArgs', 'GetCloudProviderAccessSetupAzureConfigArgsDict', 'outputs.GetCloudProviderAccessSetupAzureConfigResult']] azure_configs: azure related configurations
     :param _builtins.str project_id: The unique ID for the project to get all Cloud Provider Access, also known as `groupId` in the official documentation
     :param _builtins.str provider_name: cloud provider name. Supported values: `AWS`, `AZURE`, and `GCP`.
     :param _builtins.str role_id: unique role id among all the roles provided by MongoDB Atlas.

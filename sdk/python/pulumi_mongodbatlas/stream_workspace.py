@@ -223,10 +223,10 @@ class StreamWorkspace(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 data_process_region: pulumi.Input[Optional[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict']]] = None,
-                 failover_regions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['StreamWorkspaceFailoverRegionArgs', 'StreamWorkspaceFailoverRegionArgsDict']]]]] = None,
+                 data_process_region: pulumi.Input[Optional[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict', 'outputs.StreamWorkspaceDataProcessRegion']]] = None,
+                 failover_regions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['StreamWorkspaceFailoverRegionArgs', 'StreamWorkspaceFailoverRegionArgsDict', 'outputs.StreamWorkspaceFailoverRegion']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 stream_config: pulumi.Input[Optional[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict']]] = None,
+                 stream_config: pulumi.Input[Optional[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict', 'outputs.StreamWorkspaceStreamConfig']]] = None,
                  workspace_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -299,12 +299,12 @@ class StreamWorkspace(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict']] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['StreamWorkspaceFailoverRegionArgs', 'StreamWorkspaceFailoverRegionArgsDict']]]] failover_regions: List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+        :param pulumi.Input[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict', 'outputs.StreamWorkspaceDataProcessRegion']] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['StreamWorkspaceFailoverRegionArgs', 'StreamWorkspaceFailoverRegionArgsDict', 'outputs.StreamWorkspaceFailoverRegion']]]] failover_regions: List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
                **Write-once:** once set, `failover_regions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
                **Mutually exclusive with `data_process_region` updates:** `failover_regions` and `data_process_region` cannot both be changed in the same apply. Apply each change in a separate operation.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-        :param pulumi.Input[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict']] stream_config: Configuration options for an Atlas Stream Processing Instance. See stream config.
+        :param pulumi.Input[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict', 'outputs.StreamWorkspaceStreamConfig']] stream_config: Configuration options for an Atlas Stream Processing Instance. See stream config.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream workspace.
         """
         ...
@@ -396,10 +396,10 @@ class StreamWorkspace(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 data_process_region: pulumi.Input[Optional[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict']]] = None,
-                 failover_regions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['StreamWorkspaceFailoverRegionArgs', 'StreamWorkspaceFailoverRegionArgsDict']]]]] = None,
+                 data_process_region: pulumi.Input[Optional[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict', 'outputs.StreamWorkspaceDataProcessRegion']]] = None,
+                 failover_regions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['StreamWorkspaceFailoverRegionArgs', 'StreamWorkspaceFailoverRegionArgsDict', 'outputs.StreamWorkspaceFailoverRegion']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 stream_config: pulumi.Input[Optional[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict']]] = None,
+                 stream_config: pulumi.Input[Optional[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict', 'outputs.StreamWorkspaceStreamConfig']]] = None,
                  workspace_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -432,11 +432,11 @@ class StreamWorkspace(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            data_process_region: pulumi.Input[Optional[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict']]] = None,
-            failover_regions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['StreamWorkspaceFailoverRegionArgs', 'StreamWorkspaceFailoverRegionArgsDict']]]]] = None,
+            data_process_region: pulumi.Input[Optional[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict', 'outputs.StreamWorkspaceDataProcessRegion']]] = None,
+            failover_regions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['StreamWorkspaceFailoverRegionArgs', 'StreamWorkspaceFailoverRegionArgsDict', 'outputs.StreamWorkspaceFailoverRegion']]]]] = None,
             hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            stream_config: pulumi.Input[Optional[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict']]] = None,
+            stream_config: pulumi.Input[Optional[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict', 'outputs.StreamWorkspaceStreamConfig']]] = None,
             workspace_name: pulumi.Input[Optional[_builtins.str]] = None) -> 'StreamWorkspace':
         """
         Get an existing StreamWorkspace resource's state with the given name, id, and optional extra
@@ -445,13 +445,13 @@ class StreamWorkspace(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict']] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['StreamWorkspaceFailoverRegionArgs', 'StreamWorkspaceFailoverRegionArgsDict']]]] failover_regions: List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
+        :param pulumi.Input[Union['StreamWorkspaceDataProcessRegionArgs', 'StreamWorkspaceDataProcessRegionArgsDict', 'outputs.StreamWorkspaceDataProcessRegion']] data_process_region: Cloud service provider and region where MongoDB Cloud performs stream processing. See data process region.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['StreamWorkspaceFailoverRegionArgs', 'StreamWorkspaceFailoverRegionArgsDict', 'outputs.StreamWorkspaceFailoverRegion']]]] failover_regions: List of cloud provider regions to which the workspace can fail over if the primary region becomes unavailable. See failover regions.
                **Write-once:** once set, `failover_regions` cannot be changed in-place — any modification forces the workspace to be destroyed and recreated.
                **Mutually exclusive with `data_process_region` updates:** `failover_regions` and `data_process_region` cannot both be changed in the same apply. Apply each change in a separate operation.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: List that contains the hostnames assigned to the stream workspace.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-        :param pulumi.Input[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict']] stream_config: Configuration options for an Atlas Stream Processing Instance. See stream config.
+        :param pulumi.Input[Union['StreamWorkspaceStreamConfigArgs', 'StreamWorkspaceStreamConfigArgsDict', 'outputs.StreamWorkspaceStreamConfig']] stream_config: Configuration options for an Atlas Stream Processing Instance. See stream config.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream workspace.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

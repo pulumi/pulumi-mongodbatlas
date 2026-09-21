@@ -357,7 +357,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 delivery_type_config: pulumi.Input[Optional[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']]] = None,
+                 delivery_type_config: pulumi.Input[Optional[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict', 'outputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -509,7 +509,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+        :param pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict', 'outputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig']] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
                * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.
@@ -688,7 +688,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 delivery_type_config: pulumi.Input[Optional[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']]] = None,
+                 delivery_type_config: pulumi.Input[Optional[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict', 'outputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -728,7 +728,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cancelled: pulumi.Input[Optional[_builtins.bool]] = None,
             cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
-            delivery_type_config: pulumi.Input[Optional[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']]] = None,
+            delivery_type_config: pulumi.Input[Optional[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict', 'outputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig']]] = None,
             delivery_urls: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             expired: pulumi.Input[Optional[_builtins.bool]] = None,
             expires_at: pulumi.Input[Optional[_builtins.str]] = None,
@@ -747,7 +747,7 @@ class CloudBackupSnapshotRestoreJob(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] cancelled: Indicates whether the restore job was canceled.
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster whose snapshot you want to restore.
-        :param pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict']] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
+        :param pulumi.Input[Union['CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs', 'CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgsDict', 'outputs.CloudBackupSnapshotRestoreJobDeliveryTypeConfig']] delivery_type_config: Type of restore job to create. Possible configurations are: **download**, **automated**, or **pointInTime** only one must be set it in ``true``.
                * `delivery_type_config.automated` - Set to `true` to use the automated configuration.
                * `delivery_type_config.download` - Set to `true` to use the download configuration.
                * `delivery_type_config.pointInTime` - Set to `true` to use the pointInTime configuration. If using pointInTime configuration, you must also specify either `oplog_ts` and `oplog_inc`, or `point_in_time_utc_seconds`.

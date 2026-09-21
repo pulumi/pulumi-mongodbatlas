@@ -529,15 +529,15 @@ class DatabaseUser(pulumi.CustomResource):
                  auth_database_name: pulumi.Input[Optional[_builtins.str]] = None,
                  aws_iam_type: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict']]]]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict', 'outputs.DatabaseUserLabel']]]]] = None,
                  ldap_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  oidc_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]]] = None,
-                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict']]]]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict', 'outputs.DatabaseUserRole']]]]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict', 'outputs.DatabaseUserScope']]]]] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None,
                  x509_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -690,7 +690,7 @@ class DatabaseUser(pulumi.CustomResource):
                User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: Integer that triggers an update of `password_wo`. To rotate the password, change `password_wo` and increment this value in the same edit. Changing `password_wo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict', 'outputs.DatabaseUserRole']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[_builtins.str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[_builtins.str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
                * `NONE` -	The user does not use X.509 authentication.
@@ -848,15 +848,15 @@ class DatabaseUser(pulumi.CustomResource):
                  auth_database_name: pulumi.Input[Optional[_builtins.str]] = None,
                  aws_iam_type: pulumi.Input[Optional[_builtins.str]] = None,
                  description: pulumi.Input[Optional[_builtins.str]] = None,
-                 labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict']]]]] = None,
+                 labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict', 'outputs.DatabaseUserLabel']]]]] = None,
                  ldap_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  oidc_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
                  password: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo: pulumi.Input[Optional[_builtins.str]] = None,
                  password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]]] = None,
-                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict']]]]] = None,
+                 roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict', 'outputs.DatabaseUserRole']]]]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict', 'outputs.DatabaseUserScope']]]]] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None,
                  x509_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -905,15 +905,15 @@ class DatabaseUser(pulumi.CustomResource):
             auth_database_name: pulumi.Input[Optional[_builtins.str]] = None,
             aws_iam_type: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
-            labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict']]]]] = None,
+            labels: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserLabelArgs', 'DatabaseUserLabelArgsDict', 'outputs.DatabaseUserLabel']]]]] = None,
             ldap_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
             oidc_auth_type: pulumi.Input[Optional[_builtins.str]] = None,
             password: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo: pulumi.Input[Optional[_builtins.str]] = None,
             password_wo_version: pulumi.Input[Optional[_builtins.int]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
-            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]]] = None,
-            scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict']]]]] = None,
+            roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict', 'outputs.DatabaseUserRole']]]]] = None,
+            scopes: pulumi.Input[Optional[Sequence[pulumi.Input[Union['DatabaseUserScopeArgs', 'DatabaseUserScopeArgsDict', 'outputs.DatabaseUserScope']]]]] = None,
             username: pulumi.Input[Optional[_builtins.str]] = None,
             x509_type: pulumi.Input[Optional[_builtins.str]] = None) -> 'DatabaseUser':
         """
@@ -943,7 +943,7 @@ class DatabaseUser(pulumi.CustomResource):
                User's password, passed as a write-only argument so it is never written to Terraform state or plan files. Write-only arguments can accept ephemeral and non-ephemeral values. Only applicable for password-based authentication, and conflicts with `password`. Requires Terraform 1.11 or later, and must be set together with `password_wo_version`.
         :param pulumi.Input[_builtins.int] password_wo_version: Integer that triggers an update of `password_wo`. To rotate the password, change `password_wo` and increment this value in the same edit. Changing `password_wo` on its own has no effect, since Terraform cannot detect changes to a value that is not in state.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create the database user, also known as `groupId` in the official documentation.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['DatabaseUserRoleArgs', 'DatabaseUserRoleArgsDict', 'outputs.DatabaseUserRole']]]] roles: List of user’s roles and the databases / collections on which the roles apply. A role allows the user to perform particular actions on the specified database. A role on the admin database can include privileges that apply to the other databases as well. See Roles below for more details.
         :param pulumi.Input[_builtins.str] username: Username for authenticating to MongoDB. USER_ARN or ROLE_ARN if `aws_iam_type` is USER or ROLE.
         :param pulumi.Input[_builtins.str] x509_type: X.509 method by which the provided username is authenticated. If no value is given, Atlas uses the default value of NONE. The accepted types are:
                * `NONE` -	The user does not use X.509 authentication.

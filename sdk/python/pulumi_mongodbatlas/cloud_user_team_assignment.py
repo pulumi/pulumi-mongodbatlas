@@ -515,7 +515,7 @@ class CloudUserTeamAssignment(pulumi.CustomResource):
             mobile_number: pulumi.Input[Optional[_builtins.str]] = None,
             org_id: pulumi.Input[Optional[_builtins.str]] = None,
             org_membership_status: pulumi.Input[Optional[_builtins.str]] = None,
-            roles: pulumi.Input[Optional[Union['CloudUserTeamAssignmentRolesArgs', 'CloudUserTeamAssignmentRolesArgsDict']]] = None,
+            roles: pulumi.Input[Optional[Union['CloudUserTeamAssignmentRolesArgs', 'CloudUserTeamAssignmentRolesArgsDict', 'outputs.CloudUserTeamAssignmentRoles']]] = None,
             team_id: pulumi.Input[Optional[_builtins.str]] = None,
             team_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             user_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -538,7 +538,7 @@ class CloudUserTeamAssignment(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] mobile_number: Mobile phone number that belongs to the MongoDB Cloud user.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-organizations) endpoint to retrieve all organizations to which the authenticated user has access.
         :param pulumi.Input[_builtins.str] org_membership_status: String enum that indicates whether the MongoDB Cloud user has a pending invitation to join the organization or they are already active in the organization.
-        :param pulumi.Input[Union['CloudUserTeamAssignmentRolesArgs', 'CloudUserTeamAssignmentRolesArgsDict']] roles: Organization and project level roles to assign the MongoDB Cloud user within one organization.
+        :param pulumi.Input[Union['CloudUserTeamAssignmentRolesArgs', 'CloudUserTeamAssignmentRolesArgsDict', 'outputs.CloudUserTeamAssignmentRoles']] roles: Organization and project level roles to assign the MongoDB Cloud user within one organization.
         :param pulumi.Input[_builtins.str] team_id: Unique 24-hexadecimal digit string that identifies the team to which you want to assign the MongoDB Cloud user. Use the [/teams](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/group/endpoint-teams) endpoint to retrieve all teams to which the authenticated user has access.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] team_ids: List of unique 24-hexadecimal digit strings that identifies the teams to which this MongoDB Cloud user belongs.
         :param pulumi.Input[_builtins.str] user_id: Unique 24-hexadecimal digit string that identifies the MongoDB Cloud user.

@@ -184,7 +184,7 @@ class AwaitableGetAlertConfigurationResult(GetAlertConfigurationResult):
 
 
 def get_alert_configuration(alert_configuration_id: Optional[_builtins.str] = None,
-                            outputs: Optional[Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict']]] = None,
+                            outputs: Optional[Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict', 'outputs.GetAlertConfigurationOutputResult']]] = None,
                             project_id: Optional[_builtins.str] = None,
                             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlertConfigurationResult:
     """
@@ -259,7 +259,7 @@ def get_alert_configuration(alert_configuration_id: Optional[_builtins.str] = No
 
 
     :param _builtins.str alert_configuration_id: Unique identifier for the alert configuration.
-    :param Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict']] outputs: List of formatted output requested for this alert configuration
+    :param Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict', 'outputs.GetAlertConfigurationOutputResult']] outputs: List of formatted output requested for this alert configuration
            * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
     :param _builtins.str project_id: The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
     """
@@ -285,7 +285,7 @@ def get_alert_configuration(alert_configuration_id: Optional[_builtins.str] = No
         threshold_configs=pulumi.get(__ret__, 'threshold_configs'),
         updated=pulumi.get(__ret__, 'updated'))
 def get_alert_configuration_output(alert_configuration_id: pulumi.Input[Optional[_builtins.str]] = None,
-                                   outputs: pulumi.Input[Optional[Optional[Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict']]]]] = None,
+                                   outputs: pulumi.Input[Optional[Optional[Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict', 'outputs.GetAlertConfigurationOutputResult']]]]] = None,
                                    project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAlertConfigurationResult]:
     """
@@ -360,7 +360,7 @@ def get_alert_configuration_output(alert_configuration_id: pulumi.Input[Optional
 
 
     :param _builtins.str alert_configuration_id: Unique identifier for the alert configuration.
-    :param Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict']] outputs: List of formatted output requested for this alert configuration
+    :param Sequence[Union['GetAlertConfigurationOutputArgs', 'GetAlertConfigurationOutputArgsDict', 'outputs.GetAlertConfigurationOutputResult']] outputs: List of formatted output requested for this alert configuration
            * `output.#.type` - (Required) If the output is requested, you must specify its type. The format is computed as `output.#.value`, the following are the supported types:
     :param _builtins.str project_id: The ID of the project where the alert configuration will create, also known as `groupId` in the official documentation.
     """

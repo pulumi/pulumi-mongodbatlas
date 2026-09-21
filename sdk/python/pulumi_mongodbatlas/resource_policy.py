@@ -251,7 +251,7 @@ class ResourcePolicy(pulumi.CustomResource):
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict']]]]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict', 'outputs.ResourcePolicyPolicy']]]]] = None,
                  __props__=None):
         """
         `ResourcePolicy` provides a Resource Policy resource. The resource lets you create, edit and delete resource policies to prevent misconfigurations and reduce the need for corrective interventions in your organization.
@@ -272,7 +272,7 @@ class ResourcePolicy(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: Description of the Atlas resource policy.
         :param pulumi.Input[_builtins.str] name: Human-readable label that describes the Atlas resource policy.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict']]]] policies: List of policies that make up the Atlas resource policy.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict', 'outputs.ResourcePolicyPolicy']]]] policies: List of policies that make up the Atlas resource policy.
         """
         ...
     @overload
@@ -312,7 +312,7 @@ class ResourcePolicy(pulumi.CustomResource):
                  description: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict']]]]] = None,
+                 policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict', 'outputs.ResourcePolicyPolicy']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -345,14 +345,14 @@ class ResourcePolicy(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            created_by_user: pulumi.Input[Optional[Union['ResourcePolicyCreatedByUserArgs', 'ResourcePolicyCreatedByUserArgsDict']]] = None,
+            created_by_user: pulumi.Input[Optional[Union['ResourcePolicyCreatedByUserArgs', 'ResourcePolicyCreatedByUserArgsDict', 'outputs.ResourcePolicyCreatedByUser']]] = None,
             created_date: pulumi.Input[Optional[_builtins.str]] = None,
             description: pulumi.Input[Optional[_builtins.str]] = None,
-            last_updated_by_user: pulumi.Input[Optional[Union['ResourcePolicyLastUpdatedByUserArgs', 'ResourcePolicyLastUpdatedByUserArgsDict']]] = None,
+            last_updated_by_user: pulumi.Input[Optional[Union['ResourcePolicyLastUpdatedByUserArgs', 'ResourcePolicyLastUpdatedByUserArgsDict', 'outputs.ResourcePolicyLastUpdatedByUser']]] = None,
             last_updated_date: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             org_id: pulumi.Input[Optional[_builtins.str]] = None,
-            policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict']]]]] = None,
+            policies: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict', 'outputs.ResourcePolicyPolicy']]]]] = None,
             version: pulumi.Input[Optional[_builtins.str]] = None) -> 'ResourcePolicy':
         """
         Get an existing ResourcePolicy resource's state with the given name, id, and optional extra
@@ -361,14 +361,14 @@ class ResourcePolicy(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['ResourcePolicyCreatedByUserArgs', 'ResourcePolicyCreatedByUserArgsDict']] created_by_user: The user that last updated the Atlas resource policy.
+        :param pulumi.Input[Union['ResourcePolicyCreatedByUserArgs', 'ResourcePolicyCreatedByUserArgsDict', 'outputs.ResourcePolicyCreatedByUser']] created_by_user: The user that last updated the Atlas resource policy.
         :param pulumi.Input[_builtins.str] created_date: Date and time in UTC when the Atlas resource policy was created.
         :param pulumi.Input[_builtins.str] description: Description of the Atlas resource policy.
-        :param pulumi.Input[Union['ResourcePolicyLastUpdatedByUserArgs', 'ResourcePolicyLastUpdatedByUserArgsDict']] last_updated_by_user: The user that last updated the Atlas resource policy.
+        :param pulumi.Input[Union['ResourcePolicyLastUpdatedByUserArgs', 'ResourcePolicyLastUpdatedByUserArgsDict', 'outputs.ResourcePolicyLastUpdatedByUser']] last_updated_by_user: The user that last updated the Atlas resource policy.
         :param pulumi.Input[_builtins.str] last_updated_date: Date and time in UTC when the Atlas resource policy was last updated.
         :param pulumi.Input[_builtins.str] name: Human-readable label that describes the Atlas resource policy.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects. Use the [/orgs](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-listorganizations) endpoint to retrieve all organizations to which the authenticated user has access.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict']]]] policies: List of policies that make up the Atlas resource policy.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ResourcePolicyPolicyArgs', 'ResourcePolicyPolicyArgsDict', 'outputs.ResourcePolicyPolicy']]]] policies: List of policies that make up the Atlas resource policy.
         :param pulumi.Input[_builtins.str] version: A string that identifies the version of the Atlas resource policy.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

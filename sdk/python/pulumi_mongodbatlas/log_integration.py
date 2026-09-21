@@ -607,7 +607,7 @@ class LogIntegration(pulumi.CustomResource):
                  kms_key: pulumi.Input[Optional[_builtins.str]] = None,
                  log_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  otel_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
-                 otel_supplied_headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]]] = None,
+                 otel_supplied_headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict', 'outputs.LogIntegrationOtelSuppliedHeader']]]]] = None,
                  prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
@@ -773,7 +773,7 @@ class LogIntegration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] kms_key: Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] log_types: Array of log types exported by this integration.
         :param pulumi.Input[_builtins.str] otel_endpoint: Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]] otel_supplied_headers: Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict', 'outputs.LogIntegrationOtelSuppliedHeader']]]] otel_supplied_headers: Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
         :param pulumi.Input[_builtins.str] prefix_path: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] region: Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.
@@ -958,7 +958,7 @@ class LogIntegration(pulumi.CustomResource):
                  kms_key: pulumi.Input[Optional[_builtins.str]] = None,
                  log_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  otel_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
-                 otel_supplied_headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]]] = None,
+                 otel_supplied_headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict', 'outputs.LogIntegrationOtelSuppliedHeader']]]]] = None,
                  prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1021,7 +1021,7 @@ class LogIntegration(pulumi.CustomResource):
             kms_key: pulumi.Input[Optional[_builtins.str]] = None,
             log_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             otel_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
-            otel_supplied_headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]]] = None,
+            otel_supplied_headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict', 'outputs.LogIntegrationOtelSuppliedHeader']]]]] = None,
             prefix_path: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1046,7 +1046,7 @@ class LogIntegration(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] kms_key: Optional for type: S3_LOG_EXPORT. AWS KMS key ID or ARN for server-side encryption (optional). If not provided, uses bucket default encryption settings.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] log_types: Array of log types exported by this integration.
         :param pulumi.Input[_builtins.str] otel_endpoint: Required for type: OTEL_LOG_EXPORT. OpenTelemetry collector endpoint URL. Must be HTTPS and not exceed 2048 characters.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict']]]] otel_supplied_headers: Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['LogIntegrationOtelSuppliedHeaderArgs', 'LogIntegrationOtelSuppliedHeaderArgsDict', 'outputs.LogIntegrationOtelSuppliedHeader']]]] otel_supplied_headers: Required for type: OTEL_LOG_EXPORT. HTTP headers for authentication and configuration. Maximum 10 headers, total size limit 2KB.
         :param pulumi.Input[_builtins.str] prefix_path: Required for type: AZURE_LOG_EXPORT, GCS_LOG_EXPORT, S3_LOG_EXPORT. Path prefix where the log files will be stored. Atlas will add further sub-directories based on the log type.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] region: Required for type: DATADOG_LOG_EXPORT. Datadog site/region for log ingestion. Valid values: US1, US3, US5, EU, AP1, AP2, US1_FED.

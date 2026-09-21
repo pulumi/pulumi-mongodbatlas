@@ -712,13 +712,13 @@ class Project(pulumi.CustomResource):
                  is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_schema_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_slow_operation_thresholding_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict']]]]] = None,
+                 limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict', 'outputs.ProjectLimit']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region_usage_restrictions: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 teams: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict']]]]] = None,
+                 teams: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict', 'outputs.ProjectTeam']]]]] = None,
                  with_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
@@ -873,13 +873,13 @@ class Project(pulumi.CustomResource):
                  is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_schema_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  is_slow_operation_thresholding_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict']]]]] = None,
+                 limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict', 'outputs.ProjectLimit']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  project_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region_usage_restrictions: pulumi.Input[Optional[_builtins.str]] = None,
                  tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-                 teams: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict']]]]] = None,
+                 teams: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict', 'outputs.ProjectTeam']]]]] = None,
                  with_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -926,7 +926,7 @@ class Project(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_count: pulumi.Input[Optional[_builtins.int]] = None,
             created: pulumi.Input[Optional[_builtins.str]] = None,
-            ip_addresses: pulumi.Input[Optional[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict']]] = None,
+            ip_addresses: pulumi.Input[Optional[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict', 'outputs.ProjectIpAddresses']]] = None,
             is_cluster_ai_assistant_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_collect_database_specifics_statistics_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_data_explorer_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -938,13 +938,13 @@ class Project(pulumi.CustomResource):
             is_realtime_performance_panel_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_schema_advisor_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             is_slow_operation_thresholding_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-            limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict']]]]] = None,
+            limits: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectLimitArgs', 'ProjectLimitArgsDict', 'outputs.ProjectLimit']]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             org_id: pulumi.Input[Optional[_builtins.str]] = None,
             project_owner_id: pulumi.Input[Optional[_builtins.str]] = None,
             region_usage_restrictions: pulumi.Input[Optional[_builtins.str]] = None,
             tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
-            teams: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict']]]]] = None,
+            teams: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ProjectTeamArgs', 'ProjectTeamArgsDict', 'outputs.ProjectTeam']]]]] = None,
             with_default_alerts_settings: pulumi.Input[Optional[_builtins.bool]] = None) -> 'Project':
         """
         Get an existing Project resource's state with the given name, id, and optional extra
@@ -955,7 +955,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.int] cluster_count: The number of Atlas clusters deployed in the project.
         :param pulumi.Input[_builtins.str] created: The ISO-8601-formatted timestamp of when Atlas created the project.
-        :param pulumi.Input[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict']] ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
+        :param pulumi.Input[Union['ProjectIpAddressesArgs', 'ProjectIpAddressesArgsDict', 'outputs.ProjectIpAddresses']] ip_addresses: IP addresses in a project categorized by services. See IP Addresses. **WARNING:** This attribute is deprecated, use the `get_project_ip_addresses` data source instead.
         :param pulumi.Input[_builtins.bool] is_cluster_ai_assistant_enabled: Flag that indicates whether to enable the AI Assistant for the project's clusters. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_collect_database_specifics_statistics_enabled: Flag that indicates whether to enable statistics in [cluster metrics](https://www.mongodb.com/docs/atlas/monitor-cluster-metrics/) collection for the project. By default, this flag is set to true.
         :param pulumi.Input[_builtins.bool] is_data_explorer_enabled: Flag that indicates whether to enable Data Explorer for the project. If enabled, you can query your database with an easy to use interface.  When Data Explorer is disabled, you cannot terminate slow operations from the [Real-Time Performance Panel](https://www.mongodb.com/docs/atlas/real-time-performance-panel/#std-label-real-time-metrics-status-tab) or create indexes from the [Performance Advisor](https://www.mongodb.com/docs/atlas/performance-advisor/#std-label-performance-advisor). You can still view Performance Advisor recommendations, but you must create those indexes from [mongosh](https://www.mongodb.com/docs/mongodb-shell/#mongodb-binary-bin.mongosh). By default, this flag is set to true.

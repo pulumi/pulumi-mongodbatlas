@@ -459,7 +459,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            certificates: pulumi.Input[Optional[Sequence[pulumi.Input[Union['X509AuthenticationDatabaseUserCertificateArgs', 'X509AuthenticationDatabaseUserCertificateArgsDict']]]]] = None,
+            certificates: pulumi.Input[Optional[Sequence[pulumi.Input[Union['X509AuthenticationDatabaseUserCertificateArgs', 'X509AuthenticationDatabaseUserCertificateArgsDict', 'outputs.X509AuthenticationDatabaseUserCertificate']]]]] = None,
             current_certificate: pulumi.Input[Optional[_builtins.str]] = None,
             customer_x509_cas: pulumi.Input[Optional[_builtins.str]] = None,
             months_until_expiration: pulumi.Input[Optional[_builtins.int]] = None,
@@ -472,7 +472,7 @@ class X509AuthenticationDatabaseUser(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['X509AuthenticationDatabaseUserCertificateArgs', 'X509AuthenticationDatabaseUserCertificateArgsDict']]]] certificates: Array of objects where each details one unexpired database user certificate.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['X509AuthenticationDatabaseUserCertificateArgs', 'X509AuthenticationDatabaseUserCertificateArgsDict', 'outputs.X509AuthenticationDatabaseUserCertificate']]]] certificates: Array of objects where each details one unexpired database user certificate.
         :param pulumi.Input[_builtins.str] current_certificate: Contains the last X.509 certificate and private key created for a database user.
         :param pulumi.Input[_builtins.str] customer_x509_cas: PEM string containing one or more customer CAs for database user authentication.
         :param pulumi.Input[_builtins.int] months_until_expiration: A number of months that the created certificate is valid for before expiry, up to 24 months. By default is 3.

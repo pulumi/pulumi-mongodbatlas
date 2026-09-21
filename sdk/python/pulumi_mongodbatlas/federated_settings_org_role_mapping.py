@@ -185,7 +185,7 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
                  external_group_name: pulumi.Input[Optional[_builtins.str]] = None,
                  federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 role_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict']]]]] = None,
+                 role_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict', 'outputs.FederatedSettingsOrgRoleMappingRoleAssignment']]]]] = None,
                  __props__=None):
         """
         `FederatedSettingsOrgRoleMapping` provides an Role Mapping resource. This allows organization role mapping to be created.
@@ -250,7 +250,7 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] external_group_name: Unique label that identifies the identity provider group to which this role mapping applies.
         :param pulumi.Input[_builtins.str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict']]]] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict', 'outputs.FederatedSettingsOrgRoleMappingRoleAssignment']]]] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         """
         ...
     @overload
@@ -334,7 +334,7 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
                  external_group_name: pulumi.Input[Optional[_builtins.str]] = None,
                  federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 role_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict']]]]] = None,
+                 role_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict', 'outputs.FederatedSettingsOrgRoleMappingRoleAssignment']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -370,7 +370,7 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
             external_group_name: pulumi.Input[Optional[_builtins.str]] = None,
             federation_settings_id: pulumi.Input[Optional[_builtins.str]] = None,
             org_id: pulumi.Input[Optional[_builtins.str]] = None,
-            role_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict']]]]] = None,
+            role_assignments: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict', 'outputs.FederatedSettingsOrgRoleMappingRoleAssignment']]]]] = None,
             role_mapping_id: pulumi.Input[Optional[_builtins.str]] = None) -> 'FederatedSettingsOrgRoleMapping':
         """
         Get an existing FederatedSettingsOrgRoleMapping resource's state with the given name, id, and optional extra
@@ -382,7 +382,7 @@ class FederatedSettingsOrgRoleMapping(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] external_group_name: Unique label that identifies the identity provider group to which this role mapping applies.
         :param pulumi.Input[_builtins.str] federation_settings_id: Unique 24-hexadecimal digit string that identifies the federated authentication configuration.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict']]]] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedSettingsOrgRoleMappingRoleAssignmentArgs', 'FederatedSettingsOrgRoleMappingRoleAssignmentArgsDict', 'outputs.FederatedSettingsOrgRoleMappingRoleAssignment']]]] role_assignments: Atlas roles and the unique identifiers of the groups and organizations associated with each role.
         :param pulumi.Input[_builtins.str] role_mapping_id: Unique 24-hexadecimal digit string that identifies this role mapping.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

@@ -612,7 +612,7 @@ class CloudBackupSnapshot(pulumi.CustomResource):
             description: pulumi.Input[Optional[_builtins.str]] = None,
             expires_at: pulumi.Input[Optional[_builtins.str]] = None,
             master_key_uuid: pulumi.Input[Optional[_builtins.str]] = None,
-            members: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupSnapshotMemberArgs', 'CloudBackupSnapshotMemberArgsDict']]]]] = None,
+            members: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CloudBackupSnapshotMemberArgs', 'CloudBackupSnapshotMemberArgsDict', 'outputs.CloudBackupSnapshotMember']]]]] = None,
             mongod_version: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             replica_set_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -637,7 +637,7 @@ class CloudBackupSnapshot(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] description: Description of the on-demand snapshot.
         :param pulumi.Input[_builtins.str] expires_at: UTC ISO 8601 formatted point in time when Atlas will delete the snapshot.
         :param pulumi.Input[_builtins.str] master_key_uuid: Unique ID of the AWS KMS Customer Master Key used to encrypt the snapshot. Only visible for clusters using Encryption at Rest via Customer KMS.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotMemberArgs', 'CloudBackupSnapshotMemberArgsDict']]]] members: Block of List of snapshots and the cloud provider where the snapshots are stored. Atlas returns this parameter when `type` is `shardedCluster`. See below
+        :param pulumi.Input[Sequence[pulumi.Input[Union['CloudBackupSnapshotMemberArgs', 'CloudBackupSnapshotMemberArgsDict', 'outputs.CloudBackupSnapshotMember']]]] members: Block of List of snapshots and the cloud provider where the snapshots are stored. Atlas returns this parameter when `type` is `shardedCluster`. See below
         :param pulumi.Input[_builtins.str] mongod_version: Version of the MongoDB server.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] replica_set_name: Label given to a shard or config server from which Atlas took this snapshot.

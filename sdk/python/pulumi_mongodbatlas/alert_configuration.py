@@ -329,12 +329,12 @@ class AlertConfiguration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  event_type: pulumi.Input[Optional[_builtins.str]] = None,
-                 matchers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertConfigurationMatcherArgs', 'AlertConfigurationMatcherArgsDict']]]]] = None,
-                 metric_threshold_config: pulumi.Input[Optional[Union['AlertConfigurationMetricThresholdConfigArgs', 'AlertConfigurationMetricThresholdConfigArgsDict']]] = None,
-                 notifications: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertConfigurationNotificationArgs', 'AlertConfigurationNotificationArgsDict']]]]] = None,
+                 matchers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertConfigurationMatcherArgs', 'AlertConfigurationMatcherArgsDict', 'outputs.AlertConfigurationMatcher']]]]] = None,
+                 metric_threshold_config: pulumi.Input[Optional[Union['AlertConfigurationMetricThresholdConfigArgs', 'AlertConfigurationMetricThresholdConfigArgsDict', 'outputs.AlertConfigurationMetricThresholdConfig']]] = None,
+                 notifications: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertConfigurationNotificationArgs', 'AlertConfigurationNotificationArgsDict', 'outputs.AlertConfigurationNotification']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  severity_override: pulumi.Input[Optional[_builtins.str]] = None,
-                 threshold_config: pulumi.Input[Optional[Union['AlertConfigurationThresholdConfigArgs', 'AlertConfigurationThresholdConfigArgsDict']]] = None,
+                 threshold_config: pulumi.Input[Optional[Union['AlertConfigurationThresholdConfigArgs', 'AlertConfigurationThresholdConfigArgsDict', 'outputs.AlertConfigurationThresholdConfig']]] = None,
                  __props__=None):
         """
         `AlertConfiguration` provides an Alert Configuration resource to define the conditions that trigger an alert and the methods of notification within a MongoDB Atlas project.
@@ -658,12 +658,12 @@ class AlertConfiguration(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  event_type: pulumi.Input[Optional[_builtins.str]] = None,
-                 matchers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertConfigurationMatcherArgs', 'AlertConfigurationMatcherArgsDict']]]]] = None,
-                 metric_threshold_config: pulumi.Input[Optional[Union['AlertConfigurationMetricThresholdConfigArgs', 'AlertConfigurationMetricThresholdConfigArgsDict']]] = None,
-                 notifications: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertConfigurationNotificationArgs', 'AlertConfigurationNotificationArgsDict']]]]] = None,
+                 matchers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertConfigurationMatcherArgs', 'AlertConfigurationMatcherArgsDict', 'outputs.AlertConfigurationMatcher']]]]] = None,
+                 metric_threshold_config: pulumi.Input[Optional[Union['AlertConfigurationMetricThresholdConfigArgs', 'AlertConfigurationMetricThresholdConfigArgsDict', 'outputs.AlertConfigurationMetricThresholdConfig']]] = None,
+                 notifications: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertConfigurationNotificationArgs', 'AlertConfigurationNotificationArgsDict', 'outputs.AlertConfigurationNotification']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  severity_override: pulumi.Input[Optional[_builtins.str]] = None,
-                 threshold_config: pulumi.Input[Optional[Union['AlertConfigurationThresholdConfigArgs', 'AlertConfigurationThresholdConfigArgsDict']]] = None,
+                 threshold_config: pulumi.Input[Optional[Union['AlertConfigurationThresholdConfigArgs', 'AlertConfigurationThresholdConfigArgsDict', 'outputs.AlertConfigurationThresholdConfig']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -704,12 +704,12 @@ class AlertConfiguration(pulumi.CustomResource):
             created: pulumi.Input[Optional[_builtins.str]] = None,
             enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             event_type: pulumi.Input[Optional[_builtins.str]] = None,
-            matchers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertConfigurationMatcherArgs', 'AlertConfigurationMatcherArgsDict']]]]] = None,
-            metric_threshold_config: pulumi.Input[Optional[Union['AlertConfigurationMetricThresholdConfigArgs', 'AlertConfigurationMetricThresholdConfigArgsDict']]] = None,
-            notifications: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertConfigurationNotificationArgs', 'AlertConfigurationNotificationArgsDict']]]]] = None,
+            matchers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertConfigurationMatcherArgs', 'AlertConfigurationMatcherArgsDict', 'outputs.AlertConfigurationMatcher']]]]] = None,
+            metric_threshold_config: pulumi.Input[Optional[Union['AlertConfigurationMetricThresholdConfigArgs', 'AlertConfigurationMetricThresholdConfigArgsDict', 'outputs.AlertConfigurationMetricThresholdConfig']]] = None,
+            notifications: pulumi.Input[Optional[Sequence[pulumi.Input[Union['AlertConfigurationNotificationArgs', 'AlertConfigurationNotificationArgsDict', 'outputs.AlertConfigurationNotification']]]]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             severity_override: pulumi.Input[Optional[_builtins.str]] = None,
-            threshold_config: pulumi.Input[Optional[Union['AlertConfigurationThresholdConfigArgs', 'AlertConfigurationThresholdConfigArgsDict']]] = None,
+            threshold_config: pulumi.Input[Optional[Union['AlertConfigurationThresholdConfigArgs', 'AlertConfigurationThresholdConfigArgsDict', 'outputs.AlertConfigurationThresholdConfig']]] = None,
             updated: pulumi.Input[Optional[_builtins.str]] = None) -> 'AlertConfiguration':
         """
         Get an existing AlertConfiguration resource's state with the given name, id, and optional extra

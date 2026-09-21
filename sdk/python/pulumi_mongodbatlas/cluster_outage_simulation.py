@@ -229,7 +229,7 @@ class ClusterOutageSimulation(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
-                 outage_filters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict']]]]] = None,
+                 outage_filters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict', 'outputs.ClusterOutageSimulationOutageFilter']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -281,7 +281,7 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_name: Name of the Atlas Cluster that is/will undergoing outage simulation.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict']]]] outage_filters: List of settings that specify the type of cluster outage simulation.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict', 'outputs.ClusterOutageSimulationOutageFilter']]]] outage_filters: List of settings that specify the type of cluster outage simulation.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
         """
         ...
@@ -352,7 +352,7 @@ class ClusterOutageSimulation(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
-                 outage_filters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict']]]]] = None,
+                 outage_filters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict', 'outputs.ClusterOutageSimulationOutageFilter']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -388,7 +388,7 @@ class ClusterOutageSimulation(pulumi.CustomResource):
             opts: Optional[pulumi.ResourceOptions] = None,
             cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
             delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
-            outage_filters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict']]]]] = None,
+            outage_filters: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict', 'outputs.ClusterOutageSimulationOutageFilter']]]]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             simulation_id: pulumi.Input[Optional[_builtins.str]] = None,
             start_request_date: pulumi.Input[Optional[_builtins.str]] = None,
@@ -402,7 +402,7 @@ class ClusterOutageSimulation(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] cluster_name: Name of the Atlas Cluster that is/will undergoing outage simulation.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict']]]] outage_filters: List of settings that specify the type of cluster outage simulation.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ClusterOutageSimulationOutageFilterArgs', 'ClusterOutageSimulationOutageFilterArgsDict', 'outputs.ClusterOutageSimulationOutageFilter']]]] outage_filters: List of settings that specify the type of cluster outage simulation.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project that contains the cluster that is/will undergoing outage simulation, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] simulation_id: Unique 24-hexadecimal character string that identifies the outage simulation.
         :param pulumi.Input[_builtins.str] start_request_date: Date and time when MongoDB Cloud started the regional outage simulation.

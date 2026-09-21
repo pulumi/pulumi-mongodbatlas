@@ -102,7 +102,7 @@ class AwaitableGetAlertConfigurationsResult(GetAlertConfigurationsResult):
             total_count=self.total_count)
 
 
-def get_alert_configurations(list_options: Optional[Sequence[Union['GetAlertConfigurationsListOptionArgs', 'GetAlertConfigurationsListOptionArgsDict']]] = None,
+def get_alert_configurations(list_options: Optional[Sequence[Union['GetAlertConfigurationsListOptionArgs', 'GetAlertConfigurationsListOptionArgsDict', 'outputs.GetAlertConfigurationsListOptionResult']]] = None,
                              output_types: Optional[Sequence[_builtins.str]] = None,
                              project_id: Optional[_builtins.str] = None,
                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetAlertConfigurationsResult:
@@ -132,7 +132,7 @@ def get_alert_configurations(list_options: Optional[Sequence[Union['GetAlertConf
     * AlertConfiguration
 
 
-    :param Sequence[Union['GetAlertConfigurationsListOptionArgs', 'GetAlertConfigurationsListOptionArgsDict']] list_options: Arguments that dictate how many and which results are returned by the data source
+    :param Sequence[Union['GetAlertConfigurationsListOptionArgs', 'GetAlertConfigurationsListOptionArgsDict', 'outputs.GetAlertConfigurationsListOptionResult']] list_options: Arguments that dictate how many and which results are returned by the data source
            * `list_options.page_num` - Which page of results to retrieve (default to first page)
            * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
            * `list_options.include_count` - Whether to include total count of results in the response (default false)
@@ -153,7 +153,7 @@ def get_alert_configurations(list_options: Optional[Sequence[Union['GetAlertConf
         project_id=pulumi.get(__ret__, 'project_id'),
         results=pulumi.get(__ret__, 'results'),
         total_count=pulumi.get(__ret__, 'total_count'))
-def get_alert_configurations_output(list_options: pulumi.Input[Optional[Optional[Sequence[Union['GetAlertConfigurationsListOptionArgs', 'GetAlertConfigurationsListOptionArgsDict']]]]] = None,
+def get_alert_configurations_output(list_options: pulumi.Input[Optional[Optional[Sequence[Union['GetAlertConfigurationsListOptionArgs', 'GetAlertConfigurationsListOptionArgsDict', 'outputs.GetAlertConfigurationsListOptionResult']]]]] = None,
                                     output_types: pulumi.Input[Optional[Optional[Sequence[_builtins.str]]]] = None,
                                     project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetAlertConfigurationsResult]:
@@ -183,7 +183,7 @@ def get_alert_configurations_output(list_options: pulumi.Input[Optional[Optional
     * AlertConfiguration
 
 
-    :param Sequence[Union['GetAlertConfigurationsListOptionArgs', 'GetAlertConfigurationsListOptionArgsDict']] list_options: Arguments that dictate how many and which results are returned by the data source
+    :param Sequence[Union['GetAlertConfigurationsListOptionArgs', 'GetAlertConfigurationsListOptionArgsDict', 'outputs.GetAlertConfigurationsListOptionResult']] list_options: Arguments that dictate how many and which results are returned by the data source
            * `list_options.page_num` - Which page of results to retrieve (default to first page)
            * `list_options.items_per_page` - How many alerts to retrieve per page (default 100)
            * `list_options.include_count` - Whether to include total count of results in the response (default false)

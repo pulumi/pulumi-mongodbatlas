@@ -496,7 +496,7 @@ class ServerlessInstance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_indexing: pulumi.Input[Optional[_builtins.bool]] = None,
                  continuous_backup_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceLinkArgs', 'ServerlessInstanceLinkArgsDict']]]]] = None,
+                 links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceLinkArgs', 'ServerlessInstanceLinkArgsDict', 'outputs.ServerlessInstanceLink']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_settings_backing_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -504,7 +504,7 @@ class ServerlessInstance(pulumi.CustomResource):
                  provider_settings_region_name: pulumi.Input[Optional[_builtins.str]] = None,
                  serverless_instance_id: pulumi.Input[Optional[_builtins.str]] = None,
                  state_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict']]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict', 'outputs.ServerlessInstanceTag']]]]] = None,
                  termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
@@ -552,7 +552,7 @@ class ServerlessInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
         :param pulumi.Input[_builtins.str] serverless_instance_id: Unique 24-hexadecimal digit string that identifies the serverless instance.
         :param pulumi.Input[_builtins.str] state_name: Stage of deployment of this serverless instance when the resource made its request.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict', 'outputs.ServerlessInstanceTag']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[_builtins.bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         ...
@@ -612,7 +612,7 @@ class ServerlessInstance(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  auto_indexing: pulumi.Input[Optional[_builtins.bool]] = None,
                  continuous_backup_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceLinkArgs', 'ServerlessInstanceLinkArgsDict']]]]] = None,
+                 links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceLinkArgs', 'ServerlessInstanceLinkArgsDict', 'outputs.ServerlessInstanceLink']]]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_settings_backing_provider_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -620,7 +620,7 @@ class ServerlessInstance(pulumi.CustomResource):
                  provider_settings_region_name: pulumi.Input[Optional[_builtins.str]] = None,
                  serverless_instance_id: pulumi.Input[Optional[_builtins.str]] = None,
                  state_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict']]]]] = None,
+                 tags: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict', 'outputs.ServerlessInstanceTag']]]]] = None,
                  termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -670,7 +670,7 @@ class ServerlessInstance(pulumi.CustomResource):
             connection_strings_standard_srv: pulumi.Input[Optional[_builtins.str]] = None,
             continuous_backup_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             create_date: pulumi.Input[Optional[_builtins.str]] = None,
-            links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceLinkArgs', 'ServerlessInstanceLinkArgsDict']]]]] = None,
+            links: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceLinkArgs', 'ServerlessInstanceLinkArgsDict', 'outputs.ServerlessInstanceLink']]]]] = None,
             mongo_db_version: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -679,7 +679,7 @@ class ServerlessInstance(pulumi.CustomResource):
             provider_settings_region_name: pulumi.Input[Optional[_builtins.str]] = None,
             serverless_instance_id: pulumi.Input[Optional[_builtins.str]] = None,
             state_name: pulumi.Input[Optional[_builtins.str]] = None,
-            tags: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict']]]]] = None,
+            tags: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict', 'outputs.ServerlessInstanceTag']]]]] = None,
             termination_protection_enabled: pulumi.Input[Optional[_builtins.bool]] = None) -> 'ServerlessInstance':
         """
         Get an existing ServerlessInstance resource's state with the given name, id, and optional extra
@@ -701,7 +701,7 @@ class ServerlessInstance(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] provider_settings_region_name: Human-readable label that identifies the physical location of your MongoDB serverless instance. The region you choose can affect network latency for clients accessing your databases.
         :param pulumi.Input[_builtins.str] serverless_instance_id: Unique 24-hexadecimal digit string that identifies the serverless instance.
         :param pulumi.Input[_builtins.str] state_name: Stage of deployment of this serverless instance when the resource made its request.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['ServerlessInstanceTagArgs', 'ServerlessInstanceTagArgsDict', 'outputs.ServerlessInstanceTag']]]] tags: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
         :param pulumi.Input[_builtins.bool] termination_protection_enabled: Flag that indicates whether termination protection is enabled on the cluster. If set to true, MongoDB Cloud won't delete the cluster. If set to false, MongoDB Cloud will delete the cluster.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

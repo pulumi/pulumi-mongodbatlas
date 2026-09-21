@@ -180,8 +180,8 @@ class CustomDbRole(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict']]]]] = None,
-                 inherited_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict']]]]] = None,
+                 actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict', 'outputs.CustomDbRoleAction']]]]] = None,
+                 inherited_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict', 'outputs.CustomDbRoleInheritedRole']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -430,8 +430,8 @@ class CustomDbRole(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict']]]]] = None,
-                 inherited_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict']]]]] = None,
+                 actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict', 'outputs.CustomDbRoleAction']]]]] = None,
+                 inherited_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict', 'outputs.CustomDbRoleInheritedRole']]]]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  role_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -461,8 +461,8 @@ class CustomDbRole(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict']]]]] = None,
-            inherited_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict']]]]] = None,
+            actions: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleActionArgs', 'CustomDbRoleActionArgsDict', 'outputs.CustomDbRoleAction']]]]] = None,
+            inherited_roles: pulumi.Input[Optional[Sequence[pulumi.Input[Union['CustomDbRoleInheritedRoleArgs', 'CustomDbRoleInheritedRoleArgsDict', 'outputs.CustomDbRoleInheritedRole']]]]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             role_name: pulumi.Input[Optional[_builtins.str]] = None) -> 'CustomDbRole':
         """

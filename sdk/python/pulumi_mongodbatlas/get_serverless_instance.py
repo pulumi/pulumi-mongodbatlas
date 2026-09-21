@@ -223,7 +223,7 @@ class AwaitableGetServerlessInstanceResult(GetServerlessInstanceResult):
 
 def get_serverless_instance(auto_indexing: Optional[_builtins.bool] = None,
                             continuous_backup_enabled: Optional[_builtins.bool] = None,
-                            links: Optional[Sequence[Union['GetServerlessInstanceLinkArgs', 'GetServerlessInstanceLinkArgsDict']]] = None,
+                            links: Optional[Sequence[Union['GetServerlessInstanceLinkArgs', 'GetServerlessInstanceLinkArgsDict', 'outputs.GetServerlessInstanceLinkResult']]] = None,
                             name: Optional[_builtins.str] = None,
                             project_id: Optional[_builtins.str] = None,
                             state_name: Optional[_builtins.str] = None,
@@ -282,7 +282,7 @@ def get_serverless_instance(auto_indexing: Optional[_builtins.bool] = None,
         termination_protection_enabled=pulumi.get(__ret__, 'termination_protection_enabled'))
 def get_serverless_instance_output(auto_indexing: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
                                    continuous_backup_enabled: pulumi.Input[Optional[Optional[_builtins.bool]]] = None,
-                                   links: pulumi.Input[Optional[Optional[Sequence[Union['GetServerlessInstanceLinkArgs', 'GetServerlessInstanceLinkArgsDict']]]]] = None,
+                                   links: pulumi.Input[Optional[Optional[Sequence[Union['GetServerlessInstanceLinkArgs', 'GetServerlessInstanceLinkArgsDict', 'outputs.GetServerlessInstanceLinkResult']]]]] = None,
                                    name: pulumi.Input[Optional[_builtins.str]] = None,
                                    project_id: pulumi.Input[Optional[_builtins.str]] = None,
                                    state_name: pulumi.Input[Optional[Optional[_builtins.str]]] = None,

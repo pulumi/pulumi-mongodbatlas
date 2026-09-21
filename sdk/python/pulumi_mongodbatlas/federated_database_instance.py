@@ -469,12 +469,12 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_provider_config: pulumi.Input[Optional[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict']]] = None,
-                 data_process_region: pulumi.Input[Optional[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict']]] = None,
+                 cloud_provider_config: pulumi.Input[Optional[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict', 'outputs.FederatedDatabaseInstanceCloudProviderConfig']]] = None,
+                 data_process_region: pulumi.Input[Optional[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict', 'outputs.FederatedDatabaseInstanceDataProcessRegion']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 storage_databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict']]]]] = None,
-                 storage_stores: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict']]]]] = None,
+                 storage_databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict', 'outputs.FederatedDatabaseInstanceStorageDatabase']]]]] = None,
+                 storage_stores: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict', 'outputs.FederatedDatabaseInstanceStorageStore']]]]] = None,
                  __props__=None):
         """
         `FederatedDatabaseInstance` provides a Federated Database Instance resource.
@@ -591,18 +591,18 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict']] cloud_provider_config: Cloud provider linked to this data federated instance.
+        :param pulumi.Input[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict', 'outputs.FederatedDatabaseInstanceCloudProviderConfig']] cloud_provider_config: Cloud provider linked to this data federated instance.
                * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
                * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://www.mongodb.com/docs/atlas/security/manage-iam-roles/) or [API](https://www.mongodb.com/docs/atlas/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
                * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
                * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
                * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
-        :param pulumi.Input[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict']] data_process_region: The cloud provider region to which the Federated Instance routes client connections for data processing.
+        :param pulumi.Input[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict', 'outputs.FederatedDatabaseInstanceDataProcessRegion']] data_process_region: The cloud provider region to which the Federated Instance routes client connections for data processing.
                * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
                * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict']]]] storage_databases: Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict', 'outputs.FederatedDatabaseInstanceStorageDatabase']]]] storage_databases: Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
                * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
                * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/) data store.
                * `storage_databases.#.collections.#.name` - Name of the collection.
@@ -623,7 +623,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                * `storage_databases.#.views.#.name` - Name of the view.
                * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
                * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict']]]] storage_stores: Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict', 'outputs.FederatedDatabaseInstanceStorageStore']]]] storage_stores: Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
                * `storage_stores.#.name` - Name of the data store.
                * `storage_stores.#.provider` - Defines where the data is stored.
                * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
@@ -778,12 +778,12 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 cloud_provider_config: pulumi.Input[Optional[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict']]] = None,
-                 data_process_region: pulumi.Input[Optional[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict']]] = None,
+                 cloud_provider_config: pulumi.Input[Optional[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict', 'outputs.FederatedDatabaseInstanceCloudProviderConfig']]] = None,
+                 data_process_region: pulumi.Input[Optional[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict', 'outputs.FederatedDatabaseInstanceDataProcessRegion']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
-                 storage_databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict']]]]] = None,
-                 storage_stores: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict']]]]] = None,
+                 storage_databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict', 'outputs.FederatedDatabaseInstanceStorageDatabase']]]]] = None,
+                 storage_stores: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict', 'outputs.FederatedDatabaseInstanceStorageStore']]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -814,15 +814,15 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            cloud_provider_config: pulumi.Input[Optional[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict']]] = None,
-            data_process_region: pulumi.Input[Optional[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict']]] = None,
+            cloud_provider_config: pulumi.Input[Optional[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict', 'outputs.FederatedDatabaseInstanceCloudProviderConfig']]] = None,
+            data_process_region: pulumi.Input[Optional[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict', 'outputs.FederatedDatabaseInstanceDataProcessRegion']]] = None,
             hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
-            private_endpoint_hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstancePrivateEndpointHostnameArgs', 'FederatedDatabaseInstancePrivateEndpointHostnameArgsDict']]]]] = None,
+            private_endpoint_hostnames: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstancePrivateEndpointHostnameArgs', 'FederatedDatabaseInstancePrivateEndpointHostnameArgsDict', 'outputs.FederatedDatabaseInstancePrivateEndpointHostname']]]]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             state: pulumi.Input[Optional[_builtins.str]] = None,
-            storage_databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict']]]]] = None,
-            storage_stores: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict']]]]] = None) -> 'FederatedDatabaseInstance':
+            storage_databases: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict', 'outputs.FederatedDatabaseInstanceStorageDatabase']]]]] = None,
+            storage_stores: pulumi.Input[Optional[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict', 'outputs.FederatedDatabaseInstanceStorageStore']]]]] = None) -> 'FederatedDatabaseInstance':
         """
         Get an existing FederatedDatabaseInstance resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -830,23 +830,23 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict']] cloud_provider_config: Cloud provider linked to this data federated instance.
+        :param pulumi.Input[Union['FederatedDatabaseInstanceCloudProviderConfigArgs', 'FederatedDatabaseInstanceCloudProviderConfigArgsDict', 'outputs.FederatedDatabaseInstanceCloudProviderConfig']] cloud_provider_config: Cloud provider linked to this data federated instance.
                * `cloud_provider_config.aws` - AWS provider of the cloud service where the Federated Database Instance can access the S3 Bucket.
                * `cloud_provider_config.aws.role_id` - (Required) Unique identifier of the role that the Federated Instance can use to access the data stores. If necessary, use the Atlas [UI](https://www.mongodb.com/docs/atlas/security/manage-iam-roles/) or [API](https://www.mongodb.com/docs/atlas/reference/api/cloud-provider-access-get-roles/) to retrieve the role ID. You must also specify the `test_s3_bucket`.
                * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
                * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
                * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
-        :param pulumi.Input[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict']] data_process_region: The cloud provider region to which the Federated Instance routes client connections for data processing.
+        :param pulumi.Input[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict', 'outputs.FederatedDatabaseInstanceDataProcessRegion']] data_process_region: The cloud provider region to which the Federated Instance routes client connections for data processing.
                * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
                * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstancePrivateEndpointHostnameArgs', 'FederatedDatabaseInstancePrivateEndpointHostnameArgsDict']]]] private_endpoint_hostnames: The list of private endpoint hostnames assigned to the Federated Database Instance.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstancePrivateEndpointHostnameArgs', 'FederatedDatabaseInstancePrivateEndpointHostnameArgsDict', 'outputs.FederatedDatabaseInstancePrivateEndpointHostname']]]] private_endpoint_hostnames: The list of private endpoint hostnames assigned to the Federated Database Instance.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] state: Current state of the Federated Database Instance:
                * `ACTIVE` - The Federated Database Instance is active and verified. You can query the data stores associated with the Federated Database Instance.
                * `DELETED` - The Federated Database Instance was deleted.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict']]]] storage_databases: Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageDatabaseArgs', 'FederatedDatabaseInstanceStorageDatabaseArgsDict', 'outputs.FederatedDatabaseInstanceStorageDatabase']]]] storage_databases: Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
                * `storage_databases.#.name` - Name of the database to which the Federated Database Instance maps the data contained in the data store.
                * `storage_databases.#.collections` -     Array of objects where each object represents a collection and data sources that map to a [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/) data store.
                * `storage_databases.#.collections.#.name` - Name of the collection.
@@ -867,7 +867,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                * `storage_databases.#.views.#.name` - Name of the view.
                * `storage_databases.#.views.#.source` -  Name of the source collection for the view.
                * `storage_databases.#.views.#.pipeline`- Aggregation pipeline stage(s) to apply to the source collection.
-        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict']]]] storage_stores: Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
+        :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict', 'outputs.FederatedDatabaseInstanceStorageStore']]]] storage_stores: Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
                * `storage_stores.#.name` - Name of the data store.
                * `storage_stores.#.provider` - Defines where the data is stored.
                * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.

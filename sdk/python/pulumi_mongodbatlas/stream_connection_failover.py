@@ -541,19 +541,19 @@ class StreamConnectionFailover(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authentication: pulumi.Input[Optional[Union['StreamConnectionFailoverAuthenticationArgs', 'StreamConnectionFailoverAuthenticationArgsDict']]] = None,
+                 authentication: pulumi.Input[Optional[Union['StreamConnectionFailoverAuthenticationArgs', 'StreamConnectionFailoverAuthenticationArgsDict', 'outputs.StreamConnectionFailoverAuthentication']]] = None,
                  bootstrap_servers: pulumi.Input[Optional[_builtins.str]] = None,
                  cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
                  cluster_project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  connection_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 db_role_to_execute: pulumi.Input[Optional[Union['StreamConnectionFailoverDbRoleToExecuteArgs', 'StreamConnectionFailoverDbRoleToExecuteArgsDict']]] = None,
+                 db_role_to_execute: pulumi.Input[Optional[Union['StreamConnectionFailoverDbRoleToExecuteArgs', 'StreamConnectionFailoverDbRoleToExecuteArgsDict', 'outputs.StreamConnectionFailoverDbRoleToExecute']]] = None,
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
-                 networking: pulumi.Input[Optional[Union['StreamConnectionFailoverNetworkingArgs', 'StreamConnectionFailoverNetworkingArgsDict']]] = None,
+                 networking: pulumi.Input[Optional[Union['StreamConnectionFailoverNetworkingArgs', 'StreamConnectionFailoverNetworkingArgsDict', 'outputs.StreamConnectionFailoverNetworking']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 security: pulumi.Input[Optional[Union['StreamConnectionFailoverSecurityArgs', 'StreamConnectionFailoverSecurityArgsDict']]] = None,
-                 timeouts: pulumi.Input[Optional[Union['StreamConnectionFailoverTimeoutsArgs', 'StreamConnectionFailoverTimeoutsArgsDict']]] = None,
+                 security: pulumi.Input[Optional[Union['StreamConnectionFailoverSecurityArgs', 'StreamConnectionFailoverSecurityArgsDict', 'outputs.StreamConnectionFailoverSecurity']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['StreamConnectionFailoverTimeoutsArgs', 'StreamConnectionFailoverTimeoutsArgsDict', 'outputs.StreamConnectionFailoverTimeouts']]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  workspace_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -631,18 +631,18 @@ class StreamConnectionFailover(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['StreamConnectionFailoverAuthenticationArgs', 'StreamConnectionFailoverAuthenticationArgsDict']] authentication: Optional for type: Kafka. User credentials required to connect to a Kafka Cluster. Includes the authentication type, as well as the parameters for that authentication mode.
+        :param pulumi.Input[Union['StreamConnectionFailoverAuthenticationArgs', 'StreamConnectionFailoverAuthenticationArgsDict', 'outputs.StreamConnectionFailoverAuthentication']] authentication: Optional for type: Kafka. User credentials required to connect to a Kafka Cluster. Includes the authentication type, as well as the parameters for that authentication mode.
         :param pulumi.Input[_builtins.str] bootstrap_servers: Optional for type: Kafka. Comma separated list of server addresses.
         :param pulumi.Input[_builtins.str] cluster_name: Optional for type: Cluster. Name of the cluster configured for this connection.
         :param pulumi.Input[_builtins.str] cluster_project_id: Optional for type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection name.
-        :param pulumi.Input[Union['StreamConnectionFailoverDbRoleToExecuteArgs', 'StreamConnectionFailoverDbRoleToExecuteArgsDict']] db_role_to_execute: Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
+        :param pulumi.Input[Union['StreamConnectionFailoverDbRoleToExecuteArgs', 'StreamConnectionFailoverDbRoleToExecuteArgsDict', 'outputs.StreamConnectionFailoverDbRoleToExecute']] db_role_to_execute: Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
-        :param pulumi.Input[Union['StreamConnectionFailoverNetworkingArgs', 'StreamConnectionFailoverNetworkingArgsDict']] networking: Optional for type: Kafka. Networking configuration for Streams connections.
+        :param pulumi.Input[Union['StreamConnectionFailoverNetworkingArgs', 'StreamConnectionFailoverNetworkingArgsDict', 'outputs.StreamConnectionFailoverNetworking']] networking: Optional for type: Kafka. Networking configuration for Streams connections.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] region: Connection region.
-        :param pulumi.Input[Union['StreamConnectionFailoverSecurityArgs', 'StreamConnectionFailoverSecurityArgsDict']] security: Optional for type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
+        :param pulumi.Input[Union['StreamConnectionFailoverSecurityArgs', 'StreamConnectionFailoverSecurityArgsDict', 'outputs.StreamConnectionFailoverSecurity']] security: Optional for type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
         :param pulumi.Input[_builtins.str] type: Connection type.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream workspace.
         """
@@ -739,19 +739,19 @@ class StreamConnectionFailover(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 authentication: pulumi.Input[Optional[Union['StreamConnectionFailoverAuthenticationArgs', 'StreamConnectionFailoverAuthenticationArgsDict']]] = None,
+                 authentication: pulumi.Input[Optional[Union['StreamConnectionFailoverAuthenticationArgs', 'StreamConnectionFailoverAuthenticationArgsDict', 'outputs.StreamConnectionFailoverAuthentication']]] = None,
                  bootstrap_servers: pulumi.Input[Optional[_builtins.str]] = None,
                  cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
                  cluster_project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
                  connection_name: pulumi.Input[Optional[_builtins.str]] = None,
-                 db_role_to_execute: pulumi.Input[Optional[Union['StreamConnectionFailoverDbRoleToExecuteArgs', 'StreamConnectionFailoverDbRoleToExecuteArgsDict']]] = None,
+                 db_role_to_execute: pulumi.Input[Optional[Union['StreamConnectionFailoverDbRoleToExecuteArgs', 'StreamConnectionFailoverDbRoleToExecuteArgsDict', 'outputs.StreamConnectionFailoverDbRoleToExecute']]] = None,
                  delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
-                 networking: pulumi.Input[Optional[Union['StreamConnectionFailoverNetworkingArgs', 'StreamConnectionFailoverNetworkingArgsDict']]] = None,
+                 networking: pulumi.Input[Optional[Union['StreamConnectionFailoverNetworkingArgs', 'StreamConnectionFailoverNetworkingArgsDict', 'outputs.StreamConnectionFailoverNetworking']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 security: pulumi.Input[Optional[Union['StreamConnectionFailoverSecurityArgs', 'StreamConnectionFailoverSecurityArgsDict']]] = None,
-                 timeouts: pulumi.Input[Optional[Union['StreamConnectionFailoverTimeoutsArgs', 'StreamConnectionFailoverTimeoutsArgsDict']]] = None,
+                 security: pulumi.Input[Optional[Union['StreamConnectionFailoverSecurityArgs', 'StreamConnectionFailoverSecurityArgsDict', 'outputs.StreamConnectionFailoverSecurity']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['StreamConnectionFailoverTimeoutsArgs', 'StreamConnectionFailoverTimeoutsArgsDict', 'outputs.StreamConnectionFailoverTimeouts']]] = None,
                  type: pulumi.Input[Optional[_builtins.str]] = None,
                  workspace_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -800,21 +800,21 @@ class StreamConnectionFailover(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
-            authentication: pulumi.Input[Optional[Union['StreamConnectionFailoverAuthenticationArgs', 'StreamConnectionFailoverAuthenticationArgsDict']]] = None,
+            authentication: pulumi.Input[Optional[Union['StreamConnectionFailoverAuthenticationArgs', 'StreamConnectionFailoverAuthenticationArgsDict', 'outputs.StreamConnectionFailoverAuthentication']]] = None,
             bootstrap_servers: pulumi.Input[Optional[_builtins.str]] = None,
             cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
             cluster_project_id: pulumi.Input[Optional[_builtins.str]] = None,
             config: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
             connection_name: pulumi.Input[Optional[_builtins.str]] = None,
-            db_role_to_execute: pulumi.Input[Optional[Union['StreamConnectionFailoverDbRoleToExecuteArgs', 'StreamConnectionFailoverDbRoleToExecuteArgsDict']]] = None,
+            db_role_to_execute: pulumi.Input[Optional[Union['StreamConnectionFailoverDbRoleToExecuteArgs', 'StreamConnectionFailoverDbRoleToExecuteArgsDict', 'outputs.StreamConnectionFailoverDbRoleToExecute']]] = None,
             delete_on_create_timeout: pulumi.Input[Optional[_builtins.bool]] = None,
             failover_connection_id: pulumi.Input[Optional[_builtins.str]] = None,
-            networking: pulumi.Input[Optional[Union['StreamConnectionFailoverNetworkingArgs', 'StreamConnectionFailoverNetworkingArgsDict']]] = None,
+            networking: pulumi.Input[Optional[Union['StreamConnectionFailoverNetworkingArgs', 'StreamConnectionFailoverNetworkingArgsDict', 'outputs.StreamConnectionFailoverNetworking']]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
-            security: pulumi.Input[Optional[Union['StreamConnectionFailoverSecurityArgs', 'StreamConnectionFailoverSecurityArgsDict']]] = None,
+            security: pulumi.Input[Optional[Union['StreamConnectionFailoverSecurityArgs', 'StreamConnectionFailoverSecurityArgsDict', 'outputs.StreamConnectionFailoverSecurity']]] = None,
             state: pulumi.Input[Optional[_builtins.str]] = None,
-            timeouts: pulumi.Input[Optional[Union['StreamConnectionFailoverTimeoutsArgs', 'StreamConnectionFailoverTimeoutsArgsDict']]] = None,
+            timeouts: pulumi.Input[Optional[Union['StreamConnectionFailoverTimeoutsArgs', 'StreamConnectionFailoverTimeoutsArgsDict', 'outputs.StreamConnectionFailoverTimeouts']]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None,
             workspace_name: pulumi.Input[Optional[_builtins.str]] = None) -> 'StreamConnectionFailover':
         """
@@ -824,19 +824,19 @@ class StreamConnectionFailover(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Union['StreamConnectionFailoverAuthenticationArgs', 'StreamConnectionFailoverAuthenticationArgsDict']] authentication: Optional for type: Kafka. User credentials required to connect to a Kafka Cluster. Includes the authentication type, as well as the parameters for that authentication mode.
+        :param pulumi.Input[Union['StreamConnectionFailoverAuthenticationArgs', 'StreamConnectionFailoverAuthenticationArgsDict', 'outputs.StreamConnectionFailoverAuthentication']] authentication: Optional for type: Kafka. User credentials required to connect to a Kafka Cluster. Includes the authentication type, as well as the parameters for that authentication mode.
         :param pulumi.Input[_builtins.str] bootstrap_servers: Optional for type: Kafka. Comma separated list of server addresses.
         :param pulumi.Input[_builtins.str] cluster_name: Optional for type: Cluster. Name of the cluster configured for this connection.
         :param pulumi.Input[_builtins.str] cluster_project_id: Optional for type: Cluster. Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams workspace. You must first enable the organization setting.
         :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] config: Optional for type: Kafka. Map of Kafka key-value pairs for optional configuration. This object is flat, and keys can have '.' characters.
         :param pulumi.Input[_builtins.str] connection_name: Label that identifies the stream connection name.
-        :param pulumi.Input[Union['StreamConnectionFailoverDbRoleToExecuteArgs', 'StreamConnectionFailoverDbRoleToExecuteArgsDict']] db_role_to_execute: Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
+        :param pulumi.Input[Union['StreamConnectionFailoverDbRoleToExecuteArgs', 'StreamConnectionFailoverDbRoleToExecuteArgsDict', 'outputs.StreamConnectionFailoverDbRoleToExecute']] db_role_to_execute: Optional for type: Cluster. Name of a built-in or custom DB Role to connect to a MongoDB Cloud Cluster.
         :param pulumi.Input[_builtins.bool] delete_on_create_timeout: Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
         :param pulumi.Input[_builtins.str] failover_connection_id: Unique identifier of the connection.
-        :param pulumi.Input[Union['StreamConnectionFailoverNetworkingArgs', 'StreamConnectionFailoverNetworkingArgsDict']] networking: Optional for type: Kafka. Networking configuration for Streams connections.
+        :param pulumi.Input[Union['StreamConnectionFailoverNetworkingArgs', 'StreamConnectionFailoverNetworkingArgsDict', 'outputs.StreamConnectionFailoverNetworking']] networking: Optional for type: Kafka. Networking configuration for Streams connections.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] region: Connection region.
-        :param pulumi.Input[Union['StreamConnectionFailoverSecurityArgs', 'StreamConnectionFailoverSecurityArgsDict']] security: Optional for type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
+        :param pulumi.Input[Union['StreamConnectionFailoverSecurityArgs', 'StreamConnectionFailoverSecurityArgsDict', 'outputs.StreamConnectionFailoverSecurity']] security: Optional for type: Kafka. Properties for the secure transport connection to Kafka. For SSL, this can include the trusted certificate to use.
         :param pulumi.Input[_builtins.str] state: Connection state.
         :param pulumi.Input[_builtins.str] type: Connection type.
         :param pulumi.Input[_builtins.str] workspace_name: Label that identifies the stream workspace.

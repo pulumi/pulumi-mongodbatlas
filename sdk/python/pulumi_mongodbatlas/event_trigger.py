@@ -720,7 +720,7 @@ class EventTrigger(pulumi.CustomResource):
                  config_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  config_service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  disabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 event_processors: pulumi.Input[Optional[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict']]] = None,
+                 event_processors: pulumi.Input[Optional[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict', 'outputs.EventTriggerEventProcessors']]] = None,
                  function_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -865,7 +865,7 @@ class EventTrigger(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] config_schedule: Required for `SCHEDULED` type. A [cron expression](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/scheduled-triggers/#cron-expressions) that defines the trigger schedule.
         :param pulumi.Input[_builtins.str] config_service_id: Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
         :param pulumi.Input[_builtins.bool] disabled: Default: `false` If `true`, the trigger is disabled.
-        :param pulumi.Input[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict']] event_processors: An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
+        :param pulumi.Input[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict', 'outputs.EventTriggerEventProcessors']] event_processors: An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
                * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
                * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
         :param pulumi.Input[_builtins.str] function_id: The ID of the function associated with the trigger.
@@ -1030,7 +1030,7 @@ class EventTrigger(pulumi.CustomResource):
                  config_schedule: pulumi.Input[Optional[_builtins.str]] = None,
                  config_service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  disabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 event_processors: pulumi.Input[Optional[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict']]] = None,
+                 event_processors: pulumi.Input[Optional[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict', 'outputs.EventTriggerEventProcessors']]] = None,
                  function_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1097,7 +1097,7 @@ class EventTrigger(pulumi.CustomResource):
             config_schedule_type: pulumi.Input[Optional[_builtins.str]] = None,
             config_service_id: pulumi.Input[Optional[_builtins.str]] = None,
             disabled: pulumi.Input[Optional[_builtins.bool]] = None,
-            event_processors: pulumi.Input[Optional[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict']]] = None,
+            event_processors: pulumi.Input[Optional[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict', 'outputs.EventTriggerEventProcessors']]] = None,
             function_id: pulumi.Input[Optional[_builtins.str]] = None,
             function_name: pulumi.Input[Optional[_builtins.str]] = None,
             name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1127,7 +1127,7 @@ class EventTrigger(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] config_schedule_type: The type of the scheduled trigger.
         :param pulumi.Input[_builtins.str] config_service_id: Required for `DATABASE` type. The ID of the MongoDB Service associated with the trigger.
         :param pulumi.Input[_builtins.bool] disabled: Default: `false` If `true`, the trigger is disabled.
-        :param pulumi.Input[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict']] event_processors: An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
+        :param pulumi.Input[Union['EventTriggerEventProcessorsArgs', 'EventTriggerEventProcessorsArgsDict', 'outputs.EventTriggerEventProcessors']] event_processors: An object where each field name is an event processor ID and each value is an object that configures its corresponding event processor. The following event processors are supported: `AWS_EVENTBRIDGE` For an example configuration object, see [Send Trigger Events to AWS EventBridge](https://www.mongodb.com/docs/atlas/atlas-ui/triggers/aws-eventbridge/#send-trigger-events-to-aws-eventbridge).
                * `event_processors.0.aws_eventbridge.config_account_id` - (Optional) AWS Account ID.
                * `event_processors.0.aws_eventbridge.config_region` - (Optional) Region of AWS Account.
         :param pulumi.Input[_builtins.str] function_id: The ID of the function associated with the trigger.

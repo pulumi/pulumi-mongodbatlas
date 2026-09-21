@@ -318,7 +318,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_name: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 timeouts: pulumi.Input[Optional[Union['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict', 'outputs.PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts']]] = None,
                  __props__=None):
         """
         `PrivatelinkEndpointServiceDataFederationOnlineArchive` provides a Private Endpoint Service resource for Data Federation and Online Archive. The resource allows you to create and manage a private endpoint for Federated Database Instances and Online Archives to the specified project.
@@ -380,7 +380,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Human-readable label that identifies the cloud service provider.
         :param pulumi.Input[_builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
-        :param pulumi.Input[Union['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict']] timeouts: The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+        :param pulumi.Input[Union['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict', 'outputs.PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts']] timeouts: The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
         """
         ...
     @overload
@@ -461,7 +461,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_name: pulumi.Input[Optional[_builtins.str]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
-                 timeouts: pulumi.Input[Optional[Union['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict']]] = None,
+                 timeouts: pulumi.Input[Optional[Union['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict', 'outputs.PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -503,7 +503,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             provider_name: pulumi.Input[Optional[_builtins.str]] = None,
             region: pulumi.Input[Optional[_builtins.str]] = None,
-            timeouts: pulumi.Input[Optional[Union['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict']]] = None,
+            timeouts: pulumi.Input[Optional[Union['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict', 'outputs.PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts']]] = None,
             type: pulumi.Input[Optional[_builtins.str]] = None) -> 'PrivatelinkEndpointServiceDataFederationOnlineArchive':
         """
         Get an existing PrivatelinkEndpointServiceDataFederationOnlineArchive resource's state with the given name, id, and optional extra
@@ -519,7 +519,7 @@ class PrivatelinkEndpointServiceDataFederationOnlineArchive(pulumi.CustomResourc
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_name: Human-readable label that identifies the cloud service provider.
         :param pulumi.Input[_builtins.str] region: Human-readable label to identify the region of VPC endpoint.  Requires the **Atlas region name**, see the reference list for [AWS](https://www.mongodb.com/docs/atlas/reference/amazon-aws/), [GCP](https://www.mongodb.com/docs/atlas/reference/google-gcp/), [Azure](https://www.mongodb.com/docs/atlas/reference/microsoft-azure/). If defined, you must also specify a value for `customer_endpoint_dns_name`.
-        :param pulumi.Input[Union['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict']] timeouts: The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
+        :param pulumi.Input[Union['PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgs', 'PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeoutsArgsDict', 'outputs.PrivatelinkEndpointServiceDataFederationOnlineArchiveTimeouts']] timeouts: The duration to wait for the Private Endpoint Service resource for Data Federation and Online Archive to be created or deleted. The timeout value is specified in a signed sequence of decimal numbers followed by a time unit (e.g., `1h45m`, `300s`, `10m`). Valid units are: `ns`, `us` (or `µs`), `ms`, `s`, `m`, `h`. The default timeout values for the following operations are: `create` (default: `2h`), `delete` (default: `2h`). Learn more about timeouts.
         :param pulumi.Input[_builtins.str] type: Human-readable label that identifies the resource type associated with this private endpoint.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))

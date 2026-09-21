@@ -90,7 +90,7 @@ class AwaitableGetCustomDbRoleResult(GetCustomDbRoleResult):
             role_name=self.role_name)
 
 
-def get_custom_db_role(inherited_roles: Optional[Sequence[Union['GetCustomDbRoleInheritedRoleArgs', 'GetCustomDbRoleInheritedRoleArgsDict']]] = None,
+def get_custom_db_role(inherited_roles: Optional[Sequence[Union['GetCustomDbRoleInheritedRoleArgs', 'GetCustomDbRoleInheritedRoleArgsDict', 'outputs.GetCustomDbRoleInheritedRoleResult']]] = None,
                        project_id: Optional[_builtins.str] = None,
                        role_name: Optional[_builtins.str] = None,
                        opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCustomDbRoleResult:
@@ -143,7 +143,7 @@ def get_custom_db_role(inherited_roles: Optional[Sequence[Union['GetCustomDbRole
         inherited_roles=pulumi.get(__ret__, 'inherited_roles'),
         project_id=pulumi.get(__ret__, 'project_id'),
         role_name=pulumi.get(__ret__, 'role_name'))
-def get_custom_db_role_output(inherited_roles: pulumi.Input[Optional[Optional[Sequence[Union['GetCustomDbRoleInheritedRoleArgs', 'GetCustomDbRoleInheritedRoleArgsDict']]]]] = None,
+def get_custom_db_role_output(inherited_roles: pulumi.Input[Optional[Optional[Sequence[Union['GetCustomDbRoleInheritedRoleArgs', 'GetCustomDbRoleInheritedRoleArgsDict', 'outputs.GetCustomDbRoleInheritedRoleResult']]]]] = None,
                               project_id: pulumi.Input[Optional[_builtins.str]] = None,
                               role_name: pulumi.Input[Optional[_builtins.str]] = None,
                               opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCustomDbRoleResult]:
