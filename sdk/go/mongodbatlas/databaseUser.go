@@ -201,7 +201,7 @@ import (
 // ```
 // `username` format: Atlas OIDC IdP ID (found in federation settings), followed by a '/', followed by the IdP group name
 //
-// Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+// Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 //
 // ## Import
 //

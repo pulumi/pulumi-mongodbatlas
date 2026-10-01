@@ -94,7 +94,7 @@ namespace Pulumi.Mongodbatlas
     ///         {
     ///             { "auto.offset.reset", "latest" },
     ///         },
-    ///         BootstrapServers = "localhost:9091,localhost:9092",
+    ///         BootstrapServers = "example.com:9092",
     ///     });
     /// 
     /// });
@@ -126,7 +126,7 @@ namespace Pulumi.Mongodbatlas
     ///             Scope = "read:messages write:messages",
     ///             SaslOauthbearerExtensions = "logicalCluster=lkc-kmom,identityPoolId=pool-lAr",
     ///         },
-    ///         BootstrapServers = "localhost:9092,localhost:9092",
+    ///         BootstrapServers = "example.com:9092",
     ///         Config = 
     ///         {
     ///             { "auto.offset.reset", "earliest" },
@@ -178,7 +178,7 @@ namespace Pulumi.Mongodbatlas
     ///         {
     ///             { "auto.offset.reset", "latest" },
     ///         },
-    ///         BootstrapServers = "localhost:9091,localhost:9092",
+    ///         BootstrapServers = "example.com:9092",
     ///     });
     /// 
     /// });

@@ -211,6 +211,14 @@ export interface GetAdvancedClusterResult {
     readonly connectionStrings: outputs.GetAdvancedClusterConnectionStrings;
     readonly createDate: string;
     /**
+     * Database edition explicitly requested for the cluster. Valid values are `CORE` and `INFINITE`. This value is absent if MongoDB Cloud selected the default.
+     */
+    readonly databaseEdition: string;
+    /**
+     * Database edition that the cluster currently uses. Valid values are `CORE` and `INFINITE`.
+     */
+    readonly effectiveDatabaseEdition: string;
+    /**
      * Possible values are AWS, GCP, AZURE or NONE.
      */
     readonly encryptionAtRestProvider: string;

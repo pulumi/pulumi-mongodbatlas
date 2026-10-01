@@ -84,6 +84,20 @@ def get_project_service_accounts(include_system_managed: Optional[_builtins.bool
 
     ## Example Usage
 
+    ### S
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    # Read the Project Service Account and the project's Service Accounts back from Atlas.
+    this = mongodbatlas.get_project_service_account(project_id=project_id,
+        client_id=this_mongodbatlas_project_service_account["clientId"])
+    this_get_project_service_accounts = mongodbatlas.get_project_service_accounts(project_id=project_id)
+    pulumi.export("serviceAccountClientId", this_mongodbatlas_project_service_account["clientId"])
+    pulumi.export("serviceAccountName", this.name)
+    pulumi.export("serviceAccountsResults", this_get_project_service_accounts.results)
+    ```
+
 
     :param _builtins.bool include_system_managed: Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.
     :param _builtins.str project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -107,6 +121,20 @@ def get_project_service_accounts_output(include_system_managed: pulumi.Input[Opt
     > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
 
     ## Example Usage
+
+    ### S
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    # Read the Project Service Account and the project's Service Accounts back from Atlas.
+    this = mongodbatlas.get_project_service_account(project_id=project_id,
+        client_id=this_mongodbatlas_project_service_account["clientId"])
+    this_get_project_service_accounts = mongodbatlas.get_project_service_accounts(project_id=project_id)
+    pulumi.export("serviceAccountClientId", this_mongodbatlas_project_service_account["clientId"])
+    pulumi.export("serviceAccountName", this.name)
+    pulumi.export("serviceAccountsResults", this_get_project_service_accounts.results)
+    ```
 
 
     :param _builtins.bool include_system_managed: Flag that indicates whether system-managed Service Accounts (such as those used for MCP ingress/egress integrations) are included in the response. When false, only user-managed Service Accounts are returned.

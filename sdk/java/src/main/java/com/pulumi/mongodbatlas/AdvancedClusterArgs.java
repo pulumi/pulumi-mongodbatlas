@@ -154,14 +154,29 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * Database edition for the cluster. Valid values are `CORE` and `INFINITE`. If you omit this attribute, MongoDB Cloud selects the default database edition. Only `REPLICASET` clusters currently support the `INFINITE` edition: the provider rejects the configuration if you combine `INFINITE` with the `SHARDED` or `GEOSHARDED` cluster type.
+     * 
+     */
+    @Import(name="databaseEdition")
+    private @Nullable Output<String> databaseEdition;
+
+    /**
+     * @return Database edition for the cluster. Valid values are `CORE` and `INFINITE`. If you omit this attribute, MongoDB Cloud selects the default database edition. Only `REPLICASET` clusters currently support the `INFINITE` edition: the provider rejects the configuration if you combine `INFINITE` with the `SHARDED` or `GEOSHARDED` cluster type.
+     * 
+     */
+    public Optional<Output<String>> databaseEdition() {
+        return Optional.ofNullable(this.databaseEdition);
+    }
+
+    /**
+     * Indicates whether to delete the cluster if a timeout is reached while waiting for Atlas to finish creating it. When set to `true` and a timeout occurs, the provider deletes the cluster and returns immediately without waiting for deletion to complete. When set to `false`, the provider does not delete the cluster on timeout. If you suspect a transient error when the value is `true`, wait before retrying to allow the deletion to finish. Default is `true`.
      * 
      */
     @Import(name="deleteOnCreateTimeout")
     private @Nullable Output<Boolean> deleteOnCreateTimeout;
 
     /**
-     * @return Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+     * @return Indicates whether to delete the cluster if a timeout is reached while waiting for Atlas to finish creating it. When set to `true` and a timeout occurs, the provider deletes the cluster and returns immediately without waiting for deletion to complete. When set to `false`, the provider does not delete the cluster on timeout. If you suspect a transient error when the value is `true`, wait before retrying to allow the deletion to finish. Default is `true`.
      * 
      */
     public Optional<Output<Boolean>> deleteOnCreateTimeout() {
@@ -216,6 +231,8 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     /**
      * Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `versionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `versionReleaseSystem`: `LTS`.
      * 
+     * &gt; **NOTE:** Terraform supports deploying clusters on new MongoDB major versions as soon as Atlas enables them for your project. No provider configuration changes are required.
+     * 
      * &gt; **NOTE:** If the major version is modified outside of Terraform, the provider will emit a warning at plan time, along with an empty plan. Update this attribute in your configuration to match the current version to clear the warning. In an upcoming major version of the provider, this drift will result in a non-empty plan.
      * 
      */
@@ -224,6 +241,8 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
 
     /**
      * @return Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `versionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `versionReleaseSystem`: `LTS`.
+     * 
+     * &gt; **NOTE:** Terraform supports deploying clusters on new MongoDB major versions as soon as Atlas enables them for your project. No provider configuration changes are required.
      * 
      * &gt; **NOTE:** If the major version is modified outside of Terraform, the provider will emit a warning at plan time, along with an empty plan. Update this attribute in your configuration to match the current version to clear the warning. In an upcoming major version of the provider, this drift will result in a non-empty plan.
      * 
@@ -473,7 +492,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     }
 
     /**
-     * Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+     * Controls how hardware specification fields are returned in the response. When set to `true`, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to `false` (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. The spec-preserving behavior applies only while auto-scaling remains enabled. If an update toggles auto-scaling on or off, Atlas applies the requested spec values in that update. This attribute applies to dedicated clusters, not to tenant or flex clusters. See Auto-Scaling with Effective Fields for more details.
      * If your cluster has more than one `replicationSpecs` entry, see Multi-shard clusters and topology changes before enabling this attribute.
      * **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes from your configuration, you&#39;ll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
      * 
@@ -482,7 +501,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
     private @Nullable Output<Boolean> useEffectiveFields;
 
     /**
-     * @return Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+     * @return Controls how hardware specification fields are returned in the response. When set to `true`, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to `false` (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. The spec-preserving behavior applies only while auto-scaling remains enabled. If an update toggles auto-scaling on or off, Atlas applies the requested spec values in that update. This attribute applies to dedicated clusters, not to tenant or flex clusters. See Auto-Scaling with Effective Fields for more details.
      * If your cluster has more than one `replicationSpecs` entry, see Multi-shard clusters and topology changes before enabling this attribute.
      * **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes from your configuration, you&#39;ll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
      * 
@@ -520,6 +539,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         this.biConnectorConfig = $.biConnectorConfig;
         this.clusterType = $.clusterType;
         this.configServerManagementMode = $.configServerManagementMode;
+        this.databaseEdition = $.databaseEdition;
         this.deleteOnCreateTimeout = $.deleteOnCreateTimeout;
         this.encryptionAtRestProvider = $.encryptionAtRestProvider;
         this.globalClusterSelfManagedSharding = $.globalClusterSelfManagedSharding;
@@ -733,7 +753,28 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * @param databaseEdition Database edition for the cluster. Valid values are `CORE` and `INFINITE`. If you omit this attribute, MongoDB Cloud selects the default database edition. Only `REPLICASET` clusters currently support the `INFINITE` edition: the provider rejects the configuration if you combine `INFINITE` with the `SHARDED` or `GEOSHARDED` cluster type.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder databaseEdition(@Nullable Output<String> databaseEdition) {
+            $.databaseEdition = databaseEdition;
+            return this;
+        }
+
+        /**
+         * @param databaseEdition Database edition for the cluster. Valid values are `CORE` and `INFINITE`. If you omit this attribute, MongoDB Cloud selects the default database edition. Only `REPLICASET` clusters currently support the `INFINITE` edition: the provider rejects the configuration if you combine `INFINITE` with the `SHARDED` or `GEOSHARDED` cluster type.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder databaseEdition(String databaseEdition) {
+            return databaseEdition(Output.of(databaseEdition));
+        }
+
+        /**
+         * @param deleteOnCreateTimeout Indicates whether to delete the cluster if a timeout is reached while waiting for Atlas to finish creating it. When set to `true` and a timeout occurs, the provider deletes the cluster and returns immediately without waiting for deletion to complete. When set to `false`, the provider does not delete the cluster on timeout. If you suspect a transient error when the value is `true`, wait before retrying to allow the deletion to finish. Default is `true`.
          * 
          * @return builder
          * 
@@ -744,7 +785,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param deleteOnCreateTimeout Indicates whether to delete the resource being created if a timeout is reached when waiting for completion. When set to `true` and timeout occurs, it triggers the deletion and returns immediately without waiting for deletion to complete. When set to `false`, the timeout will not trigger resource deletion. If you suspect a transient error when the value is `true`, wait before retrying to allow resource deletion to finish. Default is `true`.
+         * @param deleteOnCreateTimeout Indicates whether to delete the cluster if a timeout is reached while waiting for Atlas to finish creating it. When set to `true` and a timeout occurs, the provider deletes the cluster and returns immediately without waiting for deletion to complete. When set to `false`, the provider does not delete the cluster on timeout. If you suspect a transient error when the value is `true`, wait before retrying to allow the deletion to finish. Default is `true`.
          * 
          * @return builder
          * 
@@ -819,6 +860,8 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         /**
          * @param mongoDbMajorVersion Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `versionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `versionReleaseSystem`: `LTS`.
          * 
+         * &gt; **NOTE:** Terraform supports deploying clusters on new MongoDB major versions as soon as Atlas enables them for your project. No provider configuration changes are required.
+         * 
          * &gt; **NOTE:** If the major version is modified outside of Terraform, the provider will emit a warning at plan time, along with an empty plan. Update this attribute in your configuration to match the current version to clear the warning. In an upcoming major version of the provider, this drift will result in a non-empty plan.
          * 
          * @return builder
@@ -831,6 +874,8 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
 
         /**
          * @param mongoDbMajorVersion Version of the cluster to deploy. Atlas supports all the MongoDB versions that have **not** reached [End of Live](https://www.mongodb.com/legal/support-policy/lifecycles) for M10+ clusters. If omitted, Atlas deploys the cluster with the default version. For more details, see [documentation](https://www.mongodb.com/docs/atlas/reference/faq/database/#which-versions-of-mongodb-do-service-clusters-use-). Atlas always deploys the cluster with the latest stable release of the specified version.  If you set a value to this parameter and set `versionReleaseSystem` `CONTINUOUS`, the resource returns an error. Either clear this parameter or set `versionReleaseSystem`: `LTS`.
+         * 
+         * &gt; **NOTE:** Terraform supports deploying clusters on new MongoDB major versions as soon as Atlas enables them for your project. No provider configuration changes are required.
          * 
          * &gt; **NOTE:** If the major version is modified outside of Terraform, the provider will emit a warning at plan time, along with an empty plan. Update this attribute in your configuration to match the current version to clear the warning. In an upcoming major version of the provider, this drift will result in a non-empty plan.
          * 
@@ -1185,7 +1230,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param useEffectiveFields Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+         * @param useEffectiveFields Controls how hardware specification fields are returned in the response. When set to `true`, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to `false` (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. The spec-preserving behavior applies only while auto-scaling remains enabled. If an update toggles auto-scaling on or off, Atlas applies the requested spec values in that update. This attribute applies to dedicated clusters, not to tenant or flex clusters. See Auto-Scaling with Effective Fields for more details.
          * If your cluster has more than one `replicationSpecs` entry, see Multi-shard clusters and topology changes before enabling this attribute.
          * **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes from your configuration, you&#39;ll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
          * 
@@ -1198,7 +1243,7 @@ public final class AdvancedClusterArgs extends com.pulumi.resources.ResourceArgs
         }
 
         /**
-         * @param useEffectiveFields Controls how hardware specification fields are returned in the response. When set to true, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to false (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. This attribute applies to dedicated clusters, not to tenant or flex clusters. This attribute will be deprecated in provider version 2.x and removed in 3.x when the new behavior becomes default. See Auto-Scaling with Effective Fields for more details.
+         * @param useEffectiveFields Controls how hardware specification fields are returned in the response. When set to `true`, the non-effective specs (`electableSpecs`, `readOnlySpecs`, `analyticsSpecs`) fields return the hardware specifications that the client provided. When set to `false` (default), the non-effective specs fields show the **current** hardware specifications. Cluster auto-scaling is the primary cause for differences between initial and current hardware specifications. This opt-in feature enhances auto-scaling workflows by eliminating the need for `lifecycle.ignore_changes` blocks and preventing plan drift from Atlas-managed changes. The spec-preserving behavior applies only while auto-scaling remains enabled. If an update toggles auto-scaling on or off, Atlas applies the requested spec values in that update. This attribute applies to dedicated clusters, not to tenant or flex clusters. See Auto-Scaling with Effective Fields for more details.
          * If your cluster has more than one `replicationSpecs` entry, see Multi-shard clusters and topology changes before enabling this attribute.
          * **Important:** Toggle this flag and remove any existing `lifecycle.ignore_changes` blocks for spec fields in the same apply, without combining other changes. Toggling will result in increased plan verbosity with `(known after apply)` markers, which can be safely ignored. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes from your configuration, you&#39;ll get a validation error for safety reasons to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
          * 

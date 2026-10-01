@@ -107,7 +107,7 @@ import javax.annotation.Nullable;
  *                 .username(kafkaUsername)
  *                 .password(kafkaPassword)
  *                 .build())
- *             .bootstrapServers("localhost:9092,localhost:9092")
+ *             .bootstrapServers("example.com:9092")
  *             .config(Map.of("auto.offset.reset", "earliest"))
  *             .security(StreamConnectionSecurityArgs.builder()
  *                 .protocol("SASL_PLAINTEXT")

@@ -61,7 +61,7 @@ import * as utilities from "./utilities";
  *         username: kafkaUsername,
  *         password: kafkaPassword,
  *     },
- *     bootstrapServers: "localhost:9092,localhost:9092",
+ *     bootstrapServers: "example.com:9092",
  *     config: {
  *         "auto.offset.reset": "earliest",
  *     },

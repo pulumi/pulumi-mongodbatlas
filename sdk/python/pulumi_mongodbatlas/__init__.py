@@ -27,7 +27,9 @@ from .cloud_user_org_assignment import *
 from .cloud_user_project_assignment import *
 from .cloud_user_team_assignment import *
 from .cluster import *
+from .cluster_adaptive_settings import *
 from .cluster_outage_simulation import *
+from .cluster_overload_simulation import *
 from .custom_db_role import *
 from .custom_dns_configuration_cluster_aws import *
 from .database_user import *
@@ -82,7 +84,9 @@ from .get_cloud_user_org_assignment import *
 from .get_cloud_user_project_assignment import *
 from .get_cloud_user_team_assignment import *
 from .get_cluster import *
+from .get_cluster_adaptive_settings import *
 from .get_cluster_outage_simulation import *
+from .get_cluster_overload_simulation import *
 from .get_clusters import *
 from .get_control_plane_ip_addresses import *
 from .get_custom_db_role import *
@@ -133,6 +137,8 @@ from .get_online_archive import *
 from .get_online_archives import *
 from .get_org_delegation_settings import *
 from .get_org_invitation import *
+from .get_org_log_integration import *
+from .get_org_log_integrations import *
 from .get_org_maintenance_settings import *
 from .get_organization import *
 from .get_organizations import *
@@ -211,6 +217,7 @@ from .network_peering import *
 from .online_archive import *
 from .org_delegation_settings import *
 from .org_invitation import *
+from .org_log_integration import *
 from .org_maintenance_settings import *
 from .organization import *
 from .private_endpoint_regional_mode import *
@@ -429,10 +436,26 @@ _utilities.register(
  },
  {
   "pkg": "mongodbatlas",
+  "mod": "index/clusterAdaptiveSettings",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/clusterAdaptiveSettings:ClusterAdaptiveSettings": "ClusterAdaptiveSettings"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
   "mod": "index/clusterOutageSimulation",
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation": "ClusterOutageSimulation"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/clusterOverloadSimulation",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/clusterOverloadSimulation:ClusterOverloadSimulation": "ClusterOverloadSimulation"
   }
  },
  {
@@ -641,6 +664,14 @@ _utilities.register(
   "fqn": "pulumi_mongodbatlas",
   "classes": {
    "mongodbatlas:index/orgInvitation:OrgInvitation": "OrgInvitation"
+  }
+ },
+ {
+  "pkg": "mongodbatlas",
+  "mod": "index/orgLogIntegration",
+  "fqn": "pulumi_mongodbatlas",
+  "classes": {
+   "mongodbatlas:index/orgLogIntegration:OrgLogIntegration": "OrgLogIntegration"
   }
  },
  {

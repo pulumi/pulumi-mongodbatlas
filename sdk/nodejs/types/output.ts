@@ -317,18 +317,6 @@ export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
     computeEnabled: boolean;
     /**
      * Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
-     *
-     * > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
-     *
-     * When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
-     *
-     * **Option 1 (Recommended):** Use `useEffectiveFields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes won't cause plan drift, eliminating the need for `lifecycle` ignore customizations. When either compute or disk auto-scaling is enabled (or both), all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effectiveElectableSpecs` and `effectiveReadOnlySpecs` attributes in the `mongodbatlas.AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
-     *
-     * **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
-     *
-     * To manually update `instanceSize`, `diskSizeGb`, or `diskIops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with useEffectiveFields for the detailed workflow.
-     *
-     * **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
      */
     computeMaxInstanceSize: string;
     /**
@@ -346,6 +334,29 @@ export interface AdvancedClusterReplicationSpecRegionConfigAutoScaling {
      * - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
      */
     diskGbEnabled: boolean;
+    /**
+     * Settings that determine the per-shard data-size limit for an Atlas INFINITE cluster.
+     */
+    storageConfig?: outputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig;
+}
+
+export interface AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig {
+    /**
+     * Maximum data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes. Set the same value for every region configuration. Omit `storageConfig` to use the Atlas default limit.
+     *
+     * > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
+     *
+     * When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
+     *
+     * **Option 1 (Recommended):** Use `useEffectiveFields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes do not cause plan drift, eliminating the need for `lifecycle.ignore_changes` customizations. While auto-scaling remains enabled (compute or disk, or both), all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effectiveElectableSpecs` and `effectiveReadOnlySpecs` attributes in the `mongodbatlas.AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
+     *
+     * **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+     *
+     * To manually update `instanceSize`, `diskSizeGb`, or `diskIops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with useEffectiveFields for the detailed workflow.
+     *
+     * **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
+     */
+    shardSizeLimitGb: number;
 }
 
 export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
@@ -1301,6 +1312,17 @@ export interface ClusterOutageSimulationOutageFilter {
     type: string;
 }
 
+export interface ClusterOverloadSimulationTimeouts {
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+     */
+    create?: string;
+    /**
+     * A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+     */
+    delete?: string;
+}
+
 export interface ClusterPinnedFcv {
     /**
      * Expiration date of the fixed FCV. This value is in the ISO 8601 timestamp format (e.g. "2024-12-04T16:25:00Z"). Note that this field cannot exceed 4 weeks from the pinned date.
@@ -2179,6 +2201,17 @@ export interface GetAdvancedClusterReplicationSpecRegionConfigAutoScaling {
      * Flag that indicates whether this cluster enables disk auto-scaling.
      */
     diskGbEnabled: boolean;
+    /**
+     * Settings that determine the configured per-shard data-size limit for an Atlas INFINITE cluster.
+     */
+    storageConfig: outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig;
+}
+
+export interface GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig {
+    /**
+     * Maximum configured data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes.
+     */
+    shardSizeLimitGb: number;
 }
 
 export interface GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecs {
@@ -2357,6 +2390,14 @@ export interface GetAdvancedClustersResult {
      * Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
      */
     createDate: string;
+    /**
+     * Database edition explicitly requested for the cluster. Valid values are `CORE` and `INFINITE`. This value is absent if MongoDB Cloud selected the default.
+     */
+    databaseEdition: string;
+    /**
+     * Database edition that the cluster currently uses. Valid values are `CORE` and `INFINITE`.
+     */
+    effectiveDatabaseEdition: string;
     /**
      * Possible values are AWS, GCP, AZURE or NONE.
      */
@@ -2736,6 +2777,17 @@ export interface GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling
      * Flag that indicates whether this cluster enables disk auto-scaling.
      */
     diskGbEnabled: boolean;
+    /**
+     * Settings that determine the configured per-shard data-size limit for an Atlas INFINITE cluster.
+     */
+    storageConfig: outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfig;
+}
+
+export interface GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfig {
+    /**
+     * Maximum configured data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes.
+     */
+    shardSizeLimitGb: number;
 }
 
 export interface GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs {
@@ -7223,6 +7275,25 @@ export interface GetOnlineArchivesResultSchedule {
     type: string;
 }
 
+export interface GetOrgLogIntegrationsResult {
+    /**
+     * Unique 24-character hexadecimal digit string that identifies the log integration configuration.
+     */
+    integrationId: string;
+    /**
+     * Array of log types exported by this integration.
+     */
+    logTypes: string[];
+    /**
+     * OpenTelemetry collector endpoint URL.
+     */
+    otelEndpoint: string;
+    /**
+     * Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
+     */
+    type: string;
+}
+
 export interface GetOrganizationCustomSessionTimeout {
     /**
      * (Optional) Absolute session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom absolute session timeout.
@@ -10060,6 +10131,17 @@ export interface OnlineArchiveSchedule {
      * Type of schedule (``DAILY` ,  `MONTHLY` ,  `WEEKLY`).
      */
     type: string;
+}
+
+export interface OrgLogIntegrationOtelSuppliedHeader {
+    /**
+     * Header name.
+     */
+    name: string;
+    /**
+     * Header value. Redacted in responses.
+     */
+    value: string;
 }
 
 export interface OrganizationCustomSessionTimeouts {

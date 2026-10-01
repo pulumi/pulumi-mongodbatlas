@@ -18,13 +18,56 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// &gt; **IMPORTANT:** Deleting a `mongodbatlas.ProjectServiceAccount` resource unassigns the associated Service Account from the project, but doesn't delete it from the organization.
     /// 
+    /// &gt; **NOTE:** To rotate secrets, see Guide: Service Account Secret Rotation.
+    /// 
     /// ## Example Usage
+    /// 
+    /// ### S
+    /// 
+    /// The following example creates a Project Service Account without an Atlas-generated secret, then creates its first secret as a managed resource.
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     // Create a Project Service Account without an Atlas-generated secret, then create the first secret
+    ///     // explicitly with mongodbatlas_project_service_account_secret so this configuration owns it.
+    ///     var @this = new Mongodbatlas.ProjectServiceAccount("this", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         Name = "example-project-service-account",
+    ///         Description = "Example Project Service Account",
+    ///         Roles = new[]
+    ///         {
+    ///             "GROUP_READ_ONLY",
+    ///         },
+    ///         WithoutInitialSecret = true,
+    ///     });
+    /// 
+    ///     var thisProjectServiceAccountSecret = new Mongodbatlas.ProjectServiceAccountSecret("this", new()
+    ///     {
+    ///         ProjectId = projectId,
+    ///         ClientId = @this.ClientId,
+    ///         SecretExpiresAfterHours = 2160,
+    ///     });
+    /// 
+    ///     return new Dictionary&lt;string, object?&gt;
+    ///     {
+    ///         ["secretId"] = thisProjectServiceAccountSecret.SecretId,
+    ///         ["secret"] = thisProjectServiceAccountSecret.Secret,
+    ///     };
+    /// });
+    /// ```
     /// 
     /// ## Import
     /// 
     /// Import the Project Service Account resource by using the Project ID and Client ID in the format `PROJECT_ID/CLIENT_ID`, e.g.
     /// 
-    /// &gt; **NOTE:** `SecretExpiresAfterHours` is not populated during import and should be omitted in the resource definition when importing the resource.
+    /// &gt; **NOTE:** Atlas does not populate `SecretExpiresAfterHours` or `WithoutInitialSecret` during import. Omit both attributes from the resource definition when you import a Project Service Account.
     /// 
     /// For more information, see [Create One Project Service Account](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupserviceaccount) in the MongoDB Atlas API documentation.
     /// </summary>
@@ -68,7 +111,7 @@ namespace Pulumi.Mongodbatlas
         public Output<ImmutableArray<string>> Roles { get; private set; } = null!;
 
         /// <summary>
-        /// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+        /// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `WithoutInitialSecret` to false or omit `WithoutInitialSecret`. Do not set this field when you set `WithoutInitialSecret` to true. You cannot update this field after you create the Service Account.
         /// </summary>
         [Output("secretExpiresAfterHours")]
         public Output<int?> SecretExpiresAfterHours { get; private set; } = null!;
@@ -84,6 +127,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("systemManaged")]
         public Output<bool> SystemManaged { get; private set; } = null!;
+
+        /// <summary>
+        /// When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `SecretExpiresAfterHours`.
+        /// </summary>
+        [Output("withoutInitialSecret")]
+        public Output<bool?> WithoutInitialSecret { get; private set; } = null!;
 
 
         /// <summary>
@@ -162,10 +211,16 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+        /// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `WithoutInitialSecret` to false or omit `WithoutInitialSecret`. Do not set this field when you set `WithoutInitialSecret` to true. You cannot update this field after you create the Service Account.
         /// </summary>
         [Input("secretExpiresAfterHours")]
         public Input<int>? SecretExpiresAfterHours { get; set; }
+
+        /// <summary>
+        /// When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `SecretExpiresAfterHours`.
+        /// </summary>
+        [Input("withoutInitialSecret")]
+        public Input<bool>? WithoutInitialSecret { get; set; }
 
         public ProjectServiceAccountArgs()
         {
@@ -218,7 +273,7 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
-        /// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+        /// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `WithoutInitialSecret` to false or omit `WithoutInitialSecret`. Do not set this field when you set `WithoutInitialSecret` to true. You cannot update this field after you create the Service Account.
         /// </summary>
         [Input("secretExpiresAfterHours")]
         public Input<int>? SecretExpiresAfterHours { get; set; }
@@ -240,6 +295,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Input("systemManaged")]
         public Input<bool>? SystemManaged { get; set; }
+
+        /// <summary>
+        /// When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `SecretExpiresAfterHours`.
+        /// </summary>
+        [Input("withoutInitialSecret")]
+        public Input<bool>? WithoutInitialSecret { get; set; }
 
         public ProjectServiceAccountState()
         {

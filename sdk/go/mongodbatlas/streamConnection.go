@@ -112,7 +112,7 @@ import (
 //				Config: pulumi.StringMap{
 //					"auto.offset.reset": pulumi.String("latest"),
 //				},
-//				BootstrapServers: pulumi.String("localhost:9091,localhost:9092"),
+//				BootstrapServers: pulumi.String("example.com:9092"),
 //			})
 //			if err != nil {
 //				return err
@@ -151,7 +151,7 @@ import (
 //					Scope:                     pulumi.String("read:messages write:messages"),
 //					SaslOauthbearerExtensions: pulumi.String("logicalCluster=lkc-kmom,identityPoolId=pool-lAr"),
 //				},
-//				BootstrapServers: pulumi.String("localhost:9092,localhost:9092"),
+//				BootstrapServers: pulumi.String("example.com:9092"),
 //				Config: pulumi.StringMap{
 //					"auto.offset.reset": pulumi.String("earliest"),
 //				},
@@ -204,7 +204,7 @@ import (
 //				Config: pulumi.StringMap{
 //					"auto.offset.reset": pulumi.String("latest"),
 //				},
-//				BootstrapServers: pulumi.String("localhost:9091,localhost:9092"),
+//				BootstrapServers: pulumi.String("example.com:9092"),
 //			})
 //			if err != nil {
 //				return err

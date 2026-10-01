@@ -63,8 +63,12 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &CloudUserTeamAssignment{}
 	case "mongodbatlas:index/cluster:Cluster":
 		r = &Cluster{}
+	case "mongodbatlas:index/clusterAdaptiveSettings:ClusterAdaptiveSettings":
+		r = &ClusterAdaptiveSettings{}
 	case "mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation":
 		r = &ClusterOutageSimulation{}
+	case "mongodbatlas:index/clusterOverloadSimulation:ClusterOverloadSimulation":
+		r = &ClusterOverloadSimulation{}
 	case "mongodbatlas:index/customDbRole:CustomDbRole":
 		r = &CustomDbRole{}
 	case "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws":
@@ -117,6 +121,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &OrgDelegationSettings{}
 	case "mongodbatlas:index/orgInvitation:OrgInvitation":
 		r = &OrgInvitation{}
+	case "mongodbatlas:index/orgLogIntegration:OrgLogIntegration":
+		r = &OrgLogIntegration{}
 	case "mongodbatlas:index/orgMaintenanceSettings:OrgMaintenanceSettings":
 		r = &OrgMaintenanceSettings{}
 	case "mongodbatlas:index/organization:Organization":
@@ -323,7 +329,17 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
+		"index/clusterAdaptiveSettings",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
 		"index/clusterOutageSimulation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/clusterOverloadSimulation",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -454,6 +470,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"mongodbatlas",
 		"index/orgInvitation",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"mongodbatlas",
+		"index/orgLogIntegration",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

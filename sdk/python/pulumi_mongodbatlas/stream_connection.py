@@ -699,7 +699,7 @@ class StreamConnection(pulumi.CustomResource):
             config={
                 "auto.offset.reset": "latest",
             },
-            bootstrap_servers="localhost:9091,localhost:9092")
+            bootstrap_servers="example.com:9092")
         ```
 
         ### Example Kafka SASL OAuthbearer Connection
@@ -722,7 +722,7 @@ class StreamConnection(pulumi.CustomResource):
                 "scope": "read:messages write:messages",
                 "sasl_oauthbearer_extensions": "logicalCluster=lkc-kmom,identityPoolId=pool-lAr",
             },
-            bootstrap_servers="localhost:9092,localhost:9092",
+            bootstrap_servers="example.com:9092",
             config={
                 "auto.offset.reset": "earliest",
             },
@@ -759,7 +759,7 @@ class StreamConnection(pulumi.CustomResource):
             config={
                 "auto.offset.reset": "latest",
             },
-            bootstrap_servers="localhost:9091,localhost:9092")
+            bootstrap_servers="example.com:9092")
         ```
 
         ### Example Azure Blob Storage Connection
@@ -1107,7 +1107,7 @@ class StreamConnection(pulumi.CustomResource):
             config={
                 "auto.offset.reset": "latest",
             },
-            bootstrap_servers="localhost:9091,localhost:9092")
+            bootstrap_servers="example.com:9092")
         ```
 
         ### Example Kafka SASL OAuthbearer Connection
@@ -1130,7 +1130,7 @@ class StreamConnection(pulumi.CustomResource):
                 "scope": "read:messages write:messages",
                 "sasl_oauthbearer_extensions": "logicalCluster=lkc-kmom,identityPoolId=pool-lAr",
             },
-            bootstrap_servers="localhost:9092,localhost:9092",
+            bootstrap_servers="example.com:9092",
             config={
                 "auto.offset.reset": "earliest",
             },
@@ -1167,7 +1167,7 @@ class StreamConnection(pulumi.CustomResource):
             config={
                 "auto.offset.reset": "latest",
             },
-            bootstrap_servers="localhost:9091,localhost:9092")
+            bootstrap_servers="example.com:9092")
         ```
 
         ### Example Azure Blob Storage Connection

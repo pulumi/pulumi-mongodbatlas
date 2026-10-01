@@ -33,6 +33,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Flag that indicates whether this cluster enables disk auto-scaling.
         /// </summary>
         public readonly bool DiskGbEnabled;
+        /// <summary>
+        /// Settings that determine the configured per-shard data-size limit for an Atlas INFINITE cluster.
+        /// </summary>
+        public readonly Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigResult StorageConfig;
 
         [OutputConstructor]
         private GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult(
@@ -44,13 +48,16 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             bool computeScaleDownEnabled,
 
-            bool diskGbEnabled)
+            bool diskGbEnabled,
+
+            Outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigResult storageConfig)
         {
             ComputeEnabled = computeEnabled;
             ComputeMaxInstanceSize = computeMaxInstanceSize;
             ComputeMinInstanceSize = computeMinInstanceSize;
             ComputeScaleDownEnabled = computeScaleDownEnabled;
             DiskGbEnabled = diskGbEnabled;
+            StorageConfig = storageConfig;
         }
     }
 }

@@ -27,7 +27,7 @@ class GetAdvancedClusterResult:
     """
     A collection of values returned by getAdvancedCluster.
     """
-    def __init__(__self__, adaptive_capacity=None, advanced_configuration=None, backup_enabled=None, bi_connector_config=None, cluster_id=None, cluster_type=None, config_server_management_mode=None, config_server_type=None, connection_strings=None, create_date=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pinned_fcv=None, pit_enabled=None, project_id=None, redact_client_log_data=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_aws_time_based_snapshot_copy_for_fast_initial_sync=None, use_effective_fields=None, version_release_system=None):
+    def __init__(__self__, adaptive_capacity=None, advanced_configuration=None, backup_enabled=None, bi_connector_config=None, cluster_id=None, cluster_type=None, config_server_management_mode=None, config_server_type=None, connection_strings=None, create_date=None, database_edition=None, effective_database_edition=None, encryption_at_rest_provider=None, global_cluster_self_managed_sharding=None, labels=None, mongo_db_major_version=None, mongo_db_version=None, name=None, paused=None, pinned_fcv=None, pit_enabled=None, project_id=None, redact_client_log_data=None, replica_set_scaling_strategy=None, replication_specs=None, root_cert_type=None, state_name=None, tags=None, termination_protection_enabled=None, use_aws_time_based_snapshot_copy_for_fast_initial_sync=None, use_effective_fields=None, version_release_system=None):
         if adaptive_capacity and not isinstance(adaptive_capacity, str):
             raise TypeError("Expected argument 'adaptive_capacity' to be a str")
         pulumi.set(__self__, "adaptive_capacity", adaptive_capacity)
@@ -58,6 +58,12 @@ class GetAdvancedClusterResult:
         if create_date and not isinstance(create_date, str):
             raise TypeError("Expected argument 'create_date' to be a str")
         pulumi.set(__self__, "create_date", create_date)
+        if database_edition and not isinstance(database_edition, str):
+            raise TypeError("Expected argument 'database_edition' to be a str")
+        pulumi.set(__self__, "database_edition", database_edition)
+        if effective_database_edition and not isinstance(effective_database_edition, str):
+            raise TypeError("Expected argument 'effective_database_edition' to be a str")
+        pulumi.set(__self__, "effective_database_edition", effective_database_edition)
         if encryption_at_rest_provider and not isinstance(encryption_at_rest_provider, str):
             raise TypeError("Expected argument 'encryption_at_rest_provider' to be a str")
         pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
@@ -192,6 +198,22 @@ class GetAdvancedClusterResult:
     @pulumi.getter(name="createDate")
     def create_date(self) -> _builtins.str:
         return pulumi.get(self, "create_date")
+
+    @_builtins.property
+    @pulumi.getter(name="databaseEdition")
+    def database_edition(self) -> _builtins.str:
+        """
+        Database edition explicitly requested for the cluster. Valid values are `CORE` and `INFINITE`. This value is absent if MongoDB Cloud selected the default.
+        """
+        return pulumi.get(self, "database_edition")
+
+    @_builtins.property
+    @pulumi.getter(name="effectiveDatabaseEdition")
+    def effective_database_edition(self) -> _builtins.str:
+        """
+        Database edition that the cluster currently uses. Valid values are `CORE` and `INFINITE`.
+        """
+        return pulumi.get(self, "effective_database_edition")
 
     @_builtins.property
     @pulumi.getter(name="encryptionAtRestProvider")
@@ -361,6 +383,8 @@ class AwaitableGetAdvancedClusterResult(GetAdvancedClusterResult):
             config_server_type=self.config_server_type,
             connection_strings=self.connection_strings,
             create_date=self.create_date,
+            database_edition=self.database_edition,
+            effective_database_edition=self.effective_database_edition,
             encryption_at_rest_provider=self.encryption_at_rest_provider,
             global_cluster_self_managed_sharding=self.global_cluster_self_managed_sharding,
             labels=self.labels,
@@ -537,6 +561,8 @@ def get_advanced_cluster(name: Optional[_builtins.str] = None,
         config_server_type=pulumi.get(__ret__, 'config_server_type'),
         connection_strings=pulumi.get(__ret__, 'connection_strings'),
         create_date=pulumi.get(__ret__, 'create_date'),
+        database_edition=pulumi.get(__ret__, 'database_edition'),
+        effective_database_edition=pulumi.get(__ret__, 'effective_database_edition'),
         encryption_at_rest_provider=pulumi.get(__ret__, 'encryption_at_rest_provider'),
         global_cluster_self_managed_sharding=pulumi.get(__ret__, 'global_cluster_self_managed_sharding'),
         labels=pulumi.get(__ret__, 'labels'),
@@ -710,6 +736,8 @@ def get_advanced_cluster_output(name: pulumi.Input[Optional[_builtins.str]] = No
         config_server_type=pulumi.get(__response__, 'config_server_type'),
         connection_strings=pulumi.get(__response__, 'connection_strings'),
         create_date=pulumi.get(__response__, 'create_date'),
+        database_edition=pulumi.get(__response__, 'database_edition'),
+        effective_database_edition=pulumi.get(__response__, 'effective_database_edition'),
         encryption_at_rest_provider=pulumi.get(__response__, 'encryption_at_rest_provider'),
         global_cluster_self_managed_sharding=pulumi.get(__response__, 'global_cluster_self_managed_sharding'),
         labels=pulumi.get(__response__, 'labels'),

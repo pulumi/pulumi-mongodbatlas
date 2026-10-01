@@ -23,13 +23,66 @@ import javax.annotation.Nullable;
  * 
  * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
  * 
+ * &gt; **NOTE:** To rotate secrets, see Guide: Service Account Secret Rotation.
+ * 
  * ## Example Usage
+ * 
+ * ### S
+ * 
+ * The following example creates a Service Account without an Atlas-generated secret, then creates its first secret as a managed resource.
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.ServiceAccount;
+ * import com.pulumi.mongodbatlas.ServiceAccountArgs;
+ * import com.pulumi.mongodbatlas.ServiceAccountSecret;
+ * import com.pulumi.mongodbatlas.ServiceAccountSecretArgs;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         // Create a Service Account without an Atlas-generated secret, then create the first secret
+ *         // explicitly with mongodbatlas_service_account_secret so this configuration owns it.
+ *         var this_ = new ServiceAccount("this", ServiceAccountArgs.builder()
+ *             .orgId(orgId)
+ *             .name("example-service-account")
+ *             .description("Example Service Account")
+ *             .roles("ORG_READ_ONLY")
+ *             .withoutInitialSecret(true)
+ *             .build());
+ * 
+ *         var thisServiceAccountSecret = new ServiceAccountSecret("thisServiceAccountSecret", ServiceAccountSecretArgs.builder()
+ *             .orgId(orgId)
+ *             .clientId(this_.clientId())
+ *             .secretExpiresAfterHours(2160)
+ *             .build());
+ * 
+ *         ctx.export("secretId", thisServiceAccountSecret.secretId());
+ *         ctx.export("secret", thisServiceAccountSecret.secret());
+ *     }
+ * }
+ * }
+ * </pre>
  * 
  * ## Import
  * 
  * Import the Service Account resource by using the Organization ID and Client ID in the format `ORG_ID/CLIENT_ID`, e.g.
  * 
- * &gt; **NOTE:** `secretExpiresAfterHours` is not populated during import and should be omitted in the resource definition when importing the resource.
+ * &gt; **NOTE:** Atlas does not populate `secretExpiresAfterHours` or `withoutInitialSecret` during import. Omit both attributes from the resource definition when you import a Service Account.
  * 
  * For more information, see [Create One Organization Service Account](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorgserviceaccount) in the MongoDB Atlas API documentation.
  * 
@@ -121,14 +174,14 @@ public class ServiceAccount extends com.pulumi.resources.CustomResource {
         return this.roles;
     }
     /**
-     * The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization&#39;s settings. This attribute is required when creating the Service Account and you cannot update it later.
+     * The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization&#39;s settings. Set this field when you set `withoutInitialSecret` to false or omit `withoutInitialSecret`. Do not set this field when you set `withoutInitialSecret` to true. You cannot update this field after you create the Service Account.
      * 
      */
     @Export(name="secretExpiresAfterHours", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> secretExpiresAfterHours;
 
     /**
-     * @return The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization&#39;s settings. This attribute is required when creating the Service Account and you cannot update it later.
+     * @return The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization&#39;s settings. Set this field when you set `withoutInitialSecret` to false or omit `withoutInitialSecret`. Do not set this field when you set `withoutInitialSecret` to true. You cannot update this field after you create the Service Account.
      * 
      */
     public Output<Optional<Integer>> secretExpiresAfterHours() {
@@ -161,6 +214,20 @@ public class ServiceAccount extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> systemManaged() {
         return this.systemManaged;
+    }
+    /**
+     * When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secretExpiresAfterHours`.
+     * 
+     */
+    @Export(name="withoutInitialSecret", refs={Boolean.class}, tree="[0]")
+    private Output</* @Nullable */ Boolean> withoutInitialSecret;
+
+    /**
+     * @return When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secretExpiresAfterHours`.
+     * 
+     */
+    public Output<Optional<Boolean>> withoutInitialSecret() {
+        return Codegen.optional(this.withoutInitialSecret);
     }
 
     /**

@@ -150,7 +150,7 @@ import javax.annotation.Nullable;
  *                 .protocol("SASL_PLAINTEXT")
  *                 .build())
  *             .config(Map.of("auto.offset.reset", "latest"))
- *             .bootstrapServers("localhost:9091,localhost:9092")
+ *             .bootstrapServers("example.com:9092")
  *             .build());
  * 
  *     }
@@ -200,7 +200,7 @@ import javax.annotation.Nullable;
  *                 .scope("read:messages write:messages")
  *                 .saslOauthbearerExtensions("logicalCluster=lkc-kmom,identityPoolId=pool-lAr")
  *                 .build())
- *             .bootstrapServers("localhost:9092,localhost:9092")
+ *             .bootstrapServers("example.com:9092")
  *             .config(Map.of("auto.offset.reset", "earliest"))
  *             .security(StreamConnectionSecurityArgs.builder()
  *                 .protocol("SASL_PLAINTEXT")
@@ -258,7 +258,7 @@ import javax.annotation.Nullable;
  *                 .brokerPublicCertificate("-----BEGIN CERTIFICATE-----<CONTENT>-----END CERTIFICATE-----")
  *                 .build())
  *             .config(Map.of("auto.offset.reset", "latest"))
- *             .bootstrapServers("localhost:9091,localhost:9092")
+ *             .bootstrapServers("example.com:9092")
  *             .build());
  * 
  *     }

@@ -71,6 +71,16 @@ public final class GetAdvancedClustersResult {
      */
     private String createDate;
     /**
+     * @return Database edition explicitly requested for the cluster. Valid values are `CORE` and `INFINITE`. This value is absent if MongoDB Cloud selected the default.
+     * 
+     */
+    private String databaseEdition;
+    /**
+     * @return Database edition that the cluster currently uses. Valid values are `CORE` and `INFINITE`.
+     * 
+     */
+    private String effectiveDatabaseEdition;
+    /**
      * @return Possible values are AWS, GCP, AZURE or NONE.
      * 
      */
@@ -243,6 +253,20 @@ public final class GetAdvancedClustersResult {
         return this.createDate;
     }
     /**
+     * @return Database edition explicitly requested for the cluster. Valid values are `CORE` and `INFINITE`. This value is absent if MongoDB Cloud selected the default.
+     * 
+     */
+    public String databaseEdition() {
+        return this.databaseEdition;
+    }
+    /**
+     * @return Database edition that the cluster currently uses. Valid values are `CORE` and `INFINITE`.
+     * 
+     */
+    public String effectiveDatabaseEdition() {
+        return this.effectiveDatabaseEdition;
+    }
+    /**
      * @return Possible values are AWS, GCP, AZURE or NONE.
      * 
      */
@@ -402,6 +426,8 @@ public final class GetAdvancedClustersResult {
         private String configServerType;
         private GetAdvancedClustersResultConnectionStrings connectionStrings;
         private String createDate;
+        private String databaseEdition;
+        private String effectiveDatabaseEdition;
         private String encryptionAtRestProvider;
         private Boolean globalClusterSelfManagedSharding;
         private Map<String,String> labels;
@@ -435,6 +461,8 @@ public final class GetAdvancedClustersResult {
     	      this.configServerType = defaults.configServerType;
     	      this.connectionStrings = defaults.connectionStrings;
     	      this.createDate = defaults.createDate;
+    	      this.databaseEdition = defaults.databaseEdition;
+    	      this.effectiveDatabaseEdition = defaults.effectiveDatabaseEdition;
     	      this.encryptionAtRestProvider = defaults.encryptionAtRestProvider;
     	      this.globalClusterSelfManagedSharding = defaults.globalClusterSelfManagedSharding;
     	      this.labels = defaults.labels;
@@ -535,6 +563,22 @@ public final class GetAdvancedClustersResult {
               throw new MissingRequiredPropertyException("GetAdvancedClustersResult", "createDate");
             }
             this.createDate = createDate;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder databaseEdition(String databaseEdition) {
+            if (databaseEdition == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResult", "databaseEdition");
+            }
+            this.databaseEdition = databaseEdition;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder effectiveDatabaseEdition(String effectiveDatabaseEdition) {
+            if (effectiveDatabaseEdition == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResult", "effectiveDatabaseEdition");
+            }
+            this.effectiveDatabaseEdition = effectiveDatabaseEdition;
             return this;
         }
         @CustomType.Setter
@@ -710,6 +754,8 @@ public final class GetAdvancedClustersResult {
             _resultValue.configServerType = configServerType;
             _resultValue.connectionStrings = connectionStrings;
             _resultValue.createDate = createDate;
+            _resultValue.databaseEdition = databaseEdition;
+            _resultValue.effectiveDatabaseEdition = effectiveDatabaseEdition;
             _resultValue.encryptionAtRestProvider = encryptionAtRestProvider;
             _resultValue.globalClusterSelfManagedSharding = globalClusterSelfManagedSharding;
             _resultValue.labels = labels;

@@ -21,7 +21,7 @@ import javax.annotation.Nullable;
  * 
  * &gt; **IMPORTANT:** Managing MCP Config Secrets with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
  * 
- * &gt; **NOTE:** This resource does not support updates. To rotate a secret, create a new secret resource and delete the old one once no longer needed. Up to two secrets can be active at once.
+ * &gt; **NOTE:** This resource does not support updates. To rotate a secret, define two secret resources and replace them alternately. See Guide: Service Account Secret Rotation.
  * 
  * ## Example Usage
  * 

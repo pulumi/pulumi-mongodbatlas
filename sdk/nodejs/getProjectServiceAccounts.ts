@@ -12,6 +12,24 @@ import * as utilities from "./utilities";
  * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
  *
  * ## Example Usage
+ *
+ * ### S
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * // Read the Project Service Account and the project's Service Accounts back from Atlas.
+ * const _this = mongodbatlas.getProjectServiceAccount({
+ *     projectId: projectId,
+ *     clientId: thisMongodbatlasProjectServiceAccount.clientId,
+ * });
+ * const thisGetProjectServiceAccounts = mongodbatlas.getProjectServiceAccounts({
+ *     projectId: projectId,
+ * });
+ * export const serviceAccountClientId = thisMongodbatlasProjectServiceAccount.clientId;
+ * export const serviceAccountName = _this.then(_this => _this.name);
+ * export const serviceAccountsResults = thisGetProjectServiceAccounts.then(thisGetProjectServiceAccounts => thisGetProjectServiceAccounts.results);
+ * ```
  */
 export function getProjectServiceAccounts(args: GetProjectServiceAccountsArgs, opts?: pulumi.InvokeOptions): Promise<GetProjectServiceAccountsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -58,6 +76,24 @@ export interface GetProjectServiceAccountsResult {
  * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
  *
  * ## Example Usage
+ *
+ * ### S
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * // Read the Project Service Account and the project's Service Accounts back from Atlas.
+ * const _this = mongodbatlas.getProjectServiceAccount({
+ *     projectId: projectId,
+ *     clientId: thisMongodbatlasProjectServiceAccount.clientId,
+ * });
+ * const thisGetProjectServiceAccounts = mongodbatlas.getProjectServiceAccounts({
+ *     projectId: projectId,
+ * });
+ * export const serviceAccountClientId = thisMongodbatlasProjectServiceAccount.clientId;
+ * export const serviceAccountName = _this.then(_this => _this.name);
+ * export const serviceAccountsResults = thisGetProjectServiceAccounts.then(thisGetProjectServiceAccounts => thisGetProjectServiceAccounts.results);
+ * ```
  */
 export function getProjectServiceAccountsOutput(args: GetProjectServiceAccountsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetProjectServiceAccountsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

@@ -144,6 +144,20 @@ def get_service_account(client_id: Optional[_builtins.str] = None,
 
     ## Example Usage
 
+    ### S
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    # Read the Service Account and the organization's Service Accounts back from Atlas.
+    this = mongodbatlas.get_service_account(org_id=org_id,
+        client_id=this_mongodbatlas_service_account["clientId"])
+    this_get_service_accounts = mongodbatlas.get_service_accounts(org_id=org_id)
+    pulumi.export("serviceAccountClientId", this_mongodbatlas_service_account["clientId"])
+    pulumi.export("serviceAccountName", this.name)
+    pulumi.export("serviceAccountsResults", this_get_service_accounts.results)
+    ```
+
 
     :param _builtins.str client_id: The Client ID of the Service Account.
     :param _builtins.str org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
@@ -172,6 +186,20 @@ def get_service_account_output(client_id: pulumi.Input[Optional[_builtins.str]] 
     > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
 
     ## Example Usage
+
+    ### S
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    # Read the Service Account and the organization's Service Accounts back from Atlas.
+    this = mongodbatlas.get_service_account(org_id=org_id,
+        client_id=this_mongodbatlas_service_account["clientId"])
+    this_get_service_accounts = mongodbatlas.get_service_accounts(org_id=org_id)
+    pulumi.export("serviceAccountClientId", this_mongodbatlas_service_account["clientId"])
+    pulumi.export("serviceAccountName", this.name)
+    pulumi.export("serviceAccountsResults", this_get_service_accounts.results)
+    ```
 
 
     :param _builtins.str client_id: The Client ID of the Service Account.

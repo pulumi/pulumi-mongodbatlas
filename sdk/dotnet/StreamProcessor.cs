@@ -78,7 +78,7 @@ namespace Pulumi.Mongodbatlas
     ///             Username = kafkaUsername,
     ///             Password = kafkaPassword,
     ///         },
-    ///         BootstrapServers = "localhost:9092,localhost:9092",
+    ///         BootstrapServers = "example.com:9092",
     ///         Config = 
     ///         {
     ///             { "auto.offset.reset", "earliest" },

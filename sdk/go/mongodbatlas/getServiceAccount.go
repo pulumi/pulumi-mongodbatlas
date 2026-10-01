@@ -16,6 +16,42 @@ import (
 // > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
 //
 // ## Example Usage
+//
+// ### S
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Read the Service Account and the organization's Service Accounts back from Atlas.
+//			this, err := mongodbatlas.GetServiceAccount(ctx, &mongodbatlas.LookupServiceAccountArgs{
+//				OrgId:    orgId,
+//				ClientId: thisMongodbatlasServiceAccount.ClientId,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			thisGetServiceAccounts, err := mongodbatlas.GetServiceAccounts(ctx, &mongodbatlas.LookupServiceAccountsArgs{
+//				OrgId: orgId,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("serviceAccountClientId", pulumi.Any(thisMongodbatlasServiceAccount.ClientId))
+//			ctx.Export("serviceAccountName", this.Name)
+//			ctx.Export("serviceAccountsResults", thisGetServiceAccounts.Results)
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupServiceAccount(ctx *pulumi.Context, args *LookupServiceAccountArgs, opts ...pulumi.InvokeOption) (*LookupServiceAccountResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupServiceAccountResult

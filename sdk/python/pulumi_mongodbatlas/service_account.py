@@ -25,7 +25,8 @@ class ServiceAccountArgs:
                  org_id: pulumi.Input[_builtins.str],
                  roles: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  name: pulumi.Input[Optional[_builtins.str]] = None,
-                 secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None):
+                 secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None,
+                 without_initial_secret: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         The set of arguments for constructing a ServiceAccount resource.
 
@@ -33,7 +34,8 @@ class ServiceAccountArgs:
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: A list of organization-level roles for the Service Account.
         :param pulumi.Input[_builtins.str] name: Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
-        :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+        :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `without_initial_secret` to false or omit `without_initial_secret`. Do not set this field when you set `without_initial_secret` to true. You cannot update this field after you create the Service Account.
+        :param pulumi.Input[_builtins.bool] without_initial_secret: When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secret_expires_after_hours`.
         """
         pulumi.set(__self__, "description", description)
         pulumi.set(__self__, "org_id", org_id)
@@ -42,6 +44,8 @@ class ServiceAccountArgs:
             pulumi.set(__self__, "name", name)
         if secret_expires_after_hours is not None:
             pulumi.set(__self__, "secret_expires_after_hours", secret_expires_after_hours)
+        if without_initial_secret is not None:
+            pulumi.set(__self__, "without_initial_secret", without_initial_secret)
 
     @_builtins.property
     @pulumi.getter
@@ -95,13 +99,25 @@ class ServiceAccountArgs:
     @pulumi.getter(name="secretExpiresAfterHours")
     def secret_expires_after_hours(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+        The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `without_initial_secret` to false or omit `without_initial_secret`. Do not set this field when you set `without_initial_secret` to true. You cannot update this field after you create the Service Account.
         """
         return pulumi.get(self, "secret_expires_after_hours")
 
     @secret_expires_after_hours.setter
     def secret_expires_after_hours(self, value: pulumi.Input[Optional[_builtins.int]]):
         pulumi.set(self, "secret_expires_after_hours", value)
+
+    @_builtins.property
+    @pulumi.getter(name="withoutInitialSecret")
+    def without_initial_secret(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secret_expires_after_hours`.
+        """
+        return pulumi.get(self, "without_initial_secret")
+
+    @without_initial_secret.setter
+    def without_initial_secret(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "without_initial_secret", value)
 
 
 @pulumi.input_type
@@ -115,7 +131,8 @@ class _ServiceAccountState:
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None,
                  secrets: pulumi.Input[Optional[Sequence[pulumi.Input['ServiceAccountSecretArgs']]]] = None,
-                 system_managed: pulumi.Input[Optional[_builtins.bool]] = None):
+                 system_managed: pulumi.Input[Optional[_builtins.bool]] = None,
+                 without_initial_secret: pulumi.Input[Optional[_builtins.bool]] = None):
         """
         Input properties used for looking up and filtering ServiceAccount resources.
 
@@ -125,9 +142,10 @@ class _ServiceAccountState:
         :param pulumi.Input[_builtins.str] name: Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: A list of organization-level roles for the Service Account.
-        :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+        :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `without_initial_secret` to false or omit `without_initial_secret`. Do not set this field when you set `without_initial_secret` to true. You cannot update this field after you create the Service Account.
         :param pulumi.Input[Sequence[pulumi.Input['ServiceAccountSecretArgs']]] secrets: A list of secrets associated with the specified Service Account.
         :param pulumi.Input[_builtins.bool] system_managed: Indicates whether the Service Account is system managed.
+        :param pulumi.Input[_builtins.bool] without_initial_secret: When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secret_expires_after_hours`.
         """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
@@ -147,6 +165,8 @@ class _ServiceAccountState:
             pulumi.set(__self__, "secrets", secrets)
         if system_managed is not None:
             pulumi.set(__self__, "system_managed", system_managed)
+        if without_initial_secret is not None:
+            pulumi.set(__self__, "without_initial_secret", without_initial_secret)
 
     @_builtins.property
     @pulumi.getter(name="clientId")
@@ -224,7 +244,7 @@ class _ServiceAccountState:
     @pulumi.getter(name="secretExpiresAfterHours")
     def secret_expires_after_hours(self) -> pulumi.Input[Optional[_builtins.int]]:
         """
-        The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+        The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `without_initial_secret` to false or omit `without_initial_secret`. Do not set this field when you set `without_initial_secret` to true. You cannot update this field after you create the Service Account.
         """
         return pulumi.get(self, "secret_expires_after_hours")
 
@@ -256,6 +276,18 @@ class _ServiceAccountState:
     def system_managed(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "system_managed", value)
 
+    @_builtins.property
+    @pulumi.getter(name="withoutInitialSecret")
+    def without_initial_secret(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secret_expires_after_hours`.
+        """
+        return pulumi.get(self, "without_initial_secret")
+
+    @without_initial_secret.setter
+    def without_initial_secret(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "without_initial_secret", value)
+
 
 @pulumi.type_token("mongodbatlas:index/serviceAccount:ServiceAccount")
 class ServiceAccount(pulumi.CustomResource):
@@ -268,19 +300,46 @@ class ServiceAccount(pulumi.CustomResource):
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None,
+                 without_initial_secret: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         """
         `ServiceAccount` provides a Service Account resource. The resource lets you create, update, delete, and import a Service Account for the specified Organization.
 
         > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
 
+        > **NOTE:** To rotate secrets, see Guide: Service Account Secret Rotation.
+
         ## Example Usage
+
+        ### S
+
+        The following example creates a Service Account without an Atlas-generated secret, then creates its first secret as a managed resource.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        # Create a Service Account without an Atlas-generated secret, then create the first secret
+        # explicitly with mongodbatlas_service_account_secret so this configuration owns it.
+        this = mongodbatlas.ServiceAccount("this",
+            org_id=org_id,
+            name="example-service-account",
+            description="Example Service Account",
+            roles=["ORG_READ_ONLY"],
+            without_initial_secret=True)
+        this_service_account_secret = mongodbatlas.ServiceAccountSecret("this",
+            org_id=org_id,
+            client_id=this.client_id,
+            secret_expires_after_hours=2160)
+        pulumi.export("secretId", this_service_account_secret.secret_id)
+        pulumi.export("secret", this_service_account_secret.secret)
+        ```
 
         ## Import
 
         Import the Service Account resource by using the Organization ID and Client ID in the format `ORG_ID/CLIENT_ID`, e.g.
 
-        > **NOTE:** `secret_expires_after_hours` is not populated during import and should be omitted in the resource definition when importing the resource.
+        > **NOTE:** Atlas does not populate `secret_expires_after_hours` or `without_initial_secret` during import. Omit both attributes from the resource definition when you import a Service Account.
 
         For more information, see [Create One Organization Service Account](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorgserviceaccount) in the MongoDB Atlas API documentation.
 
@@ -291,7 +350,8 @@ class ServiceAccount(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: A list of organization-level roles for the Service Account.
-        :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+        :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `without_initial_secret` to false or omit `without_initial_secret`. Do not set this field when you set `without_initial_secret` to true. You cannot update this field after you create the Service Account.
+        :param pulumi.Input[_builtins.bool] without_initial_secret: When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secret_expires_after_hours`.
         """
         ...
     @overload
@@ -304,13 +364,39 @@ class ServiceAccount(pulumi.CustomResource):
 
         > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
 
+        > **NOTE:** To rotate secrets, see Guide: Service Account Secret Rotation.
+
         ## Example Usage
+
+        ### S
+
+        The following example creates a Service Account without an Atlas-generated secret, then creates its first secret as a managed resource.
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        # Create a Service Account without an Atlas-generated secret, then create the first secret
+        # explicitly with mongodbatlas_service_account_secret so this configuration owns it.
+        this = mongodbatlas.ServiceAccount("this",
+            org_id=org_id,
+            name="example-service-account",
+            description="Example Service Account",
+            roles=["ORG_READ_ONLY"],
+            without_initial_secret=True)
+        this_service_account_secret = mongodbatlas.ServiceAccountSecret("this",
+            org_id=org_id,
+            client_id=this.client_id,
+            secret_expires_after_hours=2160)
+        pulumi.export("secretId", this_service_account_secret.secret_id)
+        pulumi.export("secret", this_service_account_secret.secret)
+        ```
 
         ## Import
 
         Import the Service Account resource by using the Organization ID and Client ID in the format `ORG_ID/CLIENT_ID`, e.g.
 
-        > **NOTE:** `secret_expires_after_hours` is not populated during import and should be omitted in the resource definition when importing the resource.
+        > **NOTE:** Atlas does not populate `secret_expires_after_hours` or `without_initial_secret` during import. Omit both attributes from the resource definition when you import a Service Account.
 
         For more information, see [Create One Organization Service Account](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-createorgserviceaccount) in the MongoDB Atlas API documentation.
 
@@ -335,6 +421,7 @@ class ServiceAccount(pulumi.CustomResource):
                  org_id: pulumi.Input[Optional[_builtins.str]] = None,
                  roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None,
+                 without_initial_secret: pulumi.Input[Optional[_builtins.bool]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -355,6 +442,7 @@ class ServiceAccount(pulumi.CustomResource):
                 raise TypeError("Missing required property 'roles'")
             __props__.__dict__["roles"] = roles
             __props__.__dict__["secret_expires_after_hours"] = secret_expires_after_hours
+            __props__.__dict__["without_initial_secret"] = without_initial_secret
             __props__.__dict__["client_id"] = None
             __props__.__dict__["created_at"] = None
             __props__.__dict__["secrets"] = None
@@ -377,7 +465,8 @@ class ServiceAccount(pulumi.CustomResource):
             roles: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
             secret_expires_after_hours: pulumi.Input[Optional[_builtins.int]] = None,
             secrets: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ServiceAccountSecretArgs', 'ServiceAccountSecretArgsDict', 'outputs.ServiceAccountSecret']]]]] = None,
-            system_managed: pulumi.Input[Optional[_builtins.bool]] = None) -> 'ServiceAccount':
+            system_managed: pulumi.Input[Optional[_builtins.bool]] = None,
+            without_initial_secret: pulumi.Input[Optional[_builtins.bool]] = None) -> 'ServiceAccount':
         """
         Get an existing ServiceAccount resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -391,9 +480,10 @@ class ServiceAccount(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] name: Human-readable name for the Service Account. The name is modifiable and does not have to be unique.
         :param pulumi.Input[_builtins.str] org_id: Unique 24-hexadecimal digit string that identifies the organization that contains your projects.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] roles: A list of organization-level roles for the Service Account.
-        :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+        :param pulumi.Input[_builtins.int] secret_expires_after_hours: The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `without_initial_secret` to false or omit `without_initial_secret`. Do not set this field when you set `without_initial_secret` to true. You cannot update this field after you create the Service Account.
         :param pulumi.Input[Sequence[pulumi.Input[Union['ServiceAccountSecretArgs', 'ServiceAccountSecretArgsDict', 'outputs.ServiceAccountSecret']]]] secrets: A list of secrets associated with the specified Service Account.
         :param pulumi.Input[_builtins.bool] system_managed: Indicates whether the Service Account is system managed.
+        :param pulumi.Input[_builtins.bool] without_initial_secret: When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secret_expires_after_hours`.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -408,6 +498,7 @@ class ServiceAccount(pulumi.CustomResource):
         __props__.__dict__["secret_expires_after_hours"] = secret_expires_after_hours
         __props__.__dict__["secrets"] = secrets
         __props__.__dict__["system_managed"] = system_managed
+        __props__.__dict__["without_initial_secret"] = without_initial_secret
         return ServiceAccount(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -462,7 +553,7 @@ class ServiceAccount(pulumi.CustomResource):
     @pulumi.getter(name="secretExpiresAfterHours")
     def secret_expires_after_hours(self) -> pulumi.Output[Optional[_builtins.int]]:
         """
-        The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+        The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `without_initial_secret` to false or omit `without_initial_secret`. Do not set this field when you set `without_initial_secret` to true. You cannot update this field after you create the Service Account.
         """
         return pulumi.get(self, "secret_expires_after_hours")
 
@@ -481,4 +572,12 @@ class ServiceAccount(pulumi.CustomResource):
         Indicates whether the Service Account is system managed.
         """
         return pulumi.get(self, "system_managed")
+
+    @_builtins.property
+    @pulumi.getter(name="withoutInitialSecret")
+    def without_initial_secret(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secret_expires_after_hours`.
+        """
+        return pulumi.get(self, "without_initial_secret")
 

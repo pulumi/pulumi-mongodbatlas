@@ -17,6 +17,36 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Read the Service Account and the organization's Service Accounts back from Atlas.
+        ///     var @this = Mongodbatlas.GetServiceAccount.Invoke(new()
+        ///     {
+        ///         OrgId = orgId,
+        ///         ClientId = thisMongodbatlasServiceAccount.ClientId,
+        ///     });
+        /// 
+        ///     var thisGetServiceAccounts = Mongodbatlas.GetServiceAccounts.Invoke(new()
+        ///     {
+        ///         OrgId = orgId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["serviceAccountClientId"] = thisMongodbatlasServiceAccount.ClientId,
+        ///         ["serviceAccountName"] = @this.Apply(@this =&gt; @this.Apply(getServiceAccountResult =&gt; getServiceAccountResult.Name)),
+        ///         ["serviceAccountsResults"] = thisGetServiceAccounts.Apply(getServiceAccountsResult =&gt; getServiceAccountsResult.Results),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetServiceAccountsResult> InvokeAsync(GetServiceAccountsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServiceAccountsResult>("mongodbatlas:index/getServiceAccounts:getServiceAccounts", args ?? new GetServiceAccountsArgs(), options.WithDefaults());
@@ -27,6 +57,36 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Read the Service Account and the organization's Service Accounts back from Atlas.
+        ///     var @this = Mongodbatlas.GetServiceAccount.Invoke(new()
+        ///     {
+        ///         OrgId = orgId,
+        ///         ClientId = thisMongodbatlasServiceAccount.ClientId,
+        ///     });
+        /// 
+        ///     var thisGetServiceAccounts = Mongodbatlas.GetServiceAccounts.Invoke(new()
+        ///     {
+        ///         OrgId = orgId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["serviceAccountClientId"] = thisMongodbatlasServiceAccount.ClientId,
+        ///         ["serviceAccountName"] = @this.Apply(@this =&gt; @this.Apply(getServiceAccountResult =&gt; getServiceAccountResult.Name)),
+        ///         ["serviceAccountsResults"] = thisGetServiceAccounts.Apply(getServiceAccountsResult =&gt; getServiceAccountsResult.Results),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetServiceAccountsResult> Invoke(GetServiceAccountsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetServiceAccountsResult>("mongodbatlas:index/getServiceAccounts:getServiceAccounts", args ?? new GetServiceAccountsInvokeArgs(), options.WithDefaults());
@@ -37,6 +97,36 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Read the Service Account and the organization's Service Accounts back from Atlas.
+        ///     var @this = Mongodbatlas.GetServiceAccount.Invoke(new()
+        ///     {
+        ///         OrgId = orgId,
+        ///         ClientId = thisMongodbatlasServiceAccount.ClientId,
+        ///     });
+        /// 
+        ///     var thisGetServiceAccounts = Mongodbatlas.GetServiceAccounts.Invoke(new()
+        ///     {
+        ///         OrgId = orgId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["serviceAccountClientId"] = thisMongodbatlasServiceAccount.ClientId,
+        ///         ["serviceAccountName"] = @this.Apply(@this =&gt; @this.Apply(getServiceAccountResult =&gt; getServiceAccountResult.Name)),
+        ///         ["serviceAccountsResults"] = thisGetServiceAccounts.Apply(getServiceAccountsResult =&gt; getServiceAccountsResult.Results),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetServiceAccountsResult> Invoke(GetServiceAccountsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetServiceAccountsResult>("mongodbatlas:index/getServiceAccounts:getServiceAccounts", args ?? new GetServiceAccountsInvokeArgs(), options.WithDefaults());
