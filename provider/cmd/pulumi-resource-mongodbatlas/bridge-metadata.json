@@ -384,6 +384,10 @@
                     }
                 }
             },
+            "mongodbatlas_cluster_adaptive_settings": {
+                "current": "mongodbatlas:index/clusterAdaptiveSettings:ClusterAdaptiveSettings",
+                "majorVersion": 4
+            },
             "mongodbatlas_cluster_outage_simulation": {
                 "current": "mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation",
                 "majorVersion": 4,
@@ -392,6 +396,10 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "mongodbatlas_cluster_overload_simulation": {
+                "current": "mongodbatlas:index/clusterOverloadSimulation:ClusterOverloadSimulation",
+                "majorVersion": 4
             },
             "mongodbatlas_custom_db_role": {
                 "current": "mongodbatlas:index/customDbRole:CustomDbRole",
@@ -746,6 +754,18 @@
                         "maxItemsOne": false
                     },
                     "teams_ids": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_org_log_integration": {
+                "current": "mongodbatlas:index/orgLogIntegration:OrgLogIntegration",
+                "majorVersion": 4,
+                "fields": {
+                    "log_types": {
+                        "maxItemsOne": false
+                    },
+                    "otel_supplied_headers": {
                         "maxItemsOne": false
                     }
                 }
@@ -1810,6 +1830,10 @@
                     }
                 }
             },
+            "mongodbatlas_cluster_adaptive_settings": {
+                "current": "mongodbatlas:index/getClusterAdaptiveSettings:getClusterAdaptiveSettings",
+                "majorVersion": 4
+            },
             "mongodbatlas_cluster_outage_simulation": {
                 "current": "mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation",
                 "majorVersion": 4,
@@ -1818,6 +1842,10 @@
                         "maxItemsOne": false
                     }
                 }
+            },
+            "mongodbatlas_cluster_overload_simulation": {
+                "current": "mongodbatlas:index/getClusterOverloadSimulation:getClusterOverloadSimulation",
+                "majorVersion": 4
             },
             "mongodbatlas_clusters": {
                 "current": "mongodbatlas:index/getClusters:getClusters",
@@ -2783,6 +2811,31 @@
                     }
                 }
             },
+            "mongodbatlas_org_log_integration": {
+                "current": "mongodbatlas:index/getOrgLogIntegration:getOrgLogIntegration",
+                "majorVersion": 4,
+                "fields": {
+                    "log_types": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "mongodbatlas_org_log_integrations": {
+                "current": "mongodbatlas:index/getOrgLogIntegrations:getOrgLogIntegrations",
+                "majorVersion": 4,
+                "fields": {
+                    "results": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "log_types": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
             "mongodbatlas_org_maintenance_settings": {
                 "current": "mongodbatlas:index/getOrgMaintenanceSettings:getOrgMaintenanceSettings",
                 "majorVersion": 4
@@ -3722,6 +3775,16 @@
                     "kind": "missing"
                 }
             },
+            "mongodbatlas_cluster_adaptive_settings": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_cluster_overload_simulation": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
             "mongodbatlas_database_user": {},
             "mongodbatlas_encryption_at_rest": {},
             "mongodbatlas_encryption_at_rest_private_endpoint": {},
@@ -3748,6 +3811,11 @@
             },
             "mongodbatlas_mongodb_employee_access_grant": {},
             "mongodbatlas_org_delegation_settings": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "mongodbatlas_org_log_integration": {
                 "computeID": {
                     "kind": "missing"
                 }
@@ -3848,7 +3916,9 @@
             "mongodbatlas:index/cloudUserProjectAssignment:CloudUserProjectAssignment": 1,
             "mongodbatlas:index/cloudUserTeamAssignment:CloudUserTeamAssignment": 1,
             "mongodbatlas:index/cluster:Cluster": 0,
+            "mongodbatlas:index/clusterAdaptiveSettings:ClusterAdaptiveSettings": 1,
             "mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation": 0,
+            "mongodbatlas:index/clusterOverloadSimulation:ClusterOverloadSimulation": 1,
             "mongodbatlas:index/customDbRole:CustomDbRole": 0,
             "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws": 0,
             "mongodbatlas:index/databaseUser:DatabaseUser": 1,
@@ -3875,6 +3945,7 @@
             "mongodbatlas:index/onlineArchive:OnlineArchive": 0,
             "mongodbatlas:index/orgDelegationSettings:OrgDelegationSettings": 1,
             "mongodbatlas:index/orgInvitation:OrgInvitation": 0,
+            "mongodbatlas:index/orgLogIntegration:OrgLogIntegration": 1,
             "mongodbatlas:index/orgMaintenanceSettings:OrgMaintenanceSettings": 1,
             "mongodbatlas:index/organization:Organization": 0,
             "mongodbatlas:index/privateEndpointRegionalMode:PrivateEndpointRegionalMode": 0,
@@ -3953,7 +4024,9 @@
             "mongodbatlas:index/getCloudUserProjectAssignment:getCloudUserProjectAssignment": 1,
             "mongodbatlas:index/getCloudUserTeamAssignment:getCloudUserTeamAssignment": 1,
             "mongodbatlas:index/getCluster:getCluster": 0,
+            "mongodbatlas:index/getClusterAdaptiveSettings:getClusterAdaptiveSettings": 1,
             "mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation": 0,
+            "mongodbatlas:index/getClusterOverloadSimulation:getClusterOverloadSimulation": 1,
             "mongodbatlas:index/getClusters:getClusters": 0,
             "mongodbatlas:index/getControlPlaneIpAddresses:getControlPlaneIpAddresses": 1,
             "mongodbatlas:index/getCustomDbRole:getCustomDbRole": 0,
@@ -4004,6 +4077,8 @@
             "mongodbatlas:index/getOnlineArchives:getOnlineArchives": 0,
             "mongodbatlas:index/getOrgDelegationSettings:getOrgDelegationSettings": 1,
             "mongodbatlas:index/getOrgInvitation:getOrgInvitation": 0,
+            "mongodbatlas:index/getOrgLogIntegration:getOrgLogIntegration": 1,
+            "mongodbatlas:index/getOrgLogIntegrations:getOrgLogIntegrations": 1,
             "mongodbatlas:index/getOrgMaintenanceSettings:getOrgMaintenanceSettings": 1,
             "mongodbatlas:index/getOrganization:getOrganization": 0,
             "mongodbatlas:index/getOrganizations:getOrganizations": 0,
