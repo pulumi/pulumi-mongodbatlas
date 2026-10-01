@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import com.pulumi.mongodbatlas.outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfig;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -36,6 +37,11 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScali
      * 
      */
     private Boolean diskGbEnabled;
+    /**
+     * @return Settings that determine the configured per-shard data-size limit for an Atlas INFINITE cluster.
+     * 
+     */
+    private GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfig storageConfig;
 
     private GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling() {}
     /**
@@ -73,6 +79,13 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScali
     public Boolean diskGbEnabled() {
         return this.diskGbEnabled;
     }
+    /**
+     * @return Settings that determine the configured per-shard data-size limit for an Atlas INFINITE cluster.
+     * 
+     */
+    public GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfig storageConfig() {
+        return this.storageConfig;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -88,6 +101,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScali
         private String computeMinInstanceSize;
         private Boolean computeScaleDownEnabled;
         private Boolean diskGbEnabled;
+        private GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfig storageConfig;
         public Builder() {}
         public Builder(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling defaults) {
     	      Objects.requireNonNull(defaults);
@@ -96,6 +110,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScali
     	      this.computeMinInstanceSize = defaults.computeMinInstanceSize;
     	      this.computeScaleDownEnabled = defaults.computeScaleDownEnabled;
     	      this.diskGbEnabled = defaults.diskGbEnabled;
+    	      this.storageConfig = defaults.storageConfig;
         }
 
         @CustomType.Setter
@@ -138,6 +153,14 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScali
             this.diskGbEnabled = diskGbEnabled;
             return this;
         }
+        @CustomType.Setter
+        public Builder storageConfig(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfig storageConfig) {
+            if (storageConfig == null) {
+              throw new MissingRequiredPropertyException("GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling", "storageConfig");
+            }
+            this.storageConfig = storageConfig;
+            return this;
+        }
         public GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling build() {
             final var _resultValue = new GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling();
             _resultValue.computeEnabled = computeEnabled;
@@ -145,6 +168,7 @@ public final class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScali
             _resultValue.computeMinInstanceSize = computeMinInstanceSize;
             _resultValue.computeScaleDownEnabled = computeScaleDownEnabled;
             _resultValue.diskGbEnabled = diskGbEnabled;
+            _resultValue.storageConfig = storageConfig;
             return _resultValue;
         }
     }

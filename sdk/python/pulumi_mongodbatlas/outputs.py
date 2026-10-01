@@ -27,6 +27,7 @@ __all__ = [
     'AdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScaling',
     'AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs',
     'AdvancedClusterReplicationSpecRegionConfigAutoScaling',
+    'AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig',
     'AdvancedClusterReplicationSpecRegionConfigElectableSpecs',
     'AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs',
     'AdvancedClusterTimeouts',
@@ -74,6 +75,7 @@ __all__ = [
     'ClusterConnectionStringPrivateEndpointEndpoint',
     'ClusterLabel',
     'ClusterOutageSimulationOutageFilter',
+    'ClusterOverloadSimulationTimeouts',
     'ClusterPinnedFcv',
     'ClusterReplicationSpec',
     'ClusterReplicationSpecRegionsConfig',
@@ -127,6 +129,7 @@ __all__ = [
     'OnlineArchiveDataProcessRegion',
     'OnlineArchivePartitionField',
     'OnlineArchiveSchedule',
+    'OrgLogIntegrationOtelSuppliedHeader',
     'OrganizationCustomSessionTimeouts',
     'OrganizationServiceAccount',
     'OrganizationServiceAccountSecret',
@@ -191,6 +194,7 @@ __all__ = [
     'GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingResult',
     'GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsResult',
     'GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult',
+    'GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigResult',
     'GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsResult',
     'GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsResult',
     'GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsResult',
@@ -208,6 +212,7 @@ __all__ = [
     'GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult',
+    'GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsResult',
     'GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsResult',
@@ -420,6 +425,7 @@ __all__ = [
     'GetOnlineArchivesResultDataProcessRegionResult',
     'GetOnlineArchivesResultPartitionFieldResult',
     'GetOnlineArchivesResultScheduleResult',
+    'GetOrgLogIntegrationsResultResult',
     'GetOrganizationCustomSessionTimeoutResult',
     'GetOrganizationLinkResult',
     'GetOrganizationUserResult',
@@ -1641,6 +1647,8 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
             suggest = "compute_scale_down_enabled"
         elif key == "diskGbEnabled":
             suggest = "disk_gb_enabled"
+        elif key == "storageConfig":
+            suggest = "storage_config"
 
         if suggest:
             pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterReplicationSpecRegionConfigAutoScaling. Access the value via the '{suggest}' property getter instead.")
@@ -1658,28 +1666,18 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
                  compute_max_instance_size: Optional[_builtins.str] = None,
                  compute_min_instance_size: Optional[_builtins.str] = None,
                  compute_scale_down_enabled: Optional[_builtins.bool] = None,
-                 disk_gb_enabled: Optional[_builtins.bool] = None):
+                 disk_gb_enabled: Optional[_builtins.bool] = None,
+                 storage_config: Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig'] = None):
         """
         :param _builtins.bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
         :param _builtins.str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
-               
-               > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
-               
-               When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
-               
-               **Option 1 (Recommended):** Use `use_effective_fields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes won't cause plan drift, eliminating the need for `lifecycle` ignore customizations. When either compute or disk auto-scaling is enabled (or both), all three fields (`instance_size`, `disk_size_gb`, and `disk_iops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effective_electable_specs` and `effective_read_only_specs` attributes in the `AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
-               
-               **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `read_only_specs` or `analytics_specs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `node_count = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
-               
-               To manually update `instance_size`, `disk_size_gb`, or `disk_iops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with use_effective_fields for the detailed workflow.
-               
-               **Option 2:** If not using `use_effective_fields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instance_size`, `disk_size_gb`, and `disk_iops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
         :param _builtins.str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
         :param _builtins.bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down. Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` : true. If you enable this option, specify a value for `replication_specs[#].region_configs[#].auto_scaling.compute_min_instance_size`.
         :param _builtins.bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling. The maximum memory allowed for the selected cluster tier and the oplog size can limit storage auto-scaling. This parameter defaults to `false`.
                - To set `disk_gb_enabled` to `false`, Atlas requires `advanced_configuration.oplog_min_retention_hours` to be `0` (which disables minimum oplog retention, see [MongoDB documentation](https://www.mongodb.com/docs/manual/reference/configuration-options/#mongodb-setting-storage.oplogMinRetentionHours)) on the server. If it is still non-zero, the API responds with `OPLOG_MIN_RETENTION_HOURS_NO_DISK_AUTO_SCALING` (HTTP 400).
                - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
                - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
+        :param 'AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs' storage_config: Settings that determine the per-shard data-size limit for an Atlas INFINITE cluster.
         """
         if compute_enabled is not None:
             pulumi.set(__self__, "compute_enabled", compute_enabled)
@@ -1691,6 +1689,8 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
             pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
         if disk_gb_enabled is not None:
             pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
+        if storage_config is not None:
+            pulumi.set(__self__, "storage_config", storage_config)
 
     @_builtins.property
     @pulumi.getter(name="computeEnabled")
@@ -1705,18 +1705,6 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
     def compute_max_instance_size(self) -> Optional[_builtins.str]:
         """
         Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
-
-        > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
-
-        When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
-
-        **Option 1 (Recommended):** Use `use_effective_fields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes won't cause plan drift, eliminating the need for `lifecycle` ignore customizations. When either compute or disk auto-scaling is enabled (or both), all three fields (`instance_size`, `disk_size_gb`, and `disk_iops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effective_electable_specs` and `effective_read_only_specs` attributes in the `AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
-
-        **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `read_only_specs` or `analytics_specs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `node_count = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
-
-        To manually update `instance_size`, `disk_size_gb`, or `disk_iops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with use_effective_fields for the detailed workflow.
-
-        **Option 2:** If not using `use_effective_fields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instance_size`, `disk_size_gb`, and `disk_iops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
         """
         return pulumi.get(self, "compute_max_instance_size")
 
@@ -1746,6 +1734,73 @@ class AdvancedClusterReplicationSpecRegionConfigAutoScaling(dict):
         - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `disk_gb_enabled` to `false` and apply again.
         """
         return pulumi.get(self, "disk_gb_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="storageConfig")
+    def storage_config(self) -> Optional['outputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig']:
+        """
+        Settings that determine the per-shard data-size limit for an Atlas INFINITE cluster.
+        """
+        return pulumi.get(self, "storage_config")
+
+
+@pulumi.output_type
+class AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "shardSizeLimitGb":
+            suggest = "shard_size_limit_gb"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 shard_size_limit_gb: _builtins.int):
+        """
+        :param _builtins.int shard_size_limit_gb: Maximum data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes. Set the same value for every region configuration. Omit `storage_config` to use the Atlas default limit.
+               
+               > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
+               
+               When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
+               
+               **Option 1 (Recommended):** Use `use_effective_fields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes do not cause plan drift, eliminating the need for `lifecycle.ignore_changes` customizations. While auto-scaling remains enabled (compute or disk, or both), all three fields (`instance_size`, `disk_size_gb`, and `disk_iops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effective_electable_specs` and `effective_read_only_specs` attributes in the `AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
+               
+               **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `read_only_specs` or `analytics_specs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `node_count = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+               
+               To manually update `instance_size`, `disk_size_gb`, or `disk_iops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with use_effective_fields for the detailed workflow.
+               
+               **Option 2:** If not using `use_effective_fields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instance_size`, `disk_size_gb`, and `disk_iops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
+        """
+        pulumi.set(__self__, "shard_size_limit_gb", shard_size_limit_gb)
+
+    @_builtins.property
+    @pulumi.getter(name="shardSizeLimitGb")
+    def shard_size_limit_gb(self) -> _builtins.int:
+        """
+        Maximum data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes. Set the same value for every region configuration. Omit `storage_config` to use the Atlas default limit.
+
+        > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
+
+        When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
+
+        **Option 1 (Recommended):** Use `use_effective_fields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes do not cause plan drift, eliminating the need for `lifecycle.ignore_changes` customizations. While auto-scaling remains enabled (compute or disk, or both), all three fields (`instance_size`, `disk_size_gb`, and `disk_iops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effective_electable_specs` and `effective_read_only_specs` attributes in the `AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
+
+        **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `read_only_specs` or `analytics_specs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `node_count = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+
+        To manually update `instance_size`, `disk_size_gb`, or `disk_iops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with use_effective_fields for the detailed workflow.
+
+        **Option 2:** If not using `use_effective_fields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instance_size`, `disk_size_gb`, and `disk_iops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
+        """
+        return pulumi.get(self, "shard_size_limit_gb")
 
 
 @pulumi.output_type
@@ -5407,6 +5462,37 @@ class ClusterOutageSimulationOutageFilter(dict):
 
 
 @pulumi.output_type
+class ClusterOverloadSimulationTimeouts(dict):
+    def __init__(__self__, *,
+                 create: Optional[_builtins.str] = None,
+                 delete: Optional[_builtins.str] = None):
+        """
+        :param _builtins.str create: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        :param _builtins.str delete: A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+        """
+        return pulumi.get(self, "create")
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional[_builtins.str]:
+        """
+        A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+        """
+        return pulumi.get(self, "delete")
+
+
+@pulumi.output_type
 class ClusterPinnedFcv(dict):
     @staticmethod
     def __key_warning(key: str):
@@ -8569,6 +8655,35 @@ class OnlineArchiveSchedule(dict):
         Minute of the hour when the scheduled window to run one online archive starts.
         """
         return pulumi.get(self, "start_minute")
+
+
+@pulumi.output_type
+class OrgLogIntegrationOtelSuppliedHeader(dict):
+    def __init__(__self__, *,
+                 name: _builtins.str,
+                 value: _builtins.str):
+        """
+        :param _builtins.str name: Header name.
+        :param _builtins.str value: Header value. Redacted in responses.
+        """
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "value", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> _builtins.str:
+        """
+        Header name.
+        """
+        return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter
+    def value(self) -> _builtins.str:
+        """
+        Header value. Redacted in responses.
+        """
+        return pulumi.get(self, "value")
 
 
 @pulumi.output_type
@@ -12063,7 +12178,8 @@ class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult(dict):
                  compute_max_instance_size: _builtins.str,
                  compute_min_instance_size: _builtins.str,
                  compute_scale_down_enabled: _builtins.bool,
-                 disk_gb_enabled: _builtins.bool):
+                 disk_gb_enabled: _builtins.bool,
+                 storage_config: 'outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigResult'):
         """
         :param _builtins.bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled.
         :param _builtins.str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40).
@@ -12071,12 +12187,14 @@ class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult(dict):
         :param _builtins.str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10).
         :param _builtins.bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
         :param _builtins.bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
+        :param 'GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs' storage_config: Settings that determine the configured per-shard data-size limit for an Atlas INFINITE cluster.
         """
         pulumi.set(__self__, "compute_enabled", compute_enabled)
         pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
         pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
         pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
         pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
+        pulumi.set(__self__, "storage_config", storage_config)
 
     @_builtins.property
     @pulumi.getter(name="computeEnabled")
@@ -12118,6 +12236,32 @@ class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingResult(dict):
         Flag that indicates whether this cluster enables disk auto-scaling.
         """
         return pulumi.get(self, "disk_gb_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="storageConfig")
+    def storage_config(self) -> 'outputs.GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigResult':
+        """
+        Settings that determine the configured per-shard data-size limit for an Atlas INFINITE cluster.
+        """
+        return pulumi.get(self, "storage_config")
+
+
+@pulumi.output_type
+class GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigResult(dict):
+    def __init__(__self__, *,
+                 shard_size_limit_gb: _builtins.int):
+        """
+        :param _builtins.int shard_size_limit_gb: Maximum configured data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes.
+        """
+        pulumi.set(__self__, "shard_size_limit_gb", shard_size_limit_gb)
+
+    @_builtins.property
+    @pulumi.getter(name="shardSizeLimitGb")
+    def shard_size_limit_gb(self) -> _builtins.int:
+        """
+        Maximum configured data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes.
+        """
+        return pulumi.get(self, "shard_size_limit_gb")
 
 
 @pulumi.output_type
@@ -12498,6 +12642,8 @@ class GetAdvancedClustersResultResult(dict):
                  config_server_type: _builtins.str,
                  connection_strings: 'outputs.GetAdvancedClustersResultConnectionStringsResult',
                  create_date: _builtins.str,
+                 database_edition: _builtins.str,
+                 effective_database_edition: _builtins.str,
                  encryption_at_rest_provider: _builtins.str,
                  global_cluster_self_managed_sharding: _builtins.bool,
                  labels: Mapping[str, _builtins.str],
@@ -12529,6 +12675,8 @@ class GetAdvancedClustersResultResult(dict):
         :param _builtins.str config_server_type: Describes a sharded cluster's config server type. Valid values are `DEDICATED` and `EMBEDDED`. To learn more, see the [Sharded Cluster Config Servers documentation](https://www.mongodb.com/docs/manual/core/sharded-cluster-config-servers/).
         :param 'GetAdvancedClustersResultConnectionStringsArgs' connection_strings: Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
         :param _builtins.str create_date: Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
+        :param _builtins.str database_edition: Database edition explicitly requested for the cluster. Valid values are `CORE` and `INFINITE`. This value is absent if MongoDB Cloud selected the default.
+        :param _builtins.str effective_database_edition: Database edition that the cluster currently uses. Valid values are `CORE` and `INFINITE`.
         :param _builtins.str encryption_at_rest_provider: Possible values are AWS, GCP, AZURE or NONE.
         :param _builtins.bool global_cluster_self_managed_sharding: Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
         :param Mapping[str, _builtins.str] labels: Set that contains key-value pairs between 1 to 255 characters in length for tagging and categorizing the cluster. See below.
@@ -12560,6 +12708,8 @@ class GetAdvancedClustersResultResult(dict):
         pulumi.set(__self__, "config_server_type", config_server_type)
         pulumi.set(__self__, "connection_strings", connection_strings)
         pulumi.set(__self__, "create_date", create_date)
+        pulumi.set(__self__, "database_edition", database_edition)
+        pulumi.set(__self__, "effective_database_edition", effective_database_edition)
         pulumi.set(__self__, "encryption_at_rest_provider", encryption_at_rest_provider)
         pulumi.set(__self__, "global_cluster_self_managed_sharding", global_cluster_self_managed_sharding)
         pulumi.set(__self__, "labels", labels)
@@ -12661,6 +12811,22 @@ class GetAdvancedClustersResultResult(dict):
         Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
         """
         return pulumi.get(self, "create_date")
+
+    @_builtins.property
+    @pulumi.getter(name="databaseEdition")
+    def database_edition(self) -> _builtins.str:
+        """
+        Database edition explicitly requested for the cluster. Valid values are `CORE` and `INFINITE`. This value is absent if MongoDB Cloud selected the default.
+        """
+        return pulumi.get(self, "database_edition")
+
+    @_builtins.property
+    @pulumi.getter(name="effectiveDatabaseEdition")
+    def effective_database_edition(self) -> _builtins.str:
+        """
+        Database edition that the cluster currently uses. Valid values are `CORE` and `INFINITE`.
+        """
+        return pulumi.get(self, "effective_database_edition")
 
     @_builtins.property
     @pulumi.getter(name="encryptionAtRestProvider")
@@ -13569,19 +13735,22 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult(dict
                  compute_max_instance_size: _builtins.str,
                  compute_min_instance_size: _builtins.str,
                  compute_scale_down_enabled: _builtins.bool,
-                 disk_gb_enabled: _builtins.bool):
+                 disk_gb_enabled: _builtins.bool,
+                 storage_config: 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigResult'):
         """
         :param _builtins.bool compute_enabled: Flag that indicates whether instance size auto-scaling is enabled.
         :param _builtins.str compute_max_instance_size: Maximum instance size to which your cluster can automatically scale (such as M40).
         :param _builtins.str compute_min_instance_size: Minimum instance size to which your cluster can automatically scale (such as M10).
         :param _builtins.bool compute_scale_down_enabled: Flag that indicates whether the instance size may scale down.
         :param _builtins.bool disk_gb_enabled: Flag that indicates whether this cluster enables disk auto-scaling.
+        :param 'GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigArgs' storage_config: Settings that determine the configured per-shard data-size limit for an Atlas INFINITE cluster.
         """
         pulumi.set(__self__, "compute_enabled", compute_enabled)
         pulumi.set(__self__, "compute_max_instance_size", compute_max_instance_size)
         pulumi.set(__self__, "compute_min_instance_size", compute_min_instance_size)
         pulumi.set(__self__, "compute_scale_down_enabled", compute_scale_down_enabled)
         pulumi.set(__self__, "disk_gb_enabled", disk_gb_enabled)
+        pulumi.set(__self__, "storage_config", storage_config)
 
     @_builtins.property
     @pulumi.getter(name="computeEnabled")
@@ -13622,6 +13791,32 @@ class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingResult(dict
         Flag that indicates whether this cluster enables disk auto-scaling.
         """
         return pulumi.get(self, "disk_gb_enabled")
+
+    @_builtins.property
+    @pulumi.getter(name="storageConfig")
+    def storage_config(self) -> 'outputs.GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigResult':
+        """
+        Settings that determine the configured per-shard data-size limit for an Atlas INFINITE cluster.
+        """
+        return pulumi.get(self, "storage_config")
+
+
+@pulumi.output_type
+class GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigResult(dict):
+    def __init__(__self__, *,
+                 shard_size_limit_gb: _builtins.int):
+        """
+        :param _builtins.int shard_size_limit_gb: Maximum configured data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes.
+        """
+        pulumi.set(__self__, "shard_size_limit_gb", shard_size_limit_gb)
+
+    @_builtins.property
+    @pulumi.getter(name="shardSizeLimitGb")
+    def shard_size_limit_gb(self) -> _builtins.int:
+        """
+        Maximum configured data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes.
+        """
+        return pulumi.get(self, "shard_size_limit_gb")
 
 
 @pulumi.output_type
@@ -26476,6 +26671,57 @@ class GetOnlineArchivesResultScheduleResult(dict):
     @pulumi.getter(name="dayOfWeek")
     def day_of_week(self) -> Optional[_builtins.int]:
         return pulumi.get(self, "day_of_week")
+
+
+@pulumi.output_type
+class GetOrgLogIntegrationsResultResult(dict):
+    def __init__(__self__, *,
+                 integration_id: _builtins.str,
+                 log_types: Sequence[_builtins.str],
+                 otel_endpoint: _builtins.str,
+                 type: _builtins.str):
+        """
+        :param _builtins.str integration_id: Unique 24-character hexadecimal digit string that identifies the log integration configuration.
+        :param Sequence[_builtins.str] log_types: Array of log types exported by this integration.
+        :param _builtins.str otel_endpoint: OpenTelemetry collector endpoint URL.
+        :param _builtins.str type: Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
+        """
+        pulumi.set(__self__, "integration_id", integration_id)
+        pulumi.set(__self__, "log_types", log_types)
+        pulumi.set(__self__, "otel_endpoint", otel_endpoint)
+        pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter(name="integrationId")
+    def integration_id(self) -> _builtins.str:
+        """
+        Unique 24-character hexadecimal digit string that identifies the log integration configuration.
+        """
+        return pulumi.get(self, "integration_id")
+
+    @_builtins.property
+    @pulumi.getter(name="logTypes")
+    def log_types(self) -> Sequence[_builtins.str]:
+        """
+        Array of log types exported by this integration.
+        """
+        return pulumi.get(self, "log_types")
+
+    @_builtins.property
+    @pulumi.getter(name="otelEndpoint")
+    def otel_endpoint(self) -> _builtins.str:
+        """
+        OpenTelemetry collector endpoint URL.
+        """
+        return pulumi.get(self, "otel_endpoint")
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> _builtins.str:
+        """
+        Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
+        """
+        return pulumi.get(self, "type")
 
 
 @pulumi.output_type

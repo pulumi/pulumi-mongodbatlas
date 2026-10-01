@@ -13,6 +13,685 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type GetStreamConnectionsResult struct {
+	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
+	Authentication GetStreamConnectionsResultAuthentication `pulumi:"authentication"`
+	// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+	Aws GetStreamConnectionsResultAws `pulumi:"aws"`
+	// The configuration for Azure Blob Storage connection. See Azure.
+	Azure GetStreamConnectionsResultAzure `pulumi:"azure"`
+	// Comma separated list of server addresses.
+	BootstrapServers string `pulumi:"bootstrapServers"`
+	// Name of the cluster configured for this connection.
+	ClusterName string `pulumi:"clusterName"`
+	// Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
+	ClusterProjectId string `pulumi:"clusterProjectId"`
+	// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+	Config map[string]string `pulumi:"config"`
+	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+	ConnectionName string `pulumi:"connectionName"`
+	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
+	DbRoleToExecute GetStreamConnectionsResultDbRoleToExecute `pulumi:"dbRoleToExecute"`
+	// The configuration for GCP Pub/Sub connection. See GCP.
+	Gcp GetStreamConnectionsResultGcp `pulumi:"gcp"`
+	// A map of key-value pairs for optional headers.
+	Headers map[string]string `pulumi:"headers"`
+	Id      string            `pulumi:"id"`
+	// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName string `pulumi:"instanceName"`
+	// Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
+	Networking GetStreamConnectionsResultNetworking `pulumi:"networking"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId string `pulumi:"projectId"`
+	// Authentication configuration for Schema Registry. See Schema Registry Authentication.
+	SchemaRegistryAuthentication GetStreamConnectionsResultSchemaRegistryAuthentication `pulumi:"schemaRegistryAuthentication"`
+	// The Schema Registry provider. Must be set to `CONFLUENT`.
+	SchemaRegistryProvider string `pulumi:"schemaRegistryProvider"`
+	// List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
+	SchemaRegistryUrls []string `pulumi:"schemaRegistryUrls"`
+	// Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
+	Security GetStreamConnectionsResultSecurity `pulumi:"security"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type string `pulumi:"type"`
+	// URL of the HTTPs endpoint that will be used for creating a connection.
+	Url string `pulumi:"url"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+	//
+	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
+	WorkspaceName string `pulumi:"workspaceName"`
+}
+
+// GetStreamConnectionsResultInput is an input type that accepts GetStreamConnectionsResultArgs and GetStreamConnectionsResultOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultInput` via:
+//
+//	GetStreamConnectionsResultArgs{...}
+type GetStreamConnectionsResultInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultOutput() GetStreamConnectionsResultOutput
+	ToGetStreamConnectionsResultOutputWithContext(context.Context) GetStreamConnectionsResultOutput
+}
+
+type GetStreamConnectionsResultArgs struct {
+	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
+	Authentication GetStreamConnectionsResultAuthenticationInput `pulumi:"authentication"`
+	// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+	Aws GetStreamConnectionsResultAwsInput `pulumi:"aws"`
+	// The configuration for Azure Blob Storage connection. See Azure.
+	Azure GetStreamConnectionsResultAzureInput `pulumi:"azure"`
+	// Comma separated list of server addresses.
+	BootstrapServers pulumi.StringInput `pulumi:"bootstrapServers"`
+	// Name of the cluster configured for this connection.
+	ClusterName pulumi.StringInput `pulumi:"clusterName"`
+	// Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
+	ClusterProjectId pulumi.StringInput `pulumi:"clusterProjectId"`
+	// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+	Config pulumi.StringMapInput `pulumi:"config"`
+	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+	ConnectionName pulumi.StringInput `pulumi:"connectionName"`
+	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
+	DbRoleToExecute GetStreamConnectionsResultDbRoleToExecuteInput `pulumi:"dbRoleToExecute"`
+	// The configuration for GCP Pub/Sub connection. See GCP.
+	Gcp GetStreamConnectionsResultGcpInput `pulumi:"gcp"`
+	// A map of key-value pairs for optional headers.
+	Headers pulumi.StringMapInput `pulumi:"headers"`
+	Id      pulumi.StringInput    `pulumi:"id"`
+	// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+	//
+	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+	InstanceName pulumi.StringInput `pulumi:"instanceName"`
+	// Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
+	Networking GetStreamConnectionsResultNetworkingInput `pulumi:"networking"`
+	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Authentication configuration for Schema Registry. See Schema Registry Authentication.
+	SchemaRegistryAuthentication GetStreamConnectionsResultSchemaRegistryAuthenticationInput `pulumi:"schemaRegistryAuthentication"`
+	// The Schema Registry provider. Must be set to `CONFLUENT`.
+	SchemaRegistryProvider pulumi.StringInput `pulumi:"schemaRegistryProvider"`
+	// List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
+	SchemaRegistryUrls pulumi.StringArrayInput `pulumi:"schemaRegistryUrls"`
+	// Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
+	Security GetStreamConnectionsResultSecurityInput `pulumi:"security"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type pulumi.StringInput `pulumi:"type"`
+	// URL of the HTTPs endpoint that will be used for creating a connection.
+	Url pulumi.StringInput `pulumi:"url"`
+	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+	//
+	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
+	WorkspaceName pulumi.StringInput `pulumi:"workspaceName"`
+}
+
+func (GetStreamConnectionsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResult)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultArgs) ToGetStreamConnectionsResultOutput() GetStreamConnectionsResultOutput {
+	return i.ToGetStreamConnectionsResultOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultArgs) ToGetStreamConnectionsResultOutputWithContext(ctx context.Context) GetStreamConnectionsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultOutput)
+}
+
+// GetStreamConnectionsResultArrayInput is an input type that accepts GetStreamConnectionsResultArray and GetStreamConnectionsResultArrayOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultArrayInput` via:
+//
+//	GetStreamConnectionsResultArray{ GetStreamConnectionsResultArgs{...} }
+type GetStreamConnectionsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultArrayOutput() GetStreamConnectionsResultArrayOutput
+	ToGetStreamConnectionsResultArrayOutputWithContext(context.Context) GetStreamConnectionsResultArrayOutput
+}
+
+type GetStreamConnectionsResultArray []GetStreamConnectionsResultInput
+
+func (GetStreamConnectionsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamConnectionsResult)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultArray) ToGetStreamConnectionsResultArrayOutput() GetStreamConnectionsResultArrayOutput {
+	return i.ToGetStreamConnectionsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultArray) ToGetStreamConnectionsResultArrayOutputWithContext(ctx context.Context) GetStreamConnectionsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultArrayOutput)
+}
+
+type GetStreamConnectionsResultOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResult)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultOutput) ToGetStreamConnectionsResultOutput() GetStreamConnectionsResultOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultOutput) ToGetStreamConnectionsResultOutputWithContext(ctx context.Context) GetStreamConnectionsResultOutput {
+	return o
+}
+
+// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
+func (o GetStreamConnectionsResultOutput) Authentication() GetStreamConnectionsResultAuthenticationOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAuthentication { return v.Authentication }).(GetStreamConnectionsResultAuthenticationOutput)
+}
+
+// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+func (o GetStreamConnectionsResultOutput) Aws() GetStreamConnectionsResultAwsOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAws { return v.Aws }).(GetStreamConnectionsResultAwsOutput)
+}
+
+// The configuration for Azure Blob Storage connection. See Azure.
+func (o GetStreamConnectionsResultOutput) Azure() GetStreamConnectionsResultAzureOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAzure { return v.Azure }).(GetStreamConnectionsResultAzureOutput)
+}
+
+// Comma separated list of server addresses.
+func (o GetStreamConnectionsResultOutput) BootstrapServers() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.BootstrapServers }).(pulumi.StringOutput)
+}
+
+// Name of the cluster configured for this connection.
+func (o GetStreamConnectionsResultOutput) ClusterName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ClusterName }).(pulumi.StringOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
+func (o GetStreamConnectionsResultOutput) ClusterProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ClusterProjectId }).(pulumi.StringOutput)
+}
+
+// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
+func (o GetStreamConnectionsResultOutput) Config() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) map[string]string { return v.Config }).(pulumi.StringMapOutput)
+}
+
+// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
+func (o GetStreamConnectionsResultOutput) ConnectionName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ConnectionName }).(pulumi.StringOutput)
+}
+
+// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
+func (o GetStreamConnectionsResultOutput) DbRoleToExecute() GetStreamConnectionsResultDbRoleToExecuteOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultDbRoleToExecute { return v.DbRoleToExecute }).(GetStreamConnectionsResultDbRoleToExecuteOutput)
+}
+
+// The configuration for GCP Pub/Sub connection. See GCP.
+func (o GetStreamConnectionsResultOutput) Gcp() GetStreamConnectionsResultGcpOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultGcp { return v.Gcp }).(GetStreamConnectionsResultGcpOutput)
+}
+
+// A map of key-value pairs for optional headers.
+func (o GetStreamConnectionsResultOutput) Headers() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
+}
+
+func (o GetStreamConnectionsResultOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
+//
+// Deprecated: This parameter is deprecated. Please transition to workspace_name.
+func (o GetStreamConnectionsResultOutput) InstanceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.InstanceName }).(pulumi.StringOutput)
+}
+
+// Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
+func (o GetStreamConnectionsResultOutput) Networking() GetStreamConnectionsResultNetworkingOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultNetworking { return v.Networking }).(GetStreamConnectionsResultNetworkingOutput)
+}
+
+// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
+func (o GetStreamConnectionsResultOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Authentication configuration for Schema Registry. See Schema Registry Authentication.
+func (o GetStreamConnectionsResultOutput) SchemaRegistryAuthentication() GetStreamConnectionsResultSchemaRegistryAuthenticationOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultSchemaRegistryAuthentication {
+		return v.SchemaRegistryAuthentication
+	}).(GetStreamConnectionsResultSchemaRegistryAuthenticationOutput)
+}
+
+// The Schema Registry provider. Must be set to `CONFLUENT`.
+func (o GetStreamConnectionsResultOutput) SchemaRegistryProvider() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.SchemaRegistryProvider }).(pulumi.StringOutput)
+}
+
+// List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
+func (o GetStreamConnectionsResultOutput) SchemaRegistryUrls() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) []string { return v.SchemaRegistryUrls }).(pulumi.StringArrayOutput)
+}
+
+// Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
+func (o GetStreamConnectionsResultOutput) Security() GetStreamConnectionsResultSecurityOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultSecurity { return v.Security }).(GetStreamConnectionsResultSecurityOutput)
+}
+
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+func (o GetStreamConnectionsResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// URL of the HTTPs endpoint that will be used for creating a connection.
+func (o GetStreamConnectionsResultOutput) Url() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Url }).(pulumi.StringOutput)
+}
+
+// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
+//
+// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
+func (o GetStreamConnectionsResultOutput) WorkspaceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.WorkspaceName }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetStreamConnectionsResult)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultArrayOutput) ToGetStreamConnectionsResultArrayOutput() GetStreamConnectionsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultArrayOutput) ToGetStreamConnectionsResultArrayOutputWithContext(ctx context.Context) GetStreamConnectionsResultArrayOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultArrayOutput) Index(i pulumi.IntInput) GetStreamConnectionsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamConnectionsResult {
+		return vs[0].([]GetStreamConnectionsResult)[vs[1].(int)]
+	}).(GetStreamConnectionsResultOutput)
+}
+
+type GetStreamConnectionsResultAuthentication struct {
+	// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+	Aws GetStreamConnectionsResultAuthenticationAws `pulumi:"aws"`
+	// Public identifier for the Kafka client.
+	ClientId string `pulumi:"clientId"`
+	// Secret known only to the Kafka client and the authorization server.
+	ClientSecret string `pulumi:"clientSecret"`
+	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
+	Mechanism string `pulumi:"mechanism"`
+	// SASL OAUTHBEARER authentication method. Value must be OIDC.
+	Method string `pulumi:"method"`
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+	Password string `pulumi:"password"`
+	// Additional information to provide to the Kafka broker.
+	SaslOauthbearerExtensions string `pulumi:"saslOauthbearerExtensions"`
+	// Scope of the access request to the broker specified by the Kafka clients.
+	Scope string `pulumi:"scope"`
+	// OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+	TokenEndpointUrl string `pulumi:"tokenEndpointUrl"`
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+	Username string `pulumi:"username"`
+}
+
+// GetStreamConnectionsResultAuthenticationInput is an input type that accepts GetStreamConnectionsResultAuthenticationArgs and GetStreamConnectionsResultAuthenticationOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultAuthenticationInput` via:
+//
+//	GetStreamConnectionsResultAuthenticationArgs{...}
+type GetStreamConnectionsResultAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultAuthenticationOutput() GetStreamConnectionsResultAuthenticationOutput
+	ToGetStreamConnectionsResultAuthenticationOutputWithContext(context.Context) GetStreamConnectionsResultAuthenticationOutput
+}
+
+type GetStreamConnectionsResultAuthenticationArgs struct {
+	// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+	Aws GetStreamConnectionsResultAuthenticationAwsInput `pulumi:"aws"`
+	// Public identifier for the Kafka client.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// Secret known only to the Kafka client and the authorization server.
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
+	Mechanism pulumi.StringInput `pulumi:"mechanism"`
+	// SASL OAUTHBEARER authentication method. Value must be OIDC.
+	Method pulumi.StringInput `pulumi:"method"`
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Additional information to provide to the Kafka broker.
+	SaslOauthbearerExtensions pulumi.StringInput `pulumi:"saslOauthbearerExtensions"`
+	// Scope of the access request to the broker specified by the Kafka clients.
+	Scope pulumi.StringInput `pulumi:"scope"`
+	// OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+	TokenEndpointUrl pulumi.StringInput `pulumi:"tokenEndpointUrl"`
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetStreamConnectionsResultAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAuthentication)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultAuthenticationArgs) ToGetStreamConnectionsResultAuthenticationOutput() GetStreamConnectionsResultAuthenticationOutput {
+	return i.ToGetStreamConnectionsResultAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultAuthenticationArgs) ToGetStreamConnectionsResultAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionsResultAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultAuthenticationOutput)
+}
+
+type GetStreamConnectionsResultAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAuthentication)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultAuthenticationOutput) ToGetStreamConnectionsResultAuthenticationOutput() GetStreamConnectionsResultAuthenticationOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultAuthenticationOutput) ToGetStreamConnectionsResultAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionsResultAuthenticationOutput {
+	return o
+}
+
+// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
+func (o GetStreamConnectionsResultAuthenticationOutput) Aws() GetStreamConnectionsResultAuthenticationAwsOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) GetStreamConnectionsResultAuthenticationAws {
+		return v.Aws
+	}).(GetStreamConnectionsResultAuthenticationAwsOutput)
+}
+
+// Public identifier for the Kafka client.
+func (o GetStreamConnectionsResultAuthenticationOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// Secret known only to the Kafka client and the authorization server.
+func (o GetStreamConnectionsResultAuthenticationOutput) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
+func (o GetStreamConnectionsResultAuthenticationOutput) Mechanism() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Mechanism }).(pulumi.StringOutput)
+}
+
+// SASL OAUTHBEARER authentication method. Value must be OIDC.
+func (o GetStreamConnectionsResultAuthenticationOutput) Method() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Method }).(pulumi.StringOutput)
+}
+
+// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+func (o GetStreamConnectionsResultAuthenticationOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Additional information to provide to the Kafka broker.
+func (o GetStreamConnectionsResultAuthenticationOutput) SaslOauthbearerExtensions() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.SaslOauthbearerExtensions }).(pulumi.StringOutput)
+}
+
+// Scope of the access request to the broker specified by the Kafka clients.
+func (o GetStreamConnectionsResultAuthenticationOutput) Scope() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Scope }).(pulumi.StringOutput)
+}
+
+// OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
+func (o GetStreamConnectionsResultAuthenticationOutput) TokenEndpointUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.TokenEndpointUrl }).(pulumi.StringOutput)
+}
+
+// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+func (o GetStreamConnectionsResultAuthenticationOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultAuthenticationAws struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn string `pulumi:"roleArn"`
+}
+
+// GetStreamConnectionsResultAuthenticationAwsInput is an input type that accepts GetStreamConnectionsResultAuthenticationAwsArgs and GetStreamConnectionsResultAuthenticationAwsOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultAuthenticationAwsInput` via:
+//
+//	GetStreamConnectionsResultAuthenticationAwsArgs{...}
+type GetStreamConnectionsResultAuthenticationAwsInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultAuthenticationAwsOutput() GetStreamConnectionsResultAuthenticationAwsOutput
+	ToGetStreamConnectionsResultAuthenticationAwsOutputWithContext(context.Context) GetStreamConnectionsResultAuthenticationAwsOutput
+}
+
+type GetStreamConnectionsResultAuthenticationAwsArgs struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn pulumi.StringInput `pulumi:"roleArn"`
+}
+
+func (GetStreamConnectionsResultAuthenticationAwsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAuthenticationAws)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultAuthenticationAwsArgs) ToGetStreamConnectionsResultAuthenticationAwsOutput() GetStreamConnectionsResultAuthenticationAwsOutput {
+	return i.ToGetStreamConnectionsResultAuthenticationAwsOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultAuthenticationAwsArgs) ToGetStreamConnectionsResultAuthenticationAwsOutputWithContext(ctx context.Context) GetStreamConnectionsResultAuthenticationAwsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultAuthenticationAwsOutput)
+}
+
+type GetStreamConnectionsResultAuthenticationAwsOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultAuthenticationAwsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAuthenticationAws)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultAuthenticationAwsOutput) ToGetStreamConnectionsResultAuthenticationAwsOutput() GetStreamConnectionsResultAuthenticationAwsOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultAuthenticationAwsOutput) ToGetStreamConnectionsResultAuthenticationAwsOutputWithContext(ctx context.Context) GetStreamConnectionsResultAuthenticationAwsOutput {
+	return o
+}
+
+// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+func (o GetStreamConnectionsResultAuthenticationAwsOutput) RoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAuthenticationAws) string { return v.RoleArn }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultAws struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn string `pulumi:"roleArn"`
+}
+
+// GetStreamConnectionsResultAwsInput is an input type that accepts GetStreamConnectionsResultAwsArgs and GetStreamConnectionsResultAwsOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultAwsInput` via:
+//
+//	GetStreamConnectionsResultAwsArgs{...}
+type GetStreamConnectionsResultAwsInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultAwsOutput() GetStreamConnectionsResultAwsOutput
+	ToGetStreamConnectionsResultAwsOutputWithContext(context.Context) GetStreamConnectionsResultAwsOutput
+}
+
+type GetStreamConnectionsResultAwsArgs struct {
+	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+	RoleArn pulumi.StringInput `pulumi:"roleArn"`
+}
+
+func (GetStreamConnectionsResultAwsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAws)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultAwsArgs) ToGetStreamConnectionsResultAwsOutput() GetStreamConnectionsResultAwsOutput {
+	return i.ToGetStreamConnectionsResultAwsOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultAwsArgs) ToGetStreamConnectionsResultAwsOutputWithContext(ctx context.Context) GetStreamConnectionsResultAwsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultAwsOutput)
+}
+
+type GetStreamConnectionsResultAwsOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultAwsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAws)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultAwsOutput) ToGetStreamConnectionsResultAwsOutput() GetStreamConnectionsResultAwsOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultAwsOutput) ToGetStreamConnectionsResultAwsOutputWithContext(ctx context.Context) GetStreamConnectionsResultAwsOutput {
+	return o
+}
+
+// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
+func (o GetStreamConnectionsResultAwsOutput) RoleArn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAws) string { return v.RoleArn }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultAzure struct {
+	// Optional. Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+	Region string `pulumi:"region"`
+	// Required. UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+	ServicePrincipalId string `pulumi:"servicePrincipalId"`
+	// Required. Name of the Azure Storage account. Must follow Azure storage account naming rules: 3 to 24 characters in length, and use only lowercase letters and numbers.
+	StorageAccountName string `pulumi:"storageAccountName"`
+}
+
+// GetStreamConnectionsResultAzureInput is an input type that accepts GetStreamConnectionsResultAzureArgs and GetStreamConnectionsResultAzureOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultAzureInput` via:
+//
+//	GetStreamConnectionsResultAzureArgs{...}
+type GetStreamConnectionsResultAzureInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultAzureOutput() GetStreamConnectionsResultAzureOutput
+	ToGetStreamConnectionsResultAzureOutputWithContext(context.Context) GetStreamConnectionsResultAzureOutput
+}
+
+type GetStreamConnectionsResultAzureArgs struct {
+	// Optional. Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+	Region pulumi.StringInput `pulumi:"region"`
+	// Required. UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+	ServicePrincipalId pulumi.StringInput `pulumi:"servicePrincipalId"`
+	// Required. Name of the Azure Storage account. Must follow Azure storage account naming rules: 3 to 24 characters in length, and use only lowercase letters and numbers.
+	StorageAccountName pulumi.StringInput `pulumi:"storageAccountName"`
+}
+
+func (GetStreamConnectionsResultAzureArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAzure)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultAzureArgs) ToGetStreamConnectionsResultAzureOutput() GetStreamConnectionsResultAzureOutput {
+	return i.ToGetStreamConnectionsResultAzureOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultAzureArgs) ToGetStreamConnectionsResultAzureOutputWithContext(ctx context.Context) GetStreamConnectionsResultAzureOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultAzureOutput)
+}
+
+type GetStreamConnectionsResultAzureOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultAzureOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultAzure)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultAzureOutput) ToGetStreamConnectionsResultAzureOutput() GetStreamConnectionsResultAzureOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultAzureOutput) ToGetStreamConnectionsResultAzureOutputWithContext(ctx context.Context) GetStreamConnectionsResultAzureOutput {
+	return o
+}
+
+// Optional. Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
+func (o GetStreamConnectionsResultAzureOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAzure) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// Required. UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
+func (o GetStreamConnectionsResultAzureOutput) ServicePrincipalId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAzure) string { return v.ServicePrincipalId }).(pulumi.StringOutput)
+}
+
+// Required. Name of the Azure Storage account. Must follow Azure storage account naming rules: 3 to 24 characters in length, and use only lowercase letters and numbers.
+func (o GetStreamConnectionsResultAzureOutput) StorageAccountName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultAzure) string { return v.StorageAccountName }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionsResultDbRoleToExecute struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role string `pulumi:"role"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionsResultDbRoleToExecuteInput is an input type that accepts GetStreamConnectionsResultDbRoleToExecuteArgs and GetStreamConnectionsResultDbRoleToExecuteOutput values.
+// You can construct a concrete instance of `GetStreamConnectionsResultDbRoleToExecuteInput` via:
+//
+//	GetStreamConnectionsResultDbRoleToExecuteArgs{...}
+type GetStreamConnectionsResultDbRoleToExecuteInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionsResultDbRoleToExecuteOutput() GetStreamConnectionsResultDbRoleToExecuteOutput
+	ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(context.Context) GetStreamConnectionsResultDbRoleToExecuteOutput
+}
+
+type GetStreamConnectionsResultDbRoleToExecuteArgs struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role pulumi.StringInput `pulumi:"role"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionsResultDbRoleToExecuteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecute)(nil)).Elem()
+}
+
+func (i GetStreamConnectionsResultDbRoleToExecuteArgs) ToGetStreamConnectionsResultDbRoleToExecuteOutput() GetStreamConnectionsResultDbRoleToExecuteOutput {
+	return i.ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionsResultDbRoleToExecuteArgs) ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionsResultDbRoleToExecuteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultDbRoleToExecuteOutput)
+}
+
+type GetStreamConnectionsResultDbRoleToExecuteOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionsResultDbRoleToExecuteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecute)(nil)).Elem()
+}
+
+func (o GetStreamConnectionsResultDbRoleToExecuteOutput) ToGetStreamConnectionsResultDbRoleToExecuteOutput() GetStreamConnectionsResultDbRoleToExecuteOutput {
+	return o
+}
+
+func (o GetStreamConnectionsResultDbRoleToExecuteOutput) ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionsResultDbRoleToExecuteOutput {
+	return o
+}
+
+// The name of the role to use. Can be a built in role or a custom role.
+func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
+}
+
 type GetStreamConnectionsResultGcp struct {
 	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
 	ServiceAccountId string `pulumi:"serviceAccountId"`
@@ -2975,6 +3654,13 @@ func (o GetX509AuthenticationDatabaseUserCertificateArrayOutput) Index(i pulumi.
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultInput)(nil)).Elem(), GetStreamConnectionsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultArrayInput)(nil)).Elem(), GetStreamConnectionsResultArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAuthenticationInput)(nil)).Elem(), GetStreamConnectionsResultAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAuthenticationAwsInput)(nil)).Elem(), GetStreamConnectionsResultAuthenticationAwsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAwsInput)(nil)).Elem(), GetStreamConnectionsResultAwsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAzureInput)(nil)).Elem(), GetStreamConnectionsResultAzureArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionsResultDbRoleToExecuteArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultGcpInput)(nil)).Elem(), GetStreamConnectionsResultGcpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultNetworkingInput)(nil)).Elem(), GetStreamConnectionsResultNetworkingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionsResultNetworkingAccessArgs{})
@@ -3016,6 +3702,13 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultArrayInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetX509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), GetX509AuthenticationDatabaseUserCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetX509AuthenticationDatabaseUserCertificateArrayInput)(nil)).Elem(), GetX509AuthenticationDatabaseUserCertificateArray{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultArrayOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultAuthenticationOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultAuthenticationAwsOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultAwsOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultAzureOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionsResultDbRoleToExecuteOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultGcpOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultNetworkingOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultNetworkingAccessOutput{})

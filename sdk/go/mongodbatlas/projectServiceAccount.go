@@ -20,13 +20,61 @@ import (
 //
 // > **IMPORTANT:** Deleting a `ProjectServiceAccount` resource unassigns the associated Service Account from the project, but doesn't delete it from the organization.
 //
+// > **NOTE:** To rotate secrets, see Guide: Service Account Secret Rotation.
+//
 // ## Example Usage
+//
+// ### S
+//
+// The following example creates a Project Service Account without an Atlas-generated secret, then creates its first secret as a managed resource.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			// Create a Project Service Account without an Atlas-generated secret, then create the first secret
+//			// explicitly with mongodbatlas_project_service_account_secret so this configuration owns it.
+//			this, err := mongodbatlas.NewProjectServiceAccount(ctx, "this", &mongodbatlas.ProjectServiceAccountArgs{
+//				ProjectId:   pulumi.Any(projectId),
+//				Name:        pulumi.String("example-project-service-account"),
+//				Description: pulumi.String("Example Project Service Account"),
+//				Roles: pulumi.StringArray{
+//					pulumi.String("GROUP_READ_ONLY"),
+//				},
+//				WithoutInitialSecret: pulumi.Bool(true),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			thisProjectServiceAccountSecret, err := mongodbatlas.NewProjectServiceAccountSecret(ctx, "this", &mongodbatlas.ProjectServiceAccountSecretArgs{
+//				ProjectId:               pulumi.Any(projectId),
+//				ClientId:                this.ClientId,
+//				SecretExpiresAfterHours: pulumi.Int(2160),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("secretId", thisProjectServiceAccountSecret.SecretId)
+//			ctx.Export("secret", thisProjectServiceAccountSecret.Secret)
+//			return nil
+//		})
+//	}
+//
+// ```
 //
 // ## Import
 //
 // Import the Project Service Account resource by using the Project ID and Client ID in the format `PROJECT_ID/CLIENT_ID`, e.g.
 //
-// > **NOTE:** `secretExpiresAfterHours` is not populated during import and should be omitted in the resource definition when importing the resource.
+// > **NOTE:** Atlas does not populate `secretExpiresAfterHours` or `withoutInitialSecret` during import. Omit both attributes from the resource definition when you import a Project Service Account.
 //
 // For more information, see [Create One Project Service Account](https://www.mongodb.com/docs/api/doc/atlas-admin-api-v2/operation/operation-creategroupserviceaccount) in the MongoDB Atlas API documentation.
 type ProjectServiceAccount struct {
@@ -44,12 +92,14 @@ type ProjectServiceAccount struct {
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// A list of project-level roles for the Service Account.
 	Roles pulumi.StringArrayOutput `pulumi:"roles"`
-	// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+	// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `withoutInitialSecret` to false or omit `withoutInitialSecret`. Do not set this field when you set `withoutInitialSecret` to true. You cannot update this field after you create the Service Account.
 	SecretExpiresAfterHours pulumi.IntPtrOutput `pulumi:"secretExpiresAfterHours"`
 	// A list of secrets associated with the specified Service Account.
 	Secrets ProjectServiceAccountSecretTypeArrayOutput `pulumi:"secrets"`
 	// Indicates whether the Service Account is system managed.
 	SystemManaged pulumi.BoolOutput `pulumi:"systemManaged"`
+	// When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secretExpiresAfterHours`.
+	WithoutInitialSecret pulumi.BoolPtrOutput `pulumi:"withoutInitialSecret"`
 }
 
 // NewProjectServiceAccount registers a new resource with the given unique name, arguments, and options.
@@ -103,12 +153,14 @@ type projectServiceAccountState struct {
 	ProjectId *string `pulumi:"projectId"`
 	// A list of project-level roles for the Service Account.
 	Roles []string `pulumi:"roles"`
-	// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+	// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `withoutInitialSecret` to false or omit `withoutInitialSecret`. Do not set this field when you set `withoutInitialSecret` to true. You cannot update this field after you create the Service Account.
 	SecretExpiresAfterHours *int `pulumi:"secretExpiresAfterHours"`
 	// A list of secrets associated with the specified Service Account.
 	Secrets []ProjectServiceAccountSecretType `pulumi:"secrets"`
 	// Indicates whether the Service Account is system managed.
 	SystemManaged *bool `pulumi:"systemManaged"`
+	// When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secretExpiresAfterHours`.
+	WithoutInitialSecret *bool `pulumi:"withoutInitialSecret"`
 }
 
 type ProjectServiceAccountState struct {
@@ -124,12 +176,14 @@ type ProjectServiceAccountState struct {
 	ProjectId pulumi.StringPtrInput
 	// A list of project-level roles for the Service Account.
 	Roles pulumi.StringArrayInput
-	// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+	// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `withoutInitialSecret` to false or omit `withoutInitialSecret`. Do not set this field when you set `withoutInitialSecret` to true. You cannot update this field after you create the Service Account.
 	SecretExpiresAfterHours pulumi.IntPtrInput
 	// A list of secrets associated with the specified Service Account.
 	Secrets ProjectServiceAccountSecretTypeArrayInput
 	// Indicates whether the Service Account is system managed.
 	SystemManaged pulumi.BoolPtrInput
+	// When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secretExpiresAfterHours`.
+	WithoutInitialSecret pulumi.BoolPtrInput
 }
 
 func (ProjectServiceAccountState) ElementType() reflect.Type {
@@ -145,8 +199,10 @@ type projectServiceAccountArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// A list of project-level roles for the Service Account.
 	Roles []string `pulumi:"roles"`
-	// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+	// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `withoutInitialSecret` to false or omit `withoutInitialSecret`. Do not set this field when you set `withoutInitialSecret` to true. You cannot update this field after you create the Service Account.
 	SecretExpiresAfterHours *int `pulumi:"secretExpiresAfterHours"`
+	// When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secretExpiresAfterHours`.
+	WithoutInitialSecret *bool `pulumi:"withoutInitialSecret"`
 }
 
 // The set of arguments for constructing a ProjectServiceAccount resource.
@@ -159,8 +215,10 @@ type ProjectServiceAccountArgs struct {
 	ProjectId pulumi.StringInput
 	// A list of project-level roles for the Service Account.
 	Roles pulumi.StringArrayInput
-	// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+	// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `withoutInitialSecret` to false or omit `withoutInitialSecret`. Do not set this field when you set `withoutInitialSecret` to true. You cannot update this field after you create the Service Account.
 	SecretExpiresAfterHours pulumi.IntPtrInput
+	// When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secretExpiresAfterHours`.
+	WithoutInitialSecret pulumi.BoolPtrInput
 }
 
 func (ProjectServiceAccountArgs) ElementType() reflect.Type {
@@ -280,7 +338,7 @@ func (o ProjectServiceAccountOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ProjectServiceAccount) pulumi.StringArrayOutput { return v.Roles }).(pulumi.StringArrayOutput)
 }
 
-// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. This attribute is required when creating the Service Account and you cannot update it later.
+// The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization's settings. Set this field when you set `withoutInitialSecret` to false or omit `withoutInitialSecret`. Do not set this field when you set `withoutInitialSecret` to true. You cannot update this field after you create the Service Account.
 func (o ProjectServiceAccountOutput) SecretExpiresAfterHours() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ProjectServiceAccount) pulumi.IntPtrOutput { return v.SecretExpiresAfterHours }).(pulumi.IntPtrOutput)
 }
@@ -293,6 +351,11 @@ func (o ProjectServiceAccountOutput) Secrets() ProjectServiceAccountSecretTypeAr
 // Indicates whether the Service Account is system managed.
 func (o ProjectServiceAccountOutput) SystemManaged() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ProjectServiceAccount) pulumi.BoolOutput { return v.SystemManaged }).(pulumi.BoolOutput)
+}
+
+// When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secretExpiresAfterHours`.
+func (o ProjectServiceAccountOutput) WithoutInitialSecret() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ProjectServiceAccount) pulumi.BoolPtrOutput { return v.WithoutInitialSecret }).(pulumi.BoolPtrOutput)
 }
 
 type ProjectServiceAccountArrayOutput struct{ *pulumi.OutputState }

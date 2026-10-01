@@ -17,6 +17,36 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Read the Project Service Account and the project's Service Accounts back from Atlas.
+        ///     var @this = Mongodbatlas.GetProjectServiceAccount.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ClientId = thisMongodbatlasProjectServiceAccount.ClientId,
+        ///     });
+        /// 
+        ///     var thisGetProjectServiceAccounts = Mongodbatlas.GetProjectServiceAccounts.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["serviceAccountClientId"] = thisMongodbatlasProjectServiceAccount.ClientId,
+        ///         ["serviceAccountName"] = @this.Apply(@this =&gt; @this.Apply(getProjectServiceAccountResult =&gt; getProjectServiceAccountResult.Name)),
+        ///         ["serviceAccountsResults"] = thisGetProjectServiceAccounts.Apply(getProjectServiceAccountsResult =&gt; getProjectServiceAccountsResult.Results),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetProjectServiceAccountResult> InvokeAsync(GetProjectServiceAccountArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetProjectServiceAccountResult>("mongodbatlas:index/getProjectServiceAccount:getProjectServiceAccount", args ?? new GetProjectServiceAccountArgs(), options.WithDefaults());
@@ -27,6 +57,36 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Read the Project Service Account and the project's Service Accounts back from Atlas.
+        ///     var @this = Mongodbatlas.GetProjectServiceAccount.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ClientId = thisMongodbatlasProjectServiceAccount.ClientId,
+        ///     });
+        /// 
+        ///     var thisGetProjectServiceAccounts = Mongodbatlas.GetProjectServiceAccounts.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["serviceAccountClientId"] = thisMongodbatlasProjectServiceAccount.ClientId,
+        ///         ["serviceAccountName"] = @this.Apply(@this =&gt; @this.Apply(getProjectServiceAccountResult =&gt; getProjectServiceAccountResult.Name)),
+        ///         ["serviceAccountsResults"] = thisGetProjectServiceAccounts.Apply(getProjectServiceAccountsResult =&gt; getProjectServiceAccountsResult.Results),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetProjectServiceAccountResult> Invoke(GetProjectServiceAccountInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectServiceAccountResult>("mongodbatlas:index/getProjectServiceAccount:getProjectServiceAccount", args ?? new GetProjectServiceAccountInvokeArgs(), options.WithDefaults());
@@ -37,6 +97,36 @@ namespace Pulumi.Mongodbatlas
         /// &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
         /// 
         /// ## Example Usage
+        /// 
+        /// ### S
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     // Read the Project Service Account and the project's Service Accounts back from Atlas.
+        ///     var @this = Mongodbatlas.GetProjectServiceAccount.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///         ClientId = thisMongodbatlasProjectServiceAccount.ClientId,
+        ///     });
+        /// 
+        ///     var thisGetProjectServiceAccounts = Mongodbatlas.GetProjectServiceAccounts.Invoke(new()
+        ///     {
+        ///         ProjectId = projectId,
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["serviceAccountClientId"] = thisMongodbatlasProjectServiceAccount.ClientId,
+        ///         ["serviceAccountName"] = @this.Apply(@this =&gt; @this.Apply(getProjectServiceAccountResult =&gt; getProjectServiceAccountResult.Name)),
+        ///         ["serviceAccountsResults"] = thisGetProjectServiceAccounts.Apply(getProjectServiceAccountsResult =&gt; getProjectServiceAccountsResult.Results),
+        ///     };
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetProjectServiceAccountResult> Invoke(GetProjectServiceAccountInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetProjectServiceAccountResult>("mongodbatlas:index/getProjectServiceAccount:getProjectServiceAccount", args ?? new GetProjectServiceAccountInvokeArgs(), options.WithDefaults());

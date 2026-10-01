@@ -110,10 +110,20 @@ export type Cluster = import("./cluster").Cluster;
 export const Cluster: typeof import("./cluster").Cluster = null as any;
 utilities.lazyLoad(exports, ["Cluster"], () => require("./cluster"));
 
+export { ClusterAdaptiveSettingsArgs, ClusterAdaptiveSettingsState } from "./clusterAdaptiveSettings";
+export type ClusterAdaptiveSettings = import("./clusterAdaptiveSettings").ClusterAdaptiveSettings;
+export const ClusterAdaptiveSettings: typeof import("./clusterAdaptiveSettings").ClusterAdaptiveSettings = null as any;
+utilities.lazyLoad(exports, ["ClusterAdaptiveSettings"], () => require("./clusterAdaptiveSettings"));
+
 export { ClusterOutageSimulationArgs, ClusterOutageSimulationState } from "./clusterOutageSimulation";
 export type ClusterOutageSimulation = import("./clusterOutageSimulation").ClusterOutageSimulation;
 export const ClusterOutageSimulation: typeof import("./clusterOutageSimulation").ClusterOutageSimulation = null as any;
 utilities.lazyLoad(exports, ["ClusterOutageSimulation"], () => require("./clusterOutageSimulation"));
+
+export { ClusterOverloadSimulationArgs, ClusterOverloadSimulationState } from "./clusterOverloadSimulation";
+export type ClusterOverloadSimulation = import("./clusterOverloadSimulation").ClusterOverloadSimulation;
+export const ClusterOverloadSimulation: typeof import("./clusterOverloadSimulation").ClusterOverloadSimulation = null as any;
+utilities.lazyLoad(exports, ["ClusterOverloadSimulation"], () => require("./clusterOverloadSimulation"));
 
 export { CustomDbRoleArgs, CustomDbRoleState } from "./customDbRole";
 export type CustomDbRole = import("./customDbRole").CustomDbRole;
@@ -385,10 +395,20 @@ export const getCluster: typeof import("./getCluster").getCluster = null as any;
 export const getClusterOutput: typeof import("./getCluster").getClusterOutput = null as any;
 utilities.lazyLoad(exports, ["getCluster","getClusterOutput"], () => require("./getCluster"));
 
+export { GetClusterAdaptiveSettingsArgs, GetClusterAdaptiveSettingsResult, GetClusterAdaptiveSettingsOutputArgs } from "./getClusterAdaptiveSettings";
+export const getClusterAdaptiveSettings: typeof import("./getClusterAdaptiveSettings").getClusterAdaptiveSettings = null as any;
+export const getClusterAdaptiveSettingsOutput: typeof import("./getClusterAdaptiveSettings").getClusterAdaptiveSettingsOutput = null as any;
+utilities.lazyLoad(exports, ["getClusterAdaptiveSettings","getClusterAdaptiveSettingsOutput"], () => require("./getClusterAdaptiveSettings"));
+
 export { GetClusterOutageSimulationArgs, GetClusterOutageSimulationResult, GetClusterOutageSimulationOutputArgs } from "./getClusterOutageSimulation";
 export const getClusterOutageSimulation: typeof import("./getClusterOutageSimulation").getClusterOutageSimulation = null as any;
 export const getClusterOutageSimulationOutput: typeof import("./getClusterOutageSimulation").getClusterOutageSimulationOutput = null as any;
 utilities.lazyLoad(exports, ["getClusterOutageSimulation","getClusterOutageSimulationOutput"], () => require("./getClusterOutageSimulation"));
+
+export { GetClusterOverloadSimulationArgs, GetClusterOverloadSimulationResult, GetClusterOverloadSimulationOutputArgs } from "./getClusterOverloadSimulation";
+export const getClusterOverloadSimulation: typeof import("./getClusterOverloadSimulation").getClusterOverloadSimulation = null as any;
+export const getClusterOverloadSimulationOutput: typeof import("./getClusterOverloadSimulation").getClusterOverloadSimulationOutput = null as any;
+utilities.lazyLoad(exports, ["getClusterOverloadSimulation","getClusterOverloadSimulationOutput"], () => require("./getClusterOverloadSimulation"));
 
 export { GetClustersArgs, GetClustersResult, GetClustersOutputArgs } from "./getClusters";
 export const getClusters: typeof import("./getClusters").getClusters = null as any;
@@ -639,6 +659,16 @@ export { GetOrgInvitationArgs, GetOrgInvitationResult, GetOrgInvitationOutputArg
 export const getOrgInvitation: typeof import("./getOrgInvitation").getOrgInvitation = null as any;
 export const getOrgInvitationOutput: typeof import("./getOrgInvitation").getOrgInvitationOutput = null as any;
 utilities.lazyLoad(exports, ["getOrgInvitation","getOrgInvitationOutput"], () => require("./getOrgInvitation"));
+
+export { GetOrgLogIntegrationArgs, GetOrgLogIntegrationResult, GetOrgLogIntegrationOutputArgs } from "./getOrgLogIntegration";
+export const getOrgLogIntegration: typeof import("./getOrgLogIntegration").getOrgLogIntegration = null as any;
+export const getOrgLogIntegrationOutput: typeof import("./getOrgLogIntegration").getOrgLogIntegrationOutput = null as any;
+utilities.lazyLoad(exports, ["getOrgLogIntegration","getOrgLogIntegrationOutput"], () => require("./getOrgLogIntegration"));
+
+export { GetOrgLogIntegrationsArgs, GetOrgLogIntegrationsResult, GetOrgLogIntegrationsOutputArgs } from "./getOrgLogIntegrations";
+export const getOrgLogIntegrations: typeof import("./getOrgLogIntegrations").getOrgLogIntegrations = null as any;
+export const getOrgLogIntegrationsOutput: typeof import("./getOrgLogIntegrations").getOrgLogIntegrationsOutput = null as any;
+utilities.lazyLoad(exports, ["getOrgLogIntegrations","getOrgLogIntegrationsOutput"], () => require("./getOrgLogIntegrations"));
 
 export { GetOrgMaintenanceSettingsArgs, GetOrgMaintenanceSettingsResult, GetOrgMaintenanceSettingsOutputArgs } from "./getOrgMaintenanceSettings";
 export const getOrgMaintenanceSettings: typeof import("./getOrgMaintenanceSettings").getOrgMaintenanceSettings = null as any;
@@ -1030,6 +1060,11 @@ export type OrgInvitation = import("./orgInvitation").OrgInvitation;
 export const OrgInvitation: typeof import("./orgInvitation").OrgInvitation = null as any;
 utilities.lazyLoad(exports, ["OrgInvitation"], () => require("./orgInvitation"));
 
+export { OrgLogIntegrationArgs, OrgLogIntegrationState } from "./orgLogIntegration";
+export type OrgLogIntegration = import("./orgLogIntegration").OrgLogIntegration;
+export const OrgLogIntegration: typeof import("./orgLogIntegration").OrgLogIntegration = null as any;
+utilities.lazyLoad(exports, ["OrgLogIntegration"], () => require("./orgLogIntegration"));
+
 export { OrgMaintenanceSettingsArgs, OrgMaintenanceSettingsState } from "./orgMaintenanceSettings";
 export type OrgMaintenanceSettings = import("./orgMaintenanceSettings").OrgMaintenanceSettings;
 export const OrgMaintenanceSettings: typeof import("./orgMaintenanceSettings").OrgMaintenanceSettings = null as any;
@@ -1259,8 +1294,12 @@ const _module = {
                 return new CloudUserTeamAssignment(name, <any>undefined, { urn })
             case "mongodbatlas:index/cluster:Cluster":
                 return new Cluster(name, <any>undefined, { urn })
+            case "mongodbatlas:index/clusterAdaptiveSettings:ClusterAdaptiveSettings":
+                return new ClusterAdaptiveSettings(name, <any>undefined, { urn })
             case "mongodbatlas:index/clusterOutageSimulation:ClusterOutageSimulation":
                 return new ClusterOutageSimulation(name, <any>undefined, { urn })
+            case "mongodbatlas:index/clusterOverloadSimulation:ClusterOverloadSimulation":
+                return new ClusterOverloadSimulation(name, <any>undefined, { urn })
             case "mongodbatlas:index/customDbRole:CustomDbRole":
                 return new CustomDbRole(name, <any>undefined, { urn })
             case "mongodbatlas:index/customDnsConfigurationClusterAws:CustomDnsConfigurationClusterAws":
@@ -1313,6 +1352,8 @@ const _module = {
                 return new OrgDelegationSettings(name, <any>undefined, { urn })
             case "mongodbatlas:index/orgInvitation:OrgInvitation":
                 return new OrgInvitation(name, <any>undefined, { urn })
+            case "mongodbatlas:index/orgLogIntegration:OrgLogIntegration":
+                return new OrgLogIntegration(name, <any>undefined, { urn })
             case "mongodbatlas:index/orgMaintenanceSettings:OrgMaintenanceSettings":
                 return new OrgMaintenanceSettings(name, <any>undefined, { urn })
             case "mongodbatlas:index/organization:Organization":
@@ -1407,7 +1448,9 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudUserOrgAssignm
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudUserProjectAssignment", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cloudUserTeamAssignment", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/cluster", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/clusterAdaptiveSettings", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/clusterOutageSimulation", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/clusterOverloadSimulation", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/customDbRole", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/customDnsConfigurationClusterAws", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/databaseUser", _module)
@@ -1434,6 +1477,7 @@ pulumi.runtime.registerResourceModule("mongodbatlas", "index/networkPeering", _m
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/onlineArchive", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/orgDelegationSettings", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/orgInvitation", _module)
+pulumi.runtime.registerResourceModule("mongodbatlas", "index/orgLogIntegration", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/orgMaintenanceSettings", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/organization", _module)
 pulumi.runtime.registerResourceModule("mongodbatlas", "index/privateEndpointRegionalMode", _module)

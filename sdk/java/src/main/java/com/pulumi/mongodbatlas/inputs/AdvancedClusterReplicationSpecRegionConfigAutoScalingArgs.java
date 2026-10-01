@@ -5,6 +5,7 @@ package com.pulumi.mongodbatlas.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
@@ -34,36 +35,12 @@ public final class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs ext
     /**
      * Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
      * 
-     * &gt; **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
-     * 
-     * When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
-     * 
-     * **Option 1 (Recommended):** Use `useEffectiveFields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes won&#39;t cause plan drift, eliminating the need for `lifecycle` ignore customizations. When either compute or disk auto-scaling is enabled (or both), all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effectiveElectableSpecs` and `effectiveReadOnlySpecs` attributes in the `mongodbatlas.AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
-     * 
-     * **Important:** If you&#39;re enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
-     * 
-     * To manually update `instanceSize`, `diskSizeGb`, or `diskIops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with useEffectiveFields for the detailed workflow.
-     * 
-     * **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
-     * 
      */
     @Import(name="computeMaxInstanceSize")
     private @Nullable Output<String> computeMaxInstanceSize;
 
     /**
      * @return Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
-     * 
-     * &gt; **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
-     * 
-     * When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
-     * 
-     * **Option 1 (Recommended):** Use `useEffectiveFields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes won&#39;t cause plan drift, eliminating the need for `lifecycle` ignore customizations. When either compute or disk auto-scaling is enabled (or both), all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effectiveElectableSpecs` and `effectiveReadOnlySpecs` attributes in the `mongodbatlas.AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
-     * 
-     * **Important:** If you&#39;re enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
-     * 
-     * To manually update `instanceSize`, `diskSizeGb`, or `diskIops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with useEffectiveFields for the detailed workflow.
-     * 
-     * **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
      * 
      */
     public Optional<Output<String>> computeMaxInstanceSize() {
@@ -121,6 +98,21 @@ public final class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs ext
         return Optional.ofNullable(this.diskGbEnabled);
     }
 
+    /**
+     * Settings that determine the per-shard data-size limit for an Atlas INFINITE cluster.
+     * 
+     */
+    @Import(name="storageConfig")
+    private @Nullable Output<AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs> storageConfig;
+
+    /**
+     * @return Settings that determine the per-shard data-size limit for an Atlas INFINITE cluster.
+     * 
+     */
+    public Optional<Output<AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs>> storageConfig() {
+        return Optional.ofNullable(this.storageConfig);
+    }
+
     private AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs() {}
 
     private AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs(AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs $) {
@@ -129,6 +121,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs ext
         this.computeMinInstanceSize = $.computeMinInstanceSize;
         this.computeScaleDownEnabled = $.computeScaleDownEnabled;
         this.diskGbEnabled = $.diskGbEnabled;
+        this.storageConfig = $.storageConfig;
     }
 
     public static Builder builder() {
@@ -173,18 +166,6 @@ public final class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs ext
         /**
          * @param computeMaxInstanceSize Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
          * 
-         * &gt; **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
-         * 
-         * When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
-         * 
-         * **Option 1 (Recommended):** Use `useEffectiveFields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes won&#39;t cause plan drift, eliminating the need for `lifecycle` ignore customizations. When either compute or disk auto-scaling is enabled (or both), all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effectiveElectableSpecs` and `effectiveReadOnlySpecs` attributes in the `mongodbatlas.AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
-         * 
-         * **Important:** If you&#39;re enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
-         * 
-         * To manually update `instanceSize`, `diskSizeGb`, or `diskIops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with useEffectiveFields for the detailed workflow.
-         * 
-         * **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
-         * 
          * @return builder
          * 
          */
@@ -195,18 +176,6 @@ public final class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs ext
 
         /**
          * @param computeMaxInstanceSize Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
-         * 
-         * &gt; **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
-         * 
-         * When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
-         * 
-         * **Option 1 (Recommended):** Use `useEffectiveFields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes won&#39;t cause plan drift, eliminating the need for `lifecycle` ignore customizations. When either compute or disk auto-scaling is enabled (or both), all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effectiveElectableSpecs` and `effectiveReadOnlySpecs` attributes in the `mongodbatlas.AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
-         * 
-         * **Important:** If you&#39;re enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
-         * 
-         * To manually update `instanceSize`, `diskSizeGb`, or `diskIops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with useEffectiveFields for the detailed workflow.
-         * 
-         * **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
          * 
          * @return builder
          * 
@@ -282,6 +251,27 @@ public final class AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs ext
          */
         public Builder diskGbEnabled(Boolean diskGbEnabled) {
             return diskGbEnabled(Output.of(diskGbEnabled));
+        }
+
+        /**
+         * @param storageConfig Settings that determine the per-shard data-size limit for an Atlas INFINITE cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder storageConfig(@Nullable Output<AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs> storageConfig) {
+            $.storageConfig = storageConfig;
+            return this;
+        }
+
+        /**
+         * @param storageConfig Settings that determine the per-shard data-size limit for an Atlas INFINITE cluster.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder storageConfig(AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs storageConfig) {
+            return storageConfig(Output.of(storageConfig));
         }
 
         public AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs build() {

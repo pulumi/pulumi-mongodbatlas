@@ -268,6 +268,10 @@ type LookupAdvancedClusterResult struct {
 	// Set of connection strings that your applications use to connect to this cluster. More information in [Connection-strings](https://www.mongodb.com/docs/manual/reference/connection-string/). Use the parameters in this object to connect your applications to this cluster. To learn more about the formats of connection strings, see [Connection String Options](https://www.mongodb.com/docs/atlas/reference/faq/connection-changes/). NOTE: Atlas returns the contents of this object after the cluster is operational, not while it builds the cluster.
 	ConnectionStrings GetAdvancedClusterConnectionStrings `pulumi:"connectionStrings"`
 	CreateDate        string                              `pulumi:"createDate"`
+	// Database edition explicitly requested for the cluster. Valid values are `CORE` and `INFINITE`. This value is absent if MongoDB Cloud selected the default.
+	DatabaseEdition string `pulumi:"databaseEdition"`
+	// Database edition that the cluster currently uses. Valid values are `CORE` and `INFINITE`.
+	EffectiveDatabaseEdition string `pulumi:"effectiveDatabaseEdition"`
 	// Possible values are AWS, GCP, AZURE or NONE.
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
 	// Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
@@ -389,6 +393,16 @@ func (o LookupAdvancedClusterResultOutput) ConnectionStrings() GetAdvancedCluste
 
 func (o LookupAdvancedClusterResultOutput) CreateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// Database edition explicitly requested for the cluster. Valid values are `CORE` and `INFINITE`. This value is absent if MongoDB Cloud selected the default.
+func (o LookupAdvancedClusterResultOutput) DatabaseEdition() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.DatabaseEdition }).(pulumi.StringOutput)
+}
+
+// Database edition that the cluster currently uses. Valid values are `CORE` and `INFINITE`.
+func (o LookupAdvancedClusterResultOutput) EffectiveDatabaseEdition() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupAdvancedClusterResult) string { return v.EffectiveDatabaseEdition }).(pulumi.StringOutput)
 }
 
 // Possible values are AWS, GCP, AZURE or NONE.

@@ -69,7 +69,7 @@ import * as utilities from "./utilities";
  *     config: {
  *         "auto.offset.reset": "latest",
  *     },
- *     bootstrapServers: "localhost:9091,localhost:9092",
+ *     bootstrapServers: "example.com:9092",
  * });
  * ```
  *
@@ -93,7 +93,7 @@ import * as utilities from "./utilities";
  *         scope: "read:messages write:messages",
  *         saslOauthbearerExtensions: "logicalCluster=lkc-kmom,identityPoolId=pool-lAr",
  *     },
- *     bootstrapServers: "localhost:9092,localhost:9092",
+ *     bootstrapServers: "example.com:9092",
  *     config: {
  *         "auto.offset.reset": "earliest",
  *     },
@@ -131,7 +131,7 @@ import * as utilities from "./utilities";
  *     config: {
  *         "auto.offset.reset": "latest",
  *     },
- *     bootstrapServers: "localhost:9091,localhost:9092",
+ *     bootstrapServers: "example.com:9092",
  * });
  * ```
  *

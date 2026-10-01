@@ -54,6 +54,14 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string CreateDate;
         /// <summary>
+        /// Database edition explicitly requested for the cluster. Valid values are `CORE` and `INFINITE`. This value is absent if MongoDB Cloud selected the default.
+        /// </summary>
+        public readonly string DatabaseEdition;
+        /// <summary>
+        /// Database edition that the cluster currently uses. Valid values are `CORE` and `INFINITE`.
+        /// </summary>
+        public readonly string EffectiveDatabaseEdition;
+        /// <summary>
         /// Possible values are AWS, GCP, AZURE or NONE.
         /// </summary>
         public readonly string EncryptionAtRestProvider;
@@ -156,6 +164,10 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string createDate,
 
+            string databaseEdition,
+
+            string effectiveDatabaseEdition,
+
             string encryptionAtRestProvider,
 
             bool globalClusterSelfManagedSharding,
@@ -206,6 +218,8 @@ namespace Pulumi.Mongodbatlas.Outputs
             ConfigServerType = configServerType;
             ConnectionStrings = connectionStrings;
             CreateDate = createDate;
+            DatabaseEdition = databaseEdition;
+            EffectiveDatabaseEdition = effectiveDatabaseEdition;
             EncryptionAtRestProvider = encryptionAtRestProvider;
             GlobalClusterSelfManagedSharding = globalClusterSelfManagedSharding;
             Labels = labels;

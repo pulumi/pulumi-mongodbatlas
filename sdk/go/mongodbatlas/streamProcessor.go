@@ -85,7 +85,7 @@ import (
 //					Username:  pulumi.Any(kafkaUsername),
 //					Password:  pulumi.Any(kafkaPassword),
 //				},
-//				BootstrapServers: pulumi.String("localhost:9092,localhost:9092"),
+//				BootstrapServers: pulumi.String("example.com:9092"),
 //				Config: pulumi.StringMap{
 //					"auto.offset.reset": pulumi.String("earliest"),
 //				},

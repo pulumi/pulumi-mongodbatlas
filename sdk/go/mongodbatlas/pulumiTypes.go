@@ -2135,18 +2135,6 @@ type AdvancedClusterReplicationSpecRegionConfigAutoScaling struct {
 	// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
 	ComputeEnabled *bool `pulumi:"computeEnabled"`
 	// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
-	//
-	// > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
-	//
-	// When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
-	//
-	// **Option 1 (Recommended):** Use `useEffectiveFields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes won't cause plan drift, eliminating the need for `lifecycle` ignore customizations. When either compute or disk auto-scaling is enabled (or both), all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effectiveElectableSpecs` and `effectiveReadOnlySpecs` attributes in the `AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
-	//
-	// **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
-	//
-	// To manually update `instanceSize`, `diskSizeGb`, or `diskIops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with useEffectiveFields for the detailed workflow.
-	//
-	// **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
 	ComputeMaxInstanceSize *string `pulumi:"computeMaxInstanceSize"`
 	// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
 	ComputeMinInstanceSize *string `pulumi:"computeMinInstanceSize"`
@@ -2157,6 +2145,8 @@ type AdvancedClusterReplicationSpecRegionConfigAutoScaling struct {
 	// - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
 	// - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 	DiskGbEnabled *bool `pulumi:"diskGbEnabled"`
+	// Settings that determine the per-shard data-size limit for an Atlas INFINITE cluster.
+	StorageConfig *AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig `pulumi:"storageConfig"`
 }
 
 // AdvancedClusterReplicationSpecRegionConfigAutoScalingInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs and AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput values.
@@ -2174,18 +2164,6 @@ type AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs struct {
 	// Flag that indicates whether instance size auto-scaling is enabled. This parameter defaults to false. If a sharded cluster is making use of the New Sharding Configuration, auto-scaling of the instance size will be independent for each individual shard. Please reference the Use Auto-Scaling Per Shard section for more details.
 	ComputeEnabled pulumi.BoolPtrInput `pulumi:"computeEnabled"`
 	// Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
-	//
-	// > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
-	//
-	// When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
-	//
-	// **Option 1 (Recommended):** Use `useEffectiveFields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes won't cause plan drift, eliminating the need for `lifecycle` ignore customizations. When either compute or disk auto-scaling is enabled (or both), all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effectiveElectableSpecs` and `effectiveReadOnlySpecs` attributes in the `AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
-	//
-	// **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
-	//
-	// To manually update `instanceSize`, `diskSizeGb`, or `diskIops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with useEffectiveFields for the detailed workflow.
-	//
-	// **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
 	ComputeMaxInstanceSize pulumi.StringPtrInput `pulumi:"computeMaxInstanceSize"`
 	// Minimum instance size to which your cluster can automatically scale (such as M10). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_scale_down_enabled` is true.
 	ComputeMinInstanceSize pulumi.StringPtrInput `pulumi:"computeMinInstanceSize"`
@@ -2196,6 +2174,8 @@ type AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs struct {
 	// - Cluster updates are applied before process arguments, so setting `advanced_configuration.oplog_min_retention_hours` to `0` in the same `apply` as disabling disk auto-scaling does not prevent the error.
 	// - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 	DiskGbEnabled pulumi.BoolPtrInput `pulumi:"diskGbEnabled"`
+	// Settings that determine the per-shard data-size limit for an Atlas INFINITE cluster.
+	StorageConfig AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrInput `pulumi:"storageConfig"`
 }
 
 func (AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs) ElementType() reflect.Type {
@@ -2281,18 +2261,6 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeEnab
 }
 
 // Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
-//
-// > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
-//
-// When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
-//
-// **Option 1 (Recommended):** Use `useEffectiveFields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes won't cause plan drift, eliminating the need for `lifecycle` ignore customizations. When either compute or disk auto-scaling is enabled (or both), all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effectiveElectableSpecs` and `effectiveReadOnlySpecs` attributes in the `AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
-//
-// **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
-//
-// To manually update `instanceSize`, `diskSizeGb`, or `diskIops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with useEffectiveFields for the detailed workflow.
-//
-// **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeMaxInstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *string { return v.ComputeMaxInstanceSize }).(pulumi.StringPtrOutput)
 }
@@ -2313,6 +2281,13 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeScal
 // - Workaround: Run `apply` twice. First set `advanced_configuration.oplog_min_retention_hours` to `0` and apply. Then set `diskGbEnabled` to `false` and apply again.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) DiskGbEnabled() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *bool { return v.DiskGbEnabled }).(pulumi.BoolPtrOutput)
+}
+
+// Settings that determine the per-shard data-size limit for an Atlas INFINITE cluster.
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) StorageConfig() AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScaling) *AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig {
+		return v.StorageConfig
+	}).(AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput)
 }
 
 type AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput struct{ *pulumi.OutputState }
@@ -2350,18 +2325,6 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeE
 }
 
 // Maximum instance size to which your cluster can automatically scale (such as M40). Atlas requires this parameter if `replication_specs[#].region_configs[#].auto_scaling.compute_enabled` is true.
-//
-// > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
-//
-// When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
-//
-// **Option 1 (Recommended):** Use `useEffectiveFields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes won't cause plan drift, eliminating the need for `lifecycle` ignore customizations. When either compute or disk auto-scaling is enabled (or both), all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effectiveElectableSpecs` and `effectiveReadOnlySpecs` attributes in the `AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
-//
-// **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
-//
-// To manually update `instanceSize`, `diskSizeGb`, or `diskIops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with useEffectiveFields for the detailed workflow.
-//
-// **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
 func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) ComputeMaxInstanceSize() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScaling) *string {
 		if v == nil {
@@ -2402,6 +2365,203 @@ func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) DiskGbEn
 		}
 		return v.DiskGbEnabled
 	}).(pulumi.BoolPtrOutput)
+}
+
+// Settings that determine the per-shard data-size limit for an Atlas INFINITE cluster.
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput) StorageConfig() AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScaling) *AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig {
+		if v == nil {
+			return nil
+		}
+		return v.StorageConfig
+	}).(AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig struct {
+	// Maximum data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes. Set the same value for every region configuration. Omit `storageConfig` to use the Atlas default limit.
+	//
+	// > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
+	//
+	// When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
+	//
+	// **Option 1 (Recommended):** Use `useEffectiveFields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes do not cause plan drift, eliminating the need for `lifecycle.ignore_changes` customizations. While auto-scaling remains enabled (compute or disk, or both), all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effectiveElectableSpecs` and `effectiveReadOnlySpecs` attributes in the `AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
+	//
+	// **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+	//
+	// To manually update `instanceSize`, `diskSizeGb`, or `diskIops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with useEffectiveFields for the detailed workflow.
+	//
+	// **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
+	ShardSizeLimitGb int `pulumi:"shardSizeLimitGb"`
+}
+
+// AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs and AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput values.
+// You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigInput` via:
+//
+//	AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs{...}
+type AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput
+	ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutputWithContext(context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput
+}
+
+type AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs struct {
+	// Maximum data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes. Set the same value for every region configuration. Omit `storageConfig` to use the Atlas default limit.
+	//
+	// > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
+	//
+	// When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
+	//
+	// **Option 1 (Recommended):** Use `useEffectiveFields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes do not cause plan drift, eliminating the need for `lifecycle.ignore_changes` customizations. While auto-scaling remains enabled (compute or disk, or both), all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effectiveElectableSpecs` and `effectiveReadOnlySpecs` attributes in the `AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
+	//
+	// **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+	//
+	// To manually update `instanceSize`, `diskSizeGb`, or `diskIops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with useEffectiveFields for the detailed workflow.
+	//
+	// **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
+	ShardSizeLimitGb pulumi.IntInput `pulumi:"shardSizeLimitGb"`
+}
+
+func (AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig)(nil)).Elem()
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput)
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutputWithContext(context.Background())
+}
+
+func (i AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput).ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutputWithContext(ctx)
+}
+
+// AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrInput is an input type that accepts AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs, AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtr and AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput values.
+// You can construct a concrete instance of `AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrInput` via:
+//
+//	        AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs{...}
+//
+//	or:
+//
+//	        nil
+type AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrInput interface {
+	pulumi.Input
+
+	ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput
+	ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutputWithContext(context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput
+}
+
+type advancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrType AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs
+
+func AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtr(v *AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs) AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrInput {
+	return (*advancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrType)(v)
+}
+
+func (*advancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig)(nil)).Elem()
+}
+
+func (i *advancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrType) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput {
+	return i.ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutputWithContext(context.Background())
+}
+
+func (i *advancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrType) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig)(nil)).Elem()
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput {
+	return o.ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutputWithContext(context.Background())
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig) *AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig {
+		return &v
+	}).(AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput)
+}
+
+// Maximum data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes. Set the same value for every region configuration. Omit `storageConfig` to use the Atlas default limit.
+//
+// > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
+//
+// When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
+//
+// **Option 1 (Recommended):** Use `useEffectiveFields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes do not cause plan drift, eliminating the need for `lifecycle.ignore_changes` customizations. While auto-scaling remains enabled (compute or disk, or both), all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effectiveElectableSpecs` and `effectiveReadOnlySpecs` attributes in the `AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
+//
+// **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+//
+// To manually update `instanceSize`, `diskSizeGb`, or `diskIops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with useEffectiveFields for the detailed workflow.
+//
+// **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput) ShardSizeLimitGb() pulumi.IntOutput {
+	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig) int {
+		return v.ShardSizeLimitGb
+	}).(pulumi.IntOutput)
+}
+
+type AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput struct{ *pulumi.OutputState }
+
+func (AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig)(nil)).Elem()
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput() AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput) ToAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutputWithContext(ctx context.Context) AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput {
+	return o
+}
+
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput) Elem() AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig) AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig {
+		if v != nil {
+			return *v
+		}
+		var ret AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig
+		return ret
+	}).(AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput)
+}
+
+// Maximum data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes. Set the same value for every region configuration. Omit `storageConfig` to use the Atlas default limit.
+//
+// > **NOTE:** MongoDB recommends enabling both [cluster tier (compute) and storage auto-scaling](https://www.mongodb.com/docs/atlas/cluster-autoscaling/#cluster-tier-and-cluster-storage-might-scale-in-parallel) together for optimal performance and cost efficiency. When only one type of auto-scaling is enabled, Atlas may still adjust both compute and storage resources to maintain optimal cluster performance. See the [Atlas Auto-Scaling documentation](https://www.mongodb.com/docs/atlas/cluster-autoscaling/) and [Scalability Best Practices](https://www.mongodb.com/docs/atlas/architecture/current/scalability/#all-deployment-paradigm-recommendations) for more information.
+//
+// When auto-scaling is enabled, there are two approaches to manage your cluster configuration with Terraform:
+//
+// **Option 1 (Recommended):** Use `useEffectiveFields = true` to enable the new effective fields behavior. With this option, Atlas-managed auto-scaling changes do not cause plan drift, eliminating the need for `lifecycle.ignore_changes` customizations. While auto-scaling remains enabled (compute or disk, or both), all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) are ignored in the Terraform configuration, as Atlas may adjust any of these resources to maintain optimal cluster performance. You can read the actual scaled values using the `effectiveElectableSpecs` and `effectiveReadOnlySpecs` attributes in the `AdvancedCluster` data source. See Auto-Scaling with Effective Fields for details.
+//
+// **Important:** If you're enabling this flag on an existing cluster that has `lifecycle.ignore_changes` blocks for spec fields, enable the flag and remove the blocks in the same apply. The blocks are no longer needed and may interfere with the new behavior. If you previously removed `readOnlySpecs` or `analyticsSpecs` attributes, you may encounter a validation error. This is a safety check to prevent accidental node loss. To resolve: add the blocks back (to keep nodes) or with `nodeCount = 0` (to delete nodes), apply without toggling the flag, then toggle in a separate apply.
+//
+// To manually update `instanceSize`, `diskSizeGb`, or `diskIops` with Option 1, you must temporarily disable auto-scaling. See Manually Updating Specs with useEffectiveFields for the detailed workflow.
+//
+// **Option 2:** If not using `useEffectiveFields`, use a lifecycle ignore customization to prevent unintended changes. When auto-scaling is enabled, you must ignore all three fields (`instanceSize`, `diskSizeGb`, and `diskIops`) as Atlas may adjust any of these resources regardless of which auto-scaling type is enabled.
+func (o AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput) ShardSizeLimitGb() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig) *int {
+		if v == nil {
+			return nil
+		}
+		return &v.ShardSizeLimitGb
+	}).(pulumi.IntPtrOutput)
 }
 
 type AdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
@@ -10047,6 +10207,162 @@ func (o ClusterOutageSimulationOutageFilterArrayOutput) Index(i pulumi.IntInput)
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ClusterOutageSimulationOutageFilter {
 		return vs[0].([]ClusterOutageSimulationOutageFilter)[vs[1].(int)]
 	}).(ClusterOutageSimulationOutageFilterOutput)
+}
+
+type ClusterOverloadSimulationTimeouts struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create *string `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete *string `pulumi:"delete"`
+}
+
+// ClusterOverloadSimulationTimeoutsInput is an input type that accepts ClusterOverloadSimulationTimeoutsArgs and ClusterOverloadSimulationTimeoutsOutput values.
+// You can construct a concrete instance of `ClusterOverloadSimulationTimeoutsInput` via:
+//
+//	ClusterOverloadSimulationTimeoutsArgs{...}
+type ClusterOverloadSimulationTimeoutsInput interface {
+	pulumi.Input
+
+	ToClusterOverloadSimulationTimeoutsOutput() ClusterOverloadSimulationTimeoutsOutput
+	ToClusterOverloadSimulationTimeoutsOutputWithContext(context.Context) ClusterOverloadSimulationTimeoutsOutput
+}
+
+type ClusterOverloadSimulationTimeoutsArgs struct {
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+	Create pulumi.StringPtrInput `pulumi:"create"`
+	// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+	Delete pulumi.StringPtrInput `pulumi:"delete"`
+}
+
+func (ClusterOverloadSimulationTimeoutsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterOverloadSimulationTimeouts)(nil)).Elem()
+}
+
+func (i ClusterOverloadSimulationTimeoutsArgs) ToClusterOverloadSimulationTimeoutsOutput() ClusterOverloadSimulationTimeoutsOutput {
+	return i.ToClusterOverloadSimulationTimeoutsOutputWithContext(context.Background())
+}
+
+func (i ClusterOverloadSimulationTimeoutsArgs) ToClusterOverloadSimulationTimeoutsOutputWithContext(ctx context.Context) ClusterOverloadSimulationTimeoutsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterOverloadSimulationTimeoutsOutput)
+}
+
+func (i ClusterOverloadSimulationTimeoutsArgs) ToClusterOverloadSimulationTimeoutsPtrOutput() ClusterOverloadSimulationTimeoutsPtrOutput {
+	return i.ToClusterOverloadSimulationTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i ClusterOverloadSimulationTimeoutsArgs) ToClusterOverloadSimulationTimeoutsPtrOutputWithContext(ctx context.Context) ClusterOverloadSimulationTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterOverloadSimulationTimeoutsOutput).ToClusterOverloadSimulationTimeoutsPtrOutputWithContext(ctx)
+}
+
+// ClusterOverloadSimulationTimeoutsPtrInput is an input type that accepts ClusterOverloadSimulationTimeoutsArgs, ClusterOverloadSimulationTimeoutsPtr and ClusterOverloadSimulationTimeoutsPtrOutput values.
+// You can construct a concrete instance of `ClusterOverloadSimulationTimeoutsPtrInput` via:
+//
+//	        ClusterOverloadSimulationTimeoutsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ClusterOverloadSimulationTimeoutsPtrInput interface {
+	pulumi.Input
+
+	ToClusterOverloadSimulationTimeoutsPtrOutput() ClusterOverloadSimulationTimeoutsPtrOutput
+	ToClusterOverloadSimulationTimeoutsPtrOutputWithContext(context.Context) ClusterOverloadSimulationTimeoutsPtrOutput
+}
+
+type clusterOverloadSimulationTimeoutsPtrType ClusterOverloadSimulationTimeoutsArgs
+
+func ClusterOverloadSimulationTimeoutsPtr(v *ClusterOverloadSimulationTimeoutsArgs) ClusterOverloadSimulationTimeoutsPtrInput {
+	return (*clusterOverloadSimulationTimeoutsPtrType)(v)
+}
+
+func (*clusterOverloadSimulationTimeoutsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterOverloadSimulationTimeouts)(nil)).Elem()
+}
+
+func (i *clusterOverloadSimulationTimeoutsPtrType) ToClusterOverloadSimulationTimeoutsPtrOutput() ClusterOverloadSimulationTimeoutsPtrOutput {
+	return i.ToClusterOverloadSimulationTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (i *clusterOverloadSimulationTimeoutsPtrType) ToClusterOverloadSimulationTimeoutsPtrOutputWithContext(ctx context.Context) ClusterOverloadSimulationTimeoutsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ClusterOverloadSimulationTimeoutsPtrOutput)
+}
+
+type ClusterOverloadSimulationTimeoutsOutput struct{ *pulumi.OutputState }
+
+func (ClusterOverloadSimulationTimeoutsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ClusterOverloadSimulationTimeouts)(nil)).Elem()
+}
+
+func (o ClusterOverloadSimulationTimeoutsOutput) ToClusterOverloadSimulationTimeoutsOutput() ClusterOverloadSimulationTimeoutsOutput {
+	return o
+}
+
+func (o ClusterOverloadSimulationTimeoutsOutput) ToClusterOverloadSimulationTimeoutsOutputWithContext(ctx context.Context) ClusterOverloadSimulationTimeoutsOutput {
+	return o
+}
+
+func (o ClusterOverloadSimulationTimeoutsOutput) ToClusterOverloadSimulationTimeoutsPtrOutput() ClusterOverloadSimulationTimeoutsPtrOutput {
+	return o.ToClusterOverloadSimulationTimeoutsPtrOutputWithContext(context.Background())
+}
+
+func (o ClusterOverloadSimulationTimeoutsOutput) ToClusterOverloadSimulationTimeoutsPtrOutputWithContext(ctx context.Context) ClusterOverloadSimulationTimeoutsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ClusterOverloadSimulationTimeouts) *ClusterOverloadSimulationTimeouts {
+		return &v
+	}).(ClusterOverloadSimulationTimeoutsPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o ClusterOverloadSimulationTimeoutsOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterOverloadSimulationTimeouts) *string { return v.Create }).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o ClusterOverloadSimulationTimeoutsOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ClusterOverloadSimulationTimeouts) *string { return v.Delete }).(pulumi.StringPtrOutput)
+}
+
+type ClusterOverloadSimulationTimeoutsPtrOutput struct{ *pulumi.OutputState }
+
+func (ClusterOverloadSimulationTimeoutsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ClusterOverloadSimulationTimeouts)(nil)).Elem()
+}
+
+func (o ClusterOverloadSimulationTimeoutsPtrOutput) ToClusterOverloadSimulationTimeoutsPtrOutput() ClusterOverloadSimulationTimeoutsPtrOutput {
+	return o
+}
+
+func (o ClusterOverloadSimulationTimeoutsPtrOutput) ToClusterOverloadSimulationTimeoutsPtrOutputWithContext(ctx context.Context) ClusterOverloadSimulationTimeoutsPtrOutput {
+	return o
+}
+
+func (o ClusterOverloadSimulationTimeoutsPtrOutput) Elem() ClusterOverloadSimulationTimeoutsOutput {
+	return o.ApplyT(func(v *ClusterOverloadSimulationTimeouts) ClusterOverloadSimulationTimeouts {
+		if v != nil {
+			return *v
+		}
+		var ret ClusterOverloadSimulationTimeouts
+		return ret
+	}).(ClusterOverloadSimulationTimeoutsOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours).
+func (o ClusterOverloadSimulationTimeoutsPtrOutput) Create() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterOverloadSimulationTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(pulumi.StringPtrOutput)
+}
+
+// A string that can be [parsed as a duration](https://pkg.go.dev/time#ParseDuration) consisting of numbers and unit suffixes, such as "30s" or "2h45m". Valid time units are "s" (seconds), "m" (minutes), "h" (hours). Setting a timeout for a Delete operation is only applicable if changes are saved into state before the destroy operation occurs.
+func (o ClusterOverloadSimulationTimeoutsPtrOutput) Delete() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ClusterOverloadSimulationTimeouts) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(pulumi.StringPtrOutput)
 }
 
 type ClusterPinnedFcv struct {
@@ -17719,6 +18035,112 @@ func (o OnlineArchiveSchedulePtrOutput) Type() pulumi.StringPtrOutput {
 		}
 		return &v.Type
 	}).(pulumi.StringPtrOutput)
+}
+
+type OrgLogIntegrationOtelSuppliedHeader struct {
+	// Header name.
+	Name string `pulumi:"name"`
+	// Header value. Redacted in responses.
+	Value string `pulumi:"value"`
+}
+
+// OrgLogIntegrationOtelSuppliedHeaderInput is an input type that accepts OrgLogIntegrationOtelSuppliedHeaderArgs and OrgLogIntegrationOtelSuppliedHeaderOutput values.
+// You can construct a concrete instance of `OrgLogIntegrationOtelSuppliedHeaderInput` via:
+//
+//	OrgLogIntegrationOtelSuppliedHeaderArgs{...}
+type OrgLogIntegrationOtelSuppliedHeaderInput interface {
+	pulumi.Input
+
+	ToOrgLogIntegrationOtelSuppliedHeaderOutput() OrgLogIntegrationOtelSuppliedHeaderOutput
+	ToOrgLogIntegrationOtelSuppliedHeaderOutputWithContext(context.Context) OrgLogIntegrationOtelSuppliedHeaderOutput
+}
+
+type OrgLogIntegrationOtelSuppliedHeaderArgs struct {
+	// Header name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Header value. Redacted in responses.
+	Value pulumi.StringInput `pulumi:"value"`
+}
+
+func (OrgLogIntegrationOtelSuppliedHeaderArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrgLogIntegrationOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (i OrgLogIntegrationOtelSuppliedHeaderArgs) ToOrgLogIntegrationOtelSuppliedHeaderOutput() OrgLogIntegrationOtelSuppliedHeaderOutput {
+	return i.ToOrgLogIntegrationOtelSuppliedHeaderOutputWithContext(context.Background())
+}
+
+func (i OrgLogIntegrationOtelSuppliedHeaderArgs) ToOrgLogIntegrationOtelSuppliedHeaderOutputWithContext(ctx context.Context) OrgLogIntegrationOtelSuppliedHeaderOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrgLogIntegrationOtelSuppliedHeaderOutput)
+}
+
+// OrgLogIntegrationOtelSuppliedHeaderArrayInput is an input type that accepts OrgLogIntegrationOtelSuppliedHeaderArray and OrgLogIntegrationOtelSuppliedHeaderArrayOutput values.
+// You can construct a concrete instance of `OrgLogIntegrationOtelSuppliedHeaderArrayInput` via:
+//
+//	OrgLogIntegrationOtelSuppliedHeaderArray{ OrgLogIntegrationOtelSuppliedHeaderArgs{...} }
+type OrgLogIntegrationOtelSuppliedHeaderArrayInput interface {
+	pulumi.Input
+
+	ToOrgLogIntegrationOtelSuppliedHeaderArrayOutput() OrgLogIntegrationOtelSuppliedHeaderArrayOutput
+	ToOrgLogIntegrationOtelSuppliedHeaderArrayOutputWithContext(context.Context) OrgLogIntegrationOtelSuppliedHeaderArrayOutput
+}
+
+type OrgLogIntegrationOtelSuppliedHeaderArray []OrgLogIntegrationOtelSuppliedHeaderInput
+
+func (OrgLogIntegrationOtelSuppliedHeaderArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OrgLogIntegrationOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (i OrgLogIntegrationOtelSuppliedHeaderArray) ToOrgLogIntegrationOtelSuppliedHeaderArrayOutput() OrgLogIntegrationOtelSuppliedHeaderArrayOutput {
+	return i.ToOrgLogIntegrationOtelSuppliedHeaderArrayOutputWithContext(context.Background())
+}
+
+func (i OrgLogIntegrationOtelSuppliedHeaderArray) ToOrgLogIntegrationOtelSuppliedHeaderArrayOutputWithContext(ctx context.Context) OrgLogIntegrationOtelSuppliedHeaderArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(OrgLogIntegrationOtelSuppliedHeaderArrayOutput)
+}
+
+type OrgLogIntegrationOtelSuppliedHeaderOutput struct{ *pulumi.OutputState }
+
+func (OrgLogIntegrationOtelSuppliedHeaderOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*OrgLogIntegrationOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (o OrgLogIntegrationOtelSuppliedHeaderOutput) ToOrgLogIntegrationOtelSuppliedHeaderOutput() OrgLogIntegrationOtelSuppliedHeaderOutput {
+	return o
+}
+
+func (o OrgLogIntegrationOtelSuppliedHeaderOutput) ToOrgLogIntegrationOtelSuppliedHeaderOutputWithContext(ctx context.Context) OrgLogIntegrationOtelSuppliedHeaderOutput {
+	return o
+}
+
+// Header name.
+func (o OrgLogIntegrationOtelSuppliedHeaderOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v OrgLogIntegrationOtelSuppliedHeader) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Header value. Redacted in responses.
+func (o OrgLogIntegrationOtelSuppliedHeaderOutput) Value() pulumi.StringOutput {
+	return o.ApplyT(func(v OrgLogIntegrationOtelSuppliedHeader) string { return v.Value }).(pulumi.StringOutput)
+}
+
+type OrgLogIntegrationOtelSuppliedHeaderArrayOutput struct{ *pulumi.OutputState }
+
+func (OrgLogIntegrationOtelSuppliedHeaderArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]OrgLogIntegrationOtelSuppliedHeader)(nil)).Elem()
+}
+
+func (o OrgLogIntegrationOtelSuppliedHeaderArrayOutput) ToOrgLogIntegrationOtelSuppliedHeaderArrayOutput() OrgLogIntegrationOtelSuppliedHeaderArrayOutput {
+	return o
+}
+
+func (o OrgLogIntegrationOtelSuppliedHeaderArrayOutput) ToOrgLogIntegrationOtelSuppliedHeaderArrayOutputWithContext(ctx context.Context) OrgLogIntegrationOtelSuppliedHeaderArrayOutput {
+	return o
+}
+
+func (o OrgLogIntegrationOtelSuppliedHeaderArrayOutput) Index(i pulumi.IntInput) OrgLogIntegrationOtelSuppliedHeaderOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) OrgLogIntegrationOtelSuppliedHeader {
+		return vs[0].([]OrgLogIntegrationOtelSuppliedHeader)[vs[1].(int)]
+	}).(OrgLogIntegrationOtelSuppliedHeaderOutput)
 }
 
 type OrganizationCustomSessionTimeouts struct {
@@ -27128,6 +27550,8 @@ type GetAdvancedClusterReplicationSpecRegionConfigAutoScaling struct {
 	ComputeScaleDownEnabled bool `pulumi:"computeScaleDownEnabled"`
 	// Flag that indicates whether this cluster enables disk auto-scaling.
 	DiskGbEnabled bool `pulumi:"diskGbEnabled"`
+	// Settings that determine the configured per-shard data-size limit for an Atlas INFINITE cluster.
+	StorageConfig GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig `pulumi:"storageConfig"`
 }
 
 // GetAdvancedClusterReplicationSpecRegionConfigAutoScalingInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs and GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput values.
@@ -27153,6 +27577,8 @@ type GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs struct {
 	ComputeScaleDownEnabled pulumi.BoolInput `pulumi:"computeScaleDownEnabled"`
 	// Flag that indicates whether this cluster enables disk auto-scaling.
 	DiskGbEnabled pulumi.BoolInput `pulumi:"diskGbEnabled"`
+	// Settings that determine the configured per-shard data-size limit for an Atlas INFINITE cluster.
+	StorageConfig GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigInput `pulumi:"storageConfig"`
 }
 
 func (GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs) ElementType() reflect.Type {
@@ -27211,6 +27637,67 @@ func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) ComputeS
 // Flag that indicates whether this cluster enables disk auto-scaling.
 func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) DiskGbEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAutoScaling) bool { return v.DiskGbEnabled }).(pulumi.BoolOutput)
+}
+
+// Settings that determine the configured per-shard data-size limit for an Atlas INFINITE cluster.
+func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput) StorageConfig() GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAutoScaling) GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig {
+		return v.StorageConfig
+	}).(GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig struct {
+	// Maximum configured data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes.
+	ShardSizeLimitGb int `pulumi:"shardSizeLimitGb"`
+}
+
+// GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigInput is an input type that accepts GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs and GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput values.
+// You can construct a concrete instance of `GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigInput` via:
+//
+//	GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs{...}
+type GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput() GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput
+	ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutputWithContext(context.Context) GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs struct {
+	// Maximum configured data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes.
+	ShardSizeLimitGb pulumi.IntInput `pulumi:"shardSizeLimitGb"`
+}
+
+func (GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig)(nil)).Elem()
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs) ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput() GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput {
+	return i.ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs) ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput)
+}
+
+type GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig)(nil)).Elem()
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput() GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput {
+	return o
+}
+
+func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput) ToGetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutputWithContext(ctx context.Context) GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput {
+	return o
+}
+
+// Maximum configured data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes.
+func (o GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput) ShardSizeLimitGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfig) int {
+		return v.ShardSizeLimitGb
+	}).(pulumi.IntOutput)
 }
 
 type GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecs struct {
@@ -27743,6 +28230,10 @@ type GetAdvancedClustersResult struct {
 	ConnectionStrings GetAdvancedClustersResultConnectionStrings `pulumi:"connectionStrings"`
 	// Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
 	CreateDate string `pulumi:"createDate"`
+	// Database edition explicitly requested for the cluster. Valid values are `CORE` and `INFINITE`. This value is absent if MongoDB Cloud selected the default.
+	DatabaseEdition string `pulumi:"databaseEdition"`
+	// Database edition that the cluster currently uses. Valid values are `CORE` and `INFINITE`.
+	EffectiveDatabaseEdition string `pulumi:"effectiveDatabaseEdition"`
 	// Possible values are AWS, GCP, AZURE or NONE.
 	EncryptionAtRestProvider string `pulumi:"encryptionAtRestProvider"`
 	// Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
@@ -27817,6 +28308,10 @@ type GetAdvancedClustersResultArgs struct {
 	ConnectionStrings GetAdvancedClustersResultConnectionStringsInput `pulumi:"connectionStrings"`
 	// Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
 	CreateDate pulumi.StringInput `pulumi:"createDate"`
+	// Database edition explicitly requested for the cluster. Valid values are `CORE` and `INFINITE`. This value is absent if MongoDB Cloud selected the default.
+	DatabaseEdition pulumi.StringInput `pulumi:"databaseEdition"`
+	// Database edition that the cluster currently uses. Valid values are `CORE` and `INFINITE`.
+	EffectiveDatabaseEdition pulumi.StringInput `pulumi:"effectiveDatabaseEdition"`
 	// Possible values are AWS, GCP, AZURE or NONE.
 	EncryptionAtRestProvider pulumi.StringInput `pulumi:"encryptionAtRestProvider"`
 	// Flag that indicates if cluster uses Atlas-Managed Sharding (false) or Self-Managed Sharding (true).
@@ -27964,6 +28459,16 @@ func (o GetAdvancedClustersResultOutput) ConnectionStrings() GetAdvancedClusters
 // Date and time when MongoDB Cloud created this cluster. This parameter expresses its value in ISO 8601 format in UTC.
 func (o GetAdvancedClustersResultOutput) CreateDate() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.CreateDate }).(pulumi.StringOutput)
+}
+
+// Database edition explicitly requested for the cluster. Valid values are `CORE` and `INFINITE`. This value is absent if MongoDB Cloud selected the default.
+func (o GetAdvancedClustersResultOutput) DatabaseEdition() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.DatabaseEdition }).(pulumi.StringOutput)
+}
+
+// Database edition that the cluster currently uses. Valid values are `CORE` and `INFINITE`.
+func (o GetAdvancedClustersResultOutput) EffectiveDatabaseEdition() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResult) string { return v.EffectiveDatabaseEdition }).(pulumi.StringOutput)
 }
 
 // Possible values are AWS, GCP, AZURE or NONE.
@@ -29320,6 +29825,8 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling struct {
 	ComputeScaleDownEnabled bool `pulumi:"computeScaleDownEnabled"`
 	// Flag that indicates whether this cluster enables disk auto-scaling.
 	DiskGbEnabled bool `pulumi:"diskGbEnabled"`
+	// Settings that determine the configured per-shard data-size limit for an Atlas INFINITE cluster.
+	StorageConfig GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfig `pulumi:"storageConfig"`
 }
 
 // GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs and GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput values.
@@ -29344,6 +29851,8 @@ type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs struct 
 	ComputeScaleDownEnabled pulumi.BoolInput `pulumi:"computeScaleDownEnabled"`
 	// Flag that indicates whether this cluster enables disk auto-scaling.
 	DiskGbEnabled pulumi.BoolInput `pulumi:"diskGbEnabled"`
+	// Settings that determine the configured per-shard data-size limit for an Atlas INFINITE cluster.
+	StorageConfig GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigInput `pulumi:"storageConfig"`
 }
 
 func (GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs) ElementType() reflect.Type {
@@ -29401,6 +29910,67 @@ func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput) C
 // Flag that indicates whether this cluster enables disk auto-scaling.
 func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput) DiskGbEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling) bool { return v.DiskGbEnabled }).(pulumi.BoolOutput)
+}
+
+// Settings that determine the configured per-shard data-size limit for an Atlas INFINITE cluster.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput) StorageConfig() GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAutoScaling) GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfig {
+		return v.StorageConfig
+	}).(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfig struct {
+	// Maximum configured data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes.
+	ShardSizeLimitGb int `pulumi:"shardSizeLimitGb"`
+}
+
+// GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigInput is an input type that accepts GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigArgs and GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput values.
+// You can construct a concrete instance of `GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigInput` via:
+//
+//	GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigArgs{...}
+type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigInput interface {
+	pulumi.Input
+
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput
+	ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutputWithContext(context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigArgs struct {
+	// Maximum configured data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes.
+	ShardSizeLimitGb pulumi.IntInput `pulumi:"shardSizeLimitGb"`
+}
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfig)(nil)).Elem()
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput {
+	return i.ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutputWithContext(context.Background())
+}
+
+func (i GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigArgs) ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput)
+}
+
+type GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput struct{ *pulumi.OutputState }
+
+func (GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfig)(nil)).Elem()
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput() GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput {
+	return o
+}
+
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput) ToGetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutputWithContext(ctx context.Context) GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput {
+	return o
+}
+
+// Maximum configured data size that MongoDB Cloud allows each shard to reach, expressed in gigabytes.
+func (o GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput) ShardSizeLimitGb() pulumi.IntOutput {
+	return o.ApplyT(func(v GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfig) int {
+		return v.ShardSizeLimitGb
+	}).(pulumi.IntOutput)
 }
 
 type GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecs struct {
@@ -57003,6 +57573,130 @@ func (o GetOnlineArchivesResultScheduleArrayOutput) Index(i pulumi.IntInput) Get
 	}).(GetOnlineArchivesResultScheduleOutput)
 }
 
+type GetOrgLogIntegrationsResult struct {
+	// Unique 24-character hexadecimal digit string that identifies the log integration configuration.
+	IntegrationId string `pulumi:"integrationId"`
+	// Array of log types exported by this integration.
+	LogTypes []string `pulumi:"logTypes"`
+	// OpenTelemetry collector endpoint URL.
+	OtelEndpoint string `pulumi:"otelEndpoint"`
+	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
+	Type string `pulumi:"type"`
+}
+
+// GetOrgLogIntegrationsResultInput is an input type that accepts GetOrgLogIntegrationsResultArgs and GetOrgLogIntegrationsResultOutput values.
+// You can construct a concrete instance of `GetOrgLogIntegrationsResultInput` via:
+//
+//	GetOrgLogIntegrationsResultArgs{...}
+type GetOrgLogIntegrationsResultInput interface {
+	pulumi.Input
+
+	ToGetOrgLogIntegrationsResultOutput() GetOrgLogIntegrationsResultOutput
+	ToGetOrgLogIntegrationsResultOutputWithContext(context.Context) GetOrgLogIntegrationsResultOutput
+}
+
+type GetOrgLogIntegrationsResultArgs struct {
+	// Unique 24-character hexadecimal digit string that identifies the log integration configuration.
+	IntegrationId pulumi.StringInput `pulumi:"integrationId"`
+	// Array of log types exported by this integration.
+	LogTypes pulumi.StringArrayInput `pulumi:"logTypes"`
+	// OpenTelemetry collector endpoint URL.
+	OtelEndpoint pulumi.StringInput `pulumi:"otelEndpoint"`
+	// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetOrgLogIntegrationsResultArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrgLogIntegrationsResult)(nil)).Elem()
+}
+
+func (i GetOrgLogIntegrationsResultArgs) ToGetOrgLogIntegrationsResultOutput() GetOrgLogIntegrationsResultOutput {
+	return i.ToGetOrgLogIntegrationsResultOutputWithContext(context.Background())
+}
+
+func (i GetOrgLogIntegrationsResultArgs) ToGetOrgLogIntegrationsResultOutputWithContext(ctx context.Context) GetOrgLogIntegrationsResultOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOrgLogIntegrationsResultOutput)
+}
+
+// GetOrgLogIntegrationsResultArrayInput is an input type that accepts GetOrgLogIntegrationsResultArray and GetOrgLogIntegrationsResultArrayOutput values.
+// You can construct a concrete instance of `GetOrgLogIntegrationsResultArrayInput` via:
+//
+//	GetOrgLogIntegrationsResultArray{ GetOrgLogIntegrationsResultArgs{...} }
+type GetOrgLogIntegrationsResultArrayInput interface {
+	pulumi.Input
+
+	ToGetOrgLogIntegrationsResultArrayOutput() GetOrgLogIntegrationsResultArrayOutput
+	ToGetOrgLogIntegrationsResultArrayOutputWithContext(context.Context) GetOrgLogIntegrationsResultArrayOutput
+}
+
+type GetOrgLogIntegrationsResultArray []GetOrgLogIntegrationsResultInput
+
+func (GetOrgLogIntegrationsResultArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOrgLogIntegrationsResult)(nil)).Elem()
+}
+
+func (i GetOrgLogIntegrationsResultArray) ToGetOrgLogIntegrationsResultArrayOutput() GetOrgLogIntegrationsResultArrayOutput {
+	return i.ToGetOrgLogIntegrationsResultArrayOutputWithContext(context.Background())
+}
+
+func (i GetOrgLogIntegrationsResultArray) ToGetOrgLogIntegrationsResultArrayOutputWithContext(ctx context.Context) GetOrgLogIntegrationsResultArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOrgLogIntegrationsResultArrayOutput)
+}
+
+type GetOrgLogIntegrationsResultOutput struct{ *pulumi.OutputState }
+
+func (GetOrgLogIntegrationsResultOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOrgLogIntegrationsResult)(nil)).Elem()
+}
+
+func (o GetOrgLogIntegrationsResultOutput) ToGetOrgLogIntegrationsResultOutput() GetOrgLogIntegrationsResultOutput {
+	return o
+}
+
+func (o GetOrgLogIntegrationsResultOutput) ToGetOrgLogIntegrationsResultOutputWithContext(ctx context.Context) GetOrgLogIntegrationsResultOutput {
+	return o
+}
+
+// Unique 24-character hexadecimal digit string that identifies the log integration configuration.
+func (o GetOrgLogIntegrationsResultOutput) IntegrationId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrgLogIntegrationsResult) string { return v.IntegrationId }).(pulumi.StringOutput)
+}
+
+// Array of log types exported by this integration.
+func (o GetOrgLogIntegrationsResultOutput) LogTypes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetOrgLogIntegrationsResult) []string { return v.LogTypes }).(pulumi.StringArrayOutput)
+}
+
+// OpenTelemetry collector endpoint URL.
+func (o GetOrgLogIntegrationsResultOutput) OtelEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrgLogIntegrationsResult) string { return v.OtelEndpoint }).(pulumi.StringOutput)
+}
+
+// Human-readable label that identifies the service to which you want to integrate with Atlas. The value must match the log integration type. This value cannot be modified after the integration is created.
+func (o GetOrgLogIntegrationsResultOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetOrgLogIntegrationsResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetOrgLogIntegrationsResultArrayOutput struct{ *pulumi.OutputState }
+
+func (GetOrgLogIntegrationsResultArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetOrgLogIntegrationsResult)(nil)).Elem()
+}
+
+func (o GetOrgLogIntegrationsResultArrayOutput) ToGetOrgLogIntegrationsResultArrayOutput() GetOrgLogIntegrationsResultArrayOutput {
+	return o
+}
+
+func (o GetOrgLogIntegrationsResultArrayOutput) ToGetOrgLogIntegrationsResultArrayOutputWithContext(ctx context.Context) GetOrgLogIntegrationsResultArrayOutput {
+	return o
+}
+
+func (o GetOrgLogIntegrationsResultArrayOutput) Index(i pulumi.IntInput) GetOrgLogIntegrationsResultOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetOrgLogIntegrationsResult {
+		return vs[0].([]GetOrgLogIntegrationsResult)[vs[1].(int)]
+	}).(GetOrgLogIntegrationsResultOutput)
+}
+
 type GetOrganizationCustomSessionTimeout struct {
 	// (Optional) Absolute session timeout duration in seconds for users of the organization. Returned only when the organization has configured a custom absolute session timeout.
 	AbsoluteSessionTimeoutInSeconds int `pulumi:"absoluteSessionTimeoutInSeconds"`
@@ -67379,685 +68073,6 @@ func (o GetStreamConnectionSecurityOutput) Protocol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetStreamConnectionSecurity) string { return v.Protocol }).(pulumi.StringOutput)
 }
 
-type GetStreamConnectionsResult struct {
-	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
-	Authentication GetStreamConnectionsResultAuthentication `pulumi:"authentication"`
-	// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
-	Aws GetStreamConnectionsResultAws `pulumi:"aws"`
-	// The configuration for Azure Blob Storage connection. See Azure.
-	Azure GetStreamConnectionsResultAzure `pulumi:"azure"`
-	// Comma separated list of server addresses.
-	BootstrapServers string `pulumi:"bootstrapServers"`
-	// Name of the cluster configured for this connection.
-	ClusterName string `pulumi:"clusterName"`
-	// Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
-	ClusterProjectId string `pulumi:"clusterProjectId"`
-	// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
-	Config map[string]string `pulumi:"config"`
-	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
-	ConnectionName string `pulumi:"connectionName"`
-	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
-	DbRoleToExecute GetStreamConnectionsResultDbRoleToExecute `pulumi:"dbRoleToExecute"`
-	// The configuration for GCP Pub/Sub connection. See GCP.
-	Gcp GetStreamConnectionsResultGcp `pulumi:"gcp"`
-	// A map of key-value pairs for optional headers.
-	Headers map[string]string `pulumi:"headers"`
-	Id      string            `pulumi:"id"`
-	// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
-	//
-	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
-	InstanceName string `pulumi:"instanceName"`
-	// Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
-	Networking GetStreamConnectionsResultNetworking `pulumi:"networking"`
-	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-	ProjectId string `pulumi:"projectId"`
-	// Authentication configuration for Schema Registry. See Schema Registry Authentication.
-	SchemaRegistryAuthentication GetStreamConnectionsResultSchemaRegistryAuthentication `pulumi:"schemaRegistryAuthentication"`
-	// The Schema Registry provider. Must be set to `CONFLUENT`.
-	SchemaRegistryProvider string `pulumi:"schemaRegistryProvider"`
-	// List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
-	SchemaRegistryUrls []string `pulumi:"schemaRegistryUrls"`
-	// Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
-	Security GetStreamConnectionsResultSecurity `pulumi:"security"`
-	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-	Type string `pulumi:"type"`
-	// URL of the HTTPs endpoint that will be used for creating a connection.
-	Url string `pulumi:"url"`
-	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
-	//
-	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
-	WorkspaceName string `pulumi:"workspaceName"`
-}
-
-// GetStreamConnectionsResultInput is an input type that accepts GetStreamConnectionsResultArgs and GetStreamConnectionsResultOutput values.
-// You can construct a concrete instance of `GetStreamConnectionsResultInput` via:
-//
-//	GetStreamConnectionsResultArgs{...}
-type GetStreamConnectionsResultInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionsResultOutput() GetStreamConnectionsResultOutput
-	ToGetStreamConnectionsResultOutputWithContext(context.Context) GetStreamConnectionsResultOutput
-}
-
-type GetStreamConnectionsResultArgs struct {
-	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
-	Authentication GetStreamConnectionsResultAuthenticationInput `pulumi:"authentication"`
-	// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
-	Aws GetStreamConnectionsResultAwsInput `pulumi:"aws"`
-	// The configuration for Azure Blob Storage connection. See Azure.
-	Azure GetStreamConnectionsResultAzureInput `pulumi:"azure"`
-	// Comma separated list of server addresses.
-	BootstrapServers pulumi.StringInput `pulumi:"bootstrapServers"`
-	// Name of the cluster configured for this connection.
-	ClusterName pulumi.StringInput `pulumi:"clusterName"`
-	// Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
-	ClusterProjectId pulumi.StringInput `pulumi:"clusterProjectId"`
-	// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
-	Config pulumi.StringMapInput `pulumi:"config"`
-	// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
-	ConnectionName pulumi.StringInput `pulumi:"connectionName"`
-	// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
-	DbRoleToExecute GetStreamConnectionsResultDbRoleToExecuteInput `pulumi:"dbRoleToExecute"`
-	// The configuration for GCP Pub/Sub connection. See GCP.
-	Gcp GetStreamConnectionsResultGcpInput `pulumi:"gcp"`
-	// A map of key-value pairs for optional headers.
-	Headers pulumi.StringMapInput `pulumi:"headers"`
-	Id      pulumi.StringInput    `pulumi:"id"`
-	// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
-	//
-	// Deprecated: This parameter is deprecated. Please transition to workspace_name.
-	InstanceName pulumi.StringInput `pulumi:"instanceName"`
-	// Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
-	Networking GetStreamConnectionsResultNetworkingInput `pulumi:"networking"`
-	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-	ProjectId pulumi.StringInput `pulumi:"projectId"`
-	// Authentication configuration for Schema Registry. See Schema Registry Authentication.
-	SchemaRegistryAuthentication GetStreamConnectionsResultSchemaRegistryAuthenticationInput `pulumi:"schemaRegistryAuthentication"`
-	// The Schema Registry provider. Must be set to `CONFLUENT`.
-	SchemaRegistryProvider pulumi.StringInput `pulumi:"schemaRegistryProvider"`
-	// List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
-	SchemaRegistryUrls pulumi.StringArrayInput `pulumi:"schemaRegistryUrls"`
-	// Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
-	Security GetStreamConnectionsResultSecurityInput `pulumi:"security"`
-	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-	Type pulumi.StringInput `pulumi:"type"`
-	// URL of the HTTPs endpoint that will be used for creating a connection.
-	Url pulumi.StringInput `pulumi:"url"`
-	// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
-	//
-	// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
-	WorkspaceName pulumi.StringInput `pulumi:"workspaceName"`
-}
-
-func (GetStreamConnectionsResultArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResult)(nil)).Elem()
-}
-
-func (i GetStreamConnectionsResultArgs) ToGetStreamConnectionsResultOutput() GetStreamConnectionsResultOutput {
-	return i.ToGetStreamConnectionsResultOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionsResultArgs) ToGetStreamConnectionsResultOutputWithContext(ctx context.Context) GetStreamConnectionsResultOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultOutput)
-}
-
-// GetStreamConnectionsResultArrayInput is an input type that accepts GetStreamConnectionsResultArray and GetStreamConnectionsResultArrayOutput values.
-// You can construct a concrete instance of `GetStreamConnectionsResultArrayInput` via:
-//
-//	GetStreamConnectionsResultArray{ GetStreamConnectionsResultArgs{...} }
-type GetStreamConnectionsResultArrayInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionsResultArrayOutput() GetStreamConnectionsResultArrayOutput
-	ToGetStreamConnectionsResultArrayOutputWithContext(context.Context) GetStreamConnectionsResultArrayOutput
-}
-
-type GetStreamConnectionsResultArray []GetStreamConnectionsResultInput
-
-func (GetStreamConnectionsResultArray) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetStreamConnectionsResult)(nil)).Elem()
-}
-
-func (i GetStreamConnectionsResultArray) ToGetStreamConnectionsResultArrayOutput() GetStreamConnectionsResultArrayOutput {
-	return i.ToGetStreamConnectionsResultArrayOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionsResultArray) ToGetStreamConnectionsResultArrayOutputWithContext(ctx context.Context) GetStreamConnectionsResultArrayOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultArrayOutput)
-}
-
-type GetStreamConnectionsResultOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionsResultOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResult)(nil)).Elem()
-}
-
-func (o GetStreamConnectionsResultOutput) ToGetStreamConnectionsResultOutput() GetStreamConnectionsResultOutput {
-	return o
-}
-
-func (o GetStreamConnectionsResultOutput) ToGetStreamConnectionsResultOutputWithContext(ctx context.Context) GetStreamConnectionsResultOutput {
-	return o
-}
-
-// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
-func (o GetStreamConnectionsResultOutput) Authentication() GetStreamConnectionsResultAuthenticationOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAuthentication { return v.Authentication }).(GetStreamConnectionsResultAuthenticationOutput)
-}
-
-// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
-func (o GetStreamConnectionsResultOutput) Aws() GetStreamConnectionsResultAwsOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAws { return v.Aws }).(GetStreamConnectionsResultAwsOutput)
-}
-
-// The configuration for Azure Blob Storage connection. See Azure.
-func (o GetStreamConnectionsResultOutput) Azure() GetStreamConnectionsResultAzureOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultAzure { return v.Azure }).(GetStreamConnectionsResultAzureOutput)
-}
-
-// Comma separated list of server addresses.
-func (o GetStreamConnectionsResultOutput) BootstrapServers() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.BootstrapServers }).(pulumi.StringOutput)
-}
-
-// Name of the cluster configured for this connection.
-func (o GetStreamConnectionsResultOutput) ClusterName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ClusterName }).(pulumi.StringOutput)
-}
-
-// Unique 24-hexadecimal digit string that identifies the project that contains the configured cluster. Required if the ID does not match the project containing the streams instance. You must first enable the organization setting.
-func (o GetStreamConnectionsResultOutput) ClusterProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ClusterProjectId }).(pulumi.StringOutput)
-}
-
-// A map of Kafka key-value pairs for optional configuration. This is a flat object, and keys can have '.' characters.
-func (o GetStreamConnectionsResultOutput) Config() pulumi.StringMapOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) map[string]string { return v.Config }).(pulumi.StringMapOutput)
-}
-
-// Label that identifies the stream connection. In the case of the Sample type, this is the name of the sample source.
-func (o GetStreamConnectionsResultOutput) ConnectionName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ConnectionName }).(pulumi.StringOutput)
-}
-
-// The name of a Built in or Custom DB Role to connect to an Atlas Cluster. See DBRoleToExecute.
-func (o GetStreamConnectionsResultOutput) DbRoleToExecute() GetStreamConnectionsResultDbRoleToExecuteOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultDbRoleToExecute { return v.DbRoleToExecute }).(GetStreamConnectionsResultDbRoleToExecuteOutput)
-}
-
-// The configuration for GCP Pub/Sub connection. See GCP.
-func (o GetStreamConnectionsResultOutput) Gcp() GetStreamConnectionsResultGcpOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultGcp { return v.Gcp }).(GetStreamConnectionsResultGcpOutput)
-}
-
-// A map of key-value pairs for optional headers.
-func (o GetStreamConnectionsResultOutput) Headers() pulumi.StringMapOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) map[string]string { return v.Headers }).(pulumi.StringMapOutput)
-}
-
-func (o GetStreamConnectionsResultOutput) Id() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Id }).(pulumi.StringOutput)
-}
-
-// Label that identifies the stream processing workspace. Attribute is deprecated and will be removed in following major versions in favor of `workspaceName`.
-//
-// Deprecated: This parameter is deprecated. Please transition to workspace_name.
-func (o GetStreamConnectionsResultOutput) InstanceName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.InstanceName }).(pulumi.StringOutput)
-}
-
-// Networking Access Type can be `PUBLIC`, `VPC`, or `PRIVATE_LINK`. See networking.
-func (o GetStreamConnectionsResultOutput) Networking() GetStreamConnectionsResultNetworkingOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultNetworking { return v.Networking }).(GetStreamConnectionsResultNetworkingOutput)
-}
-
-// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
-func (o GetStreamConnectionsResultOutput) ProjectId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.ProjectId }).(pulumi.StringOutput)
-}
-
-// Authentication configuration for Schema Registry. See Schema Registry Authentication.
-func (o GetStreamConnectionsResultOutput) SchemaRegistryAuthentication() GetStreamConnectionsResultSchemaRegistryAuthenticationOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultSchemaRegistryAuthentication {
-		return v.SchemaRegistryAuthentication
-	}).(GetStreamConnectionsResultSchemaRegistryAuthenticationOutput)
-}
-
-// The Schema Registry provider. Must be set to `CONFLUENT`.
-func (o GetStreamConnectionsResultOutput) SchemaRegistryProvider() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.SchemaRegistryProvider }).(pulumi.StringOutput)
-}
-
-// List of Schema Registry endpoint URLs used by this connection. Each URL must use the http or https scheme and specify a valid host and optional port.
-func (o GetStreamConnectionsResultOutput) SchemaRegistryUrls() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) []string { return v.SchemaRegistryUrls }).(pulumi.StringArrayOutput)
-}
-
-// Properties for the secure transport connection to Kafka. For SASL_SSL, this can include the trusted certificate to use. See security.
-func (o GetStreamConnectionsResultOutput) Security() GetStreamConnectionsResultSecurityOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) GetStreamConnectionsResultSecurity { return v.Security }).(GetStreamConnectionsResultSecurityOutput)
-}
-
-// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-func (o GetStreamConnectionsResultOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Type }).(pulumi.StringOutput)
-}
-
-// URL of the HTTPs endpoint that will be used for creating a connection.
-func (o GetStreamConnectionsResultOutput) Url() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.Url }).(pulumi.StringOutput)
-}
-
-// Label that identifies the stream processing workspace. Conflicts with `instanceName`.
-//
-// > **NOTE:** Either `workspaceName` or `instanceName` must be provided, but not both. These fields are functionally identical and `workspaceName` is an alias for `instanceName`. `workspaceName` should be used instead of `instanceName`.
-func (o GetStreamConnectionsResultOutput) WorkspaceName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResult) string { return v.WorkspaceName }).(pulumi.StringOutput)
-}
-
-type GetStreamConnectionsResultArrayOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionsResultArrayOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*[]GetStreamConnectionsResult)(nil)).Elem()
-}
-
-func (o GetStreamConnectionsResultArrayOutput) ToGetStreamConnectionsResultArrayOutput() GetStreamConnectionsResultArrayOutput {
-	return o
-}
-
-func (o GetStreamConnectionsResultArrayOutput) ToGetStreamConnectionsResultArrayOutputWithContext(ctx context.Context) GetStreamConnectionsResultArrayOutput {
-	return o
-}
-
-func (o GetStreamConnectionsResultArrayOutput) Index(i pulumi.IntInput) GetStreamConnectionsResultOutput {
-	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStreamConnectionsResult {
-		return vs[0].([]GetStreamConnectionsResult)[vs[1].(int)]
-	}).(GetStreamConnectionsResultOutput)
-}
-
-type GetStreamConnectionsResultAuthentication struct {
-	// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
-	Aws GetStreamConnectionsResultAuthenticationAws `pulumi:"aws"`
-	// Public identifier for the Kafka client.
-	ClientId string `pulumi:"clientId"`
-	// Secret known only to the Kafka client and the authorization server.
-	ClientSecret string `pulumi:"clientSecret"`
-	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
-	Mechanism string `pulumi:"mechanism"`
-	// SASL OAUTHBEARER authentication method. Value must be OIDC.
-	Method string `pulumi:"method"`
-	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
-	Password string `pulumi:"password"`
-	// Additional information to provide to the Kafka broker.
-	SaslOauthbearerExtensions string `pulumi:"saslOauthbearerExtensions"`
-	// Scope of the access request to the broker specified by the Kafka clients.
-	Scope string `pulumi:"scope"`
-	// OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
-	TokenEndpointUrl string `pulumi:"tokenEndpointUrl"`
-	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
-	Username string `pulumi:"username"`
-}
-
-// GetStreamConnectionsResultAuthenticationInput is an input type that accepts GetStreamConnectionsResultAuthenticationArgs and GetStreamConnectionsResultAuthenticationOutput values.
-// You can construct a concrete instance of `GetStreamConnectionsResultAuthenticationInput` via:
-//
-//	GetStreamConnectionsResultAuthenticationArgs{...}
-type GetStreamConnectionsResultAuthenticationInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionsResultAuthenticationOutput() GetStreamConnectionsResultAuthenticationOutput
-	ToGetStreamConnectionsResultAuthenticationOutputWithContext(context.Context) GetStreamConnectionsResultAuthenticationOutput
-}
-
-type GetStreamConnectionsResultAuthenticationArgs struct {
-	// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
-	Aws GetStreamConnectionsResultAuthenticationAwsInput `pulumi:"aws"`
-	// Public identifier for the Kafka client.
-	ClientId pulumi.StringInput `pulumi:"clientId"`
-	// Secret known only to the Kafka client and the authorization server.
-	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
-	// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
-	Mechanism pulumi.StringInput `pulumi:"mechanism"`
-	// SASL OAUTHBEARER authentication method. Value must be OIDC.
-	Method pulumi.StringInput `pulumi:"method"`
-	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
-	Password pulumi.StringInput `pulumi:"password"`
-	// Additional information to provide to the Kafka broker.
-	SaslOauthbearerExtensions pulumi.StringInput `pulumi:"saslOauthbearerExtensions"`
-	// Scope of the access request to the broker specified by the Kafka clients.
-	Scope pulumi.StringInput `pulumi:"scope"`
-	// OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
-	TokenEndpointUrl pulumi.StringInput `pulumi:"tokenEndpointUrl"`
-	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
-	Username pulumi.StringInput `pulumi:"username"`
-}
-
-func (GetStreamConnectionsResultAuthenticationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultAuthentication)(nil)).Elem()
-}
-
-func (i GetStreamConnectionsResultAuthenticationArgs) ToGetStreamConnectionsResultAuthenticationOutput() GetStreamConnectionsResultAuthenticationOutput {
-	return i.ToGetStreamConnectionsResultAuthenticationOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionsResultAuthenticationArgs) ToGetStreamConnectionsResultAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionsResultAuthenticationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultAuthenticationOutput)
-}
-
-type GetStreamConnectionsResultAuthenticationOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionsResultAuthenticationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultAuthentication)(nil)).Elem()
-}
-
-func (o GetStreamConnectionsResultAuthenticationOutput) ToGetStreamConnectionsResultAuthenticationOutput() GetStreamConnectionsResultAuthenticationOutput {
-	return o
-}
-
-func (o GetStreamConnectionsResultAuthenticationOutput) ToGetStreamConnectionsResultAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionsResultAuthenticationOutput {
-	return o
-}
-
-// AWS configuration used for `AWS_MSK_IAM` authentication. See authentication AWS.
-func (o GetStreamConnectionsResultAuthenticationOutput) Aws() GetStreamConnectionsResultAuthenticationAwsOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) GetStreamConnectionsResultAuthenticationAws {
-		return v.Aws
-	}).(GetStreamConnectionsResultAuthenticationAwsOutput)
-}
-
-// Public identifier for the Kafka client.
-func (o GetStreamConnectionsResultAuthenticationOutput) ClientId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.ClientId }).(pulumi.StringOutput)
-}
-
-// Secret known only to the Kafka client and the authorization server.
-func (o GetStreamConnectionsResultAuthenticationOutput) ClientSecret() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.ClientSecret }).(pulumi.StringOutput)
-}
-
-// Method of authentication. Value can be `PLAIN`, `SCRAM-256`, `SCRAM-512`, `OAUTHBEARER`, or `AWS_MSK_IAM`.
-func (o GetStreamConnectionsResultAuthenticationOutput) Mechanism() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Mechanism }).(pulumi.StringOutput)
-}
-
-// SASL OAUTHBEARER authentication method. Value must be OIDC.
-func (o GetStreamConnectionsResultAuthenticationOutput) Method() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Method }).(pulumi.StringOutput)
-}
-
-// Password for the Schema Registry. Required when `type` is `USER_INFO`.
-func (o GetStreamConnectionsResultAuthenticationOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Password }).(pulumi.StringOutput)
-}
-
-// Additional information to provide to the Kafka broker.
-func (o GetStreamConnectionsResultAuthenticationOutput) SaslOauthbearerExtensions() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.SaslOauthbearerExtensions }).(pulumi.StringOutput)
-}
-
-// Scope of the access request to the broker specified by the Kafka clients.
-func (o GetStreamConnectionsResultAuthenticationOutput) Scope() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Scope }).(pulumi.StringOutput)
-}
-
-// OAUTH issuer (IdP provider) token endpoint HTTP(S) URI used to retrieve the token.
-func (o GetStreamConnectionsResultAuthenticationOutput) TokenEndpointUrl() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.TokenEndpointUrl }).(pulumi.StringOutput)
-}
-
-// Username for the Schema Registry. Required when `type` is `USER_INFO`.
-func (o GetStreamConnectionsResultAuthenticationOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultAuthentication) string { return v.Username }).(pulumi.StringOutput)
-}
-
-type GetStreamConnectionsResultAuthenticationAws struct {
-	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
-	RoleArn string `pulumi:"roleArn"`
-}
-
-// GetStreamConnectionsResultAuthenticationAwsInput is an input type that accepts GetStreamConnectionsResultAuthenticationAwsArgs and GetStreamConnectionsResultAuthenticationAwsOutput values.
-// You can construct a concrete instance of `GetStreamConnectionsResultAuthenticationAwsInput` via:
-//
-//	GetStreamConnectionsResultAuthenticationAwsArgs{...}
-type GetStreamConnectionsResultAuthenticationAwsInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionsResultAuthenticationAwsOutput() GetStreamConnectionsResultAuthenticationAwsOutput
-	ToGetStreamConnectionsResultAuthenticationAwsOutputWithContext(context.Context) GetStreamConnectionsResultAuthenticationAwsOutput
-}
-
-type GetStreamConnectionsResultAuthenticationAwsArgs struct {
-	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
-	RoleArn pulumi.StringInput `pulumi:"roleArn"`
-}
-
-func (GetStreamConnectionsResultAuthenticationAwsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultAuthenticationAws)(nil)).Elem()
-}
-
-func (i GetStreamConnectionsResultAuthenticationAwsArgs) ToGetStreamConnectionsResultAuthenticationAwsOutput() GetStreamConnectionsResultAuthenticationAwsOutput {
-	return i.ToGetStreamConnectionsResultAuthenticationAwsOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionsResultAuthenticationAwsArgs) ToGetStreamConnectionsResultAuthenticationAwsOutputWithContext(ctx context.Context) GetStreamConnectionsResultAuthenticationAwsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultAuthenticationAwsOutput)
-}
-
-type GetStreamConnectionsResultAuthenticationAwsOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionsResultAuthenticationAwsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultAuthenticationAws)(nil)).Elem()
-}
-
-func (o GetStreamConnectionsResultAuthenticationAwsOutput) ToGetStreamConnectionsResultAuthenticationAwsOutput() GetStreamConnectionsResultAuthenticationAwsOutput {
-	return o
-}
-
-func (o GetStreamConnectionsResultAuthenticationAwsOutput) ToGetStreamConnectionsResultAuthenticationAwsOutputWithContext(ctx context.Context) GetStreamConnectionsResultAuthenticationAwsOutput {
-	return o
-}
-
-// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
-func (o GetStreamConnectionsResultAuthenticationAwsOutput) RoleArn() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultAuthenticationAws) string { return v.RoleArn }).(pulumi.StringOutput)
-}
-
-type GetStreamConnectionsResultAws struct {
-	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
-	RoleArn string `pulumi:"roleArn"`
-}
-
-// GetStreamConnectionsResultAwsInput is an input type that accepts GetStreamConnectionsResultAwsArgs and GetStreamConnectionsResultAwsOutput values.
-// You can construct a concrete instance of `GetStreamConnectionsResultAwsInput` via:
-//
-//	GetStreamConnectionsResultAwsArgs{...}
-type GetStreamConnectionsResultAwsInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionsResultAwsOutput() GetStreamConnectionsResultAwsOutput
-	ToGetStreamConnectionsResultAwsOutputWithContext(context.Context) GetStreamConnectionsResultAwsOutput
-}
-
-type GetStreamConnectionsResultAwsArgs struct {
-	// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
-	RoleArn pulumi.StringInput `pulumi:"roleArn"`
-}
-
-func (GetStreamConnectionsResultAwsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultAws)(nil)).Elem()
-}
-
-func (i GetStreamConnectionsResultAwsArgs) ToGetStreamConnectionsResultAwsOutput() GetStreamConnectionsResultAwsOutput {
-	return i.ToGetStreamConnectionsResultAwsOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionsResultAwsArgs) ToGetStreamConnectionsResultAwsOutputWithContext(ctx context.Context) GetStreamConnectionsResultAwsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultAwsOutput)
-}
-
-type GetStreamConnectionsResultAwsOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionsResultAwsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultAws)(nil)).Elem()
-}
-
-func (o GetStreamConnectionsResultAwsOutput) ToGetStreamConnectionsResultAwsOutput() GetStreamConnectionsResultAwsOutput {
-	return o
-}
-
-func (o GetStreamConnectionsResultAwsOutput) ToGetStreamConnectionsResultAwsOutputWithContext(ctx context.Context) GetStreamConnectionsResultAwsOutput {
-	return o
-}
-
-// Amazon Resource Name (ARN) that identifies the Amazon Web Services (AWS) Identity and Access Management (IAM) role that MongoDB Cloud assumes when it accesses resources in your AWS account.
-func (o GetStreamConnectionsResultAwsOutput) RoleArn() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultAws) string { return v.RoleArn }).(pulumi.StringOutput)
-}
-
-type GetStreamConnectionsResultAzure struct {
-	// Optional. Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
-	Region string `pulumi:"region"`
-	// Required. UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
-	ServicePrincipalId string `pulumi:"servicePrincipalId"`
-	// Required. Name of the Azure Storage account. Must follow Azure storage account naming rules: 3 to 24 characters in length, and use only lowercase letters and numbers.
-	StorageAccountName string `pulumi:"storageAccountName"`
-}
-
-// GetStreamConnectionsResultAzureInput is an input type that accepts GetStreamConnectionsResultAzureArgs and GetStreamConnectionsResultAzureOutput values.
-// You can construct a concrete instance of `GetStreamConnectionsResultAzureInput` via:
-//
-//	GetStreamConnectionsResultAzureArgs{...}
-type GetStreamConnectionsResultAzureInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionsResultAzureOutput() GetStreamConnectionsResultAzureOutput
-	ToGetStreamConnectionsResultAzureOutputWithContext(context.Context) GetStreamConnectionsResultAzureOutput
-}
-
-type GetStreamConnectionsResultAzureArgs struct {
-	// Optional. Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
-	Region pulumi.StringInput `pulumi:"region"`
-	// Required. UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
-	ServicePrincipalId pulumi.StringInput `pulumi:"servicePrincipalId"`
-	// Required. Name of the Azure Storage account. Must follow Azure storage account naming rules: 3 to 24 characters in length, and use only lowercase letters and numbers.
-	StorageAccountName pulumi.StringInput `pulumi:"storageAccountName"`
-}
-
-func (GetStreamConnectionsResultAzureArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultAzure)(nil)).Elem()
-}
-
-func (i GetStreamConnectionsResultAzureArgs) ToGetStreamConnectionsResultAzureOutput() GetStreamConnectionsResultAzureOutput {
-	return i.ToGetStreamConnectionsResultAzureOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionsResultAzureArgs) ToGetStreamConnectionsResultAzureOutputWithContext(ctx context.Context) GetStreamConnectionsResultAzureOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultAzureOutput)
-}
-
-type GetStreamConnectionsResultAzureOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionsResultAzureOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultAzure)(nil)).Elem()
-}
-
-func (o GetStreamConnectionsResultAzureOutput) ToGetStreamConnectionsResultAzureOutput() GetStreamConnectionsResultAzureOutput {
-	return o
-}
-
-func (o GetStreamConnectionsResultAzureOutput) ToGetStreamConnectionsResultAzureOutputWithContext(ctx context.Context) GetStreamConnectionsResultAzureOutput {
-	return o
-}
-
-// Optional. Azure region where the storage account is located, specified as a valid Azure region name (for example, `eastus`, `westeurope`).
-func (o GetStreamConnectionsResultAzureOutput) Region() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultAzure) string { return v.Region }).(pulumi.StringOutput)
-}
-
-// Required. UUID that identifies the Azure Service Principal used to access the Azure Blob Storage account.
-func (o GetStreamConnectionsResultAzureOutput) ServicePrincipalId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultAzure) string { return v.ServicePrincipalId }).(pulumi.StringOutput)
-}
-
-// Required. Name of the Azure Storage account. Must follow Azure storage account naming rules: 3 to 24 characters in length, and use only lowercase letters and numbers.
-func (o GetStreamConnectionsResultAzureOutput) StorageAccountName() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultAzure) string { return v.StorageAccountName }).(pulumi.StringOutput)
-}
-
-type GetStreamConnectionsResultDbRoleToExecute struct {
-	// The name of the role to use. Can be a built in role or a custom role.
-	Role string `pulumi:"role"`
-	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-	Type string `pulumi:"type"`
-}
-
-// GetStreamConnectionsResultDbRoleToExecuteInput is an input type that accepts GetStreamConnectionsResultDbRoleToExecuteArgs and GetStreamConnectionsResultDbRoleToExecuteOutput values.
-// You can construct a concrete instance of `GetStreamConnectionsResultDbRoleToExecuteInput` via:
-//
-//	GetStreamConnectionsResultDbRoleToExecuteArgs{...}
-type GetStreamConnectionsResultDbRoleToExecuteInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionsResultDbRoleToExecuteOutput() GetStreamConnectionsResultDbRoleToExecuteOutput
-	ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(context.Context) GetStreamConnectionsResultDbRoleToExecuteOutput
-}
-
-type GetStreamConnectionsResultDbRoleToExecuteArgs struct {
-	// The name of the role to use. Can be a built in role or a custom role.
-	Role pulumi.StringInput `pulumi:"role"`
-	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-	Type pulumi.StringInput `pulumi:"type"`
-}
-
-func (GetStreamConnectionsResultDbRoleToExecuteArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecute)(nil)).Elem()
-}
-
-func (i GetStreamConnectionsResultDbRoleToExecuteArgs) ToGetStreamConnectionsResultDbRoleToExecuteOutput() GetStreamConnectionsResultDbRoleToExecuteOutput {
-	return i.ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionsResultDbRoleToExecuteArgs) ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionsResultDbRoleToExecuteOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionsResultDbRoleToExecuteOutput)
-}
-
-type GetStreamConnectionsResultDbRoleToExecuteOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionsResultDbRoleToExecuteOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecute)(nil)).Elem()
-}
-
-func (o GetStreamConnectionsResultDbRoleToExecuteOutput) ToGetStreamConnectionsResultDbRoleToExecuteOutput() GetStreamConnectionsResultDbRoleToExecuteOutput {
-	return o
-}
-
-func (o GetStreamConnectionsResultDbRoleToExecuteOutput) ToGetStreamConnectionsResultDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionsResultDbRoleToExecuteOutput {
-	return o
-}
-
-// The name of the role to use. Can be a built in role or a custom role.
-func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Role() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
-}
-
-// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-func (o GetStreamConnectionsResultDbRoleToExecuteOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionsResultDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
-}
-
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterAdvancedConfigurationInput)(nil)).Elem(), AdvancedClusterAdvancedConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterAdvancedConfigurationPtrInput)(nil)).Elem(), AdvancedClusterAdvancedConfigurationArgs{})
@@ -68081,6 +68096,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigAutoScalingInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigElectableSpecsInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsInput)(nil)).Elem(), AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs{})
@@ -68175,6 +68192,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterLabelArrayInput)(nil)).Elem(), ClusterLabelArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterOutageSimulationOutageFilterInput)(nil)).Elem(), ClusterOutageSimulationOutageFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterOutageSimulationOutageFilterArrayInput)(nil)).Elem(), ClusterOutageSimulationOutageFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterOverloadSimulationTimeoutsInput)(nil)).Elem(), ClusterOverloadSimulationTimeoutsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ClusterOverloadSimulationTimeoutsPtrInput)(nil)).Elem(), ClusterOverloadSimulationTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPinnedFcvInput)(nil)).Elem(), ClusterPinnedFcvArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterPinnedFcvPtrInput)(nil)).Elem(), ClusterPinnedFcvArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ClusterReplicationSpecInput)(nil)).Elem(), ClusterReplicationSpecArgs{})
@@ -68281,6 +68300,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchivePartitionFieldArrayInput)(nil)).Elem(), OnlineArchivePartitionFieldArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveScheduleInput)(nil)).Elem(), OnlineArchiveScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveSchedulePtrInput)(nil)).Elem(), OnlineArchiveScheduleArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrgLogIntegrationOtelSuppliedHeaderInput)(nil)).Elem(), OrgLogIntegrationOtelSuppliedHeaderArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*OrgLogIntegrationOtelSuppliedHeaderArrayInput)(nil)).Elem(), OrgLogIntegrationOtelSuppliedHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationCustomSessionTimeoutsInput)(nil)).Elem(), OrganizationCustomSessionTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationCustomSessionTimeoutsPtrInput)(nil)).Elem(), OrganizationCustomSessionTimeoutsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OrganizationServiceAccountInput)(nil)).Elem(), OrganizationServiceAccountArgs{})
@@ -68404,6 +68425,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAutoScalingInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigAutoScalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsInput)(nil)).Elem(), GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsArgs{})
@@ -68426,6 +68448,7 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsInput)(nil)).Elem(), GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsArgs{})
@@ -68828,6 +68851,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultPartitionFieldArrayInput)(nil)).Elem(), GetOnlineArchivesResultPartitionFieldArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultScheduleInput)(nil)).Elem(), GetOnlineArchivesResultScheduleArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOnlineArchivesResultScheduleArrayInput)(nil)).Elem(), GetOnlineArchivesResultScheduleArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOrgLogIntegrationsResultInput)(nil)).Elem(), GetOrgLogIntegrationsResultArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOrgLogIntegrationsResultArrayInput)(nil)).Elem(), GetOrgLogIntegrationsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationCustomSessionTimeoutInput)(nil)).Elem(), GetOrganizationCustomSessionTimeoutArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationCustomSessionTimeoutArrayInput)(nil)).Elem(), GetOrganizationCustomSessionTimeoutArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOrganizationLinkInput)(nil)).Elem(), GetOrganizationLinkArgs{})
@@ -68976,13 +69001,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionNetworkingAccessArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionSchemaRegistryAuthenticationInput)(nil)).Elem(), GetStreamConnectionSchemaRegistryAuthenticationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionSecurityInput)(nil)).Elem(), GetStreamConnectionSecurityArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultInput)(nil)).Elem(), GetStreamConnectionsResultArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultArrayInput)(nil)).Elem(), GetStreamConnectionsResultArray{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAuthenticationInput)(nil)).Elem(), GetStreamConnectionsResultAuthenticationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAuthenticationAwsInput)(nil)).Elem(), GetStreamConnectionsResultAuthenticationAwsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAwsInput)(nil)).Elem(), GetStreamConnectionsResultAwsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAzureInput)(nil)).Elem(), GetStreamConnectionsResultAzureArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionsResultDbRoleToExecuteArgs{})
 	pulumi.RegisterOutputType(AdvancedClusterAdvancedConfigurationOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterAdvancedConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterBiConnectorConfigOutput{})
@@ -69005,6 +69023,8 @@ func init() {
 	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigAutoScalingOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigAutoScalingPtrOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput{})
+	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigPtrOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput{})
@@ -69099,6 +69119,8 @@ func init() {
 	pulumi.RegisterOutputType(ClusterLabelArrayOutput{})
 	pulumi.RegisterOutputType(ClusterOutageSimulationOutageFilterOutput{})
 	pulumi.RegisterOutputType(ClusterOutageSimulationOutageFilterArrayOutput{})
+	pulumi.RegisterOutputType(ClusterOverloadSimulationTimeoutsOutput{})
+	pulumi.RegisterOutputType(ClusterOverloadSimulationTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(ClusterPinnedFcvOutput{})
 	pulumi.RegisterOutputType(ClusterPinnedFcvPtrOutput{})
 	pulumi.RegisterOutputType(ClusterReplicationSpecOutput{})
@@ -69205,6 +69227,8 @@ func init() {
 	pulumi.RegisterOutputType(OnlineArchivePartitionFieldArrayOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveScheduleOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveSchedulePtrOutput{})
+	pulumi.RegisterOutputType(OrgLogIntegrationOtelSuppliedHeaderOutput{})
+	pulumi.RegisterOutputType(OrgLogIntegrationOtelSuppliedHeaderArrayOutput{})
 	pulumi.RegisterOutputType(OrganizationCustomSessionTimeoutsOutput{})
 	pulumi.RegisterOutputType(OrganizationCustomSessionTimeoutsPtrOutput{})
 	pulumi.RegisterOutputType(OrganizationServiceAccountOutput{})
@@ -69328,6 +69352,7 @@ func init() {
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsAutoScalingOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigAutoScalingOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigAutoScalingStorageConfigOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigEffectiveElectableSpecsOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClusterReplicationSpecRegionConfigEffectiveReadOnlySpecsOutput{})
@@ -69350,6 +69375,7 @@ func init() {
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsAutoScalingOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigAnalyticsSpecsOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingOutput{})
+	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigAutoScalingStorageConfigOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveAnalyticsSpecsOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveElectableSpecsOutput{})
 	pulumi.RegisterOutputType(GetAdvancedClustersResultReplicationSpecRegionConfigEffectiveReadOnlySpecsOutput{})
@@ -69752,6 +69778,8 @@ func init() {
 	pulumi.RegisterOutputType(GetOnlineArchivesResultPartitionFieldArrayOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultScheduleOutput{})
 	pulumi.RegisterOutputType(GetOnlineArchivesResultScheduleArrayOutput{})
+	pulumi.RegisterOutputType(GetOrgLogIntegrationsResultOutput{})
+	pulumi.RegisterOutputType(GetOrgLogIntegrationsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetOrganizationCustomSessionTimeoutOutput{})
 	pulumi.RegisterOutputType(GetOrganizationCustomSessionTimeoutArrayOutput{})
 	pulumi.RegisterOutputType(GetOrganizationLinkOutput{})
@@ -69900,11 +69928,4 @@ func init() {
 	pulumi.RegisterOutputType(GetStreamConnectionNetworkingAccessOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionSchemaRegistryAuthenticationOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionSecurityOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionsResultOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionsResultArrayOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionsResultAuthenticationOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionsResultAuthenticationAwsOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionsResultAwsOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionsResultAzureOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionsResultDbRoleToExecuteOutput{})
 }

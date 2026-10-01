@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
@@ -79,18 +80,33 @@ public final class ProjectServiceAccountArgs extends com.pulumi.resources.Resour
     }
 
     /**
-     * The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization&#39;s settings. This attribute is required when creating the Service Account and you cannot update it later.
+     * The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization&#39;s settings. Set this field when you set `withoutInitialSecret` to false or omit `withoutInitialSecret`. Do not set this field when you set `withoutInitialSecret` to true. You cannot update this field after you create the Service Account.
      * 
      */
     @Import(name="secretExpiresAfterHours")
     private @Nullable Output<Integer> secretExpiresAfterHours;
 
     /**
-     * @return The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization&#39;s settings. This attribute is required when creating the Service Account and you cannot update it later.
+     * @return The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization&#39;s settings. Set this field when you set `withoutInitialSecret` to false or omit `withoutInitialSecret`. Do not set this field when you set `withoutInitialSecret` to true. You cannot update this field after you create the Service Account.
      * 
      */
     public Optional<Output<Integer>> secretExpiresAfterHours() {
         return Optional.ofNullable(this.secretExpiresAfterHours);
+    }
+
+    /**
+     * When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secretExpiresAfterHours`.
+     * 
+     */
+    @Import(name="withoutInitialSecret")
+    private @Nullable Output<Boolean> withoutInitialSecret;
+
+    /**
+     * @return When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secretExpiresAfterHours`.
+     * 
+     */
+    public Optional<Output<Boolean>> withoutInitialSecret() {
+        return Optional.ofNullable(this.withoutInitialSecret);
     }
 
     private ProjectServiceAccountArgs() {}
@@ -101,6 +117,7 @@ public final class ProjectServiceAccountArgs extends com.pulumi.resources.Resour
         this.projectId = $.projectId;
         this.roles = $.roles;
         this.secretExpiresAfterHours = $.secretExpiresAfterHours;
+        this.withoutInitialSecret = $.withoutInitialSecret;
     }
 
     public static Builder builder() {
@@ -216,7 +233,7 @@ public final class ProjectServiceAccountArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param secretExpiresAfterHours The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization&#39;s settings. This attribute is required when creating the Service Account and you cannot update it later.
+         * @param secretExpiresAfterHours The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization&#39;s settings. Set this field when you set `withoutInitialSecret` to false or omit `withoutInitialSecret`. Do not set this field when you set `withoutInitialSecret` to true. You cannot update this field after you create the Service Account.
          * 
          * @return builder
          * 
@@ -227,13 +244,34 @@ public final class ProjectServiceAccountArgs extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param secretExpiresAfterHours The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization&#39;s settings. This attribute is required when creating the Service Account and you cannot update it later.
+         * @param secretExpiresAfterHours The expiration time of the new Service Account secret, provided in hours. The minimum and maximum allowed expiration times are subject to change and are controlled by the organization&#39;s settings. Set this field when you set `withoutInitialSecret` to false or omit `withoutInitialSecret`. Do not set this field when you set `withoutInitialSecret` to true. You cannot update this field after you create the Service Account.
          * 
          * @return builder
          * 
          */
         public Builder secretExpiresAfterHours(Integer secretExpiresAfterHours) {
             return secretExpiresAfterHours(Output.of(secretExpiresAfterHours));
+        }
+
+        /**
+         * @param withoutInitialSecret When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secretExpiresAfterHours`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder withoutInitialSecret(@Nullable Output<Boolean> withoutInitialSecret) {
+            $.withoutInitialSecret = withoutInitialSecret;
+            return this;
+        }
+
+        /**
+         * @param withoutInitialSecret When true, creates the Service Account without generating an initial secret. If you set this field to true, do not set `secretExpiresAfterHours`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder withoutInitialSecret(Boolean withoutInitialSecret) {
+            return withoutInitialSecret(Output.of(withoutInitialSecret));
         }
 
         public ProjectServiceAccountArgs build() {

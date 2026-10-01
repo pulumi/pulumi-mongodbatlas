@@ -12,6 +12,24 @@ import * as utilities from "./utilities";
  * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
  *
  * ## Example Usage
+ *
+ * ### S
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * // Read the Service Account and the organization's Service Accounts back from Atlas.
+ * const _this = mongodbatlas.getServiceAccount({
+ *     orgId: orgId,
+ *     clientId: thisMongodbatlasServiceAccount.clientId,
+ * });
+ * const thisGetServiceAccounts = mongodbatlas.getServiceAccounts({
+ *     orgId: orgId,
+ * });
+ * export const serviceAccountClientId = thisMongodbatlasServiceAccount.clientId;
+ * export const serviceAccountName = _this.then(_this => _this.name);
+ * export const serviceAccountsResults = thisGetServiceAccounts.then(thisGetServiceAccounts => thisGetServiceAccounts.results);
+ * ```
  */
 export function getServiceAccount(args: GetServiceAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceAccountResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -78,6 +96,24 @@ export interface GetServiceAccountResult {
  * > **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform's state. We suggest following Terraform's best practices.
  *
  * ## Example Usage
+ *
+ * ### S
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * // Read the Service Account and the organization's Service Accounts back from Atlas.
+ * const _this = mongodbatlas.getServiceAccount({
+ *     orgId: orgId,
+ *     clientId: thisMongodbatlasServiceAccount.clientId,
+ * });
+ * const thisGetServiceAccounts = mongodbatlas.getServiceAccounts({
+ *     orgId: orgId,
+ * });
+ * export const serviceAccountClientId = thisMongodbatlasServiceAccount.clientId;
+ * export const serviceAccountName = _this.then(_this => _this.name);
+ * export const serviceAccountsResults = thisGetServiceAccounts.then(thisGetServiceAccounts => thisGetServiceAccounts.results);
+ * ```
  */
 export function getServiceAccountOutput(args: GetServiceAccountOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetServiceAccountResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

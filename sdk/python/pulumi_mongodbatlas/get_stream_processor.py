@@ -224,7 +224,7 @@ def get_stream_processor(instance_name: Optional[_builtins.str] = None,
             "username": kafka_username,
             "password": kafka_password,
         },
-        bootstrap_servers="localhost:9092,localhost:9092",
+        bootstrap_servers="example.com:9092",
         config={
             "auto.offset.reset": "earliest",
         },
@@ -369,7 +369,7 @@ def get_stream_processor_output(instance_name: pulumi.Input[Optional[Optional[_b
             "username": kafka_username,
             "password": kafka_password,
         },
-        bootstrap_servers="localhost:9092,localhost:9092",
+        bootstrap_servers="example.com:9092",
         config={
             "auto.offset.reset": "earliest",
         },

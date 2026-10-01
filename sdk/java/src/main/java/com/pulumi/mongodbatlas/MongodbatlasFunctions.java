@@ -91,9 +91,13 @@ import com.pulumi.mongodbatlas.inputs.GetCloudUserProjectAssignmentArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudUserProjectAssignmentPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudUserTeamAssignmentArgs;
 import com.pulumi.mongodbatlas.inputs.GetCloudUserTeamAssignmentPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetClusterAdaptiveSettingsArgs;
+import com.pulumi.mongodbatlas.inputs.GetClusterAdaptiveSettingsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetClusterArgs;
 import com.pulumi.mongodbatlas.inputs.GetClusterOutageSimulationArgs;
 import com.pulumi.mongodbatlas.inputs.GetClusterOutageSimulationPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetClusterOverloadSimulationArgs;
+import com.pulumi.mongodbatlas.inputs.GetClusterOverloadSimulationPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetClusterPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetClustersArgs;
 import com.pulumi.mongodbatlas.inputs.GetClustersPlainArgs;
@@ -193,6 +197,10 @@ import com.pulumi.mongodbatlas.inputs.GetOrgDelegationSettingsArgs;
 import com.pulumi.mongodbatlas.inputs.GetOrgDelegationSettingsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetOrgInvitationArgs;
 import com.pulumi.mongodbatlas.inputs.GetOrgInvitationPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetOrgLogIntegrationArgs;
+import com.pulumi.mongodbatlas.inputs.GetOrgLogIntegrationPlainArgs;
+import com.pulumi.mongodbatlas.inputs.GetOrgLogIntegrationsArgs;
+import com.pulumi.mongodbatlas.inputs.GetOrgLogIntegrationsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetOrgMaintenanceSettingsArgs;
 import com.pulumi.mongodbatlas.inputs.GetOrgMaintenanceSettingsPlainArgs;
 import com.pulumi.mongodbatlas.inputs.GetOrganizationArgs;
@@ -360,7 +368,9 @@ import com.pulumi.mongodbatlas.outputs.GetCloudProviderAccessSetupResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudUserOrgAssignmentResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudUserProjectAssignmentResult;
 import com.pulumi.mongodbatlas.outputs.GetCloudUserTeamAssignmentResult;
+import com.pulumi.mongodbatlas.outputs.GetClusterAdaptiveSettingsResult;
 import com.pulumi.mongodbatlas.outputs.GetClusterOutageSimulationResult;
+import com.pulumi.mongodbatlas.outputs.GetClusterOverloadSimulationResult;
 import com.pulumi.mongodbatlas.outputs.GetClusterResult;
 import com.pulumi.mongodbatlas.outputs.GetClustersInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetControlPlaneIpAddressesResult;
@@ -412,6 +422,8 @@ import com.pulumi.mongodbatlas.outputs.GetOnlineArchiveResult;
 import com.pulumi.mongodbatlas.outputs.GetOnlineArchivesInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetOrgDelegationSettingsResult;
 import com.pulumi.mongodbatlas.outputs.GetOrgInvitationResult;
+import com.pulumi.mongodbatlas.outputs.GetOrgLogIntegrationResult;
+import com.pulumi.mongodbatlas.outputs.GetOrgLogIntegrationsInvokeResult;
 import com.pulumi.mongodbatlas.outputs.GetOrgMaintenanceSettingsResult;
 import com.pulumi.mongodbatlas.outputs.GetOrganizationResult;
 import com.pulumi.mongodbatlas.outputs.GetOrganizationsInvokeResult;
@@ -14047,6 +14059,291 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getCluster:getCluster", TypeShape.of(GetClusterResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.ClusterAdaptiveSettings` describes the Adaptive Settings overrides and effective settings for one MongoDB Atlas cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ClusterAdaptiveSettings;
+     * import com.pulumi.mongodbatlas.ClusterAdaptiveSettingsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetClusterAdaptiveSettingsArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+     *         var thisClusterAdaptiveSettings = new ClusterAdaptiveSettings("thisClusterAdaptiveSettings", ClusterAdaptiveSettingsArgs.builder()
+     *             .projectId(projectId)
+     *             .clusterName(clusterName)
+     *             .adaptiveSettingsOverrides(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("LOAD_SHEDDING", loadSheddingEnabled),
+     *                     jsonProperty("SEARCH_LOAD_SHEDDING", searchLoadSheddingEnabled)
+     *                 )))
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getClusterAdaptiveSettings(GetClusterAdaptiveSettingsArgs.builder()
+     *             .projectId(thisClusterAdaptiveSettings.projectId())
+     *             .clusterName(thisClusterAdaptiveSettings.clusterName())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetClusterAdaptiveSettingsResult> getClusterAdaptiveSettings(GetClusterAdaptiveSettingsArgs args) {
+        return getClusterAdaptiveSettings(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.ClusterAdaptiveSettings` describes the Adaptive Settings overrides and effective settings for one MongoDB Atlas cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ClusterAdaptiveSettings;
+     * import com.pulumi.mongodbatlas.ClusterAdaptiveSettingsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetClusterAdaptiveSettingsArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+     *         var thisClusterAdaptiveSettings = new ClusterAdaptiveSettings("thisClusterAdaptiveSettings", ClusterAdaptiveSettingsArgs.builder()
+     *             .projectId(projectId)
+     *             .clusterName(clusterName)
+     *             .adaptiveSettingsOverrides(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("LOAD_SHEDDING", loadSheddingEnabled),
+     *                     jsonProperty("SEARCH_LOAD_SHEDDING", searchLoadSheddingEnabled)
+     *                 )))
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getClusterAdaptiveSettings(GetClusterAdaptiveSettingsArgs.builder()
+     *             .projectId(thisClusterAdaptiveSettings.projectId())
+     *             .clusterName(thisClusterAdaptiveSettings.clusterName())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetClusterAdaptiveSettingsResult> getClusterAdaptiveSettingsPlain(GetClusterAdaptiveSettingsPlainArgs args) {
+        return getClusterAdaptiveSettingsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.ClusterAdaptiveSettings` describes the Adaptive Settings overrides and effective settings for one MongoDB Atlas cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ClusterAdaptiveSettings;
+     * import com.pulumi.mongodbatlas.ClusterAdaptiveSettingsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetClusterAdaptiveSettingsArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+     *         var thisClusterAdaptiveSettings = new ClusterAdaptiveSettings("thisClusterAdaptiveSettings", ClusterAdaptiveSettingsArgs.builder()
+     *             .projectId(projectId)
+     *             .clusterName(clusterName)
+     *             .adaptiveSettingsOverrides(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("LOAD_SHEDDING", loadSheddingEnabled),
+     *                     jsonProperty("SEARCH_LOAD_SHEDDING", searchLoadSheddingEnabled)
+     *                 )))
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getClusterAdaptiveSettings(GetClusterAdaptiveSettingsArgs.builder()
+     *             .projectId(thisClusterAdaptiveSettings.projectId())
+     *             .clusterName(thisClusterAdaptiveSettings.clusterName())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetClusterAdaptiveSettingsResult> getClusterAdaptiveSettings(GetClusterAdaptiveSettingsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getClusterAdaptiveSettings:getClusterAdaptiveSettings", TypeShape.of(GetClusterAdaptiveSettingsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.ClusterAdaptiveSettings` describes the Adaptive Settings overrides and effective settings for one MongoDB Atlas cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ClusterAdaptiveSettings;
+     * import com.pulumi.mongodbatlas.ClusterAdaptiveSettingsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetClusterAdaptiveSettingsArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+     *         var thisClusterAdaptiveSettings = new ClusterAdaptiveSettings("thisClusterAdaptiveSettings", ClusterAdaptiveSettingsArgs.builder()
+     *             .projectId(projectId)
+     *             .clusterName(clusterName)
+     *             .adaptiveSettingsOverrides(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("LOAD_SHEDDING", loadSheddingEnabled),
+     *                     jsonProperty("SEARCH_LOAD_SHEDDING", searchLoadSheddingEnabled)
+     *                 )))
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getClusterAdaptiveSettings(GetClusterAdaptiveSettingsArgs.builder()
+     *             .projectId(thisClusterAdaptiveSettings.projectId())
+     *             .clusterName(thisClusterAdaptiveSettings.clusterName())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetClusterAdaptiveSettingsResult> getClusterAdaptiveSettings(GetClusterAdaptiveSettingsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getClusterAdaptiveSettings:getClusterAdaptiveSettings", TypeShape.of(GetClusterAdaptiveSettingsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.ClusterAdaptiveSettings` describes the Adaptive Settings overrides and effective settings for one MongoDB Atlas cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.ClusterAdaptiveSettings;
+     * import com.pulumi.mongodbatlas.ClusterAdaptiveSettingsArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetClusterAdaptiveSettingsArgs;
+     * import static com.pulumi.codegen.internal.Serialization.*;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+     *         var thisClusterAdaptiveSettings = new ClusterAdaptiveSettings("thisClusterAdaptiveSettings", ClusterAdaptiveSettingsArgs.builder()
+     *             .projectId(projectId)
+     *             .clusterName(clusterName)
+     *             .adaptiveSettingsOverrides(serializeJson(
+     *                 jsonObject(
+     *                     jsonProperty("LOAD_SHEDDING", loadSheddingEnabled),
+     *                     jsonProperty("SEARCH_LOAD_SHEDDING", searchLoadSheddingEnabled)
+     *                 )))
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getClusterAdaptiveSettings(GetClusterAdaptiveSettingsArgs.builder()
+     *             .projectId(thisClusterAdaptiveSettings.projectId())
+     *             .clusterName(thisClusterAdaptiveSettings.clusterName())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetClusterAdaptiveSettingsResult> getClusterAdaptiveSettingsPlain(GetClusterAdaptiveSettingsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getClusterAdaptiveSettings:getClusterAdaptiveSettings", TypeShape.of(GetClusterAdaptiveSettingsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * `mongodbatlas.ClusterOutageSimulation` provides a Cluster Outage Simulation resource. For more details see https://www.mongodb.com/docs/atlas/tutorial/test-resilience/simulate-regional-outage/
      * 
      * Test Outage on Minority of Electable Nodes - Select fewer than half of your electable nodes. This operation is supported via Terraform Provider.
@@ -14280,6 +14577,376 @@ public final class MongodbatlasFunctions {
      */
     public static CompletableFuture<GetClusterOutageSimulationResult> getClusterOutageSimulationPlain(GetClusterOutageSimulationPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getClusterOutageSimulation:getClusterOutageSimulation", TypeShape.of(GetClusterOutageSimulationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.ClusterOverloadSimulation` describes one overload protection simulation for a MongoDB Atlas cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
+     * import com.pulumi.mongodbatlas.ClusterOverloadSimulation;
+     * import com.pulumi.mongodbatlas.ClusterOverloadSimulationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetClusterOverloadSimulationArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAdvancedCluster = new AdvancedCluster("thisAdvancedCluster", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name(clusterName)
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize(instanceSize)
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .providerName(cloudProvider)
+     *                     .priority(7)
+     *                     .regionName(regionName)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var thisClusterOverloadSimulation = new ClusterOverloadSimulation("thisClusterOverloadSimulation", ClusterOverloadSimulationArgs.builder()
+     *             .projectId(thisAdvancedCluster.projectId())
+     *             .clusterName(thisAdvancedCluster.name())
+     *             .durationSeconds(durationSeconds)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getClusterOverloadSimulation(GetClusterOverloadSimulationArgs.builder()
+     *             .projectId(thisClusterOverloadSimulation.projectId())
+     *             .clusterName(thisClusterOverloadSimulation.clusterName())
+     *             .simulationId(thisClusterOverloadSimulation.simulationId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetClusterOverloadSimulationResult> getClusterOverloadSimulation(GetClusterOverloadSimulationArgs args) {
+        return getClusterOverloadSimulation(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.ClusterOverloadSimulation` describes one overload protection simulation for a MongoDB Atlas cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
+     * import com.pulumi.mongodbatlas.ClusterOverloadSimulation;
+     * import com.pulumi.mongodbatlas.ClusterOverloadSimulationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetClusterOverloadSimulationArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAdvancedCluster = new AdvancedCluster("thisAdvancedCluster", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name(clusterName)
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize(instanceSize)
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .providerName(cloudProvider)
+     *                     .priority(7)
+     *                     .regionName(regionName)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var thisClusterOverloadSimulation = new ClusterOverloadSimulation("thisClusterOverloadSimulation", ClusterOverloadSimulationArgs.builder()
+     *             .projectId(thisAdvancedCluster.projectId())
+     *             .clusterName(thisAdvancedCluster.name())
+     *             .durationSeconds(durationSeconds)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getClusterOverloadSimulation(GetClusterOverloadSimulationArgs.builder()
+     *             .projectId(thisClusterOverloadSimulation.projectId())
+     *             .clusterName(thisClusterOverloadSimulation.clusterName())
+     *             .simulationId(thisClusterOverloadSimulation.simulationId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetClusterOverloadSimulationResult> getClusterOverloadSimulationPlain(GetClusterOverloadSimulationPlainArgs args) {
+        return getClusterOverloadSimulationPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.ClusterOverloadSimulation` describes one overload protection simulation for a MongoDB Atlas cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
+     * import com.pulumi.mongodbatlas.ClusterOverloadSimulation;
+     * import com.pulumi.mongodbatlas.ClusterOverloadSimulationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetClusterOverloadSimulationArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAdvancedCluster = new AdvancedCluster("thisAdvancedCluster", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name(clusterName)
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize(instanceSize)
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .providerName(cloudProvider)
+     *                     .priority(7)
+     *                     .regionName(regionName)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var thisClusterOverloadSimulation = new ClusterOverloadSimulation("thisClusterOverloadSimulation", ClusterOverloadSimulationArgs.builder()
+     *             .projectId(thisAdvancedCluster.projectId())
+     *             .clusterName(thisAdvancedCluster.name())
+     *             .durationSeconds(durationSeconds)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getClusterOverloadSimulation(GetClusterOverloadSimulationArgs.builder()
+     *             .projectId(thisClusterOverloadSimulation.projectId())
+     *             .clusterName(thisClusterOverloadSimulation.clusterName())
+     *             .simulationId(thisClusterOverloadSimulation.simulationId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetClusterOverloadSimulationResult> getClusterOverloadSimulation(GetClusterOverloadSimulationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getClusterOverloadSimulation:getClusterOverloadSimulation", TypeShape.of(GetClusterOverloadSimulationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.ClusterOverloadSimulation` describes one overload protection simulation for a MongoDB Atlas cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
+     * import com.pulumi.mongodbatlas.ClusterOverloadSimulation;
+     * import com.pulumi.mongodbatlas.ClusterOverloadSimulationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetClusterOverloadSimulationArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAdvancedCluster = new AdvancedCluster("thisAdvancedCluster", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name(clusterName)
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize(instanceSize)
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .providerName(cloudProvider)
+     *                     .priority(7)
+     *                     .regionName(regionName)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var thisClusterOverloadSimulation = new ClusterOverloadSimulation("thisClusterOverloadSimulation", ClusterOverloadSimulationArgs.builder()
+     *             .projectId(thisAdvancedCluster.projectId())
+     *             .clusterName(thisAdvancedCluster.name())
+     *             .durationSeconds(durationSeconds)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getClusterOverloadSimulation(GetClusterOverloadSimulationArgs.builder()
+     *             .projectId(thisClusterOverloadSimulation.projectId())
+     *             .clusterName(thisClusterOverloadSimulation.clusterName())
+     *             .simulationId(thisClusterOverloadSimulation.simulationId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetClusterOverloadSimulationResult> getClusterOverloadSimulation(GetClusterOverloadSimulationArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getClusterOverloadSimulation:getClusterOverloadSimulation", TypeShape.of(GetClusterOverloadSimulationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.ClusterOverloadSimulation` describes one overload protection simulation for a MongoDB Atlas cluster.
+     * 
+     * ## Example Usage
+     * 
+     * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.AdvancedCluster;
+     * import com.pulumi.mongodbatlas.AdvancedClusterArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigArgs;
+     * import com.pulumi.mongodbatlas.inputs.AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs;
+     * import com.pulumi.mongodbatlas.ClusterOverloadSimulation;
+     * import com.pulumi.mongodbatlas.ClusterOverloadSimulationArgs;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetClusterOverloadSimulationArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         var thisAdvancedCluster = new AdvancedCluster("thisAdvancedCluster", AdvancedClusterArgs.builder()
+     *             .projectId(projectId)
+     *             .name(clusterName)
+     *             .clusterType("REPLICASET")
+     *             .replicationSpecs(AdvancedClusterReplicationSpecArgs.builder()
+     *                 .regionConfigs(AdvancedClusterReplicationSpecRegionConfigArgs.builder()
+     *                     .electableSpecs(AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs.builder()
+     *                         .instanceSize(instanceSize)
+     *                         .nodeCount(3)
+     *                         .build())
+     *                     .providerName(cloudProvider)
+     *                     .priority(7)
+     *                     .regionName(regionName)
+     *                     .build())
+     *                 .build())
+     *             .build());
+     * 
+     *         var thisClusterOverloadSimulation = new ClusterOverloadSimulation("thisClusterOverloadSimulation", ClusterOverloadSimulationArgs.builder()
+     *             .projectId(thisAdvancedCluster.projectId())
+     *             .clusterName(thisAdvancedCluster.name())
+     *             .durationSeconds(durationSeconds)
+     *             .build());
+     * 
+     *         final var this = MongodbatlasFunctions.getClusterOverloadSimulation(GetClusterOverloadSimulationArgs.builder()
+     *             .projectId(thisClusterOverloadSimulation.projectId())
+     *             .clusterName(thisClusterOverloadSimulation.clusterName())
+     *             .simulationId(thisClusterOverloadSimulation.simulationId())
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetClusterOverloadSimulationResult> getClusterOverloadSimulationPlain(GetClusterOverloadSimulationPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getClusterOverloadSimulation:getClusterOverloadSimulation", TypeShape.of(GetClusterOverloadSimulationResult.class), args, Utilities.withVersion(options));
     }
     /**
      * `mongodbatlas.Cluster` describes all Clusters by the provided project_id. The data source requires your Project ID.
@@ -15875,7 +16542,7 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static Output<GetDatabaseUserResult> getDatabaseUser(GetDatabaseUserArgs args) {
@@ -15997,7 +16664,7 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static CompletableFuture<GetDatabaseUserResult> getDatabaseUserPlain(GetDatabaseUserPlainArgs args) {
@@ -16119,7 +16786,7 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static Output<GetDatabaseUserResult> getDatabaseUser(GetDatabaseUserArgs args, InvokeOptions options) {
@@ -16241,7 +16908,7 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static Output<GetDatabaseUserResult> getDatabaseUser(GetDatabaseUserArgs args, InvokeOutputOptions options) {
@@ -16363,7 +17030,7 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static CompletableFuture<GetDatabaseUserResult> getDatabaseUserPlain(GetDatabaseUserPlainArgs args, InvokeOptions options) {
@@ -16481,7 +17148,7 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static Output<GetDatabaseUsersInvokeResult> getDatabaseUsers(GetDatabaseUsersArgs args) {
@@ -16599,7 +17266,7 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static CompletableFuture<GetDatabaseUsersInvokeResult> getDatabaseUsersPlain(GetDatabaseUsersPlainArgs args) {
@@ -16717,7 +17384,7 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static Output<GetDatabaseUsersInvokeResult> getDatabaseUsers(GetDatabaseUsersArgs args, InvokeOptions options) {
@@ -16835,7 +17502,7 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static Output<GetDatabaseUsersInvokeResult> getDatabaseUsers(GetDatabaseUsersArgs args, InvokeOutputOptions options) {
@@ -16953,7 +17620,7 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only avalible starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static CompletableFuture<GetDatabaseUsersInvokeResult> getDatabaseUsersPlain(GetDatabaseUsersPlainArgs args, InvokeOptions options) {
@@ -27955,6 +28622,281 @@ public final class MongodbatlasFunctions {
         return Deployment.getInstance().invokeAsync("mongodbatlas:index/getOrgInvitation:getOrgInvitation", TypeShape.of(GetOrgInvitationResult.class), args, Utilities.withVersion(options));
     }
     /**
+     * `mongodbatlas.OrgLogIntegration` describes the configuration of a log integration at the organization level. Currently, OpenTelemetry is the only supported integration type.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrgLogIntegrationArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getOrgLogIntegration(GetOrgLogIntegrationArgs.builder()
+     *             .orgId(exampleMongodbatlasOrgLogIntegration.orgId())
+     *             .integrationId(exampleMongodbatlasOrgLogIntegration.integrationId())
+     *             .build());
+     * 
+     *         ctx.export("orgLogIntegrationType", example.type());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetOrgLogIntegrationResult> getOrgLogIntegration(GetOrgLogIntegrationArgs args) {
+        return getOrgLogIntegration(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.OrgLogIntegration` describes the configuration of a log integration at the organization level. Currently, OpenTelemetry is the only supported integration type.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrgLogIntegrationArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getOrgLogIntegration(GetOrgLogIntegrationArgs.builder()
+     *             .orgId(exampleMongodbatlasOrgLogIntegration.orgId())
+     *             .integrationId(exampleMongodbatlasOrgLogIntegration.integrationId())
+     *             .build());
+     * 
+     *         ctx.export("orgLogIntegrationType", example.type());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetOrgLogIntegrationResult> getOrgLogIntegrationPlain(GetOrgLogIntegrationPlainArgs args) {
+        return getOrgLogIntegrationPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.OrgLogIntegration` describes the configuration of a log integration at the organization level. Currently, OpenTelemetry is the only supported integration type.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrgLogIntegrationArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getOrgLogIntegration(GetOrgLogIntegrationArgs.builder()
+     *             .orgId(exampleMongodbatlasOrgLogIntegration.orgId())
+     *             .integrationId(exampleMongodbatlasOrgLogIntegration.integrationId())
+     *             .build());
+     * 
+     *         ctx.export("orgLogIntegrationType", example.type());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetOrgLogIntegrationResult> getOrgLogIntegration(GetOrgLogIntegrationArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getOrgLogIntegration:getOrgLogIntegration", TypeShape.of(GetOrgLogIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.OrgLogIntegration` describes the configuration of a log integration at the organization level. Currently, OpenTelemetry is the only supported integration type.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrgLogIntegrationArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getOrgLogIntegration(GetOrgLogIntegrationArgs.builder()
+     *             .orgId(exampleMongodbatlasOrgLogIntegration.orgId())
+     *             .integrationId(exampleMongodbatlasOrgLogIntegration.integrationId())
+     *             .build());
+     * 
+     *         ctx.export("orgLogIntegrationType", example.type());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static Output<GetOrgLogIntegrationResult> getOrgLogIntegration(GetOrgLogIntegrationArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getOrgLogIntegration:getOrgLogIntegration", TypeShape.of(GetOrgLogIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.OrgLogIntegration` describes the configuration of a log integration at the organization level. Currently, OpenTelemetry is the only supported integration type.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner role.
+     * 
+     * ## Example Usage
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetOrgLogIntegrationArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var example = MongodbatlasFunctions.getOrgLogIntegration(GetOrgLogIntegrationArgs.builder()
+     *             .orgId(exampleMongodbatlasOrgLogIntegration.orgId())
+     *             .integrationId(exampleMongodbatlasOrgLogIntegration.integrationId())
+     *             .build());
+     * 
+     *         ctx.export("orgLogIntegrationType", example.type());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     */
+    public static CompletableFuture<GetOrgLogIntegrationResult> getOrgLogIntegrationPlain(GetOrgLogIntegrationPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getOrgLogIntegration:getOrgLogIntegration", TypeShape.of(GetOrgLogIntegrationResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getOrgLogIntegrations` describes all log integrations configured at the organization level. Currently, OpenTelemetry is the only supported integration type.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner role.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetOrgLogIntegrationsInvokeResult> getOrgLogIntegrations(GetOrgLogIntegrationsArgs args) {
+        return getOrgLogIntegrations(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getOrgLogIntegrations` describes all log integrations configured at the organization level. Currently, OpenTelemetry is the only supported integration type.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner role.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetOrgLogIntegrationsInvokeResult> getOrgLogIntegrationsPlain(GetOrgLogIntegrationsPlainArgs args) {
+        return getOrgLogIntegrationsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * `mongodbatlas.getOrgLogIntegrations` describes all log integrations configured at the organization level. Currently, OpenTelemetry is the only supported integration type.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner role.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetOrgLogIntegrationsInvokeResult> getOrgLogIntegrations(GetOrgLogIntegrationsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getOrgLogIntegrations:getOrgLogIntegrations", TypeShape.of(GetOrgLogIntegrationsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getOrgLogIntegrations` describes all log integrations configured at the organization level. Currently, OpenTelemetry is the only supported integration type.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner role.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetOrgLogIntegrationsInvokeResult> getOrgLogIntegrations(GetOrgLogIntegrationsArgs args, InvokeOutputOptions options) {
+        return Deployment.getInstance().invoke("mongodbatlas:index/getOrgLogIntegrations:getOrgLogIntegrations", TypeShape.of(GetOrgLogIntegrationsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * `mongodbatlas.getOrgLogIntegrations` describes all log integrations configured at the organization level. Currently, OpenTelemetry is the only supported integration type.
+     * 
+     * To use this data source, the requesting Service Account or API Key must have the Organization Owner role.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetOrgLogIntegrationsInvokeResult> getOrgLogIntegrationsPlain(GetOrgLogIntegrationsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("mongodbatlas:index/getOrgLogIntegrations:getOrgLogIntegrations", TypeShape.of(GetOrgLogIntegrationsInvokeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
      * `mongodbatlas.OrgMaintenanceSettings` provides a data source to read the organization-level [maintenance wave settings](https://www.mongodb.com/docs/atlas/tutorial/cluster-maintenance-window/) for a MongoDB Atlas organization.
      * 
      * ## Example Usage
@@ -33896,6 +34838,48 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetProjectServiceAccountResult> getProjectServiceAccount(GetProjectServiceAccountArgs args) {
         return getProjectServiceAccount(args, InvokeOptions.Empty);
@@ -33906,6 +34890,48 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
      * 
      * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetProjectServiceAccountResult> getProjectServiceAccountPlain(GetProjectServiceAccountPlainArgs args) {
@@ -33918,6 +34944,48 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetProjectServiceAccountResult> getProjectServiceAccount(GetProjectServiceAccountArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccount:getProjectServiceAccount", TypeShape.of(GetProjectServiceAccountResult.class), args, Utilities.withVersion(options));
@@ -33929,6 +34997,48 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetProjectServiceAccountResult> getProjectServiceAccount(GetProjectServiceAccountArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccount:getProjectServiceAccount", TypeShape.of(GetProjectServiceAccountResult.class), args, Utilities.withVersion(options));
@@ -33939,6 +35049,48 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
      * 
      * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetProjectServiceAccountResult> getProjectServiceAccountPlain(GetProjectServiceAccountPlainArgs args, InvokeOptions options) {
@@ -35121,6 +36273,48 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetProjectServiceAccountsInvokeResult> getProjectServiceAccounts(GetProjectServiceAccountsArgs args) {
         return getProjectServiceAccounts(args, InvokeOptions.Empty);
@@ -35131,6 +36325,48 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
      * 
      * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetProjectServiceAccountsInvokeResult> getProjectServiceAccountsPlain(GetProjectServiceAccountsPlainArgs args) {
@@ -35143,6 +36379,48 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetProjectServiceAccountsInvokeResult> getProjectServiceAccounts(GetProjectServiceAccountsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts", TypeShape.of(GetProjectServiceAccountsInvokeResult.class), args, Utilities.withVersion(options));
@@ -35154,6 +36432,48 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetProjectServiceAccountsInvokeResult> getProjectServiceAccounts(GetProjectServiceAccountsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getProjectServiceAccounts:getProjectServiceAccounts", TypeShape.of(GetProjectServiceAccountsInvokeResult.class), args, Utilities.withVersion(options));
@@ -35164,6 +36484,48 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
      * 
      * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetProjectServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
+     *             .projectId(projectId)
+     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
+     *             .projectId(projectId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetProjectServiceAccountsInvokeResult> getProjectServiceAccountsPlain(GetProjectServiceAccountsPlainArgs args, InvokeOptions options) {
@@ -37629,6 +38991,48 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Service Account and the organization's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetServiceAccountResult> getServiceAccount(GetServiceAccountArgs args) {
         return getServiceAccount(args, InvokeOptions.Empty);
@@ -37639,6 +39043,48 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
      * 
      * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Service Account and the organization's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetServiceAccountResult> getServiceAccountPlain(GetServiceAccountPlainArgs args) {
@@ -37651,6 +39097,48 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Service Account and the organization's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetServiceAccountResult> getServiceAccount(GetServiceAccountArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccount:getServiceAccount", TypeShape.of(GetServiceAccountResult.class), args, Utilities.withVersion(options));
@@ -37662,6 +39150,48 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Service Account and the organization's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetServiceAccountResult> getServiceAccount(GetServiceAccountArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccount:getServiceAccount", TypeShape.of(GetServiceAccountResult.class), args, Utilities.withVersion(options));
@@ -37672,6 +39202,48 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
      * 
      * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Service Account and the organization's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetServiceAccountResult> getServiceAccountPlain(GetServiceAccountPlainArgs args, InvokeOptions options) {
@@ -39559,6 +41131,48 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Service Account and the organization's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetServiceAccountsInvokeResult> getServiceAccounts(GetServiceAccountsArgs args) {
         return getServiceAccounts(args, InvokeOptions.Empty);
@@ -39569,6 +41183,48 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
      * 
      * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Service Account and the organization's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetServiceAccountsInvokeResult> getServiceAccountsPlain(GetServiceAccountsPlainArgs args) {
@@ -39581,6 +41237,48 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Service Account and the organization's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetServiceAccountsInvokeResult> getServiceAccounts(GetServiceAccountsArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccounts:getServiceAccounts", TypeShape.of(GetServiceAccountsInvokeResult.class), args, Utilities.withVersion(options));
@@ -39592,6 +41290,48 @@ public final class MongodbatlasFunctions {
      * 
      * ## Example Usage
      * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Service Account and the organization's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetServiceAccountsInvokeResult> getServiceAccounts(GetServiceAccountsArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getServiceAccounts:getServiceAccounts", TypeShape.of(GetServiceAccountsInvokeResult.class), args, Utilities.withVersion(options));
@@ -39602,6 +41342,48 @@ public final class MongodbatlasFunctions {
      * &gt; **IMPORTANT WARNING:** Managing Service Accounts with Terraform **exposes sensitive organizational secrets** in Terraform&#39;s state. We suggest following Terraform&#39;s best practices.
      * 
      * ## Example Usage
+     * 
+     * ### S
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountArgs;
+     * import com.pulumi.mongodbatlas.inputs.GetServiceAccountsArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         // Read the Service Account and the organization's Service Accounts back from Atlas.
+     *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
+     *             .orgId(orgId)
+     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .build());
+     * 
+     *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
+     *             .orgId(orgId)
+     *             .build());
+     * 
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountName", this_.name());
+     *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetServiceAccountsInvokeResult> getServiceAccountsPlain(GetServiceAccountsPlainArgs args, InvokeOptions options) {
@@ -44307,7 +46089,7 @@ public final class MongodbatlasFunctions {
      *                 .username(kafkaUsername)
      *                 .password(kafkaPassword)
      *                 .build())
-     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .bootstrapServers("example.com:9092")
      *             .config(Map.of("auto.offset.reset", "earliest"))
      *             .security(StreamConnectionSecurityArgs.builder()
      *                 .protocol("SASL_PLAINTEXT")
@@ -44480,7 +46262,7 @@ public final class MongodbatlasFunctions {
      *                 .username(kafkaUsername)
      *                 .password(kafkaPassword)
      *                 .build())
-     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .bootstrapServers("example.com:9092")
      *             .config(Map.of("auto.offset.reset", "earliest"))
      *             .security(StreamConnectionSecurityArgs.builder()
      *                 .protocol("SASL_PLAINTEXT")
@@ -44653,7 +46435,7 @@ public final class MongodbatlasFunctions {
      *                 .username(kafkaUsername)
      *                 .password(kafkaPassword)
      *                 .build())
-     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .bootstrapServers("example.com:9092")
      *             .config(Map.of("auto.offset.reset", "earliest"))
      *             .security(StreamConnectionSecurityArgs.builder()
      *                 .protocol("SASL_PLAINTEXT")
@@ -44826,7 +46608,7 @@ public final class MongodbatlasFunctions {
      *                 .username(kafkaUsername)
      *                 .password(kafkaPassword)
      *                 .build())
-     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .bootstrapServers("example.com:9092")
      *             .config(Map.of("auto.offset.reset", "earliest"))
      *             .security(StreamConnectionSecurityArgs.builder()
      *                 .protocol("SASL_PLAINTEXT")
@@ -44999,7 +46781,7 @@ public final class MongodbatlasFunctions {
      *                 .username(kafkaUsername)
      *                 .password(kafkaPassword)
      *                 .build())
-     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .bootstrapServers("example.com:9092")
      *             .config(Map.of("auto.offset.reset", "earliest"))
      *             .security(StreamConnectionSecurityArgs.builder()
      *                 .protocol("SASL_PLAINTEXT")
@@ -45172,7 +46954,7 @@ public final class MongodbatlasFunctions {
      *                 .username(kafkaUsername)
      *                 .password(kafkaPassword)
      *                 .build())
-     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .bootstrapServers("example.com:9092")
      *             .config(Map.of("auto.offset.reset", "earliest"))
      *             .security(StreamConnectionSecurityArgs.builder()
      *                 .protocol("SASL_PLAINTEXT")
@@ -45345,7 +47127,7 @@ public final class MongodbatlasFunctions {
      *                 .username(kafkaUsername)
      *                 .password(kafkaPassword)
      *                 .build())
-     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .bootstrapServers("example.com:9092")
      *             .config(Map.of("auto.offset.reset", "earliest"))
      *             .security(StreamConnectionSecurityArgs.builder()
      *                 .protocol("SASL_PLAINTEXT")
@@ -45518,7 +47300,7 @@ public final class MongodbatlasFunctions {
      *                 .username(kafkaUsername)
      *                 .password(kafkaPassword)
      *                 .build())
-     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .bootstrapServers("example.com:9092")
      *             .config(Map.of("auto.offset.reset", "earliest"))
      *             .security(StreamConnectionSecurityArgs.builder()
      *                 .protocol("SASL_PLAINTEXT")
@@ -45691,7 +47473,7 @@ public final class MongodbatlasFunctions {
      *                 .username(kafkaUsername)
      *                 .password(kafkaPassword)
      *                 .build())
-     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .bootstrapServers("example.com:9092")
      *             .config(Map.of("auto.offset.reset", "earliest"))
      *             .security(StreamConnectionSecurityArgs.builder()
      *                 .protocol("SASL_PLAINTEXT")
@@ -45864,7 +47646,7 @@ public final class MongodbatlasFunctions {
      *                 .username(kafkaUsername)
      *                 .password(kafkaPassword)
      *                 .build())
-     *             .bootstrapServers("localhost:9092,localhost:9092")
+     *             .bootstrapServers("example.com:9092")
      *             .config(Map.of("auto.offset.reset", "earliest"))
      *             .security(StreamConnectionSecurityArgs.builder()
      *                 .protocol("SASL_PLAINTEXT")

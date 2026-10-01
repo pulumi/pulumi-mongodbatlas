@@ -487,7 +487,7 @@ class StreamProcessor(pulumi.CustomResource):
                 "username": kafka_username,
                 "password": kafka_password,
             },
-            bootstrap_servers="localhost:9092,localhost:9092",
+            bootstrap_servers="example.com:9092",
             config={
                 "auto.offset.reset": "earliest",
             },
@@ -639,7 +639,7 @@ class StreamProcessor(pulumi.CustomResource):
                 "username": kafka_username,
                 "password": kafka_password,
             },
-            bootstrap_servers="localhost:9092,localhost:9092",
+            bootstrap_servers="example.com:9092",
             config={
                 "auto.offset.reset": "earliest",
             },
