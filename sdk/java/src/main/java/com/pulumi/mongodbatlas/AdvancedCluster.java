@@ -215,8 +215,8 @@ import javax.annotation.Nullable;
  *             .useEffectiveFields(true)
  *             .build());
  * 
- *         ctx.export("configuredInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs()[0].regionConfigs()[0].electableSpecs().instanceSize()));
- *         ctx.export("actualInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs()[0].regionConfigs()[0].effectiveElectableSpecs().instanceSize()));
+ *         ctx.export("configuredInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs().get(0).regionConfigs().get(0).electableSpecs().instanceSize()));
+ *         ctx.export("actualInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs().get(0).regionConfigs().get(0).effectiveElectableSpecs().instanceSize()));
  *     }
  * }
  * }
@@ -558,7 +558,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var this_ = new AdvancedCluster("this", AdvancedClusterArgs.builder()
- *             .projectId(project.id())
+ *             .projectId(project.get("id"))
  *             .name(clusterName)
  *             .clusterType("SHARDED")
  *             .backupEnabled(true)
@@ -645,7 +645,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var this_ = new AdvancedCluster("this", AdvancedClusterArgs.builder()
- *             .projectId(project.id())
+ *             .projectId(project.get("id"))
  *             .name(clusterName)
  *             .clusterType("GEOSHARDED")
  *             .backupEnabled(true)
@@ -772,7 +772,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export("standard", cluster.connectionStrings().standard());
+ *         ctx.export("standard", cluster.get("connectionStrings").get("standard"));
  *     }
  * }
  * }
@@ -798,7 +798,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export("standardSrv", cluster.connectionStrings().standardSrv());
+ *         ctx.export("standardSrv", cluster.get("connectionStrings").get("standardSrv"));
  *     }
  * }
  * }
@@ -824,7 +824,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export("private", cluster.connectionStrings().private());
+ *         ctx.export("private", cluster.get("connectionStrings").get("private"));
  *     }
  * }
  * }
@@ -850,7 +850,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export("privateSrv", cluster.connectionStrings().privateSrv());
+ *         ctx.export("privateSrv", cluster.get("connectionStrings").get("privateSrv"));
  *     }
  * }
  * }

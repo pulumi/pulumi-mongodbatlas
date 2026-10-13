@@ -89,11 +89,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var oidc = new FederatedSettingsIdentityProvider("oidc", FederatedSettingsIdentityProviderArgs.builder()
- *             .federationSettingsId(this_.id())
+ *             .federationSettingsId(this_.get("id"))
  *             .audience(tokenAudience)
  *             .authorizationType("USER")
  *             .description("oidc")
- *             .issuerUri(String.format("https://sts.windows.net/%s/", thisAzurermUserAssignedIdentity.tenantId()))
+ *             .issuerUri(String.format("https://sts.windows.net/%s/", thisAzurermUserAssignedIdentity.get("tenantId")))
  *             .idpType("WORKLOAD")
  *             .name("OIDC-for-azure")
  *             .protocol("OIDC")

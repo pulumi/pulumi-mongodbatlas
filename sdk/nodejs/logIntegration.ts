@@ -42,7 +42,7 @@ import * as utilities from "./utilities";
  *     bucketName: logBucket.bucket,
  *     iamRoleId: auth.roleId,
  *     prefixPath: "atlas-logs",
- *     useLegacyPathStructure: useLegacyPathStructure === "true",
+ *     useLegacyPathStructure: useLegacyPathStructure,
  * });
  * ```
  *

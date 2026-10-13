@@ -39,7 +39,7 @@ import (
 //				return err
 //			}
 //			json0 := string(tmpJSON0)
-//			// Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+//			// Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding function.
 //			thisClusterAdaptiveSettings, err := mongodbatlas.NewClusterAdaptiveSettings(ctx, "this", &mongodbatlas.ClusterAdaptiveSettingsArgs{
 //				ProjectId:                 pulumi.Any(projectId),
 //				ClusterName:               pulumi.Any(clusterName),

@@ -227,8 +227,8 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var test = new CloudBackupSnapshot("test", CloudBackupSnapshotArgs.builder()
- *             .projectId(clusterTest.projectId())
- *             .clusterName(clusterTest.name())
+ *             .projectId(clusterTest.get("projectId"))
+ *             .clusterName(clusterTest.get("name"))
  *             .description("My description")
  *             .retentionInDays(1)
  *             .build());
@@ -240,8 +240,8 @@ import javax.annotation.Nullable;
  *                 .snapshotId(test.id())
  *                 .deliveryTypeConfig(CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs.builder()
  *                     .pointInTime(true)
- *                     .targetClusterName(clusterTest.name())
- *                     .targetProjectId(clusterTest.projectId())
+ *                     .targetClusterName(clusterTest.get("name"))
+ *                     .targetProjectId(clusterTest.get("projectId"))
  *                     .pointInTimeUtcSeconds(pointInTimeUtcSeconds)
  *                     .build())
  *                 .build());

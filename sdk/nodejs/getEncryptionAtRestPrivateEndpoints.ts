@@ -26,7 +26,7 @@ import * as utilities from "./utilities";
  *     projectId: atlasProjectId,
  *     cloudProvider: "AZURE",
  * });
- * export const numberOfEndpoints = plural.then(plural => plural.results).length;
+ * export const numberOfEndpoints = plural.then(plural => plural.results.length);
  * ```
  *
  * ### Encryption At Rest AWS KMS Private Endpoint
@@ -38,7 +38,7 @@ import * as utilities from "./utilities";
  *     projectId: atlasProjectId,
  *     cloudProvider: "AWS",
  * });
- * export const numberOfEndpoints = plural.then(plural => plural.results).length;
+ * export const numberOfEndpoints = plural.then(plural => plural.results.length);
  * ```
  */
 export function getEncryptionAtRestPrivateEndpoints(args: GetEncryptionAtRestPrivateEndpointsArgs, opts?: pulumi.InvokeOptions): Promise<GetEncryptionAtRestPrivateEndpointsResult> {
@@ -100,7 +100,7 @@ export interface GetEncryptionAtRestPrivateEndpointsResult {
  *     projectId: atlasProjectId,
  *     cloudProvider: "AZURE",
  * });
- * export const numberOfEndpoints = plural.then(plural => plural.results).length;
+ * export const numberOfEndpoints = plural.then(plural => plural.results.length);
  * ```
  *
  * ### Encryption At Rest AWS KMS Private Endpoint
@@ -112,7 +112,7 @@ export interface GetEncryptionAtRestPrivateEndpointsResult {
  *     projectId: atlasProjectId,
  *     cloudProvider: "AWS",
  * });
- * export const numberOfEndpoints = plural.then(plural => plural.results).length;
+ * export const numberOfEndpoints = plural.then(plural => plural.results.length);
  * ```
  */
 export function getEncryptionAtRestPrivateEndpointsOutput(args: GetEncryptionAtRestPrivateEndpointsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetEncryptionAtRestPrivateEndpointsResult> {

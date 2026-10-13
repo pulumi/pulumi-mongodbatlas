@@ -59,23 +59,23 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Set up cloud provider access in Atlas for AWS
  *         var setup = new CloudProviderAccessSetup("setup", CloudProviderAccessSetupArgs.builder()
- *             .projectId(project.id())
+ *             .projectId(project.get("id"))
  *             .providerName("AWS")
  *             .build());
  * 
  *         var auth = new CloudProviderAccessAuthorization("auth", CloudProviderAccessAuthorizationArgs.builder()
- *             .projectId(project.id())
+ *             .projectId(project.get("id"))
  *             .roleId(setup.roleId())
  *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
- *                 .iamAssumedRoleArn(atlasRole.arn())
+ *                 .iamAssumedRoleArn(atlasRole.get("arn"))
  *                 .build())
  *             .build());
  * 
  *         var example = new LogIntegration("example", LogIntegrationArgs.builder()
- *             .projectId(project.id())
+ *             .projectId(project.get("id"))
  *             .type("S3_LOG_EXPORT")
  *             .logTypes("MONGOD_AUDIT")
- *             .bucketName(logBucket.bucket())
+ *             .bucketName(logBucket.get("bucket"))
  *             .iamRoleId(auth.roleId())
  *             .prefixPath("atlas-logs")
  *             .useLegacyPathStructure(useLegacyPathStructure)
@@ -116,20 +116,20 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Set up cloud provider access in Atlas for GCP
  *         var setup = new CloudProviderAccessSetup("setup", CloudProviderAccessSetupArgs.builder()
- *             .projectId(project.id())
+ *             .projectId(project.get("id"))
  *             .providerName("GCP")
  *             .build());
  * 
  *         var auth = new CloudProviderAccessAuthorization("auth", CloudProviderAccessAuthorizationArgs.builder()
- *             .projectId(project.id())
+ *             .projectId(project.get("id"))
  *             .roleId(setup.roleId())
  *             .build());
  * 
  *         var example = new LogIntegration("example", LogIntegrationArgs.builder()
- *             .projectId(project.id())
+ *             .projectId(project.get("id"))
  *             .type("GCS_LOG_EXPORT")
  *             .logTypes("MONGOD")
- *             .bucketName(logBucket.name())
+ *             .bucketName(logBucket.get("name"))
  *             .roleId(auth.roleId())
  *             .prefixPath("atlas-logs")
  *             .build());
@@ -171,7 +171,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         // Set up cloud provider access in Atlas for Azure
  *         var setup = new CloudProviderAccessSetup("setup", CloudProviderAccessSetupArgs.builder()
- *             .projectId(project.id())
+ *             .projectId(project.get("id"))
  *             .providerName("AZURE")
  *             .azureConfigs(CloudProviderAccessSetupAzureConfigArgs.builder()
  *                 .atlasAzureAppId(atlasAzureAppId)
@@ -181,7 +181,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var auth = new CloudProviderAccessAuthorization("auth", CloudProviderAccessAuthorizationArgs.builder()
- *             .projectId(project.id())
+ *             .projectId(project.get("id"))
  *             .roleId(setup.roleId())
  *             .azure(CloudProviderAccessAuthorizationAzureArgs.builder()
  *                 .atlasAzureAppId(atlasAzureAppId)
@@ -191,12 +191,12 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var example = new LogIntegration("example", LogIntegrationArgs.builder()
- *             .projectId(project.id())
+ *             .projectId(project.get("id"))
  *             .type("AZURE_LOG_EXPORT")
  *             .logTypes("MONGOD")
  *             .roleId(auth.roleId())
- *             .storageAccountName(logStorage.name())
- *             .storageContainerName(logContainer.name())
+ *             .storageAccountName(logStorage.get("name"))
+ *             .storageContainerName(logContainer.get("name"))
  *             .prefixPath("atlas-logs")
  *             .build());
  * 
@@ -230,7 +230,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new LogIntegration("example", LogIntegrationArgs.builder()
- *             .projectId(project.id())
+ *             .projectId(project.get("id"))
  *             .type("DATADOG_LOG_EXPORT")
  *             .logTypes("MONGOD")
  *             .apiKey(datadogApiKey)
@@ -267,7 +267,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new LogIntegration("example", LogIntegrationArgs.builder()
- *             .projectId(project.id())
+ *             .projectId(project.get("id"))
  *             .type("SPLUNK_LOG_EXPORT")
  *             .logTypes("MONGOD")
  *             .hecToken(splunkHecToken)
@@ -304,7 +304,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var example = new LogIntegration("example", LogIntegrationArgs.builder()
- *             .projectId(project.id())
+ *             .projectId(project.get("id"))
  *             .type("OTEL_LOG_EXPORT")
  *             .logTypes("MONGOD")
  *             .otelEndpoint(otelEndpoint)

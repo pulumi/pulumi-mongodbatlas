@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
- *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())
+ *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.get("id"))
  *             .build());
  * 
  *     }

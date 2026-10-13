@@ -35,7 +35,7 @@ import * as utilities from "./utilities";
  *     const jobId = std.coalesce({
  *         input: [
  *             jobIdConfig,
- *             jobs.length > 0 ? jobs[jobs.length - 1].jobId : null,
+ *             Object.keys(jobs).length > 0 ? jobs[Object.keys(jobs).length - 1].jobId : null,
  *         ],
  *     }).result;
  *     const thisGetCloudBackupCollectionRestoreJob = await mongodbatlas.getCloudBackupCollectionRestoreJob({
@@ -210,7 +210,7 @@ export interface GetCloudBackupCollectionRestoreJobResult {
  *     const jobId = std.coalesce({
  *         input: [
  *             jobIdConfig,
- *             jobs.length > 0 ? jobs[jobs.length - 1].jobId : null,
+ *             Object.keys(jobs).length > 0 ? jobs[Object.keys(jobs).length - 1].jobId : null,
  *         ],
  *     }).result;
  *     const thisGetCloudBackupCollectionRestoreJob = await mongodbatlas.getCloudBackupCollectionRestoreJob({

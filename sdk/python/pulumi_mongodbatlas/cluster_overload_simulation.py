@@ -310,7 +310,7 @@ class ClusterOverloadSimulation(pulumi.CustomResource):
         this_cluster_overload_simulation = mongodbatlas.ClusterOverloadSimulation("this",
             project_id=this_advanced_cluster.project_id,
             cluster_name=this_advanced_cluster.name,
-            duration_seconds=int(duration_seconds))
+            duration_seconds=duration_seconds)
         this = mongodbatlas.get_cluster_overload_simulation_output(project_id=this_cluster_overload_simulation.project_id,
             cluster_name=this_cluster_overload_simulation.cluster_name,
             simulation_id=this_cluster_overload_simulation.simulation_id)
@@ -371,7 +371,7 @@ class ClusterOverloadSimulation(pulumi.CustomResource):
         this_cluster_overload_simulation = mongodbatlas.ClusterOverloadSimulation("this",
             project_id=this_advanced_cluster.project_id,
             cluster_name=this_advanced_cluster.name,
-            duration_seconds=int(duration_seconds))
+            duration_seconds=duration_seconds)
         this = mongodbatlas.get_cluster_overload_simulation_output(project_id=this_cluster_overload_simulation.project_id,
             cluster_name=this_cluster_overload_simulation.cluster_name,
             simulation_id=this_cluster_overload_simulation.simulation_id)

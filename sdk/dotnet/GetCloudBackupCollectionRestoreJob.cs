@@ -41,7 +41,7 @@ namespace Pulumi.Mongodbatlas
         ///         Input = new[]
         ///         {
         ///             @this.Apply(@this =&gt; @this.Apply(getCloudBackupCollectionRestoreJobsResult =&gt; getCloudBackupCollectionRestoreJobsResult.Results)),
-        ///             new[] {},
+        ///             new object?[] {},
         ///         },
         ///     }).Result;
         /// 
@@ -117,7 +117,7 @@ namespace Pulumi.Mongodbatlas
         ///         Input = new[]
         ///         {
         ///             @this.Apply(@this =&gt; @this.Apply(getCloudBackupCollectionRestoreJobsResult =&gt; getCloudBackupCollectionRestoreJobsResult.Results)),
-        ///             new[] {},
+        ///             new object?[] {},
         ///         },
         ///     }).Result;
         /// 
@@ -193,7 +193,7 @@ namespace Pulumi.Mongodbatlas
         ///         Input = new[]
         ///         {
         ///             @this.Apply(@this =&gt; @this.Apply(getCloudBackupCollectionRestoreJobsResult =&gt; getCloudBackupCollectionRestoreJobsResult.Results)),
-        ///             new[] {},
+        ///             new object?[] {},
         ///         },
         ///     }).Result;
         /// 

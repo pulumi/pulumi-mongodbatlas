@@ -37,7 +37,7 @@ import * as utilities from "./utilities";
  * const sourceNamespace = std.coalesce({
  *     input: [
  *         sourceNamespaceConfig,
- *         collections.length > 0 ? collections[collections.length - 1].sourceNamespace : null,
+ *         Object.keys(collections).length > 0 ? collections[Object.keys(collections).length - 1].sourceNamespace : null,
  *     ],
  * }).result;
  * export const collectionStates = .map(c => ({
@@ -169,7 +169,7 @@ export interface GetCloudBackupCollectionRestoreJobCollectionsResult {
  * const sourceNamespace = std.coalesce({
  *     input: [
  *         sourceNamespaceConfig,
- *         collections.length > 0 ? collections[collections.length - 1].sourceNamespace : null,
+ *         Object.keys(collections).length > 0 ? collections[Object.keys(collections).length - 1].sourceNamespace : null,
  *     ],
  * }).result;
  * export const collectionStates = .map(c => ({

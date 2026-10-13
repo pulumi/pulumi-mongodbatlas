@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+ *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding function.
  *         var thisClusterAdaptiveSettings = new ClusterAdaptiveSettings("thisClusterAdaptiveSettings", ClusterAdaptiveSettingsArgs.builder()
  *             .projectId(projectId)
  *             .clusterName(clusterName)

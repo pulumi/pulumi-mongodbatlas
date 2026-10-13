@@ -41,7 +41,7 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         Input = alerts.Apply(alerts =&gt; .Select(alert =&gt; 
         ///         {
-        ///             return alert.Output == null ? new[] {} : alert.Output;
+        ///             return alert.Output == null ? new object?[] {} : alert.Output;
         ///         }).ToList()),
         ///     }).Result;
         /// 
@@ -101,7 +101,7 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         Input = alerts.Apply(alerts =&gt; .Select(alert =&gt; 
         ///         {
-        ///             return alert.Output == null ? new[] {} : alert.Output;
+        ///             return alert.Output == null ? new object?[] {} : alert.Output;
         ///         }).ToList()),
         ///     }).Result;
         /// 
@@ -161,7 +161,7 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         Input = alerts.Apply(alerts =&gt; .Select(alert =&gt; 
         ///         {
-        ///             return alert.Output == null ? new[] {} : alert.Output;
+        ///             return alert.Output == null ? new object?[] {} : alert.Output;
         ///         }).ToList()),
         ///     }).Result;
         /// 

@@ -58,12 +58,12 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
- *             .bucket(streamBucket.id())
+ *             .bucket(streamBucket.get("id"))
  *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
  *             .build());
  * 
  *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
- *             .bucket(streamBucket.id())
+ *             .bucket(streamBucket.get("id"))
  *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
  *             .build());
  * 
@@ -260,7 +260,7 @@ import javax.annotation.Nullable;
  *             .providerName("AZURE")
  *             .region(atlasRegion)
  *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
- *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+ *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.get("subscriptionId"),azureResourceGroup,storageAccountName))
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(                
  *                     cluster,

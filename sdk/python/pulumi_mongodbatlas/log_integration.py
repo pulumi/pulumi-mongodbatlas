@@ -651,7 +651,7 @@ class LogIntegration(pulumi.CustomResource):
             bucket_name=log_bucket["bucket"],
             iam_role_id=auth.role_id,
             prefix_path="atlas-logs",
-            use_legacy_path_structure=use_legacy_path_structure == "true")
+            use_legacy_path_structure=use_legacy_path_structure)
         ```
 
         ### Google Cloud Storage (GCS)
@@ -823,7 +823,7 @@ class LogIntegration(pulumi.CustomResource):
             bucket_name=log_bucket["bucket"],
             iam_role_id=auth.role_id,
             prefix_path="atlas-logs",
-            use_legacy_path_structure=use_legacy_path_structure == "true")
+            use_legacy_path_structure=use_legacy_path_structure)
         ```
 
         ### Google Cloud Storage (GCS)

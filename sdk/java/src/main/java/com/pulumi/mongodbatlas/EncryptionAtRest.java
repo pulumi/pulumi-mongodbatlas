@@ -93,7 +93,7 @@ import javax.annotation.Nullable;
  *             .projectId(atlasProjectId)
  *             .roleId(setupOnly.roleId())
  *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
- *                 .iamAssumedRoleArn(testRole.arn())
+ *                 .iamAssumedRoleArn(testRole.get("arn"))
  *                 .build())
  *             .build());
  * 
@@ -101,7 +101,7 @@ import javax.annotation.Nullable;
  *             .projectId(atlasProjectId)
  *             .awsKmsConfig(EncryptionAtRestAwsKmsConfigArgs.builder()
  *                 .enabled(true)
- *                 .customerMasterKeyId(kmsKey.id())
+ *                 .customerMasterKeyId(kmsKey.get("id"))
  *                 .region(atlasRegion)
  *                 .roleId(authRole.roleId())
  *                 .build())
@@ -244,7 +244,7 @@ import javax.annotation.Nullable;
  *             .projectId(atlasProjectId)
  *             .googleCloudKmsConfig(EncryptionAtRestGoogleCloudKmsConfigArgs.builder()
  *                 .enabled(true)
- *                 .keyVersionResourceId(cryptoKey.primary()[0].name())
+ *                 .keyVersionResourceId(cryptoKey.get("primary")[0].get("name"))
  *                 .roleId(thisCloudProviderAccessAuthorization.roleId())
  *                 .build())
  *             .build(), CustomResourceOptions.builder()

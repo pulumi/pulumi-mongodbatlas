@@ -73,7 +73,7 @@ import javax.annotation.Nullable;
  *         var thisPrivateLinkEndpointService = new PrivateLinkEndpointService("thisPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
  *             .projectId(this_.projectId())
  *             .privateLinkId(this_.privateLinkId())
- *             .endpointServiceId(thisVpcEndpoint.id())
+ *             .endpointServiceId(thisVpcEndpoint.get("id"))
  *             .providerName("AWS")
  *             .build());
  * 
@@ -130,7 +130,7 @@ import javax.annotation.Nullable;
  *         var thisPrivateLinkEndpointService = new PrivateLinkEndpointService("thisPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
  *             .projectId(this_.projectId())
  *             .privateLinkId(this_.privateLinkId())
- *             .endpointServiceId(thisVpcEndpoint.id())
+ *             .endpointServiceId(thisVpcEndpoint.get("id"))
  *             .providerName("AWS")
  *             .build());
  * 
@@ -175,9 +175,9 @@ import javax.annotation.Nullable;
  * 
  *         var thisPrivateEndpoint = new PrivateEndpoint("thisPrivateEndpoint", PrivateEndpointArgs.builder()
  *             .name("endpoint-this")
- *             .location(thisAzurermResourceGroup.location())
+ *             .location(thisAzurermResourceGroup.get("location"))
  *             .resourceGroupName(resourceGroupName)
- *             .subnetId(thisAzurermSubnet.id())
+ *             .subnetId(thisAzurermSubnet.get("id"))
  *             .privateServiceConnection(Arrays.asList(Map.ofEntries(
  *                 Map.entry("name", this_.privateLinkServiceName()),
  *                 Map.entry("privateConnectionResourceId", this_.privateLinkServiceResourceId()),
@@ -189,8 +189,8 @@ import javax.annotation.Nullable;
  *         var thisPrivateLinkEndpointService = new PrivateLinkEndpointService("thisPrivateLinkEndpointService", PrivateLinkEndpointServiceArgs.builder()
  *             .projectId(this_.projectId())
  *             .privateLinkId(this_.privateLinkId())
- *             .endpointServiceId(thisPrivateEndpoint.id())
- *             .privateEndpointIpAddress(thisPrivateEndpoint.privateServiceConnection()[0].privateIpAddress())
+ *             .endpointServiceId(thisPrivateEndpoint.get("id"))
+ *             .privateEndpointIpAddress(thisPrivateEndpoint.get("privateServiceConnection")[0].get("privateIpAddress"))
  *             .providerName("AZURE")
  *             .build());
  * 
@@ -256,21 +256,21 @@ import javax.annotation.Nullable;
  * 
  *         // Create a Google Sub Network
  *         var defaultComputeSubnetwork = new ComputeSubnetwork("defaultComputeSubnetwork", ComputeSubnetworkArgs.builder()
- *             .project(default_.project())
+ *             .project(default_.get("project"))
  *             .name("my-subnet")
  *             .ipCidrRange("10.0.0.0/16")
  *             .region(gcpRegion)
- *             .network(default_.id())
+ *             .network(default_.get("id"))
  *             .build());
  * 
  *         // Create Google Address (1 address for port-mapped architecture)
  *         var defaultComputeAddress = new ComputeAddress("defaultComputeAddress", ComputeAddressArgs.builder()
- *             .project(defaultComputeSubnetwork.project())
+ *             .project(defaultComputeSubnetwork.get("project"))
  *             .name("tf-this-psc-endpoint")
- *             .subnetwork(defaultComputeSubnetwork.id())
+ *             .subnetwork(defaultComputeSubnetwork.get("id"))
  *             .addressType("INTERNAL")
  *             .address("10.0.42.1")
- *             .region(defaultComputeSubnetwork.region())
+ *             .region(defaultComputeSubnetwork.get("region"))
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(Arrays.asList(this_))
  *                 .build());
@@ -278,11 +278,11 @@ import javax.annotation.Nullable;
  *         // Create Forwarding Rule (1 rule for port-mapped architecture)
  *         var defaultComputeForwardingRule = new ComputeForwardingRule("defaultComputeForwardingRule", ComputeForwardingRuleArgs.builder()
  *             .target(this_.serviceAttachmentNames()[0])
- *             .project(defaultComputeAddress.project())
- *             .region(defaultComputeAddress.region())
- *             .name(defaultComputeAddress.name())
- *             .ipAddress(defaultComputeAddress.id())
- *             .network(default_.id())
+ *             .project(defaultComputeAddress.get("project"))
+ *             .region(defaultComputeAddress.get("region"))
+ *             .name(defaultComputeAddress.get("name"))
+ *             .ipAddress(defaultComputeAddress.get("id"))
+ *             .network(default_.get("id"))
  *             .loadBalancingScheme("")
  *             .build());
  * 
@@ -290,8 +290,8 @@ import javax.annotation.Nullable;
  *             .projectId(this_.projectId())
  *             .privateLinkId(this_.privateLinkId())
  *             .providerName("GCP")
- *             .endpointServiceId(defaultComputeForwardingRule.name())
- *             .privateEndpointIpAddress(defaultComputeAddress.address())
+ *             .endpointServiceId(defaultComputeForwardingRule.get("name"))
+ *             .privateEndpointIpAddress(defaultComputeAddress.get("address"))
  *             .gcpProjectId(gcpProjectId)
  *             .build(), CustomResourceOptions.builder()
  *                 .dependsOn(defaultComputeForwardingRule)

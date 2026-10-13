@@ -164,7 +164,7 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var test = new DatabaseUser("test", DatabaseUserArgs.builder()
- *             .username(testAwsIamRole.arn())
+ *             .username(testAwsIamRole.get("arn"))
  *             .projectId("<PROJECT-ID>")
  *             .authDatabaseName("$external")
  *             .awsIamType("ROLE")
