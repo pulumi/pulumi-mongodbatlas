@@ -146,7 +146,7 @@ import javax.annotation.Nullable;
  *                 .enabled(true)
  *                 .customerMasterKeyId(awsKmsKeyId)
  *                 .region(atlasAwsRegion)
- *                 .roleId(authRole.roleId())
+ *                 .roleId(authRole.get("roleId"))
  *                 .build())
  *             .build());
  * 

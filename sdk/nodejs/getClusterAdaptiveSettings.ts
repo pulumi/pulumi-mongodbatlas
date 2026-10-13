@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+ * // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding function.
  * const thisClusterAdaptiveSettings = new mongodbatlas.ClusterAdaptiveSettings("this", {
  *     projectId: projectId,
  *     clusterName: clusterName,
@@ -84,7 +84,7 @@ export interface GetClusterAdaptiveSettingsResult {
  * import * as pulumi from "@pulumi/pulumi";
  * import * as mongodbatlas from "@pulumi/mongodbatlas";
  *
- * // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+ * // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding function.
  * const thisClusterAdaptiveSettings = new mongodbatlas.ClusterAdaptiveSettings("this", {
  *     projectId: projectId,
  *     clusterName: clusterName,

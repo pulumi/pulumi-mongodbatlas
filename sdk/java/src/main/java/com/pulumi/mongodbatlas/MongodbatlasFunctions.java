@@ -1157,8 +1157,8 @@ public final class MongodbatlasFunctions {
      *             .useEffectiveFields(true)
      *             .build());
      * 
-     *         ctx.export("configuredInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs()[0].regionConfigs()[0].electableSpecs().instanceSize()));
-     *         ctx.export("actualInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs()[0].regionConfigs()[0].effectiveElectableSpecs().instanceSize()));
+     *         ctx.export("configuredInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs().get(0).regionConfigs().get(0).electableSpecs().instanceSize()));
+     *         ctx.export("actualInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs().get(0).regionConfigs().get(0).effectiveElectableSpecs().instanceSize()));
      *     }
      * }
      * }
@@ -1411,8 +1411,8 @@ public final class MongodbatlasFunctions {
      *             .useEffectiveFields(true)
      *             .build());
      * 
-     *         ctx.export("configuredInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs()[0].regionConfigs()[0].electableSpecs().instanceSize()));
-     *         ctx.export("actualInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs()[0].regionConfigs()[0].effectiveElectableSpecs().instanceSize()));
+     *         ctx.export("configuredInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs().get(0).regionConfigs().get(0).electableSpecs().instanceSize()));
+     *         ctx.export("actualInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs().get(0).regionConfigs().get(0).effectiveElectableSpecs().instanceSize()));
      *     }
      * }
      * }
@@ -1665,8 +1665,8 @@ public final class MongodbatlasFunctions {
      *             .useEffectiveFields(true)
      *             .build());
      * 
-     *         ctx.export("configuredInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs()[0].regionConfigs()[0].electableSpecs().instanceSize()));
-     *         ctx.export("actualInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs()[0].regionConfigs()[0].effectiveElectableSpecs().instanceSize()));
+     *         ctx.export("configuredInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs().get(0).regionConfigs().get(0).electableSpecs().instanceSize()));
+     *         ctx.export("actualInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs().get(0).regionConfigs().get(0).effectiveElectableSpecs().instanceSize()));
      *     }
      * }
      * }
@@ -1919,8 +1919,8 @@ public final class MongodbatlasFunctions {
      *             .useEffectiveFields(true)
      *             .build());
      * 
-     *         ctx.export("configuredInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs()[0].regionConfigs()[0].electableSpecs().instanceSize()));
-     *         ctx.export("actualInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs()[0].regionConfigs()[0].effectiveElectableSpecs().instanceSize()));
+     *         ctx.export("configuredInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs().get(0).regionConfigs().get(0).electableSpecs().instanceSize()));
+     *         ctx.export("actualInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs().get(0).regionConfigs().get(0).effectiveElectableSpecs().instanceSize()));
      *     }
      * }
      * }
@@ -2173,8 +2173,8 @@ public final class MongodbatlasFunctions {
      *             .useEffectiveFields(true)
      *             .build());
      * 
-     *         ctx.export("configuredInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs()[0].regionConfigs()[0].electableSpecs().instanceSize()));
-     *         ctx.export("actualInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs()[0].regionConfigs()[0].effectiveElectableSpecs().instanceSize()));
+     *         ctx.export("configuredInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs().get(0).regionConfigs().get(0).electableSpecs().instanceSize()));
+     *         ctx.export("actualInstanceSize", this_.applyValue(_this_ -> _this_.replicationSpecs().get(0).regionConfigs().get(0).effectiveElectableSpecs().instanceSize()));
      *     }
      * }
      * }
@@ -11840,8 +11840,8 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs.builder()
-     *             .projectId(testCloudBackupSnapshots.projectId())
-     *             .clusterName(testCloudBackupSnapshots.clusterName())
+     *             .projectId(testCloudBackupSnapshots.get("projectId"))
+     *             .clusterName(testCloudBackupSnapshots.get("clusterName"))
      *             .pageNum(1)
      *             .itemsPerPage(5)
      *             .build());
@@ -11892,8 +11892,8 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs.builder()
-     *             .projectId(testCloudBackupSnapshots.projectId())
-     *             .clusterName(testCloudBackupSnapshots.clusterName())
+     *             .projectId(testCloudBackupSnapshots.get("projectId"))
+     *             .clusterName(testCloudBackupSnapshots.get("clusterName"))
      *             .pageNum(1)
      *             .itemsPerPage(5)
      *             .build());
@@ -11944,8 +11944,8 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs.builder()
-     *             .projectId(testCloudBackupSnapshots.projectId())
-     *             .clusterName(testCloudBackupSnapshots.clusterName())
+     *             .projectId(testCloudBackupSnapshots.get("projectId"))
+     *             .clusterName(testCloudBackupSnapshots.get("clusterName"))
      *             .pageNum(1)
      *             .itemsPerPage(5)
      *             .build());
@@ -11996,8 +11996,8 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs.builder()
-     *             .projectId(testCloudBackupSnapshots.projectId())
-     *             .clusterName(testCloudBackupSnapshots.clusterName())
+     *             .projectId(testCloudBackupSnapshots.get("projectId"))
+     *             .clusterName(testCloudBackupSnapshots.get("clusterName"))
      *             .pageNum(1)
      *             .itemsPerPage(5)
      *             .build());
@@ -12048,8 +12048,8 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getCloudBackupSnapshots(GetCloudBackupSnapshotsArgs.builder()
-     *             .projectId(testCloudBackupSnapshots.projectId())
-     *             .clusterName(testCloudBackupSnapshots.clusterName())
+     *             .projectId(testCloudBackupSnapshots.get("projectId"))
+     *             .clusterName(testCloudBackupSnapshots.get("clusterName"))
      *             .pageNum(1)
      *             .itemsPerPage(5)
      *             .build());
@@ -14090,7 +14090,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+     *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding function.
      *         var thisClusterAdaptiveSettings = new ClusterAdaptiveSettings("thisClusterAdaptiveSettings", ClusterAdaptiveSettingsArgs.builder()
      *             .projectId(projectId)
      *             .clusterName(clusterName)
@@ -14147,7 +14147,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+     *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding function.
      *         var thisClusterAdaptiveSettings = new ClusterAdaptiveSettings("thisClusterAdaptiveSettings", ClusterAdaptiveSettingsArgs.builder()
      *             .projectId(projectId)
      *             .clusterName(clusterName)
@@ -14204,7 +14204,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+     *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding function.
      *         var thisClusterAdaptiveSettings = new ClusterAdaptiveSettings("thisClusterAdaptiveSettings", ClusterAdaptiveSettingsArgs.builder()
      *             .projectId(projectId)
      *             .clusterName(clusterName)
@@ -14261,7 +14261,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+     *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding function.
      *         var thisClusterAdaptiveSettings = new ClusterAdaptiveSettings("thisClusterAdaptiveSettings", ClusterAdaptiveSettingsArgs.builder()
      *             .projectId(projectId)
      *             .clusterName(clusterName)
@@ -14318,7 +14318,7 @@ public final class MongodbatlasFunctions {
      *     }
      * 
      *     public static void stack(Context ctx) {
-     *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+     *         // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding function.
      *         var thisClusterAdaptiveSettings = new ClusterAdaptiveSettings("thisClusterAdaptiveSettings", ClusterAdaptiveSettingsArgs.builder()
      *             .projectId(projectId)
      *             .clusterName(clusterName)
@@ -15943,7 +15943,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getCustomDbRoles(GetCustomDbRolesArgs.builder()
-     *             .projectId(testMongodbatlasCustomDbRole.projectId())
+     *             .projectId(testMongodbatlasCustomDbRole.get("projectId"))
      *             .build());
      * 
      *     }
@@ -16002,7 +16002,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getCustomDbRoles(GetCustomDbRolesArgs.builder()
-     *             .projectId(testMongodbatlasCustomDbRole.projectId())
+     *             .projectId(testMongodbatlasCustomDbRole.get("projectId"))
      *             .build());
      * 
      *     }
@@ -16061,7 +16061,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getCustomDbRoles(GetCustomDbRolesArgs.builder()
-     *             .projectId(testMongodbatlasCustomDbRole.projectId())
+     *             .projectId(testMongodbatlasCustomDbRole.get("projectId"))
      *             .build());
      * 
      *     }
@@ -16120,7 +16120,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getCustomDbRoles(GetCustomDbRolesArgs.builder()
-     *             .projectId(testMongodbatlasCustomDbRole.projectId())
+     *             .projectId(testMongodbatlasCustomDbRole.get("projectId"))
      *             .build());
      * 
      *     }
@@ -16179,7 +16179,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var test = MongodbatlasFunctions.getCustomDbRoles(GetCustomDbRolesArgs.builder()
-     *             .projectId(testMongodbatlasCustomDbRole.projectId())
+     *             .projectId(testMongodbatlasCustomDbRole.get("projectId"))
      *             .build());
      * 
      *     }
@@ -17686,7 +17686,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(atlasProjectId)
      *             .roleId(setupOnly.roleId())
      *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .iamAssumedRoleArn(testRole.get("arn"))
      *                 .build())
      *             .build());
      * 
@@ -17694,7 +17694,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(atlasProjectId)
      *             .awsKmsConfig(EncryptionAtRestAwsKmsConfigArgs.builder()
      *                 .enabled(true)
-     *                 .customerMasterKeyId(kmsKey.id())
+     *                 .customerMasterKeyId(kmsKey.get("id"))
      *                 .region(atlasRegion)
      *                 .roleId(authRole.roleId())
      *                 .build())
@@ -17892,7 +17892,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(atlasProjectId)
      *             .roleId(setupOnly.roleId())
      *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .iamAssumedRoleArn(testRole.get("arn"))
      *                 .build())
      *             .build());
      * 
@@ -17900,7 +17900,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(atlasProjectId)
      *             .awsKmsConfig(EncryptionAtRestAwsKmsConfigArgs.builder()
      *                 .enabled(true)
-     *                 .customerMasterKeyId(kmsKey.id())
+     *                 .customerMasterKeyId(kmsKey.get("id"))
      *                 .region(atlasRegion)
      *                 .roleId(authRole.roleId())
      *                 .build())
@@ -18098,7 +18098,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(atlasProjectId)
      *             .roleId(setupOnly.roleId())
      *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .iamAssumedRoleArn(testRole.get("arn"))
      *                 .build())
      *             .build());
      * 
@@ -18106,7 +18106,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(atlasProjectId)
      *             .awsKmsConfig(EncryptionAtRestAwsKmsConfigArgs.builder()
      *                 .enabled(true)
-     *                 .customerMasterKeyId(kmsKey.id())
+     *                 .customerMasterKeyId(kmsKey.get("id"))
      *                 .region(atlasRegion)
      *                 .roleId(authRole.roleId())
      *                 .build())
@@ -18304,7 +18304,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(atlasProjectId)
      *             .roleId(setupOnly.roleId())
      *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .iamAssumedRoleArn(testRole.get("arn"))
      *                 .build())
      *             .build());
      * 
@@ -18312,7 +18312,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(atlasProjectId)
      *             .awsKmsConfig(EncryptionAtRestAwsKmsConfigArgs.builder()
      *                 .enabled(true)
-     *                 .customerMasterKeyId(kmsKey.id())
+     *                 .customerMasterKeyId(kmsKey.get("id"))
      *                 .region(atlasRegion)
      *                 .roleId(authRole.roleId())
      *                 .build())
@@ -18510,7 +18510,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(atlasProjectId)
      *             .roleId(setupOnly.roleId())
      *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .iamAssumedRoleArn(testRole.get("arn"))
      *                 .build())
      *             .build());
      * 
@@ -18518,7 +18518,7 @@ public final class MongodbatlasFunctions {
      *             .projectId(atlasProjectId)
      *             .awsKmsConfig(EncryptionAtRestAwsKmsConfigArgs.builder()
      *                 .enabled(true)
-     *                 .customerMasterKeyId(kmsKey.id())
+     *                 .customerMasterKeyId(kmsKey.get("id"))
      *                 .region(atlasRegion)
      *                 .roleId(authRole.roleId())
      *                 .build())
@@ -18693,7 +18693,7 @@ public final class MongodbatlasFunctions {
      *         final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()
      *             .projectId(atlasProjectId)
      *             .cloudProvider("AZURE")
-     *             .id(endpoint.id())
+     *             .id(endpoint.get("id"))
      *             .build());
      * 
      *         ctx.export("endpointConnectionName", single.privateEndpointConnectionName());
@@ -18728,7 +18728,7 @@ public final class MongodbatlasFunctions {
      *         final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()
      *             .projectId(atlasProjectId)
      *             .cloudProvider("AWS")
-     *             .id(endpoint.id())
+     *             .id(endpoint.get("id"))
      *             .build());
      * 
      *         ctx.export("status", single.status());
@@ -18778,7 +18778,7 @@ public final class MongodbatlasFunctions {
      *         final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()
      *             .projectId(atlasProjectId)
      *             .cloudProvider("AZURE")
-     *             .id(endpoint.id())
+     *             .id(endpoint.get("id"))
      *             .build());
      * 
      *         ctx.export("endpointConnectionName", single.privateEndpointConnectionName());
@@ -18813,7 +18813,7 @@ public final class MongodbatlasFunctions {
      *         final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()
      *             .projectId(atlasProjectId)
      *             .cloudProvider("AWS")
-     *             .id(endpoint.id())
+     *             .id(endpoint.get("id"))
      *             .build());
      * 
      *         ctx.export("status", single.status());
@@ -18863,7 +18863,7 @@ public final class MongodbatlasFunctions {
      *         final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()
      *             .projectId(atlasProjectId)
      *             .cloudProvider("AZURE")
-     *             .id(endpoint.id())
+     *             .id(endpoint.get("id"))
      *             .build());
      * 
      *         ctx.export("endpointConnectionName", single.privateEndpointConnectionName());
@@ -18898,7 +18898,7 @@ public final class MongodbatlasFunctions {
      *         final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()
      *             .projectId(atlasProjectId)
      *             .cloudProvider("AWS")
-     *             .id(endpoint.id())
+     *             .id(endpoint.get("id"))
      *             .build());
      * 
      *         ctx.export("status", single.status());
@@ -18948,7 +18948,7 @@ public final class MongodbatlasFunctions {
      *         final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()
      *             .projectId(atlasProjectId)
      *             .cloudProvider("AZURE")
-     *             .id(endpoint.id())
+     *             .id(endpoint.get("id"))
      *             .build());
      * 
      *         ctx.export("endpointConnectionName", single.privateEndpointConnectionName());
@@ -18983,7 +18983,7 @@ public final class MongodbatlasFunctions {
      *         final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()
      *             .projectId(atlasProjectId)
      *             .cloudProvider("AWS")
-     *             .id(endpoint.id())
+     *             .id(endpoint.get("id"))
      *             .build());
      * 
      *         ctx.export("status", single.status());
@@ -19033,7 +19033,7 @@ public final class MongodbatlasFunctions {
      *         final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()
      *             .projectId(atlasProjectId)
      *             .cloudProvider("AZURE")
-     *             .id(endpoint.id())
+     *             .id(endpoint.get("id"))
      *             .build());
      * 
      *         ctx.export("endpointConnectionName", single.privateEndpointConnectionName());
@@ -19068,7 +19068,7 @@ public final class MongodbatlasFunctions {
      *         final var single = MongodbatlasFunctions.getEncryptionAtRestPrivateEndpoint(GetEncryptionAtRestPrivateEndpointArgs.builder()
      *             .projectId(atlasProjectId)
      *             .cloudProvider("AWS")
-     *             .id(endpoint.id())
+     *             .id(endpoint.get("id"))
      *             .build());
      * 
      *         ctx.export("status", single.status());
@@ -21466,7 +21466,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()
-     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.get("id"))
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .build());
      * 
@@ -21519,7 +21519,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()
-     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.get("id"))
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .build());
      * 
@@ -21572,7 +21572,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()
-     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.get("id"))
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .build());
      * 
@@ -21625,7 +21625,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()
-     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.get("id"))
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .build());
      * 
@@ -21678,7 +21678,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfig(GetFederatedSettingsOrgConfigArgs.builder()
-     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.id())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.get("id"))
      *             .orgId("627a9683ea7ff7f74de306f14")
      *             .build());
      * 
@@ -21731,7 +21731,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
-     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.federationSettingsId())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.get("federationSettingsId"))
      *             .build());
      * 
      *     }
@@ -21783,7 +21783,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
-     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.federationSettingsId())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.get("federationSettingsId"))
      *             .build());
      * 
      *     }
@@ -21835,7 +21835,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
-     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.federationSettingsId())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.get("federationSettingsId"))
      *             .build());
      * 
      *     }
@@ -21887,7 +21887,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
-     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.federationSettingsId())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.get("federationSettingsId"))
      *             .build());
      * 
      *     }
@@ -21939,7 +21939,7 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         final var orgConfigsDs = MongodbatlasFunctions.getFederatedSettingsOrgConfigs(GetFederatedSettingsOrgConfigsArgs.builder()
-     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.federationSettingsId())
+     *             .federationSettingsId(orgConnectionMongodbatlasFederatedSettingsOrgConfig.get("federationSettingsId"))
      *             .build());
      * 
      *     }
@@ -21982,7 +21982,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()
-     *             .federationSettingsId(federatedSettings.id())
+     *             .federationSettingsId(federatedSettings.get("id"))
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .externalGroupName("myGrouptest")
      *             .roleAssignments(            
@@ -22058,7 +22058,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()
-     *             .federationSettingsId(federatedSettings.id())
+     *             .federationSettingsId(federatedSettings.get("id"))
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .externalGroupName("myGrouptest")
      *             .roleAssignments(            
@@ -22134,7 +22134,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()
-     *             .federationSettingsId(federatedSettings.id())
+     *             .federationSettingsId(federatedSettings.get("id"))
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .externalGroupName("myGrouptest")
      *             .roleAssignments(            
@@ -22210,7 +22210,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()
-     *             .federationSettingsId(federatedSettings.id())
+     *             .federationSettingsId(federatedSettings.get("id"))
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .externalGroupName("myGrouptest")
      *             .roleAssignments(            
@@ -22286,7 +22286,7 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         var orgGroupRoleMappingImport = new FederatedSettingsOrgRoleMapping("orgGroupRoleMappingImport", FederatedSettingsOrgRoleMappingArgs.builder()
-     *             .federationSettingsId(federatedSettings.id())
+     *             .federationSettingsId(federatedSettings.get("id"))
      *             .orgId("627a9683e7f7f7ff7fe306f14")
      *             .externalGroupName("myGrouptest")
      *             .roleAssignments(            
@@ -24351,8 +24351,8 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
-     *             .projectId(exampleMongodbatlasLogIntegration.projectId())
-     *             .integrationId(exampleMongodbatlasLogIntegration.integrationId())
+     *             .projectId(exampleMongodbatlasLogIntegration.get("projectId"))
+     *             .integrationId(exampleMongodbatlasLogIntegration.get("integrationId"))
      *             .build());
      * 
      *         ctx.export("logIntegrationType", example.type());
@@ -24398,8 +24398,8 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
-     *             .projectId(exampleMongodbatlasLogIntegration.projectId())
-     *             .integrationId(exampleMongodbatlasLogIntegration.integrationId())
+     *             .projectId(exampleMongodbatlasLogIntegration.get("projectId"))
+     *             .integrationId(exampleMongodbatlasLogIntegration.get("integrationId"))
      *             .build());
      * 
      *         ctx.export("logIntegrationType", example.type());
@@ -24445,8 +24445,8 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
-     *             .projectId(exampleMongodbatlasLogIntegration.projectId())
-     *             .integrationId(exampleMongodbatlasLogIntegration.integrationId())
+     *             .projectId(exampleMongodbatlasLogIntegration.get("projectId"))
+     *             .integrationId(exampleMongodbatlasLogIntegration.get("integrationId"))
      *             .build());
      * 
      *         ctx.export("logIntegrationType", example.type());
@@ -24492,8 +24492,8 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
-     *             .projectId(exampleMongodbatlasLogIntegration.projectId())
-     *             .integrationId(exampleMongodbatlasLogIntegration.integrationId())
+     *             .projectId(exampleMongodbatlasLogIntegration.get("projectId"))
+     *             .integrationId(exampleMongodbatlasLogIntegration.get("integrationId"))
      *             .build());
      * 
      *         ctx.export("logIntegrationType", example.type());
@@ -24539,8 +24539,8 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = MongodbatlasFunctions.getLogIntegration(GetLogIntegrationArgs.builder()
-     *             .projectId(exampleMongodbatlasLogIntegration.projectId())
-     *             .integrationId(exampleMongodbatlasLogIntegration.integrationId())
+     *             .projectId(exampleMongodbatlasLogIntegration.get("projectId"))
+     *             .integrationId(exampleMongodbatlasLogIntegration.get("integrationId"))
      *             .build());
      * 
      *         ctx.export("logIntegrationType", example.type());
@@ -25101,7 +25101,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getMcpConfig(GetMcpConfigArgs.builder()
      *             .orgId(orgId)
-     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigName", this_.mcpConfigName());
@@ -25144,7 +25144,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getMcpConfig(GetMcpConfigArgs.builder()
      *             .orgId(orgId)
-     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigName", this_.mcpConfigName());
@@ -25187,7 +25187,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getMcpConfig(GetMcpConfigArgs.builder()
      *             .orgId(orgId)
-     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigName", this_.mcpConfigName());
@@ -25230,7 +25230,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getMcpConfig(GetMcpConfigArgs.builder()
      *             .orgId(orgId)
-     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigName", this_.mcpConfigName());
@@ -25273,7 +25273,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getMcpConfig(GetMcpConfigArgs.builder()
      *             .orgId(orgId)
-     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigName", this_.mcpConfigName());
@@ -25318,8 +25318,8 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getMcpConfigSecret(GetMcpConfigSecretArgs.builder()
      *             .orgId(orgId)
-     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
-     *             .secretId(thisMongodbatlasMcpConfigSecret.secretId())
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.get("mcpConfigId"))
+     *             .secretId(thisMongodbatlasMcpConfigSecret.get("secretId"))
      *             .build());
      * 
      *         ctx.export("secretExpiresAt", this_.expiresAt());
@@ -25364,8 +25364,8 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getMcpConfigSecret(GetMcpConfigSecretArgs.builder()
      *             .orgId(orgId)
-     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
-     *             .secretId(thisMongodbatlasMcpConfigSecret.secretId())
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.get("mcpConfigId"))
+     *             .secretId(thisMongodbatlasMcpConfigSecret.get("secretId"))
      *             .build());
      * 
      *         ctx.export("secretExpiresAt", this_.expiresAt());
@@ -25410,8 +25410,8 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getMcpConfigSecret(GetMcpConfigSecretArgs.builder()
      *             .orgId(orgId)
-     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
-     *             .secretId(thisMongodbatlasMcpConfigSecret.secretId())
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.get("mcpConfigId"))
+     *             .secretId(thisMongodbatlasMcpConfigSecret.get("secretId"))
      *             .build());
      * 
      *         ctx.export("secretExpiresAt", this_.expiresAt());
@@ -25456,8 +25456,8 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getMcpConfigSecret(GetMcpConfigSecretArgs.builder()
      *             .orgId(orgId)
-     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
-     *             .secretId(thisMongodbatlasMcpConfigSecret.secretId())
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.get("mcpConfigId"))
+     *             .secretId(thisMongodbatlasMcpConfigSecret.get("secretId"))
      *             .build());
      * 
      *         ctx.export("secretExpiresAt", this_.expiresAt());
@@ -25502,8 +25502,8 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getMcpConfigSecret(GetMcpConfigSecretArgs.builder()
      *             .orgId(orgId)
-     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
-     *             .secretId(thisMongodbatlasMcpConfigSecret.secretId())
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.get("mcpConfigId"))
+     *             .secretId(thisMongodbatlasMcpConfigSecret.get("secretId"))
      *             .build());
      * 
      *         ctx.export("secretExpiresAt", this_.expiresAt());
@@ -25546,7 +25546,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getMcpConfigSecrets(GetMcpConfigSecretsArgs.builder()
      *             .orgId(orgId)
-     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigSecretsResults", this_.results());
@@ -25589,7 +25589,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getMcpConfigSecrets(GetMcpConfigSecretsArgs.builder()
      *             .orgId(orgId)
-     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigSecretsResults", this_.results());
@@ -25632,7 +25632,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getMcpConfigSecrets(GetMcpConfigSecretsArgs.builder()
      *             .orgId(orgId)
-     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigSecretsResults", this_.results());
@@ -25675,7 +25675,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getMcpConfigSecrets(GetMcpConfigSecretsArgs.builder()
      *             .orgId(orgId)
-     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigSecretsResults", this_.results());
@@ -25718,7 +25718,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getMcpConfigSecrets(GetMcpConfigSecretsArgs.builder()
      *             .orgId(orgId)
-     *             .mcpConfigId(thisMongodbatlasMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigSecretsResults", this_.results());
@@ -28651,8 +28651,8 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = MongodbatlasFunctions.getOrgLogIntegration(GetOrgLogIntegrationArgs.builder()
-     *             .orgId(exampleMongodbatlasOrgLogIntegration.orgId())
-     *             .integrationId(exampleMongodbatlasOrgLogIntegration.integrationId())
+     *             .orgId(exampleMongodbatlasOrgLogIntegration.get("orgId"))
+     *             .integrationId(exampleMongodbatlasOrgLogIntegration.get("integrationId"))
      *             .build());
      * 
      *         ctx.export("orgLogIntegrationType", example.type());
@@ -28695,8 +28695,8 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = MongodbatlasFunctions.getOrgLogIntegration(GetOrgLogIntegrationArgs.builder()
-     *             .orgId(exampleMongodbatlasOrgLogIntegration.orgId())
-     *             .integrationId(exampleMongodbatlasOrgLogIntegration.integrationId())
+     *             .orgId(exampleMongodbatlasOrgLogIntegration.get("orgId"))
+     *             .integrationId(exampleMongodbatlasOrgLogIntegration.get("integrationId"))
      *             .build());
      * 
      *         ctx.export("orgLogIntegrationType", example.type());
@@ -28739,8 +28739,8 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = MongodbatlasFunctions.getOrgLogIntegration(GetOrgLogIntegrationArgs.builder()
-     *             .orgId(exampleMongodbatlasOrgLogIntegration.orgId())
-     *             .integrationId(exampleMongodbatlasOrgLogIntegration.integrationId())
+     *             .orgId(exampleMongodbatlasOrgLogIntegration.get("orgId"))
+     *             .integrationId(exampleMongodbatlasOrgLogIntegration.get("integrationId"))
      *             .build());
      * 
      *         ctx.export("orgLogIntegrationType", example.type());
@@ -28783,8 +28783,8 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = MongodbatlasFunctions.getOrgLogIntegration(GetOrgLogIntegrationArgs.builder()
-     *             .orgId(exampleMongodbatlasOrgLogIntegration.orgId())
-     *             .integrationId(exampleMongodbatlasOrgLogIntegration.integrationId())
+     *             .orgId(exampleMongodbatlasOrgLogIntegration.get("orgId"))
+     *             .integrationId(exampleMongodbatlasOrgLogIntegration.get("integrationId"))
      *             .build());
      * 
      *         ctx.export("orgLogIntegrationType", example.type());
@@ -28827,8 +28827,8 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var example = MongodbatlasFunctions.getOrgLogIntegration(GetOrgLogIntegrationArgs.builder()
-     *             .orgId(exampleMongodbatlasOrgLogIntegration.orgId())
-     *             .integrationId(exampleMongodbatlasOrgLogIntegration.integrationId())
+     *             .orgId(exampleMongodbatlasOrgLogIntegration.get("orgId"))
+     *             .integrationId(exampleMongodbatlasOrgLogIntegration.get("integrationId"))
      *             .build());
      * 
      *         ctx.export("orgLogIntegrationType", example.type());
@@ -29640,7 +29640,7 @@ public final class MongodbatlasFunctions {
      *             .projectId("<PROJECT-ID>")
      *             .build());
      * 
-     *         final var test = PrivateFunctions.EndpointRegionalMode(Map.of("projectId", testEndpointRegionalMode.projectId()));
+     *         final var test = PrivateFunctions.EndpointRegionalMode(Map.of("projectId", testEndpointRegionalMode.get("projectId")));
      * 
      *     }
      * }
@@ -29683,7 +29683,7 @@ public final class MongodbatlasFunctions {
      *             .projectId("<PROJECT-ID>")
      *             .build());
      * 
-     *         final var test = PrivateFunctions.EndpointRegionalMode(Map.of("projectId", testEndpointRegionalMode.projectId()));
+     *         final var test = PrivateFunctions.EndpointRegionalMode(Map.of("projectId", testEndpointRegionalMode.get("projectId")));
      * 
      *     }
      * }
@@ -29726,7 +29726,7 @@ public final class MongodbatlasFunctions {
      *             .projectId("<PROJECT-ID>")
      *             .build());
      * 
-     *         final var test = PrivateFunctions.EndpointRegionalMode(Map.of("projectId", testEndpointRegionalMode.projectId()));
+     *         final var test = PrivateFunctions.EndpointRegionalMode(Map.of("projectId", testEndpointRegionalMode.get("projectId")));
      * 
      *     }
      * }
@@ -29769,7 +29769,7 @@ public final class MongodbatlasFunctions {
      *             .projectId("<PROJECT-ID>")
      *             .build());
      * 
-     *         final var test = PrivateFunctions.EndpointRegionalMode(Map.of("projectId", testEndpointRegionalMode.projectId()));
+     *         final var test = PrivateFunctions.EndpointRegionalMode(Map.of("projectId", testEndpointRegionalMode.get("projectId")));
      * 
      *     }
      * }
@@ -29812,7 +29812,7 @@ public final class MongodbatlasFunctions {
      *             .projectId("<PROJECT-ID>")
      *             .build());
      * 
-     *         final var test = PrivateFunctions.EndpointRegionalMode(Map.of("projectId", testEndpointRegionalMode.projectId()));
+     *         final var test = PrivateFunctions.EndpointRegionalMode(Map.of("projectId", testEndpointRegionalMode.get("projectId")));
      * 
      *     }
      * }
@@ -30136,9 +30136,9 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs.builder()
-     *             .projectId(thisMongodbatlasPrivatelinkEndpointService.projectId())
-     *             .privateLinkId(thisMongodbatlasPrivatelinkEndpointService.privateLinkId())
-     *             .endpointServiceId(thisMongodbatlasPrivatelinkEndpointService.endpointServiceId())
+     *             .projectId(thisMongodbatlasPrivatelinkEndpointService.get("projectId"))
+     *             .privateLinkId(thisMongodbatlasPrivatelinkEndpointService.get("privateLinkId"))
+     *             .endpointServiceId(thisMongodbatlasPrivatelinkEndpointService.get("endpointServiceId"))
      *             .providerName("AWS")
      *             .build());
      * 
@@ -30185,9 +30185,9 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs.builder()
-     *             .projectId(thisMongodbatlasPrivatelinkEndpointService.projectId())
-     *             .privateLinkId(thisMongodbatlasPrivatelinkEndpointService.privateLinkId())
-     *             .endpointServiceId(thisMongodbatlasPrivatelinkEndpointService.endpointServiceId())
+     *             .projectId(thisMongodbatlasPrivatelinkEndpointService.get("projectId"))
+     *             .privateLinkId(thisMongodbatlasPrivatelinkEndpointService.get("privateLinkId"))
+     *             .endpointServiceId(thisMongodbatlasPrivatelinkEndpointService.get("endpointServiceId"))
      *             .providerName("AWS")
      *             .build());
      * 
@@ -30234,9 +30234,9 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs.builder()
-     *             .projectId(thisMongodbatlasPrivatelinkEndpointService.projectId())
-     *             .privateLinkId(thisMongodbatlasPrivatelinkEndpointService.privateLinkId())
-     *             .endpointServiceId(thisMongodbatlasPrivatelinkEndpointService.endpointServiceId())
+     *             .projectId(thisMongodbatlasPrivatelinkEndpointService.get("projectId"))
+     *             .privateLinkId(thisMongodbatlasPrivatelinkEndpointService.get("privateLinkId"))
+     *             .endpointServiceId(thisMongodbatlasPrivatelinkEndpointService.get("endpointServiceId"))
      *             .providerName("AWS")
      *             .build());
      * 
@@ -30283,9 +30283,9 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs.builder()
-     *             .projectId(thisMongodbatlasPrivatelinkEndpointService.projectId())
-     *             .privateLinkId(thisMongodbatlasPrivatelinkEndpointService.privateLinkId())
-     *             .endpointServiceId(thisMongodbatlasPrivatelinkEndpointService.endpointServiceId())
+     *             .projectId(thisMongodbatlasPrivatelinkEndpointService.get("projectId"))
+     *             .privateLinkId(thisMongodbatlasPrivatelinkEndpointService.get("privateLinkId"))
+     *             .endpointServiceId(thisMongodbatlasPrivatelinkEndpointService.get("endpointServiceId"))
      *             .providerName("AWS")
      *             .build());
      * 
@@ -30332,9 +30332,9 @@ public final class MongodbatlasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getPrivateLinkEndpointService(GetPrivateLinkEndpointServiceArgs.builder()
-     *             .projectId(thisMongodbatlasPrivatelinkEndpointService.projectId())
-     *             .privateLinkId(thisMongodbatlasPrivatelinkEndpointService.privateLinkId())
-     *             .endpointServiceId(thisMongodbatlasPrivatelinkEndpointService.endpointServiceId())
+     *             .projectId(thisMongodbatlasPrivatelinkEndpointService.get("projectId"))
+     *             .privateLinkId(thisMongodbatlasPrivatelinkEndpointService.get("privateLinkId"))
+     *             .endpointServiceId(thisMongodbatlasPrivatelinkEndpointService.get("endpointServiceId"))
      *             .providerName("AWS")
      *             .build());
      * 
@@ -31958,7 +31958,7 @@ public final class MongodbatlasFunctions {
      * 
      *         final var test = MongodbatlasFunctions.getProjectApiKey(GetProjectApiKeyArgs.builder()
      *             .projectId("64259ee860c43338194b0f8e")
-     *             .apiKeyId(testMongodbatlasApiKey.apiKeyId())
+     *             .apiKeyId(testMongodbatlasApiKey.get("apiKeyId"))
      *             .build());
      * 
      *     }
@@ -32017,7 +32017,7 @@ public final class MongodbatlasFunctions {
      * 
      *         final var test = MongodbatlasFunctions.getProjectApiKey(GetProjectApiKeyArgs.builder()
      *             .projectId("64259ee860c43338194b0f8e")
-     *             .apiKeyId(testMongodbatlasApiKey.apiKeyId())
+     *             .apiKeyId(testMongodbatlasApiKey.get("apiKeyId"))
      *             .build());
      * 
      *     }
@@ -32076,7 +32076,7 @@ public final class MongodbatlasFunctions {
      * 
      *         final var test = MongodbatlasFunctions.getProjectApiKey(GetProjectApiKeyArgs.builder()
      *             .projectId("64259ee860c43338194b0f8e")
-     *             .apiKeyId(testMongodbatlasApiKey.apiKeyId())
+     *             .apiKeyId(testMongodbatlasApiKey.get("apiKeyId"))
      *             .build());
      * 
      *     }
@@ -32135,7 +32135,7 @@ public final class MongodbatlasFunctions {
      * 
      *         final var test = MongodbatlasFunctions.getProjectApiKey(GetProjectApiKeyArgs.builder()
      *             .projectId("64259ee860c43338194b0f8e")
-     *             .apiKeyId(testMongodbatlasApiKey.apiKeyId())
+     *             .apiKeyId(testMongodbatlasApiKey.get("apiKeyId"))
      *             .build());
      * 
      *     }
@@ -32194,7 +32194,7 @@ public final class MongodbatlasFunctions {
      * 
      *         final var test = MongodbatlasFunctions.getProjectApiKey(GetProjectApiKeyArgs.builder()
      *             .projectId("64259ee860c43338194b0f8e")
-     *             .apiKeyId(testMongodbatlasApiKey.apiKeyId())
+     *             .apiKeyId(testMongodbatlasApiKey.get("apiKeyId"))
      *             .build());
      * 
      *     }
@@ -33991,7 +33991,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getProjectMcpConfig(GetProjectMcpConfigArgs.builder()
      *             .projectId(projectId)
-     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigName", this_.mcpConfigName());
@@ -34034,7 +34034,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getProjectMcpConfig(GetProjectMcpConfigArgs.builder()
      *             .projectId(projectId)
-     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigName", this_.mcpConfigName());
@@ -34077,7 +34077,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getProjectMcpConfig(GetProjectMcpConfigArgs.builder()
      *             .projectId(projectId)
-     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigName", this_.mcpConfigName());
@@ -34120,7 +34120,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getProjectMcpConfig(GetProjectMcpConfigArgs.builder()
      *             .projectId(projectId)
-     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigName", this_.mcpConfigName());
@@ -34163,7 +34163,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getProjectMcpConfig(GetProjectMcpConfigArgs.builder()
      *             .projectId(projectId)
-     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigName", this_.mcpConfigName());
@@ -34208,8 +34208,8 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecret(GetProjectMcpConfigSecretArgs.builder()
      *             .projectId(projectId)
-     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
-     *             .secretId(thisMongodbatlasProjectMcpConfigSecret.secretId())
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.get("mcpConfigId"))
+     *             .secretId(thisMongodbatlasProjectMcpConfigSecret.get("secretId"))
      *             .build());
      * 
      *         ctx.export("secretExpiresAt", this_.expiresAt());
@@ -34254,8 +34254,8 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecret(GetProjectMcpConfigSecretArgs.builder()
      *             .projectId(projectId)
-     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
-     *             .secretId(thisMongodbatlasProjectMcpConfigSecret.secretId())
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.get("mcpConfigId"))
+     *             .secretId(thisMongodbatlasProjectMcpConfigSecret.get("secretId"))
      *             .build());
      * 
      *         ctx.export("secretExpiresAt", this_.expiresAt());
@@ -34300,8 +34300,8 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecret(GetProjectMcpConfigSecretArgs.builder()
      *             .projectId(projectId)
-     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
-     *             .secretId(thisMongodbatlasProjectMcpConfigSecret.secretId())
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.get("mcpConfigId"))
+     *             .secretId(thisMongodbatlasProjectMcpConfigSecret.get("secretId"))
      *             .build());
      * 
      *         ctx.export("secretExpiresAt", this_.expiresAt());
@@ -34346,8 +34346,8 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecret(GetProjectMcpConfigSecretArgs.builder()
      *             .projectId(projectId)
-     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
-     *             .secretId(thisMongodbatlasProjectMcpConfigSecret.secretId())
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.get("mcpConfigId"))
+     *             .secretId(thisMongodbatlasProjectMcpConfigSecret.get("secretId"))
      *             .build());
      * 
      *         ctx.export("secretExpiresAt", this_.expiresAt());
@@ -34392,8 +34392,8 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecret(GetProjectMcpConfigSecretArgs.builder()
      *             .projectId(projectId)
-     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
-     *             .secretId(thisMongodbatlasProjectMcpConfigSecret.secretId())
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.get("mcpConfigId"))
+     *             .secretId(thisMongodbatlasProjectMcpConfigSecret.get("secretId"))
      *             .build());
      * 
      *         ctx.export("secretExpiresAt", this_.expiresAt());
@@ -34436,7 +34436,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecrets(GetProjectMcpConfigSecretsArgs.builder()
      *             .projectId(projectId)
-     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigSecretsResults", this_.results());
@@ -34479,7 +34479,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecrets(GetProjectMcpConfigSecretsArgs.builder()
      *             .projectId(projectId)
-     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigSecretsResults", this_.results());
@@ -34522,7 +34522,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecrets(GetProjectMcpConfigSecretsArgs.builder()
      *             .projectId(projectId)
-     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigSecretsResults", this_.results());
@@ -34565,7 +34565,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecrets(GetProjectMcpConfigSecretsArgs.builder()
      *             .projectId(projectId)
-     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigSecretsResults", this_.results());
@@ -34608,7 +34608,7 @@ public final class MongodbatlasFunctions {
      *     public static void stack(Context ctx) {
      *         final var this = MongodbatlasFunctions.getProjectMcpConfigSecrets(GetProjectMcpConfigSecretsArgs.builder()
      *             .projectId(projectId)
-     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.mcpConfigId())
+     *             .mcpConfigId(thisMongodbatlasProjectMcpConfig.get("mcpConfigId"))
      *             .build());
      * 
      *         ctx.export("mcpConfigSecretsResults", this_.results());
@@ -34865,14 +34865,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
      *             .projectId(projectId)
-     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasProjectServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
      *             .projectId(projectId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
      *     }
@@ -34918,14 +34918,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
      *             .projectId(projectId)
-     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasProjectServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
      *             .projectId(projectId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
      *     }
@@ -34971,14 +34971,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
      *             .projectId(projectId)
-     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasProjectServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
      *             .projectId(projectId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
      *     }
@@ -35024,14 +35024,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
      *             .projectId(projectId)
-     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasProjectServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
      *             .projectId(projectId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
      *     }
@@ -35077,14 +35077,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
      *             .projectId(projectId)
-     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasProjectServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
      *             .projectId(projectId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
      *     }
@@ -36300,14 +36300,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
      *             .projectId(projectId)
-     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasProjectServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
      *             .projectId(projectId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
      *     }
@@ -36353,14 +36353,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
      *             .projectId(projectId)
-     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasProjectServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
      *             .projectId(projectId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
      *     }
@@ -36406,14 +36406,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
      *             .projectId(projectId)
-     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasProjectServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
      *             .projectId(projectId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
      *     }
@@ -36459,14 +36459,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
      *             .projectId(projectId)
-     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasProjectServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
      *             .projectId(projectId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
      *     }
@@ -36512,14 +36512,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Project Service Account and the project's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getProjectServiceAccount(GetProjectServiceAccountArgs.builder()
      *             .projectId(projectId)
-     *             .clientId(thisMongodbatlasProjectServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasProjectServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetProjectServiceAccounts = MongodbatlasFunctions.getProjectServiceAccounts(GetProjectServiceAccountsArgs.builder()
      *             .projectId(projectId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasProjectServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetProjectServiceAccounts.results());
      *     }
@@ -36970,14 +36970,14 @@ public final class MongodbatlasFunctions {
      *             .projectId(project_tf.id())
      *             .roleId(setupOnly.roleId())
      *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .iamAssumedRoleArn(testRole.get("arn"))
      *                 .build())
      *             .build());
      * 
      *         // Set up push-based log export with authorized IAM role
      *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()
      *             .projectId(project_tf.id())
-     *             .bucketName(logBucket.bucket())
+     *             .bucketName(logBucket.get("bucket"))
      *             .iamRoleId(authRole.roleId())
      *             .prefixPath("push-based-log-test")
      *             .build());
@@ -37050,14 +37050,14 @@ public final class MongodbatlasFunctions {
      *             .projectId(project_tf.id())
      *             .roleId(setupOnly.roleId())
      *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .iamAssumedRoleArn(testRole.get("arn"))
      *                 .build())
      *             .build());
      * 
      *         // Set up push-based log export with authorized IAM role
      *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()
      *             .projectId(project_tf.id())
-     *             .bucketName(logBucket.bucket())
+     *             .bucketName(logBucket.get("bucket"))
      *             .iamRoleId(authRole.roleId())
      *             .prefixPath("push-based-log-test")
      *             .build());
@@ -37130,14 +37130,14 @@ public final class MongodbatlasFunctions {
      *             .projectId(project_tf.id())
      *             .roleId(setupOnly.roleId())
      *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .iamAssumedRoleArn(testRole.get("arn"))
      *                 .build())
      *             .build());
      * 
      *         // Set up push-based log export with authorized IAM role
      *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()
      *             .projectId(project_tf.id())
-     *             .bucketName(logBucket.bucket())
+     *             .bucketName(logBucket.get("bucket"))
      *             .iamRoleId(authRole.roleId())
      *             .prefixPath("push-based-log-test")
      *             .build());
@@ -37210,14 +37210,14 @@ public final class MongodbatlasFunctions {
      *             .projectId(project_tf.id())
      *             .roleId(setupOnly.roleId())
      *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .iamAssumedRoleArn(testRole.get("arn"))
      *                 .build())
      *             .build());
      * 
      *         // Set up push-based log export with authorized IAM role
      *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()
      *             .projectId(project_tf.id())
-     *             .bucketName(logBucket.bucket())
+     *             .bucketName(logBucket.get("bucket"))
      *             .iamRoleId(authRole.roleId())
      *             .prefixPath("push-based-log-test")
      *             .build());
@@ -37290,14 +37290,14 @@ public final class MongodbatlasFunctions {
      *             .projectId(project_tf.id())
      *             .roleId(setupOnly.roleId())
      *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
-     *                 .iamAssumedRoleArn(testRole.arn())
+     *                 .iamAssumedRoleArn(testRole.get("arn"))
      *                 .build())
      *             .build());
      * 
      *         // Set up push-based log export with authorized IAM role
      *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()
      *             .projectId(project_tf.id())
-     *             .bucketName(logBucket.bucket())
+     *             .bucketName(logBucket.get("bucket"))
      *             .iamRoleId(authRole.roleId())
      *             .prefixPath("push-based-log-test")
      *             .build());
@@ -39018,14 +39018,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Service Account and the organization's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
      *             .orgId(orgId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
      *     }
@@ -39071,14 +39071,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Service Account and the organization's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
      *             .orgId(orgId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
      *     }
@@ -39124,14 +39124,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Service Account and the organization's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
      *             .orgId(orgId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
      *     }
@@ -39177,14 +39177,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Service Account and the organization's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
      *             .orgId(orgId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
      *     }
@@ -39230,14 +39230,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Service Account and the organization's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
      *             .orgId(orgId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
      *     }
@@ -41158,14 +41158,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Service Account and the organization's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
      *             .orgId(orgId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
      *     }
@@ -41211,14 +41211,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Service Account and the organization's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
      *             .orgId(orgId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
      *     }
@@ -41264,14 +41264,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Service Account and the organization's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
      *             .orgId(orgId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
      *     }
@@ -41317,14 +41317,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Service Account and the organization's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
      *             .orgId(orgId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
      *     }
@@ -41370,14 +41370,14 @@ public final class MongodbatlasFunctions {
      *         // Read the Service Account and the organization's Service Accounts back from Atlas.
      *         final var this = MongodbatlasFunctions.getServiceAccount(GetServiceAccountArgs.builder()
      *             .orgId(orgId)
-     *             .clientId(thisMongodbatlasServiceAccount.clientId())
+     *             .clientId(thisMongodbatlasServiceAccount.get("clientId"))
      *             .build());
      * 
      *         final var thisGetServiceAccounts = MongodbatlasFunctions.getServiceAccounts(GetServiceAccountsArgs.builder()
      *             .orgId(orgId)
      *             .build());
      * 
-     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.clientId());
+     *         ctx.export("serviceAccountClientId", thisMongodbatlasServiceAccount.get("clientId"));
      *         ctx.export("serviceAccountName", this_.name());
      *         ctx.export("serviceAccountsResults", thisGetServiceAccounts.results());
      *     }
@@ -42101,9 +42101,9 @@ public final class MongodbatlasFunctions {
      *         // Reads a single failover connection by its ID.
      *         final var example = MongodbatlasFunctions.getStreamConnectionFailover(GetStreamConnectionFailoverArgs.builder()
      *             .projectId(projectId)
-     *             .workspaceName(exampleMongodbatlasStreamWorkspace.workspaceName())
-     *             .connectionName(exampleMongodbatlasStreamConnectionFailover.connectionName())
-     *             .failoverConnectionId(exampleMongodbatlasStreamConnectionFailover.failoverConnectionId())
+     *             .workspaceName(exampleMongodbatlasStreamWorkspace.get("workspaceName"))
+     *             .connectionName(exampleMongodbatlasStreamConnectionFailover.get("connectionName"))
+     *             .failoverConnectionId(exampleMongodbatlasStreamConnectionFailover.get("failoverConnectionId"))
      *             .build());
      * 
      *         ctx.export("failoverBootstrapServers", example.bootstrapServers());
@@ -42148,9 +42148,9 @@ public final class MongodbatlasFunctions {
      *         // Reads a single failover connection by its ID.
      *         final var example = MongodbatlasFunctions.getStreamConnectionFailover(GetStreamConnectionFailoverArgs.builder()
      *             .projectId(projectId)
-     *             .workspaceName(exampleMongodbatlasStreamWorkspace.workspaceName())
-     *             .connectionName(exampleMongodbatlasStreamConnectionFailover.connectionName())
-     *             .failoverConnectionId(exampleMongodbatlasStreamConnectionFailover.failoverConnectionId())
+     *             .workspaceName(exampleMongodbatlasStreamWorkspace.get("workspaceName"))
+     *             .connectionName(exampleMongodbatlasStreamConnectionFailover.get("connectionName"))
+     *             .failoverConnectionId(exampleMongodbatlasStreamConnectionFailover.get("failoverConnectionId"))
      *             .build());
      * 
      *         ctx.export("failoverBootstrapServers", example.bootstrapServers());
@@ -42195,9 +42195,9 @@ public final class MongodbatlasFunctions {
      *         // Reads a single failover connection by its ID.
      *         final var example = MongodbatlasFunctions.getStreamConnectionFailover(GetStreamConnectionFailoverArgs.builder()
      *             .projectId(projectId)
-     *             .workspaceName(exampleMongodbatlasStreamWorkspace.workspaceName())
-     *             .connectionName(exampleMongodbatlasStreamConnectionFailover.connectionName())
-     *             .failoverConnectionId(exampleMongodbatlasStreamConnectionFailover.failoverConnectionId())
+     *             .workspaceName(exampleMongodbatlasStreamWorkspace.get("workspaceName"))
+     *             .connectionName(exampleMongodbatlasStreamConnectionFailover.get("connectionName"))
+     *             .failoverConnectionId(exampleMongodbatlasStreamConnectionFailover.get("failoverConnectionId"))
      *             .build());
      * 
      *         ctx.export("failoverBootstrapServers", example.bootstrapServers());
@@ -42242,9 +42242,9 @@ public final class MongodbatlasFunctions {
      *         // Reads a single failover connection by its ID.
      *         final var example = MongodbatlasFunctions.getStreamConnectionFailover(GetStreamConnectionFailoverArgs.builder()
      *             .projectId(projectId)
-     *             .workspaceName(exampleMongodbatlasStreamWorkspace.workspaceName())
-     *             .connectionName(exampleMongodbatlasStreamConnectionFailover.connectionName())
-     *             .failoverConnectionId(exampleMongodbatlasStreamConnectionFailover.failoverConnectionId())
+     *             .workspaceName(exampleMongodbatlasStreamWorkspace.get("workspaceName"))
+     *             .connectionName(exampleMongodbatlasStreamConnectionFailover.get("connectionName"))
+     *             .failoverConnectionId(exampleMongodbatlasStreamConnectionFailover.get("failoverConnectionId"))
      *             .build());
      * 
      *         ctx.export("failoverBootstrapServers", example.bootstrapServers());
@@ -42289,9 +42289,9 @@ public final class MongodbatlasFunctions {
      *         // Reads a single failover connection by its ID.
      *         final var example = MongodbatlasFunctions.getStreamConnectionFailover(GetStreamConnectionFailoverArgs.builder()
      *             .projectId(projectId)
-     *             .workspaceName(exampleMongodbatlasStreamWorkspace.workspaceName())
-     *             .connectionName(exampleMongodbatlasStreamConnectionFailover.connectionName())
-     *             .failoverConnectionId(exampleMongodbatlasStreamConnectionFailover.failoverConnectionId())
+     *             .workspaceName(exampleMongodbatlasStreamWorkspace.get("workspaceName"))
+     *             .connectionName(exampleMongodbatlasStreamConnectionFailover.get("connectionName"))
+     *             .failoverConnectionId(exampleMongodbatlasStreamConnectionFailover.get("failoverConnectionId"))
      *             .build());
      * 
      *         ctx.export("failoverBootstrapServers", example.bootstrapServers());
@@ -43462,12 +43462,12 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
@@ -43661,7 +43661,7 @@ public final class MongodbatlasFunctions {
      *             .providerName("AZURE")
      *             .region(atlasRegion)
      *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
-     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.get("subscriptionId"),azureResourceGroup,storageAccountName))
      *             .build(), CustomResourceOptions.builder()
      *                 .dependsOn(                
      *                     cluster,
@@ -43721,12 +43721,12 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
@@ -43920,7 +43920,7 @@ public final class MongodbatlasFunctions {
      *             .providerName("AZURE")
      *             .region(atlasRegion)
      *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
-     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.get("subscriptionId"),azureResourceGroup,storageAccountName))
      *             .build(), CustomResourceOptions.builder()
      *                 .dependsOn(                
      *                     cluster,
@@ -43980,12 +43980,12 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
@@ -44179,7 +44179,7 @@ public final class MongodbatlasFunctions {
      *             .providerName("AZURE")
      *             .region(atlasRegion)
      *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
-     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.get("subscriptionId"),azureResourceGroup,storageAccountName))
      *             .build(), CustomResourceOptions.builder()
      *                 .dependsOn(                
      *                     cluster,
@@ -44239,12 +44239,12 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
@@ -44438,7 +44438,7 @@ public final class MongodbatlasFunctions {
      *             .providerName("AZURE")
      *             .region(atlasRegion)
      *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
-     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.get("subscriptionId"),azureResourceGroup,storageAccountName))
      *             .build(), CustomResourceOptions.builder()
      *                 .dependsOn(                
      *                     cluster,
@@ -44498,12 +44498,12 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
@@ -44697,7 +44697,7 @@ public final class MongodbatlasFunctions {
      *             .providerName("AZURE")
      *             .region(atlasRegion)
      *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
-     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.get("subscriptionId"),azureResourceGroup,storageAccountName))
      *             .build(), CustomResourceOptions.builder()
      *                 .dependsOn(                
      *                     cluster,
@@ -44757,12 +44757,12 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
@@ -44956,7 +44956,7 @@ public final class MongodbatlasFunctions {
      *             .providerName("AZURE")
      *             .region(atlasRegion)
      *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
-     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.get("subscriptionId"),azureResourceGroup,storageAccountName))
      *             .build(), CustomResourceOptions.builder()
      *                 .dependsOn(                
      *                     cluster,
@@ -45016,12 +45016,12 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
@@ -45215,7 +45215,7 @@ public final class MongodbatlasFunctions {
      *             .providerName("AZURE")
      *             .region(atlasRegion)
      *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
-     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.get("subscriptionId"),azureResourceGroup,storageAccountName))
      *             .build(), CustomResourceOptions.builder()
      *                 .dependsOn(                
      *                     cluster,
@@ -45275,12 +45275,12 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
@@ -45474,7 +45474,7 @@ public final class MongodbatlasFunctions {
      *             .providerName("AZURE")
      *             .region(atlasRegion)
      *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
-     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.get("subscriptionId"),azureResourceGroup,storageAccountName))
      *             .build(), CustomResourceOptions.builder()
      *                 .dependsOn(                
      *                     cluster,
@@ -45534,12 +45534,12 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
@@ -45733,7 +45733,7 @@ public final class MongodbatlasFunctions {
      *             .providerName("AZURE")
      *             .region(atlasRegion)
      *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
-     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.get("subscriptionId"),azureResourceGroup,storageAccountName))
      *             .build(), CustomResourceOptions.builder()
      *                 .dependsOn(                
      *                     cluster,
@@ -45793,12 +45793,12 @@ public final class MongodbatlasFunctions {
      *             .build());
      * 
      *         var streamBucketVersioning = new S3BucketVersioning("streamBucketVersioning", S3BucketVersioningArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .versioningConfiguration(Arrays.asList(Map.of("status", "Enabled")))
      *             .build());
      * 
      *         var streamBucketEncryption = new S3BucketServerSideEncryptionConfiguration("streamBucketEncryption", S3BucketServerSideEncryptionConfigurationArgs.builder()
-     *             .bucket(streamBucket.id())
+     *             .bucket(streamBucket.get("id"))
      *             .rule(Arrays.asList(Map.of("applyServerSideEncryptionByDefault", Arrays.asList(Map.of("sseAlgorithm", "AES256")))))
      *             .build());
      * 
@@ -45992,7 +45992,7 @@ public final class MongodbatlasFunctions {
      *             .providerName("AZURE")
      *             .region(atlasRegion)
      *             .dnsDomain(String.format("%s.blob.core.windows.net", storageAccountName))
-     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.subscriptionId(),azureResourceGroup,storageAccountName))
+     *             .serviceEndpointId(String.format("/subscriptions/%s/resourceGroups/%s/providers/Microsoft.Storage/storageAccounts/%s", current.get("subscriptionId"),azureResourceGroup,storageAccountName))
      *             .build(), CustomResourceOptions.builder()
      *                 .dependsOn(                
      *                     cluster,

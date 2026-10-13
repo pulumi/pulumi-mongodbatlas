@@ -40,7 +40,7 @@ import * as utilities from "./utilities";
  * const thisClusterOverloadSimulation = new mongodbatlas.ClusterOverloadSimulation("this", {
  *     projectId: thisAdvancedCluster.projectId,
  *     clusterName: thisAdvancedCluster.name,
- *     durationSeconds: Number(durationSeconds),
+ *     durationSeconds: durationSeconds,
  * });
  * const _this = mongodbatlas.getClusterOverloadSimulationOutput({
  *     projectId: thisClusterOverloadSimulation.projectId,

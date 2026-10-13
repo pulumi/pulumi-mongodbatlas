@@ -72,14 +72,14 @@ import javax.annotation.Nullable;
  *             .projectId(project_tf.id())
  *             .roleId(setupOnly.roleId())
  *             .aws(CloudProviderAccessAuthorizationAwsArgs.builder()
- *                 .iamAssumedRoleArn(testRole.arn())
+ *                 .iamAssumedRoleArn(testRole.get("arn"))
  *                 .build())
  *             .build());
  * 
  *         // Set up push-based log export with authorized IAM role
  *         var testPushBasedLogExport = new PushBasedLogExport("testPushBasedLogExport", PushBasedLogExportArgs.builder()
  *             .projectId(project_tf.id())
- *             .bucketName(logBucket.bucket())
+ *             .bucketName(logBucket.get("bucket"))
  *             .iamRoleId(authRole.roleId())
  *             .prefixPath("push-based-log-test")
  *             .build());

@@ -337,7 +337,7 @@ public class App {
 {{% /choosable %}}
 {{% choosable language hcl %}}
 ```hcl
-pulumi {
+terraform {
   required_providers {
     mongodbatlas = {
       source = "pulumi/mongodbatlas"
@@ -347,11 +347,17 @@ pulumi {
 
 # Create a project
 resource "mongodbatlas_project" "this" {
+  lifecycle {
+    create_before_destroy = true
+  }
   name   = "my-project"
   org_id = orgId
 }
 # Create a cluster
-resource "mongodbatlas_advancedcluster" "this" {
+resource "mongodbatlas_advanced_cluster" "this" {
+  lifecycle {
+    create_before_destroy = true
+  }
   project_id   = mongodbatlas_project.this.id
   name         = "my-cluster"
   cluster_type = "REPLICASET"

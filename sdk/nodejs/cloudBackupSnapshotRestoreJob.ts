@@ -139,7 +139,7 @@ import * as utilities from "./utilities";
  *             pointInTime: true,
  *             targetClusterName: clusterTest.name,
  *             targetProjectId: clusterTest.projectId,
- *             pointInTimeUtcSeconds: Number(pointInTimeUtcSeconds),
+ *             pointInTimeUtcSeconds: pointInTimeUtcSeconds,
  *         },
  *     }));
  * }

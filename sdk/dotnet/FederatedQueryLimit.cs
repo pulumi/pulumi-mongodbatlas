@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas
     ///         TenantName = "FederatedDatabseInstance0",
     ///         LimitName = "bytesProcessed.weekly",
     ///         OverrunPolicy = "BLOCK",
-    ///         Value = 5147483648,
+    ///         Value = (int)5147483648,
     ///     });
     /// 
     /// });

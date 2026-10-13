@@ -31,10 +31,10 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["maintenanceSettings"] = 
+        ///         ["maintenanceSettings"] = new Dictionary&lt;string, object?&gt;
         ///         {
-        ///             { "waveAssignmentMode", example.Apply(getOrgMaintenanceSettingsResult =&gt; getOrgMaintenanceSettingsResult.WaveAssignmentMode) },
-        ///             { "effectiveWaveAssignmentMode", example.Apply(getOrgMaintenanceSettingsResult =&gt; getOrgMaintenanceSettingsResult.EffectiveWaveAssignmentMode) },
+        ///             ["waveAssignmentMode"] = example.Apply(getOrgMaintenanceSettingsResult =&gt; getOrgMaintenanceSettingsResult.WaveAssignmentMode),
+        ///             ["effectiveWaveAssignmentMode"] = example.Apply(getOrgMaintenanceSettingsResult =&gt; getOrgMaintenanceSettingsResult.EffectiveWaveAssignmentMode),
         ///         },
         ///     };
         /// });
@@ -63,10 +63,10 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["maintenanceSettings"] = 
+        ///         ["maintenanceSettings"] = new Dictionary&lt;string, object?&gt;
         ///         {
-        ///             { "waveAssignmentMode", example.Apply(getOrgMaintenanceSettingsResult =&gt; getOrgMaintenanceSettingsResult.WaveAssignmentMode) },
-        ///             { "effectiveWaveAssignmentMode", example.Apply(getOrgMaintenanceSettingsResult =&gt; getOrgMaintenanceSettingsResult.EffectiveWaveAssignmentMode) },
+        ///             ["waveAssignmentMode"] = example.Apply(getOrgMaintenanceSettingsResult =&gt; getOrgMaintenanceSettingsResult.WaveAssignmentMode),
+        ///             ["effectiveWaveAssignmentMode"] = example.Apply(getOrgMaintenanceSettingsResult =&gt; getOrgMaintenanceSettingsResult.EffectiveWaveAssignmentMode),
         ///         },
         ///     };
         /// });
@@ -95,10 +95,10 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["maintenanceSettings"] = 
+        ///         ["maintenanceSettings"] = new Dictionary&lt;string, object?&gt;
         ///         {
-        ///             { "waveAssignmentMode", example.Apply(getOrgMaintenanceSettingsResult =&gt; getOrgMaintenanceSettingsResult.WaveAssignmentMode) },
-        ///             { "effectiveWaveAssignmentMode", example.Apply(getOrgMaintenanceSettingsResult =&gt; getOrgMaintenanceSettingsResult.EffectiveWaveAssignmentMode) },
+        ///             ["waveAssignmentMode"] = example.Apply(getOrgMaintenanceSettingsResult =&gt; getOrgMaintenanceSettingsResult.WaveAssignmentMode),
+        ///             ["effectiveWaveAssignmentMode"] = example.Apply(getOrgMaintenanceSettingsResult =&gt; getOrgMaintenanceSettingsResult.EffectiveWaveAssignmentMode),
         ///         },
         ///     };
         /// });

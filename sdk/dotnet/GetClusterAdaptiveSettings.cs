@@ -27,7 +27,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+        ///     // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding function.
         ///     var thisClusterAdaptiveSettings = new Mongodbatlas.ClusterAdaptiveSettings("this", new()
         ///     {
         ///         ProjectId = projectId,
@@ -67,7 +67,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+        ///     // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding function.
         ///     var thisClusterAdaptiveSettings = new Mongodbatlas.ClusterAdaptiveSettings("this", new()
         ///     {
         ///         ProjectId = projectId,
@@ -107,7 +107,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// return await Deployment.RunAsync(() =&gt; 
         /// {
-        ///     // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+        ///     // Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding function.
         ///     var thisClusterAdaptiveSettings = new Mongodbatlas.ClusterAdaptiveSettings("this", new()
         ///     {
         ///         ProjectId = projectId,

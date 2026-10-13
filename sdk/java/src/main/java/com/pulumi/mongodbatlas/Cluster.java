@@ -387,7 +387,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export("standard", cluster_test.connectionStrings()[0].standard());
+ *         ctx.export("standard", cluster_test.get("connectionStrings")[0].get("standard"));
  *     }
  * }
  * }
@@ -413,7 +413,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export("standardSrv", cluster_test.connectionStrings()[0].standardSrv());
+ *         ctx.export("standardSrv", cluster_test.get("connectionStrings")[0].get("standardSrv"));
  *     }
  * }
  * }
@@ -439,7 +439,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export("private", cluster_test.connectionStrings()[0].private());
+ *         ctx.export("private", cluster_test.get("connectionStrings")[0].get("private"));
  *     }
  * }
  * }
@@ -465,7 +465,7 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
- *         ctx.export("privateSrv", cluster_test.connectionStrings()[0].privateSrv());
+ *         ctx.export("privateSrv", cluster_test.get("connectionStrings")[0].get("privateSrv"));
  *     }
  * }
  * }

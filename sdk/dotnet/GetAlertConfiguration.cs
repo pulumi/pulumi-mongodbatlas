@@ -54,7 +54,7 @@ namespace Pulumi.Mongodbatlas
         ///         {
         ///             MetricName = "ASSERT_REGULAR",
         ///             Operator = "LESS_THAN",
-        ///             Threshold = 99,
+        ///             Threshold = 99.0,
         ///             Units = "RAW",
         ///             Mode = "AVERAGE",
         ///         },
@@ -111,7 +111,7 @@ namespace Pulumi.Mongodbatlas
         ///         ThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationThresholdConfigArgs
         ///         {
         ///             Operator = "LESS_THAN",
-        ///             Threshold = 1,
+        ///             Threshold = 1.0,
         ///             Units = "HOURS",
         ///         },
         ///     });
@@ -189,7 +189,7 @@ namespace Pulumi.Mongodbatlas
         ///         {
         ///             MetricName = "ASSERT_REGULAR",
         ///             Operator = "LESS_THAN",
-        ///             Threshold = 99,
+        ///             Threshold = 99.0,
         ///             Units = "RAW",
         ///             Mode = "AVERAGE",
         ///         },
@@ -246,7 +246,7 @@ namespace Pulumi.Mongodbatlas
         ///         ThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationThresholdConfigArgs
         ///         {
         ///             Operator = "LESS_THAN",
-        ///             Threshold = 1,
+        ///             Threshold = 1.0,
         ///             Units = "HOURS",
         ///         },
         ///     });
@@ -324,7 +324,7 @@ namespace Pulumi.Mongodbatlas
         ///         {
         ///             MetricName = "ASSERT_REGULAR",
         ///             Operator = "LESS_THAN",
-        ///             Threshold = 99,
+        ///             Threshold = 99.0,
         ///             Units = "RAW",
         ///             Mode = "AVERAGE",
         ///         },
@@ -381,7 +381,7 @@ namespace Pulumi.Mongodbatlas
         ///         ThresholdConfig = new Mongodbatlas.Inputs.AlertConfigurationThresholdConfigArgs
         ///         {
         ///             Operator = "LESS_THAN",
-        ///             Threshold = 1,
+        ///             Threshold = 1.0,
         ///             Units = "HOURS",
         ///         },
         ///     });

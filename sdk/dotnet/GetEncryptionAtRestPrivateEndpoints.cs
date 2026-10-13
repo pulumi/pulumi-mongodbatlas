@@ -39,7 +39,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["numberOfEndpoints"] = plural.Apply(getEncryptionAtRestPrivateEndpointsResult =&gt; getEncryptionAtRestPrivateEndpointsResult.Results).Length(),
+        ///         ["numberOfEndpoints"] = plural.Apply(getEncryptionAtRestPrivateEndpointsResult =&gt; getEncryptionAtRestPrivateEndpointsResult.Results).Length,
         ///     };
         /// });
         /// ```
@@ -61,7 +61,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["numberOfEndpoints"] = plural.Apply(getEncryptionAtRestPrivateEndpointsResult =&gt; getEncryptionAtRestPrivateEndpointsResult.Results).Length(),
+        ///         ["numberOfEndpoints"] = plural.Apply(getEncryptionAtRestPrivateEndpointsResult =&gt; getEncryptionAtRestPrivateEndpointsResult.Results).Length,
         ///     };
         /// });
         /// ```
@@ -97,7 +97,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["numberOfEndpoints"] = plural.Apply(getEncryptionAtRestPrivateEndpointsResult =&gt; getEncryptionAtRestPrivateEndpointsResult.Results).Length(),
+        ///         ["numberOfEndpoints"] = plural.Apply(getEncryptionAtRestPrivateEndpointsResult =&gt; getEncryptionAtRestPrivateEndpointsResult.Results).Length,
         ///     };
         /// });
         /// ```
@@ -119,7 +119,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["numberOfEndpoints"] = plural.Apply(getEncryptionAtRestPrivateEndpointsResult =&gt; getEncryptionAtRestPrivateEndpointsResult.Results).Length(),
+        ///         ["numberOfEndpoints"] = plural.Apply(getEncryptionAtRestPrivateEndpointsResult =&gt; getEncryptionAtRestPrivateEndpointsResult.Results).Length,
         ///     };
         /// });
         /// ```
@@ -155,7 +155,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["numberOfEndpoints"] = plural.Apply(getEncryptionAtRestPrivateEndpointsResult =&gt; getEncryptionAtRestPrivateEndpointsResult.Results).Length(),
+        ///         ["numberOfEndpoints"] = plural.Apply(getEncryptionAtRestPrivateEndpointsResult =&gt; getEncryptionAtRestPrivateEndpointsResult.Results).Length,
         ///     };
         /// });
         /// ```
@@ -177,7 +177,7 @@ namespace Pulumi.Mongodbatlas
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["numberOfEndpoints"] = plural.Apply(getEncryptionAtRestPrivateEndpointsResult =&gt; getEncryptionAtRestPrivateEndpointsResult.Results).Length(),
+        ///         ["numberOfEndpoints"] = plural.Apply(getEncryptionAtRestPrivateEndpointsResult =&gt; getEncryptionAtRestPrivateEndpointsResult.Results).Length,
         ///     };
         /// });
         /// ```

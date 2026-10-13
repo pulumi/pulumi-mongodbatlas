@@ -64,11 +64,11 @@ import javax.annotation.Nullable;
  * 
  *         var testPrivatelinkEndpointServiceDataFederationOnlineArchive = new PrivatelinkEndpointServiceDataFederationOnlineArchive("testPrivatelinkEndpointServiceDataFederationOnlineArchive", PrivatelinkEndpointServiceDataFederationOnlineArchiveArgs.builder()
  *             .projectId(atlas_project.id())
- *             .endpointId(test.id())
+ *             .endpointId(test.get("id"))
  *             .providerName("AWS")
  *             .comment("Test")
  *             .region("US_EAST_1")
- *             .customerEndpointDnsName(test.dnsEntry()[0].dnsName())
+ *             .customerEndpointDnsName(test.get("dnsEntry")[0].get("dnsName"))
  *             .build());
  * 
  *     }

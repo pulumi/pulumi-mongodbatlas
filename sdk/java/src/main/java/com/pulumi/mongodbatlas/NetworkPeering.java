@@ -153,7 +153,7 @@ import javax.annotation.Nullable;
  *         // Create the GCP peer
  *         var peering = new ComputeNetworkPeering("peering", ComputeNetworkPeeringArgs.builder()
  *             .name("peering-gcp-terraform-test")
- *             .network(default_.selfLink())
+ *             .network(default_.get("selfLink"))
  *             .peerNetwork(String.format("https://www.googleapis.com/compute/v1/projects/%s/global/networks/%s", testNetworkPeering.atlasGcpProjectId(),testNetworkPeering.atlasVpcName()))
  *             .build());
  * 

@@ -168,7 +168,7 @@ class ClusterAdaptiveSettings(pulumi.CustomResource):
         import json
         import pulumi_mongodbatlas as mongodbatlas
 
-        # Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+        # Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding function.
         this_cluster_adaptive_settings = mongodbatlas.ClusterAdaptiveSettings("this",
             project_id=project_id,
             cluster_name=cluster_name,
@@ -215,7 +215,7 @@ class ClusterAdaptiveSettings(pulumi.CustomResource):
         import json
         import pulumi_mongodbatlas as mongodbatlas
 
-        # Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding data source.
+        # Manage Adaptive Settings overrides for an existing MongoDB Atlas cluster and read the resulting effective settings with the corresponding function.
         this_cluster_adaptive_settings = mongodbatlas.ClusterAdaptiveSettings("this",
             project_id=project_id,
             cluster_name=cluster_name,
