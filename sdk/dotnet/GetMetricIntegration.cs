@@ -79,7 +79,8 @@ namespace Pulumi.Mongodbatlas
         /// ```
         /// 
         /// ### Further Examples
-        /// - Metric Integration Examples
+        /// - Header-based — export Atlas metrics using header-based authentication.
+        /// - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
         /// </summary>
         public static Task<GetMetricIntegrationResult> InvokeAsync(GetMetricIntegrationArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetMetricIntegrationResult>("mongodbatlas:index/getMetricIntegration:getMetricIntegration", args ?? new GetMetricIntegrationArgs(), options.WithDefaults());
@@ -152,7 +153,8 @@ namespace Pulumi.Mongodbatlas
         /// ```
         /// 
         /// ### Further Examples
-        /// - Metric Integration Examples
+        /// - Header-based — export Atlas metrics using header-based authentication.
+        /// - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
         /// </summary>
         public static Output<GetMetricIntegrationResult> Invoke(GetMetricIntegrationInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetMetricIntegrationResult>("mongodbatlas:index/getMetricIntegration:getMetricIntegration", args ?? new GetMetricIntegrationInvokeArgs(), options.WithDefaults());
@@ -225,7 +227,8 @@ namespace Pulumi.Mongodbatlas
         /// ```
         /// 
         /// ### Further Examples
-        /// - Metric Integration Examples
+        /// - Header-based — export Atlas metrics using header-based authentication.
+        /// - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
         /// </summary>
         public static Output<GetMetricIntegrationResult> Invoke(GetMetricIntegrationInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetMetricIntegrationResult>("mongodbatlas:index/getMetricIntegration:getMetricIntegration", args ?? new GetMetricIntegrationInvokeArgs(), options.WithDefaults());
@@ -305,6 +308,10 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         public readonly ImmutableArray<string> MetricSelections;
         /// <summary>
+        /// OAuth 2.0 configuration returned for a metric integration. Secrets are never returned.
+        /// </summary>
+        public readonly Outputs.GetMetricIntegrationOauthResult Oauth;
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         public readonly string ProjectId;
@@ -329,6 +336,8 @@ namespace Pulumi.Mongodbatlas
 
             ImmutableArray<string> metricSelections,
 
+            Outputs.GetMetricIntegrationOauthResult oauth,
+
             string projectId,
 
             string providerType)
@@ -340,6 +349,7 @@ namespace Pulumi.Mongodbatlas
             IntegrationType = integrationType;
             MetricIntegrationId = metricIntegrationId;
             MetricSelections = metricSelections;
+            Oauth = oauth;
             ProjectId = projectId;
             ProviderType = providerType;
         }

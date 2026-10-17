@@ -81,7 +81,8 @@ namespace Pulumi.Mongodbatlas
         /// ```
         /// 
         /// ### Further Examples
-        /// - Metric Integration Examples
+        /// - Header-based — export Atlas metrics using header-based authentication.
+        /// - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
         /// </summary>
         public static Task<GetMetricIntegrationsResult> InvokeAsync(GetMetricIntegrationsArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetMetricIntegrationsResult>("mongodbatlas:index/getMetricIntegrations:getMetricIntegrations", args ?? new GetMetricIntegrationsArgs(), options.WithDefaults());
@@ -156,7 +157,8 @@ namespace Pulumi.Mongodbatlas
         /// ```
         /// 
         /// ### Further Examples
-        /// - Metric Integration Examples
+        /// - Header-based — export Atlas metrics using header-based authentication.
+        /// - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
         /// </summary>
         public static Output<GetMetricIntegrationsResult> Invoke(GetMetricIntegrationsInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetMetricIntegrationsResult>("mongodbatlas:index/getMetricIntegrations:getMetricIntegrations", args ?? new GetMetricIntegrationsInvokeArgs(), options.WithDefaults());
@@ -231,7 +233,8 @@ namespace Pulumi.Mongodbatlas
         /// ```
         /// 
         /// ### Further Examples
-        /// - Metric Integration Examples
+        /// - Header-based — export Atlas metrics using header-based authentication.
+        /// - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
         /// </summary>
         public static Output<GetMetricIntegrationsResult> Invoke(GetMetricIntegrationsInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetMetricIntegrationsResult>("mongodbatlas:index/getMetricIntegrations:getMetricIntegrations", args ?? new GetMetricIntegrationsInvokeArgs(), options.WithDefaults());

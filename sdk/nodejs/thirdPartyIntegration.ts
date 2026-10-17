@@ -83,6 +83,7 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
     declare public readonly sendCollectionLatencyMetrics: pulumi.Output<boolean>;
     declare public readonly sendDatabaseMetrics: pulumi.Output<boolean>;
     declare public readonly sendQueryStatsMetrics: pulumi.Output<boolean>;
+    declare public readonly sendShardingMetrics: pulumi.Output<boolean>;
     declare public readonly sendUserProvidedResourceTags: pulumi.Output<boolean>;
     declare public readonly serviceDiscovery: pulumi.Output<string>;
     declare public readonly serviceKey: pulumi.Output<string>;
@@ -128,6 +129,7 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
             resourceInputs["sendCollectionLatencyMetrics"] = state?.sendCollectionLatencyMetrics;
             resourceInputs["sendDatabaseMetrics"] = state?.sendDatabaseMetrics;
             resourceInputs["sendQueryStatsMetrics"] = state?.sendQueryStatsMetrics;
+            resourceInputs["sendShardingMetrics"] = state?.sendShardingMetrics;
             resourceInputs["sendUserProvidedResourceTags"] = state?.sendUserProvidedResourceTags;
             resourceInputs["serviceDiscovery"] = state?.serviceDiscovery;
             resourceInputs["serviceKey"] = state?.serviceKey;
@@ -155,6 +157,7 @@ export class ThirdPartyIntegration extends pulumi.CustomResource {
             resourceInputs["sendCollectionLatencyMetrics"] = args?.sendCollectionLatencyMetrics;
             resourceInputs["sendDatabaseMetrics"] = args?.sendDatabaseMetrics;
             resourceInputs["sendQueryStatsMetrics"] = args?.sendQueryStatsMetrics;
+            resourceInputs["sendShardingMetrics"] = args?.sendShardingMetrics;
             resourceInputs["sendUserProvidedResourceTags"] = args?.sendUserProvidedResourceTags;
             resourceInputs["serviceDiscovery"] = args?.serviceDiscovery ? pulumi.secret(args.serviceDiscovery) : undefined;
             resourceInputs["serviceKey"] = args?.serviceKey ? pulumi.secret(args.serviceKey) : undefined;
@@ -189,6 +192,7 @@ export interface ThirdPartyIntegrationState {
     sendCollectionLatencyMetrics?: pulumi.Input<boolean | undefined>;
     sendDatabaseMetrics?: pulumi.Input<boolean | undefined>;
     sendQueryStatsMetrics?: pulumi.Input<boolean | undefined>;
+    sendShardingMetrics?: pulumi.Input<boolean | undefined>;
     sendUserProvidedResourceTags?: pulumi.Input<boolean | undefined>;
     serviceDiscovery?: pulumi.Input<string | undefined>;
     serviceKey?: pulumi.Input<string | undefined>;
@@ -229,6 +233,7 @@ export interface ThirdPartyIntegrationArgs {
     sendCollectionLatencyMetrics?: pulumi.Input<boolean | undefined>;
     sendDatabaseMetrics?: pulumi.Input<boolean | undefined>;
     sendQueryStatsMetrics?: pulumi.Input<boolean | undefined>;
+    sendShardingMetrics?: pulumi.Input<boolean | undefined>;
     sendUserProvidedResourceTags?: pulumi.Input<boolean | undefined>;
     serviceDiscovery?: pulumi.Input<string | undefined>;
     serviceKey?: pulumi.Input<string | undefined>;

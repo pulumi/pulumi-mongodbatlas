@@ -464,6 +464,30 @@ class AlertConfiguration(pulumi.CustomResource):
             }])
         ```
 
+        ### Create a webhook notification with a custom JSON body and headers
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AlertConfiguration("test",
+            project_id="PROJECT ID",
+            enabled=True,
+            event_type="REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+            notifications=[{
+                "type_name": "WEBHOOK",
+                "webhook_url": "https://example.com/webhook",
+                "webhook_body_template": json.dumps({
+                    "alert": "${eventType}",
+                    "project": "${groupId}",
+                }),
+                "webhook_headers_template": json.dumps({
+                    "X-Custom-Header": "static-value",
+                }),
+            }])
+        ```
+
         ### Further Examples
         - Alert Configuration
 
@@ -622,6 +646,30 @@ class AlertConfiguration(pulumi.CustomResource):
             notifications=[{
                 "type_name": "PAGER_DUTY",
                 "integration_id": test.id,
+            }])
+        ```
+
+        ### Create a webhook notification with a custom JSON body and headers
+
+        ```python
+        import pulumi
+        import json
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.AlertConfiguration("test",
+            project_id="PROJECT ID",
+            enabled=True,
+            event_type="REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+            notifications=[{
+                "type_name": "WEBHOOK",
+                "webhook_url": "https://example.com/webhook",
+                "webhook_body_template": json.dumps({
+                    "alert": "${eventType}",
+                    "project": "${groupId}",
+                }),
+                "webhook_headers_template": json.dumps({
+                    "X-Custom-Header": "static-value",
+                }),
             }])
         ```
 

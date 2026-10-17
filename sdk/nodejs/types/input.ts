@@ -288,7 +288,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
      */
     diskSizeGb?: pulumi.Input<number | undefined>;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
      * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
      * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
      * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -380,7 +380,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
      */
     diskSizeGb?: pulumi.Input<number | undefined>;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
      * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
      * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
      * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -423,7 +423,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      */
     diskSizeGb?: pulumi.Input<number | undefined>;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
      * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
      * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
      * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -618,6 +618,14 @@ export interface AlertConfigurationNotification {
      * VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
     victorOpsRoutingKey?: pulumi.Input<string | undefined>;
+    /**
+     * Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+     */
+    webhookBodyTemplate?: pulumi.Input<string | undefined>;
+    /**
+     * Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+     */
+    webhookHeadersTemplate?: pulumi.Input<string | undefined>;
     /**
      * Optional authentication secret for the `WEBHOOK` notifications type.
      */
@@ -1653,6 +1661,10 @@ export interface FederatedDatabaseInstanceCloudProviderConfig {
      * Microsoft Azure cloud service configuration.
      */
     azure?: pulumi.Input<inputs.FederatedDatabaseInstanceCloudProviderConfigAzure | undefined>;
+    /**
+     * Google Cloud cloud service configuration.
+     */
+    gcp?: pulumi.Input<inputs.FederatedDatabaseInstanceCloudProviderConfigGcp | undefined>;
 }
 
 export interface FederatedDatabaseInstanceCloudProviderConfigAws {
@@ -1689,6 +1701,14 @@ export interface FederatedDatabaseInstanceCloudProviderConfigAzure {
      * Unique identifier of the Azure Active Directory tenant where the service principal resides.
      */
     tenantId?: pulumi.Input<string | undefined>;
+}
+
+export interface FederatedDatabaseInstanceCloudProviderConfigGcp {
+    /**
+     * Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+     */
+    gcpServiceAccount?: pulumi.Input<string | undefined>;
+    roleId: pulumi.Input<string>;
 }
 
 export interface FederatedDatabaseInstanceDataProcessRegion {
@@ -1970,11 +1990,13 @@ export interface GetCustomDbRoleInheritedRoleArgs {
 export interface GetFederatedDatabaseInstanceCloudProviderConfig {
     aws?: inputs.GetFederatedDatabaseInstanceCloudProviderConfigAw[];
     azures?: inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzure[];
+    gcps?: inputs.GetFederatedDatabaseInstanceCloudProviderConfigGcp[];
 }
 
 export interface GetFederatedDatabaseInstanceCloudProviderConfigArgs {
     aws?: pulumi.Input<pulumi.Input<inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwArgs>[] | undefined>;
     azures?: pulumi.Input<pulumi.Input<inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs>[] | undefined>;
+    gcps?: pulumi.Input<pulumi.Input<inputs.GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs>[] | undefined>;
 }
 
 export interface GetFederatedDatabaseInstanceCloudProviderConfigAw {
@@ -2055,6 +2077,28 @@ export interface GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs {
     tenantId?: pulumi.Input<string | undefined>;
 }
 
+export interface GetFederatedDatabaseInstanceCloudProviderConfigGcp {
+    /**
+     * Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+     */
+    gcpServiceAccount?: string;
+    /**
+     * Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+     */
+    roleId?: string;
+}
+
+export interface GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs {
+    /**
+     * Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+     */
+    gcpServiceAccount?: pulumi.Input<string | undefined>;
+    /**
+     * Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+     */
+    roleId?: pulumi.Input<string | undefined>;
+}
+
 export interface GetGlobalClusterConfigManagedNamespace {
     /**
      * (Required) The name of the collection associated with the managed namespace.
@@ -2069,7 +2113,7 @@ export interface GetGlobalClusterConfigManagedNamespace {
      */
     db: string;
     /**
-     * Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+     * Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
      */
     isCustomShardKeyHashed?: boolean;
     /**
@@ -2092,7 +2136,7 @@ export interface GetGlobalClusterConfigManagedNamespaceArgs {
      */
     db: pulumi.Input<string>;
     /**
-     * Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+     * Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
      */
     isCustomShardKeyHashed?: pulumi.Input<boolean | undefined>;
     /**
@@ -2136,7 +2180,7 @@ export interface GlobalClusterConfigManagedNamespace {
      */
     db: pulumi.Input<string>;
     /**
-     * Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+     * Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
      */
     isCustomShardKeyHashed?: pulumi.Input<boolean | undefined>;
     /**
@@ -2217,6 +2261,56 @@ export interface MetricIntegrationHeadersRedacted {
      * Redacted header value.
      */
     value?: pulumi.Input<string | undefined>;
+}
+
+export interface MetricIntegrationOauth {
+    /**
+     * How the client authenticates to the token endpoint. `CLIENT_SECRET` sends a shared secret. `PRIVATE_KEY_JWT` signs a client assertion with an Atlas-generated, Atlas-managed key. Register the returned JWKS URL with your identity provider.
+     */
+    clientAuthMethod: pulumi.Input<string>;
+    /**
+     * OAuth 2.0 client identifier registered with the token endpoint.
+     */
+    clientId: pulumi.Input<string>;
+    /**
+     * Shared client secret. Required when client*auth*method is `CLIENT_SECRET`, and rejected for `PRIVATE_KEY_JWT`. Encrypted at rest and never returned.
+     */
+    clientSecret?: pulumi.Input<string | undefined>;
+    /**
+     * Optional OAuth 2.0 scopes requested on the token, sent as a space delimited `scope` parameter. Applies to both client authentication methods.
+     */
+    scopes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    /**
+     * Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+     */
+    signingKeyInfo?: pulumi.Input<inputs.MetricIntegrationOauthSigningKeyInfo | undefined>;
+    /**
+     * OAuth 2.0 token endpoint URL. Must use HTTPS.
+     */
+    tokenEndpoint: pulumi.Input<string>;
+    /**
+     * Optional provider-specific parameters added to the token request, for example a resource indicator. Applies to both client authentication methods.
+     */
+    tokenRequestParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface MetricIntegrationOauthSigningKeyInfo {
+    /**
+     * Signing algorithm of the Atlas-managed key.
+     */
+    algorithm?: pulumi.Input<string | undefined>;
+    /**
+     * When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt?: pulumi.Input<string | undefined>;
+    /**
+     * Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+     */
+    jwksUri?: pulumi.Input<string | undefined>;
+    /**
+     * Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+     */
+    kid?: pulumi.Input<string | undefined>;
 }
 
 export interface OnlineArchiveCriteria {

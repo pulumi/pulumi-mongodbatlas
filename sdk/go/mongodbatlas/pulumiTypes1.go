@@ -13,6 +13,569 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+type GetStreamConnectionFailoversResultDbRoleToExecute struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role string `pulumi:"role"`
+	// Type of the DB role. Can be either Built In or Custom.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionFailoversResultDbRoleToExecuteInput is an input type that accepts GetStreamConnectionFailoversResultDbRoleToExecuteArgs and GetStreamConnectionFailoversResultDbRoleToExecuteOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoversResultDbRoleToExecuteInput` via:
+//
+//	GetStreamConnectionFailoversResultDbRoleToExecuteArgs{...}
+type GetStreamConnectionFailoversResultDbRoleToExecuteInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoversResultDbRoleToExecuteOutput() GetStreamConnectionFailoversResultDbRoleToExecuteOutput
+	ToGetStreamConnectionFailoversResultDbRoleToExecuteOutputWithContext(context.Context) GetStreamConnectionFailoversResultDbRoleToExecuteOutput
+}
+
+type GetStreamConnectionFailoversResultDbRoleToExecuteArgs struct {
+	// The name of the role to use. Can be a built in role or a custom role.
+	Role pulumi.StringInput `pulumi:"role"`
+	// Type of the DB role. Can be either Built In or Custom.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionFailoversResultDbRoleToExecuteArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultDbRoleToExecute)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoversResultDbRoleToExecuteArgs) ToGetStreamConnectionFailoversResultDbRoleToExecuteOutput() GetStreamConnectionFailoversResultDbRoleToExecuteOutput {
+	return i.ToGetStreamConnectionFailoversResultDbRoleToExecuteOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoversResultDbRoleToExecuteArgs) ToGetStreamConnectionFailoversResultDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultDbRoleToExecuteOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultDbRoleToExecuteOutput)
+}
+
+type GetStreamConnectionFailoversResultDbRoleToExecuteOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoversResultDbRoleToExecuteOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultDbRoleToExecute)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoversResultDbRoleToExecuteOutput) ToGetStreamConnectionFailoversResultDbRoleToExecuteOutput() GetStreamConnectionFailoversResultDbRoleToExecuteOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoversResultDbRoleToExecuteOutput) ToGetStreamConnectionFailoversResultDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultDbRoleToExecuteOutput {
+	return o
+}
+
+// The name of the role to use. Can be a built in role or a custom role.
+func (o GetStreamConnectionFailoversResultDbRoleToExecuteOutput) Role() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
+}
+
+// Type of the DB role. Can be either Built In or Custom.
+func (o GetStreamConnectionFailoversResultDbRoleToExecuteOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionFailoversResultNetworking struct {
+	// Information about networking access.
+	Access GetStreamConnectionFailoversResultNetworkingAccess `pulumi:"access"`
+}
+
+// GetStreamConnectionFailoversResultNetworkingInput is an input type that accepts GetStreamConnectionFailoversResultNetworkingArgs and GetStreamConnectionFailoversResultNetworkingOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoversResultNetworkingInput` via:
+//
+//	GetStreamConnectionFailoversResultNetworkingArgs{...}
+type GetStreamConnectionFailoversResultNetworkingInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoversResultNetworkingOutput() GetStreamConnectionFailoversResultNetworkingOutput
+	ToGetStreamConnectionFailoversResultNetworkingOutputWithContext(context.Context) GetStreamConnectionFailoversResultNetworkingOutput
+}
+
+type GetStreamConnectionFailoversResultNetworkingArgs struct {
+	// Information about networking access.
+	Access GetStreamConnectionFailoversResultNetworkingAccessInput `pulumi:"access"`
+}
+
+func (GetStreamConnectionFailoversResultNetworkingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultNetworking)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoversResultNetworkingArgs) ToGetStreamConnectionFailoversResultNetworkingOutput() GetStreamConnectionFailoversResultNetworkingOutput {
+	return i.ToGetStreamConnectionFailoversResultNetworkingOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoversResultNetworkingArgs) ToGetStreamConnectionFailoversResultNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultNetworkingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultNetworkingOutput)
+}
+
+type GetStreamConnectionFailoversResultNetworkingOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoversResultNetworkingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultNetworking)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoversResultNetworkingOutput) ToGetStreamConnectionFailoversResultNetworkingOutput() GetStreamConnectionFailoversResultNetworkingOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoversResultNetworkingOutput) ToGetStreamConnectionFailoversResultNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultNetworkingOutput {
+	return o
+}
+
+// Information about networking access.
+func (o GetStreamConnectionFailoversResultNetworkingOutput) Access() GetStreamConnectionFailoversResultNetworkingAccessOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultNetworking) GetStreamConnectionFailoversResultNetworkingAccess {
+		return v.Access
+	}).(GetStreamConnectionFailoversResultNetworkingAccessOutput)
+}
+
+type GetStreamConnectionFailoversResultNetworkingAccess struct {
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	ConnectionId string `pulumi:"connectionId"`
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	Name string `pulumi:"name"`
+	// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+	TgwRouteId string `pulumi:"tgwRouteId"`
+	// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionFailoversResultNetworkingAccessInput is an input type that accepts GetStreamConnectionFailoversResultNetworkingAccessArgs and GetStreamConnectionFailoversResultNetworkingAccessOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoversResultNetworkingAccessInput` via:
+//
+//	GetStreamConnectionFailoversResultNetworkingAccessArgs{...}
+type GetStreamConnectionFailoversResultNetworkingAccessInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoversResultNetworkingAccessOutput() GetStreamConnectionFailoversResultNetworkingAccessOutput
+	ToGetStreamConnectionFailoversResultNetworkingAccessOutputWithContext(context.Context) GetStreamConnectionFailoversResultNetworkingAccessOutput
+}
+
+type GetStreamConnectionFailoversResultNetworkingAccessArgs struct {
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	ConnectionId pulumi.StringInput `pulumi:"connectionId"`
+	// Reserved. Will be used by `PRIVATE_LINK` connection type.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+	TgwRouteId pulumi.StringInput `pulumi:"tgwRouteId"`
+	// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionFailoversResultNetworkingAccessArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultNetworkingAccess)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoversResultNetworkingAccessArgs) ToGetStreamConnectionFailoversResultNetworkingAccessOutput() GetStreamConnectionFailoversResultNetworkingAccessOutput {
+	return i.ToGetStreamConnectionFailoversResultNetworkingAccessOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoversResultNetworkingAccessArgs) ToGetStreamConnectionFailoversResultNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultNetworkingAccessOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultNetworkingAccessOutput)
+}
+
+type GetStreamConnectionFailoversResultNetworkingAccessOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoversResultNetworkingAccessOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultNetworkingAccess)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) ToGetStreamConnectionFailoversResultNetworkingAccessOutput() GetStreamConnectionFailoversResultNetworkingAccessOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) ToGetStreamConnectionFailoversResultNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultNetworkingAccessOutput {
+	return o
+}
+
+// Reserved. Will be used by `PRIVATE_LINK` connection type.
+func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) ConnectionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultNetworkingAccess) string { return v.ConnectionId }).(pulumi.StringOutput)
+}
+
+// Reserved. Will be used by `PRIVATE_LINK` connection type.
+func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultNetworkingAccess) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
+func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) TgwRouteId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultNetworkingAccess) string { return v.TgwRouteId }).(pulumi.StringOutput)
+}
+
+// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
+func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionFailoversResultSecurity struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL.
+	BrokerPublicCertificate string `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+	Protocol string `pulumi:"protocol"`
+}
+
+// GetStreamConnectionFailoversResultSecurityInput is an input type that accepts GetStreamConnectionFailoversResultSecurityArgs and GetStreamConnectionFailoversResultSecurityOutput values.
+// You can construct a concrete instance of `GetStreamConnectionFailoversResultSecurityInput` via:
+//
+//	GetStreamConnectionFailoversResultSecurityArgs{...}
+type GetStreamConnectionFailoversResultSecurityInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionFailoversResultSecurityOutput() GetStreamConnectionFailoversResultSecurityOutput
+	ToGetStreamConnectionFailoversResultSecurityOutputWithContext(context.Context) GetStreamConnectionFailoversResultSecurityOutput
+}
+
+type GetStreamConnectionFailoversResultSecurityArgs struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL.
+	BrokerPublicCertificate pulumi.StringInput `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+}
+
+func (GetStreamConnectionFailoversResultSecurityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultSecurity)(nil)).Elem()
+}
+
+func (i GetStreamConnectionFailoversResultSecurityArgs) ToGetStreamConnectionFailoversResultSecurityOutput() GetStreamConnectionFailoversResultSecurityOutput {
+	return i.ToGetStreamConnectionFailoversResultSecurityOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionFailoversResultSecurityArgs) ToGetStreamConnectionFailoversResultSecurityOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultSecurityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultSecurityOutput)
+}
+
+type GetStreamConnectionFailoversResultSecurityOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionFailoversResultSecurityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionFailoversResultSecurity)(nil)).Elem()
+}
+
+func (o GetStreamConnectionFailoversResultSecurityOutput) ToGetStreamConnectionFailoversResultSecurityOutput() GetStreamConnectionFailoversResultSecurityOutput {
+	return o
+}
+
+func (o GetStreamConnectionFailoversResultSecurityOutput) ToGetStreamConnectionFailoversResultSecurityOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultSecurityOutput {
+	return o
+}
+
+// A trusted, public x509 certificate for connecting to Kafka over SSL.
+func (o GetStreamConnectionFailoversResultSecurityOutput) BrokerPublicCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultSecurity) string { return v.BrokerPublicCertificate }).(pulumi.StringOutput)
+}
+
+// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
+func (o GetStreamConnectionFailoversResultSecurityOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionFailoversResultSecurity) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionGcp struct {
+	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+	ServiceAccountId string `pulumi:"serviceAccountId"`
+}
+
+// GetStreamConnectionGcpInput is an input type that accepts GetStreamConnectionGcpArgs and GetStreamConnectionGcpOutput values.
+// You can construct a concrete instance of `GetStreamConnectionGcpInput` via:
+//
+//	GetStreamConnectionGcpArgs{...}
+type GetStreamConnectionGcpInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionGcpOutput() GetStreamConnectionGcpOutput
+	ToGetStreamConnectionGcpOutputWithContext(context.Context) GetStreamConnectionGcpOutput
+}
+
+type GetStreamConnectionGcpArgs struct {
+	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+	ServiceAccountId pulumi.StringInput `pulumi:"serviceAccountId"`
+}
+
+func (GetStreamConnectionGcpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionGcp)(nil)).Elem()
+}
+
+func (i GetStreamConnectionGcpArgs) ToGetStreamConnectionGcpOutput() GetStreamConnectionGcpOutput {
+	return i.ToGetStreamConnectionGcpOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionGcpArgs) ToGetStreamConnectionGcpOutputWithContext(ctx context.Context) GetStreamConnectionGcpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionGcpOutput)
+}
+
+type GetStreamConnectionGcpOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionGcpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionGcp)(nil)).Elem()
+}
+
+func (o GetStreamConnectionGcpOutput) ToGetStreamConnectionGcpOutput() GetStreamConnectionGcpOutput {
+	return o
+}
+
+func (o GetStreamConnectionGcpOutput) ToGetStreamConnectionGcpOutputWithContext(ctx context.Context) GetStreamConnectionGcpOutput {
+	return o
+}
+
+// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
+func (o GetStreamConnectionGcpOutput) ServiceAccountId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionGcp) string { return v.ServiceAccountId }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionNetworking struct {
+	// Information about the networking access. See access.
+	Access GetStreamConnectionNetworkingAccess `pulumi:"access"`
+}
+
+// GetStreamConnectionNetworkingInput is an input type that accepts GetStreamConnectionNetworkingArgs and GetStreamConnectionNetworkingOutput values.
+// You can construct a concrete instance of `GetStreamConnectionNetworkingInput` via:
+//
+//	GetStreamConnectionNetworkingArgs{...}
+type GetStreamConnectionNetworkingInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionNetworkingOutput() GetStreamConnectionNetworkingOutput
+	ToGetStreamConnectionNetworkingOutputWithContext(context.Context) GetStreamConnectionNetworkingOutput
+}
+
+type GetStreamConnectionNetworkingArgs struct {
+	// Information about the networking access. See access.
+	Access GetStreamConnectionNetworkingAccessInput `pulumi:"access"`
+}
+
+func (GetStreamConnectionNetworkingArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionNetworking)(nil)).Elem()
+}
+
+func (i GetStreamConnectionNetworkingArgs) ToGetStreamConnectionNetworkingOutput() GetStreamConnectionNetworkingOutput {
+	return i.ToGetStreamConnectionNetworkingOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionNetworkingArgs) ToGetStreamConnectionNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionNetworkingOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionNetworkingOutput)
+}
+
+type GetStreamConnectionNetworkingOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionNetworkingOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionNetworking)(nil)).Elem()
+}
+
+func (o GetStreamConnectionNetworkingOutput) ToGetStreamConnectionNetworkingOutput() GetStreamConnectionNetworkingOutput {
+	return o
+}
+
+func (o GetStreamConnectionNetworkingOutput) ToGetStreamConnectionNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionNetworkingOutput {
+	return o
+}
+
+// Information about the networking access. See access.
+func (o GetStreamConnectionNetworkingOutput) Access() GetStreamConnectionNetworkingAccessOutput {
+	return o.ApplyT(func(v GetStreamConnectionNetworking) GetStreamConnectionNetworkingAccess { return v.Access }).(GetStreamConnectionNetworkingAccessOutput)
+}
+
+type GetStreamConnectionNetworkingAccess struct {
+	// Id of the Private Link connection when type is `PRIVATE_LINK`.
+	ConnectionId string `pulumi:"connectionId"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type string `pulumi:"type"`
+}
+
+// GetStreamConnectionNetworkingAccessInput is an input type that accepts GetStreamConnectionNetworkingAccessArgs and GetStreamConnectionNetworkingAccessOutput values.
+// You can construct a concrete instance of `GetStreamConnectionNetworkingAccessInput` via:
+//
+//	GetStreamConnectionNetworkingAccessArgs{...}
+type GetStreamConnectionNetworkingAccessInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionNetworkingAccessOutput() GetStreamConnectionNetworkingAccessOutput
+	ToGetStreamConnectionNetworkingAccessOutputWithContext(context.Context) GetStreamConnectionNetworkingAccessOutput
+}
+
+type GetStreamConnectionNetworkingAccessArgs struct {
+	// Id of the Private Link connection when type is `PRIVATE_LINK`.
+	ConnectionId pulumi.StringInput `pulumi:"connectionId"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (GetStreamConnectionNetworkingAccessArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionNetworkingAccess)(nil)).Elem()
+}
+
+func (i GetStreamConnectionNetworkingAccessArgs) ToGetStreamConnectionNetworkingAccessOutput() GetStreamConnectionNetworkingAccessOutput {
+	return i.ToGetStreamConnectionNetworkingAccessOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionNetworkingAccessArgs) ToGetStreamConnectionNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionNetworkingAccessOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionNetworkingAccessOutput)
+}
+
+type GetStreamConnectionNetworkingAccessOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionNetworkingAccessOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionNetworkingAccess)(nil)).Elem()
+}
+
+func (o GetStreamConnectionNetworkingAccessOutput) ToGetStreamConnectionNetworkingAccessOutput() GetStreamConnectionNetworkingAccessOutput {
+	return o
+}
+
+func (o GetStreamConnectionNetworkingAccessOutput) ToGetStreamConnectionNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionNetworkingAccessOutput {
+	return o
+}
+
+// Id of the Private Link connection when type is `PRIVATE_LINK`.
+func (o GetStreamConnectionNetworkingAccessOutput) ConnectionId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionNetworkingAccess) string { return v.ConnectionId }).(pulumi.StringOutput)
+}
+
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+func (o GetStreamConnectionNetworkingAccessOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionSchemaRegistryAuthentication struct {
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+	Password string `pulumi:"password"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type string `pulumi:"type"`
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+	Username string `pulumi:"username"`
+}
+
+// GetStreamConnectionSchemaRegistryAuthenticationInput is an input type that accepts GetStreamConnectionSchemaRegistryAuthenticationArgs and GetStreamConnectionSchemaRegistryAuthenticationOutput values.
+// You can construct a concrete instance of `GetStreamConnectionSchemaRegistryAuthenticationInput` via:
+//
+//	GetStreamConnectionSchemaRegistryAuthenticationArgs{...}
+type GetStreamConnectionSchemaRegistryAuthenticationInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionSchemaRegistryAuthenticationOutput() GetStreamConnectionSchemaRegistryAuthenticationOutput
+	ToGetStreamConnectionSchemaRegistryAuthenticationOutputWithContext(context.Context) GetStreamConnectionSchemaRegistryAuthenticationOutput
+}
+
+type GetStreamConnectionSchemaRegistryAuthenticationArgs struct {
+	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+	Password pulumi.StringInput `pulumi:"password"`
+	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+	Type pulumi.StringInput `pulumi:"type"`
+	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+	Username pulumi.StringInput `pulumi:"username"`
+}
+
+func (GetStreamConnectionSchemaRegistryAuthenticationArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionSchemaRegistryAuthentication)(nil)).Elem()
+}
+
+func (i GetStreamConnectionSchemaRegistryAuthenticationArgs) ToGetStreamConnectionSchemaRegistryAuthenticationOutput() GetStreamConnectionSchemaRegistryAuthenticationOutput {
+	return i.ToGetStreamConnectionSchemaRegistryAuthenticationOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionSchemaRegistryAuthenticationArgs) ToGetStreamConnectionSchemaRegistryAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionSchemaRegistryAuthenticationOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionSchemaRegistryAuthenticationOutput)
+}
+
+type GetStreamConnectionSchemaRegistryAuthenticationOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionSchemaRegistryAuthenticationOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionSchemaRegistryAuthentication)(nil)).Elem()
+}
+
+func (o GetStreamConnectionSchemaRegistryAuthenticationOutput) ToGetStreamConnectionSchemaRegistryAuthenticationOutput() GetStreamConnectionSchemaRegistryAuthenticationOutput {
+	return o
+}
+
+func (o GetStreamConnectionSchemaRegistryAuthenticationOutput) ToGetStreamConnectionSchemaRegistryAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionSchemaRegistryAuthenticationOutput {
+	return o
+}
+
+// Password for the Schema Registry. Required when `type` is `USER_INFO`.
+func (o GetStreamConnectionSchemaRegistryAuthenticationOutput) Password() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionSchemaRegistryAuthentication) string { return v.Password }).(pulumi.StringOutput)
+}
+
+// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
+// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
+// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
+func (o GetStreamConnectionSchemaRegistryAuthenticationOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionSchemaRegistryAuthentication) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// Username for the Schema Registry. Required when `type` is `USER_INFO`.
+func (o GetStreamConnectionSchemaRegistryAuthenticationOutput) Username() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionSchemaRegistryAuthentication) string { return v.Username }).(pulumi.StringOutput)
+}
+
+type GetStreamConnectionSecurity struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate string `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
+	Protocol string `pulumi:"protocol"`
+}
+
+// GetStreamConnectionSecurityInput is an input type that accepts GetStreamConnectionSecurityArgs and GetStreamConnectionSecurityOutput values.
+// You can construct a concrete instance of `GetStreamConnectionSecurityInput` via:
+//
+//	GetStreamConnectionSecurityArgs{...}
+type GetStreamConnectionSecurityInput interface {
+	pulumi.Input
+
+	ToGetStreamConnectionSecurityOutput() GetStreamConnectionSecurityOutput
+	ToGetStreamConnectionSecurityOutputWithContext(context.Context) GetStreamConnectionSecurityOutput
+}
+
+type GetStreamConnectionSecurityArgs struct {
+	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+	BrokerPublicCertificate pulumi.StringInput `pulumi:"brokerPublicCertificate"`
+	// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
+	Protocol pulumi.StringInput `pulumi:"protocol"`
+}
+
+func (GetStreamConnectionSecurityArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionSecurity)(nil)).Elem()
+}
+
+func (i GetStreamConnectionSecurityArgs) ToGetStreamConnectionSecurityOutput() GetStreamConnectionSecurityOutput {
+	return i.ToGetStreamConnectionSecurityOutputWithContext(context.Background())
+}
+
+func (i GetStreamConnectionSecurityArgs) ToGetStreamConnectionSecurityOutputWithContext(ctx context.Context) GetStreamConnectionSecurityOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionSecurityOutput)
+}
+
+type GetStreamConnectionSecurityOutput struct{ *pulumi.OutputState }
+
+func (GetStreamConnectionSecurityOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStreamConnectionSecurity)(nil)).Elem()
+}
+
+func (o GetStreamConnectionSecurityOutput) ToGetStreamConnectionSecurityOutput() GetStreamConnectionSecurityOutput {
+	return o
+}
+
+func (o GetStreamConnectionSecurityOutput) ToGetStreamConnectionSecurityOutputWithContext(ctx context.Context) GetStreamConnectionSecurityOutput {
+	return o
+}
+
+// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
+func (o GetStreamConnectionSecurityOutput) BrokerPublicCertificate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionSecurity) string { return v.BrokerPublicCertificate }).(pulumi.StringOutput)
+}
+
+// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
+func (o GetStreamConnectionSecurityOutput) Protocol() pulumi.StringOutput {
+	return o.ApplyT(func(v GetStreamConnectionSecurity) string { return v.Protocol }).(pulumi.StringOutput)
+}
+
 type GetStreamConnectionsResult struct {
 	// User credentials required to connect to a Kafka cluster. Includes the authentication type, as well as the parameters for that authentication mode. See authentication.
 	Authentication GetStreamConnectionsResultAuthentication `pulumi:"authentication"`
@@ -3286,8 +3849,10 @@ type GetThirdPartyIntegrationsResult struct {
 	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
 	SendDatabaseMetrics bool `pulumi:"sendDatabaseMetrics"`
 	// Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
-	// * `OPS_GENIE`
 	SendQueryStatsMetrics bool `pulumi:"sendQueryStatsMetrics"`
+	// Toggle sending sharding metrics that includes sharding distribution and chunk metrics per cluster, shard, and collection.
+	// * `OPS_GENIE`
+	SendShardingMetrics bool `pulumi:"sendShardingMetrics"`
 	// Toggle sending user provided group and cluster resource tags with the Datadog metrics.
 	SendUserProvidedResourceTags bool `pulumi:"sendUserProvidedResourceTags"`
 	// Indicates which service discovery method is used, either file or http.
@@ -3343,8 +3908,10 @@ type GetThirdPartyIntegrationsResultArgs struct {
 	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
 	SendDatabaseMetrics pulumi.BoolInput `pulumi:"sendDatabaseMetrics"`
 	// Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
-	// * `OPS_GENIE`
 	SendQueryStatsMetrics pulumi.BoolInput `pulumi:"sendQueryStatsMetrics"`
+	// Toggle sending sharding metrics that includes sharding distribution and chunk metrics per cluster, shard, and collection.
+	// * `OPS_GENIE`
+	SendShardingMetrics pulumi.BoolInput `pulumi:"sendShardingMetrics"`
 	// Toggle sending user provided group and cluster resource tags with the Datadog metrics.
 	SendUserProvidedResourceTags pulumi.BoolInput `pulumi:"sendUserProvidedResourceTags"`
 	// Indicates which service discovery method is used, either file or http.
@@ -3475,9 +4042,14 @@ func (o GetThirdPartyIntegrationsResultOutput) SendDatabaseMetrics() pulumi.Bool
 }
 
 // Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
-// * `OPS_GENIE`
 func (o GetThirdPartyIntegrationsResultOutput) SendQueryStatsMetrics() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.SendQueryStatsMetrics }).(pulumi.BoolOutput)
+}
+
+// Toggle sending sharding metrics that includes sharding distribution and chunk metrics per cluster, shard, and collection.
+// * `OPS_GENIE`
+func (o GetThirdPartyIntegrationsResultOutput) SendShardingMetrics() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetThirdPartyIntegrationsResult) bool { return v.SendShardingMetrics }).(pulumi.BoolOutput)
 }
 
 // Toggle sending user provided group and cluster resource tags with the Datadog metrics.
@@ -3654,6 +4226,15 @@ func (o GetX509AuthenticationDatabaseUserCertificateArrayOutput) Index(i pulumi.
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionFailoversResultDbRoleToExecuteArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultNetworkingInput)(nil)).Elem(), GetStreamConnectionFailoversResultNetworkingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionFailoversResultNetworkingAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultSecurityInput)(nil)).Elem(), GetStreamConnectionFailoversResultSecurityArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionGcpInput)(nil)).Elem(), GetStreamConnectionGcpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionNetworkingInput)(nil)).Elem(), GetStreamConnectionNetworkingArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionNetworkingAccessArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionSchemaRegistryAuthenticationInput)(nil)).Elem(), GetStreamConnectionSchemaRegistryAuthenticationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionSecurityInput)(nil)).Elem(), GetStreamConnectionSecurityArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultInput)(nil)).Elem(), GetStreamConnectionsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultArrayInput)(nil)).Elem(), GetStreamConnectionsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionsResultAuthenticationInput)(nil)).Elem(), GetStreamConnectionsResultAuthenticationArgs{})
@@ -3702,6 +4283,15 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetThirdPartyIntegrationsResultArrayInput)(nil)).Elem(), GetThirdPartyIntegrationsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetX509AuthenticationDatabaseUserCertificateInput)(nil)).Elem(), GetX509AuthenticationDatabaseUserCertificateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetX509AuthenticationDatabaseUserCertificateArrayInput)(nil)).Elem(), GetX509AuthenticationDatabaseUserCertificateArray{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultDbRoleToExecuteOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultNetworkingOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultNetworkingAccessOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultSecurityOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionGcpOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionNetworkingOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionNetworkingAccessOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionSchemaRegistryAuthenticationOutput{})
+	pulumi.RegisterOutputType(GetStreamConnectionSecurityOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionsResultAuthenticationOutput{})

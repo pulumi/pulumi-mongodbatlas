@@ -28,6 +28,14 @@ namespace Pulumi.Mongodbatlas.Inputs
             set => _azures = value;
         }
 
+        [Input("gcps", required: true)]
+        private List<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs>? _gcps;
+        public List<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs> Gcps
+        {
+            get => _gcps ?? (_gcps = new List<Inputs.GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs>());
+            set => _gcps = value;
+        }
+
         public GetFederatedDatabaseInstanceCloudProviderConfigArgs()
         {
         }

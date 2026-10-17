@@ -70,7 +70,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs e
     }
 
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Don&#39;t set this parameter for GCP or Azure clusters. Valid values are:
+     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
      * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
      * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
      * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -80,7 +80,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs e
     private @Nullable Output<String> ebsVolumeType;
 
     /**
-     * @return Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Don&#39;t set this parameter for GCP or Azure clusters. Valid values are:
+     * @return Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
      * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
      * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
      * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -225,7 +225,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs e
         }
 
         /**
-         * @param ebsVolumeType Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Don&#39;t set this parameter for GCP or Azure clusters. Valid values are:
+         * @param ebsVolumeType Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
          * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
          * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
          * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -239,7 +239,7 @@ public final class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs e
         }
 
         /**
-         * @param ebsVolumeType Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. Don&#39;t set this parameter for GCP or Azure clusters. Valid values are:
+         * @param ebsVolumeType Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can&#39;t set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
          * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
          * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
          * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.

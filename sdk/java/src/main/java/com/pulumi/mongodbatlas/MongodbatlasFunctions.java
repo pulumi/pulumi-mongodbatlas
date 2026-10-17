@@ -16542,7 +16542,8 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * 
+     * Note: To learn more about OIDC federated authentication, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static Output<GetDatabaseUserResult> getDatabaseUser(GetDatabaseUserArgs args) {
@@ -16664,7 +16665,8 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * 
+     * Note: To learn more about OIDC federated authentication, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static CompletableFuture<GetDatabaseUserResult> getDatabaseUserPlain(GetDatabaseUserPlainArgs args) {
@@ -16786,7 +16788,8 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * 
+     * Note: To learn more about OIDC federated authentication, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static Output<GetDatabaseUserResult> getDatabaseUser(GetDatabaseUserArgs args, InvokeOptions options) {
@@ -16908,7 +16911,8 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * 
+     * Note: To learn more about OIDC federated authentication, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static Output<GetDatabaseUserResult> getDatabaseUser(GetDatabaseUserArgs args, InvokeOutputOptions options) {
@@ -17030,7 +17034,8 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * 
+     * Note: To learn more about OIDC federated authentication, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static CompletableFuture<GetDatabaseUserResult> getDatabaseUserPlain(GetDatabaseUserPlainArgs args, InvokeOptions options) {
@@ -17148,7 +17153,8 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * 
+     * Note: To learn more about OIDC federated authentication, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static Output<GetDatabaseUsersInvokeResult> getDatabaseUsers(GetDatabaseUsersArgs args) {
@@ -17266,7 +17272,8 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * 
+     * Note: To learn more about OIDC federated authentication, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static CompletableFuture<GetDatabaseUsersInvokeResult> getDatabaseUsersPlain(GetDatabaseUsersPlainArgs args) {
@@ -17384,7 +17391,8 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * 
+     * Note: To learn more about OIDC federated authentication, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static Output<GetDatabaseUsersInvokeResult> getDatabaseUsers(GetDatabaseUsersArgs args, InvokeOptions options) {
@@ -17502,7 +17510,8 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * 
+     * Note: To learn more about OIDC federated authentication, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static Output<GetDatabaseUsersInvokeResult> getDatabaseUsers(GetDatabaseUsersArgs args, InvokeOutputOptions options) {
@@ -17620,7 +17629,8 @@ public final class MongodbatlasFunctions {
      * }
      * }
      * </pre>
-     * Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+     * 
+     * Note: To learn more about OIDC federated authentication, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
      * 
      */
     public static CompletableFuture<GetDatabaseUsersInvokeResult> getDatabaseUsersPlain(GetDatabaseUsersPlainArgs args, InvokeOptions options) {
@@ -19659,8 +19669,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -19677,13 +19685,44 @@ public final class MongodbatlasFunctions {
      *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>")
-     *             .cloudProviderConfigs(GetFederatedDatabaseInstanceCloudProviderConfigArgs.builder()
-     *                 .azures(GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs.builder()
-     *                     .roleId("<AZURE_ROLE_ID>")
-     *                     .build())
-     *                 .build())
      *             .build());
      * 
+     *         ctx.export("azureRoleId", test.cloudProviderConfigs()[0].azures()[0].roleId());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Example of Google Cloud Storage as storage database
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .name("<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>")
+     *             .build());
+     * 
+     *         ctx.export("gcpServiceAccount", test.cloudProviderConfigs()[0].gcps()[0].gcpServiceAccount());
      *     }
      * }
      * }
@@ -19786,8 +19825,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -19804,13 +19841,44 @@ public final class MongodbatlasFunctions {
      *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>")
-     *             .cloudProviderConfigs(GetFederatedDatabaseInstanceCloudProviderConfigArgs.builder()
-     *                 .azures(GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs.builder()
-     *                     .roleId("<AZURE_ROLE_ID>")
-     *                     .build())
-     *                 .build())
      *             .build());
      * 
+     *         ctx.export("azureRoleId", test.cloudProviderConfigs()[0].azures()[0].roleId());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Example of Google Cloud Storage as storage database
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .name("<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>")
+     *             .build());
+     * 
+     *         ctx.export("gcpServiceAccount", test.cloudProviderConfigs()[0].gcps()[0].gcpServiceAccount());
      *     }
      * }
      * }
@@ -19913,8 +19981,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -19931,13 +19997,44 @@ public final class MongodbatlasFunctions {
      *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>")
-     *             .cloudProviderConfigs(GetFederatedDatabaseInstanceCloudProviderConfigArgs.builder()
-     *                 .azures(GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs.builder()
-     *                     .roleId("<AZURE_ROLE_ID>")
-     *                     .build())
-     *                 .build())
      *             .build());
      * 
+     *         ctx.export("azureRoleId", test.cloudProviderConfigs()[0].azures()[0].roleId());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Example of Google Cloud Storage as storage database
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .name("<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>")
+     *             .build());
+     * 
+     *         ctx.export("gcpServiceAccount", test.cloudProviderConfigs()[0].gcps()[0].gcpServiceAccount());
      *     }
      * }
      * }
@@ -20040,8 +20137,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -20058,13 +20153,44 @@ public final class MongodbatlasFunctions {
      *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>")
-     *             .cloudProviderConfigs(GetFederatedDatabaseInstanceCloudProviderConfigArgs.builder()
-     *                 .azures(GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs.builder()
-     *                     .roleId("<AZURE_ROLE_ID>")
-     *                     .build())
-     *                 .build())
      *             .build());
      * 
+     *         ctx.export("azureRoleId", test.cloudProviderConfigs()[0].azures()[0].roleId());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Example of Google Cloud Storage as storage database
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .name("<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>")
+     *             .build());
+     * 
+     *         ctx.export("gcpServiceAccount", test.cloudProviderConfigs()[0].gcps()[0].gcpServiceAccount());
      *     }
      * }
      * }
@@ -20167,8 +20293,6 @@ public final class MongodbatlasFunctions {
      * import com.pulumi.core.Output;
      * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
      * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigArgs;
-     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs;
      * import java.util.ArrayList;
      * import java.util.Arrays;
      * import java.util.Map;
@@ -20185,13 +20309,44 @@ public final class MongodbatlasFunctions {
      *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
      *             .projectId("<PROJECT_ID>")
      *             .name("<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>")
-     *             .cloudProviderConfigs(GetFederatedDatabaseInstanceCloudProviderConfigArgs.builder()
-     *                 .azures(GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs.builder()
-     *                     .roleId("<AZURE_ROLE_ID>")
-     *                     .build())
-     *                 .build())
      *             .build());
      * 
+     *         ctx.export("azureRoleId", test.cloudProviderConfigs()[0].azures()[0].roleId());
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
+     * ## Example of Google Cloud Storage as storage database
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstance(GetFederatedDatabaseInstanceArgs.builder()
+     *             .projectId("<PROJECT_ID>")
+     *             .name("<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>")
+     *             .build());
+     * 
+     *         ctx.export("gcpServiceAccount", test.cloudProviderConfigs()[0].gcps()[0].gcpServiceAccount());
      *     }
      * }
      * }
@@ -25951,7 +26106,8 @@ public final class MongodbatlasFunctions {
      * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to read back a single integration by its metric integration ID and output its integration type.
      * 
      * ### Further Examples
-     * - Metric Integration Examples
+     * - Header-based — export Atlas metrics using header-based authentication.
+     * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
      * 
      */
     public static Output<GetMetricIntegrationResult> getMetricIntegration(GetMetricIntegrationArgs args) {
@@ -25967,7 +26123,8 @@ public final class MongodbatlasFunctions {
      * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to read back a single integration by its metric integration ID and output its integration type.
      * 
      * ### Further Examples
-     * - Metric Integration Examples
+     * - Header-based — export Atlas metrics using header-based authentication.
+     * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
      * 
      */
     public static CompletableFuture<GetMetricIntegrationResult> getMetricIntegrationPlain(GetMetricIntegrationPlainArgs args) {
@@ -25983,7 +26140,8 @@ public final class MongodbatlasFunctions {
      * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to read back a single integration by its metric integration ID and output its integration type.
      * 
      * ### Further Examples
-     * - Metric Integration Examples
+     * - Header-based — export Atlas metrics using header-based authentication.
+     * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
      * 
      */
     public static Output<GetMetricIntegrationResult> getMetricIntegration(GetMetricIntegrationArgs args, InvokeOptions options) {
@@ -25999,7 +26157,8 @@ public final class MongodbatlasFunctions {
      * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to read back a single integration by its metric integration ID and output its integration type.
      * 
      * ### Further Examples
-     * - Metric Integration Examples
+     * - Header-based — export Atlas metrics using header-based authentication.
+     * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
      * 
      */
     public static Output<GetMetricIntegrationResult> getMetricIntegration(GetMetricIntegrationArgs args, InvokeOutputOptions options) {
@@ -26015,7 +26174,8 @@ public final class MongodbatlasFunctions {
      * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to read back a single integration by its metric integration ID and output its integration type.
      * 
      * ### Further Examples
-     * - Metric Integration Examples
+     * - Header-based — export Atlas metrics using header-based authentication.
+     * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
      * 
      */
     public static CompletableFuture<GetMetricIntegrationResult> getMetricIntegrationPlain(GetMetricIntegrationPlainArgs args, InvokeOptions options) {
@@ -26033,7 +26193,8 @@ public final class MongodbatlasFunctions {
      * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to retrieve all metric integrations configured in the project and output their `metricIntegrationId` values.
      * 
      * ### Further Examples
-     * - Metric Integration Examples
+     * - Header-based — export Atlas metrics using header-based authentication.
+     * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
      * 
      */
     public static Output<GetMetricIntegrationsInvokeResult> getMetricIntegrations(GetMetricIntegrationsArgs args) {
@@ -26051,7 +26212,8 @@ public final class MongodbatlasFunctions {
      * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to retrieve all metric integrations configured in the project and output their `metricIntegrationId` values.
      * 
      * ### Further Examples
-     * - Metric Integration Examples
+     * - Header-based — export Atlas metrics using header-based authentication.
+     * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
      * 
      */
     public static CompletableFuture<GetMetricIntegrationsInvokeResult> getMetricIntegrationsPlain(GetMetricIntegrationsPlainArgs args) {
@@ -26069,7 +26231,8 @@ public final class MongodbatlasFunctions {
      * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to retrieve all metric integrations configured in the project and output their `metricIntegrationId` values.
      * 
      * ### Further Examples
-     * - Metric Integration Examples
+     * - Header-based — export Atlas metrics using header-based authentication.
+     * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
      * 
      */
     public static Output<GetMetricIntegrationsInvokeResult> getMetricIntegrations(GetMetricIntegrationsArgs args, InvokeOptions options) {
@@ -26087,7 +26250,8 @@ public final class MongodbatlasFunctions {
      * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to retrieve all metric integrations configured in the project and output their `metricIntegrationId` values.
      * 
      * ### Further Examples
-     * - Metric Integration Examples
+     * - Header-based — export Atlas metrics using header-based authentication.
+     * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
      * 
      */
     public static Output<GetMetricIntegrationsInvokeResult> getMetricIntegrations(GetMetricIntegrationsArgs args, InvokeOutputOptions options) {
@@ -26105,7 +26269,8 @@ public final class MongodbatlasFunctions {
      * The following example creates a `mongodbatlas.MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to retrieve all metric integrations configured in the project and output their `metricIntegrationId` values.
      * 
      * ### Further Examples
-     * - Metric Integration Examples
+     * - Header-based — export Atlas metrics using header-based authentication.
+     * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
      * 
      */
     public static CompletableFuture<GetMetricIntegrationsInvokeResult> getMetricIntegrationsPlain(GetMetricIntegrationsPlainArgs args, InvokeOptions options) {
