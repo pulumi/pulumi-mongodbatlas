@@ -94,22 +94,42 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := mongodbatlas.GetFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
+//			test, err := mongodbatlas.GetFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
 //				ProjectId: "<PROJECT_ID>",
 //				Name:      "<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
-//				CloudProviderConfigs: []mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfig{
-//					{
-//						Azures: []mongodbatlas.GetFederatedDatabaseInstanceCloudProviderConfigAzure{
-//							{
-//								RoleId: "<AZURE_ROLE_ID>",
-//							},
-//						},
-//					},
-//				},
 //			}, nil)
 //			if err != nil {
 //				return err
 //			}
+//			ctx.Export("azureRoleId", test.CloudProviderConfigs[0].Azures[0].RoleId)
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// ## Example of Google Cloud Storage as storage database
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			test, err := mongodbatlas.GetFederatedDatabaseInstance(ctx, &mongodbatlas.LookupFederatedDatabaseInstanceArgs{
+//				ProjectId: "<PROJECT_ID>",
+//				Name:      "<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("gcpServiceAccount", test.CloudProviderConfigs[0].Gcps[0].GcpServiceAccount)
 //			return nil
 //		})
 //	}
@@ -177,8 +197,8 @@ type LookupFederatedDatabaseInstanceResult struct {
 	// Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
 	// * `storage_stores.#.name` - Name of the data store.
 	// * `storage_stores.#.provider` - Defines where the data is stored.
-	// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-	// * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+	// * `storage_stores.#.region` - Name of the cloud provider region in which the bucket is hosted.
+	// * `storage_stores.#.bucket` - Name of the bucket.
 	// * `storage_stores.#.prefix` - Prefix the Federated Database Instance applies when searching for files in the S3 bucket.
 	// * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
 	// * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
@@ -306,8 +326,8 @@ func (o LookupFederatedDatabaseInstanceResultOutput) StorageDatabases() GetFeder
 // Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
 // * `storage_stores.#.name` - Name of the data store.
 // * `storage_stores.#.provider` - Defines where the data is stored.
-// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-// * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+// * `storage_stores.#.region` - Name of the cloud provider region in which the bucket is hosted.
+// * `storage_stores.#.bucket` - Name of the bucket.
 // * `storage_stores.#.prefix` - Prefix the Federated Database Instance applies when searching for files in the S3 bucket.
 // * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
 // * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.

@@ -250,6 +250,38 @@ namespace Pulumi.Mongodbatlas.Inputs
             }
         }
 
+        [Input("webhookBodyTemplate")]
+        private Input<string>? _webhookBodyTemplate;
+
+        /// <summary>
+        /// Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+        /// </summary>
+        public Input<string>? WebhookBodyTemplate
+        {
+            get => _webhookBodyTemplate;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _webhookBodyTemplate = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("webhookHeadersTemplate")]
+        private Input<string>? _webhookHeadersTemplate;
+
+        /// <summary>
+        /// Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+        /// </summary>
+        public Input<string>? WebhookHeadersTemplate
+        {
+            get => _webhookHeadersTemplate;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _webhookHeadersTemplate = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
         [Input("webhookSecret")]
         private Input<string>? _webhookSecret;
 

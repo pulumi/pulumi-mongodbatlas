@@ -1854,7 +1854,7 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs struct {
 	DiskIops *int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -1898,7 +1898,7 @@ type AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs struct {
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2013,7 +2013,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsOutput) DiskSize
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs) *float64 { return v.DiskSizeGb }).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 // * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 // * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 // * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2092,7 +2092,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsPtrOutput) DiskS
 	}).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 // * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 // * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 // * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2580,7 +2580,7 @@ type AdvancedClusterReplicationSpecRegionConfigElectableSpecs struct {
 	DiskIops *int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2624,7 +2624,7 @@ type AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs struct {
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2739,7 +2739,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsOutput) DiskSize
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigElectableSpecs) *float64 { return v.DiskSizeGb }).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 // * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 // * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 // * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2818,7 +2818,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigElectableSpecsPtrOutput) DiskS
 	}).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 // * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 // * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 // * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2873,7 +2873,7 @@ type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs struct {
 	DiskIops *int `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb *float64 `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2917,7 +2917,7 @@ type AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs struct {
 	DiskIops pulumi.IntPtrInput `pulumi:"diskIops"`
 	// Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `diskSizeGb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `diskSizeGb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `diskSizeGb` specifies the storage capacity while the IOPS are set independently. On GCP, `diskSizeGb` is always required input, since it determines the valid `diskIops` range for Gen2 instance sizes.
 	DiskSizeGb pulumi.Float64PtrInput `pulumi:"diskSizeGb"`
-	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+	// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 	// * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 	// * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 	// * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -3032,7 +3032,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsOutput) DiskSizeG
 	return o.ApplyT(func(v AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs) *float64 { return v.DiskSizeGb }).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 // * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 // * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 // * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -3111,7 +3111,7 @@ func (o AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsPtrOutput) DiskSi
 	}).(pulumi.Float64PtrOutput)
 }
 
-// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+// Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
 // * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
 // * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
 // * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -3754,6 +3754,10 @@ type AlertConfigurationNotification struct {
 	VictorOpsApiKey *string `pulumi:"victorOpsApiKey"`
 	// VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	VictorOpsRoutingKey *string `pulumi:"victorOpsRoutingKey"`
+	// Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+	WebhookBodyTemplate *string `pulumi:"webhookBodyTemplate"`
+	// Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+	WebhookHeadersTemplate *string `pulumi:"webhookHeadersTemplate"`
 	// Optional authentication secret for the `WEBHOOK` notifications type.
 	WebhookSecret *string `pulumi:"webhookSecret"`
 	// Target URL  for the `WEBHOOK` notifications type.
@@ -3842,6 +3846,10 @@ type AlertConfigurationNotificationArgs struct {
 	VictorOpsApiKey pulumi.StringPtrInput `pulumi:"victorOpsApiKey"`
 	// VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	VictorOpsRoutingKey pulumi.StringPtrInput `pulumi:"victorOpsRoutingKey"`
+	// Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+	WebhookBodyTemplate pulumi.StringPtrInput `pulumi:"webhookBodyTemplate"`
+	// Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+	WebhookHeadersTemplate pulumi.StringPtrInput `pulumi:"webhookHeadersTemplate"`
 	// Optional authentication secret for the `WEBHOOK` notifications type.
 	WebhookSecret pulumi.StringPtrInput `pulumi:"webhookSecret"`
 	// Target URL  for the `WEBHOOK` notifications type.
@@ -4036,6 +4044,16 @@ func (o AlertConfigurationNotificationOutput) VictorOpsApiKey() pulumi.StringPtr
 // VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 func (o AlertConfigurationNotificationOutput) VictorOpsRoutingKey() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.VictorOpsRoutingKey }).(pulumi.StringPtrOutput)
+}
+
+// Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+func (o AlertConfigurationNotificationOutput) WebhookBodyTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.WebhookBodyTemplate }).(pulumi.StringPtrOutput)
+}
+
+// Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+func (o AlertConfigurationNotificationOutput) WebhookHeadersTemplate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v AlertConfigurationNotification) *string { return v.WebhookHeadersTemplate }).(pulumi.StringPtrOutput)
 }
 
 // Optional authentication secret for the `WEBHOOK` notifications type.
@@ -13251,6 +13269,8 @@ type FederatedDatabaseInstanceCloudProviderConfig struct {
 	Aws *FederatedDatabaseInstanceCloudProviderConfigAws `pulumi:"aws"`
 	// Microsoft Azure cloud service configuration.
 	Azure *FederatedDatabaseInstanceCloudProviderConfigAzure `pulumi:"azure"`
+	// Google Cloud cloud service configuration.
+	Gcp *FederatedDatabaseInstanceCloudProviderConfigGcp `pulumi:"gcp"`
 }
 
 // FederatedDatabaseInstanceCloudProviderConfigInput is an input type that accepts FederatedDatabaseInstanceCloudProviderConfigArgs and FederatedDatabaseInstanceCloudProviderConfigOutput values.
@@ -13269,6 +13289,8 @@ type FederatedDatabaseInstanceCloudProviderConfigArgs struct {
 	Aws FederatedDatabaseInstanceCloudProviderConfigAwsPtrInput `pulumi:"aws"`
 	// Microsoft Azure cloud service configuration.
 	Azure FederatedDatabaseInstanceCloudProviderConfigAzurePtrInput `pulumi:"azure"`
+	// Google Cloud cloud service configuration.
+	Gcp FederatedDatabaseInstanceCloudProviderConfigGcpPtrInput `pulumi:"gcp"`
 }
 
 func (FederatedDatabaseInstanceCloudProviderConfigArgs) ElementType() reflect.Type {
@@ -13362,6 +13384,13 @@ func (o FederatedDatabaseInstanceCloudProviderConfigOutput) Azure() FederatedDat
 	}).(FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput)
 }
 
+// Google Cloud cloud service configuration.
+func (o FederatedDatabaseInstanceCloudProviderConfigOutput) Gcp() FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfig) *FederatedDatabaseInstanceCloudProviderConfigGcp {
+		return v.Gcp
+	}).(FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput)
+}
+
 type FederatedDatabaseInstanceCloudProviderConfigPtrOutput struct{ *pulumi.OutputState }
 
 func (FederatedDatabaseInstanceCloudProviderConfigPtrOutput) ElementType() reflect.Type {
@@ -13404,6 +13433,16 @@ func (o FederatedDatabaseInstanceCloudProviderConfigPtrOutput) Azure() Federated
 		}
 		return v.Azure
 	}).(FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput)
+}
+
+// Google Cloud cloud service configuration.
+func (o FederatedDatabaseInstanceCloudProviderConfigPtrOutput) Gcp() FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput {
+	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfig) *FederatedDatabaseInstanceCloudProviderConfigGcp {
+		if v == nil {
+			return nil
+		}
+		return v.Gcp
+	}).(FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput)
 }
 
 type FederatedDatabaseInstanceCloudProviderConfigAws struct {
@@ -13810,6 +13849,158 @@ func (o FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput) TenantId() p
 			return nil
 		}
 		return v.TenantId
+	}).(pulumi.StringPtrOutput)
+}
+
+type FederatedDatabaseInstanceCloudProviderConfigGcp struct {
+	// Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+	GcpServiceAccount *string `pulumi:"gcpServiceAccount"`
+	RoleId            string  `pulumi:"roleId"`
+}
+
+// FederatedDatabaseInstanceCloudProviderConfigGcpInput is an input type that accepts FederatedDatabaseInstanceCloudProviderConfigGcpArgs and FederatedDatabaseInstanceCloudProviderConfigGcpOutput values.
+// You can construct a concrete instance of `FederatedDatabaseInstanceCloudProviderConfigGcpInput` via:
+//
+//	FederatedDatabaseInstanceCloudProviderConfigGcpArgs{...}
+type FederatedDatabaseInstanceCloudProviderConfigGcpInput interface {
+	pulumi.Input
+
+	ToFederatedDatabaseInstanceCloudProviderConfigGcpOutput() FederatedDatabaseInstanceCloudProviderConfigGcpOutput
+	ToFederatedDatabaseInstanceCloudProviderConfigGcpOutputWithContext(context.Context) FederatedDatabaseInstanceCloudProviderConfigGcpOutput
+}
+
+type FederatedDatabaseInstanceCloudProviderConfigGcpArgs struct {
+	// Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+	GcpServiceAccount pulumi.StringPtrInput `pulumi:"gcpServiceAccount"`
+	RoleId            pulumi.StringInput    `pulumi:"roleId"`
+}
+
+func (FederatedDatabaseInstanceCloudProviderConfigGcpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedDatabaseInstanceCloudProviderConfigGcp)(nil)).Elem()
+}
+
+func (i FederatedDatabaseInstanceCloudProviderConfigGcpArgs) ToFederatedDatabaseInstanceCloudProviderConfigGcpOutput() FederatedDatabaseInstanceCloudProviderConfigGcpOutput {
+	return i.ToFederatedDatabaseInstanceCloudProviderConfigGcpOutputWithContext(context.Background())
+}
+
+func (i FederatedDatabaseInstanceCloudProviderConfigGcpArgs) ToFederatedDatabaseInstanceCloudProviderConfigGcpOutputWithContext(ctx context.Context) FederatedDatabaseInstanceCloudProviderConfigGcpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstanceCloudProviderConfigGcpOutput)
+}
+
+func (i FederatedDatabaseInstanceCloudProviderConfigGcpArgs) ToFederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput() FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput {
+	return i.ToFederatedDatabaseInstanceCloudProviderConfigGcpPtrOutputWithContext(context.Background())
+}
+
+func (i FederatedDatabaseInstanceCloudProviderConfigGcpArgs) ToFederatedDatabaseInstanceCloudProviderConfigGcpPtrOutputWithContext(ctx context.Context) FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstanceCloudProviderConfigGcpOutput).ToFederatedDatabaseInstanceCloudProviderConfigGcpPtrOutputWithContext(ctx)
+}
+
+// FederatedDatabaseInstanceCloudProviderConfigGcpPtrInput is an input type that accepts FederatedDatabaseInstanceCloudProviderConfigGcpArgs, FederatedDatabaseInstanceCloudProviderConfigGcpPtr and FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput values.
+// You can construct a concrete instance of `FederatedDatabaseInstanceCloudProviderConfigGcpPtrInput` via:
+//
+//	        FederatedDatabaseInstanceCloudProviderConfigGcpArgs{...}
+//
+//	or:
+//
+//	        nil
+type FederatedDatabaseInstanceCloudProviderConfigGcpPtrInput interface {
+	pulumi.Input
+
+	ToFederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput() FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput
+	ToFederatedDatabaseInstanceCloudProviderConfigGcpPtrOutputWithContext(context.Context) FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput
+}
+
+type federatedDatabaseInstanceCloudProviderConfigGcpPtrType FederatedDatabaseInstanceCloudProviderConfigGcpArgs
+
+func FederatedDatabaseInstanceCloudProviderConfigGcpPtr(v *FederatedDatabaseInstanceCloudProviderConfigGcpArgs) FederatedDatabaseInstanceCloudProviderConfigGcpPtrInput {
+	return (*federatedDatabaseInstanceCloudProviderConfigGcpPtrType)(v)
+}
+
+func (*federatedDatabaseInstanceCloudProviderConfigGcpPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**FederatedDatabaseInstanceCloudProviderConfigGcp)(nil)).Elem()
+}
+
+func (i *federatedDatabaseInstanceCloudProviderConfigGcpPtrType) ToFederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput() FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput {
+	return i.ToFederatedDatabaseInstanceCloudProviderConfigGcpPtrOutputWithContext(context.Background())
+}
+
+func (i *federatedDatabaseInstanceCloudProviderConfigGcpPtrType) ToFederatedDatabaseInstanceCloudProviderConfigGcpPtrOutputWithContext(ctx context.Context) FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput)
+}
+
+type FederatedDatabaseInstanceCloudProviderConfigGcpOutput struct{ *pulumi.OutputState }
+
+func (FederatedDatabaseInstanceCloudProviderConfigGcpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FederatedDatabaseInstanceCloudProviderConfigGcp)(nil)).Elem()
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigGcpOutput) ToFederatedDatabaseInstanceCloudProviderConfigGcpOutput() FederatedDatabaseInstanceCloudProviderConfigGcpOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigGcpOutput) ToFederatedDatabaseInstanceCloudProviderConfigGcpOutputWithContext(ctx context.Context) FederatedDatabaseInstanceCloudProviderConfigGcpOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigGcpOutput) ToFederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput() FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput {
+	return o.ToFederatedDatabaseInstanceCloudProviderConfigGcpPtrOutputWithContext(context.Background())
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigGcpOutput) ToFederatedDatabaseInstanceCloudProviderConfigGcpPtrOutputWithContext(ctx context.Context) FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v FederatedDatabaseInstanceCloudProviderConfigGcp) *FederatedDatabaseInstanceCloudProviderConfigGcp {
+		return &v
+	}).(FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput)
+}
+
+// Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+func (o FederatedDatabaseInstanceCloudProviderConfigGcpOutput) GcpServiceAccount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfigGcp) *string { return v.GcpServiceAccount }).(pulumi.StringPtrOutput)
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigGcpOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v FederatedDatabaseInstanceCloudProviderConfigGcp) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+type FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput struct{ *pulumi.OutputState }
+
+func (FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FederatedDatabaseInstanceCloudProviderConfigGcp)(nil)).Elem()
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput) ToFederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput() FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput) ToFederatedDatabaseInstanceCloudProviderConfigGcpPtrOutputWithContext(ctx context.Context) FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput {
+	return o
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput) Elem() FederatedDatabaseInstanceCloudProviderConfigGcpOutput {
+	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfigGcp) FederatedDatabaseInstanceCloudProviderConfigGcp {
+		if v != nil {
+			return *v
+		}
+		var ret FederatedDatabaseInstanceCloudProviderConfigGcp
+		return ret
+	}).(FederatedDatabaseInstanceCloudProviderConfigGcpOutput)
+}
+
+// Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+func (o FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput) GcpServiceAccount() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfigGcp) *string {
+		if v == nil {
+			return nil
+		}
+		return v.GcpServiceAccount
+	}).(pulumi.StringPtrOutput)
+}
+
+func (o FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput) RoleId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *FederatedDatabaseInstanceCloudProviderConfigGcp) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.RoleId
 	}).(pulumi.StringPtrOutput)
 }
 
@@ -16126,7 +16317,7 @@ type GlobalClusterConfigManagedNamespace struct {
 	CustomShardKey string `pulumi:"customShardKey"`
 	// The name of the database containing the collection.
 	Db string `pulumi:"db"`
-	// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+	// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
 	IsCustomShardKeyHashed *bool `pulumi:"isCustomShardKeyHashed"`
 	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
 	IsShardKeyUnique *bool `pulumi:"isShardKeyUnique"`
@@ -16150,7 +16341,7 @@ type GlobalClusterConfigManagedNamespaceArgs struct {
 	CustomShardKey pulumi.StringInput `pulumi:"customShardKey"`
 	// The name of the database containing the collection.
 	Db pulumi.StringInput `pulumi:"db"`
-	// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+	// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
 	IsCustomShardKeyHashed pulumi.BoolPtrInput `pulumi:"isCustomShardKeyHashed"`
 	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
 	IsShardKeyUnique pulumi.BoolPtrInput `pulumi:"isShardKeyUnique"`
@@ -16222,7 +16413,7 @@ func (o GlobalClusterConfigManagedNamespaceOutput) Db() pulumi.StringOutput {
 	return o.ApplyT(func(v GlobalClusterConfigManagedNamespace) string { return v.Db }).(pulumi.StringOutput)
 }
 
-// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
 func (o GlobalClusterConfigManagedNamespaceOutput) IsCustomShardKeyHashed() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v GlobalClusterConfigManagedNamespace) *bool { return v.IsCustomShardKeyHashed }).(pulumi.BoolPtrOutput)
 }
@@ -17139,6 +17330,451 @@ func (o MetricIntegrationHeadersRedactedArrayOutput) Index(i pulumi.IntInput) Me
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) MetricIntegrationHeadersRedacted {
 		return vs[0].([]MetricIntegrationHeadersRedacted)[vs[1].(int)]
 	}).(MetricIntegrationHeadersRedactedOutput)
+}
+
+type MetricIntegrationOauth struct {
+	// How the client authenticates to the token endpoint. `CLIENT_SECRET` sends a shared secret. `PRIVATE_KEY_JWT` signs a client assertion with an Atlas-generated, Atlas-managed key. Register the returned JWKS URL with your identity provider.
+	ClientAuthMethod string `pulumi:"clientAuthMethod"`
+	// OAuth 2.0 client identifier registered with the token endpoint.
+	ClientId string `pulumi:"clientId"`
+	// Shared client secret. Required when client*auth*method is `CLIENT_SECRET`, and rejected for `PRIVATE_KEY_JWT`. Encrypted at rest and never returned.
+	ClientSecret *string `pulumi:"clientSecret"`
+	// Optional OAuth 2.0 scopes requested on the token, sent as a space delimited `scope` parameter. Applies to both client authentication methods.
+	Scopes []string `pulumi:"scopes"`
+	// Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+	SigningKeyInfo *MetricIntegrationOauthSigningKeyInfo `pulumi:"signingKeyInfo"`
+	// OAuth 2.0 token endpoint URL. Must use HTTPS.
+	TokenEndpoint string `pulumi:"tokenEndpoint"`
+	// Optional provider-specific parameters added to the token request, for example a resource indicator. Applies to both client authentication methods.
+	TokenRequestParams map[string]string `pulumi:"tokenRequestParams"`
+}
+
+// MetricIntegrationOauthInput is an input type that accepts MetricIntegrationOauthArgs and MetricIntegrationOauthOutput values.
+// You can construct a concrete instance of `MetricIntegrationOauthInput` via:
+//
+//	MetricIntegrationOauthArgs{...}
+type MetricIntegrationOauthInput interface {
+	pulumi.Input
+
+	ToMetricIntegrationOauthOutput() MetricIntegrationOauthOutput
+	ToMetricIntegrationOauthOutputWithContext(context.Context) MetricIntegrationOauthOutput
+}
+
+type MetricIntegrationOauthArgs struct {
+	// How the client authenticates to the token endpoint. `CLIENT_SECRET` sends a shared secret. `PRIVATE_KEY_JWT` signs a client assertion with an Atlas-generated, Atlas-managed key. Register the returned JWKS URL with your identity provider.
+	ClientAuthMethod pulumi.StringInput `pulumi:"clientAuthMethod"`
+	// OAuth 2.0 client identifier registered with the token endpoint.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// Shared client secret. Required when client*auth*method is `CLIENT_SECRET`, and rejected for `PRIVATE_KEY_JWT`. Encrypted at rest and never returned.
+	ClientSecret pulumi.StringPtrInput `pulumi:"clientSecret"`
+	// Optional OAuth 2.0 scopes requested on the token, sent as a space delimited `scope` parameter. Applies to both client authentication methods.
+	Scopes pulumi.StringArrayInput `pulumi:"scopes"`
+	// Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+	SigningKeyInfo MetricIntegrationOauthSigningKeyInfoPtrInput `pulumi:"signingKeyInfo"`
+	// OAuth 2.0 token endpoint URL. Must use HTTPS.
+	TokenEndpoint pulumi.StringInput `pulumi:"tokenEndpoint"`
+	// Optional provider-specific parameters added to the token request, for example a resource indicator. Applies to both client authentication methods.
+	TokenRequestParams pulumi.StringMapInput `pulumi:"tokenRequestParams"`
+}
+
+func (MetricIntegrationOauthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MetricIntegrationOauth)(nil)).Elem()
+}
+
+func (i MetricIntegrationOauthArgs) ToMetricIntegrationOauthOutput() MetricIntegrationOauthOutput {
+	return i.ToMetricIntegrationOauthOutputWithContext(context.Background())
+}
+
+func (i MetricIntegrationOauthArgs) ToMetricIntegrationOauthOutputWithContext(ctx context.Context) MetricIntegrationOauthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricIntegrationOauthOutput)
+}
+
+func (i MetricIntegrationOauthArgs) ToMetricIntegrationOauthPtrOutput() MetricIntegrationOauthPtrOutput {
+	return i.ToMetricIntegrationOauthPtrOutputWithContext(context.Background())
+}
+
+func (i MetricIntegrationOauthArgs) ToMetricIntegrationOauthPtrOutputWithContext(ctx context.Context) MetricIntegrationOauthPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricIntegrationOauthOutput).ToMetricIntegrationOauthPtrOutputWithContext(ctx)
+}
+
+// MetricIntegrationOauthPtrInput is an input type that accepts MetricIntegrationOauthArgs, MetricIntegrationOauthPtr and MetricIntegrationOauthPtrOutput values.
+// You can construct a concrete instance of `MetricIntegrationOauthPtrInput` via:
+//
+//	        MetricIntegrationOauthArgs{...}
+//
+//	or:
+//
+//	        nil
+type MetricIntegrationOauthPtrInput interface {
+	pulumi.Input
+
+	ToMetricIntegrationOauthPtrOutput() MetricIntegrationOauthPtrOutput
+	ToMetricIntegrationOauthPtrOutputWithContext(context.Context) MetricIntegrationOauthPtrOutput
+}
+
+type metricIntegrationOauthPtrType MetricIntegrationOauthArgs
+
+func MetricIntegrationOauthPtr(v *MetricIntegrationOauthArgs) MetricIntegrationOauthPtrInput {
+	return (*metricIntegrationOauthPtrType)(v)
+}
+
+func (*metricIntegrationOauthPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MetricIntegrationOauth)(nil)).Elem()
+}
+
+func (i *metricIntegrationOauthPtrType) ToMetricIntegrationOauthPtrOutput() MetricIntegrationOauthPtrOutput {
+	return i.ToMetricIntegrationOauthPtrOutputWithContext(context.Background())
+}
+
+func (i *metricIntegrationOauthPtrType) ToMetricIntegrationOauthPtrOutputWithContext(ctx context.Context) MetricIntegrationOauthPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricIntegrationOauthPtrOutput)
+}
+
+type MetricIntegrationOauthOutput struct{ *pulumi.OutputState }
+
+func (MetricIntegrationOauthOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MetricIntegrationOauth)(nil)).Elem()
+}
+
+func (o MetricIntegrationOauthOutput) ToMetricIntegrationOauthOutput() MetricIntegrationOauthOutput {
+	return o
+}
+
+func (o MetricIntegrationOauthOutput) ToMetricIntegrationOauthOutputWithContext(ctx context.Context) MetricIntegrationOauthOutput {
+	return o
+}
+
+func (o MetricIntegrationOauthOutput) ToMetricIntegrationOauthPtrOutput() MetricIntegrationOauthPtrOutput {
+	return o.ToMetricIntegrationOauthPtrOutputWithContext(context.Background())
+}
+
+func (o MetricIntegrationOauthOutput) ToMetricIntegrationOauthPtrOutputWithContext(ctx context.Context) MetricIntegrationOauthPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MetricIntegrationOauth) *MetricIntegrationOauth {
+		return &v
+	}).(MetricIntegrationOauthPtrOutput)
+}
+
+// How the client authenticates to the token endpoint. `CLIENT_SECRET` sends a shared secret. `PRIVATE_KEY_JWT` signs a client assertion with an Atlas-generated, Atlas-managed key. Register the returned JWKS URL with your identity provider.
+func (o MetricIntegrationOauthOutput) ClientAuthMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v MetricIntegrationOauth) string { return v.ClientAuthMethod }).(pulumi.StringOutput)
+}
+
+// OAuth 2.0 client identifier registered with the token endpoint.
+func (o MetricIntegrationOauthOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v MetricIntegrationOauth) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// Shared client secret. Required when client*auth*method is `CLIENT_SECRET`, and rejected for `PRIVATE_KEY_JWT`. Encrypted at rest and never returned.
+func (o MetricIntegrationOauthOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MetricIntegrationOauth) *string { return v.ClientSecret }).(pulumi.StringPtrOutput)
+}
+
+// Optional OAuth 2.0 scopes requested on the token, sent as a space delimited `scope` parameter. Applies to both client authentication methods.
+func (o MetricIntegrationOauthOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v MetricIntegrationOauth) []string { return v.Scopes }).(pulumi.StringArrayOutput)
+}
+
+// Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+func (o MetricIntegrationOauthOutput) SigningKeyInfo() MetricIntegrationOauthSigningKeyInfoPtrOutput {
+	return o.ApplyT(func(v MetricIntegrationOauth) *MetricIntegrationOauthSigningKeyInfo { return v.SigningKeyInfo }).(MetricIntegrationOauthSigningKeyInfoPtrOutput)
+}
+
+// OAuth 2.0 token endpoint URL. Must use HTTPS.
+func (o MetricIntegrationOauthOutput) TokenEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v MetricIntegrationOauth) string { return v.TokenEndpoint }).(pulumi.StringOutput)
+}
+
+// Optional provider-specific parameters added to the token request, for example a resource indicator. Applies to both client authentication methods.
+func (o MetricIntegrationOauthOutput) TokenRequestParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v MetricIntegrationOauth) map[string]string { return v.TokenRequestParams }).(pulumi.StringMapOutput)
+}
+
+type MetricIntegrationOauthPtrOutput struct{ *pulumi.OutputState }
+
+func (MetricIntegrationOauthPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MetricIntegrationOauth)(nil)).Elem()
+}
+
+func (o MetricIntegrationOauthPtrOutput) ToMetricIntegrationOauthPtrOutput() MetricIntegrationOauthPtrOutput {
+	return o
+}
+
+func (o MetricIntegrationOauthPtrOutput) ToMetricIntegrationOauthPtrOutputWithContext(ctx context.Context) MetricIntegrationOauthPtrOutput {
+	return o
+}
+
+func (o MetricIntegrationOauthPtrOutput) Elem() MetricIntegrationOauthOutput {
+	return o.ApplyT(func(v *MetricIntegrationOauth) MetricIntegrationOauth {
+		if v != nil {
+			return *v
+		}
+		var ret MetricIntegrationOauth
+		return ret
+	}).(MetricIntegrationOauthOutput)
+}
+
+// How the client authenticates to the token endpoint. `CLIENT_SECRET` sends a shared secret. `PRIVATE_KEY_JWT` signs a client assertion with an Atlas-generated, Atlas-managed key. Register the returned JWKS URL with your identity provider.
+func (o MetricIntegrationOauthPtrOutput) ClientAuthMethod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MetricIntegrationOauth) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ClientAuthMethod
+	}).(pulumi.StringPtrOutput)
+}
+
+// OAuth 2.0 client identifier registered with the token endpoint.
+func (o MetricIntegrationOauthPtrOutput) ClientId() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MetricIntegrationOauth) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.ClientId
+	}).(pulumi.StringPtrOutput)
+}
+
+// Shared client secret. Required when client*auth*method is `CLIENT_SECRET`, and rejected for `PRIVATE_KEY_JWT`. Encrypted at rest and never returned.
+func (o MetricIntegrationOauthPtrOutput) ClientSecret() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MetricIntegrationOauth) *string {
+		if v == nil {
+			return nil
+		}
+		return v.ClientSecret
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional OAuth 2.0 scopes requested on the token, sent as a space delimited `scope` parameter. Applies to both client authentication methods.
+func (o MetricIntegrationOauthPtrOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *MetricIntegrationOauth) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Scopes
+	}).(pulumi.StringArrayOutput)
+}
+
+// Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+func (o MetricIntegrationOauthPtrOutput) SigningKeyInfo() MetricIntegrationOauthSigningKeyInfoPtrOutput {
+	return o.ApplyT(func(v *MetricIntegrationOauth) *MetricIntegrationOauthSigningKeyInfo {
+		if v == nil {
+			return nil
+		}
+		return v.SigningKeyInfo
+	}).(MetricIntegrationOauthSigningKeyInfoPtrOutput)
+}
+
+// OAuth 2.0 token endpoint URL. Must use HTTPS.
+func (o MetricIntegrationOauthPtrOutput) TokenEndpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MetricIntegrationOauth) *string {
+		if v == nil {
+			return nil
+		}
+		return &v.TokenEndpoint
+	}).(pulumi.StringPtrOutput)
+}
+
+// Optional provider-specific parameters added to the token request, for example a resource indicator. Applies to both client authentication methods.
+func (o MetricIntegrationOauthPtrOutput) TokenRequestParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *MetricIntegrationOauth) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.TokenRequestParams
+	}).(pulumi.StringMapOutput)
+}
+
+type MetricIntegrationOauthSigningKeyInfo struct {
+	// Signing algorithm of the Atlas-managed key.
+	Algorithm *string `pulumi:"algorithm"`
+	// When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt *string `pulumi:"createdAt"`
+	// Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+	JwksUri *string `pulumi:"jwksUri"`
+	// Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+	Kid *string `pulumi:"kid"`
+}
+
+// MetricIntegrationOauthSigningKeyInfoInput is an input type that accepts MetricIntegrationOauthSigningKeyInfoArgs and MetricIntegrationOauthSigningKeyInfoOutput values.
+// You can construct a concrete instance of `MetricIntegrationOauthSigningKeyInfoInput` via:
+//
+//	MetricIntegrationOauthSigningKeyInfoArgs{...}
+type MetricIntegrationOauthSigningKeyInfoInput interface {
+	pulumi.Input
+
+	ToMetricIntegrationOauthSigningKeyInfoOutput() MetricIntegrationOauthSigningKeyInfoOutput
+	ToMetricIntegrationOauthSigningKeyInfoOutputWithContext(context.Context) MetricIntegrationOauthSigningKeyInfoOutput
+}
+
+type MetricIntegrationOauthSigningKeyInfoArgs struct {
+	// Signing algorithm of the Atlas-managed key.
+	Algorithm pulumi.StringPtrInput `pulumi:"algorithm"`
+	// When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringPtrInput `pulumi:"createdAt"`
+	// Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+	JwksUri pulumi.StringPtrInput `pulumi:"jwksUri"`
+	// Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+	Kid pulumi.StringPtrInput `pulumi:"kid"`
+}
+
+func (MetricIntegrationOauthSigningKeyInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*MetricIntegrationOauthSigningKeyInfo)(nil)).Elem()
+}
+
+func (i MetricIntegrationOauthSigningKeyInfoArgs) ToMetricIntegrationOauthSigningKeyInfoOutput() MetricIntegrationOauthSigningKeyInfoOutput {
+	return i.ToMetricIntegrationOauthSigningKeyInfoOutputWithContext(context.Background())
+}
+
+func (i MetricIntegrationOauthSigningKeyInfoArgs) ToMetricIntegrationOauthSigningKeyInfoOutputWithContext(ctx context.Context) MetricIntegrationOauthSigningKeyInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricIntegrationOauthSigningKeyInfoOutput)
+}
+
+func (i MetricIntegrationOauthSigningKeyInfoArgs) ToMetricIntegrationOauthSigningKeyInfoPtrOutput() MetricIntegrationOauthSigningKeyInfoPtrOutput {
+	return i.ToMetricIntegrationOauthSigningKeyInfoPtrOutputWithContext(context.Background())
+}
+
+func (i MetricIntegrationOauthSigningKeyInfoArgs) ToMetricIntegrationOauthSigningKeyInfoPtrOutputWithContext(ctx context.Context) MetricIntegrationOauthSigningKeyInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricIntegrationOauthSigningKeyInfoOutput).ToMetricIntegrationOauthSigningKeyInfoPtrOutputWithContext(ctx)
+}
+
+// MetricIntegrationOauthSigningKeyInfoPtrInput is an input type that accepts MetricIntegrationOauthSigningKeyInfoArgs, MetricIntegrationOauthSigningKeyInfoPtr and MetricIntegrationOauthSigningKeyInfoPtrOutput values.
+// You can construct a concrete instance of `MetricIntegrationOauthSigningKeyInfoPtrInput` via:
+//
+//	        MetricIntegrationOauthSigningKeyInfoArgs{...}
+//
+//	or:
+//
+//	        nil
+type MetricIntegrationOauthSigningKeyInfoPtrInput interface {
+	pulumi.Input
+
+	ToMetricIntegrationOauthSigningKeyInfoPtrOutput() MetricIntegrationOauthSigningKeyInfoPtrOutput
+	ToMetricIntegrationOauthSigningKeyInfoPtrOutputWithContext(context.Context) MetricIntegrationOauthSigningKeyInfoPtrOutput
+}
+
+type metricIntegrationOauthSigningKeyInfoPtrType MetricIntegrationOauthSigningKeyInfoArgs
+
+func MetricIntegrationOauthSigningKeyInfoPtr(v *MetricIntegrationOauthSigningKeyInfoArgs) MetricIntegrationOauthSigningKeyInfoPtrInput {
+	return (*metricIntegrationOauthSigningKeyInfoPtrType)(v)
+}
+
+func (*metricIntegrationOauthSigningKeyInfoPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**MetricIntegrationOauthSigningKeyInfo)(nil)).Elem()
+}
+
+func (i *metricIntegrationOauthSigningKeyInfoPtrType) ToMetricIntegrationOauthSigningKeyInfoPtrOutput() MetricIntegrationOauthSigningKeyInfoPtrOutput {
+	return i.ToMetricIntegrationOauthSigningKeyInfoPtrOutputWithContext(context.Background())
+}
+
+func (i *metricIntegrationOauthSigningKeyInfoPtrType) ToMetricIntegrationOauthSigningKeyInfoPtrOutputWithContext(ctx context.Context) MetricIntegrationOauthSigningKeyInfoPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(MetricIntegrationOauthSigningKeyInfoPtrOutput)
+}
+
+type MetricIntegrationOauthSigningKeyInfoOutput struct{ *pulumi.OutputState }
+
+func (MetricIntegrationOauthSigningKeyInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*MetricIntegrationOauthSigningKeyInfo)(nil)).Elem()
+}
+
+func (o MetricIntegrationOauthSigningKeyInfoOutput) ToMetricIntegrationOauthSigningKeyInfoOutput() MetricIntegrationOauthSigningKeyInfoOutput {
+	return o
+}
+
+func (o MetricIntegrationOauthSigningKeyInfoOutput) ToMetricIntegrationOauthSigningKeyInfoOutputWithContext(ctx context.Context) MetricIntegrationOauthSigningKeyInfoOutput {
+	return o
+}
+
+func (o MetricIntegrationOauthSigningKeyInfoOutput) ToMetricIntegrationOauthSigningKeyInfoPtrOutput() MetricIntegrationOauthSigningKeyInfoPtrOutput {
+	return o.ToMetricIntegrationOauthSigningKeyInfoPtrOutputWithContext(context.Background())
+}
+
+func (o MetricIntegrationOauthSigningKeyInfoOutput) ToMetricIntegrationOauthSigningKeyInfoPtrOutputWithContext(ctx context.Context) MetricIntegrationOauthSigningKeyInfoPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v MetricIntegrationOauthSigningKeyInfo) *MetricIntegrationOauthSigningKeyInfo {
+		return &v
+	}).(MetricIntegrationOauthSigningKeyInfoPtrOutput)
+}
+
+// Signing algorithm of the Atlas-managed key.
+func (o MetricIntegrationOauthSigningKeyInfoOutput) Algorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MetricIntegrationOauthSigningKeyInfo) *string { return v.Algorithm }).(pulumi.StringPtrOutput)
+}
+
+// When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o MetricIntegrationOauthSigningKeyInfoOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MetricIntegrationOauthSigningKeyInfo) *string { return v.CreatedAt }).(pulumi.StringPtrOutput)
+}
+
+// Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+func (o MetricIntegrationOauthSigningKeyInfoOutput) JwksUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MetricIntegrationOauthSigningKeyInfo) *string { return v.JwksUri }).(pulumi.StringPtrOutput)
+}
+
+// Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+func (o MetricIntegrationOauthSigningKeyInfoOutput) Kid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v MetricIntegrationOauthSigningKeyInfo) *string { return v.Kid }).(pulumi.StringPtrOutput)
+}
+
+type MetricIntegrationOauthSigningKeyInfoPtrOutput struct{ *pulumi.OutputState }
+
+func (MetricIntegrationOauthSigningKeyInfoPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**MetricIntegrationOauthSigningKeyInfo)(nil)).Elem()
+}
+
+func (o MetricIntegrationOauthSigningKeyInfoPtrOutput) ToMetricIntegrationOauthSigningKeyInfoPtrOutput() MetricIntegrationOauthSigningKeyInfoPtrOutput {
+	return o
+}
+
+func (o MetricIntegrationOauthSigningKeyInfoPtrOutput) ToMetricIntegrationOauthSigningKeyInfoPtrOutputWithContext(ctx context.Context) MetricIntegrationOauthSigningKeyInfoPtrOutput {
+	return o
+}
+
+func (o MetricIntegrationOauthSigningKeyInfoPtrOutput) Elem() MetricIntegrationOauthSigningKeyInfoOutput {
+	return o.ApplyT(func(v *MetricIntegrationOauthSigningKeyInfo) MetricIntegrationOauthSigningKeyInfo {
+		if v != nil {
+			return *v
+		}
+		var ret MetricIntegrationOauthSigningKeyInfo
+		return ret
+	}).(MetricIntegrationOauthSigningKeyInfoOutput)
+}
+
+// Signing algorithm of the Atlas-managed key.
+func (o MetricIntegrationOauthSigningKeyInfoPtrOutput) Algorithm() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MetricIntegrationOauthSigningKeyInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Algorithm
+	}).(pulumi.StringPtrOutput)
+}
+
+// When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o MetricIntegrationOauthSigningKeyInfoPtrOutput) CreatedAt() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MetricIntegrationOauthSigningKeyInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAt
+	}).(pulumi.StringPtrOutput)
+}
+
+// Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+func (o MetricIntegrationOauthSigningKeyInfoPtrOutput) JwksUri() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MetricIntegrationOauthSigningKeyInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.JwksUri
+	}).(pulumi.StringPtrOutput)
+}
+
+// Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+func (o MetricIntegrationOauthSigningKeyInfoPtrOutput) Kid() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *MetricIntegrationOauthSigningKeyInfo) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Kid
+	}).(pulumi.StringPtrOutput)
 }
 
 type OnlineArchiveCriteria struct {
@@ -26331,7 +26967,7 @@ func (o GetAccessListApiKeysResultArrayOutput) Index(i pulumi.IntInput) GetAcces
 }
 
 type GetAdvancedClusterAdvancedConfiguration struct {
-	// (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
+	// (Optional) The minimum pre- and post-image retention time in seconds. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
@@ -26339,7 +26975,7 @@ type GetAdvancedClusterAdvancedConfiguration struct {
 	CustomOpensslCipherConfigTls13s []string `pulumi:"customOpensslCipherConfigTls13s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs int `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. Clusters default to `majority`.
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
@@ -26375,7 +27011,7 @@ type GetAdvancedClusterAdvancedConfigurationInput interface {
 }
 
 type GetAdvancedClusterAdvancedConfigurationArgs struct {
-	// (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
+	// (Optional) The minimum pre- and post-image retention time in seconds. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
@@ -26383,7 +27019,7 @@ type GetAdvancedClusterAdvancedConfigurationArgs struct {
 	CustomOpensslCipherConfigTls13s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls13s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. Clusters default to `majority`.
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
@@ -26433,7 +27069,7 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) ToGetAdvancedClusterAdvan
 	return o
 }
 
-// (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
+// (Optional) The minimum pre- and post-image retention time in seconds. Defaults to `-1`(off).
 func (o GetAdvancedClusterAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int {
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
@@ -26455,7 +27091,7 @@ func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultMaxTimeMs() pulumi
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. Clusters default to `majority`.
 func (o GetAdvancedClusterAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClusterAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
 }
@@ -28594,7 +29230,7 @@ func (o GetAdvancedClustersResultArrayOutput) Index(i pulumi.IntInput) GetAdvanc
 }
 
 type GetAdvancedClustersResultAdvancedConfiguration struct {
-	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
+	// (Optional) The minimum pre- and post-image retention time in seconds. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds int `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s []string `pulumi:"customOpensslCipherConfigTls12s"`
@@ -28602,7 +29238,7 @@ type GetAdvancedClustersResultAdvancedConfiguration struct {
 	CustomOpensslCipherConfigTls13s []string `pulumi:"customOpensslCipherConfigTls13s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs int `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. Clusters default to `majority`.
 	DefaultWriteConcern string `pulumi:"defaultWriteConcern"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled bool `pulumi:"javascriptEnabled"`
@@ -28638,7 +29274,7 @@ type GetAdvancedClustersResultAdvancedConfigurationInput interface {
 }
 
 type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
-	// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
+	// (Optional) The minimum pre- and post-image retention time in seconds. Defaults to `-1`(off).
 	ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds pulumi.IntInput `pulumi:"changeStreamOptionsPreAndPostImagesExpireAfterSeconds"`
 	// The custom OpenSSL cipher suite list for TLS 1.2. This field is only valid when `tlsCipherConfigMode` is set to `CUSTOM`.
 	CustomOpensslCipherConfigTls12s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls12s"`
@@ -28646,7 +29282,7 @@ type GetAdvancedClustersResultAdvancedConfigurationArgs struct {
 	CustomOpensslCipherConfigTls13s pulumi.StringArrayInput `pulumi:"customOpensslCipherConfigTls13s"`
 	// Default time limit in milliseconds for individual read operations to complete. This option corresponds to the [defaultMaxTimeMS](https://www.mongodb.com/docs/upcoming/reference/cluster-parameters/defaultMaxTimeMS/) cluster parameter. This parameter is supported only for MongoDB version 8.0 and above.
 	DefaultMaxTimeMs pulumi.IntInput `pulumi:"defaultMaxTimeMs"`
-	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
+	// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. Clusters default to `majority`.
 	DefaultWriteConcern pulumi.StringInput `pulumi:"defaultWriteConcern"`
 	// When true, the cluster allows execution of operations that perform server-side executions of JavaScript. When false, the cluster disables execution of those operations.
 	JavascriptEnabled pulumi.BoolInput `pulumi:"javascriptEnabled"`
@@ -28696,7 +29332,7 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) ToGetAdvancedClust
 	return o
 }
 
-// (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
+// (Optional) The minimum pre- and post-image retention time in seconds. Defaults to `-1`(off).
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int {
 		return v.ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds
@@ -28722,7 +29358,7 @@ func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultMaxTimeMs()
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) int { return v.DefaultMaxTimeMs }).(pulumi.IntOutput)
 }
 
-// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
+// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. Clusters default to `majority`.
 func (o GetAdvancedClustersResultAdvancedConfigurationOutput) DefaultWriteConcern() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAdvancedClustersResultAdvancedConfiguration) string { return v.DefaultWriteConcern }).(pulumi.StringOutput)
 }
@@ -31527,6 +32163,10 @@ type GetAlertConfigurationNotification struct {
 	VictorOpsApiKey string `pulumi:"victorOpsApiKey"`
 	// VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	VictorOpsRoutingKey string `pulumi:"victorOpsRoutingKey"`
+	// Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+	WebhookBodyTemplate string `pulumi:"webhookBodyTemplate"`
+	// Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+	WebhookHeadersTemplate string `pulumi:"webhookHeadersTemplate"`
 	// Authentication secret for the `WEBHOOK` notifications type.
 	WebhookSecret string `pulumi:"webhookSecret"`
 	// Target URL  for the `WEBHOOK` notifications type.
@@ -31605,6 +32245,10 @@ type GetAlertConfigurationNotificationArgs struct {
 	VictorOpsApiKey pulumi.StringInput `pulumi:"victorOpsApiKey"`
 	// VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	VictorOpsRoutingKey pulumi.StringInput `pulumi:"victorOpsRoutingKey"`
+	// Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+	WebhookBodyTemplate pulumi.StringInput `pulumi:"webhookBodyTemplate"`
+	// Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+	WebhookHeadersTemplate pulumi.StringInput `pulumi:"webhookHeadersTemplate"`
 	// Authentication secret for the `WEBHOOK` notifications type.
 	WebhookSecret pulumi.StringInput `pulumi:"webhookSecret"`
 	// Target URL  for the `WEBHOOK` notifications type.
@@ -31789,6 +32433,16 @@ func (o GetAlertConfigurationNotificationOutput) VictorOpsApiKey() pulumi.String
 // VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 func (o GetAlertConfigurationNotificationOutput) VictorOpsRoutingKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.VictorOpsRoutingKey }).(pulumi.StringOutput)
+}
+
+// Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+func (o GetAlertConfigurationNotificationOutput) WebhookBodyTemplate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.WebhookBodyTemplate }).(pulumi.StringOutput)
+}
+
+// Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+func (o GetAlertConfigurationNotificationOutput) WebhookHeadersTemplate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationNotification) string { return v.WebhookHeadersTemplate }).(pulumi.StringOutput)
 }
 
 // Authentication secret for the `WEBHOOK` notifications type.
@@ -32731,6 +33385,10 @@ type GetAlertConfigurationsResultNotification struct {
 	VictorOpsApiKey string `pulumi:"victorOpsApiKey"`
 	// VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	VictorOpsRoutingKey string `pulumi:"victorOpsRoutingKey"`
+	// Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+	WebhookBodyTemplate string `pulumi:"webhookBodyTemplate"`
+	// Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+	WebhookHeadersTemplate string `pulumi:"webhookHeadersTemplate"`
 	// Authentication secret for the `WEBHOOK` notifications type.
 	WebhookSecret string `pulumi:"webhookSecret"`
 	// Target URL  for the `WEBHOOK` notifications type.
@@ -32809,6 +33467,10 @@ type GetAlertConfigurationsResultNotificationArgs struct {
 	VictorOpsApiKey pulumi.StringInput `pulumi:"victorOpsApiKey"`
 	// VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 	VictorOpsRoutingKey pulumi.StringInput `pulumi:"victorOpsRoutingKey"`
+	// Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+	WebhookBodyTemplate pulumi.StringInput `pulumi:"webhookBodyTemplate"`
+	// Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+	WebhookHeadersTemplate pulumi.StringInput `pulumi:"webhookHeadersTemplate"`
 	// Authentication secret for the `WEBHOOK` notifications type.
 	WebhookSecret pulumi.StringInput `pulumi:"webhookSecret"`
 	// Target URL  for the `WEBHOOK` notifications type.
@@ -32993,6 +33655,16 @@ func (o GetAlertConfigurationsResultNotificationOutput) VictorOpsApiKey() pulumi
 // VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
 func (o GetAlertConfigurationsResultNotificationOutput) VictorOpsRoutingKey() pulumi.StringOutput {
 	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) string { return v.VictorOpsRoutingKey }).(pulumi.StringOutput)
+}
+
+// Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+func (o GetAlertConfigurationsResultNotificationOutput) WebhookBodyTemplate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) string { return v.WebhookBodyTemplate }).(pulumi.StringOutput)
+}
+
+// Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+func (o GetAlertConfigurationsResultNotificationOutput) WebhookHeadersTemplate() pulumi.StringOutput {
+	return o.ApplyT(func(v GetAlertConfigurationsResultNotification) string { return v.WebhookHeadersTemplate }).(pulumi.StringOutput)
 }
 
 // Authentication secret for the `WEBHOOK` notifications type.
@@ -46313,6 +46985,7 @@ func (o GetEventTriggersResultEventProcessorAwsEventbridgeArrayOutput) Index(i p
 type GetFederatedDatabaseInstanceCloudProviderConfig struct {
 	Aws    []GetFederatedDatabaseInstanceCloudProviderConfigAw    `pulumi:"aws"`
 	Azures []GetFederatedDatabaseInstanceCloudProviderConfigAzure `pulumi:"azures"`
+	Gcps   []GetFederatedDatabaseInstanceCloudProviderConfigGcp   `pulumi:"gcps"`
 }
 
 // GetFederatedDatabaseInstanceCloudProviderConfigInput is an input type that accepts GetFederatedDatabaseInstanceCloudProviderConfigArgs and GetFederatedDatabaseInstanceCloudProviderConfigOutput values.
@@ -46329,6 +47002,7 @@ type GetFederatedDatabaseInstanceCloudProviderConfigInput interface {
 type GetFederatedDatabaseInstanceCloudProviderConfigArgs struct {
 	Aws    GetFederatedDatabaseInstanceCloudProviderConfigAwArrayInput    `pulumi:"aws"`
 	Azures GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayInput `pulumi:"azures"`
+	Gcps   GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayInput   `pulumi:"gcps"`
 }
 
 func (GetFederatedDatabaseInstanceCloudProviderConfigArgs) ElementType() reflect.Type {
@@ -46392,6 +47066,12 @@ func (o GetFederatedDatabaseInstanceCloudProviderConfigOutput) Azures() GetFeder
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceCloudProviderConfig) []GetFederatedDatabaseInstanceCloudProviderConfigAzure {
 		return v.Azures
 	}).(GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput)
+}
+
+func (o GetFederatedDatabaseInstanceCloudProviderConfigOutput) Gcps() GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstanceCloudProviderConfig) []GetFederatedDatabaseInstanceCloudProviderConfigGcp {
+		return v.Gcps
+	}).(GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput)
 }
 
 type GetFederatedDatabaseInstanceCloudProviderConfigArrayOutput struct{ *pulumi.OutputState }
@@ -46674,8 +47354,114 @@ func (o GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput) Index(i
 	}).(GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput)
 }
 
+type GetFederatedDatabaseInstanceCloudProviderConfigGcp struct {
+	// Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+	GcpServiceAccount string `pulumi:"gcpServiceAccount"`
+	// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+	RoleId string `pulumi:"roleId"`
+}
+
+// GetFederatedDatabaseInstanceCloudProviderConfigGcpInput is an input type that accepts GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs and GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstanceCloudProviderConfigGcpInput` via:
+//
+//	GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs{...}
+type GetFederatedDatabaseInstanceCloudProviderConfigGcpInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstanceCloudProviderConfigGcpOutput() GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput
+	ToGetFederatedDatabaseInstanceCloudProviderConfigGcpOutputWithContext(context.Context) GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput
+}
+
+type GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs struct {
+	// Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+	GcpServiceAccount pulumi.StringInput `pulumi:"gcpServiceAccount"`
+	// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+	RoleId pulumi.StringInput `pulumi:"roleId"`
+}
+
+func (GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstanceCloudProviderConfigGcp)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs) ToGetFederatedDatabaseInstanceCloudProviderConfigGcpOutput() GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput {
+	return i.ToGetFederatedDatabaseInstanceCloudProviderConfigGcpOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs) ToGetFederatedDatabaseInstanceCloudProviderConfigGcpOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput)
+}
+
+// GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayInput is an input type that accepts GetFederatedDatabaseInstanceCloudProviderConfigGcpArray and GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayInput` via:
+//
+//	GetFederatedDatabaseInstanceCloudProviderConfigGcpArray{ GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs{...} }
+type GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput() GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput
+	ToGetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutputWithContext(context.Context) GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput
+}
+
+type GetFederatedDatabaseInstanceCloudProviderConfigGcpArray []GetFederatedDatabaseInstanceCloudProviderConfigGcpInput
+
+func (GetFederatedDatabaseInstanceCloudProviderConfigGcpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstanceCloudProviderConfigGcp)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstanceCloudProviderConfigGcpArray) ToGetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput() GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput {
+	return i.ToGetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstanceCloudProviderConfigGcpArray) ToGetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput)
+}
+
+type GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstanceCloudProviderConfigGcp)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput) ToGetFederatedDatabaseInstanceCloudProviderConfigGcpOutput() GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput) ToGetFederatedDatabaseInstanceCloudProviderConfigGcpOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput {
+	return o
+}
+
+// Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+func (o GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput) GcpServiceAccount() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstanceCloudProviderConfigGcp) string { return v.GcpServiceAccount }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+func (o GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstanceCloudProviderConfigGcp) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+type GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstanceCloudProviderConfigGcp)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput) ToGetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput() GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput) ToGetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput) Index(i pulumi.IntInput) GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedDatabaseInstanceCloudProviderConfigGcp {
+		return vs[0].([]GetFederatedDatabaseInstanceCloudProviderConfigGcp)[vs[1].(int)]
+	}).(GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput)
+}
+
 type GetFederatedDatabaseInstanceDataProcessRegion struct {
-	// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+	// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
 	CloudProvider string `pulumi:"cloudProvider"`
 	// Name of the region to which the Federated Instance routes client connections for data processing.
 	Region string `pulumi:"region"`
@@ -46693,7 +47479,7 @@ type GetFederatedDatabaseInstanceDataProcessRegionInput interface {
 }
 
 type GetFederatedDatabaseInstanceDataProcessRegionArgs struct {
-	// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+	// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
 	// Name of the region to which the Federated Instance routes client connections for data processing.
 	Region pulumi.StringInput `pulumi:"region"`
@@ -46750,7 +47536,7 @@ func (o GetFederatedDatabaseInstanceDataProcessRegionOutput) ToGetFederatedDatab
 	return o
 }
 
-// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
 func (o GetFederatedDatabaseInstanceDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstanceDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -47908,8 +48694,8 @@ type GetFederatedDatabaseInstancesResult struct {
 	// Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
 	// * `storage_stores.#.name` - Name of the data store.
 	// * `storage_stores.#.provider` - Defines where the data is stored.
-	// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-	// * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+	// * `storage_stores.#.region` - Name of the cloud provider region in which the bucket is hosted.
+	// * `storage_stores.#.bucket` - Name of the bucket.
 	// * `storage_stores.#.prefix` - Prefix the Federated Database Instance applies when searching for files in the S3 bucket.
 	// * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
 	// * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
@@ -47980,8 +48766,8 @@ type GetFederatedDatabaseInstancesResultArgs struct {
 	// Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
 	// * `storage_stores.#.name` - Name of the data store.
 	// * `storage_stores.#.provider` - Defines where the data is stored.
-	// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-	// * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+	// * `storage_stores.#.region` - Name of the cloud provider region in which the bucket is hosted.
+	// * `storage_stores.#.bucket` - Name of the bucket.
 	// * `storage_stores.#.prefix` - Prefix the Federated Database Instance applies when searching for files in the S3 bucket.
 	// * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
 	// * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
@@ -48123,8 +48909,8 @@ func (o GetFederatedDatabaseInstancesResultOutput) StorageDatabases() GetFederat
 // Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
 // * `storage_stores.#.name` - Name of the data store.
 // * `storage_stores.#.provider` - Defines where the data is stored.
-// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-// * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+// * `storage_stores.#.region` - Name of the cloud provider region in which the bucket is hosted.
+// * `storage_stores.#.bucket` - Name of the bucket.
 // * `storage_stores.#.prefix` - Prefix the Federated Database Instance applies when searching for files in the S3 bucket.
 // * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
 // * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
@@ -48169,6 +48955,7 @@ func (o GetFederatedDatabaseInstancesResultArrayOutput) Index(i pulumi.IntInput)
 type GetFederatedDatabaseInstancesResultCloudProviderConfig struct {
 	Aws    []GetFederatedDatabaseInstancesResultCloudProviderConfigAw    `pulumi:"aws"`
 	Azures []GetFederatedDatabaseInstancesResultCloudProviderConfigAzure `pulumi:"azures"`
+	Gcps   []GetFederatedDatabaseInstancesResultCloudProviderConfigGcp   `pulumi:"gcps"`
 }
 
 // GetFederatedDatabaseInstancesResultCloudProviderConfigInput is an input type that accepts GetFederatedDatabaseInstancesResultCloudProviderConfigArgs and GetFederatedDatabaseInstancesResultCloudProviderConfigOutput values.
@@ -48185,6 +48972,7 @@ type GetFederatedDatabaseInstancesResultCloudProviderConfigInput interface {
 type GetFederatedDatabaseInstancesResultCloudProviderConfigArgs struct {
 	Aws    GetFederatedDatabaseInstancesResultCloudProviderConfigAwArrayInput    `pulumi:"aws"`
 	Azures GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayInput `pulumi:"azures"`
+	Gcps   GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayInput   `pulumi:"gcps"`
 }
 
 func (GetFederatedDatabaseInstancesResultCloudProviderConfigArgs) ElementType() reflect.Type {
@@ -48248,6 +49036,12 @@ func (o GetFederatedDatabaseInstancesResultCloudProviderConfigOutput) Azures() G
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultCloudProviderConfig) []GetFederatedDatabaseInstancesResultCloudProviderConfigAzure {
 		return v.Azures
 	}).(GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput)
+}
+
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigOutput) Gcps() GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultCloudProviderConfig) []GetFederatedDatabaseInstancesResultCloudProviderConfigGcp {
+		return v.Gcps
+	}).(GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput)
 }
 
 type GetFederatedDatabaseInstancesResultCloudProviderConfigArrayOutput struct{ *pulumi.OutputState }
@@ -48535,8 +49329,114 @@ func (o GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput) 
 	}).(GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput)
 }
 
+type GetFederatedDatabaseInstancesResultCloudProviderConfigGcp struct {
+	// Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+	GcpServiceAccount string `pulumi:"gcpServiceAccount"`
+	// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+	RoleId string `pulumi:"roleId"`
+}
+
+// GetFederatedDatabaseInstancesResultCloudProviderConfigGcpInput is an input type that accepts GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArgs and GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstancesResultCloudProviderConfigGcpInput` via:
+//
+//	GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArgs{...}
+type GetFederatedDatabaseInstancesResultCloudProviderConfigGcpInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput() GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput
+	ToGetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutputWithContext(context.Context) GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput
+}
+
+type GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArgs struct {
+	// Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+	GcpServiceAccount pulumi.StringInput `pulumi:"gcpServiceAccount"`
+	// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+	RoleId pulumi.StringInput `pulumi:"roleId"`
+}
+
+func (GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstancesResultCloudProviderConfigGcp)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArgs) ToGetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput() GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput {
+	return i.ToGetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArgs) ToGetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput)
+}
+
+// GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayInput is an input type that accepts GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArray and GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput values.
+// You can construct a concrete instance of `GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayInput` via:
+//
+//	GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArray{ GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArgs{...} }
+type GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayInput interface {
+	pulumi.Input
+
+	ToGetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput() GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput
+	ToGetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutputWithContext(context.Context) GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput
+}
+
+type GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArray []GetFederatedDatabaseInstancesResultCloudProviderConfigGcpInput
+
+func (GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstancesResultCloudProviderConfigGcp)(nil)).Elem()
+}
+
+func (i GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArray) ToGetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput() GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput {
+	return i.ToGetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutputWithContext(context.Background())
+}
+
+func (i GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArray) ToGetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput)
+}
+
+type GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetFederatedDatabaseInstancesResultCloudProviderConfigGcp)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput) ToGetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput() GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput) ToGetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput {
+	return o
+}
+
+// Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput) GcpServiceAccount() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultCloudProviderConfigGcp) string { return v.GcpServiceAccount }).(pulumi.StringOutput)
+}
+
+// Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput) RoleId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultCloudProviderConfigGcp) string { return v.RoleId }).(pulumi.StringOutput)
+}
+
+type GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput struct{ *pulumi.OutputState }
+
+func (GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetFederatedDatabaseInstancesResultCloudProviderConfigGcp)(nil)).Elem()
+}
+
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput) ToGetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput() GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput) ToGetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutputWithContext(ctx context.Context) GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput {
+	return o
+}
+
+func (o GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput) Index(i pulumi.IntInput) GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetFederatedDatabaseInstancesResultCloudProviderConfigGcp {
+		return vs[0].([]GetFederatedDatabaseInstancesResultCloudProviderConfigGcp)[vs[1].(int)]
+	}).(GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput)
+}
+
 type GetFederatedDatabaseInstancesResultDataProcessRegion struct {
-	// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+	// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
 	CloudProvider string `pulumi:"cloudProvider"`
 	// Name of the region to which the Federated Instance routes client connections for data processing.
 	Region string `pulumi:"region"`
@@ -48554,7 +49454,7 @@ type GetFederatedDatabaseInstancesResultDataProcessRegionInput interface {
 }
 
 type GetFederatedDatabaseInstancesResultDataProcessRegionArgs struct {
-	// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+	// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
 	CloudProvider pulumi.StringInput `pulumi:"cloudProvider"`
 	// Name of the region to which the Federated Instance routes client connections for data processing.
 	Region pulumi.StringInput `pulumi:"region"`
@@ -48611,7 +49511,7 @@ func (o GetFederatedDatabaseInstancesResultDataProcessRegionOutput) ToGetFederat
 	return o
 }
 
-// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
 func (o GetFederatedDatabaseInstancesResultDataProcessRegionOutput) CloudProvider() pulumi.StringOutput {
 	return o.ApplyT(func(v GetFederatedDatabaseInstancesResultDataProcessRegion) string { return v.CloudProvider }).(pulumi.StringOutput)
 }
@@ -53893,7 +54793,7 @@ type GetGlobalClusterConfigManagedNamespace struct {
 	CustomShardKey string `pulumi:"customShardKey"`
 	// (Required) The name of the database containing the collection.
 	Db string `pulumi:"db"`
-	// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+	// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
 	IsCustomShardKeyHashed bool `pulumi:"isCustomShardKeyHashed"`
 	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
 	IsShardKeyUnique bool `pulumi:"isShardKeyUnique"`
@@ -53917,7 +54817,7 @@ type GetGlobalClusterConfigManagedNamespaceArgs struct {
 	CustomShardKey pulumi.StringInput `pulumi:"customShardKey"`
 	// (Required) The name of the database containing the collection.
 	Db pulumi.StringInput `pulumi:"db"`
-	// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+	// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
 	IsCustomShardKeyHashed pulumi.BoolInput `pulumi:"isCustomShardKeyHashed"`
 	// Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
 	IsShardKeyUnique pulumi.BoolInput `pulumi:"isShardKeyUnique"`
@@ -53989,7 +54889,7 @@ func (o GetGlobalClusterConfigManagedNamespaceOutput) Db() pulumi.StringOutput {
 	return o.ApplyT(func(v GetGlobalClusterConfigManagedNamespace) string { return v.Db }).(pulumi.StringOutput)
 }
 
-// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+// Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
 func (o GetGlobalClusterConfigManagedNamespaceOutput) IsCustomShardKeyHashed() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetGlobalClusterConfigManagedNamespace) bool { return v.IsCustomShardKeyHashed }).(pulumi.BoolOutput)
 }
@@ -55563,6 +56463,182 @@ func (o GetMetricIntegrationHeadersRedactedArrayOutput) Index(i pulumi.IntInput)
 	}).(GetMetricIntegrationHeadersRedactedOutput)
 }
 
+type GetMetricIntegrationOauth struct {
+	// How the client authenticates to the token endpoint.
+	ClientAuthMethod string `pulumi:"clientAuthMethod"`
+	// OAuth 2.0 client identifier registered with the token endpoint.
+	ClientId string `pulumi:"clientId"`
+	// OAuth 2.0 scopes requested on the token.
+	Scopes []string `pulumi:"scopes"`
+	// Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+	SigningKeyInfo GetMetricIntegrationOauthSigningKeyInfo `pulumi:"signingKeyInfo"`
+	// OAuth 2.0 token endpoint URL.
+	TokenEndpoint string `pulumi:"tokenEndpoint"`
+	// Provider-specific parameters added to the token request.
+	TokenRequestParams map[string]string `pulumi:"tokenRequestParams"`
+}
+
+// GetMetricIntegrationOauthInput is an input type that accepts GetMetricIntegrationOauthArgs and GetMetricIntegrationOauthOutput values.
+// You can construct a concrete instance of `GetMetricIntegrationOauthInput` via:
+//
+//	GetMetricIntegrationOauthArgs{...}
+type GetMetricIntegrationOauthInput interface {
+	pulumi.Input
+
+	ToGetMetricIntegrationOauthOutput() GetMetricIntegrationOauthOutput
+	ToGetMetricIntegrationOauthOutputWithContext(context.Context) GetMetricIntegrationOauthOutput
+}
+
+type GetMetricIntegrationOauthArgs struct {
+	// How the client authenticates to the token endpoint.
+	ClientAuthMethod pulumi.StringInput `pulumi:"clientAuthMethod"`
+	// OAuth 2.0 client identifier registered with the token endpoint.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// OAuth 2.0 scopes requested on the token.
+	Scopes pulumi.StringArrayInput `pulumi:"scopes"`
+	// Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+	SigningKeyInfo GetMetricIntegrationOauthSigningKeyInfoInput `pulumi:"signingKeyInfo"`
+	// OAuth 2.0 token endpoint URL.
+	TokenEndpoint pulumi.StringInput `pulumi:"tokenEndpoint"`
+	// Provider-specific parameters added to the token request.
+	TokenRequestParams pulumi.StringMapInput `pulumi:"tokenRequestParams"`
+}
+
+func (GetMetricIntegrationOauthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMetricIntegrationOauth)(nil)).Elem()
+}
+
+func (i GetMetricIntegrationOauthArgs) ToGetMetricIntegrationOauthOutput() GetMetricIntegrationOauthOutput {
+	return i.ToGetMetricIntegrationOauthOutputWithContext(context.Background())
+}
+
+func (i GetMetricIntegrationOauthArgs) ToGetMetricIntegrationOauthOutputWithContext(ctx context.Context) GetMetricIntegrationOauthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMetricIntegrationOauthOutput)
+}
+
+type GetMetricIntegrationOauthOutput struct{ *pulumi.OutputState }
+
+func (GetMetricIntegrationOauthOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMetricIntegrationOauth)(nil)).Elem()
+}
+
+func (o GetMetricIntegrationOauthOutput) ToGetMetricIntegrationOauthOutput() GetMetricIntegrationOauthOutput {
+	return o
+}
+
+func (o GetMetricIntegrationOauthOutput) ToGetMetricIntegrationOauthOutputWithContext(ctx context.Context) GetMetricIntegrationOauthOutput {
+	return o
+}
+
+// How the client authenticates to the token endpoint.
+func (o GetMetricIntegrationOauthOutput) ClientAuthMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationOauth) string { return v.ClientAuthMethod }).(pulumi.StringOutput)
+}
+
+// OAuth 2.0 client identifier registered with the token endpoint.
+func (o GetMetricIntegrationOauthOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationOauth) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// OAuth 2.0 scopes requested on the token.
+func (o GetMetricIntegrationOauthOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetMetricIntegrationOauth) []string { return v.Scopes }).(pulumi.StringArrayOutput)
+}
+
+// Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+func (o GetMetricIntegrationOauthOutput) SigningKeyInfo() GetMetricIntegrationOauthSigningKeyInfoOutput {
+	return o.ApplyT(func(v GetMetricIntegrationOauth) GetMetricIntegrationOauthSigningKeyInfo { return v.SigningKeyInfo }).(GetMetricIntegrationOauthSigningKeyInfoOutput)
+}
+
+// OAuth 2.0 token endpoint URL.
+func (o GetMetricIntegrationOauthOutput) TokenEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationOauth) string { return v.TokenEndpoint }).(pulumi.StringOutput)
+}
+
+// Provider-specific parameters added to the token request.
+func (o GetMetricIntegrationOauthOutput) TokenRequestParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetMetricIntegrationOauth) map[string]string { return v.TokenRequestParams }).(pulumi.StringMapOutput)
+}
+
+type GetMetricIntegrationOauthSigningKeyInfo struct {
+	// Signing algorithm of the Atlas-managed key.
+	Algorithm string `pulumi:"algorithm"`
+	// When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+	JwksUri string `pulumi:"jwksUri"`
+	// Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+	Kid string `pulumi:"kid"`
+}
+
+// GetMetricIntegrationOauthSigningKeyInfoInput is an input type that accepts GetMetricIntegrationOauthSigningKeyInfoArgs and GetMetricIntegrationOauthSigningKeyInfoOutput values.
+// You can construct a concrete instance of `GetMetricIntegrationOauthSigningKeyInfoInput` via:
+//
+//	GetMetricIntegrationOauthSigningKeyInfoArgs{...}
+type GetMetricIntegrationOauthSigningKeyInfoInput interface {
+	pulumi.Input
+
+	ToGetMetricIntegrationOauthSigningKeyInfoOutput() GetMetricIntegrationOauthSigningKeyInfoOutput
+	ToGetMetricIntegrationOauthSigningKeyInfoOutputWithContext(context.Context) GetMetricIntegrationOauthSigningKeyInfoOutput
+}
+
+type GetMetricIntegrationOauthSigningKeyInfoArgs struct {
+	// Signing algorithm of the Atlas-managed key.
+	Algorithm pulumi.StringInput `pulumi:"algorithm"`
+	// When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+	JwksUri pulumi.StringInput `pulumi:"jwksUri"`
+	// Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+	Kid pulumi.StringInput `pulumi:"kid"`
+}
+
+func (GetMetricIntegrationOauthSigningKeyInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMetricIntegrationOauthSigningKeyInfo)(nil)).Elem()
+}
+
+func (i GetMetricIntegrationOauthSigningKeyInfoArgs) ToGetMetricIntegrationOauthSigningKeyInfoOutput() GetMetricIntegrationOauthSigningKeyInfoOutput {
+	return i.ToGetMetricIntegrationOauthSigningKeyInfoOutputWithContext(context.Background())
+}
+
+func (i GetMetricIntegrationOauthSigningKeyInfoArgs) ToGetMetricIntegrationOauthSigningKeyInfoOutputWithContext(ctx context.Context) GetMetricIntegrationOauthSigningKeyInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMetricIntegrationOauthSigningKeyInfoOutput)
+}
+
+type GetMetricIntegrationOauthSigningKeyInfoOutput struct{ *pulumi.OutputState }
+
+func (GetMetricIntegrationOauthSigningKeyInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMetricIntegrationOauthSigningKeyInfo)(nil)).Elem()
+}
+
+func (o GetMetricIntegrationOauthSigningKeyInfoOutput) ToGetMetricIntegrationOauthSigningKeyInfoOutput() GetMetricIntegrationOauthSigningKeyInfoOutput {
+	return o
+}
+
+func (o GetMetricIntegrationOauthSigningKeyInfoOutput) ToGetMetricIntegrationOauthSigningKeyInfoOutputWithContext(ctx context.Context) GetMetricIntegrationOauthSigningKeyInfoOutput {
+	return o
+}
+
+// Signing algorithm of the Atlas-managed key.
+func (o GetMetricIntegrationOauthSigningKeyInfoOutput) Algorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationOauthSigningKeyInfo) string { return v.Algorithm }).(pulumi.StringOutput)
+}
+
+// When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetMetricIntegrationOauthSigningKeyInfoOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationOauthSigningKeyInfo) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+func (o GetMetricIntegrationOauthSigningKeyInfoOutput) JwksUri() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationOauthSigningKeyInfo) string { return v.JwksUri }).(pulumi.StringOutput)
+}
+
+// Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+func (o GetMetricIntegrationOauthSigningKeyInfoOutput) Kid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationOauthSigningKeyInfo) string { return v.Kid }).(pulumi.StringOutput)
+}
+
 type GetMetricIntegrationsResult struct {
 	// The temporality to send to the metric integration.
 	AggregationTemporality string `pulumi:"aggregationTemporality"`
@@ -55578,6 +56654,8 @@ type GetMetricIntegrationsResult struct {
 	MetricIntegrationId string `pulumi:"metricIntegrationId"`
 	// Array of metric categories to export. Determines which types of metrics are sent to the integration.
 	MetricSelections []string `pulumi:"metricSelections"`
+	// OAuth 2.0 configuration returned for a metric integration. Secrets are never returned.
+	Oauth GetMetricIntegrationsResultOauth `pulumi:"oauth"`
 	// The provider type for the metric integration. Identifies the third-party service provider.
 	ProviderType string `pulumi:"providerType"`
 }
@@ -55608,6 +56686,8 @@ type GetMetricIntegrationsResultArgs struct {
 	MetricIntegrationId pulumi.StringInput `pulumi:"metricIntegrationId"`
 	// Array of metric categories to export. Determines which types of metrics are sent to the integration.
 	MetricSelections pulumi.StringArrayInput `pulumi:"metricSelections"`
+	// OAuth 2.0 configuration returned for a metric integration. Secrets are never returned.
+	Oauth GetMetricIntegrationsResultOauthInput `pulumi:"oauth"`
 	// The provider type for the metric integration. Identifies the third-party service provider.
 	ProviderType pulumi.StringInput `pulumi:"providerType"`
 }
@@ -55698,6 +56778,11 @@ func (o GetMetricIntegrationsResultOutput) MetricIntegrationId() pulumi.StringOu
 // Array of metric categories to export. Determines which types of metrics are sent to the integration.
 func (o GetMetricIntegrationsResultOutput) MetricSelections() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetMetricIntegrationsResult) []string { return v.MetricSelections }).(pulumi.StringArrayOutput)
+}
+
+// OAuth 2.0 configuration returned for a metric integration. Secrets are never returned.
+func (o GetMetricIntegrationsResultOutput) Oauth() GetMetricIntegrationsResultOauthOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResult) GetMetricIntegrationsResultOauth { return v.Oauth }).(GetMetricIntegrationsResultOauthOutput)
 }
 
 // The provider type for the metric integration. Identifies the third-party service provider.
@@ -55829,6 +56914,184 @@ func (o GetMetricIntegrationsResultHeadersRedactedArrayOutput) Index(i pulumi.In
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetMetricIntegrationsResultHeadersRedacted {
 		return vs[0].([]GetMetricIntegrationsResultHeadersRedacted)[vs[1].(int)]
 	}).(GetMetricIntegrationsResultHeadersRedactedOutput)
+}
+
+type GetMetricIntegrationsResultOauth struct {
+	// How the client authenticates to the token endpoint.
+	ClientAuthMethod string `pulumi:"clientAuthMethod"`
+	// OAuth 2.0 client identifier registered with the token endpoint.
+	ClientId string `pulumi:"clientId"`
+	// OAuth 2.0 scopes requested on the token.
+	Scopes []string `pulumi:"scopes"`
+	// Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+	SigningKeyInfo GetMetricIntegrationsResultOauthSigningKeyInfo `pulumi:"signingKeyInfo"`
+	// OAuth 2.0 token endpoint URL.
+	TokenEndpoint string `pulumi:"tokenEndpoint"`
+	// Provider-specific parameters added to the token request.
+	TokenRequestParams map[string]string `pulumi:"tokenRequestParams"`
+}
+
+// GetMetricIntegrationsResultOauthInput is an input type that accepts GetMetricIntegrationsResultOauthArgs and GetMetricIntegrationsResultOauthOutput values.
+// You can construct a concrete instance of `GetMetricIntegrationsResultOauthInput` via:
+//
+//	GetMetricIntegrationsResultOauthArgs{...}
+type GetMetricIntegrationsResultOauthInput interface {
+	pulumi.Input
+
+	ToGetMetricIntegrationsResultOauthOutput() GetMetricIntegrationsResultOauthOutput
+	ToGetMetricIntegrationsResultOauthOutputWithContext(context.Context) GetMetricIntegrationsResultOauthOutput
+}
+
+type GetMetricIntegrationsResultOauthArgs struct {
+	// How the client authenticates to the token endpoint.
+	ClientAuthMethod pulumi.StringInput `pulumi:"clientAuthMethod"`
+	// OAuth 2.0 client identifier registered with the token endpoint.
+	ClientId pulumi.StringInput `pulumi:"clientId"`
+	// OAuth 2.0 scopes requested on the token.
+	Scopes pulumi.StringArrayInput `pulumi:"scopes"`
+	// Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+	SigningKeyInfo GetMetricIntegrationsResultOauthSigningKeyInfoInput `pulumi:"signingKeyInfo"`
+	// OAuth 2.0 token endpoint URL.
+	TokenEndpoint pulumi.StringInput `pulumi:"tokenEndpoint"`
+	// Provider-specific parameters added to the token request.
+	TokenRequestParams pulumi.StringMapInput `pulumi:"tokenRequestParams"`
+}
+
+func (GetMetricIntegrationsResultOauthArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMetricIntegrationsResultOauth)(nil)).Elem()
+}
+
+func (i GetMetricIntegrationsResultOauthArgs) ToGetMetricIntegrationsResultOauthOutput() GetMetricIntegrationsResultOauthOutput {
+	return i.ToGetMetricIntegrationsResultOauthOutputWithContext(context.Background())
+}
+
+func (i GetMetricIntegrationsResultOauthArgs) ToGetMetricIntegrationsResultOauthOutputWithContext(ctx context.Context) GetMetricIntegrationsResultOauthOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMetricIntegrationsResultOauthOutput)
+}
+
+type GetMetricIntegrationsResultOauthOutput struct{ *pulumi.OutputState }
+
+func (GetMetricIntegrationsResultOauthOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMetricIntegrationsResultOauth)(nil)).Elem()
+}
+
+func (o GetMetricIntegrationsResultOauthOutput) ToGetMetricIntegrationsResultOauthOutput() GetMetricIntegrationsResultOauthOutput {
+	return o
+}
+
+func (o GetMetricIntegrationsResultOauthOutput) ToGetMetricIntegrationsResultOauthOutputWithContext(ctx context.Context) GetMetricIntegrationsResultOauthOutput {
+	return o
+}
+
+// How the client authenticates to the token endpoint.
+func (o GetMetricIntegrationsResultOauthOutput) ClientAuthMethod() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResultOauth) string { return v.ClientAuthMethod }).(pulumi.StringOutput)
+}
+
+// OAuth 2.0 client identifier registered with the token endpoint.
+func (o GetMetricIntegrationsResultOauthOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResultOauth) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+// OAuth 2.0 scopes requested on the token.
+func (o GetMetricIntegrationsResultOauthOutput) Scopes() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResultOauth) []string { return v.Scopes }).(pulumi.StringArrayOutput)
+}
+
+// Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+func (o GetMetricIntegrationsResultOauthOutput) SigningKeyInfo() GetMetricIntegrationsResultOauthSigningKeyInfoOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResultOauth) GetMetricIntegrationsResultOauthSigningKeyInfo {
+		return v.SigningKeyInfo
+	}).(GetMetricIntegrationsResultOauthSigningKeyInfoOutput)
+}
+
+// OAuth 2.0 token endpoint URL.
+func (o GetMetricIntegrationsResultOauthOutput) TokenEndpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResultOauth) string { return v.TokenEndpoint }).(pulumi.StringOutput)
+}
+
+// Provider-specific parameters added to the token request.
+func (o GetMetricIntegrationsResultOauthOutput) TokenRequestParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResultOauth) map[string]string { return v.TokenRequestParams }).(pulumi.StringMapOutput)
+}
+
+type GetMetricIntegrationsResultOauthSigningKeyInfo struct {
+	// Signing algorithm of the Atlas-managed key.
+	Algorithm string `pulumi:"algorithm"`
+	// When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt string `pulumi:"createdAt"`
+	// Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+	JwksUri string `pulumi:"jwksUri"`
+	// Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+	Kid string `pulumi:"kid"`
+}
+
+// GetMetricIntegrationsResultOauthSigningKeyInfoInput is an input type that accepts GetMetricIntegrationsResultOauthSigningKeyInfoArgs and GetMetricIntegrationsResultOauthSigningKeyInfoOutput values.
+// You can construct a concrete instance of `GetMetricIntegrationsResultOauthSigningKeyInfoInput` via:
+//
+//	GetMetricIntegrationsResultOauthSigningKeyInfoArgs{...}
+type GetMetricIntegrationsResultOauthSigningKeyInfoInput interface {
+	pulumi.Input
+
+	ToGetMetricIntegrationsResultOauthSigningKeyInfoOutput() GetMetricIntegrationsResultOauthSigningKeyInfoOutput
+	ToGetMetricIntegrationsResultOauthSigningKeyInfoOutputWithContext(context.Context) GetMetricIntegrationsResultOauthSigningKeyInfoOutput
+}
+
+type GetMetricIntegrationsResultOauthSigningKeyInfoArgs struct {
+	// Signing algorithm of the Atlas-managed key.
+	Algorithm pulumi.StringInput `pulumi:"algorithm"`
+	// When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+	JwksUri pulumi.StringInput `pulumi:"jwksUri"`
+	// Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+	Kid pulumi.StringInput `pulumi:"kid"`
+}
+
+func (GetMetricIntegrationsResultOauthSigningKeyInfoArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMetricIntegrationsResultOauthSigningKeyInfo)(nil)).Elem()
+}
+
+func (i GetMetricIntegrationsResultOauthSigningKeyInfoArgs) ToGetMetricIntegrationsResultOauthSigningKeyInfoOutput() GetMetricIntegrationsResultOauthSigningKeyInfoOutput {
+	return i.ToGetMetricIntegrationsResultOauthSigningKeyInfoOutputWithContext(context.Background())
+}
+
+func (i GetMetricIntegrationsResultOauthSigningKeyInfoArgs) ToGetMetricIntegrationsResultOauthSigningKeyInfoOutputWithContext(ctx context.Context) GetMetricIntegrationsResultOauthSigningKeyInfoOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetMetricIntegrationsResultOauthSigningKeyInfoOutput)
+}
+
+type GetMetricIntegrationsResultOauthSigningKeyInfoOutput struct{ *pulumi.OutputState }
+
+func (GetMetricIntegrationsResultOauthSigningKeyInfoOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetMetricIntegrationsResultOauthSigningKeyInfo)(nil)).Elem()
+}
+
+func (o GetMetricIntegrationsResultOauthSigningKeyInfoOutput) ToGetMetricIntegrationsResultOauthSigningKeyInfoOutput() GetMetricIntegrationsResultOauthSigningKeyInfoOutput {
+	return o
+}
+
+func (o GetMetricIntegrationsResultOauthSigningKeyInfoOutput) ToGetMetricIntegrationsResultOauthSigningKeyInfoOutputWithContext(ctx context.Context) GetMetricIntegrationsResultOauthSigningKeyInfoOutput {
+	return o
+}
+
+// Signing algorithm of the Atlas-managed key.
+func (o GetMetricIntegrationsResultOauthSigningKeyInfoOutput) Algorithm() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResultOauthSigningKeyInfo) string { return v.Algorithm }).(pulumi.StringOutput)
+}
+
+// When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+func (o GetMetricIntegrationsResultOauthSigningKeyInfoOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResultOauthSigningKeyInfo) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+func (o GetMetricIntegrationsResultOauthSigningKeyInfoOutput) JwksUri() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResultOauthSigningKeyInfo) string { return v.JwksUri }).(pulumi.StringOutput)
+}
+
+// Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+func (o GetMetricIntegrationsResultOauthSigningKeyInfoOutput) Kid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetMetricIntegrationsResultOauthSigningKeyInfo) string { return v.Kid }).(pulumi.StringOutput)
 }
 
 type GetNetworkContainersResult struct {
@@ -67510,569 +68773,6 @@ func (o GetStreamConnectionFailoversResultAuthenticationOutput) Username() pulum
 	return o.ApplyT(func(v GetStreamConnectionFailoversResultAuthentication) string { return v.Username }).(pulumi.StringOutput)
 }
 
-type GetStreamConnectionFailoversResultDbRoleToExecute struct {
-	// The name of the role to use. Can be a built in role or a custom role.
-	Role string `pulumi:"role"`
-	// Type of the DB role. Can be either Built In or Custom.
-	Type string `pulumi:"type"`
-}
-
-// GetStreamConnectionFailoversResultDbRoleToExecuteInput is an input type that accepts GetStreamConnectionFailoversResultDbRoleToExecuteArgs and GetStreamConnectionFailoversResultDbRoleToExecuteOutput values.
-// You can construct a concrete instance of `GetStreamConnectionFailoversResultDbRoleToExecuteInput` via:
-//
-//	GetStreamConnectionFailoversResultDbRoleToExecuteArgs{...}
-type GetStreamConnectionFailoversResultDbRoleToExecuteInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionFailoversResultDbRoleToExecuteOutput() GetStreamConnectionFailoversResultDbRoleToExecuteOutput
-	ToGetStreamConnectionFailoversResultDbRoleToExecuteOutputWithContext(context.Context) GetStreamConnectionFailoversResultDbRoleToExecuteOutput
-}
-
-type GetStreamConnectionFailoversResultDbRoleToExecuteArgs struct {
-	// The name of the role to use. Can be a built in role or a custom role.
-	Role pulumi.StringInput `pulumi:"role"`
-	// Type of the DB role. Can be either Built In or Custom.
-	Type pulumi.StringInput `pulumi:"type"`
-}
-
-func (GetStreamConnectionFailoversResultDbRoleToExecuteArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionFailoversResultDbRoleToExecute)(nil)).Elem()
-}
-
-func (i GetStreamConnectionFailoversResultDbRoleToExecuteArgs) ToGetStreamConnectionFailoversResultDbRoleToExecuteOutput() GetStreamConnectionFailoversResultDbRoleToExecuteOutput {
-	return i.ToGetStreamConnectionFailoversResultDbRoleToExecuteOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionFailoversResultDbRoleToExecuteArgs) ToGetStreamConnectionFailoversResultDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultDbRoleToExecuteOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultDbRoleToExecuteOutput)
-}
-
-type GetStreamConnectionFailoversResultDbRoleToExecuteOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionFailoversResultDbRoleToExecuteOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionFailoversResultDbRoleToExecute)(nil)).Elem()
-}
-
-func (o GetStreamConnectionFailoversResultDbRoleToExecuteOutput) ToGetStreamConnectionFailoversResultDbRoleToExecuteOutput() GetStreamConnectionFailoversResultDbRoleToExecuteOutput {
-	return o
-}
-
-func (o GetStreamConnectionFailoversResultDbRoleToExecuteOutput) ToGetStreamConnectionFailoversResultDbRoleToExecuteOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultDbRoleToExecuteOutput {
-	return o
-}
-
-// The name of the role to use. Can be a built in role or a custom role.
-func (o GetStreamConnectionFailoversResultDbRoleToExecuteOutput) Role() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultDbRoleToExecute) string { return v.Role }).(pulumi.StringOutput)
-}
-
-// Type of the DB role. Can be either Built In or Custom.
-func (o GetStreamConnectionFailoversResultDbRoleToExecuteOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultDbRoleToExecute) string { return v.Type }).(pulumi.StringOutput)
-}
-
-type GetStreamConnectionFailoversResultNetworking struct {
-	// Information about networking access.
-	Access GetStreamConnectionFailoversResultNetworkingAccess `pulumi:"access"`
-}
-
-// GetStreamConnectionFailoversResultNetworkingInput is an input type that accepts GetStreamConnectionFailoversResultNetworkingArgs and GetStreamConnectionFailoversResultNetworkingOutput values.
-// You can construct a concrete instance of `GetStreamConnectionFailoversResultNetworkingInput` via:
-//
-//	GetStreamConnectionFailoversResultNetworkingArgs{...}
-type GetStreamConnectionFailoversResultNetworkingInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionFailoversResultNetworkingOutput() GetStreamConnectionFailoversResultNetworkingOutput
-	ToGetStreamConnectionFailoversResultNetworkingOutputWithContext(context.Context) GetStreamConnectionFailoversResultNetworkingOutput
-}
-
-type GetStreamConnectionFailoversResultNetworkingArgs struct {
-	// Information about networking access.
-	Access GetStreamConnectionFailoversResultNetworkingAccessInput `pulumi:"access"`
-}
-
-func (GetStreamConnectionFailoversResultNetworkingArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionFailoversResultNetworking)(nil)).Elem()
-}
-
-func (i GetStreamConnectionFailoversResultNetworkingArgs) ToGetStreamConnectionFailoversResultNetworkingOutput() GetStreamConnectionFailoversResultNetworkingOutput {
-	return i.ToGetStreamConnectionFailoversResultNetworkingOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionFailoversResultNetworkingArgs) ToGetStreamConnectionFailoversResultNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultNetworkingOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultNetworkingOutput)
-}
-
-type GetStreamConnectionFailoversResultNetworkingOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionFailoversResultNetworkingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionFailoversResultNetworking)(nil)).Elem()
-}
-
-func (o GetStreamConnectionFailoversResultNetworkingOutput) ToGetStreamConnectionFailoversResultNetworkingOutput() GetStreamConnectionFailoversResultNetworkingOutput {
-	return o
-}
-
-func (o GetStreamConnectionFailoversResultNetworkingOutput) ToGetStreamConnectionFailoversResultNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultNetworkingOutput {
-	return o
-}
-
-// Information about networking access.
-func (o GetStreamConnectionFailoversResultNetworkingOutput) Access() GetStreamConnectionFailoversResultNetworkingAccessOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultNetworking) GetStreamConnectionFailoversResultNetworkingAccess {
-		return v.Access
-	}).(GetStreamConnectionFailoversResultNetworkingAccessOutput)
-}
-
-type GetStreamConnectionFailoversResultNetworkingAccess struct {
-	// Reserved. Will be used by `PRIVATE_LINK` connection type.
-	ConnectionId string `pulumi:"connectionId"`
-	// Reserved. Will be used by `PRIVATE_LINK` connection type.
-	Name string `pulumi:"name"`
-	// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
-	TgwRouteId string `pulumi:"tgwRouteId"`
-	// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
-	Type string `pulumi:"type"`
-}
-
-// GetStreamConnectionFailoversResultNetworkingAccessInput is an input type that accepts GetStreamConnectionFailoversResultNetworkingAccessArgs and GetStreamConnectionFailoversResultNetworkingAccessOutput values.
-// You can construct a concrete instance of `GetStreamConnectionFailoversResultNetworkingAccessInput` via:
-//
-//	GetStreamConnectionFailoversResultNetworkingAccessArgs{...}
-type GetStreamConnectionFailoversResultNetworkingAccessInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionFailoversResultNetworkingAccessOutput() GetStreamConnectionFailoversResultNetworkingAccessOutput
-	ToGetStreamConnectionFailoversResultNetworkingAccessOutputWithContext(context.Context) GetStreamConnectionFailoversResultNetworkingAccessOutput
-}
-
-type GetStreamConnectionFailoversResultNetworkingAccessArgs struct {
-	// Reserved. Will be used by `PRIVATE_LINK` connection type.
-	ConnectionId pulumi.StringInput `pulumi:"connectionId"`
-	// Reserved. Will be used by `PRIVATE_LINK` connection type.
-	Name pulumi.StringInput `pulumi:"name"`
-	// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
-	TgwRouteId pulumi.StringInput `pulumi:"tgwRouteId"`
-	// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
-	Type pulumi.StringInput `pulumi:"type"`
-}
-
-func (GetStreamConnectionFailoversResultNetworkingAccessArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionFailoversResultNetworkingAccess)(nil)).Elem()
-}
-
-func (i GetStreamConnectionFailoversResultNetworkingAccessArgs) ToGetStreamConnectionFailoversResultNetworkingAccessOutput() GetStreamConnectionFailoversResultNetworkingAccessOutput {
-	return i.ToGetStreamConnectionFailoversResultNetworkingAccessOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionFailoversResultNetworkingAccessArgs) ToGetStreamConnectionFailoversResultNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultNetworkingAccessOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultNetworkingAccessOutput)
-}
-
-type GetStreamConnectionFailoversResultNetworkingAccessOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionFailoversResultNetworkingAccessOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionFailoversResultNetworkingAccess)(nil)).Elem()
-}
-
-func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) ToGetStreamConnectionFailoversResultNetworkingAccessOutput() GetStreamConnectionFailoversResultNetworkingAccessOutput {
-	return o
-}
-
-func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) ToGetStreamConnectionFailoversResultNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultNetworkingAccessOutput {
-	return o
-}
-
-// Reserved. Will be used by `PRIVATE_LINK` connection type.
-func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) ConnectionId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultNetworkingAccess) string { return v.ConnectionId }).(pulumi.StringOutput)
-}
-
-// Reserved. Will be used by `PRIVATE_LINK` connection type.
-func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) Name() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultNetworkingAccess) string { return v.Name }).(pulumi.StringOutput)
-}
-
-// Reserved. Will be used by `TRANSIT_GATEWAY` connection type.
-func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) TgwRouteId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultNetworkingAccess) string { return v.TgwRouteId }).(pulumi.StringOutput)
-}
-
-// Selected networking type. Either `PUBLIC`, `VPC`, `PRIVATE_LINK`, or `TRANSIT_GATEWAY`. Defaults to `PUBLIC`. For VPC, ensure that VPC peering exists and connectivity has been established between Atlas VPC and the VPC where Kafka cluster is hosted for the connection to function properly. `TRANSIT_GATEWAY` support is coming soon.
-func (o GetStreamConnectionFailoversResultNetworkingAccessOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
-}
-
-type GetStreamConnectionFailoversResultSecurity struct {
-	// A trusted, public x509 certificate for connecting to Kafka over SSL.
-	BrokerPublicCertificate string `pulumi:"brokerPublicCertificate"`
-	// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
-	Protocol string `pulumi:"protocol"`
-}
-
-// GetStreamConnectionFailoversResultSecurityInput is an input type that accepts GetStreamConnectionFailoversResultSecurityArgs and GetStreamConnectionFailoversResultSecurityOutput values.
-// You can construct a concrete instance of `GetStreamConnectionFailoversResultSecurityInput` via:
-//
-//	GetStreamConnectionFailoversResultSecurityArgs{...}
-type GetStreamConnectionFailoversResultSecurityInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionFailoversResultSecurityOutput() GetStreamConnectionFailoversResultSecurityOutput
-	ToGetStreamConnectionFailoversResultSecurityOutputWithContext(context.Context) GetStreamConnectionFailoversResultSecurityOutput
-}
-
-type GetStreamConnectionFailoversResultSecurityArgs struct {
-	// A trusted, public x509 certificate for connecting to Kafka over SSL.
-	BrokerPublicCertificate pulumi.StringInput `pulumi:"brokerPublicCertificate"`
-	// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
-	Protocol pulumi.StringInput `pulumi:"protocol"`
-}
-
-func (GetStreamConnectionFailoversResultSecurityArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionFailoversResultSecurity)(nil)).Elem()
-}
-
-func (i GetStreamConnectionFailoversResultSecurityArgs) ToGetStreamConnectionFailoversResultSecurityOutput() GetStreamConnectionFailoversResultSecurityOutput {
-	return i.ToGetStreamConnectionFailoversResultSecurityOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionFailoversResultSecurityArgs) ToGetStreamConnectionFailoversResultSecurityOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultSecurityOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionFailoversResultSecurityOutput)
-}
-
-type GetStreamConnectionFailoversResultSecurityOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionFailoversResultSecurityOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionFailoversResultSecurity)(nil)).Elem()
-}
-
-func (o GetStreamConnectionFailoversResultSecurityOutput) ToGetStreamConnectionFailoversResultSecurityOutput() GetStreamConnectionFailoversResultSecurityOutput {
-	return o
-}
-
-func (o GetStreamConnectionFailoversResultSecurityOutput) ToGetStreamConnectionFailoversResultSecurityOutputWithContext(ctx context.Context) GetStreamConnectionFailoversResultSecurityOutput {
-	return o
-}
-
-// A trusted, public x509 certificate for connecting to Kafka over SSL.
-func (o GetStreamConnectionFailoversResultSecurityOutput) BrokerPublicCertificate() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultSecurity) string { return v.BrokerPublicCertificate }).(pulumi.StringOutput)
-}
-
-// Describes the transport type. Can be either `SASL_PLAINTEXT`, `SASL_SSL`, or `SSL`.
-func (o GetStreamConnectionFailoversResultSecurityOutput) Protocol() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionFailoversResultSecurity) string { return v.Protocol }).(pulumi.StringOutput)
-}
-
-type GetStreamConnectionGcp struct {
-	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
-	ServiceAccountId string `pulumi:"serviceAccountId"`
-}
-
-// GetStreamConnectionGcpInput is an input type that accepts GetStreamConnectionGcpArgs and GetStreamConnectionGcpOutput values.
-// You can construct a concrete instance of `GetStreamConnectionGcpInput` via:
-//
-//	GetStreamConnectionGcpArgs{...}
-type GetStreamConnectionGcpInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionGcpOutput() GetStreamConnectionGcpOutput
-	ToGetStreamConnectionGcpOutputWithContext(context.Context) GetStreamConnectionGcpOutput
-}
-
-type GetStreamConnectionGcpArgs struct {
-	// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
-	ServiceAccountId pulumi.StringInput `pulumi:"serviceAccountId"`
-}
-
-func (GetStreamConnectionGcpArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionGcp)(nil)).Elem()
-}
-
-func (i GetStreamConnectionGcpArgs) ToGetStreamConnectionGcpOutput() GetStreamConnectionGcpOutput {
-	return i.ToGetStreamConnectionGcpOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionGcpArgs) ToGetStreamConnectionGcpOutputWithContext(ctx context.Context) GetStreamConnectionGcpOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionGcpOutput)
-}
-
-type GetStreamConnectionGcpOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionGcpOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionGcp)(nil)).Elem()
-}
-
-func (o GetStreamConnectionGcpOutput) ToGetStreamConnectionGcpOutput() GetStreamConnectionGcpOutput {
-	return o
-}
-
-func (o GetStreamConnectionGcpOutput) ToGetStreamConnectionGcpOutputWithContext(ctx context.Context) GetStreamConnectionGcpOutput {
-	return o
-}
-
-// Email address of the Google Cloud Platform (GCP) service account that Atlas Streams uses to connect to GCP Pub/Sub resources.
-func (o GetStreamConnectionGcpOutput) ServiceAccountId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionGcp) string { return v.ServiceAccountId }).(pulumi.StringOutput)
-}
-
-type GetStreamConnectionNetworking struct {
-	// Information about the networking access. See access.
-	Access GetStreamConnectionNetworkingAccess `pulumi:"access"`
-}
-
-// GetStreamConnectionNetworkingInput is an input type that accepts GetStreamConnectionNetworkingArgs and GetStreamConnectionNetworkingOutput values.
-// You can construct a concrete instance of `GetStreamConnectionNetworkingInput` via:
-//
-//	GetStreamConnectionNetworkingArgs{...}
-type GetStreamConnectionNetworkingInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionNetworkingOutput() GetStreamConnectionNetworkingOutput
-	ToGetStreamConnectionNetworkingOutputWithContext(context.Context) GetStreamConnectionNetworkingOutput
-}
-
-type GetStreamConnectionNetworkingArgs struct {
-	// Information about the networking access. See access.
-	Access GetStreamConnectionNetworkingAccessInput `pulumi:"access"`
-}
-
-func (GetStreamConnectionNetworkingArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionNetworking)(nil)).Elem()
-}
-
-func (i GetStreamConnectionNetworkingArgs) ToGetStreamConnectionNetworkingOutput() GetStreamConnectionNetworkingOutput {
-	return i.ToGetStreamConnectionNetworkingOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionNetworkingArgs) ToGetStreamConnectionNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionNetworkingOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionNetworkingOutput)
-}
-
-type GetStreamConnectionNetworkingOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionNetworkingOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionNetworking)(nil)).Elem()
-}
-
-func (o GetStreamConnectionNetworkingOutput) ToGetStreamConnectionNetworkingOutput() GetStreamConnectionNetworkingOutput {
-	return o
-}
-
-func (o GetStreamConnectionNetworkingOutput) ToGetStreamConnectionNetworkingOutputWithContext(ctx context.Context) GetStreamConnectionNetworkingOutput {
-	return o
-}
-
-// Information about the networking access. See access.
-func (o GetStreamConnectionNetworkingOutput) Access() GetStreamConnectionNetworkingAccessOutput {
-	return o.ApplyT(func(v GetStreamConnectionNetworking) GetStreamConnectionNetworkingAccess { return v.Access }).(GetStreamConnectionNetworkingAccessOutput)
-}
-
-type GetStreamConnectionNetworkingAccess struct {
-	// Id of the Private Link connection when type is `PRIVATE_LINK`.
-	ConnectionId string `pulumi:"connectionId"`
-	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-	Type string `pulumi:"type"`
-}
-
-// GetStreamConnectionNetworkingAccessInput is an input type that accepts GetStreamConnectionNetworkingAccessArgs and GetStreamConnectionNetworkingAccessOutput values.
-// You can construct a concrete instance of `GetStreamConnectionNetworkingAccessInput` via:
-//
-//	GetStreamConnectionNetworkingAccessArgs{...}
-type GetStreamConnectionNetworkingAccessInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionNetworkingAccessOutput() GetStreamConnectionNetworkingAccessOutput
-	ToGetStreamConnectionNetworkingAccessOutputWithContext(context.Context) GetStreamConnectionNetworkingAccessOutput
-}
-
-type GetStreamConnectionNetworkingAccessArgs struct {
-	// Id of the Private Link connection when type is `PRIVATE_LINK`.
-	ConnectionId pulumi.StringInput `pulumi:"connectionId"`
-	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-	Type pulumi.StringInput `pulumi:"type"`
-}
-
-func (GetStreamConnectionNetworkingAccessArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionNetworkingAccess)(nil)).Elem()
-}
-
-func (i GetStreamConnectionNetworkingAccessArgs) ToGetStreamConnectionNetworkingAccessOutput() GetStreamConnectionNetworkingAccessOutput {
-	return i.ToGetStreamConnectionNetworkingAccessOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionNetworkingAccessArgs) ToGetStreamConnectionNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionNetworkingAccessOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionNetworkingAccessOutput)
-}
-
-type GetStreamConnectionNetworkingAccessOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionNetworkingAccessOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionNetworkingAccess)(nil)).Elem()
-}
-
-func (o GetStreamConnectionNetworkingAccessOutput) ToGetStreamConnectionNetworkingAccessOutput() GetStreamConnectionNetworkingAccessOutput {
-	return o
-}
-
-func (o GetStreamConnectionNetworkingAccessOutput) ToGetStreamConnectionNetworkingAccessOutputWithContext(ctx context.Context) GetStreamConnectionNetworkingAccessOutput {
-	return o
-}
-
-// Id of the Private Link connection when type is `PRIVATE_LINK`.
-func (o GetStreamConnectionNetworkingAccessOutput) ConnectionId() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionNetworkingAccess) string { return v.ConnectionId }).(pulumi.StringOutput)
-}
-
-// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-func (o GetStreamConnectionNetworkingAccessOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionNetworkingAccess) string { return v.Type }).(pulumi.StringOutput)
-}
-
-type GetStreamConnectionSchemaRegistryAuthentication struct {
-	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
-	Password string `pulumi:"password"`
-	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-	Type string `pulumi:"type"`
-	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
-	Username string `pulumi:"username"`
-}
-
-// GetStreamConnectionSchemaRegistryAuthenticationInput is an input type that accepts GetStreamConnectionSchemaRegistryAuthenticationArgs and GetStreamConnectionSchemaRegistryAuthenticationOutput values.
-// You can construct a concrete instance of `GetStreamConnectionSchemaRegistryAuthenticationInput` via:
-//
-//	GetStreamConnectionSchemaRegistryAuthenticationArgs{...}
-type GetStreamConnectionSchemaRegistryAuthenticationInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionSchemaRegistryAuthenticationOutput() GetStreamConnectionSchemaRegistryAuthenticationOutput
-	ToGetStreamConnectionSchemaRegistryAuthenticationOutputWithContext(context.Context) GetStreamConnectionSchemaRegistryAuthenticationOutput
-}
-
-type GetStreamConnectionSchemaRegistryAuthenticationArgs struct {
-	// Password for the Schema Registry. Required when `type` is `USER_INFO`.
-	Password pulumi.StringInput `pulumi:"password"`
-	// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-	// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-	// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-	Type pulumi.StringInput `pulumi:"type"`
-	// Username for the Schema Registry. Required when `type` is `USER_INFO`.
-	Username pulumi.StringInput `pulumi:"username"`
-}
-
-func (GetStreamConnectionSchemaRegistryAuthenticationArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionSchemaRegistryAuthentication)(nil)).Elem()
-}
-
-func (i GetStreamConnectionSchemaRegistryAuthenticationArgs) ToGetStreamConnectionSchemaRegistryAuthenticationOutput() GetStreamConnectionSchemaRegistryAuthenticationOutput {
-	return i.ToGetStreamConnectionSchemaRegistryAuthenticationOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionSchemaRegistryAuthenticationArgs) ToGetStreamConnectionSchemaRegistryAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionSchemaRegistryAuthenticationOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionSchemaRegistryAuthenticationOutput)
-}
-
-type GetStreamConnectionSchemaRegistryAuthenticationOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionSchemaRegistryAuthenticationOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionSchemaRegistryAuthentication)(nil)).Elem()
-}
-
-func (o GetStreamConnectionSchemaRegistryAuthenticationOutput) ToGetStreamConnectionSchemaRegistryAuthenticationOutput() GetStreamConnectionSchemaRegistryAuthenticationOutput {
-	return o
-}
-
-func (o GetStreamConnectionSchemaRegistryAuthenticationOutput) ToGetStreamConnectionSchemaRegistryAuthenticationOutputWithContext(ctx context.Context) GetStreamConnectionSchemaRegistryAuthenticationOutput {
-	return o
-}
-
-// Password for the Schema Registry. Required when `type` is `USER_INFO`.
-func (o GetStreamConnectionSchemaRegistryAuthenticationOutput) Password() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionSchemaRegistryAuthentication) string { return v.Password }).(pulumi.StringOutput)
-}
-
-// Authentication type discriminator. Specifies the authentication mechanism for Confluent Schema Registry. Valid values are `USER_INFO` or `SASL_INHERIT`.
-// * `USER_INFO` - Uses username and password authentication for Confluent Schema Registry.
-// * `SASL_INHERIT` - Inherits the authentication configuration from Kafka for the Confluent Schema Registry.
-func (o GetStreamConnectionSchemaRegistryAuthenticationOutput) Type() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionSchemaRegistryAuthentication) string { return v.Type }).(pulumi.StringOutput)
-}
-
-// Username for the Schema Registry. Required when `type` is `USER_INFO`.
-func (o GetStreamConnectionSchemaRegistryAuthenticationOutput) Username() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionSchemaRegistryAuthentication) string { return v.Username }).(pulumi.StringOutput)
-}
-
-type GetStreamConnectionSecurity struct {
-	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
-	BrokerPublicCertificate string `pulumi:"brokerPublicCertificate"`
-	// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
-	Protocol string `pulumi:"protocol"`
-}
-
-// GetStreamConnectionSecurityInput is an input type that accepts GetStreamConnectionSecurityArgs and GetStreamConnectionSecurityOutput values.
-// You can construct a concrete instance of `GetStreamConnectionSecurityInput` via:
-//
-//	GetStreamConnectionSecurityArgs{...}
-type GetStreamConnectionSecurityInput interface {
-	pulumi.Input
-
-	ToGetStreamConnectionSecurityOutput() GetStreamConnectionSecurityOutput
-	ToGetStreamConnectionSecurityOutputWithContext(context.Context) GetStreamConnectionSecurityOutput
-}
-
-type GetStreamConnectionSecurityArgs struct {
-	// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
-	BrokerPublicCertificate pulumi.StringInput `pulumi:"brokerPublicCertificate"`
-	// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
-	Protocol pulumi.StringInput `pulumi:"protocol"`
-}
-
-func (GetStreamConnectionSecurityArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionSecurity)(nil)).Elem()
-}
-
-func (i GetStreamConnectionSecurityArgs) ToGetStreamConnectionSecurityOutput() GetStreamConnectionSecurityOutput {
-	return i.ToGetStreamConnectionSecurityOutputWithContext(context.Background())
-}
-
-func (i GetStreamConnectionSecurityArgs) ToGetStreamConnectionSecurityOutputWithContext(ctx context.Context) GetStreamConnectionSecurityOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetStreamConnectionSecurityOutput)
-}
-
-type GetStreamConnectionSecurityOutput struct{ *pulumi.OutputState }
-
-func (GetStreamConnectionSecurityOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetStreamConnectionSecurity)(nil)).Elem()
-}
-
-func (o GetStreamConnectionSecurityOutput) ToGetStreamConnectionSecurityOutput() GetStreamConnectionSecurityOutput {
-	return o
-}
-
-func (o GetStreamConnectionSecurityOutput) ToGetStreamConnectionSecurityOutputWithContext(ctx context.Context) GetStreamConnectionSecurityOutput {
-	return o
-}
-
-// A trusted, public x509 certificate for connecting to Kafka over SSL. String value of the certificate must be defined in the attribute.
-func (o GetStreamConnectionSecurityOutput) BrokerPublicCertificate() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionSecurity) string { return v.BrokerPublicCertificate }).(pulumi.StringOutput)
-}
-
-// Describes the transport type. Can be either `SASL_PLAINTEXT` or `SASL_SSL`.
-func (o GetStreamConnectionSecurityOutput) Protocol() pulumi.StringOutput {
-	return o.ApplyT(func(v GetStreamConnectionSecurity) string { return v.Protocol }).(pulumi.StringOutput)
-}
-
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterAdvancedConfigurationInput)(nil)).Elem(), AdvancedClusterAdvancedConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*AdvancedClusterAdvancedConfigurationPtrInput)(nil)).Elem(), AdvancedClusterAdvancedConfigurationArgs{})
@@ -68238,6 +68938,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceCloudProviderConfigAwsPtrInput)(nil)).Elem(), FederatedDatabaseInstanceCloudProviderConfigAwsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceCloudProviderConfigAzureInput)(nil)).Elem(), FederatedDatabaseInstanceCloudProviderConfigAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceCloudProviderConfigAzurePtrInput)(nil)).Elem(), FederatedDatabaseInstanceCloudProviderConfigAzureArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceCloudProviderConfigGcpInput)(nil)).Elem(), FederatedDatabaseInstanceCloudProviderConfigGcpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceCloudProviderConfigGcpPtrInput)(nil)).Elem(), FederatedDatabaseInstanceCloudProviderConfigGcpArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceDataProcessRegionInput)(nil)).Elem(), FederatedDatabaseInstanceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstanceDataProcessRegionPtrInput)(nil)).Elem(), FederatedDatabaseInstanceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*FederatedDatabaseInstancePrivateEndpointHostnameInput)(nil)).Elem(), FederatedDatabaseInstancePrivateEndpointHostnameArgs{})
@@ -68290,6 +68992,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*MetricIntegrationHeaderArrayInput)(nil)).Elem(), MetricIntegrationHeaderArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MetricIntegrationHeadersRedactedInput)(nil)).Elem(), MetricIntegrationHeadersRedactedArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MetricIntegrationHeadersRedactedArrayInput)(nil)).Elem(), MetricIntegrationHeadersRedactedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MetricIntegrationOauthInput)(nil)).Elem(), MetricIntegrationOauthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MetricIntegrationOauthPtrInput)(nil)).Elem(), MetricIntegrationOauthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MetricIntegrationOauthSigningKeyInfoInput)(nil)).Elem(), MetricIntegrationOauthSigningKeyInfoArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*MetricIntegrationOauthSigningKeyInfoPtrInput)(nil)).Elem(), MetricIntegrationOauthSigningKeyInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveCriteriaInput)(nil)).Elem(), OnlineArchiveCriteriaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveCriteriaPtrInput)(nil)).Elem(), OnlineArchiveCriteriaArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*OnlineArchiveDataExpirationRuleInput)(nil)).Elem(), OnlineArchiveDataExpirationRuleArgs{})
@@ -68687,6 +69393,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceCloudProviderConfigAwArrayInput)(nil)).Elem(), GetFederatedDatabaseInstanceCloudProviderConfigAwArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceCloudProviderConfigAzureInput)(nil)).Elem(), GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayInput)(nil)).Elem(), GetFederatedDatabaseInstanceCloudProviderConfigAzureArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceCloudProviderConfigGcpInput)(nil)).Elem(), GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayInput)(nil)).Elem(), GetFederatedDatabaseInstanceCloudProviderConfigGcpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceDataProcessRegionInput)(nil)).Elem(), GetFederatedDatabaseInstanceDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstanceDataProcessRegionArrayInput)(nil)).Elem(), GetFederatedDatabaseInstanceDataProcessRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancePrivateEndpointHostnameInput)(nil)).Elem(), GetFederatedDatabaseInstancePrivateEndpointHostnameArgs{})
@@ -68715,6 +69423,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultCloudProviderConfigAwArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultCloudProviderConfigAwArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultCloudProviderConfigAzureInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultCloudProviderConfigGcpInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultDataProcessRegionInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultDataProcessRegionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultDataProcessRegionArrayInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultDataProcessRegionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetFederatedDatabaseInstancesResultPrivateEndpointHostnameInput)(nil)).Elem(), GetFederatedDatabaseInstancesResultPrivateEndpointHostnameArgs{})
@@ -68821,10 +69531,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMcpConfigsResultIpAccessListArrayInput)(nil)).Elem(), GetMcpConfigsResultIpAccessListArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationHeadersRedactedInput)(nil)).Elem(), GetMetricIntegrationHeadersRedactedArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationHeadersRedactedArrayInput)(nil)).Elem(), GetMetricIntegrationHeadersRedactedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationOauthInput)(nil)).Elem(), GetMetricIntegrationOauthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationOauthSigningKeyInfoInput)(nil)).Elem(), GetMetricIntegrationOauthSigningKeyInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationsResultInput)(nil)).Elem(), GetMetricIntegrationsResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationsResultArrayInput)(nil)).Elem(), GetMetricIntegrationsResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationsResultHeadersRedactedInput)(nil)).Elem(), GetMetricIntegrationsResultHeadersRedactedArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationsResultHeadersRedactedArrayInput)(nil)).Elem(), GetMetricIntegrationsResultHeadersRedactedArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationsResultOauthInput)(nil)).Elem(), GetMetricIntegrationsResultOauthArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetMetricIntegrationsResultOauthSigningKeyInfoInput)(nil)).Elem(), GetMetricIntegrationsResultOauthSigningKeyInfoArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkContainersResultInput)(nil)).Elem(), GetNetworkContainersResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkContainersResultArrayInput)(nil)).Elem(), GetNetworkContainersResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetNetworkPeeringsResultInput)(nil)).Elem(), GetNetworkPeeringsResultArgs{})
@@ -68992,15 +69706,6 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultInput)(nil)).Elem(), GetStreamConnectionFailoversResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultArrayInput)(nil)).Elem(), GetStreamConnectionFailoversResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultAuthenticationInput)(nil)).Elem(), GetStreamConnectionFailoversResultAuthenticationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultDbRoleToExecuteInput)(nil)).Elem(), GetStreamConnectionFailoversResultDbRoleToExecuteArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultNetworkingInput)(nil)).Elem(), GetStreamConnectionFailoversResultNetworkingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionFailoversResultNetworkingAccessArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionFailoversResultSecurityInput)(nil)).Elem(), GetStreamConnectionFailoversResultSecurityArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionGcpInput)(nil)).Elem(), GetStreamConnectionGcpArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionNetworkingInput)(nil)).Elem(), GetStreamConnectionNetworkingArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionNetworkingAccessInput)(nil)).Elem(), GetStreamConnectionNetworkingAccessArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionSchemaRegistryAuthenticationInput)(nil)).Elem(), GetStreamConnectionSchemaRegistryAuthenticationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetStreamConnectionSecurityInput)(nil)).Elem(), GetStreamConnectionSecurityArgs{})
 	pulumi.RegisterOutputType(AdvancedClusterAdvancedConfigurationOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterAdvancedConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(AdvancedClusterBiConnectorConfigOutput{})
@@ -69165,6 +69870,8 @@ func init() {
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceCloudProviderConfigAwsPtrOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceCloudProviderConfigAzureOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceCloudProviderConfigAzurePtrOutput{})
+	pulumi.RegisterOutputType(FederatedDatabaseInstanceCloudProviderConfigGcpOutput{})
+	pulumi.RegisterOutputType(FederatedDatabaseInstanceCloudProviderConfigGcpPtrOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstanceDataProcessRegionPtrOutput{})
 	pulumi.RegisterOutputType(FederatedDatabaseInstancePrivateEndpointHostnameOutput{})
@@ -69217,6 +69924,10 @@ func init() {
 	pulumi.RegisterOutputType(MetricIntegrationHeaderArrayOutput{})
 	pulumi.RegisterOutputType(MetricIntegrationHeadersRedactedOutput{})
 	pulumi.RegisterOutputType(MetricIntegrationHeadersRedactedArrayOutput{})
+	pulumi.RegisterOutputType(MetricIntegrationOauthOutput{})
+	pulumi.RegisterOutputType(MetricIntegrationOauthPtrOutput{})
+	pulumi.RegisterOutputType(MetricIntegrationOauthSigningKeyInfoOutput{})
+	pulumi.RegisterOutputType(MetricIntegrationOauthSigningKeyInfoPtrOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveCriteriaOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveCriteriaPtrOutput{})
 	pulumi.RegisterOutputType(OnlineArchiveDataExpirationRuleOutput{})
@@ -69614,6 +70325,8 @@ func init() {
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceCloudProviderConfigAwArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceCloudProviderConfigAzureOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceCloudProviderConfigAzureArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceCloudProviderConfigGcpOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceCloudProviderConfigGcpArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstanceDataProcessRegionArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancePrivateEndpointHostnameOutput{})
@@ -69642,6 +70355,8 @@ func init() {
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultCloudProviderConfigAwArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultCloudProviderConfigAzureOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultCloudProviderConfigAzureArrayOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultCloudProviderConfigGcpOutput{})
+	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultCloudProviderConfigGcpArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultDataProcessRegionOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultDataProcessRegionArrayOutput{})
 	pulumi.RegisterOutputType(GetFederatedDatabaseInstancesResultPrivateEndpointHostnameOutput{})
@@ -69748,10 +70463,14 @@ func init() {
 	pulumi.RegisterOutputType(GetMcpConfigsResultIpAccessListArrayOutput{})
 	pulumi.RegisterOutputType(GetMetricIntegrationHeadersRedactedOutput{})
 	pulumi.RegisterOutputType(GetMetricIntegrationHeadersRedactedArrayOutput{})
+	pulumi.RegisterOutputType(GetMetricIntegrationOauthOutput{})
+	pulumi.RegisterOutputType(GetMetricIntegrationOauthSigningKeyInfoOutput{})
 	pulumi.RegisterOutputType(GetMetricIntegrationsResultOutput{})
 	pulumi.RegisterOutputType(GetMetricIntegrationsResultArrayOutput{})
 	pulumi.RegisterOutputType(GetMetricIntegrationsResultHeadersRedactedOutput{})
 	pulumi.RegisterOutputType(GetMetricIntegrationsResultHeadersRedactedArrayOutput{})
+	pulumi.RegisterOutputType(GetMetricIntegrationsResultOauthOutput{})
+	pulumi.RegisterOutputType(GetMetricIntegrationsResultOauthSigningKeyInfoOutput{})
 	pulumi.RegisterOutputType(GetNetworkContainersResultOutput{})
 	pulumi.RegisterOutputType(GetNetworkContainersResultArrayOutput{})
 	pulumi.RegisterOutputType(GetNetworkPeeringsResultOutput{})
@@ -69919,13 +70638,4 @@ func init() {
 	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultArrayOutput{})
 	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultAuthenticationOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultDbRoleToExecuteOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultNetworkingOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultNetworkingAccessOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionFailoversResultSecurityOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionGcpOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionNetworkingOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionNetworkingAccessOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionSchemaRegistryAuthenticationOutput{})
-	pulumi.RegisterOutputType(GetStreamConnectionSecurityOutput{})
 }

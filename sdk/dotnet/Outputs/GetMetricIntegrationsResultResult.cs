@@ -42,6 +42,10 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly ImmutableArray<string> MetricSelections;
         /// <summary>
+        /// OAuth 2.0 configuration returned for a metric integration. Secrets are never returned.
+        /// </summary>
+        public readonly Outputs.GetMetricIntegrationsResultOauthResult Oauth;
+        /// <summary>
         /// The provider type for the metric integration. Identifies the third-party service provider.
         /// </summary>
         public readonly string ProviderType;
@@ -62,6 +66,8 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             ImmutableArray<string> metricSelections,
 
+            Outputs.GetMetricIntegrationsResultOauthResult oauth,
+
             string providerType)
         {
             AggregationTemporality = aggregationTemporality;
@@ -71,6 +77,7 @@ namespace Pulumi.Mongodbatlas.Outputs
             IntegrationType = integrationType;
             MetricIntegrationId = metricIntegrationId;
             MetricSelections = metricSelections;
+            Oauth = oauth;
             ProviderType = providerType;
         }
     }

@@ -22,7 +22,8 @@ import (
 // The following example creates a `MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to retrieve all metric integrations configured in the project and output their `metricIntegrationId` values.
 //
 // ### Further Examples
-// - Metric Integration Examples
+// - Header-based — export Atlas metrics using header-based authentication.
+// - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
 func LookupMetricIntegrations(ctx *pulumi.Context, args *LookupMetricIntegrationsArgs, opts ...pulumi.InvokeOption) (*LookupMetricIntegrationsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupMetricIntegrationsResult

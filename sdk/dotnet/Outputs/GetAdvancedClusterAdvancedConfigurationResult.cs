@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetAdvancedClusterAdvancedConfigurationResult
     {
         /// <summary>
-        /// (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
+        /// (Optional) The minimum pre- and post-image retention time in seconds. Defaults to `-1`(off).
         /// </summary>
         public readonly int ChangeStreamOptionsPreAndPostImagesExpireAfterSeconds;
         /// <summary>
@@ -30,7 +30,7 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly int DefaultMaxTimeMs;
         /// <summary>
-        /// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
+        /// [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. Clusters default to `Majority`.
         /// </summary>
         public readonly string DefaultWriteConcern;
         /// <summary>

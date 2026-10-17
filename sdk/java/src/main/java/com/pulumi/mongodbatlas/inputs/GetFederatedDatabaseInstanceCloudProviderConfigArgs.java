@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAwArgs;
 import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs;
+import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,11 +31,19 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigArgs extends c
         return this.azures;
     }
 
+    @Import(name="gcps", required=true)
+    private Output<List<GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs>> gcps;
+
+    public Output<List<GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs>> gcps() {
+        return this.gcps;
+    }
+
     private GetFederatedDatabaseInstanceCloudProviderConfigArgs() {}
 
     private GetFederatedDatabaseInstanceCloudProviderConfigArgs(GetFederatedDatabaseInstanceCloudProviderConfigArgs $) {
         this.aws = $.aws;
         this.azures = $.azures;
+        this.gcps = $.gcps;
     }
 
     public static Builder builder() {
@@ -81,12 +90,28 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfigArgs extends c
             return azures(List.of(azures));
         }
 
+        public Builder gcps(Output<List<GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs>> gcps) {
+            $.gcps = gcps;
+            return this;
+        }
+
+        public Builder gcps(List<GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs> gcps) {
+            return gcps(Output.of(gcps));
+        }
+
+        public Builder gcps(GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs... gcps) {
+            return gcps(List.of(gcps));
+        }
+
         public GetFederatedDatabaseInstanceCloudProviderConfigArgs build() {
             if ($.aws == null) {
                 throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigArgs", "aws");
             }
             if ($.azures == null) {
                 throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigArgs", "azures");
+            }
+            if ($.gcps == null) {
+                throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfigArgs", "gcps");
             }
             return $;
         }

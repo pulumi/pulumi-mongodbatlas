@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceCloudProviderConfigAwsArgs;
 import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceCloudProviderConfigAzureArgs;
+import com.pulumi.mongodbatlas.inputs.FederatedDatabaseInstanceCloudProviderConfigGcpArgs;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -46,11 +47,27 @@ public final class FederatedDatabaseInstanceCloudProviderConfigArgs extends com.
         return Optional.ofNullable(this.azure);
     }
 
+    /**
+     * Google Cloud cloud service configuration.
+     * 
+     */
+    @Import(name="gcp")
+    private @Nullable Output<FederatedDatabaseInstanceCloudProviderConfigGcpArgs> gcp;
+
+    /**
+     * @return Google Cloud cloud service configuration.
+     * 
+     */
+    public Optional<Output<FederatedDatabaseInstanceCloudProviderConfigGcpArgs>> gcp() {
+        return Optional.ofNullable(this.gcp);
+    }
+
     private FederatedDatabaseInstanceCloudProviderConfigArgs() {}
 
     private FederatedDatabaseInstanceCloudProviderConfigArgs(FederatedDatabaseInstanceCloudProviderConfigArgs $) {
         this.aws = $.aws;
         this.azure = $.azure;
+        this.gcp = $.gcp;
     }
 
     public static Builder builder() {
@@ -111,6 +128,27 @@ public final class FederatedDatabaseInstanceCloudProviderConfigArgs extends com.
          */
         public Builder azure(FederatedDatabaseInstanceCloudProviderConfigAzureArgs azure) {
             return azure(Output.of(azure));
+        }
+
+        /**
+         * @param gcp Google Cloud cloud service configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcp(@Nullable Output<FederatedDatabaseInstanceCloudProviderConfigGcpArgs> gcp) {
+            $.gcp = gcp;
+            return this;
+        }
+
+        /**
+         * @param gcp Google Cloud cloud service configuration.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder gcp(FederatedDatabaseInstanceCloudProviderConfigGcpArgs gcp) {
+            return gcp(Output.of(gcp));
         }
 
         public FederatedDatabaseInstanceCloudProviderConfigArgs build() {

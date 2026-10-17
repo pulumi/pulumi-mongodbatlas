@@ -100,7 +100,8 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+        /// 
+        /// Note: To learn more about OIDC federated authentication, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
         /// </summary>
         public static Task<GetDatabaseUsersResult> InvokeAsync(GetDatabaseUsersArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetDatabaseUsersResult>("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", args ?? new GetDatabaseUsersArgs(), options.WithDefaults());
@@ -194,7 +195,8 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+        /// 
+        /// Note: To learn more about OIDC federated authentication, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
         /// </summary>
         public static Output<GetDatabaseUsersResult> Invoke(GetDatabaseUsersInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetDatabaseUsersResult>("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", args ?? new GetDatabaseUsersInvokeArgs(), options.WithDefaults());
@@ -288,7 +290,8 @@ namespace Pulumi.Mongodbatlas
         /// 
         /// });
         /// ```
-        /// Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+        /// 
+        /// Note: To learn more about OIDC federated authentication, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
         /// </summary>
         public static Output<GetDatabaseUsersResult> Invoke(GetDatabaseUsersInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetDatabaseUsersResult>("mongodbatlas:index/getDatabaseUsers:getDatabaseUsers", args ?? new GetDatabaseUsersInvokeArgs(), options.WithDefaults());

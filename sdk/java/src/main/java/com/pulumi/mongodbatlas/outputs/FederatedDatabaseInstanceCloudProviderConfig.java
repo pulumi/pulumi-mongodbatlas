@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.mongodbatlas.outputs.FederatedDatabaseInstanceCloudProviderConfigAws;
 import com.pulumi.mongodbatlas.outputs.FederatedDatabaseInstanceCloudProviderConfigAzure;
+import com.pulumi.mongodbatlas.outputs.FederatedDatabaseInstanceCloudProviderConfigGcp;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -22,6 +23,11 @@ public final class FederatedDatabaseInstanceCloudProviderConfig {
      * 
      */
     private @Nullable FederatedDatabaseInstanceCloudProviderConfigAzure azure;
+    /**
+     * @return Google Cloud cloud service configuration.
+     * 
+     */
+    private @Nullable FederatedDatabaseInstanceCloudProviderConfigGcp gcp;
 
     private FederatedDatabaseInstanceCloudProviderConfig() {}
     /**
@@ -38,6 +44,13 @@ public final class FederatedDatabaseInstanceCloudProviderConfig {
     public Optional<FederatedDatabaseInstanceCloudProviderConfigAzure> azure() {
         return Optional.ofNullable(this.azure);
     }
+    /**
+     * @return Google Cloud cloud service configuration.
+     * 
+     */
+    public Optional<FederatedDatabaseInstanceCloudProviderConfigGcp> gcp() {
+        return Optional.ofNullable(this.gcp);
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -50,11 +63,13 @@ public final class FederatedDatabaseInstanceCloudProviderConfig {
     public static final class Builder {
         private @Nullable FederatedDatabaseInstanceCloudProviderConfigAws aws;
         private @Nullable FederatedDatabaseInstanceCloudProviderConfigAzure azure;
+        private @Nullable FederatedDatabaseInstanceCloudProviderConfigGcp gcp;
         public Builder() {}
         public Builder(FederatedDatabaseInstanceCloudProviderConfig defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.aws = defaults.aws;
     	      this.azure = defaults.azure;
+    	      this.gcp = defaults.gcp;
         }
 
         @CustomType.Setter
@@ -69,10 +84,17 @@ public final class FederatedDatabaseInstanceCloudProviderConfig {
             this.azure = azure;
             return this;
         }
+        @CustomType.Setter
+        public Builder gcp(@Nullable FederatedDatabaseInstanceCloudProviderConfigGcp gcp) {
+
+            this.gcp = gcp;
+            return this;
+        }
         public FederatedDatabaseInstanceCloudProviderConfig build() {
             final var _resultValue = new FederatedDatabaseInstanceCloudProviderConfig();
             _resultValue.aws = aws;
             _resultValue.azure = azure;
+            _resultValue.gcp = gcp;
             return _resultValue;
         }
     }
