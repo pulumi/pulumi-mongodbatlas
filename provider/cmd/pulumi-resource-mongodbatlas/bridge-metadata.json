@@ -493,6 +493,9 @@
                                 },
                                 "azure": {
                                     "maxItemsOne": true
+                                },
+                                "gcp": {
+                                    "maxItemsOne": true
                                 }
                             }
                         }
@@ -701,6 +704,13 @@
                     },
                     "metric_selection": {
                         "maxItemsOne": false
+                    },
+                    "oauth": {
+                        "fields": {
+                            "scopes": {
+                                "maxItemsOne": false
+                            }
+                        }
                     }
                 }
             },
@@ -2137,6 +2147,9 @@
                                 },
                                 "azure": {
                                     "maxItemsOne": false
+                                },
+                                "gcp": {
+                                    "maxItemsOne": false
                                 }
                             }
                         }
@@ -2225,6 +2238,9 @@
                                                 "maxItemsOne": false
                                             },
                                             "azure": {
+                                                "maxItemsOne": false
+                                            },
+                                            "gcp": {
                                                 "maxItemsOne": false
                                             }
                                         }
@@ -2682,6 +2698,13 @@
                     },
                     "metric_selection": {
                         "maxItemsOne": false
+                    },
+                    "oauth": {
+                        "fields": {
+                            "scopes": {
+                                "maxItemsOne": false
+                            }
+                        }
                     }
                 }
             },
@@ -2698,6 +2721,13 @@
                                 },
                                 "metric_selection": {
                                     "maxItemsOne": false
+                                },
+                                "oauth": {
+                                    "fields": {
+                                        "scopes": {
+                                            "maxItemsOne": false
+                                        }
+                                    }
                                 }
                             }
                         }
