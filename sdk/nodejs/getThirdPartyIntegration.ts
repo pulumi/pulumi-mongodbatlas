@@ -103,9 +103,13 @@ export interface GetThirdPartyIntegrationResult {
     readonly sendDatabaseMetrics: boolean;
     /**
      * Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
-     * * `OPS_GENIE`
      */
     readonly sendQueryStatsMetrics: boolean;
+    /**
+     * Toggle sending sharding metrics that includes sharding distribution and chunk metrics per cluster, shard, and collection.
+     * * `OPS_GENIE`
+     */
+    readonly sendShardingMetrics: boolean;
     /**
      * Toggle sending user provided group and cluster resource tags with the Datadog metrics.
      */

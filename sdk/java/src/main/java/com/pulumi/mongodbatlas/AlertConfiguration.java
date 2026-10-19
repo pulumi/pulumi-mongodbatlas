@@ -253,6 +253,56 @@ import javax.annotation.Nullable;
  * }
  * </pre>
  * 
+ * ### Create a webhook notification with a custom JSON body and headers
+ * 
+ * <pre>
+ * {@code
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.mongodbatlas.AlertConfiguration;
+ * import com.pulumi.mongodbatlas.AlertConfigurationArgs;
+ * import com.pulumi.mongodbatlas.inputs.AlertConfigurationNotificationArgs;
+ * import static com.pulumi.codegen.internal.Serialization.*;
+ * import java.util.ArrayList;
+ * import java.util.Arrays;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var test = new AlertConfiguration("test", AlertConfigurationArgs.builder()
+ *             .projectId("PROJECT ID")
+ *             .enabled(true)
+ *             .eventType("REPLICATION_OPLOG_WINDOW_RUNNING_OUT")
+ *             .notifications(AlertConfigurationNotificationArgs.builder()
+ *                 .typeName("WEBHOOK")
+ *                 .webhookUrl("https://example.com/webhook")
+ *                 .webhookBodyTemplate(serializeJson(
+ *                     jsonObject(
+ *                         jsonProperty("alert", "${eventType}"),
+ *                         jsonProperty("project", "${groupId}")
+ *                     )))
+ *                 .webhookHeadersTemplate(serializeJson(
+ *                     jsonObject(
+ *                         jsonProperty("X-Custom-Header", "static-value")
+ *                     )))
+ *                 .build())
+ *             .build());
+ * 
+ *     }
+ * }
+ * }
+ * </pre>
+ * 
  * ### Further Examples
  * - Alert Configuration
  * 

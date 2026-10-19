@@ -26,7 +26,7 @@ class GetThirdPartyIntegrationResult:
     """
     A collection of values returned by getThirdPartyIntegration.
     """
-    def __init__(__self__, account_id=None, api_key=None, channel_name=None, enabled=None, id=None, microsoft_teams_webhook_url=None, project_id=None, region=None, routing_key=None, secret=None, send_collection_latency_metrics=None, send_database_metrics=None, send_query_stats_metrics=None, send_user_provided_resource_tags=None, service_discovery=None, service_key=None, team_name=None, type=None, url=None, user_name=None):
+    def __init__(__self__, account_id=None, api_key=None, channel_name=None, enabled=None, id=None, microsoft_teams_webhook_url=None, project_id=None, region=None, routing_key=None, secret=None, send_collection_latency_metrics=None, send_database_metrics=None, send_query_stats_metrics=None, send_sharding_metrics=None, send_user_provided_resource_tags=None, service_discovery=None, service_key=None, team_name=None, type=None, url=None, user_name=None):
         if account_id and not isinstance(account_id, str):
             raise TypeError("Expected argument 'account_id' to be a str")
         pulumi.set(__self__, "account_id", account_id)
@@ -66,6 +66,9 @@ class GetThirdPartyIntegrationResult:
         if send_query_stats_metrics and not isinstance(send_query_stats_metrics, bool):
             raise TypeError("Expected argument 'send_query_stats_metrics' to be a bool")
         pulumi.set(__self__, "send_query_stats_metrics", send_query_stats_metrics)
+        if send_sharding_metrics and not isinstance(send_sharding_metrics, bool):
+            raise TypeError("Expected argument 'send_sharding_metrics' to be a bool")
+        pulumi.set(__self__, "send_sharding_metrics", send_sharding_metrics)
         if send_user_provided_resource_tags and not isinstance(send_user_provided_resource_tags, bool):
             raise TypeError("Expected argument 'send_user_provided_resource_tags' to be a bool")
         pulumi.set(__self__, "send_user_provided_resource_tags", send_user_provided_resource_tags)
@@ -184,9 +187,17 @@ class GetThirdPartyIntegrationResult:
     def send_query_stats_metrics(self) -> _builtins.bool:
         """
         Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
-        * `OPS_GENIE`
         """
         return pulumi.get(self, "send_query_stats_metrics")
+
+    @_builtins.property
+    @pulumi.getter(name="sendShardingMetrics")
+    def send_sharding_metrics(self) -> _builtins.bool:
+        """
+        Toggle sending sharding metrics that includes sharding distribution and chunk metrics per cluster, shard, and collection.
+        * `OPS_GENIE`
+        """
+        return pulumi.get(self, "send_sharding_metrics")
 
     @_builtins.property
     @pulumi.getter(name="sendUserProvidedResourceTags")
@@ -259,6 +270,7 @@ class AwaitableGetThirdPartyIntegrationResult(GetThirdPartyIntegrationResult):
             send_collection_latency_metrics=self.send_collection_latency_metrics,
             send_database_metrics=self.send_database_metrics,
             send_query_stats_metrics=self.send_query_stats_metrics,
+            send_sharding_metrics=self.send_sharding_metrics,
             send_user_provided_resource_tags=self.send_user_provided_resource_tags,
             service_discovery=self.service_discovery,
             service_key=self.service_key,
@@ -320,6 +332,7 @@ def get_third_party_integration(project_id: Optional[_builtins.str] = None,
         send_collection_latency_metrics=pulumi.get(__ret__, 'send_collection_latency_metrics'),
         send_database_metrics=pulumi.get(__ret__, 'send_database_metrics'),
         send_query_stats_metrics=pulumi.get(__ret__, 'send_query_stats_metrics'),
+        send_sharding_metrics=pulumi.get(__ret__, 'send_sharding_metrics'),
         send_user_provided_resource_tags=pulumi.get(__ret__, 'send_user_provided_resource_tags'),
         service_discovery=pulumi.get(__ret__, 'service_discovery'),
         service_key=pulumi.get(__ret__, 'service_key'),
@@ -378,6 +391,7 @@ def get_third_party_integration_output(project_id: pulumi.Input[Optional[_builti
         send_collection_latency_metrics=pulumi.get(__response__, 'send_collection_latency_metrics'),
         send_database_metrics=pulumi.get(__response__, 'send_database_metrics'),
         send_query_stats_metrics=pulumi.get(__response__, 'send_query_stats_metrics'),
+        send_sharding_metrics=pulumi.get(__response__, 'send_sharding_metrics'),
         send_user_provided_resource_tags=pulumi.get(__response__, 'send_user_provided_resource_tags'),
         service_discovery=pulumi.get(__response__, 'service_discovery'),
         service_key=pulumi.get(__response__, 'service_key'),

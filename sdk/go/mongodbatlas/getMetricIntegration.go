@@ -20,7 +20,8 @@ import (
 // The following example creates a `MetricIntegration` resource that exports Atlas metrics to an OpenTelemetry-compatible endpoint, then uses this data source to read back a single integration by its metric integration ID and output its integration type.
 //
 // ### Further Examples
-// - Metric Integration Examples
+// - Header-based — export Atlas metrics using header-based authentication.
+// - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
 func LookupMetricIntegration(ctx *pulumi.Context, args *LookupMetricIntegrationArgs, opts ...pulumi.InvokeOption) (*LookupMetricIntegrationResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupMetricIntegrationResult
@@ -55,6 +56,8 @@ type LookupMetricIntegrationResult struct {
 	MetricIntegrationId string `pulumi:"metricIntegrationId"`
 	// Array of metric categories to export. Determines which types of metrics are sent to the integration.
 	MetricSelections []string `pulumi:"metricSelections"`
+	// OAuth 2.0 configuration returned for a metric integration. Secrets are never returned.
+	Oauth GetMetricIntegrationOauth `pulumi:"oauth"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// The provider type for the metric integration. Identifies the third-party service provider.
@@ -126,6 +129,11 @@ func (o LookupMetricIntegrationResultOutput) MetricIntegrationId() pulumi.String
 // Array of metric categories to export. Determines which types of metrics are sent to the integration.
 func (o LookupMetricIntegrationResultOutput) MetricSelections() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupMetricIntegrationResult) []string { return v.MetricSelections }).(pulumi.StringArrayOutput)
+}
+
+// OAuth 2.0 configuration returned for a metric integration. Secrets are never returned.
+func (o LookupMetricIntegrationResultOutput) Oauth() GetMetricIntegrationOauthOutput {
+	return o.ApplyT(func(v LookupMetricIntegrationResult) GetMetricIntegrationOauth { return v.Oauth }).(GetMetricIntegrationOauthOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

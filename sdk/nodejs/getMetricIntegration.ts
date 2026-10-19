@@ -46,7 +46,8 @@ import * as utilities from "./utilities";
  * ```
  *
  * ### Further Examples
- * - Metric Integration Examples
+ * - Header-based — export Atlas metrics using header-based authentication.
+ * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
  */
 export function getMetricIntegration(args: GetMetricIntegrationArgs, opts?: pulumi.InvokeOptions): Promise<GetMetricIntegrationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -103,6 +104,10 @@ export interface GetMetricIntegrationResult {
      */
     readonly metricSelections: string[];
     /**
+     * OAuth 2.0 configuration returned for a metric integration. Secrets are never returned.
+     */
+    readonly oauth: outputs.GetMetricIntegrationOauth;
+    /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     readonly projectId: string;
@@ -151,7 +156,8 @@ export interface GetMetricIntegrationResult {
  * ```
  *
  * ### Further Examples
- * - Metric Integration Examples
+ * - Header-based — export Atlas metrics using header-based authentication.
+ * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
  */
 export function getMetricIntegrationOutput(args: GetMetricIntegrationOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMetricIntegrationResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

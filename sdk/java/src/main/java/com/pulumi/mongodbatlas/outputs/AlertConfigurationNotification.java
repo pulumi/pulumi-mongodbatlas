@@ -155,6 +155,16 @@ public final class AlertConfigurationNotification {
      */
     private @Nullable String victorOpsRoutingKey;
     /**
+     * @return Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+     * 
+     */
+    private @Nullable String webhookBodyTemplate;
+    /**
+     * @return Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+     * 
+     */
+    private @Nullable String webhookHeadersTemplate;
+    /**
      * @return Optional authentication secret for the `WEBHOOK` notifications type.
      * 
      */
@@ -352,6 +362,20 @@ public final class AlertConfigurationNotification {
         return Optional.ofNullable(this.victorOpsRoutingKey);
     }
     /**
+     * @return Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+     * 
+     */
+    public Optional<String> webhookBodyTemplate() {
+        return Optional.ofNullable(this.webhookBodyTemplate);
+    }
+    /**
+     * @return Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+     * 
+     */
+    public Optional<String> webhookHeadersTemplate() {
+        return Optional.ofNullable(this.webhookHeadersTemplate);
+    }
+    /**
      * @return Optional authentication secret for the `WEBHOOK` notifications type.
      * 
      */
@@ -398,6 +422,8 @@ public final class AlertConfigurationNotification {
         private @Nullable String username;
         private @Nullable String victorOpsApiKey;
         private @Nullable String victorOpsRoutingKey;
+        private @Nullable String webhookBodyTemplate;
+        private @Nullable String webhookHeadersTemplate;
         private @Nullable String webhookSecret;
         private @Nullable String webhookUrl;
         public Builder() {}
@@ -426,6 +452,8 @@ public final class AlertConfigurationNotification {
     	      this.username = defaults.username;
     	      this.victorOpsApiKey = defaults.victorOpsApiKey;
     	      this.victorOpsRoutingKey = defaults.victorOpsRoutingKey;
+    	      this.webhookBodyTemplate = defaults.webhookBodyTemplate;
+    	      this.webhookHeadersTemplate = defaults.webhookHeadersTemplate;
     	      this.webhookSecret = defaults.webhookSecret;
     	      this.webhookUrl = defaults.webhookUrl;
         }
@@ -574,6 +602,18 @@ public final class AlertConfigurationNotification {
             return this;
         }
         @CustomType.Setter
+        public Builder webhookBodyTemplate(@Nullable String webhookBodyTemplate) {
+
+            this.webhookBodyTemplate = webhookBodyTemplate;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder webhookHeadersTemplate(@Nullable String webhookHeadersTemplate) {
+
+            this.webhookHeadersTemplate = webhookHeadersTemplate;
+            return this;
+        }
+        @CustomType.Setter
         public Builder webhookSecret(@Nullable String webhookSecret) {
 
             this.webhookSecret = webhookSecret;
@@ -610,6 +650,8 @@ public final class AlertConfigurationNotification {
             _resultValue.username = username;
             _resultValue.victorOpsApiKey = victorOpsApiKey;
             _resultValue.victorOpsRoutingKey = victorOpsRoutingKey;
+            _resultValue.webhookBodyTemplate = webhookBodyTemplate;
+            _resultValue.webhookHeadersTemplate = webhookHeadersTemplate;
             _resultValue.webhookSecret = webhookSecret;
             _resultValue.webhookUrl = webhookUrl;
             return _resultValue;

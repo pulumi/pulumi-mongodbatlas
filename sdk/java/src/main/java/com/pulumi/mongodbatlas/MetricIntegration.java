@@ -12,6 +12,7 @@ import com.pulumi.mongodbatlas.Utilities;
 import com.pulumi.mongodbatlas.inputs.MetricIntegrationState;
 import com.pulumi.mongodbatlas.outputs.MetricIntegrationHeader;
 import com.pulumi.mongodbatlas.outputs.MetricIntegrationHeadersRedacted;
+import com.pulumi.mongodbatlas.outputs.MetricIntegrationOauth;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -26,10 +27,11 @@ import javax.annotation.Nullable;
  * 
  * ## Example Usage
  * 
- * The following example uses Datadog. To export to another provider, update `providerType` (`CUSTOM`, `NEW_RELIC`, or `DYNATRACE`), the `endpoint`, and the authentication `headers` to match that provider.
+ * The following example points at Datadog using a custom OTLP endpoint (`providerType = &#34;CUSTOM&#34;`). To export metrics to a different provider, update the `endpoint` and authentication `headers` to that provider&#39;s values; for the named providers (`DATADOG`, `DYNATRACE`, or `NEW_RELIC`), set `providerType` accordingly.
  * 
  * ### Further Examples
- * - Metric Integration Examples
+ * - Header-based — export Atlas metrics using header-based authentication.
+ * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
  * 
  * ## Import
  * 
@@ -59,14 +61,14 @@ public class MetricIntegration extends com.pulumi.resources.CustomResource {
         return this.aggregationTemporality;
     }
     /**
-     * Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+     * Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
      * 
      */
     @Export(name="authType", refs={String.class}, tree="[0]")
     private Output<String> authType;
 
     /**
-     * @return Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+     * @return Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
      * 
      */
     public Output<String> authType() {
@@ -155,6 +157,20 @@ public class MetricIntegration extends com.pulumi.resources.CustomResource {
      */
     public Output<List<String>> metricSelections() {
         return this.metricSelections;
+    }
+    /**
+     * OAuth 2.0 client credentials configuration. Required when authType is `OAUTH2`. Secrets are never returned.
+     * 
+     */
+    @Export(name="oauth", refs={MetricIntegrationOauth.class}, tree="[0]")
+    private Output</* @Nullable */ MetricIntegrationOauth> oauth;
+
+    /**
+     * @return OAuth 2.0 client credentials configuration. Required when authType is `OAUTH2`. Secrets are never returned.
+     * 
+     */
+    public Output<Optional<MetricIntegrationOauth>> oauth() {
+        return Codegen.optional(this.oauth);
     }
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

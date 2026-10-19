@@ -15,15 +15,19 @@ namespace Pulumi.Mongodbatlas.Outputs
     {
         public readonly ImmutableArray<Outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAwResult> Aws;
         public readonly ImmutableArray<Outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAzureResult> Azures;
+        public readonly ImmutableArray<Outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigGcpResult> Gcps;
 
         [OutputConstructor]
         private GetFederatedDatabaseInstancesResultCloudProviderConfigResult(
             ImmutableArray<Outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAwResult> aws,
 
-            ImmutableArray<Outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAzureResult> azures)
+            ImmutableArray<Outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAzureResult> azures,
+
+            ImmutableArray<Outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigGcpResult> gcps)
         {
             Aws = aws;
             Azures = azures;
+            Gcps = gcps;
         }
     }
 }

@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetMetricIntegrationsResultHeadersRedacted;
+import com.pulumi.mongodbatlas.outputs.GetMetricIntegrationsResultOauth;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -47,6 +48,11 @@ public final class GetMetricIntegrationsResult {
      * 
      */
     private List<String> metricSelections;
+    /**
+     * @return OAuth 2.0 configuration returned for a metric integration. Secrets are never returned.
+     * 
+     */
+    private GetMetricIntegrationsResultOauth oauth;
     /**
      * @return The provider type for the metric integration. Identifies the third-party service provider.
      * 
@@ -104,6 +110,13 @@ public final class GetMetricIntegrationsResult {
         return this.metricSelections;
     }
     /**
+     * @return OAuth 2.0 configuration returned for a metric integration. Secrets are never returned.
+     * 
+     */
+    public GetMetricIntegrationsResultOauth oauth() {
+        return this.oauth;
+    }
+    /**
      * @return The provider type for the metric integration. Identifies the third-party service provider.
      * 
      */
@@ -127,6 +140,7 @@ public final class GetMetricIntegrationsResult {
         private String integrationType;
         private String metricIntegrationId;
         private List<String> metricSelections;
+        private GetMetricIntegrationsResultOauth oauth;
         private String providerType;
         public Builder() {}
         public Builder(GetMetricIntegrationsResult defaults) {
@@ -138,6 +152,7 @@ public final class GetMetricIntegrationsResult {
     	      this.integrationType = defaults.integrationType;
     	      this.metricIntegrationId = defaults.metricIntegrationId;
     	      this.metricSelections = defaults.metricSelections;
+    	      this.oauth = defaults.oauth;
     	      this.providerType = defaults.providerType;
         }
 
@@ -204,6 +219,14 @@ public final class GetMetricIntegrationsResult {
             return metricSelections(List.of(metricSelections));
         }
         @CustomType.Setter
+        public Builder oauth(GetMetricIntegrationsResultOauth oauth) {
+            if (oauth == null) {
+              throw new MissingRequiredPropertyException("GetMetricIntegrationsResult", "oauth");
+            }
+            this.oauth = oauth;
+            return this;
+        }
+        @CustomType.Setter
         public Builder providerType(String providerType) {
             if (providerType == null) {
               throw new MissingRequiredPropertyException("GetMetricIntegrationsResult", "providerType");
@@ -220,6 +243,7 @@ public final class GetMetricIntegrationsResult {
             _resultValue.integrationType = integrationType;
             _resultValue.metricIntegrationId = metricIntegrationId;
             _resultValue.metricSelections = metricSelections;
+            _resultValue.oauth = oauth;
             _resultValue.providerType = providerType;
             return _resultValue;
         }

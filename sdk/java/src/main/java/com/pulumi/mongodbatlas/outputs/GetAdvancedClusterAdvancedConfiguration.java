@@ -15,7 +15,7 @@ import java.util.Objects;
 @CustomType
 public final class GetAdvancedClusterAdvancedConfiguration {
     /**
-     * @return (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
+     * @return (Optional) The minimum pre- and post-image retention time in seconds. Defaults to `-1`(off).
      * 
      */
     private Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds;
@@ -35,7 +35,7 @@ public final class GetAdvancedClusterAdvancedConfiguration {
      */
     private Integer defaultMaxTimeMs;
     /**
-     * @return [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
+     * @return [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. Clusters default to `majority`.
      * 
      */
     private String defaultWriteConcern;
@@ -89,7 +89,7 @@ public final class GetAdvancedClusterAdvancedConfiguration {
 
     private GetAdvancedClusterAdvancedConfiguration() {}
     /**
-     * @return (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
+     * @return (Optional) The minimum pre- and post-image retention time in seconds. Defaults to `-1`(off).
      * 
      */
     public Integer changeStreamOptionsPreAndPostImagesExpireAfterSeconds() {
@@ -117,7 +117,7 @@ public final class GetAdvancedClusterAdvancedConfiguration {
         return this.defaultMaxTimeMs;
     }
     /**
-     * @return [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
+     * @return [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. Clusters default to `majority`.
      * 
      */
     public String defaultWriteConcern() {
