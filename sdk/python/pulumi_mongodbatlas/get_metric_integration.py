@@ -27,7 +27,7 @@ class GetMetricIntegrationResult:
     """
     A collection of values returned by getMetricIntegration.
     """
-    def __init__(__self__, aggregation_temporality=None, auth_type=None, endpoint=None, headers_redacteds=None, integration_type=None, metric_integration_id=None, metric_selections=None, project_id=None, provider_type=None):
+    def __init__(__self__, aggregation_temporality=None, auth_type=None, endpoint=None, headers_redacteds=None, integration_type=None, metric_integration_id=None, metric_selections=None, oauth=None, project_id=None, provider_type=None):
         if aggregation_temporality and not isinstance(aggregation_temporality, str):
             raise TypeError("Expected argument 'aggregation_temporality' to be a str")
         pulumi.set(__self__, "aggregation_temporality", aggregation_temporality)
@@ -49,6 +49,9 @@ class GetMetricIntegrationResult:
         if metric_selections and not isinstance(metric_selections, list):
             raise TypeError("Expected argument 'metric_selections' to be a list")
         pulumi.set(__self__, "metric_selections", metric_selections)
+        if oauth and not isinstance(oauth, dict):
+            raise TypeError("Expected argument 'oauth' to be a dict")
+        pulumi.set(__self__, "oauth", oauth)
         if project_id and not isinstance(project_id, str):
             raise TypeError("Expected argument 'project_id' to be a str")
         pulumi.set(__self__, "project_id", project_id)
@@ -113,6 +116,14 @@ class GetMetricIntegrationResult:
         return pulumi.get(self, "metric_selections")
 
     @_builtins.property
+    @pulumi.getter
+    def oauth(self) -> 'outputs.GetMetricIntegrationOauthResult':
+        """
+        OAuth 2.0 configuration returned for a metric integration. Secrets are never returned.
+        """
+        return pulumi.get(self, "oauth")
+
+    @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> _builtins.str:
         """
@@ -142,6 +153,7 @@ class AwaitableGetMetricIntegrationResult(GetMetricIntegrationResult):
             integration_type=self.integration_type,
             metric_integration_id=self.metric_integration_id,
             metric_selections=self.metric_selections,
+            oauth=self.oauth,
             project_id=self.project_id,
             provider_type=self.provider_type)
 
@@ -184,7 +196,8 @@ def get_metric_integration(metric_integration_id: Optional[_builtins.str] = None
     ```
 
     ### Further Examples
-    - Metric Integration Examples
+    - Header-based — export Atlas metrics using header-based authentication.
+    - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
 
 
     :param _builtins.str metric_integration_id: Unique identifier of the metric integration configuration.
@@ -204,6 +217,7 @@ def get_metric_integration(metric_integration_id: Optional[_builtins.str] = None
         integration_type=pulumi.get(__ret__, 'integration_type'),
         metric_integration_id=pulumi.get(__ret__, 'metric_integration_id'),
         metric_selections=pulumi.get(__ret__, 'metric_selections'),
+        oauth=pulumi.get(__ret__, 'oauth'),
         project_id=pulumi.get(__ret__, 'project_id'),
         provider_type=pulumi.get(__ret__, 'provider_type'))
 def get_metric_integration_output(metric_integration_id: pulumi.Input[Optional[_builtins.str]] = None,
@@ -244,7 +258,8 @@ def get_metric_integration_output(metric_integration_id: pulumi.Input[Optional[_
     ```
 
     ### Further Examples
-    - Metric Integration Examples
+    - Header-based — export Atlas metrics using header-based authentication.
+    - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
 
 
     :param _builtins.str metric_integration_id: Unique identifier of the metric integration configuration.
@@ -263,5 +278,6 @@ def get_metric_integration_output(metric_integration_id: pulumi.Input[Optional[_
         integration_type=pulumi.get(__response__, 'integration_type'),
         metric_integration_id=pulumi.get(__response__, 'metric_integration_id'),
         metric_selections=pulumi.get(__response__, 'metric_selections'),
+        oauth=pulumi.get(__response__, 'oauth'),
         project_id=pulumi.get(__response__, 'project_id'),
         provider_type=pulumi.get(__response__, 'provider_type')))

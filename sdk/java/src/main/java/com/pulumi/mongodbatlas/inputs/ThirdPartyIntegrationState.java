@@ -108,6 +108,13 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
         return Optional.ofNullable(this.sendQueryStatsMetrics);
     }
 
+    @Import(name="sendShardingMetrics")
+    private @Nullable Output<Boolean> sendShardingMetrics;
+
+    public Optional<Output<Boolean>> sendShardingMetrics() {
+        return Optional.ofNullable(this.sendShardingMetrics);
+    }
+
     @Import(name="sendUserProvidedResourceTags")
     private @Nullable Output<Boolean> sendUserProvidedResourceTags;
 
@@ -198,6 +205,7 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
         this.sendCollectionLatencyMetrics = $.sendCollectionLatencyMetrics;
         this.sendDatabaseMetrics = $.sendDatabaseMetrics;
         this.sendQueryStatsMetrics = $.sendQueryStatsMetrics;
+        this.sendShardingMetrics = $.sendShardingMetrics;
         this.sendUserProvidedResourceTags = $.sendUserProvidedResourceTags;
         this.serviceDiscovery = $.serviceDiscovery;
         this.serviceKey = $.serviceKey;
@@ -343,6 +351,15 @@ public final class ThirdPartyIntegrationState extends com.pulumi.resources.Resou
 
         public Builder sendQueryStatsMetrics(Boolean sendQueryStatsMetrics) {
             return sendQueryStatsMetrics(Output.of(sendQueryStatsMetrics));
+        }
+
+        public Builder sendShardingMetrics(@Nullable Output<Boolean> sendShardingMetrics) {
+            $.sendShardingMetrics = sendShardingMetrics;
+            return this;
+        }
+
+        public Builder sendShardingMetrics(Boolean sendShardingMetrics) {
+            return sendShardingMetrics(Output.of(sendShardingMetrics));
         }
 
         public Builder sendUserProvidedResourceTags(@Nullable Output<Boolean> sendUserProvidedResourceTags) {

@@ -7,6 +7,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAw;
 import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzure;
+import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstanceCloudProviderConfigGcp;
 import java.util.List;
 import java.util.Objects;
 
@@ -29,11 +30,19 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfig extends com.p
         return this.azures;
     }
 
+    @Import(name="gcps", required=true)
+    private List<GetFederatedDatabaseInstanceCloudProviderConfigGcp> gcps;
+
+    public List<GetFederatedDatabaseInstanceCloudProviderConfigGcp> gcps() {
+        return this.gcps;
+    }
+
     private GetFederatedDatabaseInstanceCloudProviderConfig() {}
 
     private GetFederatedDatabaseInstanceCloudProviderConfig(GetFederatedDatabaseInstanceCloudProviderConfig $) {
         this.aws = $.aws;
         this.azures = $.azures;
+        this.gcps = $.gcps;
     }
 
     public static Builder builder() {
@@ -72,12 +81,24 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfig extends com.p
             return azures(List.of(azures));
         }
 
+        public Builder gcps(List<GetFederatedDatabaseInstanceCloudProviderConfigGcp> gcps) {
+            $.gcps = gcps;
+            return this;
+        }
+
+        public Builder gcps(GetFederatedDatabaseInstanceCloudProviderConfigGcp... gcps) {
+            return gcps(List.of(gcps));
+        }
+
         public GetFederatedDatabaseInstanceCloudProviderConfig build() {
             if ($.aws == null) {
                 throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfig", "aws");
             }
             if ($.azures == null) {
                 throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfig", "azures");
+            }
+            if ($.gcps == null) {
+                throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfig", "gcps");
             }
             return $;
         }

@@ -6,6 +6,7 @@ package com.pulumi.mongodbatlas.outputs;
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetMetricIntegrationHeadersRedacted;
+import com.pulumi.mongodbatlas.outputs.GetMetricIntegrationOauth;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -47,6 +48,11 @@ public final class GetMetricIntegrationResult {
      * 
      */
     private List<String> metricSelections;
+    /**
+     * @return OAuth 2.0 configuration returned for a metric integration. Secrets are never returned.
+     * 
+     */
+    private GetMetricIntegrationOauth oauth;
     /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
@@ -109,6 +115,13 @@ public final class GetMetricIntegrationResult {
         return this.metricSelections;
     }
     /**
+     * @return OAuth 2.0 configuration returned for a metric integration. Secrets are never returned.
+     * 
+     */
+    public GetMetricIntegrationOauth oauth() {
+        return this.oauth;
+    }
+    /**
      * @return Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
@@ -139,6 +152,7 @@ public final class GetMetricIntegrationResult {
         private String integrationType;
         private String metricIntegrationId;
         private List<String> metricSelections;
+        private GetMetricIntegrationOauth oauth;
         private String projectId;
         private String providerType;
         public Builder() {}
@@ -151,6 +165,7 @@ public final class GetMetricIntegrationResult {
     	      this.integrationType = defaults.integrationType;
     	      this.metricIntegrationId = defaults.metricIntegrationId;
     	      this.metricSelections = defaults.metricSelections;
+    	      this.oauth = defaults.oauth;
     	      this.projectId = defaults.projectId;
     	      this.providerType = defaults.providerType;
         }
@@ -218,6 +233,14 @@ public final class GetMetricIntegrationResult {
             return metricSelections(List.of(metricSelections));
         }
         @CustomType.Setter
+        public Builder oauth(GetMetricIntegrationOauth oauth) {
+            if (oauth == null) {
+              throw new MissingRequiredPropertyException("GetMetricIntegrationResult", "oauth");
+            }
+            this.oauth = oauth;
+            return this;
+        }
+        @CustomType.Setter
         public Builder projectId(String projectId) {
             if (projectId == null) {
               throw new MissingRequiredPropertyException("GetMetricIntegrationResult", "projectId");
@@ -242,6 +265,7 @@ public final class GetMetricIntegrationResult {
             _resultValue.integrationType = integrationType;
             _resultValue.metricIntegrationId = metricIntegrationId;
             _resultValue.metricSelections = metricSelections;
+            _resultValue.oauth = oauth;
             _resultValue.projectId = projectId;
             _resultValue.providerType = providerType;
             return _resultValue;

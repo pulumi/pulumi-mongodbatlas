@@ -20,10 +20,11 @@ import (
 //
 // ## Example Usage
 //
-// The following example uses Datadog. To export to another provider, update `providerType` (`CUSTOM`, `NEW_RELIC`, or `DYNATRACE`), the `endpoint`, and the authentication `headers` to match that provider.
+// The following example points at Datadog using a custom OTLP endpoint (`providerType = "CUSTOM"`). To export metrics to a different provider, update the `endpoint` and authentication `headers` to that provider's values; for the named providers (`DATADOG`, `DYNATRACE`, or `NEW_RELIC`), set `providerType` accordingly.
 //
 // ### Further Examples
-// - Metric Integration Examples
+// - Header-based — export Atlas metrics using header-based authentication.
+// - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
 //
 // ## Import
 //
@@ -39,7 +40,7 @@ type MetricIntegration struct {
 
 	// The temporality to send to the metric integration.
 	AggregationTemporality pulumi.StringOutput `pulumi:"aggregationTemporality"`
-	// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+	// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
 	AuthType pulumi.StringOutput `pulumi:"authType"`
 	// OpenTelemetry collector endpoint URL. Must use HTTPS.
 	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
@@ -53,6 +54,8 @@ type MetricIntegration struct {
 	MetricIntegrationId pulumi.StringOutput `pulumi:"metricIntegrationId"`
 	// Array of metric categories to export. Determines which types of metrics are sent to the integration.
 	MetricSelections pulumi.StringArrayOutput `pulumi:"metricSelections"`
+	// OAuth 2.0 client credentials configuration. Required when authType is `OAUTH2`. Secrets are never returned.
+	Oauth MetricIntegrationOauthPtrOutput `pulumi:"oauth"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringOutput `pulumi:"projectId"`
 	// The provider type for the metric integration. Identifies the third-party service provider.
@@ -112,7 +115,7 @@ func GetMetricIntegration(ctx *pulumi.Context,
 type metricIntegrationState struct {
 	// The temporality to send to the metric integration.
 	AggregationTemporality *string `pulumi:"aggregationTemporality"`
-	// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+	// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
 	AuthType *string `pulumi:"authType"`
 	// OpenTelemetry collector endpoint URL. Must use HTTPS.
 	Endpoint *string `pulumi:"endpoint"`
@@ -126,6 +129,8 @@ type metricIntegrationState struct {
 	MetricIntegrationId *string `pulumi:"metricIntegrationId"`
 	// Array of metric categories to export. Determines which types of metrics are sent to the integration.
 	MetricSelections []string `pulumi:"metricSelections"`
+	// OAuth 2.0 client credentials configuration. Required when authType is `OAUTH2`. Secrets are never returned.
+	Oauth *MetricIntegrationOauth `pulumi:"oauth"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId *string `pulumi:"projectId"`
 	// The provider type for the metric integration. Identifies the third-party service provider.
@@ -135,7 +140,7 @@ type metricIntegrationState struct {
 type MetricIntegrationState struct {
 	// The temporality to send to the metric integration.
 	AggregationTemporality pulumi.StringPtrInput
-	// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+	// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
 	AuthType pulumi.StringPtrInput
 	// OpenTelemetry collector endpoint URL. Must use HTTPS.
 	Endpoint pulumi.StringPtrInput
@@ -149,6 +154,8 @@ type MetricIntegrationState struct {
 	MetricIntegrationId pulumi.StringPtrInput
 	// Array of metric categories to export. Determines which types of metrics are sent to the integration.
 	MetricSelections pulumi.StringArrayInput
+	// OAuth 2.0 client credentials configuration. Required when authType is `OAUTH2`. Secrets are never returned.
+	Oauth MetricIntegrationOauthPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringPtrInput
 	// The provider type for the metric integration. Identifies the third-party service provider.
@@ -162,7 +169,7 @@ func (MetricIntegrationState) ElementType() reflect.Type {
 type metricIntegrationArgs struct {
 	// The temporality to send to the metric integration.
 	AggregationTemporality string `pulumi:"aggregationTemporality"`
-	// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+	// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
 	AuthType string `pulumi:"authType"`
 	// OpenTelemetry collector endpoint URL. Must use HTTPS.
 	Endpoint string `pulumi:"endpoint"`
@@ -172,6 +179,8 @@ type metricIntegrationArgs struct {
 	IntegrationType string `pulumi:"integrationType"`
 	// Array of metric categories to export. Determines which types of metrics are sent to the integration.
 	MetricSelections []string `pulumi:"metricSelections"`
+	// OAuth 2.0 client credentials configuration. Required when authType is `OAUTH2`. Secrets are never returned.
+	Oauth *MetricIntegrationOauth `pulumi:"oauth"`
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId string `pulumi:"projectId"`
 	// The provider type for the metric integration. Identifies the third-party service provider.
@@ -182,7 +191,7 @@ type metricIntegrationArgs struct {
 type MetricIntegrationArgs struct {
 	// The temporality to send to the metric integration.
 	AggregationTemporality pulumi.StringInput
-	// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+	// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
 	AuthType pulumi.StringInput
 	// OpenTelemetry collector endpoint URL. Must use HTTPS.
 	Endpoint pulumi.StringInput
@@ -192,6 +201,8 @@ type MetricIntegrationArgs struct {
 	IntegrationType pulumi.StringInput
 	// Array of metric categories to export. Determines which types of metrics are sent to the integration.
 	MetricSelections pulumi.StringArrayInput
+	// OAuth 2.0 client credentials configuration. Required when authType is `OAUTH2`. Secrets are never returned.
+	Oauth MetricIntegrationOauthPtrInput
 	// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
 	ProjectId pulumi.StringInput
 	// The provider type for the metric integration. Identifies the third-party service provider.
@@ -290,7 +301,7 @@ func (o MetricIntegrationOutput) AggregationTemporality() pulumi.StringOutput {
 	return o.ApplyT(func(v *MetricIntegration) pulumi.StringOutput { return v.AggregationTemporality }).(pulumi.StringOutput)
 }
 
-// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
 func (o MetricIntegrationOutput) AuthType() pulumi.StringOutput {
 	return o.ApplyT(func(v *MetricIntegration) pulumi.StringOutput { return v.AuthType }).(pulumi.StringOutput)
 }
@@ -323,6 +334,11 @@ func (o MetricIntegrationOutput) MetricIntegrationId() pulumi.StringOutput {
 // Array of metric categories to export. Determines which types of metrics are sent to the integration.
 func (o MetricIntegrationOutput) MetricSelections() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MetricIntegration) pulumi.StringArrayOutput { return v.MetricSelections }).(pulumi.StringArrayOutput)
+}
+
+// OAuth 2.0 client credentials configuration. Required when authType is `OAUTH2`. Secrets are never returned.
+func (o MetricIntegrationOutput) Oauth() MetricIntegrationOauthPtrOutput {
+	return o.ApplyT(func(v *MetricIntegration) MetricIntegrationOauthPtrOutput { return v.Oauth }).(MetricIntegrationOauthPtrOutput)
 }
 
 // Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

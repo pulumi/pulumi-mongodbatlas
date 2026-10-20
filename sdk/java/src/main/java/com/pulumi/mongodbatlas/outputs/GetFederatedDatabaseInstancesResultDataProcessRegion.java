@@ -11,7 +11,7 @@ import java.util.Objects;
 @CustomType
 public final class GetFederatedDatabaseInstancesResultDataProcessRegion {
     /**
-     * @return Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+     * @return Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
      * 
      */
     private String cloudProvider;
@@ -23,7 +23,7 @@ public final class GetFederatedDatabaseInstancesResultDataProcessRegion {
 
     private GetFederatedDatabaseInstancesResultDataProcessRegion() {}
     /**
-     * @return Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+     * @return Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
      * 
      */
     public String cloudProvider() {

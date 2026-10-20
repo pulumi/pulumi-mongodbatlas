@@ -15,7 +15,7 @@ import * as utilities from "./utilities";
  *
  * ## Example Usage
  *
- * The following example uses Datadog. To export to another provider, update `providerType` (`CUSTOM`, `NEW_RELIC`, or `DYNATRACE`), the `endpoint`, and the authentication `headers` to match that provider.
+ * The following example points at Datadog using a custom OTLP endpoint (`providerType = "CUSTOM"`). To export metrics to a different provider, update the `endpoint` and authentication `headers` to that provider's values; for the named providers (`DATADOG`, `DYNATRACE`, or `NEW_RELIC`), set `providerType` accordingly.
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
@@ -48,7 +48,8 @@ import * as utilities from "./utilities";
  * ```
  *
  * ### Further Examples
- * - Metric Integration Examples
+ * - Header-based — export Atlas metrics using header-based authentication.
+ * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
  *
  * ## Import
  *
@@ -93,7 +94,7 @@ export class MetricIntegration extends pulumi.CustomResource {
      */
     declare public readonly aggregationTemporality: pulumi.Output<string>;
     /**
-     * Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+     * Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
      */
     declare public readonly authType: pulumi.Output<string>;
     /**
@@ -120,6 +121,10 @@ export class MetricIntegration extends pulumi.CustomResource {
      * Array of metric categories to export. Determines which types of metrics are sent to the integration.
      */
     declare public readonly metricSelections: pulumi.Output<string[]>;
+    /**
+     * OAuth 2.0 client credentials configuration. Required when authType is `OAUTH2`. Secrets are never returned.
+     */
+    declare public readonly oauth: pulumi.Output<outputs.MetricIntegrationOauth | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
@@ -150,6 +155,7 @@ export class MetricIntegration extends pulumi.CustomResource {
             resourceInputs["integrationType"] = state?.integrationType;
             resourceInputs["metricIntegrationId"] = state?.metricIntegrationId;
             resourceInputs["metricSelections"] = state?.metricSelections;
+            resourceInputs["oauth"] = state?.oauth;
             resourceInputs["projectId"] = state?.projectId;
             resourceInputs["providerType"] = state?.providerType;
         } else {
@@ -181,6 +187,7 @@ export class MetricIntegration extends pulumi.CustomResource {
             resourceInputs["headers"] = args?.headers;
             resourceInputs["integrationType"] = args?.integrationType;
             resourceInputs["metricSelections"] = args?.metricSelections;
+            resourceInputs["oauth"] = args?.oauth;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["providerType"] = args?.providerType;
             resourceInputs["headersRedacteds"] = undefined /*out*/;
@@ -200,7 +207,7 @@ export interface MetricIntegrationState {
      */
     aggregationTemporality?: pulumi.Input<string | undefined>;
     /**
-     * Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+     * Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
      */
     authType?: pulumi.Input<string | undefined>;
     /**
@@ -228,6 +235,10 @@ export interface MetricIntegrationState {
      */
     metricSelections?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     /**
+     * OAuth 2.0 client credentials configuration. Required when authType is `OAUTH2`. Secrets are never returned.
+     */
+    oauth?: pulumi.Input<inputs.MetricIntegrationOauth | undefined>;
+    /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
     projectId?: pulumi.Input<string | undefined>;
@@ -246,7 +257,7 @@ export interface MetricIntegrationArgs {
      */
     aggregationTemporality: pulumi.Input<string>;
     /**
-     * Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+     * Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
      */
     authType: pulumi.Input<string>;
     /**
@@ -265,6 +276,10 @@ export interface MetricIntegrationArgs {
      * Array of metric categories to export. Determines which types of metrics are sent to the integration.
      */
     metricSelections: pulumi.Input<pulumi.Input<string>[]>;
+    /**
+     * OAuth 2.0 client credentials configuration. Required when authType is `OAUTH2`. Secrets are never returned.
+     */
+    oauth?: pulumi.Input<inputs.MetricIntegrationOauth | undefined>;
     /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      */
