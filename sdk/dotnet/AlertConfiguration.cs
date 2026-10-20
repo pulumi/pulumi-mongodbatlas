@@ -210,6 +210,44 @@ namespace Pulumi.Mongodbatlas
     /// });
     /// ```
     /// 
+    /// ### Create a webhook notification with a custom JSON body and headers
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using System.Linq;
+    /// using System.Text.Json;
+    /// using Pulumi;
+    /// using Mongodbatlas = Pulumi.Mongodbatlas;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var test = new Mongodbatlas.AlertConfiguration("test", new()
+    ///     {
+    ///         ProjectId = "PROJECT ID",
+    ///         Enabled = true,
+    ///         EventType = "REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+    ///         Notifications = new[]
+    ///         {
+    ///             new Mongodbatlas.Inputs.AlertConfigurationNotificationArgs
+    ///             {
+    ///                 TypeName = "WEBHOOK",
+    ///                 WebhookUrl = "https://example.com/webhook",
+    ///                 WebhookBodyTemplate = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["alert"] = "${eventType}",
+    ///                     ["project"] = "${groupId}",
+    ///                 }),
+    ///                 WebhookHeadersTemplate = JsonSerializer.Serialize(new Dictionary&lt;string, object?&gt;
+    ///                 {
+    ///                     ["X-Custom-Header"] = "static-value",
+    ///                 }),
+    ///             },
+    ///         },
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
     /// ### Further Examples
     /// - Alert Configuration
     /// 

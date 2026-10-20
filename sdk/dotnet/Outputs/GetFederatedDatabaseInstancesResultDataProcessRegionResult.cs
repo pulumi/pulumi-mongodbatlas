@@ -14,7 +14,7 @@ namespace Pulumi.Mongodbatlas.Outputs
     public sealed class GetFederatedDatabaseInstancesResultDataProcessRegionResult
     {
         /// <summary>
-        /// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+        /// Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
         /// </summary>
         public readonly string CloudProvider;
         /// <summary>

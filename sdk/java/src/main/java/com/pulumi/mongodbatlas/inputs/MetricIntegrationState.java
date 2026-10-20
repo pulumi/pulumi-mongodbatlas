@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.mongodbatlas.inputs.MetricIntegrationHeaderArgs;
 import com.pulumi.mongodbatlas.inputs.MetricIntegrationHeadersRedactedArgs;
+import com.pulumi.mongodbatlas.inputs.MetricIntegrationOauthArgs;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -34,14 +35,14 @@ public final class MetricIntegrationState extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+     * Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
      * 
      */
     @Import(name="authType")
     private @Nullable Output<String> authType;
 
     /**
-     * @return Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+     * @return Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
      * 
      */
     public Optional<Output<String>> authType() {
@@ -139,6 +140,21 @@ public final class MetricIntegrationState extends com.pulumi.resources.ResourceA
     }
 
     /**
+     * OAuth 2.0 client credentials configuration. Required when authType is `OAUTH2`. Secrets are never returned.
+     * 
+     */
+    @Import(name="oauth")
+    private @Nullable Output<MetricIntegrationOauthArgs> oauth;
+
+    /**
+     * @return OAuth 2.0 client credentials configuration. Required when authType is `OAUTH2`. Secrets are never returned.
+     * 
+     */
+    public Optional<Output<MetricIntegrationOauthArgs>> oauth() {
+        return Optional.ofNullable(this.oauth);
+    }
+
+    /**
      * Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
      * 
      */
@@ -179,6 +195,7 @@ public final class MetricIntegrationState extends com.pulumi.resources.ResourceA
         this.integrationType = $.integrationType;
         this.metricIntegrationId = $.metricIntegrationId;
         this.metricSelections = $.metricSelections;
+        this.oauth = $.oauth;
         this.projectId = $.projectId;
         this.providerType = $.providerType;
     }
@@ -223,7 +240,7 @@ public final class MetricIntegrationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param authType Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+         * @param authType Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
          * 
          * @return builder
          * 
@@ -234,7 +251,7 @@ public final class MetricIntegrationState extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param authType Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+         * @param authType Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
          * 
          * @return builder
          * 
@@ -397,6 +414,27 @@ public final class MetricIntegrationState extends com.pulumi.resources.ResourceA
          */
         public Builder metricSelections(String... metricSelections) {
             return metricSelections(List.of(metricSelections));
+        }
+
+        /**
+         * @param oauth OAuth 2.0 client credentials configuration. Required when authType is `OAUTH2`. Secrets are never returned.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oauth(@Nullable Output<MetricIntegrationOauthArgs> oauth) {
+            $.oauth = oauth;
+            return this;
+        }
+
+        /**
+         * @param oauth OAuth 2.0 client credentials configuration. Required when authType is `OAUTH2`. Secrets are never returned.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder oauth(MetricIntegrationOauthArgs oauth) {
+            return oauth(Output.of(oauth));
         }
 
         /**

@@ -37,8 +37,10 @@ class FederatedDatabaseInstanceArgs:
                * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
                * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
                * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+               * `cloud_provider_config.gcp` - Google Cloud provider of the cloud service where the Federated Database Instance can access Google Cloud Storage.
+               * `cloud_provider_config.gcp.role_id` - (Required) Unique identifier of the role that the Federated Database Instance uses to access the data stores.
         :param pulumi.Input['FederatedDatabaseInstanceDataProcessRegionArgs'] data_process_region: The cloud provider region to which the Federated Instance routes client connections for data processing.
-               * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+               * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
                * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
         :param pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageDatabaseArgs']]] storage_databases: Configuration details for mapping each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [databases](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no mapping configuration for any data store.
@@ -65,8 +67,8 @@ class FederatedDatabaseInstanceArgs:
         :param pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]] storage_stores: Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
                * `storage_stores.#.name` - Name of the data store.
                * `storage_stores.#.provider` - Defines where the data is stored.
-               * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-               * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+               * `storage_stores.#.region` - Name of the cloud provider region in which the bucket is hosted.
+               * `storage_stores.#.bucket` - Name of the bucket.
                * `storage_stores.#.prefix` - Prefix the Federated Database Instance applies when searching for files in the S3 bucket.
                * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
                * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
@@ -117,6 +119,8 @@ class FederatedDatabaseInstanceArgs:
         * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
         * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
         * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+        * `cloud_provider_config.gcp` - Google Cloud provider of the cloud service where the Federated Database Instance can access Google Cloud Storage.
+        * `cloud_provider_config.gcp.role_id` - (Required) Unique identifier of the role that the Federated Database Instance uses to access the data stores.
         """
         return pulumi.get(self, "cloud_provider_config")
 
@@ -129,7 +133,7 @@ class FederatedDatabaseInstanceArgs:
     def data_process_region(self) -> pulumi.Input[Optional['FederatedDatabaseInstanceDataProcessRegionArgs']]:
         """
         The cloud provider region to which the Federated Instance routes client connections for data processing.
-        * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+        * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
         * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         """
         return pulumi.get(self, "data_process_region")
@@ -189,8 +193,8 @@ class FederatedDatabaseInstanceArgs:
         Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
         * `storage_stores.#.name` - Name of the data store.
         * `storage_stores.#.provider` - Defines where the data is stored.
-        * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-        * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+        * `storage_stores.#.region` - Name of the cloud provider region in which the bucket is hosted.
+        * `storage_stores.#.bucket` - Name of the bucket.
         * `storage_stores.#.prefix` - Prefix the Federated Database Instance applies when searching for files in the S3 bucket.
         * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
         * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
@@ -235,8 +239,10 @@ class _FederatedDatabaseInstanceState:
                * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
                * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
                * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+               * `cloud_provider_config.gcp` - Google Cloud provider of the cloud service where the Federated Database Instance can access Google Cloud Storage.
+               * `cloud_provider_config.gcp.role_id` - (Required) Unique identifier of the role that the Federated Database Instance uses to access the data stores.
         :param pulumi.Input['FederatedDatabaseInstanceDataProcessRegionArgs'] data_process_region: The cloud provider region to which the Federated Instance routes client connections for data processing.
-               * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+               * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
                * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
@@ -269,8 +275,8 @@ class _FederatedDatabaseInstanceState:
         :param pulumi.Input[Sequence[pulumi.Input['FederatedDatabaseInstanceStorageStoreArgs']]] storage_stores: Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
                * `storage_stores.#.name` - Name of the data store.
                * `storage_stores.#.provider` - Defines where the data is stored.
-               * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-               * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+               * `storage_stores.#.region` - Name of the cloud provider region in which the bucket is hosted.
+               * `storage_stores.#.bucket` - Name of the bucket.
                * `storage_stores.#.prefix` - Prefix the Federated Database Instance applies when searching for files in the S3 bucket.
                * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
                * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
@@ -316,6 +322,8 @@ class _FederatedDatabaseInstanceState:
         * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
         * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
         * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+        * `cloud_provider_config.gcp` - Google Cloud provider of the cloud service where the Federated Database Instance can access Google Cloud Storage.
+        * `cloud_provider_config.gcp.role_id` - (Required) Unique identifier of the role that the Federated Database Instance uses to access the data stores.
         """
         return pulumi.get(self, "cloud_provider_config")
 
@@ -328,7 +336,7 @@ class _FederatedDatabaseInstanceState:
     def data_process_region(self) -> pulumi.Input[Optional['FederatedDatabaseInstanceDataProcessRegionArgs']]:
         """
         The cloud provider region to which the Federated Instance routes client connections for data processing.
-        * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+        * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
         * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         """
         return pulumi.get(self, "data_process_region")
@@ -438,8 +446,8 @@ class _FederatedDatabaseInstanceState:
         Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
         * `storage_stores.#.name` - Name of the data store.
         * `storage_stores.#.provider` - Defines where the data is stored.
-        * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-        * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+        * `storage_stores.#.region` - Name of the cloud provider region in which the bucket is hosted.
+        * `storage_stores.#.bucket` - Name of the bucket.
         * `storage_stores.#.prefix` - Prefix the Federated Database Instance applies when searching for files in the S3 bucket.
         * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
         * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
@@ -497,7 +505,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                     "data_sources": [{
                         "collection": "COLLECTION IN THE CLUSTER",
                         "database": "DB IN THE CLUSTER",
-                        "store_name": "CLUSTER NAME",
+                        "store_name": "STORE 1 NAME",
                     }],
                 }],
             }],
@@ -515,6 +523,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         ### Further Examples
         - AWS Federated Database Instance
         - Azure Federated Database Instance
+        - Google Cloud Federated Database Instance
 
         ## Example of Azure Blob Storage as storage database
 
@@ -538,7 +547,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                         {
                             "collection": "COLLECTION IN THE CLUSTER",
                             "database": "DB IN THE CLUSTER",
-                            "store_name": "CLUSTER NAME",
+                            "store_name": "STORE NAME",
                         },
                         {
                             "store_name": "AZURE BLOB STORAGE NAME",
@@ -560,6 +569,58 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                 {
                     "name": "AZURE BLOB STORAGE NAME",
                     "provider": "azure",
+                },
+            ])
+        ```
+
+        ## Example of Google Cloud Storage as storage database
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.FederatedDatabaseInstance("test",
+            project_id="<PROJECT_ID>",
+            name="<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
+            cloud_provider_config={
+                "gcp": {
+                    "role_id": "<GCP_ROLE_ID>",
+                },
+            },
+            storage_databases=[{
+                "name": "VirtualDatabase0",
+                "collections": [{
+                    "name": "NAME OF THE COLLECTION",
+                    "data_sources": [
+                        {
+                            "collection": "COLLECTION IN THE CLUSTER",
+                            "database": "DB IN THE CLUSTER",
+                            "store_name": "STORE NAME",
+                        },
+                        {
+                            "store_name": "GOOGLE CLOUD STORAGE BUCKET NAME",
+                            "path": "GOOGLE CLOUD STORAGE BUCKET PATH",
+                        },
+                    ],
+                }],
+            }],
+            storage_stores=[
+                {
+                    "name": "STORE NAME",
+                    "cluster_name": "CLUSTER NAME",
+                    "project_id": "PROJECT ID",
+                    "provider": "atlas",
+                    "read_preference": {
+                        "mode": "secondary",
+                    },
+                },
+                {
+                    "name": "GOOGLE CLOUD STORAGE BUCKET NAME",
+                    "provider": "gcs",
+                    "region": "GOOGLE CLOUD REGION",
+                    "bucket": "GOOGLE CLOUD STORAGE BUCKET NAME",
+                    "prefix": "GOOGLE CLOUD STORAGE BUCKET PREFIX",
+                    "delimiter": "/",
                 },
             ])
         ```
@@ -597,8 +658,10 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
                * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
                * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+               * `cloud_provider_config.gcp` - Google Cloud provider of the cloud service where the Federated Database Instance can access Google Cloud Storage.
+               * `cloud_provider_config.gcp.role_id` - (Required) Unique identifier of the role that the Federated Database Instance uses to access the data stores.
         :param pulumi.Input[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict', 'outputs.FederatedDatabaseInstanceDataProcessRegion']] data_process_region: The cloud provider region to which the Federated Instance routes client connections for data processing.
-               * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+               * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
                * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
         :param pulumi.Input[_builtins.str] project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
@@ -626,8 +689,8 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict', 'outputs.FederatedDatabaseInstanceStorageStore']]]] storage_stores: Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
                * `storage_stores.#.name` - Name of the data store.
                * `storage_stores.#.provider` - Defines where the data is stored.
-               * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-               * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+               * `storage_stores.#.region` - Name of the cloud provider region in which the bucket is hosted.
+               * `storage_stores.#.bucket` - Name of the bucket.
                * `storage_stores.#.prefix` - Prefix the Federated Database Instance applies when searching for files in the S3 bucket.
                * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
                * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
@@ -671,7 +734,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                     "data_sources": [{
                         "collection": "COLLECTION IN THE CLUSTER",
                         "database": "DB IN THE CLUSTER",
-                        "store_name": "CLUSTER NAME",
+                        "store_name": "STORE 1 NAME",
                     }],
                 }],
             }],
@@ -689,6 +752,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         ### Further Examples
         - AWS Federated Database Instance
         - Azure Federated Database Instance
+        - Google Cloud Federated Database Instance
 
         ## Example of Azure Blob Storage as storage database
 
@@ -712,7 +776,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                         {
                             "collection": "COLLECTION IN THE CLUSTER",
                             "database": "DB IN THE CLUSTER",
-                            "store_name": "CLUSTER NAME",
+                            "store_name": "STORE NAME",
                         },
                         {
                             "store_name": "AZURE BLOB STORAGE NAME",
@@ -734,6 +798,58 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                 {
                     "name": "AZURE BLOB STORAGE NAME",
                     "provider": "azure",
+                },
+            ])
+        ```
+
+        ## Example of Google Cloud Storage as storage database
+
+        ```python
+        import pulumi
+        import pulumi_mongodbatlas as mongodbatlas
+
+        test = mongodbatlas.FederatedDatabaseInstance("test",
+            project_id="<PROJECT_ID>",
+            name="<TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE>",
+            cloud_provider_config={
+                "gcp": {
+                    "role_id": "<GCP_ROLE_ID>",
+                },
+            },
+            storage_databases=[{
+                "name": "VirtualDatabase0",
+                "collections": [{
+                    "name": "NAME OF THE COLLECTION",
+                    "data_sources": [
+                        {
+                            "collection": "COLLECTION IN THE CLUSTER",
+                            "database": "DB IN THE CLUSTER",
+                            "store_name": "STORE NAME",
+                        },
+                        {
+                            "store_name": "GOOGLE CLOUD STORAGE BUCKET NAME",
+                            "path": "GOOGLE CLOUD STORAGE BUCKET PATH",
+                        },
+                    ],
+                }],
+            }],
+            storage_stores=[
+                {
+                    "name": "STORE NAME",
+                    "cluster_name": "CLUSTER NAME",
+                    "project_id": "PROJECT ID",
+                    "provider": "atlas",
+                    "read_preference": {
+                        "mode": "secondary",
+                    },
+                },
+                {
+                    "name": "GOOGLE CLOUD STORAGE BUCKET NAME",
+                    "provider": "gcs",
+                    "region": "GOOGLE CLOUD REGION",
+                    "bucket": "GOOGLE CLOUD STORAGE BUCKET NAME",
+                    "prefix": "GOOGLE CLOUD STORAGE BUCKET PREFIX",
+                    "delimiter": "/",
                 },
             ])
         ```
@@ -836,8 +952,10 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
                * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
                * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
                * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+               * `cloud_provider_config.gcp` - Google Cloud provider of the cloud service where the Federated Database Instance can access Google Cloud Storage.
+               * `cloud_provider_config.gcp.role_id` - (Required) Unique identifier of the role that the Federated Database Instance uses to access the data stores.
         :param pulumi.Input[Union['FederatedDatabaseInstanceDataProcessRegionArgs', 'FederatedDatabaseInstanceDataProcessRegionArgsDict', 'outputs.FederatedDatabaseInstanceDataProcessRegion']] data_process_region: The cloud provider region to which the Federated Instance routes client connections for data processing.
-               * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+               * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
                * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] hostnames: The list of hostnames assigned to the Federated Database Instance. Each string in the array is a hostname assigned to the Federated Database Instance.
         :param pulumi.Input[_builtins.str] name: Name of the Atlas Federated Database Instance.
@@ -870,8 +988,8 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[Union['FederatedDatabaseInstanceStorageStoreArgs', 'FederatedDatabaseInstanceStorageStoreArgsDict', 'outputs.FederatedDatabaseInstanceStorageStore']]]] storage_stores: Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
                * `storage_stores.#.name` - Name of the data store.
                * `storage_stores.#.provider` - Defines where the data is stored.
-               * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-               * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+               * `storage_stores.#.region` - Name of the cloud provider region in which the bucket is hosted.
+               * `storage_stores.#.bucket` - Name of the bucket.
                * `storage_stores.#.prefix` - Prefix the Federated Database Instance applies when searching for files in the S3 bucket.
                * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
                * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
@@ -913,6 +1031,8 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         * `cloud_provider_config.aws.test_s3_bucket` - (Required) Name of the S3 data bucket that the provided role ID is authorized to access. You must also specify the `role_id`.
         * `cloud_provider_config.azure` - Microsoft Azure provider of the cloud service where the Federated Database Instance can access Blob Storage.
         * `cloud_provider_config.azure.role_id` - (Required) Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+        * `cloud_provider_config.gcp` - Google Cloud provider of the cloud service where the Federated Database Instance can access Google Cloud Storage.
+        * `cloud_provider_config.gcp.role_id` - (Required) Unique identifier of the role that the Federated Database Instance uses to access the data stores.
         """
         return pulumi.get(self, "cloud_provider_config")
 
@@ -921,7 +1041,7 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
     def data_process_region(self) -> pulumi.Output['outputs.FederatedDatabaseInstanceDataProcessRegion']:
         """
         The cloud provider region to which the Federated Instance routes client connections for data processing.
-        * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+        * `data_process_region.cloud_provider` - (Required) Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
         * `data_process_region.region` - (Required) Name of the region to which the Federated Instance routes client connections for data processing. See the [documentation](https://www.mongodb.com/docs/atlas/reference/api-resources-spec/#tag/Data-Federation/operation/createFederatedDatabase) for the available region.
         """
         return pulumi.get(self, "data_process_region")
@@ -1003,8 +1123,8 @@ class FederatedDatabaseInstance(pulumi.CustomResource):
         Each object in the array represents a data store. Federated Database uses the storage.databases configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
         * `storage_stores.#.name` - Name of the data store.
         * `storage_stores.#.provider` - Defines where the data is stored.
-        * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-        * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+        * `storage_stores.#.region` - Name of the cloud provider region in which the bucket is hosted.
+        * `storage_stores.#.bucket` - Name of the bucket.
         * `storage_stores.#.prefix` - Prefix the Federated Database Instance applies when searching for files in the S3 bucket.
         * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
         * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.

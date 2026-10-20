@@ -28,18 +28,20 @@ class MetricIntegrationArgs:
                  metric_selections: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
                  project_id: pulumi.Input[_builtins.str],
                  provider_type: pulumi.Input[_builtins.str],
-                 headers: pulumi.Input[Optional[Sequence[pulumi.Input['MetricIntegrationHeaderArgs']]]] = None):
+                 headers: pulumi.Input[Optional[Sequence[pulumi.Input['MetricIntegrationHeaderArgs']]]] = None,
+                 oauth: pulumi.Input[Optional['MetricIntegrationOauthArgs']] = None):
         """
         The set of arguments for constructing a MetricIntegration resource.
 
         :param pulumi.Input[_builtins.str] aggregation_temporality: The temporality to send to the metric integration.
-        :param pulumi.Input[_builtins.str] auth_type: Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+        :param pulumi.Input[_builtins.str] auth_type: Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
         :param pulumi.Input[_builtins.str] endpoint: OpenTelemetry collector endpoint URL. Must use HTTPS.
         :param pulumi.Input[_builtins.str] integration_type: Type of metric integration. Identifies which protocol will be used for the integration. This value cannot be modified after the integration is created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] metric_selections: Array of metric categories to export. Determines which types of metrics are sent to the integration.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_type: The provider type for the metric integration. Identifies the third-party service provider.
         :param pulumi.Input[Sequence[pulumi.Input['MetricIntegrationHeaderArgs']]] headers: Required for auth_type: HEADER. HTTP headers for authentication and configuration. Total size limit 2KB.
+        :param pulumi.Input['MetricIntegrationOauthArgs'] oauth: OAuth 2.0 client credentials configuration. Required when auth_type is `OAUTH2`. Secrets are never returned.
         """
         pulumi.set(__self__, "aggregation_temporality", aggregation_temporality)
         pulumi.set(__self__, "auth_type", auth_type)
@@ -50,6 +52,8 @@ class MetricIntegrationArgs:
         pulumi.set(__self__, "provider_type", provider_type)
         if headers is not None:
             pulumi.set(__self__, "headers", headers)
+        if oauth is not None:
+            pulumi.set(__self__, "oauth", oauth)
 
     @_builtins.property
     @pulumi.getter(name="aggregationTemporality")
@@ -67,7 +71,7 @@ class MetricIntegrationArgs:
     @pulumi.getter(name="authType")
     def auth_type(self) -> pulumi.Input[_builtins.str]:
         """
-        Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+        Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
         """
         return pulumi.get(self, "auth_type")
 
@@ -147,6 +151,18 @@ class MetricIntegrationArgs:
     def headers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['MetricIntegrationHeaderArgs']]]]):
         pulumi.set(self, "headers", value)
 
+    @_builtins.property
+    @pulumi.getter
+    def oauth(self) -> pulumi.Input[Optional['MetricIntegrationOauthArgs']]:
+        """
+        OAuth 2.0 client credentials configuration. Required when auth_type is `OAUTH2`. Secrets are never returned.
+        """
+        return pulumi.get(self, "oauth")
+
+    @oauth.setter
+    def oauth(self, value: pulumi.Input[Optional['MetricIntegrationOauthArgs']]):
+        pulumi.set(self, "oauth", value)
+
 
 @pulumi.input_type
 class _MetricIntegrationState:
@@ -159,19 +175,21 @@ class _MetricIntegrationState:
                  integration_type: pulumi.Input[Optional[_builtins.str]] = None,
                  metric_integration_id: pulumi.Input[Optional[_builtins.str]] = None,
                  metric_selections: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 oauth: pulumi.Input[Optional['MetricIntegrationOauthArgs']] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_type: pulumi.Input[Optional[_builtins.str]] = None):
         """
         Input properties used for looking up and filtering MetricIntegration resources.
 
         :param pulumi.Input[_builtins.str] aggregation_temporality: The temporality to send to the metric integration.
-        :param pulumi.Input[_builtins.str] auth_type: Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+        :param pulumi.Input[_builtins.str] auth_type: Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
         :param pulumi.Input[_builtins.str] endpoint: OpenTelemetry collector endpoint URL. Must use HTTPS.
         :param pulumi.Input[Sequence[pulumi.Input['MetricIntegrationHeaderArgs']]] headers: Required for auth_type: HEADER. HTTP headers for authentication and configuration. Total size limit 2KB.
         :param pulumi.Input[Sequence[pulumi.Input['MetricIntegrationHeadersRedactedArgs']]] headers_redacteds: HTTP headers for authentication and configuration. Values are redacted and never returned in plaintext.
         :param pulumi.Input[_builtins.str] integration_type: Type of metric integration. Identifies which protocol will be used for the integration. This value cannot be modified after the integration is created.
         :param pulumi.Input[_builtins.str] metric_integration_id: Unique identifier of the metric integration configuration.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] metric_selections: Array of metric categories to export. Determines which types of metrics are sent to the integration.
+        :param pulumi.Input['MetricIntegrationOauthArgs'] oauth: OAuth 2.0 client credentials configuration. Required when auth_type is `OAUTH2`. Secrets are never returned.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_type: The provider type for the metric integration. Identifies the third-party service provider.
         """
@@ -191,6 +209,8 @@ class _MetricIntegrationState:
             pulumi.set(__self__, "metric_integration_id", metric_integration_id)
         if metric_selections is not None:
             pulumi.set(__self__, "metric_selections", metric_selections)
+        if oauth is not None:
+            pulumi.set(__self__, "oauth", oauth)
         if project_id is not None:
             pulumi.set(__self__, "project_id", project_id)
         if provider_type is not None:
@@ -212,7 +232,7 @@ class _MetricIntegrationState:
     @pulumi.getter(name="authType")
     def auth_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+        Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
         """
         return pulumi.get(self, "auth_type")
 
@@ -293,6 +313,18 @@ class _MetricIntegrationState:
         pulumi.set(self, "metric_selections", value)
 
     @_builtins.property
+    @pulumi.getter
+    def oauth(self) -> pulumi.Input[Optional['MetricIntegrationOauthArgs']]:
+        """
+        OAuth 2.0 client credentials configuration. Required when auth_type is `OAUTH2`. Secrets are never returned.
+        """
+        return pulumi.get(self, "oauth")
+
+    @oauth.setter
+    def oauth(self, value: pulumi.Input[Optional['MetricIntegrationOauthArgs']]):
+        pulumi.set(self, "oauth", value)
+
+    @_builtins.property
     @pulumi.getter(name="projectId")
     def project_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -329,6 +361,7 @@ class MetricIntegration(pulumi.CustomResource):
                  headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MetricIntegrationHeaderArgs', 'MetricIntegrationHeaderArgsDict', 'outputs.MetricIntegrationHeader']]]]] = None,
                  integration_type: pulumi.Input[Optional[_builtins.str]] = None,
                  metric_selections: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 oauth: pulumi.Input[Optional[Union['MetricIntegrationOauthArgs', 'MetricIntegrationOauthArgsDict', 'outputs.MetricIntegrationOauth']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -341,7 +374,7 @@ class MetricIntegration(pulumi.CustomResource):
 
         ## Example Usage
 
-        The following example uses Datadog. To export to another provider, update `provider_type` (`CUSTOM`, `NEW_RELIC`, or `DYNATRACE`), the `endpoint`, and the authentication `headers` to match that provider.
+        The following example points at Datadog using a custom OTLP endpoint (`provider_type = "CUSTOM"`). To export metrics to a different provider, update the `endpoint` and authentication `headers` to that provider's values; for the named providers (`DATADOG`, `DYNATRACE`, or `NEW_RELIC`), set `provider_type` accordingly.
 
         ```python
         import pulumi
@@ -369,7 +402,8 @@ class MetricIntegration(pulumi.CustomResource):
         ```
 
         ### Further Examples
-        - Metric Integration Examples
+        - Header-based — export Atlas metrics using header-based authentication.
+        - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
 
         ## Import
 
@@ -385,11 +419,12 @@ class MetricIntegration(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] aggregation_temporality: The temporality to send to the metric integration.
-        :param pulumi.Input[_builtins.str] auth_type: Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+        :param pulumi.Input[_builtins.str] auth_type: Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
         :param pulumi.Input[_builtins.str] endpoint: OpenTelemetry collector endpoint URL. Must use HTTPS.
         :param pulumi.Input[Sequence[pulumi.Input[Union['MetricIntegrationHeaderArgs', 'MetricIntegrationHeaderArgsDict', 'outputs.MetricIntegrationHeader']]]] headers: Required for auth_type: HEADER. HTTP headers for authentication and configuration. Total size limit 2KB.
         :param pulumi.Input[_builtins.str] integration_type: Type of metric integration. Identifies which protocol will be used for the integration. This value cannot be modified after the integration is created.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] metric_selections: Array of metric categories to export. Determines which types of metrics are sent to the integration.
+        :param pulumi.Input[Union['MetricIntegrationOauthArgs', 'MetricIntegrationOauthArgsDict', 'outputs.MetricIntegrationOauth']] oauth: OAuth 2.0 client credentials configuration. Required when auth_type is `OAUTH2`. Secrets are never returned.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_type: The provider type for the metric integration. Identifies the third-party service provider.
         """
@@ -408,7 +443,7 @@ class MetricIntegration(pulumi.CustomResource):
 
         ## Example Usage
 
-        The following example uses Datadog. To export to another provider, update `provider_type` (`CUSTOM`, `NEW_RELIC`, or `DYNATRACE`), the `endpoint`, and the authentication `headers` to match that provider.
+        The following example points at Datadog using a custom OTLP endpoint (`provider_type = "CUSTOM"`). To export metrics to a different provider, update the `endpoint` and authentication `headers` to that provider's values; for the named providers (`DATADOG`, `DYNATRACE`, or `NEW_RELIC`), set `provider_type` accordingly.
 
         ```python
         import pulumi
@@ -436,7 +471,8 @@ class MetricIntegration(pulumi.CustomResource):
         ```
 
         ### Further Examples
-        - Metric Integration Examples
+        - Header-based — export Atlas metrics using header-based authentication.
+        - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
 
         ## Import
 
@@ -470,6 +506,7 @@ class MetricIntegration(pulumi.CustomResource):
                  headers: pulumi.Input[Optional[Sequence[pulumi.Input[Union['MetricIntegrationHeaderArgs', 'MetricIntegrationHeaderArgsDict', 'outputs.MetricIntegrationHeader']]]]] = None,
                  integration_type: pulumi.Input[Optional[_builtins.str]] = None,
                  metric_selections: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 oauth: pulumi.Input[Optional[Union['MetricIntegrationOauthArgs', 'MetricIntegrationOauthArgsDict', 'outputs.MetricIntegrationOauth']]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  provider_type: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -497,6 +534,7 @@ class MetricIntegration(pulumi.CustomResource):
             if metric_selections is None and not opts.urn:
                 raise TypeError("Missing required property 'metric_selections'")
             __props__.__dict__["metric_selections"] = metric_selections
+            __props__.__dict__["oauth"] = oauth
             if project_id is None and not opts.urn:
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
@@ -523,6 +561,7 @@ class MetricIntegration(pulumi.CustomResource):
             integration_type: pulumi.Input[Optional[_builtins.str]] = None,
             metric_integration_id: pulumi.Input[Optional[_builtins.str]] = None,
             metric_selections: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+            oauth: pulumi.Input[Optional[Union['MetricIntegrationOauthArgs', 'MetricIntegrationOauthArgsDict', 'outputs.MetricIntegrationOauth']]] = None,
             project_id: pulumi.Input[Optional[_builtins.str]] = None,
             provider_type: pulumi.Input[Optional[_builtins.str]] = None) -> 'MetricIntegration':
         """
@@ -533,13 +572,14 @@ class MetricIntegration(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] aggregation_temporality: The temporality to send to the metric integration.
-        :param pulumi.Input[_builtins.str] auth_type: Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+        :param pulumi.Input[_builtins.str] auth_type: Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
         :param pulumi.Input[_builtins.str] endpoint: OpenTelemetry collector endpoint URL. Must use HTTPS.
         :param pulumi.Input[Sequence[pulumi.Input[Union['MetricIntegrationHeaderArgs', 'MetricIntegrationHeaderArgsDict', 'outputs.MetricIntegrationHeader']]]] headers: Required for auth_type: HEADER. HTTP headers for authentication and configuration. Total size limit 2KB.
         :param pulumi.Input[Sequence[pulumi.Input[Union['MetricIntegrationHeadersRedactedArgs', 'MetricIntegrationHeadersRedactedArgsDict', 'outputs.MetricIntegrationHeadersRedacted']]]] headers_redacteds: HTTP headers for authentication and configuration. Values are redacted and never returned in plaintext.
         :param pulumi.Input[_builtins.str] integration_type: Type of metric integration. Identifies which protocol will be used for the integration. This value cannot be modified after the integration is created.
         :param pulumi.Input[_builtins.str] metric_integration_id: Unique identifier of the metric integration configuration.
         :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] metric_selections: Array of metric categories to export. Determines which types of metrics are sent to the integration.
+        :param pulumi.Input[Union['MetricIntegrationOauthArgs', 'MetricIntegrationOauthArgsDict', 'outputs.MetricIntegrationOauth']] oauth: OAuth 2.0 client credentials configuration. Required when auth_type is `OAUTH2`. Secrets are never returned.
         :param pulumi.Input[_builtins.str] project_id: Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         :param pulumi.Input[_builtins.str] provider_type: The provider type for the metric integration. Identifies the third-party service provider.
         """
@@ -555,6 +595,7 @@ class MetricIntegration(pulumi.CustomResource):
         __props__.__dict__["integration_type"] = integration_type
         __props__.__dict__["metric_integration_id"] = metric_integration_id
         __props__.__dict__["metric_selections"] = metric_selections
+        __props__.__dict__["oauth"] = oauth
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["provider_type"] = provider_type
         return MetricIntegration(resource_name, opts=opts, __props__=__props__)
@@ -571,7 +612,7 @@ class MetricIntegration(pulumi.CustomResource):
     @pulumi.getter(name="authType")
     def auth_type(self) -> pulumi.Output[_builtins.str]:
         """
-        Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used.
+        Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `oauth` field.
         """
         return pulumi.get(self, "auth_type")
 
@@ -622,6 +663,14 @@ class MetricIntegration(pulumi.CustomResource):
         Array of metric categories to export. Determines which types of metrics are sent to the integration.
         """
         return pulumi.get(self, "metric_selections")
+
+    @_builtins.property
+    @pulumi.getter
+    def oauth(self) -> pulumi.Output[Optional['outputs.MetricIntegrationOauth']]:
+        """
+        OAuth 2.0 client credentials configuration. Required when auth_type is `OAUTH2`. Secrets are never returned.
+        """
+        return pulumi.get(self, "oauth")
 
     @_builtins.property
     @pulumi.getter(name="projectId")

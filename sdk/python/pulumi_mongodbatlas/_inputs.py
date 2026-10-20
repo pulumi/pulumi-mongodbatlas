@@ -179,6 +179,8 @@ __all__ = [
     'FederatedDatabaseInstanceCloudProviderConfigAwsArgsDict',
     'FederatedDatabaseInstanceCloudProviderConfigAzureArgs',
     'FederatedDatabaseInstanceCloudProviderConfigAzureArgsDict',
+    'FederatedDatabaseInstanceCloudProviderConfigGcpArgs',
+    'FederatedDatabaseInstanceCloudProviderConfigGcpArgsDict',
     'FederatedDatabaseInstanceDataProcessRegionArgs',
     'FederatedDatabaseInstanceDataProcessRegionArgsDict',
     'FederatedDatabaseInstancePrivateEndpointHostnameArgs',
@@ -231,6 +233,10 @@ __all__ = [
     'MetricIntegrationHeaderArgsDict',
     'MetricIntegrationHeadersRedactedArgs',
     'MetricIntegrationHeadersRedactedArgsDict',
+    'MetricIntegrationOauthArgs',
+    'MetricIntegrationOauthArgsDict',
+    'MetricIntegrationOauthSigningKeyInfoArgs',
+    'MetricIntegrationOauthSigningKeyInfoArgsDict',
     'OnlineArchiveCriteriaArgs',
     'OnlineArchiveCriteriaArgsDict',
     'OnlineArchiveDataExpirationRuleArgs',
@@ -363,6 +369,8 @@ __all__ = [
     'GetFederatedDatabaseInstanceCloudProviderConfigAwArgsDict',
     'GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs',
     'GetFederatedDatabaseInstanceCloudProviderConfigAzureArgsDict',
+    'GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs',
+    'GetFederatedDatabaseInstanceCloudProviderConfigGcpArgsDict',
     'GetGlobalClusterConfigManagedNamespaceArgs',
     'GetGlobalClusterConfigManagedNamespaceArgsDict',
     'GetServerlessInstanceLinkArgs',
@@ -1572,7 +1580,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgsDict(TypedDict
     """
     ebs_volume_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+    Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
     * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
     * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
     * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -1614,7 +1622,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
                
                For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
         :param pulumi.Input[_builtins.float] disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
-        :param pulumi.Input[_builtins.str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+        :param pulumi.Input[_builtins.str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
                * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
                * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
                * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -1677,7 +1685,7 @@ class AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecsArgs:
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
         * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
         * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
         * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -1943,7 +1951,7 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgsDict(TypedDict
     """
     ebs_volume_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+    Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
     * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
     * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
     * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -1985,7 +1993,7 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
                
                For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster.
         :param pulumi.Input[_builtins.float] disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
-        :param pulumi.Input[_builtins.str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+        :param pulumi.Input[_builtins.str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
                * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
                * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
                * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2048,7 +2056,7 @@ class AdvancedClusterReplicationSpecRegionConfigElectableSpecsArgs:
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
         * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
         * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
         * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2112,7 +2120,7 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgsDict(TypedDict)
     """
     ebs_volume_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
-    Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+    Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
     * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
     * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
     * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2154,7 +2162,7 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
                
                For Azure (Gen1 only; Azure doesn't support Gen2), `instance_size` must be set to `M40` or greater (not including `Mxx_NVME` tiers), and the region must support Extended IOPS. You can't set this attribute for a multi-cloud cluster. This parameter defaults to the cluster tier's standard IOPS value.
         :param pulumi.Input[_builtins.float] disk_size_gb: Storage capacity that the host's root volume possesses expressed in gigabytes. This value must be equal for all shards and node types. If disk size specified is below the minimum (10 GB), this parameter defaults to the minimum disk size value. Storage charge calculations depend on whether you choose the default value or a custom value.  The maximum value for disk storage cannot exceed 50 times the maximum RAM for the selected cluster. If you require more storage space, consider upgrading your cluster to a higher tier. **Note:** On AWS, using `disk_size_gb` with Standard IOPS could lead to errors and configuration issues. Therefore, on AWS, use `disk_size_gb` only with the Provisioned IOPS volume type; with Provisioned IOPS, `disk_size_gb` specifies the storage capacity while the IOPS are set independently. On GCP, `disk_size_gb` is always required input, since it determines the valid `disk_iops` range for Gen2 instance sizes.
-        :param pulumi.Input[_builtins.str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+        :param pulumi.Input[_builtins.str] ebs_volume_type: Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
                * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
                * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
                * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2217,7 +2225,7 @@ class AdvancedClusterReplicationSpecRegionConfigReadOnlySpecsArgs:
     @pulumi.getter(name="ebsVolumeType")
     def ebs_volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
-        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+        Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
         * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `disk_iops`.
         * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
         * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -2636,6 +2644,14 @@ class AlertConfigurationNotificationArgsDict(TypedDict):
     """
     VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
     """
+    webhook_body_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+    """
+    webhook_headers_template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+    """
     webhook_secret: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     """
     Optional authentication secret for the `WEBHOOK` notifications type.
@@ -2671,6 +2687,8 @@ class AlertConfigurationNotificationArgs:
                  username: pulumi.Input[Optional[_builtins.str]] = None,
                  victor_ops_api_key: pulumi.Input[Optional[_builtins.str]] = None,
                  victor_ops_routing_key: pulumi.Input[Optional[_builtins.str]] = None,
+                 webhook_body_template: pulumi.Input[Optional[_builtins.str]] = None,
+                 webhook_headers_template: pulumi.Input[Optional[_builtins.str]] = None,
                  webhook_secret: pulumi.Input[Optional[_builtins.str]] = None,
                  webhook_url: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -2721,6 +2739,8 @@ class AlertConfigurationNotificationArgs:
         :param pulumi.Input[_builtins.str] username: Name of the Atlas user to which to send notifications. Only a user in the project that owns the alert configuration is allowed here. Required for the `USER` notifications type.
         :param pulumi.Input[_builtins.str] victor_ops_api_key: VictorOps API key. Required for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
         :param pulumi.Input[_builtins.str] victor_ops_routing_key: VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
+        :param pulumi.Input[_builtins.str] webhook_body_template: Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+        :param pulumi.Input[_builtins.str] webhook_headers_template: Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
         :param pulumi.Input[_builtins.str] webhook_secret: Optional authentication secret for the `WEBHOOK` notifications type.
         :param pulumi.Input[_builtins.str] webhook_url: Target URL  for the `WEBHOOK` notifications type.
         """
@@ -2769,6 +2789,10 @@ class AlertConfigurationNotificationArgs:
             pulumi.set(__self__, "victor_ops_api_key", victor_ops_api_key)
         if victor_ops_routing_key is not None:
             pulumi.set(__self__, "victor_ops_routing_key", victor_ops_routing_key)
+        if webhook_body_template is not None:
+            pulumi.set(__self__, "webhook_body_template", webhook_body_template)
+        if webhook_headers_template is not None:
+            pulumi.set(__self__, "webhook_headers_template", webhook_headers_template)
         if webhook_secret is not None:
             pulumi.set(__self__, "webhook_secret", webhook_secret)
         if webhook_url is not None:
@@ -3073,6 +3097,30 @@ class AlertConfigurationNotificationArgs:
     @victor_ops_routing_key.setter
     def victor_ops_routing_key(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "victor_ops_routing_key", value)
+
+    @_builtins.property
+    @pulumi.getter(name="webhookBodyTemplate")
+    def webhook_body_template(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+        """
+        return pulumi.get(self, "webhook_body_template")
+
+    @webhook_body_template.setter
+    def webhook_body_template(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "webhook_body_template", value)
+
+    @_builtins.property
+    @pulumi.getter(name="webhookHeadersTemplate")
+    def webhook_headers_template(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+        """
+        return pulumi.get(self, "webhook_headers_template")
+
+    @webhook_headers_template.setter
+    def webhook_headers_template(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "webhook_headers_template", value)
 
     @_builtins.property
     @pulumi.getter(name="webhookSecret")
@@ -7954,20 +8002,28 @@ class FederatedDatabaseInstanceCloudProviderConfigArgsDict(TypedDict):
     """
     Microsoft Azure cloud service configuration.
     """
+    gcp: NotRequired[pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigGcpArgsDict']]]
+    """
+    Google Cloud cloud service configuration.
+    """
 
 @pulumi.input_type
 class FederatedDatabaseInstanceCloudProviderConfigArgs:
     def __init__(__self__, *,
                  aws: pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAwsArgs']] = None,
-                 azure: pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAzureArgs']] = None):
+                 azure: pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAzureArgs']] = None,
+                 gcp: pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigGcpArgs']] = None):
         """
         :param pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAwsArgs'] aws: Name of the cloud service that hosts the Atlas Data Federation data stores.
         :param pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigAzureArgs'] azure: Microsoft Azure cloud service configuration.
+        :param pulumi.Input['FederatedDatabaseInstanceCloudProviderConfigGcpArgs'] gcp: Google Cloud cloud service configuration.
         """
         if aws is not None:
             pulumi.set(__self__, "aws", aws)
         if azure is not None:
             pulumi.set(__self__, "azure", azure)
+        if gcp is not None:
+            pulumi.set(__self__, "gcp", gcp)
 
     @_builtins.property
     @pulumi.getter
@@ -7992,6 +8048,18 @@ class FederatedDatabaseInstanceCloudProviderConfigArgs:
     @azure.setter
     def azure(self, value: pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigAzureArgs']]):
         pulumi.set(self, "azure", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def gcp(self) -> pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigGcpArgs']]:
+        """
+        Google Cloud cloud service configuration.
+        """
+        return pulumi.get(self, "gcp")
+
+    @gcp.setter
+    def gcp(self, value: pulumi.Input[Optional['FederatedDatabaseInstanceCloudProviderConfigGcpArgs']]):
+        pulumi.set(self, "gcp", value)
 
 
 class FederatedDatabaseInstanceCloudProviderConfigAwsArgsDict(TypedDict):
@@ -8175,6 +8243,47 @@ class FederatedDatabaseInstanceCloudProviderConfigAzureArgs:
     @tenant_id.setter
     def tenant_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "tenant_id", value)
+
+
+class FederatedDatabaseInstanceCloudProviderConfigGcpArgsDict(TypedDict):
+    role_id: pulumi.Input[_builtins.str]
+    gcp_service_account: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+    """
+
+@pulumi.input_type
+class FederatedDatabaseInstanceCloudProviderConfigGcpArgs:
+    def __init__(__self__, *,
+                 role_id: pulumi.Input[_builtins.str],
+                 gcp_service_account: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] gcp_service_account: Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+        """
+        pulumi.set(__self__, "role_id", role_id)
+        if gcp_service_account is not None:
+            pulumi.set(__self__, "gcp_service_account", gcp_service_account)
+
+    @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> pulumi.Input[_builtins.str]:
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "role_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="gcpServiceAccount")
+    def gcp_service_account(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+        """
+        return pulumi.get(self, "gcp_service_account")
+
+    @gcp_service_account.setter
+    def gcp_service_account(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "gcp_service_account", value)
 
 
 class FederatedDatabaseInstanceDataProcessRegionArgsDict(TypedDict):
@@ -9360,7 +9469,7 @@ class GlobalClusterConfigManagedNamespaceArgsDict(TypedDict):
     """
     is_custom_shard_key_hashed: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
-    Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+    Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
     """
     is_shard_key_unique: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     """
@@ -9379,7 +9488,7 @@ class GlobalClusterConfigManagedNamespaceArgs:
         :param pulumi.Input[_builtins.str] collection: The name of the collection associated with the managed namespace.
         :param pulumi.Input[_builtins.str] custom_shard_key: The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
         :param pulumi.Input[_builtins.str] db: The name of the database containing the collection.
-        :param pulumi.Input[_builtins.bool] is_custom_shard_key_hashed: Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+        :param pulumi.Input[_builtins.bool] is_custom_shard_key_hashed: Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
         :param pulumi.Input[_builtins.bool] is_shard_key_unique: Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
         """
         pulumi.set(__self__, "collection", collection)
@@ -9430,7 +9539,7 @@ class GlobalClusterConfigManagedNamespaceArgs:
     @pulumi.getter(name="isCustomShardKeyHashed")
     def is_custom_shard_key_hashed(self) -> pulumi.Input[Optional[_builtins.bool]]:
         """
-        Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+        Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
         """
         return pulumi.get(self, "is_custom_shard_key_hashed")
 
@@ -9809,6 +9918,241 @@ class MetricIntegrationHeadersRedactedArgs:
     @value.setter
     def value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value", value)
+
+
+class MetricIntegrationOauthArgsDict(TypedDict):
+    client_auth_method: pulumi.Input[_builtins.str]
+    """
+    How the client authenticates to the token endpoint. `CLIENT_SECRET` sends a shared secret. `PRIVATE_KEY_JWT` signs a client assertion with an Atlas-generated, Atlas-managed key. Register the returned JWKS URL with your identity provider.
+    """
+    client_id: pulumi.Input[_builtins.str]
+    """
+    OAuth 2.0 client identifier registered with the token endpoint.
+    """
+    token_endpoint: pulumi.Input[_builtins.str]
+    """
+    OAuth 2.0 token endpoint URL. Must use HTTPS.
+    """
+    client_secret: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Shared client secret. Required when client*auth*method is `CLIENT_SECRET`, and rejected for `PRIVATE_KEY_JWT`. Encrypted at rest and never returned.
+    """
+    scopes: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    """
+    Optional OAuth 2.0 scopes requested on the token, sent as a space delimited `scope` parameter. Applies to both client authentication methods.
+    """
+    signing_key_info: NotRequired[pulumi.Input[Optional['MetricIntegrationOauthSigningKeyInfoArgsDict']]]
+    """
+    Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+    """
+    token_request_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Optional provider-specific parameters added to the token request, for example a resource indicator. Applies to both client authentication methods.
+    """
+
+@pulumi.input_type
+class MetricIntegrationOauthArgs:
+    def __init__(__self__, *,
+                 client_auth_method: pulumi.Input[_builtins.str],
+                 client_id: pulumi.Input[_builtins.str],
+                 token_endpoint: pulumi.Input[_builtins.str],
+                 client_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 scopes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 signing_key_info: pulumi.Input[Optional['MetricIntegrationOauthSigningKeyInfoArgs']] = None,
+                 token_request_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        :param pulumi.Input[_builtins.str] client_auth_method: How the client authenticates to the token endpoint. `CLIENT_SECRET` sends a shared secret. `PRIVATE_KEY_JWT` signs a client assertion with an Atlas-generated, Atlas-managed key. Register the returned JWKS URL with your identity provider.
+        :param pulumi.Input[_builtins.str] client_id: OAuth 2.0 client identifier registered with the token endpoint.
+        :param pulumi.Input[_builtins.str] token_endpoint: OAuth 2.0 token endpoint URL. Must use HTTPS.
+        :param pulumi.Input[_builtins.str] client_secret: Shared client secret. Required when client*auth*method is `CLIENT_SECRET`, and rejected for `PRIVATE_KEY_JWT`. Encrypted at rest and never returned.
+        :param pulumi.Input[Sequence[pulumi.Input[_builtins.str]]] scopes: Optional OAuth 2.0 scopes requested on the token, sent as a space delimited `scope` parameter. Applies to both client authentication methods.
+        :param pulumi.Input['MetricIntegrationOauthSigningKeyInfoArgs'] signing_key_info: Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] token_request_params: Optional provider-specific parameters added to the token request, for example a resource indicator. Applies to both client authentication methods.
+        """
+        pulumi.set(__self__, "client_auth_method", client_auth_method)
+        pulumi.set(__self__, "client_id", client_id)
+        pulumi.set(__self__, "token_endpoint", token_endpoint)
+        if client_secret is not None:
+            pulumi.set(__self__, "client_secret", client_secret)
+        if scopes is not None:
+            pulumi.set(__self__, "scopes", scopes)
+        if signing_key_info is not None:
+            pulumi.set(__self__, "signing_key_info", signing_key_info)
+        if token_request_params is not None:
+            pulumi.set(__self__, "token_request_params", token_request_params)
+
+    @_builtins.property
+    @pulumi.getter(name="clientAuthMethod")
+    def client_auth_method(self) -> pulumi.Input[_builtins.str]:
+        """
+        How the client authenticates to the token endpoint. `CLIENT_SECRET` sends a shared secret. `PRIVATE_KEY_JWT` signs a client assertion with an Atlas-generated, Atlas-managed key. Register the returned JWKS URL with your identity provider.
+        """
+        return pulumi.get(self, "client_auth_method")
+
+    @client_auth_method.setter
+    def client_auth_method(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "client_auth_method", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientId")
+    def client_id(self) -> pulumi.Input[_builtins.str]:
+        """
+        OAuth 2.0 client identifier registered with the token endpoint.
+        """
+        return pulumi.get(self, "client_id")
+
+    @client_id.setter
+    def client_id(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "client_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenEndpoint")
+    def token_endpoint(self) -> pulumi.Input[_builtins.str]:
+        """
+        OAuth 2.0 token endpoint URL. Must use HTTPS.
+        """
+        return pulumi.get(self, "token_endpoint")
+
+    @token_endpoint.setter
+    def token_endpoint(self, value: pulumi.Input[_builtins.str]):
+        pulumi.set(self, "token_endpoint", value)
+
+    @_builtins.property
+    @pulumi.getter(name="clientSecret")
+    def client_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Shared client secret. Required when client*auth*method is `CLIENT_SECRET`, and rejected for `PRIVATE_KEY_JWT`. Encrypted at rest and never returned.
+        """
+        return pulumi.get(self, "client_secret")
+
+    @client_secret.setter
+    def client_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "client_secret", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def scopes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        """
+        Optional OAuth 2.0 scopes requested on the token, sent as a space delimited `scope` parameter. Applies to both client authentication methods.
+        """
+        return pulumi.get(self, "scopes")
+
+    @scopes.setter
+    def scopes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "scopes", value)
+
+    @_builtins.property
+    @pulumi.getter(name="signingKeyInfo")
+    def signing_key_info(self) -> pulumi.Input[Optional['MetricIntegrationOauthSigningKeyInfoArgs']]:
+        """
+        Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+        """
+        return pulumi.get(self, "signing_key_info")
+
+    @signing_key_info.setter
+    def signing_key_info(self, value: pulumi.Input[Optional['MetricIntegrationOauthSigningKeyInfoArgs']]):
+        pulumi.set(self, "signing_key_info", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenRequestParams")
+    def token_request_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Optional provider-specific parameters added to the token request, for example a resource indicator. Applies to both client authentication methods.
+        """
+        return pulumi.get(self, "token_request_params")
+
+    @token_request_params.setter
+    def token_request_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "token_request_params", value)
+
+
+class MetricIntegrationOauthSigningKeyInfoArgsDict(TypedDict):
+    algorithm: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Signing algorithm of the Atlas-managed key.
+    """
+    created_at: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+    """
+    jwks_uri: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+    """
+    kid: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    """
+    Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+    """
+
+@pulumi.input_type
+class MetricIntegrationOauthSigningKeyInfoArgs:
+    def __init__(__self__, *,
+                 algorithm: pulumi.Input[Optional[_builtins.str]] = None,
+                 created_at: pulumi.Input[Optional[_builtins.str]] = None,
+                 jwks_uri: pulumi.Input[Optional[_builtins.str]] = None,
+                 kid: pulumi.Input[Optional[_builtins.str]] = None):
+        """
+        :param pulumi.Input[_builtins.str] algorithm: Signing algorithm of the Atlas-managed key.
+        :param pulumi.Input[_builtins.str] created_at: When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        :param pulumi.Input[_builtins.str] jwks_uri: Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+        :param pulumi.Input[_builtins.str] kid: Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+        """
+        if algorithm is not None:
+            pulumi.set(__self__, "algorithm", algorithm)
+        if created_at is not None:
+            pulumi.set(__self__, "created_at", created_at)
+        if jwks_uri is not None:
+            pulumi.set(__self__, "jwks_uri", jwks_uri)
+        if kid is not None:
+            pulumi.set(__self__, "kid", kid)
+
+    @_builtins.property
+    @pulumi.getter
+    def algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Signing algorithm of the Atlas-managed key.
+        """
+        return pulumi.get(self, "algorithm")
+
+    @algorithm.setter
+    def algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "algorithm", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+        """
+        return pulumi.get(self, "created_at")
+
+    @created_at.setter
+    def created_at(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "created_at", value)
+
+    @_builtins.property
+    @pulumi.getter(name="jwksUri")
+    def jwks_uri(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+        """
+        return pulumi.get(self, "jwks_uri")
+
+    @jwks_uri.setter
+    def jwks_uri(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "jwks_uri", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kid(self) -> pulumi.Input[Optional[_builtins.str]]:
+        """
+        Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+        """
+        return pulumi.get(self, "kid")
+
+    @kid.setter
+    def kid(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kid", value)
 
 
 class OnlineArchiveCriteriaArgsDict(TypedDict):
@@ -13853,14 +14197,17 @@ class GetCustomDbRoleInheritedRoleArgs:
 class GetFederatedDatabaseInstanceCloudProviderConfigArgsDict(TypedDict):
     aws: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAwArgsDict']
     azures: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAzureArgsDict']
+    gcps: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigGcpArgsDict']
 
 @pulumi.input_type
 class GetFederatedDatabaseInstanceCloudProviderConfigArgs:
     def __init__(__self__, *,
                  aws: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAwArgs'],
-                 azures: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs']):
+                 azures: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs'],
+                 gcps: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs']):
         pulumi.set(__self__, "aws", aws)
         pulumi.set(__self__, "azures", azures)
+        pulumi.set(__self__, "gcps", gcps)
 
     @_builtins.property
     @pulumi.getter
@@ -13879,6 +14226,15 @@ class GetFederatedDatabaseInstanceCloudProviderConfigArgs:
     @azures.setter
     def azures(self, value: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs']):
         pulumi.set(self, "azures", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def gcps(self) -> Sequence['GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs']:
+        return pulumi.get(self, "gcps")
+
+    @gcps.setter
+    def gcps(self, value: Sequence['GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs']):
+        pulumi.set(self, "gcps", value)
 
 
 class GetFederatedDatabaseInstanceCloudProviderConfigAwArgsDict(TypedDict):
@@ -14066,6 +14422,53 @@ class GetFederatedDatabaseInstanceCloudProviderConfigAzureArgs:
         pulumi.set(self, "tenant_id", value)
 
 
+class GetFederatedDatabaseInstanceCloudProviderConfigGcpArgsDict(TypedDict):
+    gcp_service_account: _builtins.str
+    """
+    Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+    """
+    role_id: _builtins.str
+    """
+    Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+    """
+
+@pulumi.input_type
+class GetFederatedDatabaseInstanceCloudProviderConfigGcpArgs:
+    def __init__(__self__, *,
+                 gcp_service_account: _builtins.str,
+                 role_id: _builtins.str):
+        """
+        :param _builtins.str gcp_service_account: Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+        :param _builtins.str role_id: Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+        """
+        pulumi.set(__self__, "gcp_service_account", gcp_service_account)
+        pulumi.set(__self__, "role_id", role_id)
+
+    @_builtins.property
+    @pulumi.getter(name="gcpServiceAccount")
+    def gcp_service_account(self) -> _builtins.str:
+        """
+        Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+        """
+        return pulumi.get(self, "gcp_service_account")
+
+    @gcp_service_account.setter
+    def gcp_service_account(self, value: _builtins.str):
+        pulumi.set(self, "gcp_service_account", value)
+
+    @_builtins.property
+    @pulumi.getter(name="roleId")
+    def role_id(self) -> _builtins.str:
+        """
+        Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+        """
+        return pulumi.get(self, "role_id")
+
+    @role_id.setter
+    def role_id(self, value: _builtins.str):
+        pulumi.set(self, "role_id", value)
+
+
 class GetGlobalClusterConfigManagedNamespaceArgsDict(TypedDict):
     collection: _builtins.str
     """
@@ -14081,7 +14484,7 @@ class GetGlobalClusterConfigManagedNamespaceArgsDict(TypedDict):
     """
     is_custom_shard_key_hashed: _builtins.bool
     """
-    Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+    Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
     """
     is_shard_key_unique: _builtins.bool
     """
@@ -14100,7 +14503,7 @@ class GetGlobalClusterConfigManagedNamespaceArgs:
         :param _builtins.str collection: (Required) The name of the collection associated with the managed namespace.
         :param _builtins.str custom_shard_key: (Required)	The custom shard key for the collection. Global Clusters require a compound shard key consisting of a location field and a user-selected second key, the custom shard key.
         :param _builtins.str db: (Required) The name of the database containing the collection.
-        :param _builtins.bool is_custom_shard_key_hashed: Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+        :param _builtins.bool is_custom_shard_key_hashed: Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
         :param _builtins.bool is_shard_key_unique: Specifies whether the underlying index enforces a unique constraint. If omitted, defaults to false. You cannot specify true when using [hashed shard keys](https://www.mongodb.com/docs/manual/core/hashed-sharding/#std-label-sharding-hashed).
         """
         pulumi.set(__self__, "collection", collection)
@@ -14149,7 +14552,7 @@ class GetGlobalClusterConfigManagedNamespaceArgs:
     @pulumi.getter(name="isCustomShardKeyHashed")
     def is_custom_shard_key_hashed(self) -> _builtins.bool:
         """
-        Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+        Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
         """
         return pulumi.get(self, "is_custom_shard_key_hashed")
 

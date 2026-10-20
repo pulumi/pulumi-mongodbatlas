@@ -32,6 +32,7 @@ class ThirdPartyIntegrationArgs:
                  send_collection_latency_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
                  send_database_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
                  send_query_stats_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_sharding_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
                  send_user_provided_resource_tags: pulumi.Input[Optional[_builtins.bool]] = None,
                  service_discovery: pulumi.Input[Optional[_builtins.str]] = None,
                  service_key: pulumi.Input[Optional[_builtins.str]] = None,
@@ -77,6 +78,8 @@ class ThirdPartyIntegrationArgs:
             pulumi.set(__self__, "send_database_metrics", send_database_metrics)
         if send_query_stats_metrics is not None:
             pulumi.set(__self__, "send_query_stats_metrics", send_query_stats_metrics)
+        if send_sharding_metrics is not None:
+            pulumi.set(__self__, "send_sharding_metrics", send_sharding_metrics)
         if send_user_provided_resource_tags is not None:
             pulumi.set(__self__, "send_user_provided_resource_tags", send_user_provided_resource_tags)
         if service_discovery is not None:
@@ -223,6 +226,15 @@ class ThirdPartyIntegrationArgs:
         pulumi.set(self, "send_query_stats_metrics", value)
 
     @_builtins.property
+    @pulumi.getter(name="sendShardingMetrics")
+    def send_sharding_metrics(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "send_sharding_metrics")
+
+    @send_sharding_metrics.setter
+    def send_sharding_metrics(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "send_sharding_metrics", value)
+
+    @_builtins.property
     @pulumi.getter(name="sendUserProvidedResourceTags")
     def send_user_provided_resource_tags(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "send_user_provided_resource_tags")
@@ -292,6 +304,7 @@ class _ThirdPartyIntegrationState:
                  send_collection_latency_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
                  send_database_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
                  send_query_stats_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_sharding_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
                  send_user_provided_resource_tags: pulumi.Input[Optional[_builtins.bool]] = None,
                  service_discovery: pulumi.Input[Optional[_builtins.str]] = None,
                  service_key: pulumi.Input[Optional[_builtins.str]] = None,
@@ -338,6 +351,8 @@ class _ThirdPartyIntegrationState:
             pulumi.set(__self__, "send_database_metrics", send_database_metrics)
         if send_query_stats_metrics is not None:
             pulumi.set(__self__, "send_query_stats_metrics", send_query_stats_metrics)
+        if send_sharding_metrics is not None:
+            pulumi.set(__self__, "send_sharding_metrics", send_sharding_metrics)
         if send_user_provided_resource_tags is not None:
             pulumi.set(__self__, "send_user_provided_resource_tags", send_user_provided_resource_tags)
         if service_discovery is not None:
@@ -465,6 +480,15 @@ class _ThirdPartyIntegrationState:
         pulumi.set(self, "send_query_stats_metrics", value)
 
     @_builtins.property
+    @pulumi.getter(name="sendShardingMetrics")
+    def send_sharding_metrics(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "send_sharding_metrics")
+
+    @send_sharding_metrics.setter
+    def send_sharding_metrics(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "send_sharding_metrics", value)
+
+    @_builtins.property
     @pulumi.getter(name="sendUserProvidedResourceTags")
     def send_user_provided_resource_tags(self) -> pulumi.Input[Optional[_builtins.bool]]:
         return pulumi.get(self, "send_user_provided_resource_tags")
@@ -558,6 +582,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                  send_collection_latency_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
                  send_database_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
                  send_query_stats_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_sharding_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
                  send_user_provided_resource_tags: pulumi.Input[Optional[_builtins.bool]] = None,
                  service_discovery: pulumi.Input[Optional[_builtins.str]] = None,
                  service_key: pulumi.Input[Optional[_builtins.str]] = None,
@@ -685,6 +710,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
                  send_collection_latency_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
                  send_database_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
                  send_query_stats_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+                 send_sharding_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
                  send_user_provided_resource_tags: pulumi.Input[Optional[_builtins.bool]] = None,
                  service_discovery: pulumi.Input[Optional[_builtins.str]] = None,
                  service_key: pulumi.Input[Optional[_builtins.str]] = None,
@@ -715,6 +741,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             __props__.__dict__["send_collection_latency_metrics"] = send_collection_latency_metrics
             __props__.__dict__["send_database_metrics"] = send_database_metrics
             __props__.__dict__["send_query_stats_metrics"] = send_query_stats_metrics
+            __props__.__dict__["send_sharding_metrics"] = send_sharding_metrics
             __props__.__dict__["send_user_provided_resource_tags"] = send_user_provided_resource_tags
             __props__.__dict__["service_discovery"] = None if service_discovery is None else pulumi.Output.secret(service_discovery)
             __props__.__dict__["service_key"] = None if service_key is None else pulumi.Output.secret(service_key)
@@ -748,6 +775,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
             send_collection_latency_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
             send_database_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
             send_query_stats_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
+            send_sharding_metrics: pulumi.Input[Optional[_builtins.bool]] = None,
             send_user_provided_resource_tags: pulumi.Input[Optional[_builtins.bool]] = None,
             service_discovery: pulumi.Input[Optional[_builtins.str]] = None,
             service_key: pulumi.Input[Optional[_builtins.str]] = None,
@@ -790,6 +818,7 @@ class ThirdPartyIntegration(pulumi.CustomResource):
         __props__.__dict__["send_collection_latency_metrics"] = send_collection_latency_metrics
         __props__.__dict__["send_database_metrics"] = send_database_metrics
         __props__.__dict__["send_query_stats_metrics"] = send_query_stats_metrics
+        __props__.__dict__["send_sharding_metrics"] = send_sharding_metrics
         __props__.__dict__["send_user_provided_resource_tags"] = send_user_provided_resource_tags
         __props__.__dict__["service_discovery"] = service_discovery
         __props__.__dict__["service_key"] = service_key
@@ -861,6 +890,11 @@ class ThirdPartyIntegration(pulumi.CustomResource):
     @pulumi.getter(name="sendQueryStatsMetrics")
     def send_query_stats_metrics(self) -> pulumi.Output[_builtins.bool]:
         return pulumi.get(self, "send_query_stats_metrics")
+
+    @_builtins.property
+    @pulumi.getter(name="sendShardingMetrics")
+    def send_sharding_metrics(self) -> pulumi.Output[_builtins.bool]:
+        return pulumi.get(self, "send_sharding_metrics")
 
     @_builtins.property
     @pulumi.getter(name="sendUserProvidedResourceTags")

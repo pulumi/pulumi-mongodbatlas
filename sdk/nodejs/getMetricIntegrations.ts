@@ -48,7 +48,8 @@ import * as utilities from "./utilities";
  * ```
  *
  * ### Further Examples
- * - Metric Integration Examples
+ * - Header-based — export Atlas metrics using header-based authentication.
+ * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
  */
 export function getMetricIntegrations(args: GetMetricIntegrationsArgs, opts?: pulumi.InvokeOptions): Promise<GetMetricIntegrationsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -140,7 +141,8 @@ export interface GetMetricIntegrationsResult {
  * ```
  *
  * ### Further Examples
- * - Metric Integration Examples
+ * - Header-based — export Atlas metrics using header-based authentication.
+ * - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
  */
 export function getMetricIntegrationsOutput(args: GetMetricIntegrationsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetMetricIntegrationsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});

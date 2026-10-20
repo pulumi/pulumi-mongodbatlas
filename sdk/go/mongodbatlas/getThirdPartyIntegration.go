@@ -98,8 +98,10 @@ type LookupThirdPartyIntegrationResult struct {
 	// Toggle sending database metrics that includes database names and metrics on the number of collections, storage size, and index size.
 	SendDatabaseMetrics bool `pulumi:"sendDatabaseMetrics"`
 	// Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
-	// * `OPS_GENIE`
 	SendQueryStatsMetrics bool `pulumi:"sendQueryStatsMetrics"`
+	// Toggle sending sharding metrics that includes sharding distribution and chunk metrics per cluster, shard, and collection.
+	// * `OPS_GENIE`
+	SendShardingMetrics bool `pulumi:"sendShardingMetrics"`
 	// Toggle sending user provided group and cluster resource tags with the Datadog metrics.
 	SendUserProvidedResourceTags bool `pulumi:"sendUserProvidedResourceTags"`
 	// Indicates which service discovery method is used, either file or http.
@@ -216,9 +218,14 @@ func (o LookupThirdPartyIntegrationResultOutput) SendDatabaseMetrics() pulumi.Bo
 }
 
 // Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
-// * `OPS_GENIE`
 func (o LookupThirdPartyIntegrationResultOutput) SendQueryStatsMetrics() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) bool { return v.SendQueryStatsMetrics }).(pulumi.BoolOutput)
+}
+
+// Toggle sending sharding metrics that includes sharding distribution and chunk metrics per cluster, shard, and collection.
+// * `OPS_GENIE`
+func (o LookupThirdPartyIntegrationResultOutput) SendShardingMetrics() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupThirdPartyIntegrationResult) bool { return v.SendShardingMetrics }).(pulumi.BoolOutput)
 }
 
 // Toggle sending user provided group and cluster resource tags with the Datadog metrics.

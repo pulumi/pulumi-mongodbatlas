@@ -140,6 +140,30 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Create a webhook notification with a custom JSON body and headers
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.AlertConfiguration("test", {
+ *     projectId: "PROJECT ID",
+ *     enabled: true,
+ *     eventType: "REPLICATION_OPLOG_WINDOW_RUNNING_OUT",
+ *     notifications: [{
+ *         typeName: "WEBHOOK",
+ *         webhookUrl: "https://example.com/webhook",
+ *         webhookBodyTemplate: JSON.stringify({
+ *             alert: "${eventType}",
+ *             project: "${groupId}",
+ *         }),
+ *         webhookHeadersTemplate: JSON.stringify({
+ *             "X-Custom-Header": "static-value",
+ *         }),
+ *     }],
+ * });
+ * ```
+ *
  * ### Further Examples
  * - Alert Configuration
  *

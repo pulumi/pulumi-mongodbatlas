@@ -288,7 +288,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigAnalyticsSpecs {
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
      * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
      * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
      * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -380,7 +380,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigElectableSpecs {
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
      * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
      * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
      * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -423,7 +423,7 @@ export interface AdvancedClusterReplicationSpecRegionConfigReadOnlySpecs {
      */
     diskSizeGb: number;
     /**
-     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. Don't set this parameter for GCP or Azure clusters. Valid values are:
+     * Type of storage you want to attach to your AWS-provisioned cluster. Set only if you selected AWS as your cloud service provider. You can't set this parameter for a multi-cloud cluster. NVMe clusters require either the `PROVISIONED` or `HIGH_PERFORMANCE` volume type. Valid values are:
      * * `STANDARD` volume types use gp3 storage. For Gen2 instance sizes, you can configure IOPS independently of storage size using `diskIops`.
      * * `PROVISIONED` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen1 instance sizes support this value.
      * * `HIGH_PERFORMANCE` volume types use io2 storage and must fall within the allowable IOPS range for the selected volume size. Only Gen2 instance sizes support this value.
@@ -618,6 +618,14 @@ export interface AlertConfigurationNotification {
      * VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
     victorOpsRoutingKey?: string;
+    /**
+     * Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+     */
+    webhookBodyTemplate?: string;
+    /**
+     * Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+     */
+    webhookHeadersTemplate?: string;
     /**
      * Optional authentication secret for the `WEBHOOK` notifications type.
      */
@@ -1653,6 +1661,10 @@ export interface FederatedDatabaseInstanceCloudProviderConfig {
      * Microsoft Azure cloud service configuration.
      */
     azure?: outputs.FederatedDatabaseInstanceCloudProviderConfigAzure;
+    /**
+     * Google Cloud cloud service configuration.
+     */
+    gcp?: outputs.FederatedDatabaseInstanceCloudProviderConfigGcp;
 }
 
 export interface FederatedDatabaseInstanceCloudProviderConfigAws {
@@ -1689,6 +1701,14 @@ export interface FederatedDatabaseInstanceCloudProviderConfigAzure {
      * Unique identifier of the Azure Active Directory tenant where the service principal resides.
      */
     tenantId: string;
+}
+
+export interface FederatedDatabaseInstanceCloudProviderConfigGcp {
+    /**
+     * Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+     */
+    gcpServiceAccount: string;
+    roleId: string;
 }
 
 export interface FederatedDatabaseInstanceDataProcessRegion {
@@ -1904,7 +1924,7 @@ export interface GetAccessListApiKeysResult {
 
 export interface GetAdvancedClusterAdvancedConfiguration {
     /**
-     * (Optional) The minimum pre- and post-image retention time in seconds This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
+     * (Optional) The minimum pre- and post-image retention time in seconds. Defaults to `-1`(off).
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds: number;
     /**
@@ -1920,7 +1940,7 @@ export interface GetAdvancedClusterAdvancedConfiguration {
      */
     defaultMaxTimeMs: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. Clusters default to `majority`.
      */
     defaultWriteConcern: string;
     /**
@@ -2482,7 +2502,7 @@ export interface GetAdvancedClustersResult {
 
 export interface GetAdvancedClustersResultAdvancedConfiguration {
     /**
-     * (Optional) The minimum pre- and post-image retention time in seconds. This parameter is only supported for MongoDB version 6.0 and above. Defaults to `-1`(off).
+     * (Optional) The minimum pre- and post-image retention time in seconds. Defaults to `-1`(off).
      */
     changeStreamOptionsPreAndPostImagesExpireAfterSeconds: number;
     /**
@@ -2498,7 +2518,7 @@ export interface GetAdvancedClustersResultAdvancedConfiguration {
      */
     defaultMaxTimeMs: number;
     /**
-     * [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. MongoDB 6.0 clusters default to [majority](https://www.mongodb.com/docs/manual/reference/write-concern/).
+     * [Default level of acknowledgment requested from MongoDB for write operations](https://www.mongodb.com/docs/manual/reference/write-concern/) set for this cluster. Clusters default to `majority`.
      */
     defaultWriteConcern: string;
     /**
@@ -3239,6 +3259,14 @@ export interface GetAlertConfigurationNotification {
      */
     victorOpsRoutingKey: string;
     /**
+     * Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+     */
+    webhookBodyTemplate: string;
+    /**
+     * Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+     */
+    webhookHeadersTemplate: string;
+    /**
      * Authentication secret for the `WEBHOOK` notifications type.
      */
     webhookSecret: string;
@@ -3496,6 +3524,14 @@ export interface GetAlertConfigurationsResultNotification {
      * VictorOps routing key. Optional for the `VICTOR_OPS` notifications type. If the key later becomes invalid, Atlas sends an email to the project owner and eventually removes the key.
      */
     victorOpsRoutingKey: string;
+    /**
+     * Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+     */
+    webhookBodyTemplate: string;
+    /**
+     * Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+     */
+    webhookHeadersTemplate: string;
     /**
      * Authentication secret for the `WEBHOOK` notifications type.
      */
@@ -5655,6 +5691,7 @@ export interface GetEventTriggersResultEventProcessorAwsEventbridge {
 export interface GetFederatedDatabaseInstanceCloudProviderConfig {
     aws: outputs.GetFederatedDatabaseInstanceCloudProviderConfigAw[];
     azures: outputs.GetFederatedDatabaseInstanceCloudProviderConfigAzure[];
+    gcps: outputs.GetFederatedDatabaseInstanceCloudProviderConfigGcp[];
 }
 
 export interface GetFederatedDatabaseInstanceCloudProviderConfigAw {
@@ -5696,9 +5733,20 @@ export interface GetFederatedDatabaseInstanceCloudProviderConfigAzure {
     tenantId: string;
 }
 
+export interface GetFederatedDatabaseInstanceCloudProviderConfigGcp {
+    /**
+     * Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+     */
+    gcpServiceAccount: string;
+    /**
+     * Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+     */
+    roleId: string;
+}
+
 export interface GetFederatedDatabaseInstanceDataProcessRegion {
     /**
-     * Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+     * Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
      */
     cloudProvider: string;
     /**
@@ -5850,8 +5898,8 @@ export interface GetFederatedDatabaseInstancesResult {
      * Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
      * * `storage_stores.#.name` - Name of the data store.
      * * `storage_stores.#.provider` - Defines where the data is stored.
-     * * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-     * * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+     * * `storage_stores.#.region` - Name of the cloud provider region in which the bucket is hosted.
+     * * `storage_stores.#.bucket` - Name of the bucket.
      * * `storage_stores.#.prefix` - Prefix the Federated Database Instance applies when searching for files in the S3 bucket.
      * * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
      * * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.
@@ -5874,6 +5922,7 @@ export interface GetFederatedDatabaseInstancesResult {
 export interface GetFederatedDatabaseInstancesResultCloudProviderConfig {
     aws: outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAw[];
     azures: outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigAzure[];
+    gcps: outputs.GetFederatedDatabaseInstancesResultCloudProviderConfigGcp[];
 }
 
 export interface GetFederatedDatabaseInstancesResultCloudProviderConfigAw {
@@ -5918,9 +5967,20 @@ export interface GetFederatedDatabaseInstancesResultCloudProviderConfigAzure {
     tenantId: string;
 }
 
+export interface GetFederatedDatabaseInstancesResultCloudProviderConfigGcp {
+    /**
+     * Email address of the Google Cloud Platform (GCP) service account created by Atlas, which should be authorized to allow Atlas to access Google Cloud Storage.
+     */
+    gcpServiceAccount: string;
+    /**
+     * Unique identifier of the role that the Federated Database Instance can use to access the data stores.
+     */
+    roleId: string;
+}
+
 export interface GetFederatedDatabaseInstancesResultDataProcessRegion {
     /**
-     * Name of the cloud service provider. Supported providers: `AWS`, `AZURE`.
+     * Name of the cloud service provider. Supported providers: `AWS`, `AZURE`, `GCP`.
      */
     cloudProvider: string;
     /**
@@ -6753,7 +6813,7 @@ export interface GetGlobalClusterConfigManagedNamespace {
      */
     db: string;
     /**
-     * Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+     * Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
      */
     isCustomShardKeyHashed: boolean;
     /**
@@ -7009,6 +7069,52 @@ export interface GetMetricIntegrationHeadersRedacted {
     value: string;
 }
 
+export interface GetMetricIntegrationOauth {
+    /**
+     * How the client authenticates to the token endpoint.
+     */
+    clientAuthMethod: string;
+    /**
+     * OAuth 2.0 client identifier registered with the token endpoint.
+     */
+    clientId: string;
+    /**
+     * OAuth 2.0 scopes requested on the token.
+     */
+    scopes: string[];
+    /**
+     * Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+     */
+    signingKeyInfo: outputs.GetMetricIntegrationOauthSigningKeyInfo;
+    /**
+     * OAuth 2.0 token endpoint URL.
+     */
+    tokenEndpoint: string;
+    /**
+     * Provider-specific parameters added to the token request.
+     */
+    tokenRequestParams: {[key: string]: string};
+}
+
+export interface GetMetricIntegrationOauthSigningKeyInfo {
+    /**
+     * Signing algorithm of the Atlas-managed key.
+     */
+    algorithm: string;
+    /**
+     * When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+     */
+    jwksUri: string;
+    /**
+     * Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+     */
+    kid: string;
+}
+
 export interface GetMetricIntegrationsResult {
     /**
      * The temporality to send to the metric integration.
@@ -7039,6 +7145,10 @@ export interface GetMetricIntegrationsResult {
      */
     metricSelections: string[];
     /**
+     * OAuth 2.0 configuration returned for a metric integration. Secrets are never returned.
+     */
+    oauth: outputs.GetMetricIntegrationsResultOauth;
+    /**
      * The provider type for the metric integration. Identifies the third-party service provider.
      */
     providerType: string;
@@ -7053,6 +7163,52 @@ export interface GetMetricIntegrationsResultHeadersRedacted {
      * Redacted header value.
      */
     value: string;
+}
+
+export interface GetMetricIntegrationsResultOauth {
+    /**
+     * How the client authenticates to the token endpoint.
+     */
+    clientAuthMethod: string;
+    /**
+     * OAuth 2.0 client identifier registered with the token endpoint.
+     */
+    clientId: string;
+    /**
+     * OAuth 2.0 scopes requested on the token.
+     */
+    scopes: string[];
+    /**
+     * Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+     */
+    signingKeyInfo: outputs.GetMetricIntegrationsResultOauthSigningKeyInfo;
+    /**
+     * OAuth 2.0 token endpoint URL.
+     */
+    tokenEndpoint: string;
+    /**
+     * Provider-specific parameters added to the token request.
+     */
+    tokenRequestParams: {[key: string]: string};
+}
+
+export interface GetMetricIntegrationsResultOauthSigningKeyInfo {
+    /**
+     * Signing algorithm of the Atlas-managed key.
+     */
+    algorithm: string;
+    /**
+     * When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+     */
+    jwksUri: string;
+    /**
+     * Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+     */
+    kid: string;
 }
 
 export interface GetNetworkContainersResult {
@@ -9893,9 +10049,13 @@ export interface GetThirdPartyIntegrationsResult {
     sendDatabaseMetrics: boolean;
     /**
      * Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
-     * * `OPS_GENIE`
      */
     sendQueryStatsMetrics: boolean;
+    /**
+     * Toggle sending sharding metrics that includes sharding distribution and chunk metrics per cluster, shard, and collection.
+     * * `OPS_GENIE`
+     */
+    sendShardingMetrics: boolean;
     /**
      * Toggle sending user provided group and cluster resource tags with the Datadog metrics.
      */
@@ -9957,7 +10117,7 @@ export interface GlobalClusterConfigManagedNamespace {
      */
     db: string;
     /**
-     * Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/). This is only available for Atlas clusters with MongoDB v4.4 and later.
+     * Specifies whether the custom shard key for the collection is [hashed](https://www.mongodb.com/docs/manual/reference/method/sh.shardCollection/#hashed-shard-keys). If omitted, defaults to `false`. If `false`, Atlas uses [ranged sharding](https://www.mongodb.com/docs/manual/core/ranged-sharding/).
      */
     isCustomShardKeyHashed: boolean;
     /**
@@ -10038,6 +10198,56 @@ export interface MetricIntegrationHeadersRedacted {
      * Redacted header value.
      */
     value: string;
+}
+
+export interface MetricIntegrationOauth {
+    /**
+     * How the client authenticates to the token endpoint. `CLIENT_SECRET` sends a shared secret. `PRIVATE_KEY_JWT` signs a client assertion with an Atlas-generated, Atlas-managed key. Register the returned JWKS URL with your identity provider.
+     */
+    clientAuthMethod: string;
+    /**
+     * OAuth 2.0 client identifier registered with the token endpoint.
+     */
+    clientId: string;
+    /**
+     * Shared client secret. Required when client*auth*method is `CLIENT_SECRET`, and rejected for `PRIVATE_KEY_JWT`. Encrypted at rest and never returned.
+     */
+    clientSecret?: string;
+    /**
+     * Optional OAuth 2.0 scopes requested on the token, sent as a space delimited `scope` parameter. Applies to both client authentication methods.
+     */
+    scopes?: string[];
+    /**
+     * Read-only metadata for the Atlas-managed signing key used by `PRIVATE_KEY_JWT`. Present only for that method. Register the jwks*uri with your identity provider. Atlas rotates the underlying key without changing this URL.
+     */
+    signingKeyInfo: outputs.MetricIntegrationOauthSigningKeyInfo;
+    /**
+     * OAuth 2.0 token endpoint URL. Must use HTTPS.
+     */
+    tokenEndpoint: string;
+    /**
+     * Optional provider-specific parameters added to the token request, for example a resource indicator. Applies to both client authentication methods.
+     */
+    tokenRequestParams?: {[key: string]: string};
+}
+
+export interface MetricIntegrationOauthSigningKeyInfo {
+    /**
+     * Signing algorithm of the Atlas-managed key.
+     */
+    algorithm: string;
+    /**
+     * When the currently active signing key was created. This parameter expresses its value in the ISO 8601 timestamp format in UTC.
+     */
+    createdAt: string;
+    /**
+     * Public JWKS URL serving this integration's signing keys. Fixed for the lifetime of the integration.
+     */
+    jwksUri: string;
+    /**
+     * Key ID stamped on client assertions, the `SHA-1` thumbprint of the key certificate in uppercase hexadecimal. Changes when Atlas rotates the key.
+     */
+    kid: string;
 }
 
 export interface OnlineArchiveCriteria {

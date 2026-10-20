@@ -77,6 +77,7 @@ type ThirdPartyIntegration struct {
 	SendCollectionLatencyMetrics pulumi.BoolOutput      `pulumi:"sendCollectionLatencyMetrics"`
 	SendDatabaseMetrics          pulumi.BoolOutput      `pulumi:"sendDatabaseMetrics"`
 	SendQueryStatsMetrics        pulumi.BoolOutput      `pulumi:"sendQueryStatsMetrics"`
+	SendShardingMetrics          pulumi.BoolOutput      `pulumi:"sendShardingMetrics"`
 	SendUserProvidedResourceTags pulumi.BoolOutput      `pulumi:"sendUserProvidedResourceTags"`
 	ServiceDiscovery             pulumi.StringOutput    `pulumi:"serviceDiscovery"`
 	ServiceKey                   pulumi.StringOutput    `pulumi:"serviceKey"`
@@ -180,6 +181,7 @@ type thirdPartyIntegrationState struct {
 	SendCollectionLatencyMetrics *bool   `pulumi:"sendCollectionLatencyMetrics"`
 	SendDatabaseMetrics          *bool   `pulumi:"sendDatabaseMetrics"`
 	SendQueryStatsMetrics        *bool   `pulumi:"sendQueryStatsMetrics"`
+	SendShardingMetrics          *bool   `pulumi:"sendShardingMetrics"`
 	SendUserProvidedResourceTags *bool   `pulumi:"sendUserProvidedResourceTags"`
 	ServiceDiscovery             *string `pulumi:"serviceDiscovery"`
 	ServiceKey                   *string `pulumi:"serviceKey"`
@@ -213,6 +215,7 @@ type ThirdPartyIntegrationState struct {
 	SendCollectionLatencyMetrics pulumi.BoolPtrInput
 	SendDatabaseMetrics          pulumi.BoolPtrInput
 	SendQueryStatsMetrics        pulumi.BoolPtrInput
+	SendShardingMetrics          pulumi.BoolPtrInput
 	SendUserProvidedResourceTags pulumi.BoolPtrInput
 	ServiceDiscovery             pulumi.StringPtrInput
 	ServiceKey                   pulumi.StringPtrInput
@@ -250,6 +253,7 @@ type thirdPartyIntegrationArgs struct {
 	SendCollectionLatencyMetrics *bool   `pulumi:"sendCollectionLatencyMetrics"`
 	SendDatabaseMetrics          *bool   `pulumi:"sendDatabaseMetrics"`
 	SendQueryStatsMetrics        *bool   `pulumi:"sendQueryStatsMetrics"`
+	SendShardingMetrics          *bool   `pulumi:"sendShardingMetrics"`
 	SendUserProvidedResourceTags *bool   `pulumi:"sendUserProvidedResourceTags"`
 	ServiceDiscovery             *string `pulumi:"serviceDiscovery"`
 	ServiceKey                   *string `pulumi:"serviceKey"`
@@ -284,6 +288,7 @@ type ThirdPartyIntegrationArgs struct {
 	SendCollectionLatencyMetrics pulumi.BoolPtrInput
 	SendDatabaseMetrics          pulumi.BoolPtrInput
 	SendQueryStatsMetrics        pulumi.BoolPtrInput
+	SendShardingMetrics          pulumi.BoolPtrInput
 	SendUserProvidedResourceTags pulumi.BoolPtrInput
 	ServiceDiscovery             pulumi.StringPtrInput
 	ServiceKey                   pulumi.StringPtrInput
@@ -437,6 +442,10 @@ func (o ThirdPartyIntegrationOutput) SendDatabaseMetrics() pulumi.BoolOutput {
 
 func (o ThirdPartyIntegrationOutput) SendQueryStatsMetrics() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.BoolOutput { return v.SendQueryStatsMetrics }).(pulumi.BoolOutput)
+}
+
+func (o ThirdPartyIntegrationOutput) SendShardingMetrics() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ThirdPartyIntegration) pulumi.BoolOutput { return v.SendShardingMetrics }).(pulumi.BoolOutput)
 }
 
 func (o ThirdPartyIntegrationOutput) SendUserProvidedResourceTags() pulumi.BoolOutput {
