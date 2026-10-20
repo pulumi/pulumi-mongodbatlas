@@ -72,6 +72,20 @@ import * as utilities from "./utilities";
  * });
  * ```
  *
+ * ### Wave Assignment
+ *
+ * Use `waveAssignment` to assign the project to a maintenance wave. You can set `waveAssignment` with or without a maintenance window.
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = new mongodbatlas.MaintenanceWindow("test", {
+ *     projectId: "<your-project-id>",
+ *     waveAssignment: 1,
+ * });
+ * ```
+ *
  * ### Further Examples
  * - Configure Maintenance Window
  *
@@ -154,7 +168,7 @@ export class MaintenanceWindow extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly timeZoneId: pulumi.Output<string>;
     /**
-     * Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `mongodbatlas.OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+     * Integer that identifies the maintenance wave explicitly assigned to this project. Valid values are `1` to `3`, inclusive, where `1` is the first maintenance wave. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `mongodbatlas.OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
      */
     declare public readonly waveAssignment: pulumi.Output<number | undefined>;
 
@@ -249,7 +263,7 @@ export interface MaintenanceWindowState {
      */
     timeZoneId?: pulumi.Input<string | undefined>;
     /**
-     * Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `mongodbatlas.OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+     * Integer that identifies the maintenance wave explicitly assigned to this project. Valid values are `1` to `3`, inclusive, where `1` is the first maintenance wave. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `mongodbatlas.OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
      */
     waveAssignment?: pulumi.Input<number | undefined>;
 }
@@ -287,7 +301,7 @@ export interface MaintenanceWindowArgs {
      */
     protectedHours?: pulumi.Input<inputs.MaintenanceWindowProtectedHours | undefined>;
     /**
-     * Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `mongodbatlas.OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+     * Integer that identifies the maintenance wave explicitly assigned to this project. Valid values are `1` to `3`, inclusive, where `1` is the first maintenance wave. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `mongodbatlas.OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
      */
     waveAssignment?: pulumi.Input<number | undefined>;
 }

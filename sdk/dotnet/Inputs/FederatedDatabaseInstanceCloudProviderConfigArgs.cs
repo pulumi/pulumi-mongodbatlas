@@ -24,6 +24,12 @@ namespace Pulumi.Mongodbatlas.Inputs
         [Input("azure")]
         public Input<Inputs.FederatedDatabaseInstanceCloudProviderConfigAzureArgs>? Azure { get; set; }
 
+        /// <summary>
+        /// Google Cloud cloud service configuration.
+        /// </summary>
+        [Input("gcp")]
+        public Input<Inputs.FederatedDatabaseInstanceCloudProviderConfigGcpArgs>? Gcp { get; set; }
+
         public FederatedDatabaseInstanceCloudProviderConfigArgs()
         {
         }

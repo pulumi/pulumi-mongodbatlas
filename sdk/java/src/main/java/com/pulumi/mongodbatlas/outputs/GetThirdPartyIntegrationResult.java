@@ -65,10 +65,15 @@ public final class GetThirdPartyIntegrationResult {
     private Boolean sendDatabaseMetrics;
     /**
      * @return Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
-     * * `OPS_GENIE`
      * 
      */
     private Boolean sendQueryStatsMetrics;
+    /**
+     * @return Toggle sending sharding metrics that includes sharding distribution and chunk metrics per cluster, shard, and collection.
+     * * `OPS_GENIE`
+     * 
+     */
+    private Boolean sendShardingMetrics;
     /**
      * @return Toggle sending user provided group and cluster resource tags with the Datadog metrics.
      * 
@@ -177,11 +182,18 @@ public final class GetThirdPartyIntegrationResult {
     }
     /**
      * @return Toggle sending query shape metrics that includes query hash and metrics on latency, execution frequency, documents returned, and timestamps.
-     * * `OPS_GENIE`
      * 
      */
     public Boolean sendQueryStatsMetrics() {
         return this.sendQueryStatsMetrics;
+    }
+    /**
+     * @return Toggle sending sharding metrics that includes sharding distribution and chunk metrics per cluster, shard, and collection.
+     * * `OPS_GENIE`
+     * 
+     */
+    public Boolean sendShardingMetrics() {
+        return this.sendShardingMetrics;
     }
     /**
      * @return Toggle sending user provided group and cluster resource tags with the Datadog metrics.
@@ -248,6 +260,7 @@ public final class GetThirdPartyIntegrationResult {
         private Boolean sendCollectionLatencyMetrics;
         private Boolean sendDatabaseMetrics;
         private Boolean sendQueryStatsMetrics;
+        private Boolean sendShardingMetrics;
         private Boolean sendUserProvidedResourceTags;
         private String serviceDiscovery;
         private String serviceKey;
@@ -271,6 +284,7 @@ public final class GetThirdPartyIntegrationResult {
     	      this.sendCollectionLatencyMetrics = defaults.sendCollectionLatencyMetrics;
     	      this.sendDatabaseMetrics = defaults.sendDatabaseMetrics;
     	      this.sendQueryStatsMetrics = defaults.sendQueryStatsMetrics;
+    	      this.sendShardingMetrics = defaults.sendShardingMetrics;
     	      this.sendUserProvidedResourceTags = defaults.sendUserProvidedResourceTags;
     	      this.serviceDiscovery = defaults.serviceDiscovery;
     	      this.serviceKey = defaults.serviceKey;
@@ -385,6 +399,14 @@ public final class GetThirdPartyIntegrationResult {
             return this;
         }
         @CustomType.Setter
+        public Builder sendShardingMetrics(Boolean sendShardingMetrics) {
+            if (sendShardingMetrics == null) {
+              throw new MissingRequiredPropertyException("GetThirdPartyIntegrationResult", "sendShardingMetrics");
+            }
+            this.sendShardingMetrics = sendShardingMetrics;
+            return this;
+        }
+        @CustomType.Setter
         public Builder sendUserProvidedResourceTags(Boolean sendUserProvidedResourceTags) {
             if (sendUserProvidedResourceTags == null) {
               throw new MissingRequiredPropertyException("GetThirdPartyIntegrationResult", "sendUserProvidedResourceTags");
@@ -455,6 +477,7 @@ public final class GetThirdPartyIntegrationResult {
             _resultValue.sendCollectionLatencyMetrics = sendCollectionLatencyMetrics;
             _resultValue.sendDatabaseMetrics = sendDatabaseMetrics;
             _resultValue.sendQueryStatsMetrics = sendQueryStatsMetrics;
+            _resultValue.sendShardingMetrics = sendShardingMetrics;
             _resultValue.sendUserProvidedResourceTags = sendUserProvidedResourceTags;
             _resultValue.serviceDiscovery = serviceDiscovery;
             _resultValue.serviceKey = serviceKey;

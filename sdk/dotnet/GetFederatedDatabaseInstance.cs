@@ -84,21 +84,35 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
-        ///         CloudProviderConfigs = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
-        ///             {
-        ///                 Azures = new[]
-        ///                 {
-        ///                     new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureInputArgs
-        ///                     {
-        ///                         RoleId = "&lt;AZURE_ROLE_ID&gt;",
-        ///                     },
-        ///                 },
-        ///             },
-        ///         },
         ///     });
         /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["azureRoleId"] = test.Apply(getFederatedDatabaseInstanceResult =&gt; getFederatedDatabaseInstanceResult.CloudProviderConfigs[0]?.Azures[0]?.RoleId),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ## Example of Google Cloud Storage as storage database
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["gcpServiceAccount"] = test.Apply(getFederatedDatabaseInstanceResult =&gt; getFederatedDatabaseInstanceResult.CloudProviderConfigs[0]?.Gcps[0]?.GcpServiceAccount),
+        ///     };
         /// });
         /// ```
         /// </summary>
@@ -178,21 +192,35 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
-        ///         CloudProviderConfigs = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
-        ///             {
-        ///                 Azures = new[]
-        ///                 {
-        ///                     new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureInputArgs
-        ///                     {
-        ///                         RoleId = "&lt;AZURE_ROLE_ID&gt;",
-        ///                     },
-        ///                 },
-        ///             },
-        ///         },
         ///     });
         /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["azureRoleId"] = test.Apply(getFederatedDatabaseInstanceResult =&gt; getFederatedDatabaseInstanceResult.CloudProviderConfigs[0]?.Azures[0]?.RoleId),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ## Example of Google Cloud Storage as storage database
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["gcpServiceAccount"] = test.Apply(getFederatedDatabaseInstanceResult =&gt; getFederatedDatabaseInstanceResult.CloudProviderConfigs[0]?.Gcps[0]?.GcpServiceAccount),
+        ///     };
         /// });
         /// ```
         /// </summary>
@@ -272,21 +300,35 @@ namespace Pulumi.Mongodbatlas
         ///     {
         ///         ProjectId = "&lt;PROJECT_ID&gt;",
         ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
-        ///         CloudProviderConfigs = new[]
-        ///         {
-        ///             new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigInputArgs
-        ///             {
-        ///                 Azures = new[]
-        ///                 {
-        ///                     new Mongodbatlas.Inputs.GetFederatedDatabaseInstanceCloudProviderConfigAzureInputArgs
-        ///                     {
-        ///                         RoleId = "&lt;AZURE_ROLE_ID&gt;",
-        ///                     },
-        ///                 },
-        ///             },
-        ///         },
         ///     });
         /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["azureRoleId"] = test.Apply(getFederatedDatabaseInstanceResult =&gt; getFederatedDatabaseInstanceResult.CloudProviderConfigs[0]?.Azures[0]?.RoleId),
+        ///     };
+        /// });
+        /// ```
+        /// 
+        /// ## Example of Google Cloud Storage as storage database
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetFederatedDatabaseInstance.Invoke(new()
+        ///     {
+        ///         ProjectId = "&lt;PROJECT_ID&gt;",
+        ///         Name = "&lt;TENANT_NAME_OF_THE_FEDERATED_DATABASE_INSTANCE&gt;",
+        ///     });
+        /// 
+        ///     return new Dictionary&lt;string, object?&gt;
+        ///     {
+        ///         ["gcpServiceAccount"] = test.Apply(getFederatedDatabaseInstanceResult =&gt; getFederatedDatabaseInstanceResult.CloudProviderConfigs[0]?.Gcps[0]?.GcpServiceAccount),
+        ///     };
         /// });
         /// ```
         /// </summary>
@@ -407,8 +449,8 @@ namespace Pulumi.Mongodbatlas
         /// Each object in the array represents a data store. Federated Database uses the `storage.databases` configuration details to map data in each data store to queryable databases and collections. For complete documentation on this object and its nested fields, see [stores](https://www.mongodb.com/docs/atlas/data-federation/config/config-data-stores/). An empty object indicates that the Federated Database Instance has no configured data stores.
         /// * `storage_stores.#.name` - Name of the data store.
         /// * `storage_stores.#.provider` - Defines where the data is stored.
-        /// * `storage_stores.#.region` - Name of the AWS region in which the S3 bucket is hosted.
-        /// * `storage_stores.#.bucket` - Name of the AWS S3 bucket.
+        /// * `storage_stores.#.region` - Name of the cloud provider region in which the bucket is hosted.
+        /// * `storage_stores.#.bucket` - Name of the bucket.
         /// * `storage_stores.#.prefix` - Prefix the Federated Database Instance applies when searching for files in the S3 bucket.
         /// * `storage_stores.#.delimiter` - The delimiter that separates `storage_databases.#.collections.#.data_sources.#.path` segments in the data store.
         /// * `storage_stores.#.include_tags` - Determines whether or not to use S3 tags on the files in the given path as additional partition attributes.

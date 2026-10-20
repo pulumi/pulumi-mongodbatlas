@@ -127,7 +127,8 @@ def get_metric_integrations(integration_type: Optional[_builtins.str] = None,
     ```
 
     ### Further Examples
-    - Metric Integration Examples
+    - Header-based — export Atlas metrics using header-based authentication.
+    - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
 
 
     :param _builtins.str integration_type: Optional filter by integration type (e.g., `OTEL`).
@@ -187,7 +188,8 @@ def get_metric_integrations_output(integration_type: pulumi.Input[Optional[Optio
     ```
 
     ### Further Examples
-    - Metric Integration Examples
+    - Header-based — export Atlas metrics using header-based authentication.
+    - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
 
 
     :param _builtins.str integration_type: Optional filter by integration type (e.g., `OTEL`).

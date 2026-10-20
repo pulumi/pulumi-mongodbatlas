@@ -7,6 +7,7 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.exceptions.MissingRequiredPropertyException;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceCloudProviderConfigAw;
 import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceCloudProviderConfigAzure;
+import com.pulumi.mongodbatlas.outputs.GetFederatedDatabaseInstanceCloudProviderConfigGcp;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,6 +15,7 @@ import java.util.Objects;
 public final class GetFederatedDatabaseInstanceCloudProviderConfig {
     private List<GetFederatedDatabaseInstanceCloudProviderConfigAw> aws;
     private List<GetFederatedDatabaseInstanceCloudProviderConfigAzure> azures;
+    private List<GetFederatedDatabaseInstanceCloudProviderConfigGcp> gcps;
 
     private GetFederatedDatabaseInstanceCloudProviderConfig() {}
     public List<GetFederatedDatabaseInstanceCloudProviderConfigAw> aws() {
@@ -21,6 +23,9 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfig {
     }
     public List<GetFederatedDatabaseInstanceCloudProviderConfigAzure> azures() {
         return this.azures;
+    }
+    public List<GetFederatedDatabaseInstanceCloudProviderConfigGcp> gcps() {
+        return this.gcps;
     }
 
     public static Builder builder() {
@@ -34,11 +39,13 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfig {
     public static final class Builder {
         private List<GetFederatedDatabaseInstanceCloudProviderConfigAw> aws;
         private List<GetFederatedDatabaseInstanceCloudProviderConfigAzure> azures;
+        private List<GetFederatedDatabaseInstanceCloudProviderConfigGcp> gcps;
         public Builder() {}
         public Builder(GetFederatedDatabaseInstanceCloudProviderConfig defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.aws = defaults.aws;
     	      this.azures = defaults.azures;
+    	      this.gcps = defaults.gcps;
         }
 
         @CustomType.Setter
@@ -63,10 +70,22 @@ public final class GetFederatedDatabaseInstanceCloudProviderConfig {
         public Builder azures(GetFederatedDatabaseInstanceCloudProviderConfigAzure... azures) {
             return azures(List.of(azures));
         }
+        @CustomType.Setter
+        public Builder gcps(List<GetFederatedDatabaseInstanceCloudProviderConfigGcp> gcps) {
+            if (gcps == null) {
+              throw new MissingRequiredPropertyException("GetFederatedDatabaseInstanceCloudProviderConfig", "gcps");
+            }
+            this.gcps = gcps;
+            return this;
+        }
+        public Builder gcps(GetFederatedDatabaseInstanceCloudProviderConfigGcp... gcps) {
+            return gcps(List.of(gcps));
+        }
         public GetFederatedDatabaseInstanceCloudProviderConfig build() {
             final var _resultValue = new GetFederatedDatabaseInstanceCloudProviderConfig();
             _resultValue.aws = aws;
             _resultValue.azures = azures;
+            _resultValue.gcps = gcps;
             return _resultValue;
         }
     }

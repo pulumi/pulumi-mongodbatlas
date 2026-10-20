@@ -122,6 +122,35 @@ import (
 //
 // ```
 //
+// ### Wave Assignment
+//
+// Use `waveAssignment` to assign the project to a maintenance wave. You can set `waveAssignment` with or without a maintenance window.
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.NewMaintenanceWindow(ctx, "test", &mongodbatlas.MaintenanceWindowArgs{
+//				ProjectId:      pulumi.String("<your-project-id>"),
+//				WaveAssignment: pulumi.Int(1),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Further Examples
 // - Configure Maintenance Window
 //
@@ -157,7 +186,7 @@ type MaintenanceWindow struct {
 	StartAsap pulumi.BoolOutput `pulumi:"startAsap"`
 	// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
 	TimeZoneId pulumi.StringOutput `pulumi:"timeZoneId"`
-	// Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+	// Integer that identifies the maintenance wave explicitly assigned to this project. Valid values are `1` to `3`, inclusive, where `1` is the first maintenance wave. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
 	WaveAssignment pulumi.IntPtrOutput `pulumi:"waveAssignment"`
 }
 
@@ -214,7 +243,7 @@ type maintenanceWindowState struct {
 	StartAsap *bool `pulumi:"startAsap"`
 	// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
 	TimeZoneId *string `pulumi:"timeZoneId"`
-	// Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+	// Integer that identifies the maintenance wave explicitly assigned to this project. Valid values are `1` to `3`, inclusive, where `1` is the first maintenance wave. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
 	WaveAssignment *int `pulumi:"waveAssignment"`
 }
 
@@ -239,7 +268,7 @@ type MaintenanceWindowState struct {
 	StartAsap pulumi.BoolPtrInput
 	// Identifier for the current time zone of the maintenance window. This can only be updated via the Project Settings UI.
 	TimeZoneId pulumi.StringPtrInput
-	// Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+	// Integer that identifies the maintenance wave explicitly assigned to this project. Valid values are `1` to `3`, inclusive, where `1` is the first maintenance wave. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
 	WaveAssignment pulumi.IntPtrInput
 }
 
@@ -262,7 +291,7 @@ type maintenanceWindowArgs struct {
 	ProjectId string `pulumi:"projectId"`
 	// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 	ProtectedHours *MaintenanceWindowProtectedHours `pulumi:"protectedHours"`
-	// Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+	// Integer that identifies the maintenance wave explicitly assigned to this project. Valid values are `1` to `3`, inclusive, where `1` is the first maintenance wave. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
 	WaveAssignment *int `pulumi:"waveAssignment"`
 }
 
@@ -282,7 +311,7 @@ type MaintenanceWindowArgs struct {
 	ProjectId pulumi.StringInput
 	// Defines the time period during which there will be no standard updates to the clusters. See Protected Hours.
 	ProtectedHours MaintenanceWindowProtectedHoursPtrInput
-	// Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+	// Integer that identifies the maintenance wave explicitly assigned to this project. Valid values are `1` to `3`, inclusive, where `1` is the first maintenance wave. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
 	WaveAssignment pulumi.IntPtrInput
 }
 
@@ -423,7 +452,7 @@ func (o MaintenanceWindowOutput) TimeZoneId() pulumi.StringOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.StringOutput { return v.TimeZoneId }).(pulumi.StringOutput)
 }
 
-// Integer that identifies the maintenance wave explicitly assigned to this project. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
+// Integer that identifies the maintenance wave explicitly assigned to this project. Valid values are `1` to `3`, inclusive, where `1` is the first maintenance wave. Not editable when the organization's wave assignment mode is `ENV_TAG_MAPPING`. In this case, the system preserves the stored value but does not use it for scheduling; environment tags determine the effective wave instead. Switching back to `MANUAL` restores the `waveAssignment` value as the effective wave. Remove this attribute from your configuration and run `pulumi up` to clear the explicit assignment. See `OrgMaintenanceSettings` to configure the organization-level wave assignment mode.
 func (o MaintenanceWindowOutput) WaveAssignment() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *MaintenanceWindow) pulumi.IntPtrOutput { return v.WaveAssignment }).(pulumi.IntPtrOutput)
 }

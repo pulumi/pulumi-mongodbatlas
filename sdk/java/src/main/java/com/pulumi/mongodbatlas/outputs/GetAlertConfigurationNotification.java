@@ -143,6 +143,16 @@ public final class GetAlertConfigurationNotification {
      */
     private String victorOpsRoutingKey;
     /**
+     * @return Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+     * 
+     */
+    private String webhookBodyTemplate;
+    /**
+     * @return Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+     * 
+     */
+    private String webhookHeadersTemplate;
+    /**
      * @return Authentication secret for the `WEBHOOK` notifications type.
      * 
      */
@@ -330,6 +340,20 @@ public final class GetAlertConfigurationNotification {
         return this.victorOpsRoutingKey;
     }
     /**
+     * @return Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+     * 
+     */
+    public String webhookBodyTemplate() {
+        return this.webhookBodyTemplate;
+    }
+    /**
+     * @return Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+     * 
+     */
+    public String webhookHeadersTemplate() {
+        return this.webhookHeadersTemplate;
+    }
+    /**
      * @return Authentication secret for the `WEBHOOK` notifications type.
      * 
      */
@@ -376,6 +400,8 @@ public final class GetAlertConfigurationNotification {
         private String username;
         private String victorOpsApiKey;
         private String victorOpsRoutingKey;
+        private String webhookBodyTemplate;
+        private String webhookHeadersTemplate;
         private String webhookSecret;
         private String webhookUrl;
         public Builder() {}
@@ -404,6 +430,8 @@ public final class GetAlertConfigurationNotification {
     	      this.username = defaults.username;
     	      this.victorOpsApiKey = defaults.victorOpsApiKey;
     	      this.victorOpsRoutingKey = defaults.victorOpsRoutingKey;
+    	      this.webhookBodyTemplate = defaults.webhookBodyTemplate;
+    	      this.webhookHeadersTemplate = defaults.webhookHeadersTemplate;
     	      this.webhookSecret = defaults.webhookSecret;
     	      this.webhookUrl = defaults.webhookUrl;
         }
@@ -596,6 +624,22 @@ public final class GetAlertConfigurationNotification {
             return this;
         }
         @CustomType.Setter
+        public Builder webhookBodyTemplate(String webhookBodyTemplate) {
+            if (webhookBodyTemplate == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationNotification", "webhookBodyTemplate");
+            }
+            this.webhookBodyTemplate = webhookBodyTemplate;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder webhookHeadersTemplate(String webhookHeadersTemplate) {
+            if (webhookHeadersTemplate == null) {
+              throw new MissingRequiredPropertyException("GetAlertConfigurationNotification", "webhookHeadersTemplate");
+            }
+            this.webhookHeadersTemplate = webhookHeadersTemplate;
+            return this;
+        }
+        @CustomType.Setter
         public Builder webhookSecret(String webhookSecret) {
             if (webhookSecret == null) {
               throw new MissingRequiredPropertyException("GetAlertConfigurationNotification", "webhookSecret");
@@ -636,6 +680,8 @@ public final class GetAlertConfigurationNotification {
             _resultValue.username = username;
             _resultValue.victorOpsApiKey = victorOpsApiKey;
             _resultValue.victorOpsRoutingKey = victorOpsRoutingKey;
+            _resultValue.webhookBodyTemplate = webhookBodyTemplate;
+            _resultValue.webhookHeadersTemplate = webhookHeadersTemplate;
             _resultValue.webhookSecret = webhookSecret;
             _resultValue.webhookUrl = webhookUrl;
             return _resultValue;

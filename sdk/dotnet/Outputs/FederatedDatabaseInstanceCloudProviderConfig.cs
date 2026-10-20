@@ -21,15 +21,22 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// Microsoft Azure cloud service configuration.
         /// </summary>
         public readonly Outputs.FederatedDatabaseInstanceCloudProviderConfigAzure? Azure;
+        /// <summary>
+        /// Google Cloud cloud service configuration.
+        /// </summary>
+        public readonly Outputs.FederatedDatabaseInstanceCloudProviderConfigGcp? Gcp;
 
         [OutputConstructor]
         private FederatedDatabaseInstanceCloudProviderConfig(
             Outputs.FederatedDatabaseInstanceCloudProviderConfigAws? aws,
 
-            Outputs.FederatedDatabaseInstanceCloudProviderConfigAzure? azure)
+            Outputs.FederatedDatabaseInstanceCloudProviderConfigAzure? azure,
+
+            Outputs.FederatedDatabaseInstanceCloudProviderConfigGcp? gcp)
         {
             Aws = aws;
             Azure = azure;
+            Gcp = gcp;
         }
     }
 }

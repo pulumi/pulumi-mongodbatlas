@@ -130,6 +130,14 @@ namespace Pulumi.Mongodbatlas.Outputs
         /// </summary>
         public readonly string? VictorOpsRoutingKey;
         /// <summary>
+        /// Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+        /// </summary>
+        public readonly string? WebhookBodyTemplate;
+        /// <summary>
+        /// Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+        /// </summary>
+        public readonly string? WebhookHeadersTemplate;
+        /// <summary>
         /// Optional authentication secret for the `WEBHOOK` notifications type.
         /// </summary>
         public readonly string? WebhookSecret;
@@ -186,6 +194,10 @@ namespace Pulumi.Mongodbatlas.Outputs
 
             string? victorOpsRoutingKey,
 
+            string? webhookBodyTemplate,
+
+            string? webhookHeadersTemplate,
+
             string? webhookSecret,
 
             string? webhookUrl)
@@ -213,6 +225,8 @@ namespace Pulumi.Mongodbatlas.Outputs
             Username = username;
             VictorOpsApiKey = victorOpsApiKey;
             VictorOpsRoutingKey = victorOpsRoutingKey;
+            WebhookBodyTemplate = webhookBodyTemplate;
+            WebhookHeadersTemplate = webhookHeadersTemplate;
             WebhookSecret = webhookSecret;
             WebhookUrl = webhookUrl;
         }

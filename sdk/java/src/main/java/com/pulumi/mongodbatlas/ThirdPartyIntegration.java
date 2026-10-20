@@ -157,6 +157,12 @@ public class ThirdPartyIntegration extends com.pulumi.resources.CustomResource {
     public Output<Boolean> sendQueryStatsMetrics() {
         return this.sendQueryStatsMetrics;
     }
+    @Export(name="sendShardingMetrics", refs={Boolean.class}, tree="[0]")
+    private Output<Boolean> sendShardingMetrics;
+
+    public Output<Boolean> sendShardingMetrics() {
+        return this.sendShardingMetrics;
+    }
     @Export(name="sendUserProvidedResourceTags", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> sendUserProvidedResourceTags;
 

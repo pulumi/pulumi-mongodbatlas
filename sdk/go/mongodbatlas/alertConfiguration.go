@@ -224,6 +224,59 @@ import (
 //
 // ```
 //
+// ### Create a webhook notification with a custom JSON body and headers
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"encoding/json"
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			tmpJSON0, err := json.Marshal(map[string]string{
+//				"alert":   "${eventType}",
+//				"project": "${groupId}",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json0 := string(tmpJSON0)
+//			tmpJSON1, err := json.Marshal(map[string]string{
+//				"X-Custom-Header": "static-value",
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			json1 := string(tmpJSON1)
+//			_, err = mongodbatlas.NewAlertConfiguration(ctx, "test", &mongodbatlas.AlertConfigurationArgs{
+//				ProjectId: pulumi.String("PROJECT ID"),
+//				Enabled:   pulumi.Bool(true),
+//				EventType: pulumi.String("REPLICATION_OPLOG_WINDOW_RUNNING_OUT"),
+//				Notifications: mongodbatlas.AlertConfigurationNotificationArray{
+//					&mongodbatlas.AlertConfigurationNotificationArgs{
+//						TypeName:               pulumi.String("WEBHOOK"),
+//						WebhookUrl:             pulumi.String("https://example.com/webhook"),
+//						WebhookBodyTemplate:    pulumi.String(json0),
+//						WebhookHeadersTemplate: pulumi.String(json1),
+//					},
+//				},
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
 // ### Further Examples
 // - Alert Configuration
 //

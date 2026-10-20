@@ -18,7 +18,7 @@ namespace Pulumi.Mongodbatlas
     /// 
     /// ## Example Usage
     /// 
-    /// The following example uses Datadog. To export to another provider, update `ProviderType` (`CUSTOM`, `NEW_RELIC`, or `DYNATRACE`), the `Endpoint`, and the authentication `Headers` to match that provider.
+    /// The following example points at Datadog using a custom OTLP endpoint (`ProviderType = "CUSTOM"`). To export metrics to a different provider, update the `Endpoint` and authentication `Headers` to that provider's values; for the named providers (`DATADOG`, `DYNATRACE`, or `NEW_RELIC`), set `ProviderType` accordingly.
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
@@ -79,7 +79,8 @@ namespace Pulumi.Mongodbatlas
     /// ```
     /// 
     /// ### Further Examples
-    /// - Metric Integration Examples
+    /// - Header-based — export Atlas metrics using header-based authentication.
+    /// - OAuth 2.0 — export Atlas metrics using OAuth 2.0 authentication.
     /// 
     /// ## Import
     /// 
@@ -101,7 +102,7 @@ namespace Pulumi.Mongodbatlas
         public Output<string> AggregationTemporality { get; private set; } = null!;
 
         /// <summary>
-        /// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `Headers` field, which must be set when this value is used.
+        /// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `Headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `Oauth` field.
         /// </summary>
         [Output("authType")]
         public Output<string> AuthType { get; private set; } = null!;
@@ -141,6 +142,12 @@ namespace Pulumi.Mongodbatlas
         /// </summary>
         [Output("metricSelections")]
         public Output<ImmutableArray<string>> MetricSelections { get; private set; } = null!;
+
+        /// <summary>
+        /// OAuth 2.0 client credentials configuration. Required when AuthType is `OAUTH2`. Secrets are never returned.
+        /// </summary>
+        [Output("oauth")]
+        public Output<Outputs.MetricIntegrationOauth?> Oauth { get; private set; } = null!;
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
@@ -207,7 +214,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string> AggregationTemporality { get; set; } = null!;
 
         /// <summary>
-        /// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `Headers` field, which must be set when this value is used.
+        /// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `Headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `Oauth` field.
         /// </summary>
         [Input("authType", required: true)]
         public Input<string> AuthType { get; set; } = null!;
@@ -249,6 +256,12 @@ namespace Pulumi.Mongodbatlas
         }
 
         /// <summary>
+        /// OAuth 2.0 client credentials configuration. Required when AuthType is `OAUTH2`. Secrets are never returned.
+        /// </summary>
+        [Input("oauth")]
+        public Input<Inputs.MetricIntegrationOauthArgs>? Oauth { get; set; }
+
+        /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.
         /// </summary>
         [Input("projectId", required: true)]
@@ -275,7 +288,7 @@ namespace Pulumi.Mongodbatlas
         public Input<string>? AggregationTemporality { get; set; }
 
         /// <summary>
-        /// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `Headers` field, which must be set when this value is used.
+        /// Authentication method the integration uses when exporting metrics to the endpoint. `HEADER` authenticates with the static HTTP headers provided in the `Headers` field, which must be set when this value is used. `OAUTH2` acquires a bearer token from an OAuth 2.0 token endpoint using the `Oauth` field.
         /// </summary>
         [Input("authType")]
         public Input<string>? AuthType { get; set; }
@@ -333,6 +346,12 @@ namespace Pulumi.Mongodbatlas
             get => _metricSelections ?? (_metricSelections = new InputList<string>());
             set => _metricSelections = value;
         }
+
+        /// <summary>
+        /// OAuth 2.0 client credentials configuration. Required when AuthType is `OAUTH2`. Secrets are never returned.
+        /// </summary>
+        [Input("oauth")]
+        public Input<Inputs.MetricIntegrationOauthGetArgs>? Oauth { get; set; }
 
         /// <summary>
         /// Unique 24-hexadecimal digit string that identifies your project, also known as `groupId` in the official documentation.

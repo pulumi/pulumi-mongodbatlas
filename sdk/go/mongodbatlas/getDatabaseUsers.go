@@ -106,7 +106,8 @@ import (
 //	}
 //
 // ```
-// Note: OIDC support is only available starting in [MongoDB 7.0](https://www.mongodb.com/evolved#mdbsevenzero) or later. To learn more, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
+//
+// Note: To learn more about OIDC federated authentication, see the [MongoDB Atlas documentation](https://www.mongodb.com/docs/atlas/security-oidc/).
 func LookupDatabaseUsers(ctx *pulumi.Context, args *LookupDatabaseUsersArgs, opts ...pulumi.InvokeOption) (*LookupDatabaseUsersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupDatabaseUsersResult

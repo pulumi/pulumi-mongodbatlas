@@ -413,6 +413,36 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
     }
 
     /**
+     * Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+     * 
+     */
+    @Import(name="webhookBodyTemplate")
+    private @Nullable Output<String> webhookBodyTemplate;
+
+    /**
+     * @return Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+     * 
+     */
+    public Optional<Output<String>> webhookBodyTemplate() {
+        return Optional.ofNullable(this.webhookBodyTemplate);
+    }
+
+    /**
+     * Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+     * 
+     */
+    @Import(name="webhookHeadersTemplate")
+    private @Nullable Output<String> webhookHeadersTemplate;
+
+    /**
+     * @return Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+     * 
+     */
+    public Optional<Output<String>> webhookHeadersTemplate() {
+        return Optional.ofNullable(this.webhookHeadersTemplate);
+    }
+
+    /**
      * Optional authentication secret for the `WEBHOOK` notifications type.
      * 
      */
@@ -468,6 +498,8 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
         this.username = $.username;
         this.victorOpsApiKey = $.victorOpsApiKey;
         this.victorOpsRoutingKey = $.victorOpsRoutingKey;
+        this.webhookBodyTemplate = $.webhookBodyTemplate;
+        this.webhookHeadersTemplate = $.webhookHeadersTemplate;
         this.webhookSecret = $.webhookSecret;
         this.webhookUrl = $.webhookUrl;
     }
@@ -1039,6 +1071,48 @@ public final class AlertConfigurationNotificationArgs extends com.pulumi.resourc
          */
         public Builder victorOpsRoutingKey(String victorOpsRoutingKey) {
             return victorOpsRoutingKey(Output.of(victorOpsRoutingKey));
+        }
+
+        /**
+         * @param webhookBodyTemplate Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder webhookBodyTemplate(@Nullable Output<String> webhookBodyTemplate) {
+            $.webhookBodyTemplate = webhookBodyTemplate;
+            return this;
+        }
+
+        /**
+         * @param webhookBodyTemplate Template, using `${field}` interpolation, that renders the HTTP body MongoDB Cloud sends with each webhook notification. Must render valid JSON. When unset, MongoDB Cloud sends its default JSON payload.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder webhookBodyTemplate(String webhookBodyTemplate) {
+            return webhookBodyTemplate(Output.of(webhookBodyTemplate));
+        }
+
+        /**
+         * @param webhookHeadersTemplate Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder webhookHeadersTemplate(@Nullable Output<String> webhookHeadersTemplate) {
+            $.webhookHeadersTemplate = webhookHeadersTemplate;
+            return this;
+        }
+
+        /**
+         * @param webhookHeadersTemplate Template, using `${field}` interpolation, that renders the HTTP headers MongoDB Cloud sends with each webhook notification. Must render a JSON object mapping header name to header value. The webhook secret and the signature header are NOT exposed to templates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder webhookHeadersTemplate(String webhookHeadersTemplate) {
+            return webhookHeadersTemplate(Output.of(webhookHeadersTemplate));
         }
 
         /**
