@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.GetFederatedSettingsIdentityProvidersOutput(ctx, mongodbatlas.GetFederatedSettingsIdentityProvidersOutputArgs{
-//				FederationSettingsId: identityProvider.ID().ToIDOutput().ToStringOutput(),
+//				FederationSettingsId: identityProvider.ID(),
 //			}, nil)
 //			return nil
 //		})

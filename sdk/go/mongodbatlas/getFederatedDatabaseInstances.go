@@ -18,6 +18,31 @@ import (
 // ## Example Usage
 //
 // ### S
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/pulumi/pulumi-mongodbatlas/sdk/v4/go/mongodbatlas"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := mongodbatlas.GetFederatedDatabaseInstances(ctx, &mongodbatlas.LookupFederatedDatabaseInstancesArgs{
+//				ProjectId: "PROJECT ID",
+//				Name:      "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func LookupFederatedDatabaseInstances(ctx *pulumi.Context, args *LookupFederatedDatabaseInstancesArgs, opts ...pulumi.InvokeOption) (*LookupFederatedDatabaseInstancesResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupFederatedDatabaseInstancesResult

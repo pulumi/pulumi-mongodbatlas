@@ -199,7 +199,7 @@ func main() {
 		}
 		// Create a cluster
 		_, err = mongodbatlas.NewAdvancedCluster(ctx, "this", &mongodbatlas.AdvancedClusterArgs{
-			ProjectId:   this.ID().ToIDOutput().ToStringOutput(),
+			ProjectId:   this.ID(),
 			Name:        pulumi.String("my-cluster"),
 			ClusterType: pulumi.String("REPLICASET"),
 			ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
@@ -361,8 +361,8 @@ resource "mongodbatlas_advanced_cluster" "this" {
   project_id   = mongodbatlas_project.this.id
   name         = "my-cluster"
   cluster_type = "REPLICASET"
-  replication_specs {
-    region_configs {
+  replication_specs = [{
+    region_configs = [{
       region_name   = "US_EAST_1"
       priority      = 7
       provider_name = "AWS"
@@ -370,8 +370,8 @@ resource "mongodbatlas_advanced_cluster" "this" {
         instance_size = "M10"
         node_count    = 3
       }
-    }
-  }
+    }]
+  }]
 }
 ```
 

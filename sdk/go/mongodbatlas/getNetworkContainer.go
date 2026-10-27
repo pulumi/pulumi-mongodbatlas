@@ -42,7 +42,7 @@ import (
 //			}
 //			_ = mongodbatlas.GetNetworkContainerOutput(ctx, mongodbatlas.GetNetworkContainerOutputArgs{
 //				ProjectId:   testNetworkContainer.ProjectId,
-//				ContainerId: testNetworkContainer.ID().ToIDOutput().ToStringOutput(),
+//				ContainerId: testNetworkContainer.ID(),
 //			}, nil)
 //			return nil
 //		})

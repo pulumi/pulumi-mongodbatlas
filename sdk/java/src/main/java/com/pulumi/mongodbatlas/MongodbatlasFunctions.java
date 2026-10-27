@@ -20365,6 +20365,38 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstancesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstances(GetFederatedDatabaseInstancesArgs.builder()
+     *             .projectId("PROJECT ID")
+     *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstances(GetFederatedDatabaseInstancesArgs args) {
         return getFederatedDatabaseInstances(args, InvokeOptions.Empty);
@@ -20377,6 +20409,38 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstancesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstances(GetFederatedDatabaseInstancesArgs.builder()
+     *             .projectId("PROJECT ID")
+     *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstancesPlain(GetFederatedDatabaseInstancesPlainArgs args) {
@@ -20391,6 +20455,38 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstancesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstances(GetFederatedDatabaseInstancesArgs.builder()
+     *             .projectId("PROJECT ID")
+     *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstances(GetFederatedDatabaseInstancesArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", TypeShape.of(GetFederatedDatabaseInstancesInvokeResult.class), args, Utilities.withVersion(options));
@@ -20404,6 +20500,38 @@ public final class MongodbatlasFunctions {
      * 
      * ### S
      * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstancesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstances(GetFederatedDatabaseInstancesArgs.builder()
+     *             .projectId("PROJECT ID")
+     *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
+     * 
      */
     public static Output<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstances(GetFederatedDatabaseInstancesArgs args, InvokeOutputOptions options) {
         return Deployment.getInstance().invoke("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", TypeShape.of(GetFederatedDatabaseInstancesInvokeResult.class), args, Utilities.withVersion(options));
@@ -20416,6 +20544,38 @@ public final class MongodbatlasFunctions {
      * ## Example Usage
      * 
      * ### S
+     * 
+     * <pre>
+     * {@code
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.mongodbatlas.MongodbatlasFunctions;
+     * import com.pulumi.mongodbatlas.inputs.GetFederatedDatabaseInstancesArgs;
+     * import java.util.ArrayList;
+     * import java.util.Arrays;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var test = MongodbatlasFunctions.getFederatedDatabaseInstances(GetFederatedDatabaseInstancesArgs.builder()
+     *             .projectId("PROJECT ID")
+     *             .name("TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
+     *             .build());
+     * 
+     *     }
+     * }
+     * }
+     * </pre>
      * 
      */
     public static CompletableFuture<GetFederatedDatabaseInstancesInvokeResult> getFederatedDatabaseInstancesPlain(GetFederatedDatabaseInstancesPlainArgs args, InvokeOptions options) {

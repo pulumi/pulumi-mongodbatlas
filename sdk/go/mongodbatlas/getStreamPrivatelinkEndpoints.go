@@ -113,7 +113,7 @@ import (
 //			}
 //			gcpConfluent := mongodbatlas.GetStreamPrivatelinkEndpointOutput(ctx, mongodbatlas.GetStreamPrivatelinkEndpointOutputArgs{
 //				ProjectId: pulumi.Any(projectId),
-//				Id:        gcpConfluentStreamPrivatelinkEndpoint.ID().ToIDOutput().ToStringOutput(),
+//				Id:        gcpConfluentStreamPrivatelinkEndpoint.ID(),
 //			}, nil)
 //			ctx.Export("privatelinkEndpointId", gcpConfluentStreamPrivatelinkEndpoint.ID())
 //			ctx.Export("privatelinkEndpointState", gcpConfluent.State())
@@ -173,7 +173,7 @@ import (
 //			}
 //			gcpPubsub := mongodbatlas.GetStreamPrivatelinkEndpointOutput(ctx, mongodbatlas.GetStreamPrivatelinkEndpointOutputArgs{
 //				ProjectId: pulumi.Any(projectId),
-//				Id:        gcpPubsubStreamPrivatelinkEndpoint.ID().ToIDOutput().ToStringOutput(),
+//				Id:        gcpPubsubStreamPrivatelinkEndpoint.ID(),
 //			}, nil)
 //			ctx.Export("privatelinkEndpointId", gcpPubsubStreamPrivatelinkEndpoint.ID())
 //			ctx.Export("privatelinkEndpointState", gcpPubsub.State())

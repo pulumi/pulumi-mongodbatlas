@@ -82,6 +82,14 @@ def get_federated_database_instances(project_id: Optional[_builtins.str] = None,
 
     ### S
 
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_federated_database_instances(project_id="PROJECT ID",
+        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
+    ```
+
 
     :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.
     """
@@ -104,6 +112,14 @@ def get_federated_database_instances_output(project_id: pulumi.Input[Optional[_b
     ## Example Usage
 
     ### S
+
+    ```python
+    import pulumi
+    import pulumi_mongodbatlas as mongodbatlas
+
+    test = mongodbatlas.get_federated_database_instances(project_id="PROJECT ID",
+        name="TENANT NAME OF THE FEDERATED DATABASE INSTANCE")
+    ```
 
 
     :param _builtins.str project_id: The unique ID for the project to create a Federated Database Instance, also known as `groupId` in the official documentation.

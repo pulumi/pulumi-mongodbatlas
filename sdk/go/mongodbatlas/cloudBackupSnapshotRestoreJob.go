@@ -216,7 +216,7 @@ import (
 //				__res, err := mongodbatlas.NewCloudBackupSnapshotRestoreJob(ctx, fmt.Sprintf("test-%v", key0), &mongodbatlas.CloudBackupSnapshotRestoreJobArgs{
 //					ProjectId:   test.ProjectId,
 //					ClusterName: test.ClusterName,
-//					SnapshotId:  test.ID().ToIDOutput().ToStringOutput(),
+//					SnapshotId:  test.ID(),
 //					DeliveryTypeConfig: &mongodbatlas.CloudBackupSnapshotRestoreJobDeliveryTypeConfigArgs{
 //						PointInTime:           pulumi.Bool(true),
 //						TargetClusterName:     pulumi.Any(clusterTest.Name),

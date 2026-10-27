@@ -37,7 +37,7 @@ import (
 //				return err
 //			}
 //			_ = mongodbatlas.GetAuditingOutput(ctx, mongodbatlas.GetAuditingOutputArgs{
-//				ProjectId: testAuditing.ID().ToIDOutput().ToStringOutput(),
+//				ProjectId: testAuditing.ID(),
 //			}, nil)
 //			return nil
 //		})
