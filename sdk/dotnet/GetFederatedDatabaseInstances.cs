@@ -19,6 +19,24 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### S
+        /// 
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetFederatedDatabaseInstances.Invoke(new()
+        ///     {
+        ///         ProjectId = "PROJECT ID",
+        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Task<GetFederatedDatabaseInstancesResult> InvokeAsync(GetFederatedDatabaseInstancesArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFederatedDatabaseInstancesResult>("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", args ?? new GetFederatedDatabaseInstancesArgs(), options.WithDefaults());
@@ -31,6 +49,24 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### S
+        /// 
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetFederatedDatabaseInstances.Invoke(new()
+        ///     {
+        ///         ProjectId = "PROJECT ID",
+        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetFederatedDatabaseInstancesResult> Invoke(GetFederatedDatabaseInstancesInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedDatabaseInstancesResult>("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", args ?? new GetFederatedDatabaseInstancesInvokeArgs(), options.WithDefaults());
@@ -43,6 +79,24 @@ namespace Pulumi.Mongodbatlas
         /// ## Example Usage
         /// 
         /// ### S
+        /// 
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Mongodbatlas = Pulumi.Mongodbatlas;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var test = Mongodbatlas.GetFederatedDatabaseInstances.Invoke(new()
+        ///     {
+        ///         ProjectId = "PROJECT ID",
+        ///         Name = "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+        ///     });
+        /// 
+        /// });
+        /// ```
         /// </summary>
         public static Output<GetFederatedDatabaseInstancesResult> Invoke(GetFederatedDatabaseInstancesInvokeArgs args, InvokeOutputOptions options)
             => global::Pulumi.Deployment.Instance.Invoke<GetFederatedDatabaseInstancesResult>("mongodbatlas:index/getFederatedDatabaseInstances:getFederatedDatabaseInstances", args ?? new GetFederatedDatabaseInstancesInvokeArgs(), options.WithDefaults());

@@ -323,7 +323,7 @@ import (
 //				Networking: &mongodbatlas.StreamConnectionNetworkingArgs{
 //					Access: &mongodbatlas.StreamConnectionNetworkingAccessArgs{
 //						Type:         pulumi.String("PRIVATE_LINK"),
-//						ConnectionId: awsLambda.ID().ToIDOutput().ToStringOutput(),
+//						ConnectionId: awsLambda.ID(),
 //					},
 //				},
 //			})

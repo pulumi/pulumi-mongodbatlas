@@ -42,7 +42,7 @@ import (
 //				return err
 //			}
 //			exampleAdvancedCluster, err := mongodbatlas.NewAdvancedCluster(ctx, "example", &mongodbatlas.AdvancedClusterArgs{
-//				ProjectId:   exampleProject.ID().ToIDOutput().ToStringOutput(),
+//				ProjectId:   exampleProject.ID(),
 //				Name:        pulumi.String("ClusterExample"),
 //				ClusterType: pulumi.String("REPLICASET"),
 //				ReplicationSpecs: mongodbatlas.AdvancedClusterReplicationSpecArray{
@@ -65,7 +65,7 @@ import (
 //				return err
 //			}
 //			exampleSearchDeployment, err := mongodbatlas.NewSearchDeployment(ctx, "example", &mongodbatlas.SearchDeploymentArgs{
-//				ProjectId:   exampleProject.ID().ToIDOutput().ToStringOutput(),
+//				ProjectId:   exampleProject.ID(),
 //				ClusterName: exampleAdvancedCluster.Name,
 //				Specs: mongodbatlas.SearchDeploymentSpecArray{
 //					&mongodbatlas.SearchDeploymentSpecArgs{

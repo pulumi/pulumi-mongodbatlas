@@ -14,6 +14,16 @@ import * as utilities from "./utilities";
  * ## Example Usage
  *
  * ### S
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getFederatedDatabaseInstances({
+ *     projectId: "PROJECT ID",
+ *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+ * });
+ * ```
  */
 export function getFederatedDatabaseInstances(args: GetFederatedDatabaseInstancesArgs, opts?: pulumi.InvokeOptions): Promise<GetFederatedDatabaseInstancesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
@@ -54,6 +64,16 @@ export interface GetFederatedDatabaseInstancesResult {
  * ## Example Usage
  *
  * ### S
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as mongodbatlas from "@pulumi/mongodbatlas";
+ *
+ * const test = mongodbatlas.getFederatedDatabaseInstances({
+ *     projectId: "PROJECT ID",
+ *     name: "TENANT NAME OF THE FEDERATED DATABASE INSTANCE",
+ * });
+ * ```
  */
 export function getFederatedDatabaseInstancesOutput(args: GetFederatedDatabaseInstancesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetFederatedDatabaseInstancesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
