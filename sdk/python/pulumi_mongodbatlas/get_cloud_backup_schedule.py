@@ -27,7 +27,10 @@ class GetCloudBackupScheduleResult:
     """
     A collection of values returned by getCloudBackupSchedule.
     """
-    def __init__(__self__, auto_export_enabled=None, cluster_id=None, cluster_name=None, copy_policy_items_enabled=None, copy_settings=None, exports=None, id=None, id_policy=None, next_snapshot=None, policy_item_dailies=None, policy_item_hourlies=None, policy_item_monthlies=None, policy_item_weeklies=None, policy_item_yearlies=None, project_id=None, reference_hour_of_day=None, reference_minute_of_hour=None, restore_window_days=None, use_org_and_group_names_in_export_prefix=None):
+    def __init__(__self__, auto_copy_settings_enabled=None, auto_export_enabled=None, cluster_id=None, cluster_name=None, copy_policy_items_enabled=None, copy_settings=None, exports=None, id=None, id_policy=None, next_snapshot=None, policy_item_dailies=None, policy_item_hourlies=None, policy_item_monthlies=None, policy_item_weeklies=None, policy_item_yearlies=None, project_id=None, reference_hour_of_day=None, reference_minute_of_hour=None, restore_window_days=None, use_org_and_group_names_in_export_prefix=None):
+        if auto_copy_settings_enabled and not isinstance(auto_copy_settings_enabled, bool):
+            raise TypeError("Expected argument 'auto_copy_settings_enabled' to be a bool")
+        pulumi.set(__self__, "auto_copy_settings_enabled", auto_copy_settings_enabled)
         if auto_export_enabled and not isinstance(auto_export_enabled, bool):
             raise TypeError("Expected argument 'auto_export_enabled' to be a bool")
         pulumi.set(__self__, "auto_export_enabled", auto_export_enabled)
@@ -85,6 +88,16 @@ class GetCloudBackupScheduleResult:
         if use_org_and_group_names_in_export_prefix and not isinstance(use_org_and_group_names_in_export_prefix, bool):
             raise TypeError("Expected argument 'use_org_and_group_names_in_export_prefix' to be a bool")
         pulumi.set(__self__, "use_org_and_group_names_in_export_prefix", use_org_and_group_names_in_export_prefix)
+
+    @_builtins.property
+    @pulumi.getter(name="autoCopySettingsEnabled")
+    def auto_copy_settings_enabled(self) -> _builtins.bool:
+        """
+        Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+        * true - Enables Atlas-managed snapshot copy settings: the schedule carries Atlas-managed copies instead of explicit `copy_settings`.
+        * false - The schedule uses explicit `copy_settings`. Removing the flag or setting it to `false` on the resource deletes the Atlas-managed copies. See Automatic copy settings.
+        """
+        return pulumi.get(self, "auto_copy_settings_enabled")
 
     @_builtins.property
     @pulumi.getter(name="autoExportEnabled")
@@ -241,6 +254,7 @@ class AwaitableGetCloudBackupScheduleResult(GetCloudBackupScheduleResult):
         if False:
             yield self
         return GetCloudBackupScheduleResult(
+            auto_copy_settings_enabled=self.auto_copy_settings_enabled,
             auto_export_enabled=self.auto_export_enabled,
             cluster_id=self.cluster_id,
             cluster_name=self.cluster_name,
@@ -335,6 +349,7 @@ def get_cloud_backup_schedule(cluster_name: Optional[_builtins.str] = None,
     __ret__ = pulumi.runtime.invoke('mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule', __args__, opts=opts, typ=GetCloudBackupScheduleResult).value
 
     return AwaitableGetCloudBackupScheduleResult(
+        auto_copy_settings_enabled=pulumi.get(__ret__, 'auto_copy_settings_enabled'),
         auto_export_enabled=pulumi.get(__ret__, 'auto_export_enabled'),
         cluster_id=pulumi.get(__ret__, 'cluster_id'),
         cluster_name=pulumi.get(__ret__, 'cluster_name'),
@@ -426,6 +441,7 @@ def get_cloud_backup_schedule_output(cluster_name: pulumi.Input[Optional[_builti
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('mongodbatlas:index/getCloudBackupSchedule:getCloudBackupSchedule', __args__, opts=opts, typ=GetCloudBackupScheduleResult)
     return __ret__.apply(lambda __response__: GetCloudBackupScheduleResult(
+        auto_copy_settings_enabled=pulumi.get(__response__, 'auto_copy_settings_enabled'),
         auto_export_enabled=pulumi.get(__response__, 'auto_export_enabled'),
         cluster_id=pulumi.get(__response__, 'cluster_id'),
         cluster_name=pulumi.get(__response__, 'cluster_name'),

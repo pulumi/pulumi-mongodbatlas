@@ -26,6 +26,25 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
     public static final CloudBackupScheduleState Empty = new CloudBackupScheduleState();
 
     /**
+     * Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+     * * true - Enables Atlas-managed snapshot copy settings for the cluster. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed. Must omit `copySettings`; setting both `autoCopySettingsEnabled = true` and `copySettings` causes a plan-time error.
+     * * false - Removes the Atlas-managed snapshot copy policy and deletes the snapshot copies it created. See Automatic copy settings.
+     * 
+     */
+    @Import(name="autoCopySettingsEnabled")
+    private @Nullable Output<Boolean> autoCopySettingsEnabled;
+
+    /**
+     * @return Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+     * * true - Enables Atlas-managed snapshot copy settings for the cluster. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed. Must omit `copySettings`; setting both `autoCopySettingsEnabled = true` and `copySettings` causes a plan-time error.
+     * * false - Removes the Atlas-managed snapshot copy policy and deletes the snapshot copies it created. See Automatic copy settings.
+     * 
+     */
+    public Optional<Output<Boolean>> autoCopySettingsEnabled() {
+        return Optional.ofNullable(this.autoCopySettingsEnabled);
+    }
+
+    /**
      * Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
      * * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
@@ -362,6 +381,7 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
     private CloudBackupScheduleState() {}
 
     private CloudBackupScheduleState(CloudBackupScheduleState $) {
+        this.autoCopySettingsEnabled = $.autoCopySettingsEnabled;
         this.autoExportEnabled = $.autoExportEnabled;
         this.clusterId = $.clusterId;
         this.clusterName = $.clusterName;
@@ -402,6 +422,31 @@ public final class CloudBackupScheduleState extends com.pulumi.resources.Resourc
 
         public Builder(CloudBackupScheduleState defaults) {
             $ = new CloudBackupScheduleState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param autoCopySettingsEnabled Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+         * * true - Enables Atlas-managed snapshot copy settings for the cluster. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed. Must omit `copySettings`; setting both `autoCopySettingsEnabled = true` and `copySettings` causes a plan-time error.
+         * * false - Removes the Atlas-managed snapshot copy policy and deletes the snapshot copies it created. See Automatic copy settings.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoCopySettingsEnabled(@Nullable Output<Boolean> autoCopySettingsEnabled) {
+            $.autoCopySettingsEnabled = autoCopySettingsEnabled;
+            return this;
+        }
+
+        /**
+         * @param autoCopySettingsEnabled Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+         * * true - Enables Atlas-managed snapshot copy settings for the cluster. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed. Must omit `copySettings`; setting both `autoCopySettingsEnabled = true` and `copySettings` causes a plan-time error.
+         * * false - Removes the Atlas-managed snapshot copy policy and deletes the snapshot copies it created. See Automatic copy settings.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder autoCopySettingsEnabled(Boolean autoCopySettingsEnabled) {
+            return autoCopySettingsEnabled(Output.of(autoCopySettingsEnabled));
         }
 
         /**

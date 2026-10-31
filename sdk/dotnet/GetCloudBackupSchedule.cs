@@ -340,6 +340,12 @@ namespace Pulumi.Mongodbatlas
     public sealed class GetCloudBackupScheduleResult
     {
         /// <summary>
+        /// Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+        /// * true - Enables Atlas-managed snapshot copy settings: the schedule carries Atlas-managed copies instead of explicit `CopySettings`.
+        /// * false - The schedule uses explicit `CopySettings`. Removing the flag or setting it to `False` on the resource deletes the Atlas-managed copies. See Automatic copy settings.
+        /// </summary>
+        public readonly bool AutoCopySettingsEnabled;
+        /// <summary>
         /// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
         /// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
         /// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
@@ -414,6 +420,8 @@ namespace Pulumi.Mongodbatlas
 
         [OutputConstructor]
         private GetCloudBackupScheduleResult(
+            bool autoCopySettingsEnabled,
+
             bool autoExportEnabled,
 
             string clusterId,
@@ -452,6 +460,7 @@ namespace Pulumi.Mongodbatlas
 
             bool useOrgAndGroupNamesInExportPrefix)
         {
+            AutoCopySettingsEnabled = autoCopySettingsEnabled;
             AutoExportEnabled = autoExportEnabled;
             ClusterId = clusterId;
             ClusterName = clusterName;

@@ -96,6 +96,12 @@ export interface GetCloudBackupScheduleArgs {
  */
 export interface GetCloudBackupScheduleResult {
     /**
+     * Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+     * * true - Enables Atlas-managed snapshot copy settings: the schedule carries Atlas-managed copies instead of explicit `copySettings`.
+     * * false - The schedule uses explicit `copySettings`. Removing the flag or setting it to `false` on the resource deletes the Atlas-managed copies. See Automatic copy settings.
+     */
+    readonly autoCopySettingsEnabled: boolean;
+    /**
      * Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
      * * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
