@@ -220,6 +220,16 @@ import * as utilities from "./utilities";
  *
  * `copy_settings.frequencies` is deprecated. Set `copyPolicyItemsEnabled = true`, then set `copyPolicyItems` or `lastNumberOfSnapshots` on the entry and drop `frequencies`. The switch is one-way on the cluster: after Atlas enables copy-policy items, you cannot turn the flag off.
  *
+ * ## Automatic copy settings
+ *
+ * Set `autoCopySettingsEnabled = true` to let Atlas manage the snapshot copy settings for the cluster. In this mode, omit `copySettings`. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed.
+ *
+ * Copies of the new automatic policy can appear after the apply completes, and there is no operation to wait on. A plan that omits `copySettings` while `autoCopySettingsEnabled` is `true` keeps the Atlas-managed copies instead of deleting them.
+ *
+ * Setting both `autoCopySettingsEnabled = true` and a `copySettings` block in the configuration fails at plan time, because a static copy policy would fight the Atlas-managed one. The plan-time check reads the configuration only, so `copySettings` entries left in state never trigger it.
+ *
+ * When `copySettings` is omitted, removing `autoCopySettingsEnabled` or setting `autoCopySettingsEnabled = false` removes the Atlas-managed copy configuration and deletes the copies it created.
+ *
  * ## Import
  *
  * Cloud Backup Schedule entries can be imported using projectId and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -258,6 +268,12 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
         return obj['__pulumiType'] === CloudBackupSchedule.__pulumiType;
     }
 
+    /**
+     * Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+     * * true - Enables Atlas-managed snapshot copy settings for the cluster. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed. Must omit `copySettings`; setting both `autoCopySettingsEnabled = true` and `copySettings` causes a plan-time error.
+     * * false - Removes the Atlas-managed snapshot copy policy and deletes the snapshot copies it created. See Automatic copy settings.
+     */
+    declare public readonly autoCopySettingsEnabled: pulumi.Output<boolean | undefined>;
     /**
      * Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
@@ -362,6 +378,7 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as CloudBackupScheduleState | undefined;
+            resourceInputs["autoCopySettingsEnabled"] = state?.autoCopySettingsEnabled;
             resourceInputs["autoExportEnabled"] = state?.autoExportEnabled;
             resourceInputs["clusterId"] = state?.clusterId;
             resourceInputs["clusterName"] = state?.clusterName;
@@ -392,6 +409,7 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
             if (args?.projectId === undefined && !opts.urn) {
                 throw new Error("Missing required property 'projectId'");
             }
+            resourceInputs["autoCopySettingsEnabled"] = args?.autoCopySettingsEnabled;
             resourceInputs["autoExportEnabled"] = args?.autoExportEnabled;
             resourceInputs["clusterName"] = args?.clusterName;
             resourceInputs["copyPolicyItemsEnabled"] = args?.copyPolicyItemsEnabled;
@@ -424,6 +442,12 @@ export class CloudBackupSchedule extends pulumi.CustomResource {
  * Input properties used for looking up and filtering CloudBackupSchedule resources.
  */
 export interface CloudBackupScheduleState {
+    /**
+     * Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+     * * true - Enables Atlas-managed snapshot copy settings for the cluster. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed. Must omit `copySettings`; setting both `autoCopySettingsEnabled = true` and `copySettings` causes a plan-time error.
+     * * false - Removes the Atlas-managed snapshot copy policy and deletes the snapshot copies it created. See Automatic copy settings.
+     */
+    autoCopySettingsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
@@ -520,6 +544,12 @@ export interface CloudBackupScheduleState {
  * The set of arguments for constructing a CloudBackupSchedule resource.
  */
 export interface CloudBackupScheduleArgs {
+    /**
+     * Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+     * * true - Enables Atlas-managed snapshot copy settings for the cluster. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed. Must omit `copySettings`; setting both `autoCopySettingsEnabled = true` and `copySettings` causes a plan-time error.
+     * * false - Removes the Atlas-managed snapshot copy policy and deletes the snapshot copies it created. See Automatic copy settings.
+     */
+    autoCopySettingsEnabled?: pulumi.Input<boolean | undefined>;
     /**
      * Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.

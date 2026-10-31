@@ -21,6 +21,13 @@ import java.util.Objects;
 @CustomType
 public final class GetCloudBackupScheduleResult {
     /**
+     * @return Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+     * * true - Enables Atlas-managed snapshot copy settings: the schedule carries Atlas-managed copies instead of explicit `copySettings`.
+     * * false - The schedule uses explicit `copySettings`. Removing the flag or setting it to `false` on the resource deletes the Atlas-managed copies. See Automatic copy settings.
+     * 
+     */
+    private Boolean autoCopySettingsEnabled;
+    /**
      * @return Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
      * * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
@@ -111,6 +118,15 @@ public final class GetCloudBackupScheduleResult {
     private Boolean useOrgAndGroupNamesInExportPrefix;
 
     private GetCloudBackupScheduleResult() {}
+    /**
+     * @return Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+     * * true - Enables Atlas-managed snapshot copy settings: the schedule carries Atlas-managed copies instead of explicit `copySettings`.
+     * * false - The schedule uses explicit `copySettings`. Removing the flag or setting it to `false` on the resource deletes the Atlas-managed copies. See Automatic copy settings.
+     * 
+     */
+    public Boolean autoCopySettingsEnabled() {
+        return this.autoCopySettingsEnabled;
+    }
     /**
      * @return Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
      * * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
@@ -248,6 +264,7 @@ public final class GetCloudBackupScheduleResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private Boolean autoCopySettingsEnabled;
         private Boolean autoExportEnabled;
         private String clusterId;
         private String clusterName;
@@ -270,6 +287,7 @@ public final class GetCloudBackupScheduleResult {
         public Builder() {}
         public Builder(GetCloudBackupScheduleResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.autoCopySettingsEnabled = defaults.autoCopySettingsEnabled;
     	      this.autoExportEnabled = defaults.autoExportEnabled;
     	      this.clusterId = defaults.clusterId;
     	      this.clusterName = defaults.clusterName;
@@ -291,6 +309,14 @@ public final class GetCloudBackupScheduleResult {
     	      this.useOrgAndGroupNamesInExportPrefix = defaults.useOrgAndGroupNamesInExportPrefix;
         }
 
+        @CustomType.Setter
+        public Builder autoCopySettingsEnabled(Boolean autoCopySettingsEnabled) {
+            if (autoCopySettingsEnabled == null) {
+              throw new MissingRequiredPropertyException("GetCloudBackupScheduleResult", "autoCopySettingsEnabled");
+            }
+            this.autoCopySettingsEnabled = autoCopySettingsEnabled;
+            return this;
+        }
         @CustomType.Setter
         public Builder autoExportEnabled(Boolean autoExportEnabled) {
             if (autoExportEnabled == null) {
@@ -466,6 +492,7 @@ public final class GetCloudBackupScheduleResult {
         }
         public GetCloudBackupScheduleResult build() {
             final var _resultValue = new GetCloudBackupScheduleResult();
+            _resultValue.autoCopySettingsEnabled = autoCopySettingsEnabled;
             _resultValue.autoExportEnabled = autoExportEnabled;
             _resultValue.clusterId = clusterId;
             _resultValue.clusterName = clusterName;

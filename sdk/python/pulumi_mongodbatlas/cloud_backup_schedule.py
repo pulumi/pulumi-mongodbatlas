@@ -23,6 +23,7 @@ class CloudBackupScheduleArgs:
     def __init__(__self__, *,
                  cluster_name: pulumi.Input[_builtins.str],
                  project_id: pulumi.Input[_builtins.str],
+                 auto_copy_settings_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  auto_export_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  copy_policy_items_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  copy_settings: pulumi.Input[Optional[Sequence[pulumi.Input['CloudBackupScheduleCopySettingArgs']]]] = None,
@@ -45,6 +46,9 @@ class CloudBackupScheduleArgs:
 
         :param pulumi.Input[_builtins.str] cluster_name: The name of the Atlas cluster that contains the snapshot backup policy you want to retrieve.
         :param pulumi.Input[_builtins.str] project_id: The unique identifier of the project for the Atlas cluster, also known as `groupId` in the official documentation.
+        :param pulumi.Input[_builtins.bool] auto_copy_settings_enabled: Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+               * true - Enables Atlas-managed snapshot copy settings for the cluster. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed. Must omit `copy_settings`; setting both `auto_copy_settings_enabled = true` and `copy_settings` causes a plan-time error.
+               * false - Removes the Atlas-managed snapshot copy policy and deletes the snapshot copies it created. See Automatic copy settings.
         :param pulumi.Input[_builtins.bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
                * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
                * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
@@ -67,6 +71,8 @@ class CloudBackupScheduleArgs:
         """
         pulumi.set(__self__, "cluster_name", cluster_name)
         pulumi.set(__self__, "project_id", project_id)
+        if auto_copy_settings_enabled is not None:
+            pulumi.set(__self__, "auto_copy_settings_enabled", auto_copy_settings_enabled)
         if auto_export_enabled is not None:
             pulumi.set(__self__, "auto_export_enabled", auto_export_enabled)
         if copy_policy_items_enabled is not None:
@@ -125,6 +131,20 @@ class CloudBackupScheduleArgs:
     @project_id.setter
     def project_id(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "project_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="autoCopySettingsEnabled")
+    def auto_copy_settings_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+        * true - Enables Atlas-managed snapshot copy settings for the cluster. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed. Must omit `copy_settings`; setting both `auto_copy_settings_enabled = true` and `copy_settings` causes a plan-time error.
+        * false - Removes the Atlas-managed snapshot copy policy and deletes the snapshot copies it created. See Automatic copy settings.
+        """
+        return pulumi.get(self, "auto_copy_settings_enabled")
+
+    @auto_copy_settings_enabled.setter
+    def auto_copy_settings_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "auto_copy_settings_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="autoExportEnabled")
@@ -336,6 +356,7 @@ class CloudBackupScheduleArgs:
 @pulumi.input_type
 class _CloudBackupScheduleState:
     def __init__(__self__, *,
+                 auto_copy_settings_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  auto_export_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
                  cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -361,6 +382,9 @@ class _CloudBackupScheduleState:
         """
         Input properties used for looking up and filtering CloudBackupSchedule resources.
 
+        :param pulumi.Input[_builtins.bool] auto_copy_settings_enabled: Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+               * true - Enables Atlas-managed snapshot copy settings for the cluster. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed. Must omit `copy_settings`; setting both `auto_copy_settings_enabled = true` and `copy_settings` causes a plan-time error.
+               * false - Removes the Atlas-managed snapshot copy policy and deletes the snapshot copies it created. See Automatic copy settings.
         :param pulumi.Input[_builtins.bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
                * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
                * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
@@ -386,6 +410,8 @@ class _CloudBackupScheduleState:
         :param pulumi.Input[_builtins.bool] update_snapshots: Specify true to apply the retention changes in the updated backup policy to snapshots that Atlas took previously.
         :param pulumi.Input[_builtins.bool] use_org_and_group_names_in_export_prefix: Specify true to use organization and project names instead of organization and project UUIDs in the path for the metadata files that Atlas uploads to your bucket after it finishes exporting the snapshots. To learn more about the metadata files that Atlas uploads, see [Export Cloud Backup Snapshot](https://www.mongodb.com/docs/atlas/backup/cloud-backup/export/#std-label-cloud-provider-snapshot-export).
         """
+        if auto_copy_settings_enabled is not None:
+            pulumi.set(__self__, "auto_copy_settings_enabled", auto_copy_settings_enabled)
         if auto_export_enabled is not None:
             pulumi.set(__self__, "auto_export_enabled", auto_export_enabled)
         if cluster_id is not None:
@@ -430,6 +456,20 @@ class _CloudBackupScheduleState:
             pulumi.set(__self__, "update_snapshots", update_snapshots)
         if use_org_and_group_names_in_export_prefix is not None:
             pulumi.set(__self__, "use_org_and_group_names_in_export_prefix", use_org_and_group_names_in_export_prefix)
+
+    @_builtins.property
+    @pulumi.getter(name="autoCopySettingsEnabled")
+    def auto_copy_settings_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        """
+        Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+        * true - Enables Atlas-managed snapshot copy settings for the cluster. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed. Must omit `copy_settings`; setting both `auto_copy_settings_enabled = true` and `copy_settings` causes a plan-time error.
+        * false - Removes the Atlas-managed snapshot copy policy and deletes the snapshot copies it created. See Automatic copy settings.
+        """
+        return pulumi.get(self, "auto_copy_settings_enabled")
+
+    @auto_copy_settings_enabled.setter
+    def auto_copy_settings_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "auto_copy_settings_enabled", value)
 
     @_builtins.property
     @pulumi.getter(name="autoExportEnabled")
@@ -704,6 +744,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_copy_settings_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  auto_export_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
                  copy_policy_items_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -930,6 +971,16 @@ class CloudBackupSchedule(pulumi.CustomResource):
 
         `copy_settings.frequencies` is deprecated. Set `copy_policy_items_enabled = true`, then set `copy_policy_items` or `last_number_of_snapshots` on the entry and drop `frequencies`. The switch is one-way on the cluster: after Atlas enables copy-policy items, you cannot turn the flag off.
 
+        ## Automatic copy settings
+
+        Set `auto_copy_settings_enabled = true` to let Atlas manage the snapshot copy settings for the cluster. In this mode, omit `copy_settings`. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed.
+
+        Copies of the new automatic policy can appear after the apply completes, and there is no operation to wait on. A plan that omits `copy_settings` while `auto_copy_settings_enabled` is `true` keeps the Atlas-managed copies instead of deleting them.
+
+        Setting both `auto_copy_settings_enabled = true` and a `copy_settings` block in the configuration fails at plan time, because a static copy policy would fight the Atlas-managed one. The plan-time check reads the configuration only, so `copy_settings` entries left in state never trigger it.
+
+        When `copy_settings` is omitted, removing `auto_copy_settings_enabled` or setting `auto_copy_settings_enabled = false` removes the Atlas-managed copy configuration and deletes the copies it created.
+
         ## Import
 
         Cloud Backup Schedule entries can be imported using project_id and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -943,6 +994,9 @@ class CloudBackupSchedule(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] auto_copy_settings_enabled: Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+               * true - Enables Atlas-managed snapshot copy settings for the cluster. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed. Must omit `copy_settings`; setting both `auto_copy_settings_enabled = true` and `copy_settings` causes a plan-time error.
+               * false - Removes the Atlas-managed snapshot copy policy and deletes the snapshot copies it created. See Automatic copy settings.
         :param pulumi.Input[_builtins.bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
                * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
                * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
@@ -1177,6 +1231,16 @@ class CloudBackupSchedule(pulumi.CustomResource):
 
         `copy_settings.frequencies` is deprecated. Set `copy_policy_items_enabled = true`, then set `copy_policy_items` or `last_number_of_snapshots` on the entry and drop `frequencies`. The switch is one-way on the cluster: after Atlas enables copy-policy items, you cannot turn the flag off.
 
+        ## Automatic copy settings
+
+        Set `auto_copy_settings_enabled = true` to let Atlas manage the snapshot copy settings for the cluster. In this mode, omit `copy_settings`. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed.
+
+        Copies of the new automatic policy can appear after the apply completes, and there is no operation to wait on. A plan that omits `copy_settings` while `auto_copy_settings_enabled` is `true` keeps the Atlas-managed copies instead of deleting them.
+
+        Setting both `auto_copy_settings_enabled = true` and a `copy_settings` block in the configuration fails at plan time, because a static copy policy would fight the Atlas-managed one. The plan-time check reads the configuration only, so `copy_settings` entries left in state never trigger it.
+
+        When `copy_settings` is omitted, removing `auto_copy_settings_enabled` or setting `auto_copy_settings_enabled = false` removes the Atlas-managed copy configuration and deletes the copies it created.
+
         ## Import
 
         Cloud Backup Schedule entries can be imported using project_id and cluster_name, in the format `PROJECTID-CLUSTERNAME`, e.g.
@@ -1203,6 +1267,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 auto_copy_settings_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  auto_export_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
                  copy_policy_items_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
@@ -1231,6 +1296,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = CloudBackupScheduleArgs.__new__(CloudBackupScheduleArgs)
 
+            __props__.__dict__["auto_copy_settings_enabled"] = auto_copy_settings_enabled
             __props__.__dict__["auto_export_enabled"] = auto_export_enabled
             if cluster_name is None and not opts.urn:
                 raise TypeError("Missing required property 'cluster_name'")
@@ -1267,6 +1333,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            auto_copy_settings_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             auto_export_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
             cluster_id: pulumi.Input[Optional[_builtins.str]] = None,
             cluster_name: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1296,6 +1363,9 @@ class CloudBackupSchedule(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[_builtins.bool] auto_copy_settings_enabled: Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+               * true - Enables Atlas-managed snapshot copy settings for the cluster. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed. Must omit `copy_settings`; setting both `auto_copy_settings_enabled = true` and `copy_settings` causes a plan-time error.
+               * false - Removes the Atlas-managed snapshot copy policy and deletes the snapshot copies it created. See Automatic copy settings.
         :param pulumi.Input[_builtins.bool] auto_export_enabled: Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
                * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
                * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
@@ -1325,6 +1395,7 @@ class CloudBackupSchedule(pulumi.CustomResource):
 
         __props__ = _CloudBackupScheduleState.__new__(_CloudBackupScheduleState)
 
+        __props__.__dict__["auto_copy_settings_enabled"] = auto_copy_settings_enabled
         __props__.__dict__["auto_export_enabled"] = auto_export_enabled
         __props__.__dict__["cluster_id"] = cluster_id
         __props__.__dict__["cluster_name"] = cluster_name
@@ -1348,6 +1419,16 @@ class CloudBackupSchedule(pulumi.CustomResource):
         __props__.__dict__["update_snapshots"] = update_snapshots
         __props__.__dict__["use_org_and_group_names_in_export_prefix"] = use_org_and_group_names_in_export_prefix
         return CloudBackupSchedule(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="autoCopySettingsEnabled")
+    def auto_copy_settings_enabled(self) -> pulumi.Output[Optional[_builtins.bool]]:
+        """
+        Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+        * true - Enables Atlas-managed snapshot copy settings for the cluster. Atlas copies snapshots to each secondary region and updates the snapshot copy policy when secondary regions are added or removed. Must omit `copy_settings`; setting both `auto_copy_settings_enabled = true` and `copy_settings` causes a plan-time error.
+        * false - Removes the Atlas-managed snapshot copy policy and deletes the snapshot copies it created. See Automatic copy settings.
+        """
+        return pulumi.get(self, "auto_copy_settings_enabled")
 
     @_builtins.property
     @pulumi.getter(name="autoExportEnabled")

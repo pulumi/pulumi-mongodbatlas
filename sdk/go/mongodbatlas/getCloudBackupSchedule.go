@@ -122,6 +122,10 @@ type LookupCloudBackupScheduleArgs struct {
 
 // A collection of values returned by getCloudBackupSchedule.
 type LookupCloudBackupScheduleResult struct {
+	// Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+	// * true - Enables Atlas-managed snapshot copy settings: the schedule carries Atlas-managed copies instead of explicit `copySettings`.
+	// * false - The schedule uses explicit `copySettings`. Removing the flag or setting it to `false` on the resource deletes the Atlas-managed copies. See Automatic copy settings.
+	AutoCopySettingsEnabled bool `pulumi:"autoCopySettingsEnabled"`
 	// Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
 	// * true - Enables automatic export of cloud backup snapshots to the Export Bucket.
 	// * false - Disables automatic export of cloud backup snapshots to the Export Bucket. (default)
@@ -192,6 +196,13 @@ func (o LookupCloudBackupScheduleResultOutput) ToLookupCloudBackupScheduleResult
 
 func (o LookupCloudBackupScheduleResultOutput) ToLookupCloudBackupScheduleResultOutputWithContext(ctx context.Context) LookupCloudBackupScheduleResultOutput {
 	return o
+}
+
+// Flag that indicates whether Atlas manages the snapshot copy settings for the cluster. Value can be one of the following:
+// * true - Enables Atlas-managed snapshot copy settings: the schedule carries Atlas-managed copies instead of explicit `copySettings`.
+// * false - The schedule uses explicit `copySettings`. Removing the flag or setting it to `false` on the resource deletes the Atlas-managed copies. See Automatic copy settings.
+func (o LookupCloudBackupScheduleResultOutput) AutoCopySettingsEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupCloudBackupScheduleResult) bool { return v.AutoCopySettingsEnabled }).(pulumi.BoolOutput)
 }
 
 // Flag that indicates whether MongoDB Cloud automatically exports Cloud Backup Snapshots to the Export Bucket. Value can be one of the following:
